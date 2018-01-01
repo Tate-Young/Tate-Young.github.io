@@ -1,0 +1,11 @@
+{
+  "name": "Tate-Young.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Tate-Young/Tate-Young.github.io.git",
+  "author": "Tate-Young <smd_tate@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "#jekyll serve\n bundle exec jekyll serve"
+  }
+}
