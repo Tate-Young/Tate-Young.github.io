@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Hello Tate
+comments: True
+title: Beautify your md via markdownlint
 ---
 # {{ page.title }}
 
