@@ -1,0 +1,22 @@
+---
+layout: default
+title: My Blog
+description: Good Good Study. Day Day Up.
+---
+<!-- {% for post in site.posts %}
+  {{ post.date | date_to_string }} {{ site.baseurl }}   ------   [{{ post.title }}]({{ site.baseurl }}{{ post.url }})
+{% endfor %} -->
+
+<div class="home">
+  <ul class="post-list">
+    {% for post in paginator.posts %}
+    <li>
+      <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }} &nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- Pagination links -->
+{% include pagination.html %}

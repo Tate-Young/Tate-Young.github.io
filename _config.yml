@@ -1,5 +1,8 @@
+plugins: [jekyll-paginate]
 title: Tate & Snow
 description: Lovely Home.
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-architect
+paginate: 2
+paginate_path: "/blog/page:num/"
