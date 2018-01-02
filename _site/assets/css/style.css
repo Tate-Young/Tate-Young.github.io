@@ -588,7 +588,10 @@ header {
   padding-top: 40px;
   padding-bottom: 40px;
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  background: #2e7bcf url(../images/header-bg.jpg) 0 0 repeat-x;
+  background: no-repeat center top;
+  background-image: url(../images/acfun.jpg);
+  background-size: auto 100%;
+  width: 100%;
   border-bottom: solid 1px #275da1; }
 
 header h1 {
