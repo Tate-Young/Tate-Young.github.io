@@ -6,6 +6,6 @@
   "author": "Tate-Young <smd_tate@163.com>",
   "license": "MIT",
   "scripts": {
-    "start": "#jekyll serve\n bundle exec jekyll serve --host 192.168.1.105"
+    "start": "#jekyll serve\n bundle exec jekyll serve"
   }
 }
