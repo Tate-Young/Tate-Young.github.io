@@ -1,3 +1,5 @@
+# 改动后一定要重启服务 npm start
+
 plugins: [jekyll-paginate]
 title: Tate & Snow
 description: Lovely Home.
@@ -6,3 +8,4 @@ google_analytics:
 theme: jekyll-theme-architect
 paginate: 2
 paginate_path: "/blog/page:num/"
+github_url: "https://github.com/Tate-Young"

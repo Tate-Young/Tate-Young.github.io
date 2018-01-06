@@ -2,13 +2,57 @@
 @import "rouge-github";
 
 /* LAYOUT STYLES */
+html {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.5;
   color: #666;
-  background: #fafafa url(../images/body-bg.jpg) 0 0 repeat;
+  height: 100%;
+  width: 100%;
+  // background: #fafafa url(../images/body-bg.jpg) 0 0 repeat;
+  background: #fff;
+  /* fallback for old browsers */
+  // background: -webkit-linear-gradient(to right, #ece9e6, #fff);
+  /* Chrome 10-25, Safari 5.1-6 */
+  // background: linear-gradient(to right, #ece9e6, #fff);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+ }
+
+.filter {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #ebded1;
+  animation: colorChange 30s ease-in-out infinite;
+  animation-fill-mode: both;
+  mix-blend-mode: overlay;
+}
+
+@keyframes colorChange {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .9;
+  }
+}
+
+.fork-me {
+  position:absolute;
+  top:0;
+  left:0;
+  border:0;
+  z-index:1;
 }
 
 p {
@@ -22,6 +66,51 @@ a:hover {
   color: #2268b2;
 }
 
+.post-link {
+  position: relative;
+}
+
+.post-link:hover::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1)
+}
+
+.post-link::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: rgba(0, 0, 0, .5);
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+
+.bg-content {
+  position: fixed;
+  top: 0;
+  z-index: -1;
+  margin: 0;
+  cursor: none;
+
+  #canvas {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 header {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -31,7 +120,7 @@ header {
   background-image: url(../images/acfun.jpg);
   background-size: auto 100%;
   width: 100%;
-  border-bottom: solid 1px #275da1;
+  // border-bottom: solid 1px #275da1;
 }
 
 header h1 {
@@ -65,6 +154,7 @@ header h2 {
 #content-wrapper {
   padding-top: 30px;
   border-top: solid 1px #fff;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 #main-content {
@@ -186,7 +276,6 @@ form {
   background: #f2f2f2;
 
 }
-
 
 /* GENERAL ELEMENT TYPE STYLES */
 
@@ -456,3 +545,9 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) { }
+
+@media only screen and (max-width: 767px) {
+  .fork-me {
+    display: none;
+  }
+}

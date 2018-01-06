@@ -6,6 +6,11 @@
   "author": "Tate-Young <smd_tate@163.com>",
   "license": "MIT",
   "scripts": {
-    "start": "#jekyll serve\n bundle exec jekyll serve"
+    "start": "#jekyll serve\n bundle exec jekyll serve",
+    "commit": "scripty $1"
+  },
+  "devDependencies": {
+    "scripty": "^1.7.2",
+    "shelljs": "^0.7.8"
   }
 }
