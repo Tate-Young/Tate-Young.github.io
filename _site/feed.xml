@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tate & Snow</title>
+    <description>Lovely Home</description>
+    <link>http://localhost:4000</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Markdown书写</title>
+        <category>这个分类这么长怎么办</category>
+        <description>Markdown书写Text can be bold, italic, or strikethrough.There should be whitespace between paragraph...</description>
+        <pubDate>2017-07-30 18:06:42 </pubDate>
+        <link>http://localhost:4000/2017/07/30/memcacheandredis.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/07/30/memcacheandredis.html</guid>
+      </item>
+    
+      <item>
+        <title>如何书写MarkDown</title>
+        <category>git</category>
+        <description>test</description>
+        <pubDate>2017-07-17 07:45:56 </pubDate>
+        <link>http://localhost:4000/2017/07/17/md.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/07/17/md.html</guid>
+      </item>
+    
+  </channel>
+</rss>

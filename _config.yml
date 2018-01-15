@@ -1,11 +1,38 @@
-# 改动后一定要重启服务 npm start
+# ----------- CONFIGURABLE START -----------
+title:            "Tate & Snow"
+description:      "Lovely Home"
+url:              https://tate-young.github.io # 域名
+signoff:          "Tate" # Your name
+facebook_appid:   #Tate
+google_analytics: UA-101222464-1
+share:            true 
+# 分页
+paginate: 6
+paginate_path: "blog:num"
+gems: [jekyll-paginate]
+links:
+  - name:         首页
+    url:          /
+    external:     false
+  - name:         前端
+    url:          /book
+    external:     false
+  - name:         NodeJS
+    url:          /road
+    external:     false
+  - name:         归档
+    url:          /archives
+    external:     false
+  - name:         标签
+    url:          /tags
+    external:     false
+  - name:         关于
+    url:          /about
+    external:     false
+# ------------ CONFIGURABLE END ------------
 
-plugins: [jekyll-paginate]
-title: Tate & Snow
-description: Lovely Home.
-show_downloads: false
-google_analytics:
-theme: jekyll-theme-architect
-paginate: 2
-paginate_path: "/blog/page:num/"
-github_url: "https://github.com/Tate-Young"
+#permalink:        /:categories/:title.html
+permalink: /:year/:month/:day/:title.html
+defaults:
+  - values:
+      layout: "default"

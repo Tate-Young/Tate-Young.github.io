@@ -1,22 +1,35 @@
 ---
-layout: default
-title: My Blog
-description: Good Good Study. Day Day Up.
 ---
-<!-- {% for post in site.posts %}
-  {{ post.date | date_to_string }} {{ site.baseurl }}   ------   [{{ post.title }}]({{ site.baseurl }}{{ post.url }})
-{% endfor %} -->
 
-<div class="home">
-  <ul class="post-list">
-    {% for post in paginator.posts %}
-    <li>
-      <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }} &nbsp;&nbsp;&nbsp;&nbsp;</span>
-      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
-
-<!-- Pagination links -->
-{% include pagination.html %}
+<div class="main-content index-page clearfix ">
+	<div class="post-lists">
+		<div class="post-lists-body">
+      	{% for posts in paginator.posts %}
+		<div class="post-list-item">
+			<div class="post-list-item-container">
+				<div class="item-thumb  bg-{{posts.background }}" style="background-image:url('{{posts.background-image }}');"></div>
+				<a href="{{ posts.url }}">
+					<div class="item-desc">
+						<p>{{ posts.content | strip_html | strip_newlines | truncate: 100 }}</p>
+					</div>
+				</a>
+				<div class="item-slant reverse-slant  bg-{{ posts.background }}"></div>
+				<div class="item-slant">	<div class="liberxue-title">
+					{{ posts.flag }}
+				</div></div>
+				<div class="item-label">
+					<div class="item-title"><a href="{{ posts.url }}" title="访问 {{ posts.title }}">{{ posts.title }}</a></div>
+					<div class="item-meta clearfix">
+						<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
+             			<div class="item-meta-cat">
+							<a class="item-meta-category" href="/tags#{{ posts.category }}" title="访问 {{ posts.category }}" data-hover="{{ posts.category }}">{{ posts.category }}</a>
+							<a href="/archives#{{ posts.date | date: "%Y"}}" title="访问 {{ posts.date | date: "%Y"}}" data-hover="{{ posts.date | date: "%F %H:%M"}}">{{ posts.date | date: "%F %H:%M"}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+      </div>
+       {% endfor %}
+	</div>
+	</div>
+  {% include pagination.html %}
