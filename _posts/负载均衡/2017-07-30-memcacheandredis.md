@@ -1,6 +1,7 @@
 ---
 layout: blog
 book: true
+comments: True
 flag: snow
 background: blue
 category: 这个分类这么长怎么办

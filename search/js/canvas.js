@@ -108,6 +108,8 @@ for (var linesNum = 12, linesRy = [], requestId = null, i = 0; i < linesNum; i++
         l = new Line(flag);
     linesRy.push(l);
 }
-setTimeout(function () {
-    Init(), addEventListener("resize", Init, !1);
-}, 15);
+// setTimeout(function () {
+//     Init(), addEventListener("resize", Init, !1);
+// }, 15);
+// addEventListener("resize", Init, !1);
+Init();
