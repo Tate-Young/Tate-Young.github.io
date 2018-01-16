@@ -275,6 +275,7 @@ pre code::after {font-size: 1rem;color: #BFBFBF;position: absolute;top: 5px;righ
 .post-page .post-content .post-tags{display:none;}
 .post-title{font-size:21px;}
 .post-data,.post-data a{font-size:13px;color:#5f5f5f;margin: 7px 15px 0 0;}
+.post-data time{margin-right: 15px;}
 .post-tags{margin:0;padding:5px 0 15px;border-bottom: 1px solid #e0e0e0;}
 .post-tags a{font-size:13px;font-weight:600;display:inline-block;margin: 10px 8px 0 0;padding:0 15px;-webkit-transition-duration:400ms;transition-duration:400ms;text-decoration:none!important;letter-spacing:0;}
 .post-tags a:nth-child(1n){color:#fff;border:1px solid #6fa3ef;border-radius:15px;background:#6fa3ef;}
