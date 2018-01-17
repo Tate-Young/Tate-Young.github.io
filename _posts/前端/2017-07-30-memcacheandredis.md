@@ -1,6 +1,6 @@
 ---
 layout: blog
-book: true
+front: true
 comments: True
 flag: snow
 background: blue
