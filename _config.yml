@@ -15,10 +15,10 @@ links:
     url:          /
     external:     false
   - name:         前端
-    url:          /book
+    url:          /front
     external:     false
-  - name:         NodeJS
-    url:          /road
+  - name:         后端
+    url:          /back
     external:     false
   - name:         归档
     url:          /archives
@@ -27,7 +27,7 @@ links:
     url:          /tags
     external:     false
   - name:         关于
-    url:          /about
+    url:          /README
     external:     false
 # ------------ CONFIGURABLE END ------------
 
