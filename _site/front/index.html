@@ -9,13 +9,13 @@
 <title>Tate & Snow</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>全部标签 - Tate & Snow</title>
+<title>看过的书|正在看的书 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="全部标签 - Tate & Snow">
-<meta name="twitter:keywords" content="全部标签 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="看过的书|正在看的书 - Tate & Snow">
+<meta name="twitter:keywords" content="看过的书|正在看的书 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="全部标签 - Tate & Snow">
-<meta name="og:keywords" content="全部标签 - Tate & Snow|	{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor..."
+<meta property="og:title" content="看过的书|正在看的书 - Tate & Snow">
+<meta name="og:keywords" content="看过的书|正在看的书 - Tate & Snow|						{% for posts in site.posts %} {% if posts.front%}																														{{ posts.content | strip_html | ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,7 +24,7 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="	{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor..." property='og:description'
+<meta name="keywords" content="						{% for posts in site.posts %} {% if posts.front%}																														{{ posts.content | strip_html | ..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
@@ -124,54 +124,79 @@
             
             <h1 class="ttu f3 mt0 lh-title cb mb2">
               
-              全部标签
+              看过的书|正在看的书
             </h1>
             
           </div>
          -->
     <div class="markdown-body">
-      <div class="main-content archive-page clearfix">
-	 
-	<h3 class="post-title" itemprop="name headline">标签分类的博文--点击自动查找相应`Tags`</h3>
-	<div class="post-data">
-		<div class="post-tags">
+      <div class="main-content index-page clearfix ">
+	<div class="post-lists">
+		<div class="post-lists-body">
 			 
-			<a href="#测试">测试
-				<span>(1)个</span>
-			</a>
-			
-		</div>
-	</div>
-</div>
-<div class="main-content archive-page main-tags">
-	 
-	<div id="测试" class="post-lists" id="测试">
-		<div class="categorys-item">
-			<div class="categorys-title">
-				测试 : 1
-			</div>
-			
 			<div class="post-list-item">
 				<div class="post-list-item-container">
+					<div class="item-thumb  bg-blue" style="background-image:url('http://ot1cc1u9t.bkt.clouddn.com/17-8-1/24280498.jpg');"></div>
+					<a href="/2018/01/01/markdown.html">
+						<div class="item-desc">
+							<p>Markdown书写Text can be bold, italic, or strikethrough.There should be whitespace between paragraph...</p>
+						</div>
+					</a>
+					<div class="item-slant reverse-slant  bg-blue"></div>
+					<div class="item-slant">
+						<div class="theme-title">
+							snow
+						</div>
+					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="http://localhost:4000/2018/01/01/markdown.html" data-hover="Markdown书写">Markdown书写</a>
+							<a href="/2018/01/01/markdown.html">Markdown书写</a>
 						</div>
 						<div class="item-meta clearfix">
-							<div class="item-meta-date">
-								<a href="/archives# 2018 " data-hover=" 2018-01-01 18:00:00 "> 2018-01-01 18:00:00 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="/archives#
-								    2018 " data-hover="这个分类这么长怎么办">这个分类这么长怎么办</a>
+							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('../style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
+							<div class="item-meta-cat">
+								<a class="item-meta-category" href="category/thoughts/index.html" title="访问 这个分类这么长怎么办" data-hover="这个分类这么长怎么办">这个分类这么长怎么办</a>
+								<a href="category/thoughts/index.html" title="访问  2018 " data-hover=" 2018-01-01 18:00
+								    ">2018-01-01 18:00 </a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			
+			 
 		</div>
 	</div>
+	<!-- 分页链接 -->
+<div class="lists-navigator clearfix">
+    <ol class="page-navigator">
+        <li class="current">
+            <a href="/?tate" data-hover="首页">
+                <span>首页</span>
+            </a>
+        </li>
+        <li class="current">
+             
+                <a href="/blog?tate">
+                    
+                    <span>&laquo;</span>
+                </a>
+                
+        </li>
+        
+            <li class="current">
+                
+                <span>&raquo;</span>
+                
+            </li>
+            <li>
+                <a href="/blog?tate" data-hover="末页">
+                    <span>末页</span>
+                </a>
+            </li>
+            <li class="current">
+                <span>第页 / 共页</span>
+    </ol>
 
-	
 </div>
     </div>
     
