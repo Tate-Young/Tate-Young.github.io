@@ -10,18 +10,9 @@
         <title>Markdown书写</title>
         <category>这个分类这么长怎么办</category>
         <description>Markdown书写Text can be bold, italic, or strikethrough.There should be whitespace between paragraph...</description>
-        <pubDate>2017-07-30 18:06:42 </pubDate>
-        <link>http://localhost:4000/2017/07/30/memcacheandredis.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/07/30/memcacheandredis.html</guid>
-      </item>
-    
-      <item>
-        <title>如何书写MarkDown</title>
-        <category>git</category>
-        <description>test</description>
-        <pubDate>2017-07-17 07:45:56 </pubDate>
-        <link>http://localhost:4000/2017/07/17/md.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/07/17/md.html</guid>
+        <pubDate>2018-01-01 18:00:00 </pubDate>
+        <link>http://localhost:4000/2018/01/01/memcacheandredis.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/01/01/memcacheandredis.html</guid>
       </item>
     
   </channel>
