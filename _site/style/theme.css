@@ -64,7 +64,7 @@ ul ul,ul ol,ol ol,ol ul{margin-bottom:0;}
 pre{position:relative;margin:20px 0;}
 code{font-family:Menlo,Bitstream Vera Sans Mono,DejaVu Sans Mono,Monaco,Consolas,monospace;font-size:13px;margin:0 3px;padding:2px 6px;border-radius:3px;background-color:#f7f7f7;border: 1px solid #E1E1E1;
     border-radius: 4px;}
-pre code{font-size:13px;display:block;overflow:auto;padding:1.3em;border:0;}
+pre code{font-size:12px;display:block;overflow:auto;padding:1.3em;border:0;}
 blockquote{border-left: 2px solid rgba(235, 80, 85, 0.62);position: relative;color: #000;font-size: 1.5rem;background: #f4f4f4;margin: 20px 0;padding: 16px 24px 16px 35px}
 blockquote>:first-child{margin-top:0;}
 blockquote>:last-child{margin-bottom:0;}
@@ -333,7 +333,7 @@ pre code::after {font-size: 1rem;color: #BFBFBF;position: absolute;top: 5px;righ
 .directory-content.unpinned{opacity:1;}
 .directory-content.headroom--top{opacity:0;}
 .directory-content.headroom--not-top{-webkit-transition:opacity 500ms ease-in-out;transition:opacity 500ms ease-in-out;opacity:1;}
-#directory{position:fixed;z-index:0;top:100px;display:inline-block;text-align:left;margin-top: 230px;}
+#directory{position:fixed;z-index:0;top:100px;display:inline-block;text-align:left;margin-top: 230px;right: 3rem;}
 #directory ul,#directory li{margin:0;padding-left:0;list-style:none;}
 #directory>ul{position:relative;border-left:1px solid #ddd;}
 #directory>ul>li::before{position:relative;top:0;left:-4px;display:inline-block;width:7px;height:7px;content:'';border-radius:50%;background-color:#eb5055;}

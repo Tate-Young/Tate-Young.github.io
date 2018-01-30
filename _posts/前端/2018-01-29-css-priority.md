@@ -6,7 +6,7 @@ flag: snow
 background: blue
 category: 前端
 title:  CSS选择器优先级
-date:   2018-01-29 15:23:00
+date:   2018-01-29 23:23:00
 background-image: http://ot1cc1u9t.bkt.clouddn.com/17-8-1/24280498.jpg
 tags:
 - css
@@ -39,7 +39,7 @@ tags:
 
 ### 优先级权重
 
-| 组合选择器 | 权重 |
+| 优先级 | 权重 |
 |:-------------|:------------------|
 | 赛高 | !important(慎用) |
 | 甲等 | 代表内联样式，如：style="xxx"，权值为1000 |
