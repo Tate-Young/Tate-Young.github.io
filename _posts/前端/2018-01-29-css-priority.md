@@ -2,7 +2,7 @@
 layout: blog
 front: true
 comments: True
-flag: snow
+flag: CSS
 background: blue
 category: 前端
 title:  CSS选择器优先级
@@ -29,7 +29,7 @@ tags:
 
 | 组合选择器 | 名称 | 描述 |
 |:-------------|:------------------|:------------------|
-| E,F | 多元素选择器 | 选择所有E元素和F元素。 |
+| E,F | 多元素选择器 | 选择所有E元素和F元素 |
 | E F | 后代选择器 | 选择E元素内部的所有F元素 |
 | E>F | 子选择器 | 选择父元素为E元素的所有F元素 |
 | E+F | 相邻兄弟选择器 | 选择紧接在E元素之后的所有F元素 |
