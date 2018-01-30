@@ -21,8 +21,8 @@
 							</div>
 							<div class="item-meta clearfix">
 								<div class="item-meta-date">
-									{{ post.date | date: "%F %H:%M:%S "}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<a href="/tags#{{ post.category }}"
+									<div class="item-meta-date-post">{{ post.date | date: "%F"}}</div>
+									<a class="item-meta-date-category" href="/tags#{{ post.category }}"
 									    data-hover="{{ post.category }}">{{ post.category }} </a>
 								</div>
 							</div>

@@ -76,6 +76,7 @@ tags:
 ```
 
 ```HTML
+<!-- 栗子转载于链接3，感谢提供 -->
 <div id="content">
     <div id="main-content">
         <h2>CSS简介</h2>
@@ -88,7 +89,7 @@ tags:
 </div>
 ```
 
-## 参考文献
+## 参考链接
 
 1. [w3school-选择器](http://www.w3school.com.cn/cssref/css_selectors.ASP)
 1. [MDN-CSS优先级](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Specificity)
