@@ -1262,7 +1262,7 @@ textarea:-ms-input-placeholder {
     font-size: 14px;
     word-wrap: break-word;
     word-break: break-word;
-    line-height: 40px;
+    /* line-height: 40px; */
 }
 
 .post-content h1,
