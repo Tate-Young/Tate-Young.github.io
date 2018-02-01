@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Js Is Object - ",
+		"url" : "/2018/02/01/js-is-object.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "浅拷贝和深拷贝 - ",
 		"url" : "/2018/01/31/js-deep-copy.html"
 	}
@@ -11,7 +19,7 @@
 	
     
 	{
-		"title" : "this指针的指向 - ",
+		"title" : "this指针 - ",
 		"url" : "/2018/01/30/js-this.html"
 	}
 	
