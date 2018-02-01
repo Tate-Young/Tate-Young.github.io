@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  浅拷贝和深拷贝
 date:   2018-01-31 17:15:00 GMT+0800 (CST)
-background-image: http://ot1cc1u9t.bkt.clouddn.com/17-8-1/24280498.jpg
+background-image: https://user-gold-cdn.xitu.io/2017/2/9/7c13147ecfecd8a6ce7f0b5a9782dd30?imageslim
 tags:
 - JavaScript
 ---
@@ -45,7 +45,7 @@ var b = { m: 20 }; // 变量b存在于栈内存中，{m: 20} 作为对象存在�
 var c = [1, 2, 3]; // 变量c存在于栈内存中，[1, 2, 3] 作为对象存在于堆内存中
 ```
 
-![栈内存和堆内存](https://user-gold-cdn.xitu.io/2017/2/9/7c13147ecfecd8a6ce7f0b5a9782dd30?imageslim)
+![栈内存和堆内存]({{ page.background-image }})
 
 ### 深拷贝和浅拷贝的区别
 
@@ -91,7 +91,7 @@ console.log(p1[1].age); // 26
 
 ### 第二种浅拷贝
 
-拷贝原对象的实例，但是对其内部的引用类型值，拷贝的是其引用
+构造新的对象，并对源对象进行拷贝，但是对其内部的引用类型值，拷贝的是其引用
 
 ```js
 // Array的slice()和concat()方法和Object.assign()、$.extend({}, obj)方法类似
@@ -144,6 +144,7 @@ function deepCopy(source){
 }
 var o1 = {
   arr: [1, 2],
+  age: undefined,
   obj: {
     name: 'Tate'
   },

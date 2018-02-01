@@ -266,7 +266,7 @@
 
 <h3 id="第二种浅拷贝">第二种浅拷贝</h3>
 
-<p>拷贝原对象的实例，但是对其内部的引用类型值，拷贝的是其引用</p>
+<p>构造新的对象，并对源对象进行拷贝，但是对其内部的引用类型值，拷贝的是其引用</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Array的slice()和concat()方法和Object.assign()、$.extend({}, obj)方法类似</span>
 <span class="c1">// $.extend(true, {}, obj)为深拷贝</span>
@@ -320,6 +320,7 @@
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">o1</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">arr</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+  <span class="na">age</span><span class="p">:</span> <span class="kc">undefined</span><span class="p">,</span>
   <span class="na">obj</span><span class="p">:</span> <span class="p">{</span>
     <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span>
   <span class="p">},</span>

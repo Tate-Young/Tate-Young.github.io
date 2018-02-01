@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='JS中this指针详解 - Tate & Snow' name='title' />
-    <meta content='JS中this指针详解 - Tate & Snow' name='og:title' />
-    <title>JS中this指针详解 - Tate & Snow</title>
+    <meta content='this指针的指向 - Tate & Snow' name='title' />
+    <meta content='this指针的指向 - Tate & Snow' name='og:title' />
+    <title>this指针的指向 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>JS中this指针详解 - Tate & Snow</title>
+<title>this指针的指向 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS中this指针详解 - Tate & Snow">
-<meta name="twitter:keywords" content="JS中this指针详解 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="this指针的指向 - Tate & Snow">
+<meta name="twitter:keywords" content="this指针的指向 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS中this指针详解 - Tate & Snow">
-<meta name="og:keywords" content="JS中this指针详解 - Tate & Snow|JS中this指针详解this指针指向指向当前函数的调用对象this指针案例// 实际执行的是window.getName()，全局作用域上并没有name属性// 严格模式中指向的是undefinedfunction getName(..."
+<meta property="og:title" content="this指针的指向 - Tate & Snow">
+<meta name="og:keywords" content="this指针的指向 - Tate & Snow|this指针的指向this指针指向指向当前函数的调用对象this指针案例// 实际执行的是window.getName()，全局作用域上并没有name属性// 严格模式中指向的是undefinedfunction getName(){..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="JS中this指针详解this指针指向指向当前函数的调用对象this指针案例// 实际执行的是window.getName()，全局作用域上并没有name属性// 严格模式中指向的是undefinedfunction getName(..." property='og:description'
+<meta name="keywords" content="this指针的指向this指针指向指向当前函数的调用对象this指针案例// 实际执行的是window.getName()，全局作用域上并没有name属性// 严格模式中指向的是undefinedfunction getName(){..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/01/30/js-this.html' property='og:url' />
-<meta content="http://localhost:4000/2018/01/30/js-this.html|JS中this指针详解this指针指向指向当前函数的调用对象this指针案例// 实际执行的是window.getName()，全局作用域上并没有name属性// 严格模式中指向的是undefinedfunction getName(..." property='og:description'
+<meta content="http://localhost:4000/2018/01/30/js-this.html|this指针的指向this指针指向指向当前函数的调用对象this指针案例// 实际执行的是window.getName()，全局作用域上并没有name属性// 严格模式中指向的是undefinedfunction getName(){..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -118,7 +118,7 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    JS中this指针详解</h1>
+                    this指针的指向</h1>
                 <div class="post-data">
                     <time datetime="2018-01-30 22:48:00" itemprop="datePublished">发布时间：2018-01-30 22:48:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -139,7 +139,7 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                JS中this指针详解</h1>
+                this指针的指向</h1>
             <div class="post-data">
                 <time datetime="2018-01-30 22:48:00" itemprop="datePublished">2018-01-30 22:48:00</time>
             </div>
@@ -153,13 +153,13 @@
                     </a>
                    
             </p>
-            <h1 id="js中this指针详解">JS中this指针详解</h1>
+            <h1 id="this指针的指向">this指针的指向</h1>
 
 <h2 id="this指针指向">this指针指向</h2>
 
 <p>指向当前函数的调用对象</p>
 
-<h2 id="this指针案例">this指针案例</h2>
+<h3 id="this指针案例">this指针案例</h3>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 实际执行的是window.getName()，全局作用域上并没有name属性</span>
 <span class="c1">// 严格模式中指向的是undefined</span>
@@ -201,11 +201,26 @@
 </code></pre>
 </div>
 
-<blockquote>
-  <p>当构造函数遇到return时，可参考<a href="http://blog.csdn.net/spicyboiledfish/article/details/70858565">链接2</a></p>
-</blockquote>
+<h3 id="this指针案例-return">this指针案例-return</h3>
 
-<h2 id="callapplybind改变指针指向的用法">call/apply/bind改变指针指向的用法</h2>
+<p>一般情况下若返回的是引用类型，则返回该引用类型；若返回的是基本类型，则无影响。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
+    <span class="c1">// return undefined; // Tate</span>
+    <span class="c1">// return null; // Tate</span>
+    <span class="c1">// return 'Snow'; // Tate</span>
+    <span class="c1">// return [1, 2]; // undefined</span>
+    <span class="c1">// return {name: 'Snow'}; // Snow</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Snow'</span><span class="p">);</span> <span class="p">};</span> <span class="c1">// undefined</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h2 id="callapplybind改变指针指向">call/apply/bind改变指针指向</h2>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Tate</span>
@@ -227,10 +242,11 @@
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
-<span class="c1">// new操作符的操作是</span>
-<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{};</span>
-<span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span>  <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
-<span class="nx">Person</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+
+<span class="c1">// new操作符的操作实际是</span>
+<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// 申明一个空对象</span>
+<span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span>  <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span> <span class="c1">// 将__proto__指针指向Person的prototype，即其原型对象</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// 改变Person内部this指针，指向p对象</span>
 </code></pre>
 </div>
 
@@ -238,7 +254,6 @@
 
 <ol>
   <li><a href="https://www.cnblogs.com/pssp/p/5216085.html">彻底理解js中this的指向，不必硬背</a></li>
-  <li><a href="http://blog.csdn.net/spicyboiledfish/article/details/70858565">JavaScript之构造函数内有return详解</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -251,7 +266,7 @@
     var disqus_config = function () {
         this.page.url = 'https://tate-young.github.io/2018/01/30/js-this.html';
         this.page.identifier = '/2018/01/30/js-this';
-        this.page.title = 'JS中this指针详解';
+        this.page.title = 'this指针的指向';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
