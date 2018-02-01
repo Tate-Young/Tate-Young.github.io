@@ -1,21 +1,20 @@
+
 <!DOCTYPE>
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
-<meta http-equiv="x-dns-prefetch-control" content="on">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-<meta name="renderer" content="webkit">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<title>Tate & Snow</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<head>
+    <meta content='包装对象 - Tate & Snow' name='title' />
+    <meta content='包装对象 - Tate & Snow' name='og:title' />
+    <title>包装对象 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Js Is Object - Tate & Snow</title>
+<title>包装对象 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Js Is Object - Tate & Snow">
-<meta name="twitter:keywords" content="Js Is Object - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="包装对象 - Tate & Snow">
+<meta name="twitter:keywords" content="包装对象 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Js Is Object - Tate & Snow">
-<meta name="og:keywords" content="Js Is Object - Tate & Snow|"
+<meta property="og:title" content="包装对象 - Tate & Snow">
+<meta name="og:keywords" content="包装对象 - Tate & Snow|包装对象怎么理解JS一切都是对象对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是immutable不可变的，也没有属性和方法而言。然而如下例子var s = 'Tate';console.log(s.le..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="" property='og:description'
+<meta name="keywords" content="包装对象怎么理解JS一切都是对象对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是immutable不可变的，也没有属性和方法而言。然而如下例子var s = 'Tate';console.log(s.le..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/02/01/js-is-object.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/01/js-is-object.html|" property='og:description'
+<meta content="http://localhost:4000/2018/02/01/js-is-object.html|包装对象怎么理解JS一切都是对象对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是immutable不可变的，也没有属性和方法而言。然而如下例子var s = 'Tate';console.log(s.le..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -51,94 +50,202 @@
  
 </head>
 
-<body class="bg-grey" gtools_scp_screen_capture_injected="true">
-  <div id="MathJax_Message" style="display: none;"></div>
-  <!-- <div class="bg-content">
-    <canvas id="canvas"></canvas>
-  </div> -->
-  <header id="header" class="header bg-white">
-    <div class="navbar-container">
-      <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
-        <img src="http://localhost:4000/style/images/tate.png" alt="Tate & Snow"> </a>
-      <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a> -->
-      <div class="navbar-menu">
-        
-        <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
-        
-        <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
-        
-        <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
-        
-        <a href="/archives?tate" title="访问 归档" data-hover="归档">归档</a>
-        
-        <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
-        
-        <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
-        
-      </div>
-      <div class="navbar-search" onclick="">
-        <span class="icon-search"></span>
-        <form method="post" action="/404.html" role="search">
-          <span class="search-box">
-            <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
-          </span>
-        </form>
-      </div>
-      <div class="navbar-mobile-menu" >
-        <span class="icon-menu cross">
-          <span class="middle"></span>
-        </span>
-        <ul>
-          
-          <li>
-            <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
-          </li>
-          
-          <li>
-            <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
-          </li>
-          
-          <li>
-            <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
-          </li>
-          
-          <li>
-            <a href="/archives?tate" title="访问 归档" data-hover="归档">归档</a>
-          </li>
-          
-          <li>
-            <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
-          </li>
-          
-          <li>
-            <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
-          </li>
-          
-        </ul>
-      </div>
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="http://localhost:4000/style/images/tate.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/archives">归档</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div>
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/archives">归档</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    包装对象</h1>
+                <div class="post-data">
+                    <time datetime="2018-02-01 23:27:00" itemprop="datePublished">发布时间：2018-02-01 23:27:00</time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
+                        JavaScript
+                        <span>(3)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
     </div>
-  </header>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                包装对象</h1>
+            <div class="post-data">
+                <time datetime="2018-02-01 23:27:00" itemprop="datePublished">2018-02-01 23:27:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
+                    JavaScript
+                    <span>(3)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="包装对象">包装对象</h1>
 
-  <main class="tl f6 relative pa4 pa5-ns overflow-hidden">
-    <!-- 
-          <div class="mb4">
-            <div class="fw600 light-silver mt1">01 Feb 2018</div>
-            <h1 class="ttu f3 mt0 lh-title cb mb2">
-              
-              Js Is Object
-            </h1>
-            
-          </div>
-         -->
-    <div class="markdown-body">
-      
+<h2 id="怎么理解js一切都是对象">怎么理解JS一切都是对象</h2>
 
-    </div>
-    
-  </main>
-  
-  </div>
-  <!-- <footer class="footer bg-white">
+<p>对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是immutable不可变的，也没有属性和方法而言。然而如下例子</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span> <span class="c1">// 4</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">());</span> <span class="c1">// TATE</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">'T'</span><span class="p">,</span> <span class="s1">'t'</span><span class="p">))</span> <span class="c1">// tate</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="c1">// 'Tate' 基本类型值不可变</span>
+</code></pre>
+</div>
+
+<p>为什么基本类型也拥有类似对象的特性，原因就在于调用属性和方法的时候，JS会自动将其转换成对应的包装对象(只读)，调用结束后这个临时对象会被销毁。</p>
+
+<h2 id="什么是包装对象">什么是包装对象</h2>
+
+<p>所谓“<strong>包装对象(Wrapper Object)</strong>”，就是分别与数值、字符串、布尔值相对应的<strong>Number、String、Boolean</strong>三个原生对象。这三个原生对象可以把原始类型的值包装成对象。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 以上例子实际等同于</span>
+<span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">S</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">S</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+<span class="c1">// S {</span>
+<span class="c1">//   0: "T", 1: "a", 2: "t", 3: "e", length: 4, [[PrimitiveValue]]: "Tate"</span>
+<span class="c1">// }</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">S</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">());</span>
+</code></pre>
+</div>
+
+<p>上面代码中，字符串的包装对象有每个位置的值、有length属性、还有一个内部属性[[PrimitiveValue]]保存字符串的原始值。这个[[PrimitiveValue]]内部属性，外部是无法调用，仅供valueOf()或toString()这样的方法内部调用。</p>
+
+<p><img src="http://localhost:4000/style/images/wrapper-obj.png" alt="包装对象实现原理" /></p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="http://javascript.ruanyifeng.com/stdlib/wrapper.html">包装对象</a></li>
+  <li><a href="https://www.jianshu.com/p/7e585f06d029">简书-javascirpt包装对象（wrapper object）</a></li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/02/01/js-is-object.html';
+        this.page.identifier = '/2018/02/01/js-is-object';
+        this.page.title = '包装对象';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-01 23:27:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
 	<div class="footer-social">
 		<div class="footer-container clearfix">
 			<div class="social-list">
@@ -221,6 +328,107 @@
         s.parentNode.insertBefore(bp, s);
     })();
 </script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
 </body>
 
 </html>
