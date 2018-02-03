@@ -39,4 +39,4 @@ Jekyll模板来源于liberxue[已开源](https://github.com/Liberxue/liberxue.gi
 
 ## 技能标签
 
-``JavaScript`` ``TypeScript`` ``ES6`` ``Less`` ``AngularJS`` ``Angular`` ``Gulp`` ``NPM Scripts`` ``NodeJS`` ``Linux`` ``Shell`` ``SQL`` ``PS`` ``PR`` ``AE`` ``英文六级``
+``JavaScript`` ``TypeScript`` ``ES6`` ``Less`` ``jQuery`` ``AngularJS`` ``Angular`` ``Gulp`` ``NPM Scripts`` ``NodeJS`` ``Linux`` ``Shell`` ``SQL`` ``PS`` ``PR`` ``AE`` ``英文六级``

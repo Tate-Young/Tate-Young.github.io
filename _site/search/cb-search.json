@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "数据检测 - ",
+		"url" : "/2018/02/04/js-data-detection.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "包装对象 - ",
 		"url" : "/2018/02/01/js-is-object.html"
 	}

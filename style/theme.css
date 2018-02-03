@@ -278,8 +278,10 @@ table {
     width: 100%;
     border-spacing: 0;
     border-collapse: collapse;
-    word-wrap: normal;
-    word-break: normal;
+    /* word-wrap: normal;
+    word-break: normal; */
+    table-layout: fixed;
+    word-break: break-all;
 }
 
 table th {
@@ -288,8 +290,9 @@ table th {
 
 table th,
 table td {
+    /* width: 30%; */
     padding: 6px 13px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     border: 1px solid #ddd;
 }
 
