@@ -40,10 +40,10 @@ isNaN({}); // true
 isNaN([1,2]); // true
 isNaN(undefined); // true
 isNaN('Tate'); // true
-isNaN(null); // false 可被转换为new Number(null)即0
 isNaN('12'); // false 可被转换为12
 isNaN(''); // false 空字符串可被转换为0
 isNaN(new Date()); // false
+isNaN(null); // false 可被转换为new Number(null)即0
 ```
 
 ## instanceof
@@ -81,17 +81,21 @@ arr instanceof Array; // false
 
 ## constructor
 
-对象的 **constructor** 属性指向其原型链上一层的constructor。
+对象的 **constructor** 属性总是返回它的的构造函数。
 
 ```js
-// true Array.prototype.constructor指向Array构造函数本身
-[].constructor === Array.prototype.constructor
+// Array.prototype.constructor指向Array构造函数本身
+[].constructor === Array.prototype.constructor // true
 
 [].constructor === Array;
 'Tate'.constructor === String;
 true.constructor === Boolean;
 new Date().constructor === Date;
 new Function().constructor === Function;
+
+Array.constructor === Function;
+Object.constructor === Function;
+String.constructor === Function;
 
 function Person(){};
 var p = new Person();
@@ -110,6 +114,7 @@ Person.prototype = { // 重写prototype
 var p = new Person();
 p.constructor === Person; // false
 p.constructor === Object; // true
+p.constructor === Person.prototype.constructor; // true
 ```
 
 ## toString()
@@ -152,5 +157,6 @@ $.type(window) === 'object';
 
 ## 参考链接
 
+1. [Understanding JavaScript Constructors](https://css-tricks.com/understanding-javascript-constructors)
 1. [判断JS数据类型的四种方法](http://www.cnblogs.com/onepixel/p/5126046.html)
 1. [简书-JavaScript中对象的constructor的深入理解](https://www.jianshu.com/p/18f6c0868e71)

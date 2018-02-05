@@ -128,7 +128,7 @@
                        
                     <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
                         JavaScript
-                        <span>(4)</span>
+                        <span>(5)</span>
                         
                     </a>
                        
@@ -149,7 +149,7 @@
                    
                 <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
                     JavaScript
-                    <span>(4)</span>
+                    <span>(5)</span>
                     </a>
                    
             </p>
@@ -181,10 +181,10 @@
 <span class="nb">isNaN</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]);</span> <span class="c1">// true</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span> <span class="c1">// true</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="s1">'Tate'</span><span class="p">);</span> <span class="c1">// true</span>
-<span class="nb">isNaN</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">// false 可被转换为new Number(null)即0</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="s1">'12'</span><span class="p">);</span> <span class="c1">// false 可被转换为12</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span> <span class="c1">// false 空字符串可被转换为0</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span> <span class="c1">// false</span>
+<span class="nb">isNaN</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">// false 可被转换为new Number(null)即0</span>
 </code></pre>
 </div>
 
@@ -223,16 +223,20 @@
 
 <h2 id="constructor">constructor</h2>
 
-<p>对象的 <strong>constructor</strong> 属性指向其原型链上一层的constructor。</p>
+<p>对象的 <strong>constructor</strong> 属性总是返回它的的构造函数。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// true Array.prototype.constructor指向Array构造函数本身</span>
-<span class="p">[].</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Array.prototype.constructor指向Array构造函数本身</span>
+<span class="p">[].</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="c1">// true</span>
 
 <span class="p">[].</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">;</span>
 <span class="s1">'Tate'</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">String</span><span class="p">;</span>
 <span class="kc">true</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Boolean</span><span class="p">;</span>
 <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Date</span><span class="p">;</span>
 <span class="k">new</span> <span class="nb">Function</span><span class="p">().</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
+
+<span class="nb">Array</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
+<span class="nb">String</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">Person</span><span class="p">(){};</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
@@ -251,6 +255,7 @@
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
 <span class="nx">p</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">;</span> <span class="c1">// false</span>
 <span class="nx">p</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">;</span> <span class="c1">// true</span>
+<span class="nx">p</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span><span class="p">;</span> <span class="c1">// true</span>
 </code></pre>
 </div>
 
@@ -295,6 +300,7 @@
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
+  <li><a href="https://css-tricks.com/understanding-javascript-constructors">Understanding JavaScript Constructors</a></li>
   <li><a href="http://www.cnblogs.com/onepixel/p/5126046.html">判断JS数据类型的四种方法</a></li>
   <li><a href="https://www.jianshu.com/p/18f6c0868e71">简书-JavaScript中对象的constructor的深入理解</a></li>
 </ol>
@@ -392,10 +398,14 @@
     
       
     
+      
+    
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
           
+      
+            
       
             
       
