@@ -23,7 +23,7 @@ tags:
 
 ## 调用栈(Call Stack)
 
-函数调用形成了一个栈帧，多个栈帧叠加形成一个**[调用栈](https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A)**，实行先进后出。
+函数调用形成了一个栈帧(Call Frame)，多个栈帧叠加形成一个**[调用栈(执行栈)](https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A)**，实行先进后出。
 
 ```js
 function foo(b) {

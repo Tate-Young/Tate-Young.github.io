@@ -121,7 +121,7 @@ p.constructor === Person.prototype.constructor; // true
 
 **toString()** 是 Object 的原型方法，调用该方法，默认返回当前对象的内部属性 [[Class]] ，其格式为 [object X] ，其中 X 就是对象的类型。
 
-对于 Object 对象，直接调用 toString()  就能返回 [object Object] 。而对于其他对象，则需要通过 call() / apply() 来调用才能返回正确的类型信息。
+对于 Object 对象，直接调用 toString()  就能返回 [object Object] 。而对于其他对象，则需要通过 call / apply 来调用才能返回正确的类型信息。
 
 ```js
 Object.prototype.toString.call('Tate'); // [object String]
