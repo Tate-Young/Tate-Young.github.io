@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "原型链与继承 - ",
+		"url" : "/2018/02/06/js-prototype.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Error 处理机制 - ",
 		"url" : "/2018/02/06/js-error.html"
 	}
@@ -36,7 +44,7 @@
     
 	{
 		"title" : "包装对象 - ",
-		"url" : "/2018/02/01/js-is-object.html"
+		"url" : "/2018/02/01/js-wrapper-object.html"
 	}
 	
 	,
