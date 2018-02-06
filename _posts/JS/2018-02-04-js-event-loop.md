@@ -33,10 +33,10 @@ function foo(b) {
 
 function bar(x) {
   var y = 3;
-  return foo(x * y);
+  return foo(x * y) + 1;
 }
 
-bar(520);
+bar(520); // 1564
 ```
 
 1. 当调用bar时，创建了第一个帧 ，帧中包含了bar的参数和局部变量。

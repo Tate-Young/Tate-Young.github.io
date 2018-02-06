@@ -66,7 +66,7 @@ function factorial(n, m) {
 factorial(5, 1) // 120
 ```
 
-此处实行函数式编程里的 **[柯里化(currying)](currying)**，把接受多个参数的函数变换成接受一个单一参数的函数。
+此处实行函数式编程里的 **[柯里化(currying)](https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96)**，把接受多个参数的函数变换成接受一个单一参数的函数。
 
 ```js
 function currying(fn, n) {
@@ -126,7 +126,7 @@ function trampoline(f) {
 function sum(x, y) {
     function recur(x, y) {
         if (y > 0) {
-          return recur.bind(null, x + 1, y - 1);
+          return recur.bind(null, x + 1, y - 1); // recur函数的每次执行，都会返回自身的另一个版本
         } else {
           return x;
         }

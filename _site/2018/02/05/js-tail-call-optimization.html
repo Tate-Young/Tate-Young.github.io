@@ -128,7 +128,7 @@
                        
                     <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
                         JavaScript
-                        <span>(6)</span>
+                        <span>(7)</span>
                         
                     </a>
                     
@@ -155,7 +155,7 @@
                    
                 <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
                     JavaScript
-                    <span>(6)</span>
+                    <span>(7)</span>
                     </a>
                 
                 <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
@@ -220,7 +220,7 @@
 </code></pre>
 </div>
 
-<p>此处实行函数式编程里的 <strong><a href="currying">柯里化(currying)</a></strong>，把接受多个参数的函数变换成接受一个单一参数的函数。</p>
+<p>此处实行函数式编程里的 <strong><a href="https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96">柯里化(currying)</a></strong>，把接受多个参数的函数变换成接受一个单一参数的函数。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
@@ -279,7 +279,7 @@
 <span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">function</span> <span class="nx">recur</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+          <span class="k">return</span> <span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// recur函数的每次执行，都会返回自身的另一个版本</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
           <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
         <span class="p">}</span>
