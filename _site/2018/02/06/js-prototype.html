@@ -231,7 +231,7 @@
 
 <p>使用指定的原型对象及其属性去创建一个新的对象。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 本质上新建了一个构造函数，并且将其原型指针指向obj</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 本质上新建了一个临时性的构造函数，并且将其原型指针指向obj</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span>
     <span class="kd">function</span> <span class="nx">F</span><span class="p">()</span> <span class="p">{}</span>
     <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
@@ -294,6 +294,7 @@
 <span class="p">}</span>
 <span class="kd">function</span> <span class="nx">SubType</span><span class="p">()</span> <span class="p">{}</span>
 <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperType</span><span class="p">();</span>
+<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">SubType</span><span class="p">;</span> <span class="c1">// SubType原型被改写，需要将constructor恢复默认值</span>
 
 <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">();</span>
@@ -324,7 +325,7 @@
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">();</span>
-<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">(</span><span class="s1">'Snow'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">();</span>
 
 <span class="nx">a</span><span class="p">.</span><span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// [1, 2, 3, 4]</span>
 <span class="nx">b</span><span class="p">.</span><span class="nx">arr</span><span class="p">;</span> <span class="c1">// [1, 2, 3, 4]</span>
@@ -336,6 +337,7 @@
 <h3 id="组合继承">组合继承</h3>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 结合上述两种继承的优点</span>
+<span class="c1">// 在继承方法时，SubType.prototype会继承name和arr属性，在继承属性时又会创建实例属性name和arr</span>
 <span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
@@ -372,7 +374,7 @@
 <h3 id="原型式继承">原型式继承</h3>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 通过 Object.create 可以实现原型式继承，思路是借助原型可以基于已有的对象创建新对象。</span>
-<span class="c1">// 同原型链继承一样，包含引用类型的属性值始终都会被所有实例共享</span>
+<span class="c1">// 同原型链继承一样，引用类型值属性始终都会被所有实例共享</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
     <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
     <span class="na">interests</span><span class="p">:</span> <span class="p">[</span><span class="s1">'travel'</span><span class="p">,</span> <span class="s1">'badminton'</span><span class="p">]</span>
@@ -389,15 +391,93 @@
 </code></pre>
 </div>
 
-<h2 id="寄生式继承">寄生式继承</h2>
+<h3 id="寄生式继承">寄生式继承</h3>
 
-<h2 id="寄生组合式继承">寄生组合式继承</h2>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 原理和原型式继承差不多，但是可以增强对象</span>
+<span class="kd">function</span> <span class="nx">createAnother</span><span class="p">(</span><span class="nx">original</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">clone</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">original</span><span class="p">);</span> <span class="c1">// 基于orginal创建一个新对象</span>
+    <span class="nx">clone</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="c1">// 增强对象，添加属性和方法</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"hi"</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">return</span> <span class="nx">clone</span><span class="p">;</span> <span class="c1">// 返回对象</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
+    <span class="na">interests</span><span class="p">:</span> <span class="p">[</span><span class="s1">'travel'</span><span class="p">,</span> <span class="s1">'badminton'</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">anotherPerson</span> <span class="o">=</span> <span class="nx">createAnother</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+<span class="nx">anotherPerson</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">// 'hi'</span>
+</code></pre>
+</div>
+
+<h3 id="寄生组合式继承">寄生组合式继承</h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 将组合式继承进行优化</span>
+<span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">SubType</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">SuperType</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// 继承属性</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//继承方法</span>
+<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">SubType</span><span class="p">;</span>
+
+<span class="c1">// 等价于</span>
+<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h3 id="class类继承">Class类继承</h3>
+
+<p>Class本质是构造函数，Class之间可以通过 <strong>extends</strong> 关键字实现继承。ES5 借用构造函数的继承，实际是先创造子类的实例对象 this，然后再将父类的方法添加到 this 上面(Parent.apply(this))。ES6 的继承机制完全不同，实际是先创造父类的实例对象 this(所以必须先调用super方法)，然后再用子类的构造函数修改 this。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Point</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">toString</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'('</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="s1">', '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="s1">')'</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kr">static</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// 静态方法也可继承</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Tate'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// super关键字表示父类的构造函数，用来新建父类的 this 对象，子类没有自己的 this 对象，必须继承于父类</span>
+ <span class="kr">class</span> <span class="nx">ColorPoint</span> <span class="kr">extends</span> <span class="nx">Point</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// this.color = color; // ReferenceError</span>
+    <span class="kr">super</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span> <span class="c1">// 调用父类的constructor(x, y)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">toString</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="kr">super</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// 调用父类的toString()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">point</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ColorPoint</span><span class="p">(</span><span class="mi">1</span> <span class="p">,</span><span class="mi">2</span> <span class="p">,</span> <span class="s1">'pink'</span><span class="p">);</span>
+<span class="nx">point</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// pink (1, 2)</span>
+<span class="nx">ColorPoint</span><span class="p">.</span><span class="nx">sayName</span><span class="p">();</span> <span class="c1">// 'Tate'</span>
+</code></pre>
+</div>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
+  <li><a href="https://www.amazon.cn/dp/B007OQQVMY/ref=sr_1_1/458-6273007-6912964?s=books&amp;ie=UTF8&amp;qid=1517972181&amp;sr=1-1&amp;keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1">书籍-«JavaScript高级程序设计»</a></li>
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">继承与原型链</a></li>
   <li><a href="http://javascript.ruanyifeng.com/oop/prototype.html">prototype 对象</a></li>
+  <li><a href="http://es6.ruanyifeng.com/#docs/class-extends">Class 的继承</a></li>
 </ol>
  
 <div id="disqus_thread"></div>

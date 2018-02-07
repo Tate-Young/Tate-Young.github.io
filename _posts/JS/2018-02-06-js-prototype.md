@@ -90,7 +90,7 @@ Object.setPrototypeOf(p, Person.prototype);
 使用指定的原型对象及其属性去创建一个新的对象。
 
 ```js
-// 本质上新建了一个构造函数，并且将其原型指针指向obj
+// 本质上新建了一个临时性的构造函数，并且将其原型指针指向obj
 Object.create = function(obj){
     function F() {}
     F.prototype = obj;
@@ -153,6 +153,7 @@ SuperType.prototype.sayName = function() {
 }
 function SubType() {}
 SubType.prototype = new SuperType();
+SubType.prototype.constructor = SubType; // SubType原型被改写，需要将constructor恢复默认值
 
 var a = new SubType();
 var b = new SubType();
@@ -183,7 +184,7 @@ function SubType() {
 }
 
 var a = new SubType();
-var b = new SubType('Snow');
+var b = new SubType();
 
 a.arr.push(4); // [1, 2, 3, 4]
 b.arr; // [1, 2, 3, 4]
@@ -195,6 +196,7 @@ a.sayName(); // TypeError: a.sayName is not a function
 
 ```js
 // 结合上述两种继承的优点
+// 在继承方法时，SubType.prototype会继承name和arr属性，在继承属性时又会创建实例属性name和arr
 function SuperType(name) {
     this.name = name;
     this.arr = [1, 2, 3];
@@ -231,7 +233,7 @@ b.sayAge(); // 16
 
 ```js
 // 通过 Object.create 可以实现原型式继承，思路是借助原型可以基于已有的对象创建新对象。
-// 同原型链继承一样，包含引用类型的属性值始终都会被所有实例共享
+// 同原型链继承一样，引用类型值属性始终都会被所有实例共享
 var person = {
     name: 'Tate',
     interests: ['travel', 'badminton']
@@ -247,11 +249,89 @@ p1.interests.push('coding');
 console.log(p2.interests); // ['travel', 'badminton', 'coding']
 ```
 
-## 寄生式继承
+### 寄生式继承
 
-## 寄生组合式继承
+```js
+// 原理和原型式继承差不多，但是可以增强对象
+function createAnother(original) {
+    var clone = Object.create(original); // 基于orginal创建一个新对象
+    clone.sayHi = function () { // 增强对象，添加属性和方法
+        console.log("hi");
+    };
+    return clone; // 返回对象
+}
+
+var person = {
+    name: 'Tate',
+    interests: ['travel', 'badminton']
+}
+var anotherPerson = createAnother(person);
+anotherPerson.sayHi(); // 'hi'
+```
+
+### 寄生组合式继承
+
+```js
+// 将组合式继承进行优化
+function SuperType(name) {
+    this.name = name;
+    this.arr = [1, 2, 3];
+}
+SuperType.prototype.sayName = function() {
+    console.log(this.name);
+}
+function SubType(name, age) {
+    SuperType.call(this,name); // 继承属性
+    this.age = age;
+}
+//继承方法
+SubType.prototype = Object.create(SuperType.prototype);
+SubType.prototype.constructor = SubType;
+
+// 等价于
+SubType.prototype.__proto__ = SuperType.prototype;
+```
+
+### Class类继承
+
+Class本质是构造函数，Class之间可以通过 **extends** 关键字实现继承。ES5 借用构造函数的继承，实际是先创造子类的实例对象 this，然后再将父类的方法添加到 this 上面(Parent.apply(this))。ES6 的继承机制完全不同，实际是先创造父类的实例对象 this(所以必须先调用super方法)，然后再用子类的构造函数修改 this。
+
+```js
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  toString() {
+    return '(' + this.x + ', ' + this.y + ')';
+  }
+
+  static sayName() { // 静态方法也可继承
+    console.log('Tate');
+  }
+}
+// super关键字表示父类的构造函数，用来新建父类的 this 对象，子类没有自己的 this 对象，必须继承于父类
+ class ColorPoint extends Point {
+  constructor(x, y, color) {
+    // this.color = color; // ReferenceError
+    super(x, y); // 调用父类的constructor(x, y)
+    this.color = color;
+  }
+
+  toString() {
+    return this.color + ' ' + super.toString(); // 调用父类的toString()
+  }
+}
+
+var point = new ColorPoint(1 ,2 , 'pink');
+point.toString(); // pink (1, 2)
+ColorPoint.sayName(); // 'Tate'
+```
 
 ## 参考链接
 
+1. [书籍-<<JavaScript高级程序设计>>](https://www.amazon.cn/dp/B007OQQVMY/ref=sr_1_1/458-6273007-6912964?s=books&ie=UTF8&qid=1517972181&sr=1-1&keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)
 1. [继承与原型链](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 1. [prototype 对象](http://javascript.ruanyifeng.com/oop/prototype.html)
+1. [Class 的继承](http://es6.ruanyifeng.com/#docs/class-extends)
