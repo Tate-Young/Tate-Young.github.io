@@ -297,9 +297,9 @@ SubType.prototype.constructor = SubType;
 SubType.prototype.__proto__ = SuperType.prototype;
 ```
 
-### Class类继承
+### class 继承
 
-Class本质是构造函数，Class之间可以通过 **extends** 关键字实现继承。ES5 借用构造函数的继承，实际是先创造子类的实例对象 this，然后再将父类的方法添加到 this 上面(Parent.apply(this))。ES6 的继承机制完全不同，实际是先创造父类的实例对象 this(所以必须先调用super方法)，然后再用子类的构造函数修改 this。
+class 本质是构造函数，class 之间可以通过 **extends** 关键字实现继承。ES5 借用构造函数的继承，实际是先创造子类的实例对象 this，然后再将父类的方法添加到 this 上面(Parent.apply(this))。ES6 的继承机制完全不同，实际是先创造父类的实例对象 this(所以必须先调用super方法)，然后再用子类的构造函数修改 this。
 
 ```js
 class Point {
@@ -338,9 +338,9 @@ ColorPoint.__proto__ === Point; // true
 ColorPoint.__proto__.__proto__ === Function.prototype; // true
 ```
 
-#### Class 原型
+#### class 原型
 
-Class 继承同时存在两条继承链，即
+class 继承同时存在两条继承链，即
 
 ```js
 class A {}
