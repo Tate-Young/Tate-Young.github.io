@@ -168,13 +168,13 @@
 <p>函数调用形成了一个栈帧(Call Frame)，多个栈帧叠加形成一个<strong><a href="https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A">调用栈(执行栈)</a></strong>，实行先进后出。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span> <span class="o">*</span> <span class="nx">y</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span> <span class="o">*</span> <span class="nx">y</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nx">bar</span><span class="p">(</span><span class="mi">520</span><span class="p">);</span> <span class="c1">// 1564</span>

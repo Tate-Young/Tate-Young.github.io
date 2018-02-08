@@ -273,19 +273,19 @@
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Create a new object, that prototypally inherits from the Error constructor.</span>
 <span class="kd">function</span> <span class="nx">MyError</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'MyError'</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span> <span class="o">||</span> <span class="s1">'Default Message'</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">stack</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">()).</span><span class="nx">stack</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'MyError'</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span> <span class="o">||</span> <span class="s1">'Default Message'</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">stack</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">()).</span><span class="nx">stack</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nx">MyError</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">Error</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
 <span class="nx">MyError</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">MyError</span><span class="p">;</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="k">throw</span> <span class="k">new</span> <span class="nx">MyError</span><span class="p">(</span><span class="s1">'custom message'</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">MyError</span><span class="p">(</span><span class="s1">'custom message'</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  <span class="c1">// 'custom message'</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>     <span class="c1">// 'MyError'</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  <span class="c1">// 'custom message'</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>     <span class="c1">// 'MyError'</span>
 <span class="p">}</span>
 </code></pre>
 </div>

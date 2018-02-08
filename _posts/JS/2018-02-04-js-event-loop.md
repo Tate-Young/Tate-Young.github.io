@@ -27,13 +27,13 @@ tags:
 
 ```js
 function foo(b) {
-  var a = 1;
-  return a + b + 2;
+    var a = 1;
+    return a + b + 2;
 }
 
 function bar(x) {
-  var y = 3;
-  return foo(x * y) + 1;
+    var y = 3;
+    return foo(x * y) + 1;
 }
 
 bar(520); // 1564

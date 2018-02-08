@@ -191,7 +191,7 @@
 <p><a href="http://localhost:4000/2018/02/05/js-event-loop.html">上一篇事件循环</a>有介绍栈帧和调用栈。使用尾调用优化后由于不会用到外层函数栈帧里的调用位置、内部变量等信息，所以不会在调用栈上增加新的栈帧，而是更新它，如同迭代一般。既节省了内存，又避免了爆栈的可能性。</p>
 
 <blockquote>
-  <p>尾递归优化只在ES6严格模式下生效。</p>
+  <p>尾调用优化是在支持 ES6 的解释器里添加的，只在ES6严格模式下生效。</p>
 </blockquote>
 
 <h2 id="尾递归优化">尾递归优化</h2>
@@ -200,7 +200,7 @@
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Bad</span>
 <span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 基准条件，停止递归调用</span>
   <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -208,7 +208,7 @@
 </code></pre>
 </div>
 
-<p>上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 O(n)。如果改写成尾递归，只保留一个调用记录，复杂度降至 O(1) 。</p>
+<p>上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 <a href="https://zh.wikipedia.org/wiki/%E5%A4%A7O%E7%AC%A6%E5%8F%B7">O(n)</a>。如果改写成尾递归，只保留一个调用记录，复杂度降至 O(1) 。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Good</span>
 <span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span> <span class="p">{</span>

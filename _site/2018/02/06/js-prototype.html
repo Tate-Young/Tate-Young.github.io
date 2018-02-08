@@ -164,9 +164,9 @@
 <p>每一个构造函数都有一个 <strong>prototype</strong> 属性，该属性是一个指针，指向其原型对象，原型对象里有个 <strong>constructor</strong> 指针，指向构造函数本身。使用原型对象的好处是可以让所有对象实例共享它所包含的引用类型值的属性和方法。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Dog</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">eat</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">eat</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'eat'</span><span class="p">);</span>
   <span class="p">};</span>
 <span class="p">}</span>
@@ -200,18 +200,22 @@
 </code></pre>
 </div>
 
-<h2 id="object原型方法">Object原型方法</h2>
+<h2 id="object相关方法">Object相关方法</h2>
 
 <h3 id="objectgetprototypeof">Object.getPrototypeOf</h3>
 
 <p>返回指定对象的原型，即内部[[Prototype]]属性的值。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 对于除null和undefined的基本类型，也有私有属性 [[prototype]]。</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">===</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">({})</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nb">Number</span><span class="p">)</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nb">Array</span><span class="p">)</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nb">Object</span><span class="p">)</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 
+<span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="o">===</span> <span class="kc">null</span><span class="p">;</span>
 </code></pre>
@@ -223,6 +227,7 @@
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 以下两种写法等价</span>
 <span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
 <span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
 </code></pre>
 </div>
@@ -468,6 +473,37 @@
 <span class="kd">var</span> <span class="nx">point</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ColorPoint</span><span class="p">(</span><span class="mi">1</span> <span class="p">,</span><span class="mi">2</span> <span class="p">,</span> <span class="s1">'pink'</span><span class="p">);</span>
 <span class="nx">point</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// pink (1, 2)</span>
 <span class="nx">ColorPoint</span><span class="p">.</span><span class="nx">sayName</span><span class="p">();</span> <span class="c1">// 'Tate'</span>
+
+<span class="c1">// 原型链 point--&gt;ColorPoint.prototype--&gt;Point.prototype--&gt;Object.prototype--&gt;null</span>
+<span class="nx">ColorPoint</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Point</span><span class="p">;</span> <span class="c1">// true</span>
+<span class="nx">ColorPoint</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span> <span class="c1">// true</span>
+</code></pre>
+</div>
+
+<h4 id="class-原型">Class 原型</h4>
+
+<p>Class 继承同时存在两条继承链，即</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">A</span> <span class="p">{}</span>
+<span class="kr">class</span> <span class="nx">B</span> <span class="kr">extends</span> <span class="nx">A</span> <span class="p">{}</span>
+
+<span class="nx">B</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">A</span> <span class="c1">// true</span>
+<span class="nx">B</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">A</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true</span>
+</code></pre>
+</div>
+
+<p>等同于如下模式实现：</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">A</span> <span class="p">{}</span>
+<span class="kr">class</span> <span class="nx">B</span> <span class="p">{}</span>
+
+<span class="c1">// B 的实例继承 A 的实例</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">B</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+
+<span class="c1">// B 的实例继承 A 的 static 静态属性</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">B</span><span class="p">,</span> <span class="nx">A</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">B</span><span class="p">();</span>
 </code></pre>
 </div>
 

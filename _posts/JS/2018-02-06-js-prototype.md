@@ -23,9 +23,9 @@ tags:
 
 ```js
 function Dog(name, color) {
-  this.name = name;
-  this.color = color;
-  this.eat = function () {
+    this.name = name;
+    this.color = color;
+    this.eat = function () {
     console.log('eat');
   };
 }
@@ -58,19 +58,23 @@ Person.prototype.__proto__ === Object.prototype;
 Object.prototype.__proto__ === null;
 ```
 
-## Object原型方法
+## Object相关方法
 
 ### Object.getPrototypeOf
 
 返回指定对象的原型，即内部[[Prototype]]属性的值。
 
 ```js
+// 对于除null和undefined的基本类型，也有私有属性 [[prototype]]。
+Object.getPrototypeOf(1) === Number.prototype;
 Object.getPrototypeOf([1, 2]) === Array.prototype;
 Object.getPrototypeOf({}) === Object.prototype;
 
+Object.getPrototypeOf(Number) === Function.prototype;
 Object.getPrototypeOf(Array) === Function.prototype;
 Object.getPrototypeOf(Object) === Function.prototype;
 
+Object.getPrototypeOf(Number.prototype) === Object.prototype;
 Object.getPrototypeOf(Array.prototype) === Object.prototype;
 Object.getPrototypeOf(Object.prototype) === null;
 ```
@@ -82,6 +86,7 @@ Object.getPrototypeOf(Object.prototype) === null;
 ```js
 // 以下两种写法等价
 p.__proto__ = Person.prototype;
+
 Object.setPrototypeOf(p, Person.prototype);
 ```
 
@@ -327,6 +332,37 @@ class Point {
 var point = new ColorPoint(1 ,2 , 'pink');
 point.toString(); // pink (1, 2)
 ColorPoint.sayName(); // 'Tate'
+
+// 原型链 point-->ColorPoint.prototype-->Point.prototype-->Object.prototype-->null
+ColorPoint.__proto__ === Point; // true
+ColorPoint.__proto__.__proto__ === Function.prototype; // true
+```
+
+#### Class 原型
+
+Class 继承同时存在两条继承链，即
+
+```js
+class A {}
+class B extends A {}
+
+B.__proto__ === A // true
+B.prototype.__proto__ === A.prototype // true
+```
+
+等同于如下模式实现：
+
+```js
+class A {}
+class B {}
+
+// B 的实例继承 A 的实例
+Object.setPrototypeOf(B.prototype, A.prototype);
+
+// B 的实例继承 A 的 static 静态属性
+Object.setPrototypeOf(B, A);
+
+let b = new B();
 ```
 
 ## 参考链接
