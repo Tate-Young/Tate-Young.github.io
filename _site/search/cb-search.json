@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "闭包 - ",
+		"url" : "/2018/02/09/js-closure.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "执行上下文与作用域 - ",
 		"url" : "/2018/02/09/js-scope.html"
 	}
