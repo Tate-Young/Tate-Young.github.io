@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='Error 处理机制 - Tate & Snow' name='title' />
-    <meta content='Error 处理机制 - Tate & Snow' name='og:title' />
-    <title>Error 处理机制 - Tate & Snow</title>
+    <meta content='执行上下文与作用域 - Tate & Snow' name='title' />
+    <meta content='执行上下文与作用域 - Tate & Snow' name='og:title' />
+    <title>执行上下文与作用域 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Error 处理机制 - Tate & Snow</title>
+<title>执行上下文与作用域 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Error 处理机制 - Tate & Snow">
-<meta name="twitter:keywords" content="Error 处理机制 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="执行上下文与作用域 - Tate & Snow">
+<meta name="twitter:keywords" content="执行上下文与作用域 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Error 处理机制 - Tate & Snow">
-<meta name="og:keywords" content="Error 处理机制 - Tate & Snow|Error 处理机制Error类型通过 Error 的构造器可以创建一个错误对象，当运行时错误产生时，Error 的实例对象会被抛出。通常 Error 实例对象有如下属性：            属性      描述         ..."
+<meta property="og:title" content="执行上下文与作用域 - Tate & Snow">
+<meta name="og:keywords" content="执行上下文与作用域 - Tate & Snow|执行上下文与作用域什么是执行上下文执行上下文可执行代码(executable code) 包含三种  全局代码 (global code) - 代码首次执行的默认环境  函数代码 (function code) - 执行流进入函数体 ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Error 处理机制Error类型通过 Error 的构造器可以创建一个错误对象，当运行时错误产生时，Error 的实例对象会被抛出。通常 Error 实例对象有如下属性：            属性      描述         ..." property='og:description'
+<meta name="keywords" content="执行上下文与作用域什么是执行上下文执行上下文可执行代码(executable code) 包含三种  全局代码 (global code) - 代码首次执行的默认环境  函数代码 (function code) - 执行流进入函数体 ..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/06/js-error.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/06/js-error.html|Error 处理机制Error类型通过 Error 的构造器可以创建一个错误对象，当运行时错误产生时，Error 的实例对象会被抛出。通常 Error 实例对象有如下属性：            属性      描述         ..." property='og:description'
+<meta content='http://localhost:4000/2018/02/09/js-scope.html' property='og:url' />
+<meta content="http://localhost:4000/2018/02/09/js-scope.html|执行上下文与作用域什么是执行上下文执行上下文可执行代码(executable code) 包含三种  全局代码 (global code) - 代码首次执行的默认环境  函数代码 (function code) - 执行流进入函数体 ..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -118,9 +118,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    Error 处理机制</h1>
+                    执行上下文与作用域</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-06 11:28:00" itemprop="datePublished">发布时间：2018-02-06 11:28:00</time>
+                    <time datetime="2018-02-09 11:25:00" itemprop="datePublished">发布时间：2018-02-09 11:25:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -139,9 +139,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                Error 处理机制</h1>
+                执行上下文与作用域</h1>
             <div class="post-data">
-                <time datetime="2018-02-06 11:28:00" itemprop="datePublished">2018-02-06 11:28:00</time>
+                <time datetime="2018-02-09 11:25:00" itemprop="datePublished">2018-02-09 11:25:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -153,148 +153,208 @@
                     </a>
                    
             </p>
-            <h1 id="error-处理机制">Error 处理机制</h1>
+            <h1 id="执行上下文与作用域">执行上下文与作用域</h1>
 
-<h2 id="error类型">Error类型</h2>
+<h2 id="什么是执行上下文">什么是执行上下文</h2>
 
-<p>通过 Error 的构造器可以创建一个错误对象，当运行时错误产生时，Error 的实例对象会被抛出。通常 Error 实例对象有如下属性：</p>
+<h3 id="执行上下文">执行上下文</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">属性</th>
-      <th style="text-align: left">描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">message</td>
-      <td style="text-align: left">错误信息</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">name</td>
-      <td style="text-align: left">错误名称</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">stack</td>
-      <td style="text-align: left">错误堆栈(Non-standard)</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>可执行代码(executable code)</strong> 包含三种</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'我就是个错误'</span><span class="p">);</span>
-<span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span> <span class="c1">// '我就是个错误'</span>
-<span class="nx">err</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// 'Error'</span>
-</code></pre>
-</div>
+<ul>
+  <li>全局代码 (global code) - 代码首次执行的默认环境</li>
+  <li>函数代码 (function code) - 执行流进入函数体</li>
+  <li>eval代码 (eval code) - 执行eval方法</li>
+</ul>
 
-<p>除了通用的 Error 构造函数外，JavaScript还有6个其他类型的错误构造函数:</p>
+<p><strong>执行上下文(execution context)</strong>: 也叫执行环境，当 JavaScript 执行一段可执行代码时，会创建对应的执行上下文，全局执行上下文即是最外围的一个执行环境。一个执行上下文的生命周期可以分为两个阶段:</p>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">派生对象</th>
-      <th style="text-align: left">描述</th>
-      <th style="text-align: left">举个栗子</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">ReferenceError</td>
-      <td style="text-align: left">无效引用</td>
-      <td style="text-align: left">x; // ReferenceError: x is not defined</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">SyntaxError</td>
-      <td style="text-align: left">语法解析错误</td>
-      <td style="text-align: left">var 1a; // SyntaxError: Invalid or unexpected token</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">RangeError</td>
-      <td style="text-align: left">数值变量或参数超出其有效范围</td>
-      <td style="text-align: left">new Array(-1); // RangeError: Invalid array length</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">TypeError</td>
-      <td style="text-align: left">变量或参数不属于有效类型</td>
-      <td style="text-align: left">new ‘Tate’; // TypeError: “Tate” is not a constructor</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">URIError</td>
-      <td style="text-align: left">编码或解码时传递的参数无效</td>
-      <td style="text-align: left">decodeURI(‘%2’); URIError: URI malformed</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">EvalError</td>
-      <td style="text-align: left">eval()执行错误</td>
-      <td style="text-align: left">只为代码兼容，异常不再抛出</td>
-    </tr>
-  </tbody>
-</table>
+<ul>
+  <li>创建阶段 - 执行上下文会分别创建变量对象，建立作用域链，以及确定this的指向。</li>
+  <li>代码执行阶段 - 完成变量赋值，函数引用，以及执行其他代码。</li>
+</ul>
 
-<h2 id="错误处理">错误处理</h2>
+<p>对于每个执行上下文，都有三个重要属性：</p>
 
-<h3 id="throw">throw</h3>
+<ul>
+  <li><strong>变量对象(variable object)</strong></li>
+  <li><strong>作用域链(Scope chain)</strong></li>
+  <li><strong><a href="http://localhost:4000/2018/01/30/js-this.html">this</a></strong></li>
+</ul>
 
-<p><strong>throw</strong> 语句中断程序执行，并抛出一个异常。</p>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// ---------------global context---------------</span>
+<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// throw 可以抛出任何类型的值。</span>
-<span class="k">throw</span> <span class="s1">'Tate'</span><span class="p">;</span> <span class="c1">// Uncaught Tate</span>
-<span class="k">throw</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Uncaught 1</span>
+<span class="kd">function</span> <span class="nx">person</span><span class="p">(){</span>
+    <span class="c1">// ---------------execution context---------------</span>
+    <span class="kd">var</span> <span class="nx">anotherName</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
 
-<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'a 必须为正数'</span><span class="p">);</span> <span class="c1">// Error: a 必须为正数</span>
-<span class="p">}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// 未执行</span>
-</code></pre>
-</div>
-
-<h3 id="try--catch--finally">try / catch / finally</h3>
-
-<p><strong>try</strong> 代码块抛出的异常会被 <strong>catch</strong> 捕获，无论是否有异常，都会最后执行 <strong>finally</strong> 代码块。且 try 代码块里抛出的异常不会中断程序执行。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="k">try</span> <span class="p">{</span>
-    <span class="nx">foo</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">ReferenceError</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">TypeError</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+    <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// ---------------execution context---------------</span>
+        <span class="k">return</span> <span class="nx">anotherName</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Tate'</span><span class="p">)</span> <span class="c1">// 此异常在 finally 执行之后抛出</span>
-<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'finally'</span><span class="p">);</span> <span class="c1">// 'finally'</span>
+
+    <span class="kd">function</span> <span class="nx">sayAge</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// ---------------execution context---------------</span>
+        <span class="k">return</span> <span class="nx">age</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:%s &amp; age:%s'</span><span class="p">,</span> <span class="nx">sayName</span><span class="p">(),</span> <span class="nx">sayAge</span><span class="p">());</span>
 <span class="p">}</span>
 </code></pre>
 </div>
 
-<h3 id="自定义异常类型">自定义异常类型</h3>
+<h3 id="执行上下文栈">执行上下文栈</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Create a new object, that prototypally inherits from the Error constructor.</span>
-<span class="kd">function</span> <span class="nx">MyError</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'MyError'</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span> <span class="o">||</span> <span class="s1">'Default Message'</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">stack</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">()).</span><span class="nx">stack</span><span class="p">;</span>
-<span class="p">}</span>
+<p><strong>执行上下文栈((execution context stack))</strong> : 即<a href="http://localhost:4000/2018/02/05/js-event-loop.html">调用栈</a>，也称为执行栈。管理所有生成的执行上下文。</p>
 
-<span class="nx">MyError</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">Error</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
-<span class="nx">MyError</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">MyError</span><span class="p">;</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 一旦上下文执行完毕之后, 它就会从栈中弹出并且返回控制权到下一个上下文当中，直到全局上下文又再次被访问。</span>
+<span class="p">(</span><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">foo</span><span class="p">(</span><span class="o">++</span><span class="nx">i</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}(</span><span class="mi">0</span><span class="p">));</span>
+</code></pre>
+</div>
 
-<span class="k">try</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nx">MyError</span><span class="p">(</span><span class="s1">'custom message'</span><span class="p">);</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  <span class="c1">// 'custom message'</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>     <span class="c1">// 'MyError'</span>
+<p><img src="http://davidshariff.com/blog/wp-content/uploads/2012/06/es1.gif" alt="执行上下文" /></p>
+
+<h2 id="变量对象">变量对象</h2>
+
+<p><strong>变量对象(variable object)</strong> 是与执行上下文相关的数据作用域，存储了在执行上下文中定义的所有变量和函数声明。变量对象对于程序而言是不可读的，只有编译器才有权访问变量对象。</p>
+
+<p><strong>活动对象(activation object)</strong> 是在进入函数上下文时刻被创建的，它通过函数的 arguments 属性初始化。随后，它被当做变量对象用于变量初始化。</p>
+
+<blockquote>
+  <p>未进入执行阶段之前，变量对象(VO)中的属性都不能访问！但是进入执行阶段之后，变量对象(VO)转变为了活动对象(AO)，里面的属性都能被访问了，然后开始进行执行阶段的操作。</p>
+</blockquote>
+
+<h2 id="作用域">作用域</h2>
+
+<p>JavaScript 采用 <strong>词法作用域(lexical scoping)</strong>，也就是静态作用域，用来确定当前执行代码对变量的访问权限。分为全局作用域和局部作用域(函数作用域)，ES6中新增块级作用域。函数的作用域在函数定义的时候就决定了。</p>
+
+<h2 id="作用域链">作用域链</h2>
+
+<p>当查找变量的时候，会先从当前上下文的变量对象中查找，如果没有找到，就会从上层执行上下文的变量对象中查找，一直找到全局上下文的变量对象，也就是全局对象。这样由多个执行上下文的变量对象构成的链表就叫做作用域链。</p>
+
+<h3 id="scope">[[scope]]</h3>
+
+<p>在定义函数时，会创建 <strong>[[Scope]]</strong> 属性，这个属性指向一条作用域链。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{}</span>
 <span class="p">}</span>
 </code></pre>
 </div>
+
+<p>当函数在创建时，各自的 [[scope]] 属性可抽象化理解为:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">foo</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
+<span class="p">];</span>
+
+<span class="nx">bar</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nx">fooContext</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span>
+    <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
+<span class="p">];</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>作用域链是一个由变量对象组成的带头结点的单向链表，其主要作用就是用来进行变量查找。而[[Scope]]属性是一个指向这个链表头结点的指针。</p>
+</blockquote>
+
+<h3 id="构建过程">构建过程</h3>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s2">"global scope"</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">checkscope</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">scope2</span> <span class="o">=</span> <span class="s1">'local scope'</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">scope2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">checkscope</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<p>作用域链的构建过程可抽象化为:</p>
+
+<p>1、checkscope 函数被创建，保存作用域链到 内部属性[[scope]];</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
+<span class="p">];</span>
+</code></pre>
+</div>
+
+<p>2、 执行 checkscope 函数，创建 checkscope 函数执行上下文，并被压入执行上下文栈上;</p>
+
+<p>3、 checkscope 函数在执行前:</p>
+
+<p>第一步：复制函数 [[scope]] 属性创建作用域链;</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">Scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>第二步：用 arguments 创建活动对象，随后初始化活动对象，加入形参、函数声明、变量声明;</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
+    <span class="p">}</span><span class="err">，</span>
+    <span class="na">Scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>第三步：将活动对象压入 checkscope 作用域链顶端。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
+    <span class="p">},</span>
+    <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">Scope</span><span class="p">]]]</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>4、 开始执行函数，随着函数的执行，修改 AO 的属性值;</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">},</span>
+        <span class="na">scope2</span><span class="p">:</span> <span class="s1">'local scope'</span>
+    <span class="p">},</span>
+    <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">Scope</span><span class="p">]]]</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>5、 查找到 scope2 的值，返回后函数执行完毕，函数上下文从执行上下文栈中弹出。</p>
+
+<blockquote>
+  <p>作用域链的前端始终是当前的执行上下文，终端是全局执行上下文。</p>
+</blockquote>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Error">MDN-Error</a></li>
-  <li><a href="http://javascript.ruanyifeng.com/grammar/error.html#toc11">错误处理机制</a></li>
+  <li><a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/">What is the Execution Context &amp; Stack in JavaScript?</a></li>
+  <li><a href="https://medium.com/@Alexandra2XU/javascript-execution-context-call-stack-and-event-queue-d58b672d76f7">JavaScript: Execution Context, Call Stack, and Event Queue</a></li>
+  <li><a href="https://github.com/mqyqingfeng/Blog/issues/6">mqyqingfeng-JavaScript深入之作用域链</a></li>
+  <li><a href="https://github.com/kuitos/kuitos.github.io/issues/18">一道js面试题引发的思考</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -305,9 +365,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/06/js-error.html';
-        this.page.identifier = '/2018/02/06/js-error';
-        this.page.title = 'Error 处理机制';
+        this.page.url = 'https://tate-young.github.io/2018/02/09/js-scope.html';
+        this.page.identifier = '/2018/02/09/js-scope';
+        this.page.title = '执行上下文与作用域';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -325,7 +385,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-06 11:28:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-09 11:25:00</p> -->
         </div>
     </article>
 
