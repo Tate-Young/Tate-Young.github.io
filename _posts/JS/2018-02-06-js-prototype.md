@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  原型链与继承
 date:   2018-02-06 23:03:00 GMT+0800 (CST)
-background-image: http://ot1cc1u9t.bkt.clouddn.com/17-8-1/24280498.jpg
+background-image: /style/images/prototype.png
 tags:
 - JavaScript
 ---
