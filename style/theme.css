@@ -403,11 +403,7 @@ textarea:-ms-input-placeholder {
     background-color: #fff !important;
 }
 
-.bg-grey {
-    background-color: #fbfdff !important;
-}
-
-.bg-deepgrey {
+.bg-gray {
     background-color: rgba(0, 0, 0, .5) !important;
 }
 

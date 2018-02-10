@@ -3,7 +3,7 @@ layout: blog
 front: true
 comments: True
 flag: CSS
-background: blue
+background: purple
 category: 前端
 title:  CSS选择器优先级
 date:   2018-01-29 23:23:00 GMT+0800 (CST)

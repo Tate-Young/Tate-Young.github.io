@@ -5,7 +5,7 @@ description: "标签分类的博文"
 <div class="main-content archive-page clearfix">
 	{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{%
 	endcapture %} {% assign tags_list = site_tags | split:',' | sort %}
-	<h3 class="post-title" itemprop="name headline">标签分类的博文--点击自动查找相应`Tags`</h3>
+	<h3 class="post-title" itemprop="name headline">可以根据标签查看哦😯😯！！（╯' - ')╯︵ ┻━┻</h3>
 	<div class="post-data">
 		<div class="post-tags">
 			{% for item in (0..site.tags.size) %}{% unless forloop.last %} {% capture this_word %}{{ tags_list[item] | strip_newlines

@@ -9,13 +9,13 @@
 <title>Tate & Snow</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title> - Tate & Snow</title>
+<title>归档 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" - Tate & Snow">
-<meta name="twitter:keywords" content=" - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="归档 - Tate & Snow">
+<meta name="twitter:keywords" content="归档 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content=" - Tate & Snow">
-<meta name="og:keywords" content=" - Tate & Snow|	{% for post in site.posts %} {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %} {% capture next_yea..."
+<meta property="og:title" content="归档 - Tate & Snow">
+<meta name="og:keywords" content="归档 - Tate & Snow|						{% for posts in site.posts %} {% if posts.tool%}																														{{ posts.content | strip_html | s..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,7 +24,7 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="	{% for post in site.posts %} {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %} {% capture next_yea..." property='og:description'
+<meta name="keywords" content="						{% for posts in site.posts %} {% if posts.tool%}																														{{ posts.content | strip_html | s..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
@@ -66,9 +66,9 @@
         
         <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
         
-        <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+        <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
         
-        <a href="/archives?tate" title="访问 归档" data-hover="归档">归档</a>
+        <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
         
         <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
         
@@ -98,11 +98,11 @@
           </li>
           
           <li>
-            <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+            <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
           </li>
           
           <li>
-            <a href="/archives?tate" title="访问 归档" data-hover="归档">归档</a>
+            <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
           </li>
           
           <li>
@@ -119,9 +119,56 @@
   </header>
 
   <main class="tl f6 relative pa4 pa5-ns overflow-hidden">
-    <!--  -->
+    <!-- 
+          <div class="mb4">
+            
+            <h1 class="ttu f3 mt0 lh-title cb mb2">
+              
+              归档
+            </h1>
+            
+          </div>
+         -->
     <div class="markdown-body">
-      <div class="main-content archive-page clearfix">
+      <div class="main-content index-page clearfix ">
+	<div class="post-lists">
+		<div class="post-lists-body">
+			                          
+		</div>
+	</div>
+	<!-- 分页链接 -->
+<div class="lists-navigator clearfix">
+    <ol class="page-navigator">
+        <li class="current">
+            <a href="/?tate" data-hover="首页">
+                <span>首页</span>
+            </a>
+        </li>
+        <li class="current">
+             
+                <a href="/blog?tate">
+                    
+                    <span>&laquo;</span>
+                </a>
+                
+        </li>
+        
+            <li class="current">
+                
+                <span>&raquo;</span>
+                
+            </li>
+            <li>
+                <a href="/blog?tate" data-hover="末页">
+                    <span>末页</span>
+                </a>
+            </li>
+            <li class="current">
+                <span>第页 / 共页</span>
+    </ol>
+
+</div>
+<!-- <div class="main-content archive-page clearfix">
 	   
 	<div class="categorys-item">
 		<div class="categorys-title" id="2018">
@@ -130,6 +177,27 @@
 		<div class="post-lists">
 			<div class="post-lists-body">
 				
+				<div class="post-list-item">
+					<div class="post-list-item-container">
+						<div class="theme-title">
+							前端
+						</div>
+						<div class="item-label">
+							<div class="item-title">
+								<a href="http://localhost:4000/2018/02/10/html-how-browsers-work.html" title="访问 页面渲染">页面渲染</a>
+							</div>
+							<div class="item-meta clearfix">
+								<div class="item-meta-date">
+									<div class="item-meta-date-post">2018-02-10</div>
+									<a class="item-meta-date-category" href="/tags#前端"
+									    data-hover="前端">前端 </a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				      
 				<div class="post-list-item">
 					<div class="post-list-item-container">
 						<div class="theme-title">
@@ -385,7 +453,7 @@
 			</div>
 		</div>
 	</div>
-	 
+	  -->
     </div>
     
   </main>
@@ -446,10 +514,14 @@
     
       
     
+      
+    
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
           
+      
+            
       
             
       

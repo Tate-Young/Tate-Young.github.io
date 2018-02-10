@@ -62,9 +62,9 @@
                 
                 <a href="http://localhost:4000/front">前端</a>
                 
-                <a href="http://localhost:4000/back">后端</a>
+                <a href="http://localhost:4000/tool">框架</a>
                 
-                <a href="http://localhost:4000/archives">归档</a>
+                <a href="http://localhost:4000/back">后端</a>
                 
                 <a href="http://localhost:4000/tags">标签</a>
                 
@@ -94,11 +94,11 @@
                     </li>
                     
                     <li>
-                        <a href="http://localhost:4000/back">后端</a>
+                        <a href="http://localhost:4000/tool">框架</a>
                     </li>
                     
                     <li>
-                        <a href="http://localhost:4000/archives">归档</a>
+                        <a href="http://localhost:4000/back">后端</a>
                     </li>
                     
                     <li>
@@ -178,7 +178,7 @@
 
 <ul>
   <li><strong>变量对象(variable object)</strong></li>
-  <li><strong>作用域链(Scope chain)</strong></li>
+  <li><strong>作用域链(scope chain)</strong></li>
   <li><strong><a href="http://localhost:4000/2018/01/30/js-this.html">this</a></strong></li>
 </ul>
 
@@ -242,7 +242,7 @@
 
 <h3 id="scope">[[scope]]</h3>
 
-<p>在定义函数时， <strong>[[Scope]]</strong> 内部属性包含了函数被创建的作用域中对象的集合，这个集合被称为函数的作用域链，它决定了哪些数据能被函数访问。。</p>
+<p>在定义函数时， <strong>[[scope]]</strong> 内部属性包含了函数被创建的作用域中对象的集合，这个集合被称为函数的作用域链，它决定了哪些数据能被函数访问。。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{}</span>
@@ -264,7 +264,7 @@
 </div>
 
 <blockquote>
-  <p>作用域链是一个由变量对象组成的带头结点的单向链表，其主要作用就是用来进行变量查找。而[[Scope]]属性是一个指向这个链表头结点的指针。</p>
+  <p>作用域链是一个由变量对象组成的带头结点的单向链表，其主要作用就是用来进行变量查找。而[[scope]]属性是一个指向这个链表头结点的指针。</p>
 </blockquote>
 
 <h3 id="构建过程">构建过程</h3>
@@ -295,7 +295,7 @@
 <p>第一步：复制函数 [[scope]] 属性创建作用域链;</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">Scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
+    <span class="na">scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -309,7 +309,7 @@
         <span class="p">},</span>
         <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
     <span class="p">}</span><span class="err">，</span>
-    <span class="na">Scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
+    <span class="na">scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -323,7 +323,7 @@
         <span class="p">},</span>
         <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
     <span class="p">},</span>
-    <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">Scope</span><span class="p">]]]</span>
+    <span class="na">scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">scope</span><span class="p">]]]</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -337,7 +337,7 @@
         <span class="p">},</span>
         <span class="na">scope2</span><span class="p">:</span> <span class="s1">'local scope'</span>
     <span class="p">},</span>
-    <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">Scope</span><span class="p">]]]</span>
+    <span class="na">scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">scope</span><span class="p">]]]</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -462,10 +462,14 @@
     
       
     
+      
+    
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
           
+      
+            
       
             
       

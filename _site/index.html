@@ -66,9 +66,9 @@
         
         <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
         
-        <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+        <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
         
-        <a href="/archives?tate" title="访问 归档" data-hover="归档">归档</a>
+        <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
         
         <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
         
@@ -98,11 +98,11 @@
           </li>
           
           <li>
-            <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+            <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
           </li>
           
           <li>
-            <a href="/archives?tate" title="访问 归档" data-hover="归档">归档</a>
+            <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
           </li>
           
           <li>
@@ -124,6 +124,36 @@
       <div class="main-content index-page clearfix ">
 	<div class="post-lists">
 		<div class="post-lists-body">
+			
+			<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-thumb  bg-purple" style="background-image:url('https://sfault-image.b0.upaiyun.com/235/151/2351517245-5972085e433ea');"></div>
+					<a href="/2018/02/10/html-how-browsers-work.html">
+						<div class="item-desc">
+							<p>页面渲染渲染步骤根据 webkit 渲染引擎工作流可总结以下五个步骤:  HTML Parser 将 HTML 解析成 DOM Tree;  CSS Parser 将 CSS 解析成 CSSOM...</p>
+						</div>
+					</a>
+					<div class="item-slant reverse-slant  bg-purple"></div>
+					<div class="item-slant">
+						<div class="theme-title">
+							HTML
+						</div>
+					</div>
+					<div class="item-label">
+						<div class="item-title">
+							<a href="/2018/02/10/html-how-browsers-work.html" title="访问 页面渲染">页面渲染</a>
+						</div>
+						<div class="item-meta clearfix">
+							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
+							<div class="item-meta-cat">
+								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
+								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-02-10">2018-02-10</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 			<div class="post-list-item">
 				<div class="post-list-item-container">
@@ -455,36 +485,6 @@
 				</div>
 			</div>
 			
-			<div class="post-list-item">
-				<div class="post-list-item-container">
-					<div class="item-thumb  bg-blue" style="background-image:url('/style/images/darling.jpg');"></div>
-					<a href="/2018/01/29/css-priority.html">
-						<div class="item-desc">
-							<p>CSS选择器优先级什么是CSS选择器基础选择器            基础选择器      举个栗子                  标签选择器      div、span          ...</p>
-						</div>
-					</a>
-					<div class="item-slant reverse-slant  bg-blue"></div>
-					<div class="item-slant">
-						<div class="theme-title">
-							CSS
-						</div>
-					</div>
-					<div class="item-label">
-						<div class="item-title">
-							<a href="/2018/01/29/css-priority.html" title="访问 CSS选择器优先级">CSS选择器优先级</a>
-						</div>
-						<div class="item-meta clearfix">
-							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
-							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
-								    2018-01-29">2018-01-29</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
 		</div>
 	</div>
 	<!-- 分页链接 -->
@@ -506,19 +506,27 @@
                 <a href="/?tate" data-hover="1">1</a>
                 
             </li>
+             
+            <li>
+                 
+                <a href="/blog2?tate" data-hover="2">2</a>
+                
+            </li>
             
             <li class="current">
                 
-                <span>&raquo;</span>
+                <a href="/blog2?tate" data-hover="&raquo;">
+                    <span>&raquo;</span>
+                </a>
                 
             </li>
             <li>
-                <a href="/blog1?tate" data-hover="末页">
+                <a href="/blog2?tate" data-hover="末页">
                     <span>末页</span>
                 </a>
             </li>
             <li class="current">
-                <span>第1页 / 共1页</span>
+                <span>第1页 / 共2页</span>
     </ol>
 
 </div>
@@ -550,7 +558,7 @@
                         <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
                         <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
                         <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
-                        <p>总计文章：12篇</p>
+                        <p>总计文章：13篇</p>
                       <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
                     </div>
                 </div>
@@ -582,10 +590,14 @@
     
       
     
+      
+    
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
           
+      
+            
       
             
       
