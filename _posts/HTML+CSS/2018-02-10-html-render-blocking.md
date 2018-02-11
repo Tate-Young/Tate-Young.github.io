@@ -137,9 +137,39 @@ second print
 
 > 延迟和异步脚本一定会在 load 事件前执行，但可能在 DOMContentLoaded 事件触发之前或之后执行。
 
+## 动态插入
+
+参考[异步脚本载入提高页面性能](http://harttle.land/2016/05/18/async-javascript-loading.html)一文的摘要:
+
+* 动态插入的外部样式表或脚本不阻塞 DOM 解析或渲染。
+* 动态插入的内联样式表或脚本会阻塞 DOM 解析和渲染。
+
+```HTML
+<body>
+  <h1>Tate</h1>
+  <script>
+    function print(){
+        console.log('first print', document.querySelectorAll('h1'));
+    }
+    print();
+    setTimeout(print);
+  </script>
+  <!-- 动态插入外链样式，异步执行，不阻塞 DOM 解析和渲染 -->
+  <script>
+    var bootcss = document.createElement('link');
+    bootcss.rel = 'stylesheet';
+    bootcss.href = 'https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css';
+
+    var tate = document.getElementById('tate');
+    document.body.insertBefore(bootcss, tate);
+  </script>
+  <h1 id="tate">Snow</h1>
+</body>
+```
+
 ## 参考链接
 
 1. [Google-使用 JavaScript 添加交互](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript)
 1. [Asynchronous vs Deferred JavaScript](https://bitsofco.de/async-vs-defer/)
 1. [CSS/JS对DOM渲染的影响](http://harttle.land/2016/11/26/static-dom-render-blocking.html)
-1. [异步脚本载入提高页面性能](http://harttle.land/2016/05/18/async-javascript-loading.html)
+1. [异步渲染的下载和阻塞行为](http://harttle.land/2016/11/26/dynamic-dom-render-blocking.html)
