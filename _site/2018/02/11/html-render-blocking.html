@@ -307,14 +307,16 @@
   &lt;/script&gt;
   &lt;!-- 动态插入外链样式，异步执行，不阻塞 DOM 解析和渲染 --&gt;
   &lt;script&gt;
-    var bootcss = document.createElement('link');
+    var doc = document;
+    var bootcss = doc.createElement('link');
     bootcss.rel = 'stylesheet';
     bootcss.href = 'https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css';
 
-    var tate = document.getElementById('tate');
-    document.body.insertBefore(bootcss, tate);
+    var tate = doc.getElementById('tate');
+    doc.body.insertBefore(bootcss, tate);
   &lt;/script&gt;
   &lt;h1 id="tate"&gt;Snow&lt;/h1&gt;
+  &lt;script&gt; console.log('second print'); &lt;/script&gt;
 &lt;/body&gt;
 </code></pre>
 

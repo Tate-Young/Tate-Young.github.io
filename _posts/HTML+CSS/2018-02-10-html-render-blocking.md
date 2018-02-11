@@ -156,14 +156,16 @@ second print
   </script>
   <!-- 动态插入外链样式，异步执行，不阻塞 DOM 解析和渲染 -->
   <script>
-    var bootcss = document.createElement('link');
+    var doc = document;
+    var bootcss = doc.createElement('link');
     bootcss.rel = 'stylesheet';
     bootcss.href = 'https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css';
 
-    var tate = document.getElementById('tate');
-    document.body.insertBefore(bootcss, tate);
+    var tate = doc.getElementById('tate');
+    doc.body.insertBefore(bootcss, tate);
   </script>
   <h1 id="tate">Snow</h1>
+  <script> console.log('second print'); </script>
 </body>
 ```
 
