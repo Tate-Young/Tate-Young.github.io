@@ -50,7 +50,7 @@ first print NodeList(2) [h1, h1] // 异步
 ```js
 first print NodeList [h1]
 first print NodeList(2) [h1, h1]
-// ---------------加载和解析 CSS 文件中，延迟---------------
+// ---------------加载 CSS 文件中，延迟---------------
 // 页面出现 h1 标签内容，即渲染完成
 second print
 ```

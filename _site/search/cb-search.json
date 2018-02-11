@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "页面生命周期 - ",
+		"url" : "/2018/02/11/html-page-lifecycle.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "加载阻塞 - ",
 		"url" : "/2018/02/11/html-render-blocking.html"
 	}

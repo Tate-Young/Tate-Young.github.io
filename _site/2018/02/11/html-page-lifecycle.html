@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='事件循环 - Tate & Snow' name='title' />
-    <meta content='事件循环 - Tate & Snow' name='og:title' />
-    <title>事件循环 - Tate & Snow</title>
+    <meta content='页面生命周期 - Tate & Snow' name='title' />
+    <meta content='页面生命周期 - Tate & Snow' name='og:title' />
+    <title>页面生命周期 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>事件循环 - Tate & Snow</title>
+<title>页面生命周期 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="事件循环 - Tate & Snow">
-<meta name="twitter:keywords" content="事件循环 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="页面生命周期 - Tate & Snow">
+<meta name="twitter:keywords" content="页面生命周期 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="事件循环 - Tate & Snow">
-<meta name="og:keywords" content="事件循环 - Tate & Snow|事件循环进程和线程进程(process) 是系统进行资源分配和调度的基本单位，任一时刻，单核CPU总是运行一个进程，其他进程处于非运行状态。线程(thread) 是系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作..."
+<meta property="og:title" content="页面生命周期 - Tate & Snow">
+<meta name="og:keywords" content="页面生命周期 - Tate & Snow|页面生命周期页面事件的生命周期：  DOMContentLoaded 事件在 DOM 树解析完成后被触发。  load 事件在页面所有资源被加载完毕后触发。  beforeunload 在用户即将离开页面时触发，它返回一个字符串，浏览..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="事件循环进程和线程进程(process) 是系统进行资源分配和调度的基本单位，任一时刻，单核CPU总是运行一个进程，其他进程处于非运行状态。线程(thread) 是系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作..." property='og:description'
+<meta name="keywords" content="页面生命周期页面事件的生命周期：  DOMContentLoaded 事件在 DOM 树解析完成后被触发。  load 事件在页面所有资源被加载完毕后触发。  beforeunload 在用户即将离开页面时触发，它返回一个字符串，浏览..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/05/js-event-loop.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/05/js-event-loop.html|事件循环进程和线程进程(process) 是系统进行资源分配和调度的基本单位，任一时刻，单核CPU总是运行一个进程，其他进程处于非运行状态。线程(thread) 是系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作..." property='og:description'
+<meta content='http://localhost:4000/2018/02/11/html-page-lifecycle.html' property='og:url' />
+<meta content="http://localhost:4000/2018/02/11/html-page-lifecycle.html|页面生命周期页面事件的生命周期：  DOMContentLoaded 事件在 DOM 树解析完成后被触发。  load 事件在页面所有资源被加载完毕后触发。  beforeunload 在用户即将离开页面时触发，它返回一个字符串，浏览..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -118,17 +118,17 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    事件循环</h1>
+                    页面生命周期</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-05 16:58:00" itemprop="datePublished">发布时间：2018-02-05 16:58:00</time>
+                    <time datetime="2018-02-11 17:33:00" itemprop="datePublished">发布时间：2018-02-11 17:33:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
                 <div class="post-tags">
                        
-                    <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                        JavaScript
-                        <span>(11)</span>
+                    <a href="/tags#html" title="访问html" data-hover="html">
+                        html
+                        <span>(3)</span>
                         
                     </a>
                        
@@ -139,113 +139,135 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                事件循环</h1>
+                页面生命周期</h1>
             <div class="post-data">
-                <time datetime="2018-02-05 16:58:00" itemprop="datePublished">2018-02-05 16:58:00</time>
+                <time datetime="2018-02-11 17:33:00" itemprop="datePublished">2018-02-11 17:33:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
             <p class="post-tags">
                    
-                <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                    JavaScript
-                    <span>(11)</span>
+                <a href="/tags#html" title="访问html" data-hover="html">
+                    html
+                    <span>(3)</span>
                     </a>
                    
             </p>
-            <h1 id="事件循环">事件循环</h1>
+            <h1 id="页面生命周期">页面生命周期</h1>
 
-<h2 id="进程和线程">进程和线程</h2>
-
-<p><strong>进程(process)</strong> 是系统进行资源分配和调度的基本单位，任一时刻，单核CPU总是运行一个进程，其他进程处于非运行状态。</p>
-
-<p><strong>线程(thread)</strong> 是系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。</p>
-
-<p>一个进程可以包括多个线程，一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。而通过<strong><a href="https://zh.wikipedia.org/wiki/%E4%BA%92%E6%96%A5%E9%94%81">互斥锁(Mutex)</a></strong>，可防止多个线程同时读写某一块内存区域。<strong><a href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E8%99%9F%E6%A8%99">信号量(Semaphore)</a></strong> 适用于控制一个仅支持有限个用户的共享资源，是一种不需要使用忙碌等待(busy waiting)的方法。</p>
-
-<h2 id="调用栈call-stack">调用栈(Call Stack)</h2>
-
-<p>函数调用形成了一个栈帧(Call Frame)，多个栈帧堆叠形成一个<strong><a href="https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A">调用栈(执行栈)</a></strong>，实行先进后出。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span> <span class="o">*</span> <span class="nx">y</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">bar</span><span class="p">(</span><span class="mi">520</span><span class="p">);</span> <span class="c1">// 1564</span>
-</code></pre>
-</div>
-
-<ol>
-  <li>当调用bar时，创建了第一个帧，帧中包含了bar的参数和局部变量。</li>
-  <li>当bar调用foo时，第二个帧就被创建，并被压到第一个帧之上，帧中包含了foo的参数和局部变量。</li>
-  <li>当foo返回时，最上层的帧就被弹出栈（剩下bar函数的调用帧 ）。</li>
-  <li>当bar返回的时候，栈被清空。</li>
-</ol>
-
-<h2 id="事件循环event-loop">事件循环(Event Loop)</h2>
-
-<p>JavaScript 属于单线程语言，执行的任务可分为同步和异步，ES6诞生以前，异步编程的方法，大概有下列四种：</p>
+<p>页面事件的生命周期：</p>
 
 <ul>
-  <li>回调函数</li>
-  <li>事件监听</li>
-  <li>发布/订阅</li>
-  <li>Promise 对象</li>
+  <li><strong>DOMContentLoaded</strong> 事件在 DOM 树解析完成后被触发。</li>
+  <li><strong>load</strong> 事件在页面所有资源被加载完毕后触发。</li>
+  <li><strong>beforeunload</strong> 在用户即将离开页面时触发，它返回一个字符串，浏览器会向用户展示并询问这个字符串以确定是否离开。</li>
+  <li><strong>unload</strong> 在用户已经离开时触发。</li>
+  <li><strong>document.readyState</strong> 表示页面的加载状态，可以在 <strong>readystatechange</strong> 中追踪页面的变化状态：
+    <ul>
+      <li>loading — 页面正在加载中。</li>
+      <li>interactive – 页面解析完毕，和 DOMContentLoaded 几乎同时发生，不过顺序在它之前。</li>
+      <li>complete – 页面上的资源都已加载完毕，和 window.onload 几乎同时发生，不过顺序在他之前。</li>
+    </ul>
+  </li>
 </ul>
 
-<p>在主线程中，如果有定时器或者其他异步操作，他们会被添加到 <strong>Event Table</strong> 中，当事件(timeout, click, mouse move)满足触发条件后，它会将其发送至 <strong>事件队列(Event Queue)</strong>，实行先进先出。</p>
+<h2 id="domcontentloaded">DOMContentLoaded</h2>
 
-<p>事件循环是个进程，会持续监测调用栈是否为空，若为空，则监测事件队列，将里面的事件移至调用栈执行，如此循环。</p>
+<p><a href="http://localhost:4000/2018/02/11/html-render-blocking.html">上一节加载阻塞</a>已解释过，CSS的加载或阻塞 DOM 解析的行为都可以延迟 DOMContentLoaded 事件的执行。此时 async 和 defer 的脚本可能还没有执行。图片及其他资源文件可能还在下载中。</p>
 
-<h3 id="定时器">定时器</h3>
-
-<p>调用 <strong>setTimeout</strong> 函数会在一个时间段后在队列中添加一个事件。这个时间段作为函数的第二个参数被传入。如果队列中没有其它事件，事件会被马上处理。但是，如果有其它事件，setTimeout事件必须等待其它事件处理完。因此第二个参数仅仅表示最少的时间 而非确切的时间。同样在零延迟调用 setTimeout 时，其并不是过了给定的时间间隔后就马上执行回调函数，其等待的时间基于队列里正在等待的事件数量。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'start'</span><span class="p">);</span>
-
-<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
-<span class="p">},</span> <span class="mi">200</span><span class="p">);</span>
-
-<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'world'</span><span class="p">);</span>
-<span class="p">},</span> <span class="mi">300</span><span class="p">);</span>
-
-<span class="c1">// 模拟阻塞</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">10000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Tate'</span><span class="p">);</span>
-<span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'end'</span><span class="p">);</span>
-<span class="c1">// start</span>
-<span class="c1">// 1...10000</span>
-<span class="c1">// hello</span>
-<span class="c1">// world</span>
-<span class="c1">// Tate</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 通过事件监听可以捕获</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"DOMContentLoaded"</span><span class="p">,</span> <span class="nx">readyFn</span><span class="p">);</span>
 </code></pre>
 </div>
 
-<p>事件循环过程可以参考如下(Timer模块改为Event Table，Task queue改为Event Queue):</p>
+<h2 id="windowonload">window.onload</h2>
 
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/pibXop4Ees9plTiauR0F7fvtyFmh5SvemE3pQbeKL9T7JJnG3UficQb8qsbSF2ct5OESgSz0iaPSvWXsmvHgyyfO7Q/0?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="事件循环示范图" /></p>
+<p>window 对象上的 <strong>onload</strong> 事件在所有文件包括样式表，图片和其他资源下载完毕后触发。</p>
+
+<h2 id="windowonunload">window.onunload</h2>
+
+<p>window 对象上的 <strong>onunload</strong> 会在用户已离开页面的时候触发。这个阶段仅可以做一些没有延迟的操作，由于种种限制，很少被使用。</p>
+
+<h2 id="windowonbeforeunload">window.onbeforeunload</h2>
+
+<p>window 对象上的 <strong>onbeforeunload</strong> 会在用户即将离开页面或者关闭窗口时触发。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 通常用于离开页面时候的提示</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">onbeforeunload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">"There are unsaved changes. Leave now?"</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<h2 id="readystate">readyState</h2>
+
+<p><strong>document.readyState</strong> 属性提供我们文档加载的信息，可以追踪页面加载的情况，有三个可能的值：</p>
+
+<ul>
+  <li>loading - document 仍在加载。</li>
+  <li>interactive - 文档已解析完成，但是诸如图像、样式表和框架之类的子资源可能仍在加载。</li>
+  <li>complete - 文档和所有子资源已完成加载。表示 load 事件即将被触发。</li>
+</ul>
+
+<p>每当文档的加载状态改变的时候就有一个 <strong>readystatechange</strong> 事件被触发。</p>
+
+<pre><code class="language-HTML">&lt;script&gt;
+  var n = 1;
+  function log(text){console.log(n + ': ' + text);n++; }
+  log('initial readyState:' + document.readyState);
+
+  document.addEventListener('readystatechange', () =&gt; log('readyState:' + document.readyState));
+  document.addEventListener('DOMContentLoaded', () =&gt; log('DOMContentLoaded'));
+
+  window.onload = () =&gt; log('window onload');
+&lt;/script&gt;
+
+&lt;iframe src="iframe.html" onload="log('iframe onload')"&gt;&lt;/iframe&gt;
+
+&lt;img src="http://en.js.cx/clipart/train.gif" id="img"&gt;
+&lt;script&gt;
+  img.onload = () =&gt; log('img onload');
+&lt;/script&gt;
+</code></pre>
+
+<p>打印如下:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="mi">1</span><span class="err">:</span> <span class="nx">initial</span> <span class="nx">readyState</span><span class="err">:</span><span class="nx">loading</span>
+<span class="mi">2</span><span class="err">:</span> <span class="nx">readyState</span><span class="err">:</span><span class="nx">interactive</span>
+<span class="mi">3</span><span class="err">:</span> <span class="nx">DOMContentLoaded</span>
+<span class="mi">4</span><span class="err">:</span> <span class="nx">iframe</span> <span class="nx">onload</span>
+<span class="mi">5</span><span class="err">:</span> <span class="nx">img</span> <span class="nx">onload</span>
+<span class="mi">6</span><span class="err">:</span> <span class="nx">readyState</span><span class="err">:</span><span class="nx">complete</span>
+<span class="mi">7</span><span class="err">:</span> <span class="nb">window</span> <span class="nx">onload</span>
+</code></pre>
+</div>
+
+<h2 id="ready">$.ready</h2>
+
+<p>实现大概思路:</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">ready</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'DOMContentLoaded'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">'DOMContentLoaded'</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+            <span class="nx">callback</span><span class="p">();</span>
+        <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">)</span> <span class="p">{</span><span class="c1">// 兼容ie</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="s1">'onreadytstatechange'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="s2">"complete"</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nb">document</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">(</span><span class="s2">"onreadystatechange"</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">);</span>
+                <span class="nx">callback</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop">MDN-并发模型与事件循环</a></li>
-  <li><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">JavaScript 运行机制详解：再谈Event Loop</a></li>
-  <li><a href="https://segmentfault.com/a/1190000010929918">干货 原来你是这样的 setTimeout</a></li>
-  <li><a href="https://hackernoon.com/understanding-js-the-event-loop-959beae3ac40">Understanding JS: The Event Loop</a></li>
+  <li><a href="http://javascript.info/onload-ondomcontentloaded#domcontentloaded">Page lifecycle: DOMContentLoaded, load, beforeunload, unload</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -256,9 +278,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/05/js-event-loop.html';
-        this.page.identifier = '/2018/02/05/js-event-loop';
-        this.page.title = '事件循环';
+        this.page.url = 'https://tate-young.github.io/2018/02/11/html-page-lifecycle.html';
+        this.page.identifier = '/2018/02/11/html-page-lifecycle';
+        this.page.title = '页面生命周期';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -276,7 +298,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-05 16:58:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-11 17:33:00</p> -->
         </div>
     </article>
 
