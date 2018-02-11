@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "加载阻塞 - ",
+		"url" : "/2018/02/11/html-render-blocking.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "页面渲染 - ",
 		"url" : "/2018/02/10/html-how-browsers-work.html"
 	}

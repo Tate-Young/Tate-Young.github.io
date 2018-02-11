@@ -37,7 +37,7 @@ person()(); // 'Snow'
 
 ```js
 sayNameContext = {
-    Scope: [AO, personContext.AO, globalContext.VO],
+    Scope: [AO, personContext.AO, globalContext.VO]
 }
 ```
 

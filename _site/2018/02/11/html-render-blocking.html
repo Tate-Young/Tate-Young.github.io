@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='尾调用优化 - Tate & Snow' name='title' />
-    <meta content='尾调用优化 - Tate & Snow' name='og:title' />
-    <title>尾调用优化 - Tate & Snow</title>
+    <meta content='加载阻塞 - Tate & Snow' name='title' />
+    <meta content='加载阻塞 - Tate & Snow' name='og:title' />
+    <title>加载阻塞 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>尾调用优化 - Tate & Snow</title>
+<title>加载阻塞 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="尾调用优化 - Tate & Snow">
-<meta name="twitter:keywords" content="尾调用优化 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="加载阻塞 - Tate & Snow">
+<meta name="twitter:keywords" content="加载阻塞 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="尾调用优化 - Tate & Snow">
-<meta name="og:keywords" content="尾调用优化 - Tate & Snow|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..."
+<meta property="og:title" content="加载阻塞 - Tate & Snow">
+<meta name="og:keywords" content="加载阻塞 - Tate & Snow|加载阻塞CSS阻塞CSS 无论外链或内联，都会阻塞渲染树的渲染(Render-blocking)。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。&lt;!DOCTYPE html&gt;&lt;html..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
+<meta name="keywords" content="加载阻塞CSS阻塞CSS 无论外链或内联，都会阻塞渲染树的渲染(Render-blocking)。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。&lt;!DOCTYPE html&gt;&lt;html..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/05/js-tail-call-optimization.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/05/js-tail-call-optimization.html|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
+<meta content='http://localhost:4000/2018/02/11/html-render-blocking.html' property='og:url' />
+<meta content="http://localhost:4000/2018/02/11/html-render-blocking.html|加载阻塞CSS阻塞CSS 无论外链或内联，都会阻塞渲染树的渲染(Render-blocking)。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。&lt;!DOCTYPE html&gt;&lt;html..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -118,22 +118,16 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    尾调用优化</h1>
+                    加载阻塞</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-05 23:26:00" itemprop="datePublished">发布时间：2018-02-05 23:26:00</time>
+                    <time datetime="2018-02-11 11:38:00" itemprop="datePublished">发布时间：2018-02-11 11:38:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
                 <div class="post-tags">
                        
-                    <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                        JavaScript
-                        <span>(11)</span>
-                        
-                    </a>
-                    
-                    <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
-                        ES6
+                    <a href="/tags#html" title="访问html" data-hover="html">
+                        html
                         <span>(2)</span>
                         
                     </a>
@@ -145,161 +139,133 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                尾调用优化</h1>
+                加载阻塞</h1>
             <div class="post-data">
-                <time datetime="2018-02-05 23:26:00" itemprop="datePublished">2018-02-05 23:26:00</time>
+                <time datetime="2018-02-11 11:38:00" itemprop="datePublished">2018-02-11 11:38:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
             <p class="post-tags">
                    
-                <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                    JavaScript
-                    <span>(11)</span>
-                    </a>
-                
-                <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
-                    ES6
+                <a href="/tags#html" title="访问html" data-hover="html">
+                    html
                     <span>(2)</span>
                     </a>
                    
             </p>
-            <h1 id="尾调用优化">尾调用优化</h1>
+            <h1 id="加载阻塞">加载阻塞</h1>
 
-<h2 id="什么是尾调用和尾递归">什么是尾调用和尾递归</h2>
+<h2 id="css阻塞">CSS阻塞</h2>
 
-<p><strong>尾调用(Tail Call)</strong> 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 <strong>尾递归</strong>。</p>
+<p>CSS 无论外链或内联，都会阻塞渲染树的渲染(Render-blocking)。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
-<span class="p">}</span>
+<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Tate&lt;/h1&gt;
+  &lt;script&gt;
+    function print(){
+        console.log('first print', document.querySelectorAll('h1'));
+    }
+    print();
+    setTimeout(print);
+  &lt;/script&gt;
+  &lt;link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"&gt;
+  &lt;h1&gt;Snow&lt;/h1&gt;
+  &lt;script&gt; console.log('second print'); &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 
-<span class="c1">// 以下均不属于尾调用</span>
-<span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
+<p>当注释掉 CSS 外链时，打印顺序为</p>
 
-<span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
-  <span class="k">return</span> <span class="nx">b</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
+<span class="c1">// 页面出现 h1 标签内容，即渲染完成</span>
+<span class="nx">second</span> <span class="nx">print</span>
+<span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">,</span> <span class="nx">h1</span><span class="p">]</span> <span class="c1">// 异步</span>
 </code></pre>
 </div>
 
-<h2 id="尾调用优化-1">尾调用优化</h2>
+<p>当加载 CSS 样式文件时，此时通过 Chrome Network 调试工具勾选 “Disabled cache”，再设置 “Throtting” 来模拟缓慢网络下的加载过程。打印顺序为</p>
 
-<p><a href="http://localhost:4000/2018/02/05/js-event-loop.html">上一篇事件循环</a>有介绍栈帧和调用栈。使用尾调用优化后由于不会用到外层函数栈帧里的调用位置、内部变量等信息，所以不会在调用栈上增加新的栈帧，而是更新它，如同迭代一般。既节省了内存，又避免了爆栈的可能性。</p>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
+<span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">,</span> <span class="nx">h1</span><span class="p">]</span>
+<span class="c1">// ---------------加载和解析 CSS 文件中，延迟---------------</span>
+<span class="c1">// 页面出现 h1 标签内容，即渲染完成</span>
+<span class="nx">second</span> <span class="nx">print</span>
+</code></pre>
+</div>
+
+<p>因此可看出</p>
+
+<ul>
+  <li>CSS 加载延迟了后续脚本的加载;</li>
+  <li>加载样式文件时，渲染一直未完成，说明 CSS 阻塞渲染;</li>
+  <li>第一次打印为 h1，说明 JS 会阻塞后续的解析和渲染，和其他资源的加载;</li>
+  <li>第二次打印为 h1 和 h2，说明 CSS 不阻塞 DOM 的解析;</li>
+</ul>
 
 <blockquote>
-  <p>尾调用优化是在支持 ES6 的解释器里添加的，只在ES6严格模式下生效。</p>
+  <p>利用媒体类型和查询来解除 CSS 对渲染的阻塞，详见<a href="http://localhost:4000/2018/02/10/html-how-browsers-work.html#%E9%98%BB%E5%A1%9E%E6%B8%B2%E6%9F%93">上一节页面渲染</a>。</p>
 </blockquote>
 
-<h2 id="尾递归优化">尾递归优化</h2>
+<h2 id="js阻塞">JS阻塞</h2>
 
-<p>由于递归有过多的函数调用，会产生比较多的栈帧，所以十分消耗内存空间，很容易发生 <strong><a href="https://zh.wikipedia.org/wiki/%E5%A0%86%E7%96%8A%E6%BA%A2%E4%BD%8D">堆栈溢出(stack overflow)</a></strong>。但对于尾递归来说，则只存在一个栈帧。</p>
+<ul>
+  <li>JavaScript 可以查询和修改 DOM 与 CSSOM;</li>
+  <li>JavaScript 执行会阻止 CSSOM;</li>
+  <li>除非将 JavaScript 显式声明为异步，否则它会阻止构建 DOM 和后续的渲染。</li>
+</ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Bad</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 基准条件，停止递归调用</span>
-  <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
+<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Tate&lt;/h1&gt;
+  &lt;script&gt;
+    function print(){
+        console.log('first print', document.querySelectorAll('h1'));
+    }
+    print();
+    setTimeout(print);
+  &lt;/script&gt;
+  &lt;script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"&gt;&lt;/script&gt;
+  &lt;h1&gt;Snow&lt;/h1&gt;
+  &lt;script&gt; console.log('second print'); &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
+<p>打印顺序为</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
+<span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
+<span class="c1">// 页面出现 'Tate'</span>
+<span class="c1">// ---------------加载和执行 JS 文件中，延迟---------------</span>
+<span class="c1">// 页面出现 'Snow'</span>
+<span class="nx">second</span> <span class="nx">print</span>
 </code></pre>
 </div>
 
-<p>上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 <a href="https://zh.wikipedia.org/wiki/%E5%A4%A7O%E7%AC%A6%E5%8F%B7">O(n)</a>。如果改写成尾递归，只保留一个调用记录，复杂度降至 O(1) 。</p>
+<p>因此可看出</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Good</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">m</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// 120</span>
-</code></pre>
-</div>
-
-<p>此处实行函数式编程里的 <strong><a href="https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96">柯里化(currying)</a></strong>，把接受多个参数的函数变换成接受一个单一参数的函数。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">total</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kr">const</span> <span class="nx">factorial</span> <span class="o">=</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">tailFactorial</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
-</code></pre>
-</div>
-
-<p>或者直接使用ES6函数默认值：</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Best</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
-</code></pre>
-</div>
-
-<h2 id="es5替代方案">ES5替代方案</h2>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 堆栈溢出示例</span>
-<span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span> <span class="c1">// Uncaught RangeError: Maximum call stack size exceeded</span>
-</code></pre>
-</div>
-
-<p>在当前的JS版本（ES5）中可以使用以下方式来优化递归。我们可以定义一个 <strong>trampoline(蹦床)</strong> 函数来解决参数过大造成的“堆栈溢出”问题。其原理是将递归执行转为循环执行。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">//放入trampoline中的函数将被转换为函数的输出结果</span>
-<span class="kd">function</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">(</span><span class="nx">f</span> <span class="o">&amp;&amp;</span> <span class="nx">f</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">f</span> <span class="o">=</span> <span class="nx">f</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">f</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="nx">recur</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// recur函数的每次执行，都会返回自身的另一个版本</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">));</span>
-<span class="p">}</span>
-
-<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">);</span> <span class="c1">// =&gt; 100001</span>
-</code></pre>
-</div>
-
-<blockquote>
-  <p>以上替代方案实际改变了递归函数本身，是属于“入侵式”的。关于如何实现“非入侵式”，可以参考更多以下链接。</p>
-</blockquote>
+<ul>
+  <li>JS 会阻塞后续的解析和渲染，和其他资源的加载;</li>
+  <li>JS 文件同步加载和执行。</li>
+</ul>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://es6.ruanyifeng.com/#docs/function#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96">函数的扩展</a></li>
-  <li><a href="https://segmentfault.com/a/1190000004018047">JS的递归与TCO尾调用优化</a></li>
+  <li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript">Google-使用 JavaScript 添加交互</a></li>
+  <li><a href="http://harttle.land/2016/11/26/static-dom-render-blocking.html">CSS/JS对DOM渲染的影响</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -310,9 +276,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/05/js-tail-call-optimization.html';
-        this.page.identifier = '/2018/02/05/js-tail-call-optimization';
-        this.page.title = '尾调用优化';
+        this.page.url = 'https://tate-young.github.io/2018/02/11/html-render-blocking.html';
+        this.page.identifier = '/2018/02/11/html-render-blocking';
+        this.page.title = '加载阻塞';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -330,7 +296,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-05 23:26:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-11 11:38:00</p> -->
         </div>
     </article>
 

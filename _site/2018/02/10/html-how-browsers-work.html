@@ -128,7 +128,7 @@
                        
                     <a href="/tags#html" title="访问html" data-hover="html">
                         html
-                        <span>(1)</span>
+                        <span>(2)</span>
                         
                     </a>
                        
@@ -149,7 +149,7 @@
                    
                 <a href="/tags#html" title="访问html" data-hover="html">
                     html
-                    <span>(1)</span>
+                    <span>(2)</span>
                     </a>
                    
             </p>
@@ -202,14 +202,14 @@ img { float: right }
 <p><img src="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/cssom-tree.png?hl=zh-cn" alt="CSSOM" /></p>
 
 <blockquote>
-  <p>当遇到 script 标签的时候，解析器会立即解析脚本(除开延迟和异步脚本)，停止解析文档。</p>
+  <p>当遇到 script 标签的时候，解析器会立即解析脚本(除开延迟和异步脚本)，停止解析文档，详见<a href="http://localhost:4000/2018/02/10/html-render-blocking.html">加载阻塞</a>。</p>
 </blockquote>
 
 <h2 id="render-tree">Render Tree</h2>
 
 <h3 id="构建过程">构建过程</h3>
 
-<p>DOM 树与 CSSOM 合并后形成<strong>渲染树(Render Tree)</strong>，浏览器大体上完成了下列工作：</p>
+<p>DOM 树与 CSSOM 合并后形成<strong>渲染树(Render Tree)</strong>，这是由可视化元素按照其显示顺序而组成的树，浏览器大体上完成了下列工作：</p>
 
 <ol>
   <li>从 DOM 树的根节点开始遍历每个 <em>可见节点</em>;</li>
@@ -231,7 +231,7 @@ img { float: right }
 
 <h3 id="阻塞渲染">阻塞渲染</h3>
 
-<p>在渲染树构建中，关键渲染路径要求同时具有 DOM 和 CSSOM 才能构建渲染树。由于HTML 和 CSS 都是阻塞渲染的资源，这会给性能造成影响。因此要尽早的加载CSS，并利用媒体类型和查询来解除对渲染的阻塞。</p>
+<p>在渲染树构建中，关键渲染路径要求同时具有 DOM 和 CSSOM 才能构建渲染树。由于HTML 和 CSS 都是阻塞渲染的资源，这会给性能造成影响。因此要尽早的加载CSS，并利用媒体类型和查询来解除对渲染的阻塞(DOM 解析依然正常进行)。</p>
 
 <pre><code class="language-HTML">&lt;!-- 始终阻塞渲染 --&gt;
 &lt;link href="style.css" rel="stylesheet"&gt;
@@ -418,10 +418,14 @@ img { float: right }
     
       
     
+      
+    
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
           
+      
+            
       
             
       

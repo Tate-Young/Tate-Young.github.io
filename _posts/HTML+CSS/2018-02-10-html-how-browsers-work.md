@@ -59,13 +59,13 @@ img { float: right }
 
 ![CSSOM](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/cssom-tree.png?hl=zh-cn)
 
-> 当遇到 script 标签的时候，解析器会立即解析脚本(除开延迟和异步脚本)，停止解析文档。
+> 当遇到 script 标签的时候，解析器会立即解析脚本(除开延迟和异步脚本)，停止解析文档，详见[加载阻塞]( {{site.url}}/2018/02/10/html-render-blocking.html )。
 
 ## Render Tree
 
 ### 构建过程
 
-DOM 树与 CSSOM 合并后形成**渲染树(Render Tree)**，浏览器大体上完成了下列工作：
+DOM 树与 CSSOM 合并后形成**渲染树(Render Tree)**，这是由可视化元素按照其显示顺序而组成的树，浏览器大体上完成了下列工作：
 
 1. 从 DOM 树的根节点开始遍历每个 *可见节点*;
 1. 对于每个可见节点，为其找到适配的 CSSOM 规则并应用它们(创建对应渲染器);
@@ -83,7 +83,7 @@ DOM 树与 CSSOM 合并后形成**渲染树(Render Tree)**，浏览器大体上�
 
 ### 阻塞渲染
 
-在渲染树构建中，关键渲染路径要求同时具有 DOM 和 CSSOM 才能构建渲染树。由于HTML 和 CSS 都是阻塞渲染的资源，这会给性能造成影响。因此要尽早的加载CSS，并利用媒体类型和查询来解除对渲染的阻塞。
+在渲染树构建中，关键渲染路径要求同时具有 DOM 和 CSSOM 才能构建渲染树。由于HTML 和 CSS 都是阻塞渲染的资源，这会给性能造成影响。因此要尽早的加载CSS，并利用媒体类型和查询来解除对渲染的阻塞(DOM 解析依然正常进行)。
 
 ```HTML
 <!-- 始终阻塞渲染 -->

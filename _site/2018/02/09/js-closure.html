@@ -178,7 +178,7 @@
 <p>原因就在于，即使 person 执行上下文销毁，但是其活动对象VO仍然会留在内存中，实际上 sayName 维护的作用域链可抽象为</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">sayNameContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">personContext</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span><span class="p">],</span>
+    <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">personContext</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -420,10 +420,14 @@
     
       
     
+      
+    
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
           
+      
+            
       
             
       
