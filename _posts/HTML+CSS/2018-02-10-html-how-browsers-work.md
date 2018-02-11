@@ -83,7 +83,7 @@ DOM 树与 CSSOM 合并后形成**渲染树(Render Tree)**，这是由可视化�
 
 ### 阻塞渲染
 
-在渲染树构建中，关键渲染路径要求同时具有 DOM 和 CSSOM 才能构建渲染树。由于HTML 和 CSS 都是阻塞渲染的资源，这会给性能造成影响。因此要尽早的加载CSS，并利用媒体类型和查询来解除对渲染的阻塞(DOM 解析依然正常进行)。
+在渲染树构建中，关键渲染路径包含了 DOM 和 CSSOM。由于HTML 和 CSS 都是阻塞渲染的资源，这会给性能造成影响。因此要尽早的加载 CSS，并利用媒体类型和查询来解除对渲染的阻塞(DOM 解析依然正常进行)。
 
 ```HTML
 <!-- 始终阻塞渲染 -->
@@ -150,6 +150,6 @@ document.body.appendChild(document.createTextNode('Tate'));
 1. [How browsers work](http://taligarsiel.com/Projects/howbrowserswork1.htm)
 1. [How browsers work(译)](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/)
 1. [Youtube-The Render Tree - Website Performance Optimization](https://www.youtube.com/watch?v=lvb06W_VKVE)
+1. [Understanding the Critical Rendering Path](https://bitsofco.de/understanding-the-critical-rendering-path/)
 1. [Google-染树构建、布局及绘制](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=zh-cn)
-1. [网页性能管理详解](http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html)
 1. [浏览器渲染页面过程与页面优化](https://segmentfault.com/a/1190000010298038)

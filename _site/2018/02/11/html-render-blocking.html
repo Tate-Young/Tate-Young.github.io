@@ -14,7 +14,7 @@
 <meta name="twitter:keywords" content="加载阻塞 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="加载阻塞 - Tate & Snow">
-<meta name="og:keywords" content="加载阻塞 - Tate & Snow|加载阻塞CSS阻塞CSS 无论外链或内联，都会阻塞渲染树的渲染(Render-blocking)。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。&lt;!DOCTYPE html&gt;&lt;html..."
+<meta name="og:keywords" content="加载阻塞 - Tate & Snow|加载阻塞CSS阻塞CSS 属于 render blocking resource，无论外链或内联，都会阻塞渲染树的渲染。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。&lt;body&gt;  &lt;..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="加载阻塞CSS阻塞CSS 无论外链或内联，都会阻塞渲染树的渲染(Render-blocking)。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。&lt;!DOCTYPE html&gt;&lt;html..." property='og:description'
+<meta name="keywords" content="加载阻塞CSS阻塞CSS 属于 render blocking resource，无论外链或内联，都会阻塞渲染树的渲染。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。&lt;body&gt;  &lt;..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/02/11/html-render-blocking.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/11/html-render-blocking.html|加载阻塞CSS阻塞CSS 无论外链或内联，都会阻塞渲染树的渲染(Render-blocking)。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。&lt;!DOCTYPE html&gt;&lt;html..." property='og:description'
+<meta content="http://localhost:4000/2018/02/11/html-render-blocking.html|加载阻塞CSS阻塞CSS 属于 render blocking resource，无论外链或内联，都会阻塞渲染树的渲染。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。&lt;body&gt;  &lt;..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -157,15 +157,9 @@
 
 <h2 id="css阻塞">CSS阻塞</h2>
 
-<p>CSS 无论外链或内联，都会阻塞渲染树的渲染(Render-blocking)。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。</p>
+<p>CSS 属于 <strong>render blocking resource</strong>，无论外链或内联，都会阻塞渲染树的渲染。一般情况下，CSS 会延迟脚本执行和 DOMContentLoaded 事件。</p>
 
-<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
+<pre><code class="language-HTML">&lt;body&gt;
   &lt;h1&gt;Tate&lt;/h1&gt;
   &lt;script&gt;
     function print(){
@@ -174,11 +168,13 @@
     print();
     setTimeout(print);
   &lt;/script&gt;
+  &lt;!-- 外链 --&gt;
   &lt;link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"&gt;
   &lt;h1&gt;Snow&lt;/h1&gt;
+  &lt;!-- 内联 --&gt;
   &lt;script&gt; console.log('second print'); &lt;/script&gt;
+  &lt;style&gt; h1{color: orange;} &lt;/style&gt;
 &lt;/body&gt;
-&lt;/html&gt;
 </code></pre>
 
 <p>当注释掉 CSS 外链时，打印顺序为</p>
@@ -205,7 +201,7 @@
 <ul>
   <li>CSS 加载延迟了后续脚本的加载;</li>
   <li>加载样式文件时，渲染一直未完成，说明 CSS 阻塞渲染;</li>
-  <li>第一次打印为 h1，说明 JS 会阻塞后续的解析和渲染，和其他资源的加载;</li>
+  <li>第一次打印为 h1，说明 JS 会阻塞后续的解析和渲染，以及其他资源的加载;</li>
   <li>第二次打印为 h1 和 h2，说明 CSS 不阻塞 DOM 的解析;</li>
 </ul>
 
@@ -215,19 +211,15 @@
 
 <h2 id="js阻塞">JS阻塞</h2>
 
+<h3 id="阻塞-dom-解析">阻塞 DOM 解析</h3>
+
 <ul>
-  <li>JavaScript 可以查询和修改 DOM 与 CSSOM;</li>
-  <li>JavaScript 执行会阻止 CSSOM;</li>
+  <li>JS 属于 <strong>parser blocking resource</strong>;</li>
+  <li>立即加载和执行;</li>
   <li>除非将 JavaScript 显式声明为异步，否则它会阻止构建 DOM 和后续的渲染。</li>
 </ul>
 
-<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
+<pre><code class="language-HTML">&lt;body&gt;
   &lt;h1&gt;Tate&lt;/h1&gt;
   &lt;script&gt;
     function print(){
@@ -239,8 +231,8 @@
   &lt;script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"&gt;&lt;/script&gt;
   &lt;h1&gt;Snow&lt;/h1&gt;
   &lt;script&gt; console.log('second print'); &lt;/script&gt;
+  &lt;style&gt; h1{color: orange;} &lt;/style&gt;
 &lt;/body&gt;
-&lt;/html&gt;
 </code></pre>
 
 <p>打印顺序为</p>
@@ -257,15 +249,51 @@
 <p>因此可看出</p>
 
 <ul>
-  <li>JS 会阻塞后续的解析和渲染，和其他资源的加载;</li>
   <li>JS 文件同步加载和执行。</li>
+  <li>JS 会阻塞后续的解析和渲染，以及其他资源的加载;</li>
 </ul>
+
+<p><img src="https://bitsofco.de/content/images/2017/02/Normal-Execution.png" alt="script" /></p>
+
+<blockquote>
+  <p>样式表、图片等资源文件的下载不会暂停 DOM 解析。浏览器会并行地下载这些文件，但通常会限制并发下载数。</p>
+</blockquote>
+
+<h3 id="延迟脚本-defer">延迟脚本 defer</h3>
+
+<p>立即下载，但脚本会延迟到整个页面都解析完毕后再运行。</p>
+
+<pre><code class="language-HTML">&lt;!-- 只适用于外链 --&gt;
+&lt;script defer src="script.js"&gt;
+&lt;!-- 内联无效 --&gt;
+&lt;script defer&gt; console.log('defer'); &lt;/script&gt;
+</code></pre>
+
+<p><img src="https://bitsofco.de/content/images/2017/02/Defer-Execution.png" alt="script-defer" /></p>
+
+<h3 id="异步脚本-async">异步脚本 async</h3>
+
+<p>立即下载，期间不会阻塞 DOM 解析，等下载完成并执行时，才会阻塞解析。</p>
+
+<pre><code class="language-HTML">&lt;!-- 只适用于外链 --&gt;
+&lt;script async src="script.js"&gt;
+&lt;!-- 内联无效 --&gt;
+&lt;script async&gt; console.log('async'); &lt;/script&gt;
+</code></pre>
+
+<p><img src="https://bitsofco.de/content/images/2017/02/Async-Execution.png" alt="script-async" /></p>
+
+<blockquote>
+  <p>延迟和异步脚本一定会在 load 事件前执行，但可能在 DOMContentLoaded 事件触发之前或之后执行。</p>
+</blockquote>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript">Google-使用 JavaScript 添加交互</a></li>
+  <li><a href="https://bitsofco.de/async-vs-defer/">Asynchronous vs Deferred JavaScript</a></li>
   <li><a href="http://harttle.land/2016/11/26/static-dom-render-blocking.html">CSS/JS对DOM渲染的影响</a></li>
+  <li><a href="http://harttle.land/2016/05/18/async-javascript-loading.html">异步脚本载入提高页面性能</a></li>
 </ol>
  
 <div id="disqus_thread"></div>

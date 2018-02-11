@@ -231,7 +231,7 @@ img { float: right }
 
 <h3 id="阻塞渲染">阻塞渲染</h3>
 
-<p>在渲染树构建中，关键渲染路径要求同时具有 DOM 和 CSSOM 才能构建渲染树。由于HTML 和 CSS 都是阻塞渲染的资源，这会给性能造成影响。因此要尽早的加载CSS，并利用媒体类型和查询来解除对渲染的阻塞(DOM 解析依然正常进行)。</p>
+<p>在渲染树构建中，关键渲染路径包含了 DOM 和 CSSOM。由于HTML 和 CSS 都是阻塞渲染的资源，这会给性能造成影响。因此要尽早的加载 CSS，并利用媒体类型和查询来解除对渲染的阻塞(DOM 解析依然正常进行)。</p>
 
 <pre><code class="language-HTML">&lt;!-- 始终阻塞渲染 --&gt;
 &lt;link href="style.css" rel="stylesheet"&gt;
@@ -306,8 +306,8 @@ img { float: right }
   <li><a href="http://taligarsiel.com/Projects/howbrowserswork1.htm">How browsers work</a></li>
   <li><a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/">How browsers work(译)</a></li>
   <li><a href="https://www.youtube.com/watch?v=lvb06W_VKVE">Youtube-The Render Tree - Website Performance Optimization</a></li>
+  <li><a href="https://bitsofco.de/understanding-the-critical-rendering-path/">Understanding the Critical Rendering Path</a></li>
   <li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=zh-cn">Google-染树构建、布局及绘制</a></li>
-  <li><a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html">网页性能管理详解</a></li>
   <li><a href="https://segmentfault.com/a/1190000010298038">浏览器渲染页面过程与页面优化</a></li>
 </ol>
  

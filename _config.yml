@@ -7,7 +7,7 @@ facebook_appid:   #Tate
 google_analytics: UA-101222464-1
 share:            true 
 # 分页
-paginate: 12
+paginate: 15
 paginate_path: "blog:num"
 gems: [jekyll-paginate]
 links:
