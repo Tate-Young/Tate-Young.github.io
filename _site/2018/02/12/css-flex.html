@@ -14,7 +14,7 @@
 <meta name="twitter:keywords" content="Flex 布局 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flex 布局 - Tate & Snow">
-<meta name="og:keywords" content="Flex 布局 - Tate & Snow|Flex 布局伸缩盒伸缩盒(Flexible Box) 模型如下，Flex布局由父级容器 flex container 及其下一级子元素 flex items 构成。/* To use flexbox layout just set ..."
+<meta name="og:keywords" content="Flex 布局 - Tate & Snow|Flex 布局伸缩盒伸缩盒(Flexible Box) 模型如下，flex 布局由父级容器 flex container 及其下一级子元素 flex items 构成。/* To use flexbox layout just set..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Flex 布局伸缩盒伸缩盒(Flexible Box) 模型如下，Flex布局由父级容器 flex container 及其下一级子元素 flex items 构成。/* To use flexbox layout just set ..." property='og:description'
+<meta name="keywords" content="Flex 布局伸缩盒伸缩盒(Flexible Box) 模型如下，flex 布局由父级容器 flex container 及其下一级子元素 flex items 构成。/* To use flexbox layout just set..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/02/12/css-flex.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/12/css-flex.html|Flex 布局伸缩盒伸缩盒(Flexible Box) 模型如下，Flex布局由父级容器 flex container 及其下一级子元素 flex items 构成。/* To use flexbox layout just set ..." property='og:description'
+<meta content="http://localhost:4000/2018/02/12/css-flex.html|Flex 布局伸缩盒伸缩盒(Flexible Box) 模型如下，flex 布局由父级容器 flex container 及其下一级子元素 flex items 构成。/* To use flexbox layout just set..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -157,7 +157,7 @@
 
 <h2 id="伸缩盒">伸缩盒</h2>
 
-<p><strong>伸缩盒(Flexible Box)</strong> 模型如下，Flex布局由父级容器 flex container 及其下一级子元素 flex items 构成。</p>
+<p><strong>伸缩盒(Flexible Box)</strong> 模型如下，flex 布局由父级容器 flex container 及其下一级子元素 flex items 构成。</p>
 
 <p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/CSS3-Flexbox-Model.jpg" alt="flex-container" /></p>
 
@@ -212,7 +212,7 @@
 </table>
 
 <blockquote>
-  <p>flex 父容器布局<a href="https://codepen.io/justd/full/yydezN/">在线 demo 戳这里</a></p>
+  <p>flex 父容器布局<a href="https://codepen.io/justd/full/yydezN/">在线 demo 戳这里</a> 👈👈👈</p>
 </blockquote>
 
 <h3 id="flex-direction">flex-direction</h3>
@@ -231,7 +231,7 @@ flex-wrap：nowrap | wrap | wrap-reverse
 
 <h3 id="flex-flow">flex-flow</h3>
 
-<pre><code class="language-CSS">/* 复合属性，默认值为 no wrap */
+<pre><code class="language-CSS">/* flex-direction 和 flex-wrap 的复合属性，默认值为 no wrap */
 flex-flow：&lt;' flex-direction '&gt; || &lt;' flex-wrap '&gt;
 </code></pre>
 
@@ -315,6 +315,7 @@ flex-grow：&lt;number&gt;
 <h3 id="flex-shrink">flex-shrink</h3>
 
 <pre><code class="language-CSS">/* 定义了项目的缩小比例。不允许为负值，默认为1，即如果空间不足，该项目将缩小 */
+flex-shrink：&lt;number&gt;
 </code></pre>
 
 <p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-flex-shrink.jpg" alt="flex-shrink" /></p>
@@ -329,13 +330,14 @@ flex-basis: &lt;length&gt; | auto; /* default auto */
 
 <h3 id="flex">flex</h3>
 
-<pre><code class="language-CSS">/* 复合属性，默认值为 0 1 auto */
+<pre><code class="language-CSS">/* flex-grow、flex-shrink 和 flex-basis 的复合属性，默认值为 0 1 auto */
 flex：none | &lt;' flex-grow '&gt; &lt;' flex-shrink &gt;'? || &lt;' flex-basis '&gt;
 </code></pre>
 
 <h3 id="align-self">align-self</h3>
 
-<pre><code class="language-CSS">/* 允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch */
+<pre><code class="language-CSS">/* 允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。 */
+/* 默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch */
 align-self：auto | flex-start | flex-end | center | baseline | stretch
 </code></pre>
 
