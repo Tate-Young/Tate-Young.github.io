@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='CSS选择器优先级 - Tate & Snow' name='title' />
-    <meta content='CSS选择器优先级 - Tate & Snow' name='og:title' />
-    <title>CSS选择器优先级 - Tate & Snow</title>
+    <meta content='Flex 布局 - Tate & Snow' name='title' />
+    <meta content='Flex 布局 - Tate & Snow' name='og:title' />
+    <title>Flex 布局 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>CSS选择器优先级 - Tate & Snow</title>
+<title>Flex 布局 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS选择器优先级 - Tate & Snow">
-<meta name="twitter:keywords" content="CSS选择器优先级 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Flex 布局 - Tate & Snow">
+<meta name="twitter:keywords" content="Flex 布局 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS选择器优先级 - Tate & Snow">
-<meta name="og:keywords" content="CSS选择器优先级 - Tate & Snow|CSS选择器优先级什么是CSS选择器基础选择器            基础选择器      举个栗子                  标签选择器      div、span              ID选择器      #id  ..."
+<meta property="og:title" content="Flex 布局 - Tate & Snow">
+<meta name="og:keywords" content="Flex 布局 - Tate & Snow|Flex 布局伸缩盒伸缩盒(Flexible Box) 模型如下，Flex布局由父级容器 flex container 及其下一级子元素 flex items 构成。/* To use flexbox layout just set ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="CSS选择器优先级什么是CSS选择器基础选择器            基础选择器      举个栗子                  标签选择器      div、span              ID选择器      #id  ..." property='og:description'
+<meta name="keywords" content="Flex 布局伸缩盒伸缩盒(Flexible Box) 模型如下，Flex布局由父级容器 flex container 及其下一级子元素 flex items 构成。/* To use flexbox layout just set ..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/01/29/css-priority.html' property='og:url' />
-<meta content="http://localhost:4000/2018/01/29/css-priority.html|CSS选择器优先级什么是CSS选择器基础选择器            基础选择器      举个栗子                  标签选择器      div、span              ID选择器      #id  ..." property='og:description'
+<meta content='http://localhost:4000/2018/02/12/css-flex.html' property='og:url' />
+<meta content="http://localhost:4000/2018/02/12/css-flex.html|Flex 布局伸缩盒伸缩盒(Flexible Box) 模型如下，Flex布局由父级容器 flex container 及其下一级子元素 flex items 构成。/* To use flexbox layout just set ..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -118,9 +118,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    CSS选择器优先级</h1>
+                    Flex 布局</h1>
                 <div class="post-data">
-                    <time datetime="2018-01-29 23:23:00" itemprop="datePublished">发布时间：2018-01-29 23:23:00</time>
+                    <time datetime="2018-02-12 11:35:00" itemprop="datePublished">发布时间：2018-02-12 11:35:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -139,9 +139,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                CSS选择器优先级</h1>
+                Flex 布局</h1>
             <div class="post-data">
-                <time datetime="2018-01-29 23:23:00" itemprop="datePublished">2018-01-29 23:23:00</time>
+                <time datetime="2018-02-12 11:35:00" itemprop="datePublished">2018-02-12 11:35:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -153,173 +153,201 @@
                     </a>
                    
             </p>
-            <h1 id="css选择器优先级">CSS选择器优先级</h1>
+            <h1 id="flex-布局">Flex 布局</h1>
 
-<h2 id="什么是css选择器">什么是CSS选择器</h2>
+<h2 id="伸缩盒">伸缩盒</h2>
 
-<h3 id="基础选择器">基础选择器</h3>
+<p><strong>伸缩盒(Flexible Box)</strong> 模型如下，Flex布局由父级容器 flex container 及其下一级子元素 flex items 构成。</p>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">基础选择器</th>
-      <th style="text-align: left">举个栗子</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">标签选择器</td>
-      <td style="text-align: left">div、span</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ID选择器</td>
-      <td style="text-align: left">#id</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">类选择器</td>
-      <td style="text-align: left">.class</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">伪类选择器</td>
-      <td style="text-align: left">:hover、:first-of-type、:before</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">属性选择器</td>
-      <td style="text-align: left">[attr=val]、[attr~=val]、[attr^=val]</td>
-    </tr>
-  </tbody>
-</table>
+<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/CSS3-Flexbox-Model.jpg" alt="flex-container" /></p>
 
-<h3 id="组合选择器">组合选择器</h3>
+<pre><code class="language-CSS">/* To use flexbox layout just set the display property on the parent HTML element */
+.flex-container {
+  display: -webkit-flex;
+  display: flex;
+}
+</code></pre>
+
+<blockquote>
+  <p>设置 flex 布局以后，子项目(item)的 float、clear 和 vertical-align 属性将失效。</p>
+</blockquote>
+
+<h2 id="container-属性">container 属性</h2>
+
+<p>flex 容器上有以下六个属性:</p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">组合选择器</th>
-      <th style="text-align: left">名称</th>
+      <th style="text-align: left">属性</th>
       <th style="text-align: left">描述</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">E,F</td>
-      <td style="text-align: left">多元素选择器</td>
-      <td style="text-align: left">选择所有E元素和F元素</td>
+      <td style="text-align: left">flex-direction</td>
+      <td style="text-align: left">定义主轴(main axis)的排列方向</td>
     </tr>
     <tr>
-      <td style="text-align: left">E F</td>
-      <td style="text-align: left">后代选择器</td>
-      <td style="text-align: left">选择E元素内部的所有F元素</td>
+      <td style="text-align: left">flex-wrap</td>
+      <td style="text-align: left">定义是否换行显示</td>
     </tr>
     <tr>
-      <td style="text-align: left">E&gt;F</td>
-      <td style="text-align: left">子选择器</td>
-      <td style="text-align: left">选择父元素为E元素的所有F元素</td>
+      <td style="text-align: left">flex-flow</td>
+      <td style="text-align: left">flex-direction 和 flex-wrap 的复合属性，默认值为 no wrap</td>
     </tr>
     <tr>
-      <td style="text-align: left">E+F</td>
-      <td style="text-align: left">相邻兄弟选择器</td>
-      <td style="text-align: left">选择紧接在E元素之后的所有F元素</td>
+      <td style="text-align: left">justify-content</td>
+      <td style="text-align: left">定义项目在主轴上的对齐方式</td>
     </tr>
     <tr>
-      <td style="text-align: left">E~F</td>
-      <td style="text-align: left">通用兄弟选择器</td>
-      <td style="text-align: left">选择前面有E元素的每个F元素</td>
+      <td style="text-align: left">align-items</td>
+      <td style="text-align: left">定义项目在交叉轴(cross axis)上的对齐方式</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">align-content</td>
+      <td style="text-align: left">多根轴线的对齐方式，单轴线无效</td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="css选择器优先级-1">CSS选择器优先级</h2>
+<blockquote>
+  <p>flex 父容器布局<a href="https://codepen.io/justd/full/yydezN/">在线 demo 戳这里</a></p>
+</blockquote>
 
-<h3 id="优先级权重">优先级权重</h3>
+<h3 id="flex-direction">flex-direction</h3>
+
+<pre><code class="language-CSS">/* 定义主轴(main axis)的排列方向 */
+flex-direction：row | row-reverse | column | column-reverse
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2013/04/flex-direction2.svg" alt="flex-direction" /></p>
+
+<h3 id="flex-wrap">flex-wrap</h3>
+
+<pre><code class="language-CSS">/* 定义是否换行显示，主轴默认为一排显示 */
+flex-wrap：nowrap | wrap | wrap-reverse
+</code></pre>
+
+<h3 id="flex-flow">flex-flow</h3>
+
+<pre><code class="language-CSS">/* 复合属性，默认值为 no wrap */
+flex-flow：&lt;' flex-direction '&gt; || &lt;' flex-wrap '&gt;
+</code></pre>
+
+<h3 id="justify-content">justify-content</h3>
+
+<pre><code class="language-CSS">/* 定义项目在主轴上的对齐方式 */
+justify-content：flex-start | flex-end | center | space-between | space-around | space-evenly
+</code></pre>
+
+<p><img src="http://localhost:4000/style/images/flex-justify-content.png" alt="justify-content" /></p>
+
+<h3 id="align-items">align-items</h3>
+
+<pre><code class="language-CSS">/* 定义项目在交叉轴(cross axis)上的对齐方式 */
+align-items: flex-start | flex-end | center | baseline | stretch;
+</code></pre>
+
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png" alt="align-items" /></p>
+
+<h3 id="align-content">align-content</h3>
+
+<pre><code class="language-CSS">/* 多根轴线的对齐方式，布局思路同上。如果项目只有一根轴线(非换行)，该属性不起作用 */
+align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+</code></pre>
+
+<h2 id="item-属性">item 属性</h2>
+
+<p>flex 项目上有以下六个属性</p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">优先级</th>
+      <th style="text-align: left">属性</th>
       <th style="text-align: left">描述</th>
-      <th style="text-align: left">权重</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">赛高</td>
-      <td style="text-align: left">!important(慎用)</td>
-      <td style="text-align: left">无</td>
+      <td style="text-align: left">order</td>
+      <td style="text-align: left">定义项目的排列顺序</td>
     </tr>
     <tr>
-      <td style="text-align: left">甲等</td>
-      <td style="text-align: left">代表内联样式，如：style=”xxx”</td>
-      <td style="text-align: left">1000</td>
+      <td style="text-align: left">flex-grow</td>
+      <td style="text-align: left">定义扩展比率</td>
     </tr>
     <tr>
-      <td style="text-align: left">乙等</td>
-      <td style="text-align: left">代表ID选择器，如：#id</td>
-      <td style="text-align: left">100</td>
+      <td style="text-align: left">flex-shrink</td>
+      <td style="text-align: left">定义了项目的缩小比例</td>
     </tr>
     <tr>
-      <td style="text-align: left">丙等</td>
-      <td style="text-align: left">代表类、伪类和属性选择器，如.class、:hover、[attr]</td>
-      <td style="text-align: left">10</td>
+      <td style="text-align: left">flex-basis</td>
+      <td style="text-align: left">定义项目在主轴上的对齐方式</td>
     </tr>
     <tr>
-      <td style="text-align: left">丁等</td>
-      <td style="text-align: left">代表元素选择器和伪元素选择器，如div、p</td>
-      <td style="text-align: left">1</td>
+      <td style="text-align: left">flex</td>
+      <td style="text-align: left">flex-grow、flex-shrink 和 flex-basis 的复合属性，默认值为 0 1 auto</td>
     </tr>
     <tr>
-      <td style="text-align: left">戍等</td>
-      <td style="text-align: left">代表通用选择器、子选择器和相邻兄弟选择器等，如*、&gt;、+</td>
-      <td style="text-align: left">0</td>
+      <td style="text-align: left">align-self</td>
+      <td style="text-align: left">允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="优先级权重计算">优先级权重计算</h3>
+<h3 id="order">order</h3>
 
-<ul>
-  <li>优先级就是分配给指定的CSS声明的一个权重，它由 匹配的选择器中的 每一种选择器类型的 数值 决定。</li>
-  <li>而当优先级与多个CSS声明中任意一个声明的优先级相等的时候，CSS中最后的那个声明将会被应用到元素上。</li>
-  <li>当同一个元素有多个声明的时候，优先级才会有意义。因为每一个直接作用于元素的CSS规则总是会接管/覆盖（take over）该元素从祖先元素继承而来的规则。</li>
-</ul>
-
-<pre><code class="language-CSS">/*权值计算 100(#content) + 1(div) + 100(#main-content) + 1(h2) = 202 */
-#content div#main-content h2{
-    color:red;
-}
+<pre><code class="language-CSS">/* 定义项目的排列顺序。数值越小，排列越靠前，默认为0 */
+order：&lt;integer&gt;
 </code></pre>
 
-<pre><code class="language-CSS">/*权值计算 100(#main-content) + 1(div) + 10(.paragraph) + 1(h2) = 112 */
-#main-content div.paragraph h2 {
-    color:orange;
-}
+<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-order.jpg" alt="order" /></p>
+
+<h3 id="flex-grow">flex-grow</h3>
+
+<pre><code class="language-CSS">/* 定义扩展比率。不允许负值，默认为0，即如果存在剩余空间，也不放大 */
+flex-grow：&lt;number&gt;
 </code></pre>
 
-<pre><code class="language-CSS">/*权值计算 100(#main-content) + 10(class="paragraph") + 1(h2) = 111 */
-#main-content [class="paragraph"] h2 {
-    color:yellow;
-}
+<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-flex-grow-2.jpg" alt="flex-grow" /></p>
+
+<h3 id="flex-shrink">flex-shrink</h3>
+
+<pre><code class="language-CSS">/* 定义了项目的缩小比例。不允许为负值，默认为1，即如果空间不足，该项目将缩小 */
 </code></pre>
 
-<pre><code class="language-HTML">&lt;!-- 栗子转载于链接3，感谢提供 --&gt;
-&lt;div id="content"&gt;
-    &lt;div id="main-content"&gt;
-        &lt;h2&gt;CSS简介&lt;/h2&gt;
-        &lt;p&gt;CSS（Cascading Style Sheet，可译为“层叠样式表”或“级联样式表”）是一组格式设置规则，用于控制Web页面的外观。&lt;/p&gt;
-        &lt;div class="paragraph"&gt;
-            &lt;h2 class="first"&gt;使用CSS布局的优点&lt;/h2&gt;
-            &lt;p&gt;1、表现和内容相分离 2、提高页面浏览速度 3、易于维护和改版 4、使用CSS布局更符合现在的W3C标准.&lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
+<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-flex-shrink.jpg" alt="flex-shrink" /></p>
+
+<h3 id="flex-basis">flex-basis</h3>
+
+<pre><code class="language-CSS">/* 定义了在分配多余空间之前，项目占据的主轴空间(main size) */
+flex-basis: &lt;length&gt; | auto; /* default auto */
 </code></pre>
+
+<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-flex-basis.jpg" alt="flex-basis" /></p>
+
+<h3 id="flex">flex</h3>
+
+<pre><code class="language-CSS">/* 复合属性，默认值为 0 1 auto */
+flex：none | &lt;' flex-grow '&gt; &lt;' flex-shrink &gt;'? || &lt;' flex-basis '&gt;
+</code></pre>
+
+<h3 id="align-self">align-self</h3>
+
+<pre><code class="language-CSS">/* 允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch */
+align-self：auto | flex-start | flex-end | center | baseline | stretch
+</code></pre>
+
+<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-align-self.jpg" alt="align-self" /></p>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://www.w3school.com.cn/cssref/css_selectors.ASP">w3school-选择器</a></li>
-  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Specificity">MDN-CSS优先级</a></li>
-  <li><a href="https://www.jianshu.com/p/f31d03f6ebe3">简书-CSS选择器的权重与优先级</a></li>
+  <li><a href="http://www.css88.com/book/css/properties/flex/index.htm">CSS参考手册-flex</a></li>
+  <li><a href="https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties#basics">A Visual Guide to CSS3 Flexbox Properties</a></li>
+  <li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">A Complete Guide to Flexbox</a></li>
+  <li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程：语法篇</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -330,9 +358,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/01/29/css-priority.html';
-        this.page.identifier = '/2018/01/29/css-priority';
-        this.page.title = 'CSS选择器优先级';
+        this.page.url = 'https://tate-young.github.io/2018/02/12/css-flex.html';
+        this.page.identifier = '/2018/02/12/css-flex';
+        this.page.title = 'Flex 布局';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -350,7 +378,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-01-29 23:23:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-12 11:35:00</p> -->
         </div>
     </article>
 
