@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='事件循环 - Tate & Snow' name='title' />
-    <meta content='事件循环 - Tate & Snow' name='og:title' />
-    <title>事件循环 - Tate & Snow</title>
+    <meta content='DNS 解析 - Tate & Snow' name='title' />
+    <meta content='DNS 解析 - Tate & Snow' name='og:title' />
+    <title>DNS 解析 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>事件循环 - Tate & Snow</title>
+<title>DNS 解析 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="事件循环 - Tate & Snow">
-<meta name="twitter:keywords" content="事件循环 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="DNS 解析 - Tate & Snow">
+<meta name="twitter:keywords" content="DNS 解析 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="事件循环 - Tate & Snow">
-<meta name="og:keywords" content="事件循环 - Tate & Snow|事件循环进程和线程进程(process) 是系统进行资源分配和调度的基本单位，任一时刻，单核CPU总是运行一个进程，其他进程处于非运行状态。线程(thread) 是系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作..."
+<meta property="og:title" content="DNS 解析 - Tate & Snow">
+<meta name="og:keywords" content="DNS 解析 - Tate & Snow|DNS 解析什么是 DNS在数据网络中，使用数字 IP 地址标记设备以便通过网络发送和接收数据。 大多数用户无法记住此数字地址。 于是，人们创建了可以将数字地址转换为简单易记名称的域名系统。域名系统(domain name syste..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="事件循环进程和线程进程(process) 是系统进行资源分配和调度的基本单位，任一时刻，单核CPU总是运行一个进程，其他进程处于非运行状态。线程(thread) 是系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作..." property='og:description'
+<meta name="keywords" content="DNS 解析什么是 DNS在数据网络中，使用数字 IP 地址标记设备以便通过网络发送和接收数据。 大多数用户无法记住此数字地址。 于是，人们创建了可以将数字地址转换为简单易记名称的域名系统。域名系统(domain name syste..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/05/js-event-loop.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/05/js-event-loop.html|事件循环进程和线程进程(process) 是系统进行资源分配和调度的基本单位，任一时刻，单核CPU总是运行一个进程，其他进程处于非运行状态。线程(thread) 是系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作..." property='og:description'
+<meta content='http://localhost:4000/2018/02/21/http-dns.html' property='og:url' />
+<meta content="http://localhost:4000/2018/02/21/http-dns.html|DNS 解析什么是 DNS在数据网络中，使用数字 IP 地址标记设备以便通过网络发送和接收数据。 大多数用户无法记住此数字地址。 于是，人们创建了可以将数字地址转换为简单易记名称的域名系统。域名系统(domain name syste..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -118,17 +118,17 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    事件循环</h1>
+                    DNS 解析</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-05 16:58:00" itemprop="datePublished">发布时间：2018-02-05 16:58:00</time>
+                    <time datetime="2018-02-21 00:52:00" itemprop="datePublished">发布时间：2018-02-21 00:52:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
                 <div class="post-tags">
                        
-                    <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                        JavaScript
-                        <span>(11)</span>
+                    <a href="/tags#http" title="访问http" data-hover="http">
+                        http
+                        <span>(1)</span>
                         
                     </a>
                        
@@ -139,113 +139,274 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                事件循环</h1>
+                DNS 解析</h1>
             <div class="post-data">
-                <time datetime="2018-02-05 16:58:00" itemprop="datePublished">2018-02-05 16:58:00</time>
+                <time datetime="2018-02-21 00:52:00" itemprop="datePublished">2018-02-21 00:52:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
             <p class="post-tags">
                    
-                <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                    JavaScript
-                    <span>(11)</span>
+                <a href="/tags#http" title="访问http" data-hover="http">
+                    http
+                    <span>(1)</span>
                     </a>
                    
             </p>
-            <h1 id="事件循环">事件循环</h1>
+            <h1 id="dns-解析">DNS 解析</h1>
 
-<h2 id="进程和线程">进程和线程</h2>
+<h2 id="什么是-dns">什么是 DNS</h2>
 
-<p><strong>进程(process)</strong> 是系统进行资源分配和调度的基本单位，任一时刻，单核CPU总是运行一个进程，其他进程处于非运行状态。</p>
+<p>在数据网络中，使用数字 IP 地址标记设备以便通过网络发送和接收数据。 大多数用户无法记住此数字地址。 于是，人们创建了可以将数字地址转换为简单易记名称的域名系统。</p>
 
-<p><strong>线程(thread)</strong> 是系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。</p>
+<p><strong>域名系统(domain name system)</strong> 作为将域名和 IP 地址相互映射的一个分布式数据库，使用 TCP 和 UDP 端口 53，作用就是根据域名查出对应 IP 地址。</p>
 
-<p>一个进程可以包括多个线程，一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。而通过<strong><a href="https://zh.wikipedia.org/wiki/%E4%BA%92%E6%96%A5%E9%94%81">互斥锁(Mutex)</a></strong>，可防止多个线程同时读写某一块内存区域。<strong><a href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E8%99%9F%E6%A8%99">信号量(Semaphore)</a></strong> 适用于控制一个仅支持有限个用户的共享资源，是一种不需要使用忙碌等待(busy waiting)的方法。</p>
+<p><img src="http://localhost:4000/style/images/dns.png" alt="DNS" /></p>
 
-<h2 id="调用栈call-stack">调用栈(Call Stack)</h2>
+<h2 id="域名层级">域名层级</h2>
 
-<p>函数调用形成了一个栈帧(Call Frame)，多个栈帧堆叠形成一个<strong><a href="https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A">调用栈(执行栈)</a></strong>，实行先进后出。</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">域名</th>
+      <th style="text-align: left">值</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">使用的域名</td>
+      <td style="text-align: left">www.example.com</td>
+      <td style="text-align: left">日常真实使用的域名</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">真正的域名</td>
+      <td style="text-align: left">www.example.com.root</td>
+      <td style="text-align: left">.root通常省略，或为 .</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">根域名</td>
+      <td style="text-align: left">.root</td>
+      <td style="text-align: left">对所有域名</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">顶级域名</td>
+      <td style="text-align: left">.com</td>
+      <td style="text-align: left">top-level domains(TLD)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">次级域名</td>
+      <td style="text-align: left">.example</td>
+      <td style="text-align: left">second-level domains(SLD)，用户可注册的</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">三级域名(主机名)</td>
+      <td style="text-align: left">www</td>
+      <td style="text-align: left">用户在自己的域里面为服务器分配的名称</td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
-<span class="p">}</span>
+<h2 id="dns-解析-1">DNS 解析</h2>
 
-<span class="kd">function</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span> <span class="o">*</span> <span class="nx">y</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
+<p><img src="http://localhost:4000/style/images/dns-ns.png" alt="DNS-NS" /></p>
 
-<span class="nx">bar</span><span class="p">(</span><span class="mi">520</span><span class="p">);</span> <span class="c1">// 1564</span>
-</code></pre>
-</div>
+<p>工作步骤:</p>
 
 <ol>
-  <li>当调用bar时，创建了第一个帧，帧中包含了bar的参数和局部变量。</li>
-  <li>当bar调用foo时，第二个帧就被创建，并被压到第一个帧之上，帧中包含了foo的参数和局部变量。</li>
-  <li>当foo返回时，最上层的帧就被弹出栈（剩下bar函数的调用帧 ）。</li>
-  <li>当bar返回的时候，栈被清空。</li>
+  <li>检查浏览器缓存，命中则解析过程结束。浏览器缓存有大小和时间限制，缓存时间可通过 <strong>TTL(time to live)</strong> 属性来配置;</li>
+  <li>若 1 未命中，则浏览器会查找操作系统缓存中是否有这个域名对应的 DNS 解析结果。Windows 可以通过 “C:\Windows\System32\drivers\etc\hosts” 文件来配置，Linux 则为 “/etc/hosts” 文件来配置，用户可以将任何域名解析到任何能够访问的 IP 地址;</li>
+  <li>发送至本地域名服务器(LDNS)。LDNS 一般都会缓存域名解析结果，当然缓存时间是受到域名的失效时间控制的。Windows 下通过命令行输入 “ipconfig”，Linux环境下通过 “cat /etc/resolv.conf 就可以查询配置的 DNS 服务器;</li>
+  <li>若 3 未命中，则直接到<a href="https://zh.wikipedia.org/wiki/%E6%A0%B9%E7%B6%B2%E5%9F%9F%E5%90%8D%E7%A8%B1%E4%BC%BA%E6%9C%8D%E5%99%A8">根域名服务器(root name server)</a>请求解析。根域名服务器是最高级别的域名服务器，负责返回顶级域的权威域名服务器地址；</li>
+  <li>根域名服务器返回给本地域名服务器一个所查询的<strong>主域名服务器(gTLD server)</strong>地址。gTLD 是通用顶级域，如 .com、.cn、.org 等;</li>
+  <li>LDNS 再向上一步返回的 gTLD 服务器发送请求;</li>
+  <li>gTLD 服务器查找并返回此域名对应的<strong>域名服务器(name server)</strong>的地址，这个域名服务器通常就是用户注册的，例如用户在某个域名服务提供商申请的域名，那么这个域名解析任务就由这个域名提供商的服务器来完成;</li>
+  <li>向域名服务器发起请求，域名服务器会查询存储的域名和 IP 的映射关系表。</li>
+  <li>返回该域名对应的 IP 和 TTL 值，LDNS 会缓存这个域名和 IP 的对应关系，缓存时间由 TTL 值控制;</li>
+  <li>把解析的结果返回给用户，用户根据 TTL 值缓存在本地系统缓存中，域名解析过程结束。</li>
 </ol>
 
-<h2 id="事件循环event-loop">事件循环(Event Loop)</h2>
+<blockquote>
+  <p>以 www.example.com 为例，解析过程从右向左: <strong>. =&gt; com. =&gt; .example.com. =&gt; www.example.com. =&gt; IP</strong></p>
+</blockquote>
 
-<p>JavaScript 属于单线程语言，执行的任务可分为同步和异步，ES6诞生以前，异步编程的方法，大概有下列四种：</p>
+<blockquote>
+  <p>全球 13 组根域名服务器以英文字母 A 到 M 依序命名，域名格式为”字母.root-servers.net”。其中有11个是以<a href="https://zh.wikipedia.org/wiki/%E4%BB%BB%E6%92%AD">任播</a>技术在全球多个地点设立镜像站。</p>
+</blockquote>
+
+<h2 id="dns-层级">DNS 层级</h2>
+
+<p>一个 DNS 的解析大致可以分两个部分：</p>
 
 <ul>
-  <li>回调函数</li>
-  <li>事件监听</li>
-  <li>发布/订阅</li>
-  <li>Promise 对象</li>
+  <li>客户端向 LDNS 的请求，通常这部分使用递归请求</li>
+  <li>LDNS 的请求，通常这部分使用迭代请求</li>
 </ul>
 
-<p>在主线程中，如果有定时器或者其他异步操作，他们会被添加到 <strong>Event Table</strong> 中，当事件(timeout, click, mouse move)满足触发条件后，它会将其发送至 <strong>事件队列(Event Queue)</strong>，实行先进先出。</p>
+<p><img src="https://ooo.0o0.ooo/2017/07/05/595c5beaef747.png" alt="DNS 层级" /></p>
 
-<p>事件循环是个进程，会持续监测调用栈是否为空，若为空，则监测事件队列，将里面的事件移至调用栈执行，如此循环。</p>
+<h2 id="dns-清除缓存">DNS 清除缓存</h2>
 
-<h3 id="定时器">定时器</h3>
+<p>DNS 域名解析后会缓存解析结果，其中主要在两个地方缓存：</p>
 
-<p>调用 <strong>setTimeout</strong> 函数会在一个时间段后在队列中添加一个事件。这个时间段作为函数的第二个参数被传入。如果队列中没有其它事件，事件会被马上处理。但是，如果有其它事件，setTimeout事件必须等待其它事件处理完。因此第二个参数仅仅表示最少的时间 而非确切的时间。同样在零延迟调用 setTimeout 时，其并不是过了给定的时间间隔后就马上执行回调函数，其等待的时间基于队列里正在等待的事件数量。</p>
+<ul>
+  <li>本地 DNS 服务器(LDNS)</li>
+  <li>用户的本地机器 - 包括浏览器缓存和操作系统缓存</li>
+</ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'start'</span><span class="p">);</span>
+<p>针对用户本机，针对不同系统环境可以采用以下命令清除缓存:</p>
 
-<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
-<span class="p">},</span> <span class="mi">200</span><span class="p">);</span>
+<ul>
+  <li>Windows - ipconfig /flushdns</li>
+  <li>Linux - /etc/init.d/nscd restart</li>
+  <li><a href="https://support.apple.com/en-us/HT202516">macOS</a> - dscacheutil -flushcache 或  killall -HUP mDNSResponder</li>
+</ul>
 
-<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'world'</span><span class="p">);</span>
-<span class="p">},</span> <span class="mi">300</span><span class="p">);</span>
+<h2 id="dns-查询">DNS 查询</h2>
 
-<span class="c1">// 模拟阻塞</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">10000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-<span class="p">}</span>
+<h3 id="dig-查询">dig 查询</h3>
 
-<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Tate'</span><span class="p">);</span>
-<span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+<p>以 www.baidu.com 为例，一共返回六段信息:</p>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'end'</span><span class="p">);</span>
-<span class="c1">// start</span>
-<span class="c1">// 1...10000</span>
-<span class="c1">// hello</span>
-<span class="c1">// world</span>
-<span class="c1">// Tate</span>
+<pre><code class="language-SHELL">$ dig www.baidu.com
+
+# ------查询参数和统计--------------------------------------------------------
+; &lt;&lt;&gt;&gt; DiG 9.9.7-P3 &lt;&lt;&gt;&gt; www.baidu.com
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 64176
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 5, ADDITIONAL: 3
+
+# ------查询域名www.baidu.com.的 A 记录，即 address----------------------------
+;; QUESTION SECTION:
+;www.baidu.com.			IN	A
+
+# ------DNS 服务器的响应。774 和 600 即 TTL 值，CNAME 为别名解析-----------------
+;; ANSWER SECTION:
+www.BaidU.cOm.		774	IN	CNAME	www.a.shifen.com.
+WwW.a.ShIfEn.cOm.	600	IN	A	180.97.33.107
+WwW.a.ShIfEn.cOm.	600	IN	A	180.97.33.108
+
+# ------查询的权威服务器 NS 的域名地址------------------------------------------
+;; AUTHORITY SECTION:
+a.ShIfEn.cOm.		825	IN	NS	ns5.a.ShIfEn.cOm.
+a.ShIfEn.cOm.		825	IN	NS	ns4.a.ShIfEn.cOm.
+a.ShIfEn.cOm.		825	IN	NS	ns2.a.ShIfEn.cOm.
+a.ShIfEn.cOm.		825	IN	NS	ns3.a.ShIfEn.cOm.
+a.ShIfEn.cOm.		825	IN	NS	ns1.a.ShIfEn.cOm.
+
+# ------获得的权威服务器的 IP 地址, 用来进行递归查询------------------------------
+;; ADDITIONAL SECTION:
+ns1.a.ShIfEn.cOm.	539	IN	A	61.135.165.224
+ns4.a.ShIfEn.cOm.	162	IN	A	115.239.210.176
+ns5.a.ShIfEn.cOm.	162	IN	A	119.75.222.17
+
+# ------DNS 服务器的一些传输信息，本地 DNS 服务器地址即为 192.168.1.1，默认端口为 53
+;; Query time: 22 msec
+;; SERVER: 192.168.1.1#53(192.168.1.1)
+;; WHEN: Sun Feb 18 22:14:16 CST 2018
+;; MSG SIZE  rcvd: 257
+
 </code></pre>
-</div>
 
-<p>事件循环过程可以参考如下(Timer模块改为Event Table，Task queue改为Event Queue):</p>
+<p>使用 +trace 参数进行路径跟踪查询或者 +short 直接返回 DNS 服务器的响应。</p>
 
-<p><img src="https://sfault-image.b0.upaiyun.com/360/409/3604095867-59a67ae56079d_articlex" alt="事件循环示范图" /></p>
+<pre><code class="language-SHELL">$ dig www.baidu.com +short
+www.a.shifen.com.
+180.97.33.107
+180.97.33.108
+</code></pre>
+
+<h3 id="host">host</h3>
+
+<p>host 命令可以看作 dig 命令的简化版本，返回当前请求域名的各种记录。host 命令也可以用于逆向查询，即从 IP 地址查询域名，等同于 “dig -x ip”。</p>
+
+<pre><code class="language-SHELL">$ host www.baidu.com
+www.baidu.com is an alias for www.a.shifen.com.
+Www.a.shifen.com has address 180.97.33.107
+Www.a.shifen.com has address 180.97.33.108
+</code></pre>
+
+<h3 id="nslookup">nslookup</h3>
+
+<p>互动式地查询域名记录。</p>
+
+<pre><code class="language-SHELL">$ nslookup www.baidu.com
+Server:		192.168.1.1
+Address:	192.168.1.1#53
+
+Non-authoritative answer:
+www.baidu.com	canonical name = www.a.shifen.com.
+Name:	Www.a.shifen.com
+Address: 180.97.33.107
+Name:	Www.a.shifen.com
+Address: 180.97.33.108
+</code></pre>
+
+<h3 id="whois">whois</h3>
+
+<p>用来查看域名的注册情况，需要安装 whois 插件，如 “brew install whois”。</p>
+
+<pre><code class="language-SHELL">refer:        whois.verisign-grs.com
+
+domain:       COM
+
+organisation: VeriSign Global Registry Services
+address:      12061 Bluemont Way
+address:      Reston Virginia 20190
+address:      United States
+...
+</code></pre>
+
+<h2 id="dns-记录类型">DNS 记录类型</h2>
+
+<p>域名与 IP 之间的对应关系，称为<strong>记录(record)</strong>。根据使用场景，记录可以分成不同的类型(type)。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">类型</th>
+      <th style="text-align: left">名称</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">A</td>
+      <td style="text-align: left">地址记录(Address)</td>
+      <td style="text-align: left">返回域名指向的 IP 地址</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">NS</td>
+      <td style="text-align: left">域名服务器记录(Name Server)</td>
+      <td style="text-align: left">返回保存下一级域名信息的服务器地址。该记录只能设置为域名，不能设置为 IP 地址</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MX</td>
+      <td style="text-align: left">邮件记录(Mail eXchange)</td>
+      <td style="text-align: left">返回接收电子邮件的服务器地址</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">CNAME</td>
+      <td style="text-align: left">规范名称记录(Canonical Name)</td>
+      <td style="text-align: left">返回另一个域名，即当前查询的域名是另一个域名的跳转</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">PTR</td>
+      <td style="text-align: left">逆向查询记录(Pointer Record)</td>
+      <td style="text-align: left">只用于从IP地址查询域名，如 dig -x ip</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop">MDN-并发模型与事件循环</a></li>
-  <li><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">JavaScript 运行机制详解：再谈Event Loop</a></li>
-  <li><a href="https://segmentfault.com/a/1190000010929918">干货 原来你是这样的 setTimeout</a></li>
-  <li><a href="https://hackernoon.com/understanding-js-the-event-loop-959beae3ac40">Understanding JS: The Event Loop</a></li>
+  <li><a href="http://www.ruanyifeng.com/blog/2016/06/dns.html">DNS 原理入门</a></li>
+  <li><a href="http://blog.csdn.net/zhangyuan19880606/article/details/51141610">DNS 域名解析过程</a></li>
+  <li><a href="http://cisco.szpt.edu.cn/CCNA1Course_Download/course/module10/10.2.2.3/10.2.2.3.html">DNS 层级</a></li>
+  <li><a href="http://zhangh.tk/2017/07/20/%E3%80%90%E9%87%8D%E6%8B%BE%E7%BD%91%E7%BB%9C%E3%80%91DNS/">【重拾网络】DNS</a></li>
+  <li><a href="https://support.apple.com/en-us/HT202516">Reset the DNS cache in OS X</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -256,9 +417,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/05/js-event-loop.html';
-        this.page.identifier = '/2018/02/05/js-event-loop';
-        this.page.title = '事件循环';
+        this.page.url = 'https://tate-young.github.io/2018/02/21/http-dns.html';
+        this.page.identifier = '/2018/02/21/http-dns';
+        this.page.title = 'DNS 解析';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -276,7 +437,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-05 16:58:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-21 00:52:00</p> -->
         </div>
     </article>
 

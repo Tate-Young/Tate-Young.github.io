@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  事件循环
 date:   2018-02-05 16:58:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: https://sfault-image.b0.upaiyun.com/360/409/3604095867-59a67ae56079d_articlex
 tags:
 - JavaScript
 ---
@@ -91,7 +91,7 @@ console.log('end');
 
 事件循环过程可以参考如下(Timer模块改为Event Table，Task queue改为Event Queue):
 
-![事件循环示范图](https://mmbiz.qpic.cn/mmbiz_gif/pibXop4Ees9plTiauR0F7fvtyFmh5SvemE3pQbeKL9T7JJnG3UficQb8qsbSF2ct5OESgSz0iaPSvWXsmvHgyyfO7Q/0?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
+![事件循环示范图](https://sfault-image.b0.upaiyun.com/360/409/3604095867-59a67ae56079d_articlex)
 
 ## 参考链接
 

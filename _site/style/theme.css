@@ -1314,6 +1314,7 @@ textarea:-ms-input-placeholder {
     padding: 1.3em;
     color: #313131;
     background-color: #f7f7f7;
+    /* max-height: 20rem; */
 }
 
 pre code::after {
