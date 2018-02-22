@@ -49,4 +49,4 @@ console.log(S.toUpperCase());
 ## 参考链接
 
 1. [包装对象](http://javascript.ruanyifeng.com/stdlib/wrapper.html)
-1. [简书-javascirpt包装对象（wrapper object）](https://www.jianshu.com/p/7e585f06d029)
+1. [简书 - javascirpt 包装对象(wrapper object)](https://www.jianshu.com/p/7e585f06d029)

@@ -191,5 +191,5 @@ p2.name = 'Snow'; // 'Tate' 严格模式下报错 TypeError
 
 ## 参考链接
 
-1. [MDN-变量提升](https://developer.mozilla.org/zh-CN/docs/Glossary/Hoisting)
+1. [MDN - 变量提升](https://developer.mozilla.org/zh-CN/docs/Glossary/Hoisting)
 1. [let 和 const 命令](http://es6.ruanyifeng.com/#docs/let)

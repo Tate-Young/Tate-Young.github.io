@@ -158,5 +158,5 @@ $.type(window) === 'object';
 ## 参考链接
 
 1. [Understanding JavaScript Constructors](https://css-tricks.com/understanding-javascript-constructors)
-1. [判断JS数据类型的四种方法](http://www.cnblogs.com/onepixel/p/5126046.html)
-1. [简书-JavaScript中对象的constructor的深入理解](https://www.jianshu.com/p/18f6c0868e71)
+1. [判断 JS 数据类型的四种方法](http://www.cnblogs.com/onepixel/p/5126046.html)
+1. [简书 - JavaScript 中对象的 constructor 的深入理解](https://www.jianshu.com/p/18f6c0868e71)

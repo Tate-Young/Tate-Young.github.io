@@ -161,5 +161,5 @@ console.log(o2); // {"arr":[1,2],"obj":{"name":"Tate"}}
 ## 参考链接
 
 1. [前端基础进阶：详细图解 JavaScript 内存空间](https://juejin.im/entry/589c29a9b123db16a3c18adf)
-1. [JavaScript中的浅拷贝和深拷贝](https://segmentfault.com/a/1190000008637489)
-1. [MDN-JSON.stringify()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+1. [JavaScript 中的浅拷贝和深拷贝](https://segmentfault.com/a/1190000008637489)
+1. [MDN - JSON.stringify()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)

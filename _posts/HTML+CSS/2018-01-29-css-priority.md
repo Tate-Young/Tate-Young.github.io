@@ -91,6 +91,6 @@ tags:
 
 ## 参考链接
 
-1. [w3school-选择器](http://www.w3school.com.cn/cssref/css_selectors.ASP)
-1. [MDN-CSS优先级](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Specificity)
-1. [简书-CSS选择器的权重与优先级](https://www.jianshu.com/p/f31d03f6ebe3)
+1. [w3school - 选择器](http://www.w3school.com.cn/cssref/css_selectors.ASP)
+1. [MDN - CSS优先级](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Specificity)
+1. [简书 - CSS选择器的权重与优先级](https://www.jianshu.com/p/f31d03f6ebe3)

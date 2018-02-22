@@ -367,7 +367,7 @@ let b = new B();
 
 ## 参考链接
 
-1. [书籍-<<JavaScript高级程序设计>>](https://www.amazon.cn/dp/B007OQQVMY/ref=sr_1_1/458-6273007-6912964?s=books&ie=UTF8&qid=1517972181&sr=1-1&keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)
+1. [书籍 - <<JavaScript 高级程序设计>>](https://www.amazon.cn/dp/B007OQQVMY/ref=sr_1_1/458-6273007-6912964?s=books&ie=UTF8&qid=1517972181&sr=1-1&keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)
 1. [继承与原型链](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 1. [prototype 对象](http://javascript.ruanyifeng.com/oop/prototype.html)
 1. [Class 的继承](http://es6.ruanyifeng.com/#docs/class-extends)

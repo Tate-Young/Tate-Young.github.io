@@ -171,7 +171,7 @@ second print
 
 ## 参考链接
 
-1. [Google-使用 JavaScript 添加交互](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript)
+1. [Google - 使用 JavaScript 添加交互](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript)
 1. [Asynchronous vs Deferred JavaScript](https://bitsofco.de/async-vs-defer/)
-1. [CSS/JS对DOM渲染的影响](http://harttle.land/2016/11/26/static-dom-render-blocking.html)
+1. [CSS/JS 对 DOM 渲染的影响](http://harttle.land/2016/11/26/static-dom-render-blocking.html)
 1. [异步渲染的下载和阻塞行为](http://harttle.land/2016/11/26/dynamic-dom-render-blocking.html)

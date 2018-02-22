@@ -151,5 +151,5 @@ document.body.appendChild(document.createTextNode('Tate'));
 1. [How browsers work(译)](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/)
 1. [Youtube-The Render Tree - Website Performance Optimization](https://www.youtube.com/watch?v=lvb06W_VKVE)
 1. [Understanding the Critical Rendering Path](https://bitsofco.de/understanding-the-critical-rendering-path/)
-1. [Google-染树构建、布局及绘制](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=zh-cn)
+1. [Google - 染树构建、布局及绘制](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=zh-cn)
 1. [浏览器渲染页面过程与页面优化](https://segmentfault.com/a/1190000010298038)
