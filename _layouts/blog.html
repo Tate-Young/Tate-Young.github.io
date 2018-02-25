@@ -17,9 +17,14 @@
             <!-- <a href="/?tate" title="访问 {{  site.title }}" class="navbar-logo">{{ site.title }}</a>   -->
             <div class="navbar-menu">
                 {% for link in site.links %}
-                <a href="{% unless link.external %}{{ site.url }}{% endunless %}{{ link.url }}">{{ link.name }}</a>
+                <a href="{{ link.url }}?tate" title="访问 {{  link.name }}" data-hover="{{link.name}}">{{ link.name }}</a>
                 {% endfor %}
             </div>
+            <!-- <div class="navbar-menu">
+                {% for link in site.links %}
+                <a href="{% unless link.external %}{{ site.url }}{% endunless %}{{ link.url }}">{{ link.name }}</a>
+                {% endfor %}
+            </div> -->
             <div class="navbar-search" onclick="">
                 <span class="icon-search"></span>
                 <form id="cb-search-btn" role="search">
