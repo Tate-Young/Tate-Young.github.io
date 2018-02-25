@@ -11,6 +11,8 @@ redirect_from:
 
 此博客诞生于2018年1月1日，自己捣鼓了下分页、评论等，然后加入了Jekyll模板。里面所记录的内容都是按照自己理解思路来的，也有转载一些大大的分析，总体而言肯定有很多理解不透彻或不对的地方，还望帮我指正，一起学习。**学无止境~**
 
+![bilibili.gif](https://ooo.0o0.ooo/2018/02/25/5a922e9961a07.gif)
+
 > disqus目前只能科学上网才能看到哦😯，Jekyll模板来源于liberxue[已开源](https://github.com/Liberxue/liberxue.github.io)，十分感谢，大家可以去fork点个赞👍。
 
 ## 定个小目标
