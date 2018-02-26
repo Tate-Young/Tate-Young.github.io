@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  包装对象
 date:   2018-02-01 23:27:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: https://ooo.0o0.ooo/2018/02/26/5a935bee645c0.png
 tags:
 - JavaScript
 ---
@@ -44,7 +44,7 @@ console.log(S.toUpperCase());
 
 上面代码中，字符串的包装对象有每个位置的值、有length属性、还有一个内部属性[[PrimitiveValue]]保存字符串的原始值。这个[[PrimitiveValue]]内部属性，外部是无法调用，仅供valueOf()或toString()这样的方法内部调用。
 
-![包装对象实现原理]({{ site.url }}/style/images/wrapper-obj.png)
+![wrapper-obj.png](https://ooo.0o0.ooo/2018/02/26/5a935bee645c0.png)
 
 ## 参考链接
 

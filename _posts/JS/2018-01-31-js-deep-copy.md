@@ -21,7 +21,14 @@ tags:
 |:-------------|:------------|:-------------|
 | 举个栗子 | Undefined、Null、Boolean、Number、String、Symbol |  Function、Array、Object、String、Number等 |
 | 存储位置 | 保存在栈区 | 引用存放在栈区，实际对象保存在堆区 |
-| 访问方式 | 存放在栈内存中的简单数据段，可按值访问 | 首先从栈中获得该对象的地址指针，然后再从堆内存中取得所需的数据 |
+| 访问方式 | 存放在栈中的简单数据段，可按值访问 | 首先从栈中获得该对象的地址指针，然后再从堆中取得所需的数据 |
+
+```TEXT
+Primitive values are data that are stored on the stack.
+Primitive value is stored directly in the location that the variable accesses.
+Reference values are objects that are stored in the heap.
+Reference value stored in the variable location is a pointer to a location in memory where the object is stored.
+```
 
 ### 什么是栈内存和堆内存
 
@@ -160,6 +167,6 @@ console.log(o2); // {"arr":[1,2],"obj":{"name":"Tate"}}
 
 ## 参考链接
 
-1. [前端基础进阶：详细图解 JavaScript 内存空间](https://juejin.im/entry/589c29a9b123db16a3c18adf)
-1. [JavaScript 中的浅拷贝和深拷贝](https://segmentfault.com/a/1190000008637489)
+1. [前端基础进阶：详细图解 JavaScript 内存空间](https://juejin.im/entry/589c29a9b123db16a3c18adf) By 这波能反杀
+1. [JavaScript 中的浅拷贝和深拷贝](https://segmentfault.com/a/1190000008637489) By Darko
 1. [MDN - JSON.stringify()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)

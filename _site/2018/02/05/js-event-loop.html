@@ -180,7 +180,7 @@
 
 <h2 id="调用栈call-stack">调用栈(Call Stack)</h2>
 
-<p>函数调用形成了一个栈帧(Call Frame)，多个栈帧堆叠形成一个<strong><a href="https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A">调用栈(执行栈)</a></strong>，实行先进后出。</p>
+<p>每次调用一个函数，都要为该次调用的函数实例分配栈空间，即栈帧(Stack Frame)，<strong><a href="https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A">调用栈(执行栈)</a></strong>就是正在使用的栈空间，由多个嵌套调用函数所使用的栈帧组成，实行先进后出(FILO)。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -218,6 +218,8 @@
 
 <p>事件循环是个进程，会持续监测调用栈是否为空，若为空，则监测事件队列，将里面的事件移至调用栈执行，如此循环。</p>
 
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*-MMBHKy_ZxCrouecRqvsBg.png" alt="Javascript Event Loop Visual Representation" /></p>
+
 <h3 id="定时器">定时器</h3>
 
 <p>调用 <strong>setTimeout</strong> 函数会在一个时间段后在队列中添加一个事件。这个时间段作为函数的第二个参数被传入。如果队列中没有其它事件，事件会被马上处理。但是，如果有其它事件，setTimeout事件必须等待其它事件处理完。因此第二个参数仅仅表示最少的时间 而非确切的时间。同样在零延迟调用 setTimeout 时，其并不是过了给定的时间间隔后就马上执行回调函数，其等待的时间基于队列里正在等待的事件数量。</p>
@@ -250,7 +252,7 @@
 </code></pre>
 </div>
 
-<p>事件循环过程可以参考如下(Timer模块改为Event Table，Task queue改为Event Queue):</p>
+<p>事件循环过程可以参考如下:</p>
 
 <p><img src="https://sfault-image.b0.upaiyun.com/360/409/3604095867-59a67ae56079d_articlex" alt="事件循环示范图" /></p>
 
@@ -258,9 +260,12 @@
 
 <ol>
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop">MDN - 并发模型与事件循环</a></li>
-  <li><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">JavaScript 运行机制详解：再谈 Event Loop</a></li>
-  <li><a href="https://segmentfault.com/a/1190000010929918">干货 原来你是这样的 setTimeout</a></li>
-  <li><a href="https://hackernoon.com/understanding-js-the-event-loop-959beae3ac40">Understanding JS: The Event Loop</a></li>
+  <li><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">JavaScript 运行机制详解：再谈 Event Loop</a> By 阮一峰</li>
+  <li><a href="https://segmentfault.com/a/1190000010929918">干货 原来你是这样的 setTimeout</a> by iKcamp</li>
+  <li><a href="https://hackernoon.com/understanding-js-the-event-loop-959beae3ac40">Understanding JS: The Event Loop</a> By Alexander Kondov</li>
+  <li><a href="http://eleveneat.com/2015/07/11/Stack-Frame/">栈帧 Stack Frame</a> By Eleveneat</li>
+  <li><a href="https://medium.com/@gaurav.pandvia/understanding-javascript-function-executions-tasks-event-loop-call-stack-more-part-1-5683dea1f5ec">Understanding Javascript Function Executions — Call Stack, Event Loop , Tasks &amp; more — Part 1</a> By Gaurav Pandvia</li>
+  <li><a href="https://medium.freecodecamp.org/understanding-the-javascript-call-stack-861e41ae61d4">Understanding the JavaScript call stack</a> By Charles Freeborn Eteure</li>
 </ol>
  
 <div id="disqus_thread"></div>

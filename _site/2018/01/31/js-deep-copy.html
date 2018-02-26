@@ -195,11 +195,17 @@
     </tr>
     <tr>
       <td style="text-align: left">访问方式</td>
-      <td style="text-align: left">存放在栈内存中的简单数据段，可按值访问</td>
-      <td style="text-align: left">首先从栈中获得该对象的地址指针，然后再从堆内存中取得所需的数据</td>
+      <td style="text-align: left">存放在栈中的简单数据段，可按值访问</td>
+      <td style="text-align: left">首先从栈中获得该对象的地址指针，然后再从堆中取得所需的数据</td>
     </tr>
   </tbody>
 </table>
+
+<pre><code class="language-TEXT">Primitive values are data that are stored on the stack.
+Primitive value is stored directly in the location that the variable accesses.
+Reference values are objects that are stored in the heap.
+Reference value stored in the variable location is a pointer to a location in memory where the object is stored.
+</code></pre>
 
 <h3 id="什么是栈内存和堆内存">什么是栈内存和堆内存</h3>
 
@@ -355,8 +361,8 @@
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://juejin.im/entry/589c29a9b123db16a3c18adf">前端基础进阶：详细图解 JavaScript 内存空间</a></li>
-  <li><a href="https://segmentfault.com/a/1190000008637489">JavaScript 中的浅拷贝和深拷贝</a></li>
+  <li><a href="https://juejin.im/entry/589c29a9b123db16a3c18adf">前端基础进阶：详细图解 JavaScript 内存空间</a> By 这波能反杀</li>
+  <li><a href="https://segmentfault.com/a/1190000008637489">JavaScript 中的浅拷贝和深拷贝</a> By Darko</li>
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">MDN - JSON.stringify()</a></li>
 </ol>
  

@@ -163,4 +163,4 @@ function assignHandler() {
 ## 参考链接
 
 1. [MDN - 闭包](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures)
-1. [mqyqingfeng - JavaScript 深入之闭包](https://github.com/mqyqingfeng/Blog/issues/9)
+1. [JavaScript 深入之闭包](https://github.com/mqyqingfeng/Blog/issues/9) By mqyqingfeng

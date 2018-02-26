@@ -151,6 +151,10 @@ a {
     outline: 0;
 }
 
+ol a:hover {
+    color: #eb5055;
+}
+
 /* a:active,a:focus,a:hover{color:#eb5055;outline:0;}  */
 
 /* a:active,a:focus,a:hover{color:#eb5055;outline:0;} */
@@ -1571,6 +1575,10 @@ pre code::after {
     white-space: nowrap;
     text-overflow: ellipsis;
     color: #313131;
+}
+
+.archive-page .post-list-item-container .item-label .item-title a:hover {
+    color: #eb5055;
 }
 
 .archive-page .post-list-item-container .item-label .item-meta .item-meta-date {

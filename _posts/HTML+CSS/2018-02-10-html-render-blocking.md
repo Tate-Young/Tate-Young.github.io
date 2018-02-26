@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  加载阻塞
 date:   2018-02-11 11:38:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: http://static.noddl.me/a0d9e158312b7b9a55bb71cf9718873345ec3660-ca9f80e6b043315ab8e3af3a798346c0d791c8db.png
 tags:
 - html
 ---
@@ -171,7 +171,7 @@ second print
 
 ## 参考链接
 
-1. [Google - 使用 JavaScript 添加交互](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript)
-1. [Asynchronous vs Deferred JavaScript](https://bitsofco.de/async-vs-defer/)
-1. [CSS/JS 对 DOM 渲染的影响](http://harttle.land/2016/11/26/static-dom-render-blocking.html)
-1. [异步渲染的下载和阻塞行为](http://harttle.land/2016/11/26/dynamic-dom-render-blocking.html)
+1. [Google - 使用 JavaScript 添加交互](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript) By Ilya Grigorik
+1. [Asynchronous vs Deferred JavaScript](https://bitsofco.de/async-vs-defer/) By Ire Aderinokun
+1. [CSS/JS 对 DOM 渲染的影响](http://harttle.land/2016/11/26/static-dom-render-blocking.html) By hattle
+1. [异步渲染的下载和阻塞行为](http://harttle.land/2016/11/26/dynamic-dom-render-blocking.html) By hattle

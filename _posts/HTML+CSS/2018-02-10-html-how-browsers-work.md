@@ -27,7 +27,7 @@ tags:
 
 ## DOM
 
-**DOM(Document Object Model)** 文档对象模型，使用对象的表示方式来表示对应的文档结构及其中的内容。通过使用它提供的 API 可以动态地修改节点(node)。DOM树的根节点是 Document 对象。
+**DOM(Document Object Model)** 文档对象模型，使用对象的表示方式来表示对应的文档结构及其中的内容。通过使用它提供的 API 可以动态地修改节点(node)。DOM 树的根节点是 Document 对象。
 
 ```HTML
 <html>
@@ -150,6 +150,6 @@ document.body.appendChild(document.createTextNode('Tate'));
 1. [How browsers work](http://taligarsiel.com/Projects/howbrowserswork1.htm)
 1. [How browsers work(译)](https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/)
 1. [Youtube-The Render Tree - Website Performance Optimization](https://www.youtube.com/watch?v=lvb06W_VKVE)
-1. [Understanding the Critical Rendering Path](https://bitsofco.de/understanding-the-critical-rendering-path/)
-1. [Google - 染树构建、布局及绘制](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=zh-cn)
-1. [浏览器渲染页面过程与页面优化](https://segmentfault.com/a/1190000010298038)
+1. [Understanding the Critical Rendering Path](https://bitsofco.de/understanding-the-critical-rendering-path/) By Ire Aderinokun
+1. [Google - 染树构建、布局及绘制](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=zh-cn) By Ilya Grigorik
+1. [浏览器渲染页面过程与页面优化](https://segmentfault.com/a/1190000010298038) By Aus0049

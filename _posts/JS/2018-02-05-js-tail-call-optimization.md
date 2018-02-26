@@ -141,5 +141,5 @@ sum(1, 100000); // => 100001
 
 ## 参考链接
 
-1. [函数的扩展](http://es6.ruanyifeng.com/#docs/function#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96)
-1. [JS 的递归与 TCO 尾调用优化](https://segmentfault.com/a/1190000004018047)
+1. [函数的扩展](http://es6.ruanyifeng.com/#docs/function#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96) By 阮一峰
+1. [JS 的递归与 TCO 尾调用优化](https://segmentfault.com/a/1190000004018047) By 囧囧

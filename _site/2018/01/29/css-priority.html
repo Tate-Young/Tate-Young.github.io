@@ -264,27 +264,27 @@
     </tr>
     <tr>
       <td style="text-align: left">甲等</td>
-      <td style="text-align: left">代表内联样式，如：style=”xxx”</td>
+      <td style="text-align: left">内联样式，如：style=”xxx”</td>
       <td style="text-align: left">1000</td>
     </tr>
     <tr>
       <td style="text-align: left">乙等</td>
-      <td style="text-align: left">代表ID选择器，如：#id</td>
+      <td style="text-align: left">ID选择器，如：#id</td>
       <td style="text-align: left">100</td>
     </tr>
     <tr>
       <td style="text-align: left">丙等</td>
-      <td style="text-align: left">代表类、伪类和属性选择器，如.class、:hover、[attr]</td>
+      <td style="text-align: left">类、伪类和属性选择器，如.class、:hover、[attr]</td>
       <td style="text-align: left">10</td>
     </tr>
     <tr>
       <td style="text-align: left">丁等</td>
-      <td style="text-align: left">代表元素选择器和伪元素选择器，如div、p</td>
+      <td style="text-align: left">标签选择器，如div、p</td>
       <td style="text-align: left">1</td>
     </tr>
     <tr>
       <td style="text-align: left">戍等</td>
-      <td style="text-align: left">代表通用选择器、子选择器和相邻兄弟选择器等，如*、&gt;、+</td>
+      <td style="text-align: left">通用选择器、子选择器和相邻兄弟选择器等，如*、&gt;、+</td>
       <td style="text-align: left">0</td>
     </tr>
   </tbody>
@@ -293,9 +293,9 @@
 <h3 id="优先级权重计算">优先级权重计算</h3>
 
 <ul>
-  <li>优先级就是分配给指定的CSS声明的一个权重，它由 匹配的选择器中的 每一种选择器类型的 数值 决定。</li>
-  <li>而当优先级与多个CSS声明中任意一个声明的优先级相等的时候，CSS中最后的那个声明将会被应用到元素上。</li>
-  <li>当同一个元素有多个声明的时候，优先级才会有意义。因为每一个直接作用于元素的CSS规则总是会接管/覆盖（take over）该元素从祖先元素继承而来的规则。</li>
+  <li>优先级就是分配给指定的 CSS 声明的一个权重，它由 匹配的选择器中的 每一种选择器类型的 数值 决定。</li>
+  <li>而当优先级与多个 CSS 声明中任意一个声明的优先级相等的时候，CSS 中最后的那个声明将会被应用到元素上。</li>
+  <li>当同一个元素有多个声明的时候，优先级才会有意义。因为每一个直接作用于元素的 CSS 规则总是会接管或覆盖该元素从祖先元素继承而来的规则。</li>
 </ul>
 
 <pre><code class="language-CSS">/*权值计算 100(#content) + 1(div) + 100(#main-content) + 1(h2) = 202 */
@@ -334,7 +334,7 @@
 <ol>
   <li><a href="http://www.w3school.com.cn/cssref/css_selectors.ASP">w3school - 选择器</a></li>
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Specificity">MDN - CSS优先级</a></li>
-  <li><a href="https://www.jianshu.com/p/f31d03f6ebe3">简书 - CSS选择器的权重与优先级</a></li>
+  <li><a href="https://www.jianshu.com/p/f31d03f6ebe3">简书 - CSS选择器的权重与优先级</a> By DHFE</li>
 </ol>
  
 <div id="disqus_thread"></div>

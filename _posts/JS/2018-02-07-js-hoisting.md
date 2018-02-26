@@ -16,7 +16,7 @@ tags:
 
 ## 什么是变量提升
 
-**变量提升(Hoisting)** 在 JavaScript 中，所有的变量和函数声明在编译阶段会放入内存中，但仍然保留在编码中键入的位置。所以在其当前作用域范围内，声明前可以使用该变量(未初始化)或者函数。
+**变量提升(Hoisting)** 其实是[执行上下文]( {{site.url}}/2018/02/09/js-scope.html )工作的一种表现形式。表现为在其当前作用域范围内，声明前可以使用该变量(未初始化)或者函数。
 
 ## 变量声明
 
@@ -192,4 +192,4 @@ p2.name = 'Snow'; // 'Tate' 严格模式下报错 TypeError
 ## 参考链接
 
 1. [MDN - 变量提升](https://developer.mozilla.org/zh-CN/docs/Glossary/Hoisting)
-1. [let 和 const 命令](http://es6.ruanyifeng.com/#docs/let)
+1. [let 和 const 命令](http://es6.ruanyifeng.com/#docs/let) By 阮一峰

@@ -55,7 +55,10 @@ tags:
 
 ## HTTP/2
 
-简称 [h2](https://zh.wikipedia.org/wiki/HTTP/2)，主要基于 SPDY 协议。在 HTTP 的语义、HTTP 方法、状态码、URI 和首部字段等核心概念不变的情况下，HTTP/2 实现了性能优化。
+简称 [h2](https://zh.wikipedia.org/wiki/HTTP/2)，主要基于 SPDY 协议。在 HTTP 的语义、HTTP 方法、状态码、URI 和首部字段等核心概念不变的情况下，HTTP/2 实现了性能优化。HTTP/2 跟 SPDY 的区别主要是：
+
+* HTTP/2 支持明文 HTTP 传输，而 SPDY 强制使用 HTTPS
+* HTTP/2 消息头的压缩算法采用 HPACK，而非 SPDY 采用的 DEFLATE
 
 ![HTTP](http://img.mp.itc.cn/upload/20170731/1e77ec4574774711975f3bab2b339c40.jpg)
 
@@ -90,14 +93,14 @@ HTTP1.x中，如果想并发多个请求，必须使用多个 TCP 链接，且�
 
 ## 参考链接
 
-1. [What is Domain Sharding](https://blog.stackpath.com/glossary/domain-sharding/)
-1. [CDN 是什么？使用 CDN 有什么优势？](https://www.zhihu.com/question/36514327?rf=37353035)
-1. [CDN 的基本工作过程](http://book.51cto.com/art/201205/338756.htm)
-1. [【前端性能】浅谈域名发散与域名收敛](https://github.com/chokcoco/cnblogsArticle/issues/1)
-1. [域名发散--前端优化(三)](https://segmentfault.com/a/1190000004647665)
-1. [SPDY 是什么？如何部署 SPDY？](http://www.geekpark.net/news/158198)
-1. [http2-spec / HTTP2 中英对照版](https://github.com/fex-team/http2-spec/blob/master/HTTP2%E4%B8%AD%E8%8B%B1%E5%AF%B9%E7%85%A7%E7%89%88%2806-29%29.md)
-1. [HTTP/2 协议–特性扫盲篇](https://www.cnblogs.com/yingsmirk/p/5248506.html)
-1. [谈谈 HTTP/2 对前端的影响](http://hectorguo.com/zh/http2-starter/)
-1. [http2 讲解](https://ye11ow.gitbooks.io/http2-explained/content/part1.html)
+1. [What is Domain Sharding](https://blog.stackpath.com/glossary/domain-sharding/) By Robert Gibb
+1. [知乎 - CDN 是什么？使用 CDN 有什么优势？](https://www.zhihu.com/question/36514327?rf=37353035)
+1. [CDN 技术详解 - CDN 的基本工作过程](http://book.51cto.com/art/201205/338756.htm)
+1. [【前端性能】浅谈域名发散与域名收敛](https://github.com/chokcoco/cnblogsArticle/issues/1) By chokcoco
+1. [域名发散--前端优化(三)](https://segmentfault.com/a/1190000004647665) By jimmy_thr
+1. [SPDY 是什么？如何部署 SPDY？](http://www.geekpark.net/news/158198) By Afio
+1. [http2-spec / HTTP2 中英对照版](https://github.com/fex-team/http2-spec/blob/master/HTTP2%E4%B8%AD%E8%8B%B1%E5%AF%B9%E7%85%A7%E7%89%88%2806-29%29.md) By fex-team
+1. [HTTP/2 协议–特性扫盲篇](https://www.cnblogs.com/yingsmirk/p/5248506.html) By 纳爱斯
+1. [谈谈 HTTP/2 对前端的影响](http://hectorguo.com/zh/http2-starter/) By 郭海旭
+1. [gitbooks - http2 讲解](https://ye11ow.gitbooks.io/http2-explained/content/part1.html)
 1. [HTTP/2 Frequently Asked Questions](https://http2.github.io/faq/#why-is-http2-multiplexed)

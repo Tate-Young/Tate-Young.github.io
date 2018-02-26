@@ -23,7 +23,7 @@ tags:
 
 ## 调用栈(Call Stack)
 
-函数调用形成了一个栈帧(Call Frame)，多个栈帧堆叠形成一个**[调用栈(执行栈)](https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A)**，实行先进后出。
+每次调用一个函数，都要为该次调用的函数实例分配栈空间，即栈帧(Stack Frame)，**[调用栈(执行栈)](https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A)**就是正在使用的栈空间，由多个嵌套调用函数所使用的栈帧组成，实行先进后出(FILO)。
 
 ```js
 function foo(b) {
@@ -57,6 +57,8 @@ JavaScript 属于单线程语言，执行的任务可分为同步和异步，ES6
 
 事件循环是个进程，会持续监测调用栈是否为空，若为空，则监测事件队列，将里面的事件移至调用栈执行，如此循环。
 
+![Javascript Event Loop Visual Representation](https://cdn-images-1.medium.com/max/1600/1*-MMBHKy_ZxCrouecRqvsBg.png)
+
 ### 定时器
 
 调用 **setTimeout** 函数会在一个时间段后在队列中添加一个事件。这个时间段作为函数的第二个参数被传入。如果队列中没有其它事件，事件会被马上处理。但是，如果有其它事件，setTimeout事件必须等待其它事件处理完。因此第二个参数仅仅表示最少的时间 而非确切的时间。同样在零延迟调用 setTimeout 时，其并不是过了给定的时间间隔后就马上执行回调函数，其等待的时间基于队列里正在等待的事件数量。
@@ -89,13 +91,16 @@ console.log('end');
 // Tate
 ```
 
-事件循环过程可以参考如下(Timer模块改为Event Table，Task queue改为Event Queue):
+事件循环过程可以参考如下:
 
 ![事件循环示范图](https://sfault-image.b0.upaiyun.com/360/409/3604095867-59a67ae56079d_articlex)
 
 ## 参考链接
 
 1. [MDN - 并发模型与事件循环](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop)
-1. [JavaScript 运行机制详解：再谈 Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
-1. [干货 原来你是这样的 setTimeout](https://segmentfault.com/a/1190000010929918)
-1. [Understanding JS: The Event Loop](https://hackernoon.com/understanding-js-the-event-loop-959beae3ac40)
+1. [JavaScript 运行机制详解：再谈 Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html) By 阮一峰
+1. [干货 原来你是这样的 setTimeout](https://segmentfault.com/a/1190000010929918) by iKcamp
+1. [Understanding JS: The Event Loop](https://hackernoon.com/understanding-js-the-event-loop-959beae3ac40) By Alexander Kondov
+1. [栈帧 Stack Frame](http://eleveneat.com/2015/07/11/Stack-Frame/) By Eleveneat
+1. [Understanding Javascript Function Executions — Call Stack, Event Loop , Tasks & more — Part 1](https://medium.com/@gaurav.pandvia/understanding-javascript-function-executions-tasks-event-loop-call-stack-more-part-1-5683dea1f5ec) By Gaurav Pandvia
+1. [Understanding the JavaScript call stack](https://medium.freecodecamp.org/understanding-the-javascript-call-stack-861e41ae61d4) By Charles Freeborn Eteure

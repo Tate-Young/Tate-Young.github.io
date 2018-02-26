@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  原型链与继承
 date:   2018-02-06 23:03:00 GMT+0800 (CST)
-background-image: /style/images/prototype.png
+background-image: https://ooo.0o0.ooo/2018/02/26/5a935bee61ea5.png
 tags:
 - JavaScript
 ---
@@ -42,11 +42,11 @@ dog1.eat === dog2.eat; // false 实例无法共享此方法
 dog1.bark === dog2.bark; // true 实例共享通过原型继承的此方法
 ```
 
-![prototype]( {{site.url}}//style/images/prototype.png )
+![prototype.png](https://ooo.0o0.ooo/2018/02/26/5a935bee61ea5.png)
 
 ## 什么是原型链
 
-每个对象都有一个私有属性 **[[prototype]]**，即**(__proto__)**指针，指向其构造函数的原型对象。而原型对象也有内部 __proto__ 指针，同样指向其构造函数的原型对象，如此形成 **原型链**。原型链的末端是 null。
+每个对象都有一个私有属性 **[[prototype]]**，即 **(__proto__)** 指针，指向其构造函数的原型对象。而原型对象也有内部 __proto__ 指针，同样指向其构造函数的原型对象，如此形成 **原型链**。原型链的末端是 null。
 
 ```js
 // p ---> Person.prototype ---> Object.prototype ---> null
@@ -62,7 +62,7 @@ Object.prototype.__proto__ === null;
 
 ### Object.getPrototypeOf
 
-返回指定对象的原型，即内部[[Prototype]]属性的值。
+返回指定对象的原型，即内部 [[Prototype]] 属性的值。
 
 ```js
 // 对于除null和undefined的基本类型，也有私有属性 [[prototype]]。
@@ -115,7 +115,7 @@ var c = Object.create(b);
 // c ---> b ---> a ---> Object.prototype ---> null
 ```
 
-Object.create 和 new 操作符的比较，new 操作符实际操作可参考之前[this指针]( {{ site.url }}/2018/01/30/js-this.html#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%9C%AC%E8%B4%A8 )一文。
+Object.create 和 new 操作符的比较，new 操作符实际操作可参考之前[ this 指针]( {{ site.url }}/2018/01/30/js-this.html#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%9C%AC%E8%B4%A8 )一文。
 
 ```js
 var Person = function () {
@@ -346,8 +346,8 @@ class 继承同时存在两条继承链，即
 class A {}
 class B extends A {}
 
-B.__proto__ === A // true
 B.prototype.__proto__ === A.prototype // true
+B.__proto__ === A // true
 ```
 
 等同于如下模式实现：
@@ -361,13 +361,11 @@ Object.setPrototypeOf(B.prototype, A.prototype);
 
 // B 的实例继承 A 的 static 静态属性
 Object.setPrototypeOf(B, A);
-
-let b = new B();
 ```
 
 ## 参考链接
 
 1. [书籍 - <<JavaScript 高级程序设计>>](https://www.amazon.cn/dp/B007OQQVMY/ref=sr_1_1/458-6273007-6912964?s=books&ie=UTF8&qid=1517972181&sr=1-1&keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)
-1. [继承与原型链](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
-1. [prototype 对象](http://javascript.ruanyifeng.com/oop/prototype.html)
-1. [Class 的继承](http://es6.ruanyifeng.com/#docs/class-extends)
+1. [MDN - 继承与原型链](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+1. [prototype 对象](http://javascript.ruanyifeng.com/oop/prototype.html) By 阮一峰
+1. [Class 的继承](http://es6.ruanyifeng.com/#docs/class-extends) By 阮一峰

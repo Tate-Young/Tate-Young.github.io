@@ -199,11 +199,11 @@
 </code></pre>
 </div>
 
-<p><img src="http://localhost:4000//style/images/prototype.png" alt="prototype" /></p>
+<p><img src="https://ooo.0o0.ooo/2018/02/26/5a935bee61ea5.png" alt="prototype.png" /></p>
 
 <h2 id="什么是原型链">什么是原型链</h2>
 
-<p>每个对象都有一个私有属性 <strong>[[prototype]]</strong>，即<strong>(__proto__)</strong>指针，指向其构造函数的原型对象。而原型对象也有内部 <strong>proto</strong> 指针，同样指向其构造函数的原型对象，如此形成 <strong>原型链</strong>。原型链的末端是 null。</p>
+<p>每个对象都有一个私有属性 <strong>[[prototype]]</strong>，即 <strong>(__proto__)</strong> 指针，指向其构造函数的原型对象。而原型对象也有内部 <strong>proto</strong> 指针，同样指向其构造函数的原型对象，如此形成 <strong>原型链</strong>。原型链的末端是 null。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// p ---&gt; Person.prototype ---&gt; Object.prototype ---&gt; null</span>
 <span class="kd">function</span> <span class="nx">Person</span><span class="p">(){};</span>
@@ -219,7 +219,7 @@
 
 <h3 id="objectgetprototypeof">Object.getPrototypeOf</h3>
 
-<p>返回指定对象的原型，即内部[[Prototype]]属性的值。</p>
+<p>返回指定对象的原型，即内部 [[Prototype]] 属性的值。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 对于除null和undefined的基本类型，也有私有属性 [[prototype]]。</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">===</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
@@ -272,7 +272,7 @@
 </code></pre>
 </div>
 
-<p>Object.create 和 new 操作符的比较，new 操作符实际操作可参考之前<a href="http://localhost:4000/2018/01/30/js-this.html#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%9C%AC%E8%B4%A8">this指针</a>一文。</p>
+<p>Object.create 和 new 操作符的比较，new 操作符实际操作可参考之前<a href="http://localhost:4000/2018/01/30/js-this.html#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%9C%AC%E8%B4%A8"> this 指针</a>一文。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span>
@@ -502,8 +502,8 @@
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">A</span> <span class="p">{}</span>
 <span class="kr">class</span> <span class="nx">B</span> <span class="kr">extends</span> <span class="nx">A</span> <span class="p">{}</span>
 
-<span class="nx">B</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">A</span> <span class="c1">// true</span>
 <span class="nx">B</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">A</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true</span>
+<span class="nx">B</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">A</span> <span class="c1">// true</span>
 </code></pre>
 </div>
 
@@ -517,8 +517,6 @@
 
 <span class="c1">// B 的实例继承 A 的 static 静态属性</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">B</span><span class="p">,</span> <span class="nx">A</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">B</span><span class="p">();</span>
 </code></pre>
 </div>
 
@@ -526,9 +524,9 @@
 
 <ol>
   <li><a href="https://www.amazon.cn/dp/B007OQQVMY/ref=sr_1_1/458-6273007-6912964?s=books&amp;ie=UTF8&amp;qid=1517972181&amp;sr=1-1&amp;keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1">书籍 - «JavaScript 高级程序设计»</a></li>
-  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">继承与原型链</a></li>
-  <li><a href="http://javascript.ruanyifeng.com/oop/prototype.html">prototype 对象</a></li>
-  <li><a href="http://es6.ruanyifeng.com/#docs/class-extends">Class 的继承</a></li>
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">MDN - 继承与原型链</a></li>
+  <li><a href="http://javascript.ruanyifeng.com/oop/prototype.html">prototype 对象</a> By 阮一峰</li>
+  <li><a href="http://es6.ruanyifeng.com/#docs/class-extends">Class 的继承</a> By 阮一峰</li>
 </ol>
  
 <div id="disqus_thread"></div>
