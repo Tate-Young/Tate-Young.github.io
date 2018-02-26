@@ -574,7 +574,8 @@ textarea:-ms-input-placeholder {
 
 .header {
     line-height: 78px;
-    position: fixed;
+    /* position: fixed; */
+    position: absolute;
     z-index: 10;
     top: 0;
     display: block;
