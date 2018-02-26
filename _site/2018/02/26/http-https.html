@@ -28,8 +28,8 @@
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/25/http-https.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/25/http-https.html|HTTPS什么是 HTTP超文本传输协议(HyperText Transfer Protocol)，是用于传输诸如 HTML 的超媒体文档的应用层协议。HTTP 是无状态协议，意味着服务器不会在两个请求之间保留任何数据。HTTP 的缺..." property='og:description'
+<meta content='http://localhost:4000/2018/02/26/http-https.html' property='og:url' />
+<meta content="http://localhost:4000/2018/02/26/http-https.html|HTTPS什么是 HTTP超文本传输协议(HyperText Transfer Protocol)，是用于传输诸如 HTML 的超媒体文档的应用层协议。HTTP 是无状态协议，意味着服务器不会在两个请求之间保留任何数据。HTTP 的缺..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -135,7 +135,7 @@
                 <h1 class="post-title" itemprop="name headline">
                     HTTPS</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-25 00:00:00" itemprop="datePublished">发布时间：2018-02-25 00:00:00</time>
+                    <time datetime="2018-02-26 18:45:00" itemprop="datePublished">发布时间：2018-02-26 18:45:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -156,7 +156,7 @@
             <h1 class="post-title" itemprop="name headline">
                 HTTPS</h1>
             <div class="post-data">
-                <time datetime="2018-02-25 00:00:00" itemprop="datePublished">2018-02-25 00:00:00</time>
+                <time datetime="2018-02-26 18:45:00" itemprop="datePublished">2018-02-26 18:45:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -222,6 +222,47 @@
 
 <p><img src="http://tenny.qiniudn.com/HTTPQUBIE2.png" alt="HTTPS" /></p>
 
+<h2 id="状态码">状态码</h2>
+
+<p>状态码是由 3 位数组成，第一个数字定义了响应的类别，且有五种可能取值:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">状态码</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">备注</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">1xx</td>
+      <td style="text-align: left">指示信息</td>
+      <td style="text-align: left">请求已接收，继续处理</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">2xx</td>
+      <td style="text-align: left">成功</td>
+      <td style="text-align: left">请求已被成功接收、理解、接受</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">3xx</td>
+      <td style="text-align: left">重定向</td>
+      <td style="text-align: left">要完成请求必须进行更进一步的操作</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">4xx</td>
+      <td style="text-align: left">请求错误</td>
+      <td style="text-align: left">请求含有词法错误或者无法被执行</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">5xx</td>
+      <td style="text-align: left">服务端错误</td>
+      <td style="text-align: left">服务器在处理某个正确请求时发生错误</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="加密算法">加密算法</h2>
 
 <p>HTTPS 的加密方式主要有以下几种:</p>
@@ -266,7 +307,7 @@
 
 <h2 id="osi-模型">OSI 模型</h2>
 
-<p><strong>OSI 模型</strong> 网络七层协议:</p>
+<p><strong>OSI 模型</strong> 网络七层协议，复杂而不实用:</p>
 
 <table>
   <thead>
@@ -279,18 +320,18 @@
   <tbody>
     <tr>
       <td style="text-align: left"><strong>应用层</strong></td>
-      <td style="text-align: left">文件传输，电子邮件，文件服务，虚拟终端</td>
-      <td style="text-align: left">TFTP，HTTP，SNMP，FTP，SMTP，DNS，Telnet 等</td>
+      <td style="text-align: left">提供为应用软件而设的界面，以设置与另一应用软件之间的通信</td>
+      <td style="text-align: left">HTTP、SMTP、SNMP、FTP、Telnet、SIP、SSH</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>表示层</strong></td>
       <td style="text-align: left">数据格式化，代码转换，数据加密</td>
-      <td style="text-align: left">无</td>
+      <td style="text-align: left">XDR、ASN.1、SMB、AFP、NCP</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>会话层</strong></td>
       <td style="text-align: left">解除或建立与别的接点的联系</td>
-      <td style="text-align: left">无</td>
+      <td style="text-align: left">NetBIOS、ASP、IGMP</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>传输层</strong></td>
@@ -300,24 +341,141 @@
     <tr>
       <td style="text-align: left"><strong>网络层</strong></td>
       <td style="text-align: left">为数据包选择路由</td>
-      <td style="text-align: left">IP，ICMP，OSPF，EIGRP，IGMP</td>
+      <td style="text-align: left">IP、ICMP、IPX、BGP</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>数据链路层</strong></td>
       <td style="text-align: left">传输有地址的帧以及错误检测功能</td>
-      <td style="text-align: left">SLIP，CSLIP，PPP，MTU</td>
+      <td style="text-align: left">以太网、令牌环、HDLC</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>物理层</strong></td>
       <td style="text-align: left">以二进制数据形式在物理媒体上传输数据</td>
-      <td style="text-align: left">ISO2110，IEEE802，IEEE802.2</td>
+      <td style="text-align: left">无线电、光纤</td>
     </tr>
   </tbody>
 </table>
 
+<p><strong>TCP/IP 协议族</strong> 并不是 TCP 和 IP 的统称，而是一个四层体系结构。而从实质上讲，TCP/IP 只有最上面三层，网络接口层并没有什么内容，因此介绍网络原理时采取上述优点，折中为一个五层体系结构。</p>
+
+<p><img src="https://ooo.0o0.ooo/2018/02/26/5a93cba2effda.png" alt="OSI.png" /></p>
+
 <h2 id="tcp">TCP</h2>
 
+<p><strong>传输控制协议(TCP)</strong>是一种面向连接的、可靠的、基于字节流的传输层通信协议。</p>
+
+<h3 id="三次握手">三次握手</h3>
+
+<p><strong>三次握手(three-way handshake)</strong> 建立一个 TCP 连接。</p>
+
+<p>每次握手(发送数据请求或应答)时，发送的数据为 TCP 报文，其中包含了一些标志位：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">标志位</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">SYN</td>
+      <td style="text-align: left">同步序号</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ACK</td>
+      <td style="text-align: left">应答回复</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RST</td>
+      <td style="text-align: left">复位连接，消除旧有的同步序号</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">PSH</td>
+      <td style="text-align: left">尽可能的将数据送往接收进程</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">FIN</td>
+      <td style="text-align: left">发送方完成数据发送</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="https://images0.cnblogs.com/blog/215944/201304/27203200-7e3630b0fe1442898e6824ac061d475e.x-png" alt="三次握手" /></p>
+
+<p>握手流程：</p>
+
+<ul>
+  <li><strong>第一次握手</strong>：客户端向服务器端发送连接请求包 SYN(syn=j)，等待服务器回应；</li>
+  <li><strong>第二次握手</strong>：服务器端响应后发送两个包给客户端，并进入 SYN_RECV 状态;
+    <ul>
+      <li>向客户端发送确认自己收到其连接请求的确认包 ACK(ack=j+1)</li>
+      <li>向客户端发送连接询问请求包 SYN(syn=k)，询问客户端是否已经准备好建立连接</li>
+    </ul>
+  </li>
+  <li><strong>第三次握手</strong>：客户端收到服务器的两个包后，向服务器发送连接建立的确认包 ACK(ack=k+1)，服务器收到后，服务器与客户端进入 ESTABLISHED 状态，开始进行数据传送。</li>
+</ul>
+
+<h3 id="四次挥手">四次挥手</h3>
+
+<p><strong>四次挥手(four-way wavehand)</strong>用来终止 TCP 连接，由于 TCP 的半关闭特性，TCP连接时数据在两个方向上能同时传递，因此每个方向必须单独的进行关闭。</p>
+
+<p><img src="https://images0.cnblogs.com/blog/215944/201304/27194357-e7dad8f4684e433aac352f00314a72fb.x-png" alt="四次挥手" /></p>
+
+<p>假设客户端 A 向服务器 B 请求终止 TCP 连接，则挥手流程：</p>
+
+<ul>
+  <li><strong>第一次挥手</strong>：A 向 B 发送 FIN 包，请求断开 A-&gt;B 的连接;</li>
+  <li><strong>第二次挥手</strong>：B 收到 A 发送的 FIN 包，并向 A 发送 ACK 包，A-&gt;B的连接关闭;</li>
+  <li><strong>第三次挥手</strong>：B 向 A 发送 FIN 包，请求断开 B-&gt;A 的连接;</li>
+  <li><strong>第四次挥手</strong>：A 收到 B发送的 FIN 包，并向 B 发送 ACK 包，B-&gt;A的连接关闭。</li>
+</ul>
+
 <h2 id="udp">UDP</h2>
+
+<p><strong>用户数据包协议(UDP)</strong>是一个简单的面向数据报的传输层协议，只提供数据的不可靠传递，一旦把应用程序发给网络层的数据发送出去，就不会保留数据备份。与 TCP 的区别如下:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">比较</th>
+      <th style="text-align: left">TCP</th>
+      <th style="text-align: left">UDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">连接</td>
+      <td style="text-align: left">面向连接，管发管到</td>
+      <td style="text-align: left">面向非连接，管发不管到</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">握手</td>
+      <td style="text-align: left">三次握手，四次挥手</td>
+      <td style="text-align: left">无</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">可靠性</td>
+      <td style="text-align: left">可靠</td>
+      <td style="text-align: left">不可靠</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">应用场合</td>
+      <td style="text-align: left">大量数据，如文件传输</td>
+      <td style="text-align: left">少量数据，如广播通信</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">速度</td>
+      <td style="text-align: left">慢</td>
+      <td style="text-align: left">快</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">其他协议使用</td>
+      <td style="text-align: left">HTTP、HTTPS、FTP、SMTP、Telnet</td>
+      <td style="text-align: left">DNS、DHCP</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="参考链接">参考链接</h2>
 
@@ -327,6 +485,8 @@
   <li><a href="https://foofish.net/https-symmetric.html">HTTPS 的中那些加密算法</a> By liuzhijun</li>
   <li><a href="https://foofish.net/https-story-1.html">HTTPS 为什么更安全，先看这些</a> By liuzhijun</li>
   <li><a href="http://www.cnblogs.com/jeanschen/p/3762475.html">OSI 七层模型详解 TCP/IP 协议</a> By jeans chen</li>
+  <li><a href="http://www.cnblogs.com/super86/p/3387457.html">TCP 三次握手原理详解</a> By super 86</li>
+  <li><a href="https://www.diffen.com/difference/TCP_vs_UDP">TCP vs. UDP</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -337,8 +497,8 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/25/http-https.html';
-        this.page.identifier = '/2018/02/25/http-https';
+        this.page.url = 'https://tate-young.github.io/2018/02/26/http-https.html';
+        this.page.identifier = '/2018/02/26/http-https';
         this.page.title = 'HTTPS';
     };
 
@@ -357,7 +517,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-25 00:00:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-26 18:45:00</p> -->
         </div>
     </article>
 
