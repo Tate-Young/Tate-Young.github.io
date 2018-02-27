@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  原型链与继承
 date:   2018-02-06 23:03:00 GMT+0800 (CST)
-background-image: https://ooo.0o0.ooo/2018/02/26/5a935bee61ea5.png
+background-image: https://i.loli.net/2018/02/26/5a935bee61ea5.png
 tags:
 - JavaScript
 ---
@@ -42,7 +42,7 @@ dog1.eat === dog2.eat; // false 实例无法共享此方法
 dog1.bark === dog2.bark; // true 实例共享通过原型继承的此方法
 ```
 
-![prototype.png](https://ooo.0o0.ooo/2018/02/26/5a935bee61ea5.png)
+![prototype.png](https://i.loli.net/2018/02/26/5a935bee61ea5.png)
 
 ## 什么是原型链
 

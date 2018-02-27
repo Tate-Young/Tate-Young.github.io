@@ -110,7 +110,7 @@ Last-Modified: Tue, 27 Feb 2018 13:14:00 GMT
 ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
 ```
 
-![Etag](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/images/http-cache-control.png?hl=zh-cn)
+![http-cache-control.png](https://i.loli.net/2018/02/27/5a952486e5c4e.png)
 
 #### If-None-Match
 
@@ -133,7 +133,7 @@ ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
 
 在理想的情况下，目标应该是在客户端上缓存尽可能多的响应，缓存尽可能长的时间，并且为每个响应提供验证令牌，以实现高效的重新验证。
 
-![最佳 Cache-Control 策略](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/images/http-cache-decision-tree.png?hl=zh-cn)
+![http-cache-decision-tree.png](https://i.loli.net/2018/02/27/5a952486ea7b1.png)
 
 ## 刷新访问
 

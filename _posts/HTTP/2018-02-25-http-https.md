@@ -7,7 +7,7 @@ background: orange
 category: 前端
 title: HTTPS
 date:   2018-02-26 18:45:00 GMT+0800 (CST)
-background-image: https://ooo.0o0.ooo/2018/02/26/5a941e489c7af.png
+background-image: https://i.loli.net/2018/02/26/5a941e489c7af.png
 tags:
 - http
 ---
@@ -83,7 +83,7 @@ HTTPS 的加密方式主要有以下几种:
 
 **TCP/IP 协议族** 并不是 TCP 和 IP 的统称，而是一个四层体系结构。而从实质上讲，TCP/IP 只有最上面三层，网络接口层并没有什么内容，因此介绍网络原理时采取上述优点，折中为一个五层体系结构。
 
-![OSI.png](https://ooo.0o0.ooo/2018/02/26/5a93eb5d8223f.png)
+![OSI.png](https://i.loli.net/2018/02/26/5a93eb5d8223f.png)
 
 ## TCP
 
@@ -103,7 +103,7 @@ HTTPS 的加密方式主要有以下几种:
 | PSH | 尽可能的将数据送往接收进程 |
 | FIN | 发送方完成数据发送 |
 
-![三次握手](https://ooo.0o0.ooo/2018/02/26/5a941d1fe7629.png)
+![三次握手](https://i.loli.net/2018/02/26/5a941d1fe7629.png)
 
 握手流程：
 
@@ -117,7 +117,7 @@ HTTPS 的加密方式主要有以下几种:
 
 **四次挥手(four-way wavehand)**用来终止 TCP 连接，由于 TCP 的半关闭特性，TCP连接时数据在两个方向上能同时传递，因此每个方向必须单独的进行关闭。
 
-![四次挥手](https://ooo.0o0.ooo/2018/02/26/5a941d204af5e.png)
+![四次挥手](https://i.loli.net/2018/02/26/5a941d204af5e.png)
 
 假设客户端 A 向服务器 B 请求终止 TCP 连接，则挥手流程：
 
