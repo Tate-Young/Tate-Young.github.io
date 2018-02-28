@@ -1,0 +1,808 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='同源策略与跨域 - Tate & Snow' name='title' />
+    <meta content='同源策略与跨域 - Tate & Snow' name='og:title' />
+    <title>同源策略与跨域 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>同源策略与跨域 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="同源策略与跨域 - Tate & Snow">
+<meta name="twitter:keywords" content="同源策略与跨域 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="同源策略与跨域 - Tate & Snow">
+<meta name="og:keywords" content="同源策略与跨域 - Tate & Snow|同源策略与跨域什么是同源策略同源策略(same-origin policy)，即域名，协议，端口必须都相同才是同源。不同源的客户端脚本在没明确授权的情况下，不能读写对方的资源。其目的是为了保证用户信息的安全，防止窃取数据。以 http..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="同源策略与跨域什么是同源策略同源策略(same-origin policy)，即域名，协议，端口必须都相同才是同源。不同源的客户端脚本在没明确授权的情况下，不能读写对方的资源。其目的是为了保证用户信息的安全，防止窃取数据。以 http..." property='og:description'
+/>
+<meta name="description" content="nothing is more practicla than a good theory" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2018/02/28/http-sop.html' property='og:url' />
+<meta content="http://localhost:4000/2018/02/28/http-sop.html|同源策略与跨域什么是同源策略同源策略(same-origin policy)，即域名，协议，端口必须都相同才是同源。不同源的客户端脚本在没明确授权的情况下，不能读写对方的资源。其目的是为了保证用户信息的安全，防止窃取数据。以 http..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="http://localhost:4000/style/images/tate.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    同源策略与跨域</h1>
+                <div class="post-data">
+                    <time datetime="2018-02-28 14:22:00" itemprop="datePublished">发布时间：2018-02-28 14:22:00</time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#http" title="访问http" data-hover="http">
+                        http
+                        <span>(5)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                同源策略与跨域</h1>
+            <div class="post-data">
+                <time datetime="2018-02-28 14:22:00" itemprop="datePublished">2018-02-28 14:22:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#http" title="访问http" data-hover="http">
+                    http
+                    <span>(5)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="同源策略与跨域">同源策略与跨域</h1>
+
+<h2 id="什么是同源策略">什么是同源策略</h2>
+
+<p><strong>同源策略(same-origin policy)</strong>，即<strong>域名</strong>，<strong>协议</strong>，<strong>端口</strong>必须都相同才是同源。不同源的客户端脚本在没明确授权的情况下，不能读写对方的资源。其目的是为了保证用户信息的安全，防止窃取数据。</p>
+
+<p>以 http://a.example.com/blog/index.html 为例:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">URL</th>
+      <th style="text-align: left">结果</th>
+      <th style="text-align: left">原因</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">http://a.example.com/blog2/other.html</td>
+      <td style="text-align: left">成功</td>
+      <td style="text-align: left">同源</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">http://a.example.com/blog/tate/another.html</td>
+      <td style="text-align: left">成功</td>
+      <td style="text-align: left">同源</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">https://a.example.com/secure.html</td>
+      <td style="text-align: left">失败</td>
+      <td style="text-align: left">不同协议(https 和 http)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">http://a.example.com:8080/blog/etc.html</td>
+      <td style="text-align: left">失败</td>
+      <td style="text-align: left">不同端口(8080 和 80)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">http://b.example.com/blog/other.html</td>
+      <td style="text-align: left">失败</td>
+      <td style="text-align: left">不同域名(b 和 a)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="跨域解决方案">跨域解决方案</h2>
+
+<h3 id="图像-ping">图像 Ping</h3>
+
+<p><strong>图像 Ping</strong> 是使用 &lt;img&gt; 标签用于客户端与服务器间的单向通信。最常用于跟踪用户点击页面或动态广告曝光次数，有两个主要的缺点:</p>
+
+<ul>
+  <li>只能发送 GET 请求</li>
+  <li>无法访问服务器的响应文本</li>
+</ul>
+
+<pre><code class="language-JS">var img = new Image();
+img.onload = img.onerror = function() { alert('tate'); };
+img.src = 'http://a.example.com/test?name=snow' // 发送 name 参数
+</code></pre>
+
+<h3 id="jsonp">JSONP</h3>
+
+<p><strong>JSONP(JSON with padding)</strong> 是应用 JSON 的一种新方法，只是被包含在函数调用中，如:</p>
+
+<pre><code class="language-JS">callback({'name': 'Tate'});
+</code></pre>
+
+<p>JSONP 由回调函数和数据组成，是通过动态 &lt;script&gt; 标签实现的，可以为 src 属性指定一个跨域 URL。</p>
+
+<ul>
+  <li>优点 - 能够直接访问响应文本，且支持客户端与服务器的双向通信。</li>
+  <li>缺点 - 其他域若不安全，则可能会在响应中夹带恶意代码，其次不容易判断请求是否失败。</li>
+</ul>
+
+<pre><code class="language-JS">function handleResponse(res) {
+    alert('you are at IP address' + res.ip + ',which is in' + res.city + ',' + res.region_name);
+}
+
+var script = document.createElement('script');
+script.src = 'http://freegeoip.net/json/?callback=handleResponse';
+document.body.insertBefore(script, document.body.firstChild);
+</code></pre>
+
+<h3 id="iframe-形式">iframe 形式</h3>
+
+<p>通常用于跨域操作 DOM 或简单的数据通信。</p>
+
+<h4 id="documentdomain">document.domain</h4>
+
+<p><strong>document.domain</strong> 只适合主域相同但子域不同的情况，比如 a.example.com 和 b.example.com。解决方案是采用相同的主域:</p>
+
+<pre><code class="language-JS">document.domain = 'example.com';
+</code></pre>
+
+<p>如一个页面嵌套另一个页面，从而进行窗体间的交互，页面 a.html:</p>
+
+<pre><code class="language-HTML">&lt;!-- 地址 http://a.example.com/sop/a.html --&gt;
+&lt;body&gt;
+  &lt;iframe id="myFrame" src="http://b.example.com/sop/b.html"&gt;&lt;/iframe&gt;
+  &lt;script&gt;
+      document.domain = 'example.com';
+      $("iframe").load(function(){
+          $(this).contents().find("h1").text('Tate');
+      });
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>页面 b.html:</p>
+
+<pre><code class="language-HTML">&lt;!-- 地址 http://b.example.com/sop/b.html --&gt;
+&lt;!-- 两个页面同时设置主域时，便可将 h1 标签内容修改为 'Tate' --&gt;
+&lt;body&gt;
+  &lt;hi&gt;Snow&lt;/hi&gt;
+  &lt;script&gt;
+      document.domain = 'example.com';
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+
+<h4 id="locationhash">location.hash</h4>
+
+<p><strong>location.hash</strong> 通过改变 hash 值来进行数据传递，不会造成页面刷新，此方法也叫<strong>片段标识符(fragment identifier)</strong>，和锚点效果类似。如 http://a.example.com#tate 中的 ‘#tate’ 就是 location.hash。</p>
+
+<p>如父窗口 a 可以把信息，写入子窗口的片段标识符:</p>
+
+<pre><code class="language-JS">var src = originURL + '#' + data;
+document.getElementById('myFrame').src = src;
+</code></pre>
+
+<p>子窗口 b 通过监听 <a href="https://developer.mozilla.org/zh-CN/docs/Web/Events/hashchange">hashchange</a> 事件得到通知:</p>
+
+<pre><code class="language-JS">window.onhashchange = checkMessage;
+
+function checkMessage() {
+  var message = window.location.hash;
+  // ...
+}
+</code></pre>
+
+<p>然而大部分浏览器不允许子窗口 b 修改不同域的父窗口 a 的 hash 值(parent.location.hash)，通常解决方案是可以在 b 页面中增加一个和 a 同域的 iframe(c.html)来做代理，这样 b 可以修改 c ，而 c 可以修改 a。</p>
+
+<pre><code class="language-JS">// b.html 页面
+try {  //有的浏览器(如 Firefox)还是可以直接操作parent.location.hash的
+    parent.location.hash = 'name=tate';
+} catch (e) {
+    // ie、chrome 的安全机制无法修改 parent.location.hash
+    // 所以要利用一个代理 iframe，即 c.html
+    var iframeProxy = document.createElement('iframe');
+    iframeProxy.style.display = 'none';
+    iframeProxy.src = 'http://a.example.com/sop/c.html#name=tate'; //必须跟a.html同域
+    document.body.appendChild(iframeProxy);
+}
+</code></pre>
+
+<h4 id="windowname">window.name</h4>
+
+<p><strong>window.name</strong> 值在不同的页面(即使不同域)加载后依旧存在，并且可以支持非常长的字符串，缺点是必须监听子窗口 window.name 属性的变化，影响网页性能。</p>
+
+<p>通常解决方案为: 在 a 页面需要和不同域的 b 页面通信，我们可以现在 a 嵌入 b，待 b 有数据要传递时，把数据附加到 b 窗口的 window.name 上，然后把窗口跳转到一个和 a 同域的 c 页面，这样 a 就能轻松获取到内嵌窗体 c 的 window.name 了。同时 a 通过 setInterval 定时器的形式来达到轮询的效果。</p>
+
+<blockquote>
+  <p>以上示例细节均可以在 <a href="http://a.cnblogs.com/vajoy/p/4295825.html">vajoy 博客</a> 中查看。</p>
+</blockquote>
+
+<h4 id="跨文档消息传送">跨文档消息传送</h4>
+
+<p><strong>跨文档消息传送(cross-document messaging)</strong>，简称 XDM，指在来自不同域的页面件传递信息，可以解决上面 iframe 跨域的”暴力破解”。是 HTML5 规范定义的 API，核心是 <strong>postMessage()</strong> 方法。该方法支持两个参数: 一条消息(通常为字符串)和一个表示目标域的字符串。</p>
+
+<pre><code class="language-JS">var iframeWindow = document.getElementById('myFrame').contentWindow;
+iframeWindow.postMessage('Are you fine?', 'http://b.example.com');
+</code></pre>
+
+<p>接收到 XDM 消息后，会触发 <strong>message</strong> 事件，传递给 onmessage 处理程序的事件对象包含以下三个重要信息:</p>
+
+<ul>
+  <li>data - 消息内容</li>
+  <li>origin - 来源，发送消息的文档所在的域</li>
+  <li>source - 目标，发送消息的文档的 window 对象代理</li>
+</ul>
+
+<pre><code class="language-JS">window.addEventListener('message', receiveMessage);
+
+function receiveMessage(event) {
+    if (event.origin !== 'http://a.example.com') return;
+    if (event.data === 'Are you fine?') {
+        event.source.postMessage('i am fine', event.origin);
+    } else {
+        console.log(event.data);
+    }
+}
+</code></pre>
+
+<h3 id="websocket">WebSocket</h3>
+
+<p><strong>WebSocket</strong> 是一种通信协议，使用 <strong>ws://(非加密)</strong> 和 <strong>wss://(加密)</strong> 作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信，HTTP 协议的通信只能由客户端发起，而 WebSocket 是实现<a href="https://zh.wikipedia.org/wiki/%E9%9B%99%E5%B7%A5#%E5%85%A8%E9%9B%99%E5%B7%A5">全双工(full-duplex)</a>、双向通信的，属于<a href="https://zh.wikipedia.org/wiki/%E6%8E%A8%E9%80%81%E6%8A%80%E6%9C%AF">服务器推送技术</a>的一种。</p>
+
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2017/bg2017051502.png" alt="WebSocket" /></p>
+
+<pre><code class="language-JS">// 实例化 WebSocket 对象后，客户端便会与服务器进行连接
+var ws = new WebSocket("wss://echo.websocket.org");
+
+ws.onopen = function(evt) { // 用于指定连接成功后的回调函数
+  console.log("Connection open ...");
+  ws.send("Hello WebSockets!"); // 发送数据
+};
+
+ws.onmessage = function(evt) { // 用于指定收到服务器数据后的回调函数
+  console.log( "Received Message: " + evt.data);
+  ws.close(); // 关闭连接
+};
+
+ws.onclose = function(evt) { // 用于指定连接关闭后的回调函数
+  console.log("Connection closed.");
+};
+</code></pre>
+
+<p>与 XHR 类似，WebSocket 也有表示当前状态的 readyState 属性，但没有 readyStatechange 事件:</p>
+
+<ul>
+  <li>WebSocket.CONNECTING - 值为0，表示正在连接。</li>
+  <li>WebSocket.OPEN - 值为1，表示连接成功，可以通信了。</li>
+  <li>WebSocket.CLOSING - 值为2，表示连接正在关闭。</li>
+  <li>WebSocket.CLOSED - 值为3，表示连接已经关闭，或者打开连接失败。</li>
+</ul>
+
+<h3 id="cors">CORS</h3>
+
+<p><strong>跨源资源分享(Cross-Origin Resource Sharing)</strong>，简称 CORS。属于 W3C 标准，是 AJAX 跨域请求的根本解决方法。一般浏览器都通过 <strong>XHR(XMLHttpRequest)</strong> 对象实现了对 CORS 的原生支持，IE8 则引入了 <strong>XDR(XDomainRequest)</strong> 对象，其安全机制部分实现了 CORS 规范。</p>
+
+<p><img src="https://mdn.mozillademos.org/files/14295/CORS_principle.png" alt="CORS" /></p>
+
+<h4 id="简单请求">简单请求</h4>
+
+<p>某些请求不会触发 CORS 预检请求，则称为 <strong>简单请求</strong>，需要<strong>同时</strong>满足以下两个条件:</p>
+
+<ul>
+  <li>请求方法是以下三种方法之一：
+    <ul>
+      <li>HEAD</li>
+      <li>GET</li>
+      <li>POST</li>
+    </ul>
+  </li>
+  <li>不得人为设置对 <a href="https://fetch.spec.whatwg.org/#cors-safelisted-request-header">CORS 安全的首部字段集合</a>之外的其他首部字段，如：
+    <ul>
+      <li>Accept</li>
+      <li>Accept-Language</li>
+      <li>Content-Language</li>
+      <li>Content-Type：仅限于三个值:
+        <ul>
+          <li>text/plain</li>
+          <li>multipart/form-data</li>
+          <li>application/x-www-form-urlencoded</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>对于简单请求，浏览器直接发出 CORS 请求。即在头信息之中，增加一个 Origin 字段:</p>
+
+<pre><code class="language-HTTP">&lt;!-- Origin 包含: 协议 + 域名 + 端口 --&gt;
+
+GET /cors HTTP/1.1
+Origin: http://b.example.com
+Host: a.example.com
+Accept-Language: en-US
+Connection: keep-alive
+User-Agent: Mozilla/5.0...
+</code></pre>
+
+<p>若 Origin 指定的域名在许可范围内，服务器返回的响应，会多出几个头信息字段，若验证失败，则返回 403 状态码:</p>
+
+<pre><code class="language-HTTP">&lt;!-- 值可以设为 *，表示接受任意域名的请求 --&gt;
+Access-Control-Allow-Origin: http://b.example.com
+
+&lt;!-- 可选，表示是否允许发送 Cookie，只能设为 true，除非删除此字段 --&gt;
+Access-Control-Allow-Credentials: true
+
+&lt;!-- 可选，CORS 请求时，XHR 对象的 getResponseHeader() 方法只能拿到 6 个基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。 --&gt;
+&lt;!-- 如果想拿到其他字段，就必须在 Access-Control-Expose-Headers 里面指定。如 getResponseHeader('FooBar') 可以返回 FooBar 字段的值。 --&gt;
+Access-Control-Expose-Headers: FooBar
+Content-Type: text/html; charset=utf-8
+</code></pre>
+
+<h4 id="非简单请求">非简单请求</h4>
+
+<p>非简单请求必须首先使用 OPTIONS 方法发起一个<strong>预检请求(Preflighted Requests)</strong>到服务器，以获知服务器是否允许该实际请求。需满足以下<strong>任意一个</strong>条件:</p>
+
+<ul>
+  <li>请求方法<strong>不是</strong>以下方法之一(可以是 PUT 或 DELETE 等)：
+    <ul>
+      <li>HEAD</li>
+      <li>GET</li>
+      <li>POST</li>
+    </ul>
+  </li>
+  <li>或者人为设置了对 CORS 安全的首部字段集合之外的其他首部字段，其中 Content-Type <strong>不包含于</strong>以下三个值(可以是 application/json 等):
+    <ul>
+      <li>text/plain</li>
+      <li>multipart/form-data</li>
+      <li>application/x-www-form-urlencoded</li>
+    </ul>
+  </li>
+</ul>
+
+<p>除了 Origin 字段，预检请求的头信息包括两个特殊字段:</p>
+
+<pre><code class="language-HTTP">OPTIONS /cors HTTP/1.1
+Origin: http://b.example.com
+
+&lt;!-- 必须，用来列出浏览器的 CORS 请求会用到哪些 HTTP 方法 --&gt;
+Access-Control-Request-Method: PUT
+
+&lt;!-- 该字段是一个逗号分隔的字符串，指定浏览器 CORS 请求会额外发送的头信息字段 --&gt;
+Access-Control-Request-Headers: X-Custom-Header
+
+Host: a.example.com
+Accept-Language: en-US
+Connection: keep-alive
+User-Agent: Mozilla/5.0...
+</code></pre>
+
+<p>预检请求检验这些字段确定允许跨域请求后，作出如下回应，才会发出真正的请求，否则返回 403 状态码:</p>
+
+<pre><code class="language-HTTP">HTTP/1.1 200 OK
+Date: Wed, 28 Feb 2018 12:35:39 GMT
+Server: Apache/2.0.61 (Unix)
+
+Access-Control-Allow-Origin: http://b.example.com
+Access-Control-Allow-Methods: GET, POST, PUT
+Access-Control-Allow-Headers: X-Custom-Header
+Access-Control-Allow-Credentials: true
+
+&lt;!-- 可选，用来指定本次预检请求的有效期，单位为秒，在有效期间内不会再发送另一条预检请求 --&gt;
+Access-Control-Max-Age: 1800
+
+Content-Type: text/html; charset=utf-8
+Content-Encoding: gzip
+Content-Length: 0
+Keep-Alive: timeout=2, max=100
+Connection: Keep-Alive
+Content-Type: text/plain
+</code></pre>
+
+<p><img src="https://s3.amazonaws.com/codecademy-content/articles/what-is-cors/preflight.svg" alt="OPTIONS" /></p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="http://a.ruanyifeng.com/blog/2016/04/same-origin-policy.html">浏览器同源政策及其规避方法</a> By 阮一峰</li>
+  <li><a href="http://a.ruanyifeng.com/blog/2016/04/cors.html">跨域资源共享 CORS 详解</a> By 阮一峰</li>
+  <li><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">WebSocket 教程</a> By 阮一峰</li>
+  <li><a href="http://vajoy.cnblogs.com/vajoy/p/4295825.html">浅谈 WEB 跨域的实现(前端向)</a> By VaJoy Larn</li>
+  <li><a href="https://itbilu.com/javascript/js/EyblyoImW.html">XMLHttpRequest 对象对 HTTP 请求的访问控制</a> By itbilu</li>
+  <li><a href="https://www.w3.org/TR/cors/">W3C - Cross-Origin Resource Sharing</a></li>
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS">MDN - HTTP 访问控制(CORS)</a></li>
+  <li><a href="https://www.codecademy.com/articles/what-is-cors">Codecademy - What is CORS ?</a> By</li>
+  <li><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">RFC2616 - Header Field Definitions</a></li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/02/28/http-sop.html';
+        this.page.identifier = '/2018/02/28/http-sop';
+        this.page.title = '同源策略与跨域';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-28 14:22:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>

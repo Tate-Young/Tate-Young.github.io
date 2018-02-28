@@ -143,7 +143,7 @@
                        
                     <a href="/tags#http" title="访问http" data-hover="http">
                         http
-                        <span>(4)</span>
+                        <span>(5)</span>
                         
                     </a>
                        
@@ -164,7 +164,7 @@
                    
                 <a href="/tags#http" title="访问http" data-hover="http">
                     http
-                    <span>(4)</span>
+                    <span>(5)</span>
                     </a>
                    
             </p>
@@ -211,15 +211,15 @@ Expires: Sat, 10 Mar 2019 13:14:00 GMT
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">max-age=seconds</td>
+      <td style="text-align: left">max-age=&lt;seconds&gt;</td>
       <td style="text-align: left">客户端希望接收一个存在时间不超过过期时间的资源</td>
     </tr>
     <tr>
-      <td style="text-align: left">max-stale[=seconds]</td>
+      <td style="text-align: left">max-stale[=&lt;seconds&gt;]</td>
       <td style="text-align: left">客户端愿意接收一个已经过期的资源，可选时间表示响应不能超过的过期时间</td>
     </tr>
     <tr>
-      <td style="text-align: left">min-fresh=seconds</td>
+      <td style="text-align: left">min-fresh=&lt;seconds&gt;</td>
       <td style="text-align: left">客户端希望在指定的时间内获取最新的响应</td>
     </tr>
     <tr>
@@ -263,7 +263,7 @@ Expires: Sat, 10 Mar 2019 13:14:00 GMT
     </tr>
     <tr>
       <td style="text-align: left">must-revalidate</td>
-      <td style="text-align: left">缓存必须在使用之前验证旧资源的状态，并且不可使用过期资源</td>
+      <td style="text-align: left">可直接使用未过期资源，若过期，则要求向服务器发起请求</td>
     </tr>
     <tr>
       <td style="text-align: left">proxy-revalidate</td>
@@ -282,11 +282,11 @@ Expires: Sat, 10 Mar 2019 13:14:00 GMT
       <td style="text-align: left">不得对资源进行转换或转变</td>
     </tr>
     <tr>
-      <td style="text-align: left">max-age=seconds</td>
+      <td style="text-align: left">max-age=&lt;seconds&gt;</td>
       <td style="text-align: left">设置缓存存储的最大周期，超过这个时间缓存被认为过期(单位秒)，是相对于请求的时间</td>
     </tr>
     <tr>
-      <td style="text-align: left">s-maxage=seconds</td>
+      <td style="text-align: left">s-maxage=&lt;seconds&gt;</td>
       <td style="text-align: left">同 max-age，仅适用于共享缓存，如代理服务器</td>
     </tr>
   </tbody>
@@ -297,15 +297,15 @@ Expires: Sat, 10 Mar 2019 13:14:00 GMT
 <pre><code class="language-TEXT">&lt;!-- 禁用缓存 --&gt;
 Cache-Control: no-cache, no-store, must-revalidate
 
-&lt;!-- 缓存静态资源 --&gt;
-Cache-Control: public, max-age=31536000
+&lt;!-- 缓存静态资源: 5s 内直接取缓存，过期则必须要服务器发起请求 --&gt;
+Cache-Control: max-age=5, must-revalidate
 </code></pre>
-
-<p>目前还存在一个问题: 假定在首次获取资源 senconds 秒后，客户端又对该资源发起了新的请求。若该响应现已过期，客户端无法使用。此时，客户端可以直接发出新的请求并获取新的完整响应。不过这样做效率较低，因为如果资源未发生变化，那么下载与缓存中已有的资源完全相同，为了让客户端与服务器之间能实现缓存文件是否更新的验证、提升缓存的复用率，Http1.1 新增了以下几个字段。</p>
 
 <blockquote>
   <p>首部字段优先级 <strong>Pragma -&gt; Cache-Control -&gt; Expires</strong></p>
 </blockquote>
+
+<p>目前还存在一个问题: 假定在首次获取资源 &lt;seconds&gt; 秒后，客户端又对该资源发起了新的请求。若该响应现已过期，客户端无法使用。此时，客户端可以直接发出新的请求并获取新的完整响应。不过这样做效率较低，因为如果资源未发生变化，那么下载与缓存中已有的资源完全相同，为了让客户端与服务器之间能实现缓存文件是否更新的验证、提升缓存的复用率，Http1.1 新增了以下几个字段。</p>
 
 <h3 id="last-modified">Last-Modified</h3>
 
