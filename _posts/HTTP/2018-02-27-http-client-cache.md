@@ -26,7 +26,7 @@ tags:
 
 在 http1.0 时代，给客户端设定缓存方式可通过两个字段 **Pragma** 和 **Expires** 来规范。
 
-```TEXT
+```HTTP
 <!-- 禁用缓存 -->
 Pragma: no-cache
 
@@ -68,7 +68,7 @@ Expires: Sat, 10 Mar 2019 13:14:00 GMT
 
 可支持自由组合，其格式为:
 
-```TEXT
+```HTTP
 <!-- 禁用缓存 -->
 Cache-Control: no-cache, no-store, must-revalidate
 
@@ -84,7 +84,7 @@ Cache-Control: max-age=5, must-revalidate
 
 服务器将资源传递给客户端时，会将资源最后更改的时间加在响应头上一起返回给客户端。客户端会为资源标记上该信息，下次再次请求时，会把该信息附带在请求报文中，作为条件一并带给服务器去做检查。
 
-```TEXT
+```HTTP
 Last-Modified: Tue, 27 Feb 2018 13:14:00 GMT
 ```
 
@@ -106,7 +106,7 @@ Last-Modified: Tue, 27 Feb 2018 13:14:00 GMT
 
 服务器会通过某种算法，给资源计算得出一个唯一标志符(如 MD5)，在把资源响应给客户端的时候，会在实体首部加上 Etag 字段。同样客户端会保留该 ETag 字段，并在下一次请求时将其一并带过去给服务器。
 
-```TEXT
+```HTTP
 ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
 ```
 
@@ -145,7 +145,7 @@ ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
 
 假设已经首次访问某页面，响应头信息如下:
 
-```TEXT
+```HTTP
 Cache-Control: max-age=31104000
 Expires: Thu, 20 Jul 2017 02:18:41 GMT
 Last-Modified: Fri, 15 Jul 2016 04:11:51 GMT
@@ -159,7 +159,7 @@ Last-Modified: Fri, 15 Jul 2016 04:11:51 GMT
 
 F5 会强制让浏览器发送一个 HTTP 请求到服务器。此时请求头包含:
 
-```TEXT
+```HTTP
 <!-- Cache-Control 是 Chrome 强制加上的 -->
 Cache-Control: max-age=0
 If-Modified-Since: Fri, 15 Jul 2016 04:11:51 GMT
@@ -173,7 +173,7 @@ If-Modified-Since: Fri, 15 Jul 2016 04:11:51 GMT
 
 Ctrl + F5 会强制禁用缓存，服务器返回 200，重新将资源返回到浏览器。比如 Chrome 会在请求头添加条件:
 
-```TEXT
+```HTTP
 Cache-Control: no-cache
 Pragma: no-cache
 ```

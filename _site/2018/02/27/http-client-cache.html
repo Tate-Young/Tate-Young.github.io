@@ -185,7 +185,7 @@
 
 <p>在 http1.0 时代，给客户端设定缓存方式可通过两个字段 <strong>Pragma</strong> 和 <strong>Expires</strong> 来规范。</p>
 
-<pre><code class="language-TEXT">&lt;!-- 禁用缓存 --&gt;
+<pre><code class="language-HTTP">&lt;!-- 禁用缓存 --&gt;
 Pragma: no-cache
 
 &lt;!-- 启用缓存，且时间点未超过设定时间时，则使用缓存 --&gt;
@@ -294,7 +294,7 @@ Expires: Sat, 10 Mar 2019 13:14:00 GMT
 
 <p>可支持自由组合，其格式为:</p>
 
-<pre><code class="language-TEXT">&lt;!-- 禁用缓存 --&gt;
+<pre><code class="language-HTTP">&lt;!-- 禁用缓存 --&gt;
 Cache-Control: no-cache, no-store, must-revalidate
 
 &lt;!-- 缓存静态资源: 5s 内直接取缓存，过期则必须要服务器发起请求 --&gt;
@@ -311,7 +311,7 @@ Cache-Control: max-age=5, must-revalidate
 
 <p>服务器将资源传递给客户端时，会将资源最后更改的时间加在响应头上一起返回给客户端。客户端会为资源标记上该信息，下次再次请求时，会把该信息附带在请求报文中，作为条件一并带给服务器去做检查。</p>
 
-<pre><code class="language-TEXT">Last-Modified: Tue, 27 Feb 2018 13:14:00 GMT
+<pre><code class="language-HTTP">Last-Modified: Tue, 27 Feb 2018 13:14:00 GMT
 </code></pre>
 
 <p><img src="http://7tszky.com1.z0.glb.clouddn.com/FozLFZKB5y67NUSXLhioLseHJYbE" alt="last-modified" /></p>
@@ -334,7 +334,7 @@ Cache-Control: max-age=5, must-revalidate
 
 <p>服务器会通过某种算法，给资源计算得出一个唯一标志符(如 MD5)，在把资源响应给客户端的时候，会在实体首部加上 Etag 字段。同样客户端会保留该 ETag 字段，并在下一次请求时将其一并带过去给服务器。</p>
 
-<pre><code class="language-TEXT">ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
+<pre><code class="language-HTTP">ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
 </code></pre>
 
 <p><img src="https://i.loli.net/2018/02/27/5a952486e5c4e.png" alt="http-cache-control.png" /></p>
@@ -399,7 +399,7 @@ Cache-Control: max-age=5, must-revalidate
 
 <p>假设已经首次访问某页面，响应头信息如下:</p>
 
-<pre><code class="language-TEXT">Cache-Control: max-age=31104000
+<pre><code class="language-HTTP">Cache-Control: max-age=31104000
 Expires: Thu, 20 Jul 2017 02:18:41 GMT
 Last-Modified: Fri, 15 Jul 2016 04:11:51 GMT
 </code></pre>
@@ -416,7 +416,7 @@ Last-Modified: Fri, 15 Jul 2016 04:11:51 GMT
 
 <p>F5 会强制让浏览器发送一个 HTTP 请求到服务器。此时请求头包含:</p>
 
-<pre><code class="language-TEXT">&lt;!-- Cache-Control 是 Chrome 强制加上的 --&gt;
+<pre><code class="language-HTTP">&lt;!-- Cache-Control 是 Chrome 强制加上的 --&gt;
 Cache-Control: max-age=0
 If-Modified-Since: Fri, 15 Jul 2016 04:11:51 GMT
 </code></pre>
@@ -431,7 +431,7 @@ If-Modified-Since: Fri, 15 Jul 2016 04:11:51 GMT
 
 <p>Ctrl + F5 会强制禁用缓存，服务器返回 200，重新将资源返回到浏览器。比如 Chrome 会在请求头添加条件:</p>
 
-<pre><code class="language-TEXT">Cache-Control: no-cache
+<pre><code class="language-HTTP">Cache-Control: no-cache
 Pragma: no-cache
 </code></pre>
 
