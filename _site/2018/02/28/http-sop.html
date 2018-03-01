@@ -143,7 +143,7 @@
                        
                     <a href="/tags#http" title="访问http" data-hover="http">
                         http
-                        <span>(5)</span>
+                        <span>(7)</span>
                         
                     </a>
                        
@@ -164,7 +164,7 @@
                    
                 <a href="/tags#http" title="访问http" data-hover="http">
                     http
-                    <span>(5)</span>
+                    <span>(7)</span>
                     </a>
                    
             </p>
@@ -446,7 +446,7 @@ User-Agent: Mozilla/5.0...
 <pre><code class="language-HTTP">&lt;!-- 值可以设为 *，表示接受任意域名的请求 --&gt;
 Access-Control-Allow-Origin: http://b.example.com
 
-&lt;!-- 可选，表示是否允许发送 Cookie，只能设为 true，除非删除此字段 --&gt;
+&lt;!-- 可选，表示允许发送 cookie，只能设为 true，除非删除此字段，默认 cookie 不包括在 CORS 请求之中 --&gt;
 Access-Control-Allow-Credentials: true
 
 &lt;!-- 可选，CORS 请求时，XHR 对象的 getResponseHeader() 方法只能拿到 6 个基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。 --&gt;
@@ -515,13 +515,28 @@ Connection: Keep-Alive
 Content-Type: text/plain
 </code></pre>
 
-<p><img src="https://s3.amazonaws.com/codecademy-content/articles/what-is-cors/preflight.svg" alt="OPTIONS" /></p>
+<p><img src="https://i.loli.net/2018/02/28/5a96ac6f04e5d.png" alt="OPTIONS" /></p>
+
+<h4 id="withcredentials">withCredentials</h4>
+
+<p>默认情况下，cookie 不包括在 CORS 请求之中。若要发送 cookie，则服务端要设置:</p>
+
+<pre><code class="language-HTTP">Access-Control-Allow-Credentials: true
+</code></pre>
+
+<p>且一般情况下，客户端在 AJAX请求中，也要设置 <strong>withCredentials</strong> 属性:</p>
+
+<pre><code class="language-JS">var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+</code></pre>
+
+<p>另外如果要发送 cookie，Access-Control-Allow-Origin 就不能设为星号，必须指定明确的、与请求网页一致的域名。同时，cookie 依然遵循同源政策，只有用服务器域名设置的 cookie 才会上传。</p>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://a.ruanyifeng.com/blog/2016/04/same-origin-policy.html">浏览器同源政策及其规避方法</a> By 阮一峰</li>
-  <li><a href="http://a.ruanyifeng.com/blog/2016/04/cors.html">跨域资源共享 CORS 详解</a> By 阮一峰</li>
+  <li><a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html">浏览器同源政策及其规避方法</a> By 阮一峰</li>
+  <li><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html">跨域资源共享 CORS 详解</a> By 阮一峰</li>
   <li><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">WebSocket 教程</a> By 阮一峰</li>
   <li><a href="http://vajoy.cnblogs.com/vajoy/p/4295825.html">浅谈 WEB 跨域的实现(前端向)</a> By VaJoy Larn</li>
   <li><a href="https://itbilu.com/javascript/js/EyblyoImW.html">XMLHttpRequest 对象对 HTTP 请求的访问控制</a> By itbilu</li>
