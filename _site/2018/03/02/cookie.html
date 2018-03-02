@@ -14,7 +14,7 @@
 <meta name="twitter:keywords" content="Cookie - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cookie - Tate & Snow">
-<meta name="og:keywords" content="Cookie - Tate & Snow|Cookiecookie类型cookie 总是保存在客户端中，按在客户端中的存储位置，可分为:  内存 cookie - 由浏览器维护，保存在内存中，浏览器关闭后就消失了，其存在时间是短暂的，一般不设置过期时间会存在内存中  硬盘 c..."
+<meta name="og:keywords" content="Cookie - Tate & Snow|Cookie会话(Session)跟踪是 Web 程序中常用的技术，用来跟踪用户的整个会话。理论上，一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话。常用的会话跟踪技术是 cookie 与 s..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Cookiecookie类型cookie 总是保存在客户端中，按在客户端中的存储位置，可分为:  内存 cookie - 由浏览器维护，保存在内存中，浏览器关闭后就消失了，其存在时间是短暂的，一般不设置过期时间会存在内存中  硬盘 c..." property='og:description'
+<meta name="keywords" content="Cookie会话(Session)跟踪是 Web 程序中常用的技术，用来跟踪用户的整个会话。理论上，一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话。常用的会话跟踪技术是 cookie 与 s..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/03/01/cookie.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/01/cookie.html|Cookiecookie类型cookie 总是保存在客户端中，按在客户端中的存储位置，可分为:  内存 cookie - 由浏览器维护，保存在内存中，浏览器关闭后就消失了，其存在时间是短暂的，一般不设置过期时间会存在内存中  硬盘 c..." property='og:description'
+<meta content='http://localhost:4000/2018/03/02/cookie.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/02/cookie.html|Cookie会话(Session)跟踪是 Web 程序中常用的技术，用来跟踪用户的整个会话。理论上，一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话。常用的会话跟踪技术是 cookie 与 s..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -135,7 +135,7 @@
                 <h1 class="post-title" itemprop="name headline">
                     Cookie</h1>
                 <div class="post-data">
-                    <time datetime="2018-03-01 10:58:00" itemprop="datePublished">发布时间：2018-03-01 10:58:00</time>
+                    <time datetime="2018-03-02 10:10:00" itemprop="datePublished">发布时间：2018-03-02 10:10:00</time>
                     <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -156,7 +156,7 @@
             <h1 class="post-title" itemprop="name headline">
                 Cookie</h1>
             <div class="post-data">
-                <time datetime="2018-03-01 10:58:00" itemprop="datePublished">2018-03-01 10:58:00</time>
+                <time datetime="2018-03-02 10:10:00" itemprop="datePublished">2018-03-02 10:10:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -169,6 +169,13 @@
                    
             </p>
             <h1 id="cookie">Cookie</h1>
+
+<p><strong>会话(Session)</strong>跟踪是 Web 程序中常用的技术，用来跟踪用户的整个会话。理论上，一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话。常用的会话跟踪技术是 cookie 与 session。</p>
+
+<ul>
+  <li>cookie 通过在客户端记录信息确定用户身份</li>
+  <li>session 通过在服务器端记录信息确定用户身份</li>
+</ul>
 
 <h2 id="cookie-1">cookie</h2>
 
@@ -184,13 +191,13 @@
 <h3 id="缺点">缺点</h3>
 
 <ul>
-  <li>cookie 会被附加在每个 HTTP 请求中，所以无形中增加了流量。</li>
+  <li>符合条件的 cookie 会被附加在每个 HTTP 请求中，所以无形中增加了流量。</li>
   <li>由于在 HTTP 请求中的 cookie 是明文传递的，所以安全性成问题，除非用 HTTPS。</li>
   <li>cookie 的大小限制在 4KB 左右，数量也有限制，对于复杂的存储需求来说是不够用的。</li>
 </ul>
 
 <blockquote>
-  <p>cookie 附加在每次 HTTP 请求中是客户端的操作，可以禁用 cookie。</p>
+  <p>符合条件的意思是，客户端会检查所有存储的 cookie，如果某个 cookie 所声明的作用范围(域 + 路径)大于等于将要请求的资源所在的位置，则会附加于请求头中。也可以禁用 cookie。</p>
 </blockquote>
 
 <h3 id="属性">属性</h3>
@@ -250,7 +257,24 @@ document.cookie = "key=name; max-age=-1; domain=www.example.com; path=/; secure;
 
 <h2 id="session">session</h2>
 
-<p><img src="http://upload-images.jianshu.io/upload_images/1234352-474c42b13e2d470d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="session" /></p>
+<p><strong>session</strong> 是一种服务器端的机制，内容通常是保存在服务器的内存中，也可以保存在文件、数据库等等。session 对象存储特定用户会话所需的属性及配置信息。这样，当用户在应用程序的 Web 页之间跳转时，存储在 session 对象中的变量将不会丢失。通常用来保存用户的登录状态。</p>
+
+<p>实现流程机制:</p>
+
+<ul>
+  <li>客户端发送第一次请求，服务器端根据会话生成对应 <strong>sessionID</strong>。其中 session 内容存储在服务器端，session 由客户端和服务器端通过 sessionId 来关联;</li>
+  <li>服务器端把生成的 sessionID 通过响应头字段 set-cookie 返回给客户端，实际上是新建一个包含 sessionId 的 cookie;</li>
+  <li>每次 HTTP 请求时，sessionId 都会随着对应 cookie 被发送到服务器端;</li>
+  <li>服务器可通过 sessionId 取到对应的信息，来判断这个请求来自于哪个客户端/用户，从而进行有状态的会话。</li>
+</ul>
+
+<p>常见的购物车案例:</p>
+
+<p><img src="https://img.ken.io/blog/session/session-workingprinciple.png?v1" alt="session - cookie" /></p>
+
+<p>session 也可设置过期时间，禁用 cookie 并不一定无法使用 session。除了 cookies ,客户端还可以将发送给服务器的数据包含在请求的 URL 中:</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1234352-474c42b13e2d470d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="session - url" /></p>
 
 <h2 id="web-storage">Web Storage</h2>
 
@@ -316,7 +340,7 @@ function handle_storage(e){
 
 <ul>
   <li>支持回调的异步 localStorage-like API</li>
-  <li>支持 IndexedDB、WebSQL 和 localStorage 三种存储模式</li>
+  <li>支持 IndexedDB、WebSQL 和 localStorage 三种存储模式，默认以顺序优先级存储</li>
   <li>支持 BLOB 和任意类型的数据，可以存储图片，文件等</li>
   <li>支持 ES6 Promises API</li>
 </ul>
@@ -371,6 +395,8 @@ localforage.setDriver([localforage.WEBSQL, localforage.INDEXEDDB]);
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API">MDN - 使用 Web Storage API</a></li>
   <li><a href="https://localforage.github.io/localForage/">github -  localforage</a></li>
   <li><a href="https://fed.renren.com/2017/06/11/sql/">前端与SQL</a> By 会编程的银猪</li>
+  <li><a href="https://ken.io/note/session-principle-skill">Session 的工作原理和使用经验</a> By ken</li>
+  <li><a href="https://my.oschina.net/xianggao/blog/395675">理解 Cookie 和 Session 机制</a> By 陶邦仁</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -381,8 +407,8 @@ localforage.setDriver([localforage.WEBSQL, localforage.INDEXEDDB]);
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/03/01/cookie.html';
-        this.page.identifier = '/2018/03/01/cookie';
+        this.page.url = 'https://tate-young.github.io/2018/03/02/cookie.html';
+        this.page.identifier = '/2018/03/02/cookie';
         this.page.title = 'Cookie';
     };
 
@@ -401,7 +427,7 @@ localforage.setDriver([localforage.WEBSQL, localforage.INDEXEDDB]);
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-01 10:58:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-02 10:10:00</p> -->
         </div>
     </article>
 
