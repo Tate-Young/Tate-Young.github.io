@@ -40,6 +40,8 @@ html {
 }
 
 body {
+    overflow-x: hidden;
+    position: relative;
     font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
     font-size: .7rem;
     line-height: 1.8;
