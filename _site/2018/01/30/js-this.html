@@ -253,8 +253,17 @@
 
 <p>ES6 <strong>箭头函数(=&gt;)</strong>实际上实现方式与上例类似:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// ES6</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
+<span class="nx">sayName</span><span class="p">.</span><span class="nx">call</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Snow'</span> <span class="p">});</span>
+
+<span class="c1">// ES6</span>
 <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// snow</span>
+  <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// ES5</span>
 <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
