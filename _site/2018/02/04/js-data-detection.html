@@ -189,17 +189,27 @@
 </code></pre>
 </div>
 
-<p>所以 typeof 一般只用作检测除null以外的基本类型或方法。<strong>isNaN()</strong> 一般用来判断是否为NaN，会将判断对象先包装成数字类型。</p>
+<p>所以 typeof 一般只用作检测除 null 以外的基本类型或方法。<strong>isNaN()</strong> 一般用来判断是否为 NaN，会将判断对象先包装成数字类型。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">);</span> <span class="c1">// true</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// isNaN() 实际转化后判断是否为非数字</span>
+<span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">);</span> <span class="c1">// true</span>
 <span class="nb">isNaN</span><span class="p">({});</span> <span class="c1">// true</span>
 <span class="nb">isNaN</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]);</span> <span class="c1">// true</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span> <span class="c1">// true</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="s1">'Tate'</span><span class="p">);</span> <span class="c1">// true</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="s1">'12'</span><span class="p">);</span> <span class="c1">// false 可被转换为12</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span> <span class="c1">// false 空字符串可被转换为0</span>
-<span class="nb">isNaN</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span> <span class="c1">// false</span>
+<span class="nb">isNaN</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span> <span class="c1">// false 可被转换为毫秒数</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">// false 可被转换为new Number(null)即0</span>
+</code></pre>
+</div>
+
+<p>ES6 提供 Number.isNaN() 来增强判断，参数类型只要不是数值，则一律返回 false。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">({});</span> <span class="c1">// false</span>
+<span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">'12'</span><span class="p">);</span> <span class="c1">// false 可被转换为12</span>
 </code></pre>
 </div>
 

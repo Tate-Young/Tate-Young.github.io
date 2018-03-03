@@ -32,9 +32,10 @@ typeof new Date(); // object
 typeof function(){}; // function
 ```
 
-所以 typeof 一般只用作检测除null以外的基本类型或方法。**isNaN()** 一般用来判断是否为NaN，会将判断对象先包装成数字类型。
+所以 typeof 一般只用作检测除 null 以外的基本类型或方法。**isNaN()** 一般用来判断是否为 NaN，会将判断对象先包装成数字类型。
 
 ```js
+// isNaN() 实际转化后判断是否为非数字
 isNaN(NaN); // true
 isNaN({}); // true
 isNaN([1,2]); // true
@@ -42,8 +43,17 @@ isNaN(undefined); // true
 isNaN('Tate'); // true
 isNaN('12'); // false 可被转换为12
 isNaN(''); // false 空字符串可被转换为0
-isNaN(new Date()); // false
+isNaN(new Date()); // false 可被转换为毫秒数
 isNaN(null); // false 可被转换为new Number(null)即0
+```
+
+ES6 提供 Number.isNaN() 来增强判断，参数类型只要不是数值，则一律返回 false。
+
+```js
+Number.isNaN(NaN); // true
+Number.isNaN({}); // false
+Number.isNaN(undefined); // false
+Number.isNaN('12'); // false 可被转换为12
 ```
 
 ## instanceof
