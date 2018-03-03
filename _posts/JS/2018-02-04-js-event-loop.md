@@ -23,7 +23,7 @@ tags:
 
 ## 调用栈(Call Stack)
 
-每次调用一个函数，都要为该次调用的函数实例分配栈空间，即栈帧(Stack Frame)，**[调用栈(执行栈)](https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A)**就是正在使用的栈空间，由多个嵌套调用函数所使用的栈帧组成，实行先进后出(FILO)。
+每次调用一个函数，都要为该次调用的函数实例分配栈空间，即**栈帧(Stack Frame)**，**[调用栈(执行栈)](https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A)**就是正在使用的栈空间，由多个嵌套调用函数所使用的栈帧组成，实行先进后出(FILO)。
 
 ```js
 function foo(b) {
@@ -53,7 +53,7 @@ JavaScript 属于单线程语言，执行的任务可分为同步和异步，ES6
 * 发布/订阅
 * Promise 对象
 
-在主线程中，如果有定时器或者其他异步操作，他们会被添加到 **Event Table** 中，当事件(timeout, click, mouse move)满足触发条件后，它会将其发送至 **事件队列(Event Queue)**，实行先进先出。
+在主线程中，如果有定时器或者其他异步操作，他们会被添加到 **Event Table** 中，当事件(timeout、click、mouse move)满足触发条件后，它会将其发送至 **事件队列(Event Queue)**，实行先进先出。
 
 事件循环是个进程，会持续监测调用栈是否为空，若为空，则监测事件队列，将里面的事件移至调用栈执行，如此循环。
 

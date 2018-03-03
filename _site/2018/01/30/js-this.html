@@ -14,7 +14,7 @@
 <meta name="twitter:keywords" content="this 指针 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="this 指针 - Tate & Snow">
-<meta name="og:keywords" content="this 指针 - Tate & Snow|this 指针this指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this指针案例// 实际执行的是window.getName()，window对象并没有name属性/..."
+<meta name="og:keywords" content="this 指针 - Tate & Snow|this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是window.getName()，window对象并没有name属..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="this 指针this指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this指针案例// 实际执行的是window.getName()，window对象并没有name属性/..." property='og:description'
+<meta name="keywords" content="this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是window.getName()，window对象并没有name属..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/01/30/js-this.html' property='og:url' />
-<meta content="http://localhost:4000/2018/01/30/js-this.html|this 指针this指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this指针案例// 实际执行的是window.getName()，window对象并没有name属性/..." property='og:description'
+<meta content="http://localhost:4000/2018/01/30/js-this.html|this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是window.getName()，window对象并没有name属..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -170,11 +170,11 @@
             </p>
             <h1 id="this-指针">this 指针</h1>
 
-<h2 id="this指针指向">this指针指向</h2>
+<h2 id="this-指针指向">this 指针指向</h2>
 
 <p><strong>this</strong> 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。</p>
 
-<h3 id="this指针案例">this指针案例</h3>
+<h3 id="this-指针案例">this 指针案例</h3>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 实际执行的是window.getName()，window对象并没有name属性</span>
 <span class="c1">// 严格模式中指向的是undefined</span>
@@ -218,7 +218,7 @@
 </code></pre>
 </div>
 
-<h3 id="this指针案例-多层嵌套">this指针案例-多层嵌套</h3>
+<h3 id="this-指针案例-多层嵌套">this 指针案例-多层嵌套</h3>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 内层的this不指向外部，而指向顶层对象Window</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
@@ -255,12 +255,6 @@
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// ES6</span>
 <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-  <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// ES5</span>
 <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
@@ -271,11 +265,17 @@
 </code></pre>
 </div>
 
-<h3 id="this指针案例-return">this指针案例-return</h3>
+<h3 id="this-指针案例-return">this 指针案例-return</h3>
 
 <p>一般情况下若返回的是引用类型，则返回该引用类型；若返回的是基本类型，则无影响。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// ES5</span>
+<span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
     <span class="c1">// return undefined; // Tate</span>
@@ -290,7 +290,7 @@
 </code></pre>
 </div>
 
-<h2 id="callapplybind改变指针指向">call/apply/bind改变指针指向</h2>
+<h2 id="call--apply--bind">call / apply / bind</h2>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Tate</span>

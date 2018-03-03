@@ -61,9 +61,9 @@ var c = [1, 2, 3]; // 变量c存在于栈内存中，[1, 2, 3] 作为对象存�
 | 浅拷贝 | 拷贝的是对象的引用 |
 | 深拷贝 | 拷贝的是对象实际的值，开辟新的内存地址 |
 
-## 浅拷贝 (shallow copy)
+## 浅拷贝(shallow copy)
 
-### 浅拷贝DIY
+### 浅拷贝 DIY
 
 ```js
 // 仅参考
@@ -115,9 +115,9 @@ console.log(p1[1].age); // 26
 
 > 可参考下 [slice 源码](https://github.com/v8/v8/blob/ad82a40509c5b5b4680d4299c8f08d6c6d31af3c/src/js/array.js)，可看出它类似"浅拷贝 DIY"，只对最外层属性做了赋值操作，并没有继续做递归进行深拷贝。
 
-## 深拷贝 (deep copy)
+## 深拷贝(deep copy)
 
-### 深拷贝DIY
+### 深拷贝 DIY
 
 ```js
 // 递归实现一个深拷贝

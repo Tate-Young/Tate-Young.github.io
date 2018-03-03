@@ -85,7 +85,7 @@ const factorial = currying(tailFactorial, 1);
 factorial(5) // 120
 ```
 
-或者直接使用ES6函数默认值：
+或者直接使用 ES6 函数默认值：
 
 ```js
 // Best

@@ -13,7 +13,7 @@ tags:
 ---
 # {{ page.title }}
 
-## 怎么理解JS一切都是对象
+## 怎么理解 JS 一切都是对象
 
 对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是immutable不可变的，也没有属性和方法而言。然而如下例子
 
@@ -42,7 +42,7 @@ console.log(S.length);
 console.log(S.toUpperCase());
 ```
 
-上面代码中，字符串的包装对象有每个位置的值、有length属性、还有一个内部属性[[PrimitiveValue]]保存字符串的原始值。这个[[PrimitiveValue]]内部属性，外部是无法调用，仅供valueOf()或toString()这样的方法内部调用。
+上面代码中，字符串的包装对象有每个位置的值，有 length 属性，还有一个内部属性 **[[PrimitiveValue]]** 保存字符串的原始值。其内部属性，外部是无法调用，仅供valueOf() 或 toString() 这样的方法内部调用。
 
 ![wrapper-obj.png](https://i.loli.net/2018/02/26/5a935bee645c0.png)
 

@@ -180,7 +180,7 @@
 
 <h2 id="调用栈call-stack">调用栈(Call Stack)</h2>
 
-<p>每次调用一个函数，都要为该次调用的函数实例分配栈空间，即栈帧(Stack Frame)，<strong><a href="https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A">调用栈(执行栈)</a></strong>就是正在使用的栈空间，由多个嵌套调用函数所使用的栈帧组成，实行先进后出(FILO)。</p>
+<p>每次调用一个函数，都要为该次调用的函数实例分配栈空间，即<strong>栈帧(Stack Frame)</strong>，<strong><a href="https://zh.wikipedia.org/wiki/%E5%91%BC%E5%8F%AB%E5%A0%86%E7%96%8A">调用栈(执行栈)</a></strong>就是正在使用的栈空间，由多个嵌套调用函数所使用的栈帧组成，实行先进后出(FILO)。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -214,7 +214,7 @@
   <li>Promise 对象</li>
 </ul>
 
-<p>在主线程中，如果有定时器或者其他异步操作，他们会被添加到 <strong>Event Table</strong> 中，当事件(timeout, click, mouse move)满足触发条件后，它会将其发送至 <strong>事件队列(Event Queue)</strong>，实行先进先出。</p>
+<p>在主线程中，如果有定时器或者其他异步操作，他们会被添加到 <strong>Event Table</strong> 中，当事件(timeout、click、mouse move)满足触发条件后，它会将其发送至 <strong>事件队列(Event Queue)</strong>，实行先进先出。</p>
 
 <p>事件循环是个进程，会持续监测调用栈是否为空，若为空，则监测事件队列，将里面的事件移至调用栈执行，如此循环。</p>
 

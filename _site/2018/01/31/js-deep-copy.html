@@ -250,9 +250,9 @@ Reference value stored in the variable location is a pointer to a location in me
   </tbody>
 </table>
 
-<h2 id="浅拷贝-shallow-copy">浅拷贝 (shallow copy)</h2>
+<h2 id="浅拷贝shallow-copy">浅拷贝(shallow copy)</h2>
 
-<h3 id="浅拷贝diy">浅拷贝DIY</h3>
+<h3 id="浅拷贝-diy">浅拷贝 DIY</h3>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 仅参考</span>
 <span class="kd">function</span> <span class="nx">shallowCopy</span><span class="p">(</span><span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
@@ -306,9 +306,9 @@ Reference value stored in the variable location is a pointer to a location in me
   <p>可参考下 <a href="https://github.com/v8/v8/blob/ad82a40509c5b5b4680d4299c8f08d6c6d31af3c/src/js/array.js">slice 源码</a>，可看出它类似”浅拷贝 DIY”，只对最外层属性做了赋值操作，并没有继续做递归进行深拷贝。</p>
 </blockquote>
 
-<h2 id="深拷贝-deep-copy">深拷贝 (deep copy)</h2>
+<h2 id="深拷贝deep-copy">深拷贝(deep copy)</h2>
 
-<h3 id="深拷贝diy">深拷贝DIY</h3>
+<h3 id="深拷贝-diy">深拷贝 DIY</h3>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 递归实现一个深拷贝</span>
 <span class="kd">function</span> <span class="nx">deepCopy</span><span class="p">(</span><span class="nx">source</span><span class="p">){</span>
