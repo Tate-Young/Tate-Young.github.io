@@ -32,7 +32,7 @@ Reference value stored in the variable location is a pointer to a location in me
 
 ### 什么是栈内存和堆内存
 
-在JS中，每一个数据都需要一个内存空间。内存空间又被分为两种，栈内存(stack)与堆内存(heap)。
+在 JS 中，每一个数据都需要一个内存空间。内存空间又被分为两种，栈内存(stack)与堆内存(heap)。
 
 **栈内存**主要存储基本类型和对象的引用，内存空间是在程序运行前静态分配的，其优势是存取速度比堆要快，但缺点是存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。
 
@@ -113,7 +113,7 @@ p2[1].age = 26;
 console.log(p1[1].age); // 26
 ```
 
-> 可参考下[slice源码](https://github.com/v8/v8/blob/ad82a40509c5b5b4680d4299c8f08d6c6d31af3c/src/js/array.js)，可看出它类似"浅拷贝DIY"，只对最外层属性做了赋值操作，并没有继续做递归进行深拷贝。
+> 可参考下 [slice 源码](https://github.com/v8/v8/blob/ad82a40509c5b5b4680d4299c8f08d6c6d31af3c/src/js/array.js)，可看出它类似"浅拷贝 DIY"，只对最外层属性做了赋值操作，并没有继续做递归进行深拷贝。
 
 ## 深拷贝 (deep copy)
 
@@ -142,7 +142,7 @@ function deepCopy(source){
 
 ### 深拷贝实现
 
-可用JSON对象中的parse()和stringify()实现深拷贝，不足之处从以下例子可见，源对象的方法在拷贝的过程中丢失了，这是因为JSON语法不支持函数，详见[链接3](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)。
+可用 JSON 对象中的 parse() 和 stringify() 实现深拷贝，不足之处从以下例子可见，源对象的方法在拷贝的过程中丢失了，这是因为 JSON 语法不支持函数，详见[链接3](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)。
 
 ```js
 // 利用JSON序列化实现一个深拷贝
@@ -163,7 +163,7 @@ var o2 = deepCopy(o1);
 console.log(o2); // {"arr":[1,2],"obj":{"name":"Tate"}}
 ```
 
-> 也可用$.extend(true, {}, obj)实现深拷贝，[源码可见](https://github.com/jquery/jquery/blob/1472290917f17af05e98007136096784f9051fab/src/core.js#L121)
+> 也可用 $.extend(true, {}, obj) 实现深拷贝，[源码可见](https://github.com/jquery/jquery/blob/1472290917f17af05e98007136096784f9051fab/src/core.js#L121)
 
 ## 参考链接
 
