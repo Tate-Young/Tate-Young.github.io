@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Skeleton Screen - ",
+		"url" : "/2018/03/07/html-skeleton-screen.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "页面可见性 API - ",
 		"url" : "/2018/03/06/js-page-visibility.html"
 	}

@@ -1052,11 +1052,12 @@ textarea:-ms-input-placeholder {
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flex;
+    padding: 0 .25rem;
 }
 
 .post-list-item-container .item-label .item-meta .item-meta-cat a {
     text-align: center;
-    flex: 2;
+    flex: 1.5;
     font-size: 13px;
     position: relative;
     padding: 10px 0;
