@@ -7,7 +7,7 @@ background: purple
 category: 前端优化
 title:  Skeleton Screen
 date:   2018-03-07 00:50:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: https://i.loli.net/2018/03/07/5a9ebed4242b1.jpg
 tags:
 - html
 ---
