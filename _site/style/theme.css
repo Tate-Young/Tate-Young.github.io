@@ -862,7 +862,7 @@ textarea:-ms-input-placeholder {
 .main-content {
     position: relative;
     /* max-width: 940px; */
-    padding: 0 12rem 0 7rem;
+    padding: 0 14rem 0 7rem;
     margin: 0 auto;
     -webkit-animation: fade-in .5s;
     animation: fade-in;
@@ -1730,7 +1730,8 @@ pre code::after {
     display: inline-block;
     text-align: left;
     margin-top: 230px;
-    right: 3rem;
+    /* right: 3rem; */
+    left: 83%;
 }
 
 #directory ul,
