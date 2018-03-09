@@ -117,6 +117,18 @@ demo.style.removeProperty('--size');
 |:--------------|:---------|:---------|
 | 读取范围 |  读取的样式是最终样式，包括了“内联样式”、“嵌入样式”和“外部样式” | 读取的只是元素的“内联样式”，即写在元素的 style 属性上的样式 |
 | 写入 |  仅支持 <code>读</code> | 支持 <code>读写</code> |
+| 兼容性 |  IE9 以下使用 **element.currentStyle** | 无 |
+
+```JS
+// 兼容性方法
+function readStyle(element, cssPropertyName){
+    if(getComputedStyle) { // 如果支持 getComputedStyle 属性(IE9 及以上，ie9 以下不兼容)
+        return getComputedStyle(element)[cssPropertyName];
+    } else { // 如果支持 currentStyle(IE9 以下使用)
+        return element.currentStyle[cssPropertyName];
+    }
+}
+```
 
 1. [MDN - 使用 CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_variables)
 1. [CSS 变量教程](http://www.ruanyifeng.com/blog/2017/05/css-variables.html) By 阮一峰

@@ -284,8 +284,23 @@ demo.style.removeProperty('--size');
       <td style="text-align: left">仅支持 <code>读</code></td>
       <td style="text-align: left">支持 <code>读写</code></td>
     </tr>
+    <tr>
+      <td style="text-align: left">兼容性</td>
+      <td style="text-align: left">IE9 以下使用 <strong>element.currentStyle</strong></td>
+      <td style="text-align: left">无</td>
+    </tr>
   </tbody>
 </table>
+
+<pre><code class="language-JS">// 兼容性方法
+function readStyle(element, cssPropertyName){
+    if(getComputedStyle) { // 如果支持 getComputedStyle 属性(IE9 及以上，ie9 以下不兼容)
+        return getComputedStyle(element)[cssPropertyName];
+    } else { // 如果支持 currentStyle(IE9 以下使用)
+        return element.currentStyle[cssPropertyName];
+    }
+}
+</code></pre>
 
 <ol>
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_variables">MDN - 使用 CSS 变量</a></li>
