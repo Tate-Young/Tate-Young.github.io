@@ -22,7 +22,7 @@ tags:
 | **Index** | 暂存区，即 Stage，是指即将被下一个提交的文件集合 |
 | **Working Copy** | 工作区 |
 
-![git-working-copy.jpg]( {{page.background-image}} )
+![git-working-copy.jpg](https://i.loli.net/2018/03/11/5aa481bc4da98.jpg)
 
 ## Git 命令
 
