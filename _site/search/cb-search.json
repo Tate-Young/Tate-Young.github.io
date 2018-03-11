@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Git 命令 - ",
+		"url" : "/2018/03/10/git-command.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Git Flow - ",
 		"url" : "/2018/03/10/git-flow.html"
 	}

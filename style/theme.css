@@ -1233,7 +1233,7 @@ textarea:-ms-input-placeholder {
 .post-header-thumb-container {
     position: relative;
     top: 100px;
-    /* max-width: 700px; */
+    max-width: 80rem;
     margin: 0 auto;
     /* padding: 30px 25px 20px; */
     padding-left: 7rem;
@@ -1269,11 +1269,11 @@ textarea:-ms-input-placeholder {
 }
 
 .post-page {
-    /* max-width: 700px; */
+    max-width: 80rem;
 }
 
 .page-page {
-    /* max-width: 700px; */
+    max-width: 80rem;
 }
 
 .post-content p {

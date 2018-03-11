@@ -7,7 +7,8 @@ background: green
 category: 前端
 title: Git 命令
 date:   2018-03-10 23:37:00 GMT+0800 (CST)
-background-image: https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907702917346729e9afbf4127b6dfbae9207af016000/0
+background-image: https://i.loli.net/2018/03/11/5aa481bc4da98.jpg
+
 tags:
 - git
 ---
@@ -17,33 +18,33 @@ tags:
 
 | 术语 | 描述 |
 |:--------------|:---------|
-| **HEAD** | 当前活跃分支的游标指针 |
+| **HEAD** | 指向当前分支，分支指向当前提交 |
 | **Index** | 暂存区，即 Stage，是指即将被下一个提交的文件集合 |
 | **Working Copy** | 工作区 |
 
-![working copy](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907702917346729e9afbf4127b6dfbae9207af016000/0)
+![git-working-copy.jpg]( {{page.background-image}} )
 
 ## Git 命令
 
-Git 常用命令有:
+### 命令一览
 
-| 命令 | 描述 | 栗子 |
+| 常用命令 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
 | remote | 查看远程库的信息 | <code>git remote -v</code> |
 | clone | 从现有仓库克隆到指定文件目录 | <code>git clone 仓库地址 文件目录</code> |
 | status | 查看文件状态 | <code>git status</code> |
 | add | 跟踪文件，暂存 | <code>git add README.md</code> |
-| diff | 比较工作目录中当前文件和暂存区域快照之间的差异 | <code>git diff</code> |
-| rm | 移除文件 | <code>git rm REANME.md</code> |
-| mv | 移动文件，改名 | <code>git mv README.txt README.md</code> |
+| diff | 比较工作区中当前文件和暂存区域快照之间的差异 | <code>git diff</code> |
+| branch | 创建分支，-d 参数为删除分支，-D 强制删除 | <code>git branch -d branchname</code> |
+| merge | 合并，--no-ff 禁用 Fast forward 合并模式 | <code>git merge branchname</code> |
+| rebase | 合并，改变 commit 序列的基础点 | <code>git rebase branchname</code> |
 | commit | 提交到本地仓库 | <code>git commit -m 'initial commit'</code> |
-| push | 推送到远端仓库 | <code>git push</code> |
+| reset | 文件从暂存区回退到工作区；版本回退 | <code>git reset HEAD filename</code> |
+| revert | 回滚并创建一个新的提交 | <code>git revert HEAD^</code> |
+| push | 推送到远端仓库，--force 参数为强制推送，缩写 -f | <code>git push --force</code> |
 | pull | 拉取自远端仓库 | <code>git pull</code> |
 | log | 查看提交历史，-p 展开显示每次提交的内容差异，-2 则仅显示最近的两次更新 | <code>git log -p -2</code> |
 | reflog | 查看命令历史 | <code>git reflog</code> |
-| reset | 文件从暂存区回退到工作区；版本回退 | <code>git reset HEAD filename</code> |
-| branch | 创建分支，-d 参数为删除分支，-D 强制删除 | <code>git branch -d branchname</code> |
-| merge | 合并，--no-ff 禁用 Fast forward 合并模式 | <code>git merge branchname</code> |
 | tag | 标签，版本库的一个快照 | <code>git tag v1.0.0 commitId</code> |
 
 ### commit
@@ -74,7 +75,7 @@ git commit --amend
 **reset** 命令主要有两个用途:
 
 * git reset HEAD - 文件从暂存区回退到工作区(*unstage*)，后接 filename 可指定文件
-* git reset HEAD^ - 版本回退，^^ 表示回退 2 个版本，也可写作 ~2，以此类推
+* git reset HEAD^ - 版本回退，会重写当前分支的历史，^^ 表示回退 2 个版本，也可写作 ~2，以此类推
   * **soft** 参数 - 保留所有本地修改，仅移动 HEAD 头指针
   * **mixed** 默认参数 - 保留工作区修改并重置缓存区，移动 HEAD 头指针和保留 Working Copy，但重置 Index
   * **hard** 参数 - 丢弃所有本地修改(不包括未跟踪的文件)，移动 HEAD 头指针和重置 Working Copy
@@ -87,9 +88,22 @@ git commit --amend
     <source src="http://github.liaoxuefeng.com/sinaweibopy/video/git-reset.mp4" type="video/mp4"></source>
 </video>
 
+### revert
+
+**revert** 一般用于公共分支，回滚时不会像 reset 那样重写提交历史，且 revert 只有在提交层面才有回滚操作，在回滚一个提交的同时会创建一个新的提交。请注意 HEAD 后参数的用法:
+
+```SHELL
+# 撤销最近 一 个提交
+git revert HEAD
+
+# 撤销最近 两 个提交
+git revert HEAD^
+gut revert HEAD~1
+```
+
 ### checkout
 
-**checkout** 命令主要有两个用途:
+**checkout** 命令主要有三个用途:
 
 * 可以丢弃工作区中已跟踪文件的修改(*discard*):
   * <code>git checkout -- filename</code> - 放弃指定文件
@@ -98,6 +112,10 @@ git commit --amend
 * 切换分支:
   * <code>git checkout branchname</code> - 切换至指定分支
   * <code>git checkout -b branchname</code> - 创建并切换至该分支
+
+* 把 HEAD 移动到特定的提交:
+  * <code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用
+  * **detached HEAD**: 当前的 HEAD 没有任何分支引用会造成 HEAD 分离。若此时添加新的提交，然后切换到别的分支之后就没办法回到之前添加的这些提交。因此，在为 detached HEAD 添加新的提交时应该创建一个新的分支。
 
 <video controls="">
     <source src="http://github.liaoxuefeng.com/sinaweibopy/video/master-and-dev-ff.mp4" type="video/mp4"></source>
@@ -112,7 +130,7 @@ git commit --amend
 git log --graph --pretty=oneline --abbrev-commit
 ```
 
-![conflict](https://cdn.liaoxuefeng.com/cdn/files/attachments/00138490913052149c4b2cd9702422aa387ac024943921b000/0)
+![git-merge.png](https://i.loli.net/2018/03/11/5aa481bc48cdd.png)
 
 通常合并分支时，Git 会尽可能用 Fast forward 模式，但这种模式下，删除分支后会丢掉分支信息。如果要强制禁用该模式，Git 就会在 merge 时生成一个新的 commit，这样从分支历史上就可以看出分支信息。
 
@@ -121,7 +139,39 @@ git log --graph --pretty=oneline --abbrev-commit
 git merge --no-ff -m "merge with no-ff" feature
 ```
 
-![merge --no-ff](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384909222841acf964ec9e6a4629a35a7a30588281bb000/0)
+![git-merge-no-ff.png](https://i.loli.net/2018/03/11/5aa481bc41c5a.png)
+
+### rebase
+
+**rebase** 和 merge 都可以进行合并，rebase 会对 commit 序列重新设置基础点，不会产生和 merge 一样的分叉，保持整个项目的清洁。
+
+假设现处于 branch1 分支，需将 branch1 分支合并到 master
+
+* merge
+
+```SHELL
+git checkout master
+git merge branch1
+```
+
+![git-merge.gif](https://i.loli.net/2018/03/11/5aa49b65a03e2.gif)
+
+* rebase
+
+```SHELL
+# 在需要合并的分支上进行 rebase
+git rebase master
+
+# rebase 后需要到主分支上进行 Fast forward 模式的 merge
+git checkout master
+git merge branch1
+```
+
+![git-rebase.gif](https://i.loli.net/2018/03/11/5aa49b6c003a8.gif)
+
+rebase 的黄金法则是绝不要在公共的分支上使用。倘若在 master 分支使用了 rebase，会出现以下情况:
+
+![git-rebase-error.gif](https://i.loli.net/2018/03/11/5aa49b6796eb8.gif)
 
 ### stash
 
@@ -183,3 +233,5 @@ git show v1.0.0
 
 1. [Git](https://git-scm.com/book/zh/v2)
 1. [Git 教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000) By 廖雪峰
+1. [代码回滚：Reset、Checkout、Revert-的选择](https://github.com/geeeeeeeeek/git-recipes/wiki/5.2-%E4%BB%A3%E7%A0%81%E5%9B%9E%E6%BB%9A%EF%BC%9AReset%E3%80%81Checkout%E3%80%81Revert-%E7%9A%84%E9%80%89%E6%8B%A9) By geeeeeeeeek
+1. [掘金 - Git 原理详解及实用指南](https://juejin.im/book/5a124b29f265da431d3c472e) By 抛物线
