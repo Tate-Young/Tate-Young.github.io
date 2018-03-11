@@ -6,8 +6,8 @@ flag: Git
 background: green
 category: 前端
 title: Git 命令
-date:   2018-03-10 23:37:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/03/11/5aa481bc4da98.jpg
+date:   2018-03-11 12:03:00 GMT+0800 (CST)
+background-image: https://i.loli.net/2018/03/11/5aa49b6c003a8.gif
 
 tags:
 - git
@@ -37,7 +37,7 @@ tags:
 | diff | 比较工作区中当前文件和暂存区域快照之间的差异 | <code>git diff</code> |
 | branch | 创建分支，-d 参数为删除分支，-D 强制删除 | <code>git branch -d branchname</code> |
 | merge | 合并，--no-ff 禁用 Fast forward 合并模式 | <code>git merge branchname</code> |
-| rebase | 合并，改变 commit 序列的基础点 | <code>git rebase branchname</code> |
+| rebase | 衍合，改变 commit 序列的基础点，本质上是线性化的自动 cherry-pick | <code>git rebase branchname</code> |
 | commit | 提交到本地仓库 | <code>git commit -m 'initial commit'</code> |
 | reset | 文件从暂存区回退到工作区；版本回退 | <code>git reset HEAD filename</code> |
 | revert | 回滚并创建一个新的提交 | <code>git revert HEAD^</code> |
@@ -46,13 +46,16 @@ tags:
 | log | 查看提交历史，-p 展开显示每次提交的内容差异，-2 则仅显示最近的两次更新 | <code>git log -p -2</code> |
 | reflog | 查看命令历史 | <code>git reflog</code> |
 | tag | 标签，版本库的一个快照 | <code>git tag v1.0.0 commitId</code> |
+| cherry-pick | 选择某一个分支中的一个或几个 commit 来进行操作 | <code>git cherry-pick commitId</code> |
+
+> Git 命令也可设置别名 <code>git config --global alias.unstage 'reset HEAD'</code>，之后可直接使用命令 <code>git unstage</code>。
 
 ### commit
 
 **commit** 命令用于提交代码到本地仓库，常用到的参数:
 
 * **m** 参数 - 添加描述
-* **a** 参数 - 跳过暂存(add)直接提交
+* **a** 参数 - 跳过暂存(除开未跟踪文件)直接提交
 * **amend** 参数 - 重新修正提交
 
 ```SHELL
@@ -93,10 +96,10 @@ git commit --amend
 **revert** 一般用于公共分支，回滚时不会像 reset 那样重写提交历史，且 revert 只有在提交层面才有回滚操作，在回滚一个提交的同时会创建一个新的提交。请注意 HEAD 后参数的用法:
 
 ```SHELL
-# 撤销最近 一 个提交
+# 回滚到最近 一 个提交
 git revert HEAD
 
-# 撤销最近 两 个提交
+# 撤销最近 一 个提交，回滚到倒数第 二 个提交
 git revert HEAD^
 gut revert HEAD~1
 ```
@@ -147,19 +150,21 @@ git merge --no-ff -m "merge with no-ff" feature
 
 假设现处于 branch1 分支，需将 branch1 分支合并到 master
 
-* merge
+* **merge 的实现流程**
 
 ```SHELL
+# merge 将两个分支合并进行一次提交，提交历史不是线性的
 git checkout master
 git merge branch1
 ```
 
 ![git-merge.gif](https://i.loli.net/2018/03/11/5aa49b65a03e2.gif)
 
-* rebase
+* **rebase 的实现流程**
 
 ```SHELL
 # 在需要合并的分支上进行 rebase
+# rebase 在当前分支上重演另一个分支的历史，提交历史是线性的
 git rebase master
 
 # rebase 后需要到主分支上进行 Fast forward 模式的 merge
@@ -169,9 +174,20 @@ git merge branch1
 
 ![git-rebase.gif](https://i.loli.net/2018/03/11/5aa49b6c003a8.gif)
 
-rebase 的黄金法则是绝不要在公共的分支上使用。倘若在 master 分支使用了 rebase，会出现以下情况:
+rebase 的黄金法则是绝不要在公共的分支上使用。倘若在 master 分支使用了 rebase，会出现以下情况，如果这两个 commit 之前已经在中央仓库存在，这就会导致没法 push 了:
 
 ![git-rebase-error.gif](https://i.loli.net/2018/03/11/5aa49b6796eb8.gif)
+
+### cherry-pick
+
+**cherry-pick** 可以选择某一个分支中的一个或几个 commit 来进行操作，rebase 实质上就是线性的自动的 cherry-pick 操作:
+
+```SHELL
+git checkout master
+git cherry-pick 2c33a
+```
+
+![cherry-pick](https://marklodato.github.io/visual-git-guide/cherry-pick.svg)
 
 ### stash
 
@@ -227,11 +243,10 @@ git show v1.0.0
 # ...
 ```
 
-> Git 命令也可设置别名 <code>git config --global alias.unstage 'reset HEAD'</code>，之后可直接使用命令 <code>git unstage</code>。
-
 ## 参考链接
 
 1. [Git](https://git-scm.com/book/zh/v2)
 1. [Git 教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000) By 廖雪峰
-1. [代码回滚：Reset、Checkout、Revert-的选择](https://github.com/geeeeeeeeek/git-recipes/wiki/5.2-%E4%BB%A3%E7%A0%81%E5%9B%9E%E6%BB%9A%EF%BC%9AReset%E3%80%81Checkout%E3%80%81Revert-%E7%9A%84%E9%80%89%E6%8B%A9) By geeeeeeeeek
 1. [掘金 - Git 原理详解及实用指南](https://juejin.im/book/5a124b29f265da431d3c472e) By 抛物线
+1. [图解 Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html) By marklodato
+1. [atlassian - Resetting, Checking Out & Reverting](https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting)
