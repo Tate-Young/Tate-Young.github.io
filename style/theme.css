@@ -2147,7 +2147,7 @@ pre code::after {
     .directory-content {
         display: none;
     }
-    .post-header-thumb {
+    /* .post-header-thumb {
         height: 280px;
     }
     .post-header-thumb-cover {
@@ -2158,6 +2158,9 @@ pre code::after {
     }
     .post-header-thumb-container {
         top: 80px;
+    } */
+    .post-page {
+        padding: 0 7rem;
     }
 }
 
