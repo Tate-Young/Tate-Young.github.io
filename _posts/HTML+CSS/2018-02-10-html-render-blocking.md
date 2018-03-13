@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  加载阻塞
 date:   2018-02-11 11:38:00 GMT+0800 (CST)
-background-image: http://static.noddl.me/a0d9e158312b7b9a55bb71cf9718873345ec3660-ca9f80e6b043315ab8e3af3a798346c0d791c8db.png
+background-image: /style/images/darling.jpg
 tags:
 - html
 ---

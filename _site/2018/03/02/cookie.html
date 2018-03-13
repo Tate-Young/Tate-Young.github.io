@@ -14,7 +14,7 @@
 <meta name="twitter:keywords" content="Cookie - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cookie - Tate & Snow">
-<meta name="og:keywords" content="Cookie - Tate & Snow|Cookie会话(Session)跟踪是 Web 程序中常用的技术，用来跟踪用户的整个会话。理论上，一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话。常用的会话跟踪技术是 cookie 与 s..."
+<meta name="og:keywords" content="Cookie - Tate & Snow|Cookie会话(Session) 是一个客户与服务器之间的不中断的请求响应序列。可简单理解为：用户开一个浏览器，访问某一个 web 站点，在这个站点点击多个超链接，访问服务器多个 web 资源，然后关闭浏览器，整个过程称之为一个会话..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Cookie会话(Session)跟踪是 Web 程序中常用的技术，用来跟踪用户的整个会话。理论上，一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话。常用的会话跟踪技术是 cookie 与 s..." property='og:description'
+<meta name="keywords" content="Cookie会话(Session) 是一个客户与服务器之间的不中断的请求响应序列。可简单理解为：用户开一个浏览器，访问某一个 web 站点，在这个站点点击多个超链接，访问服务器多个 web 资源，然后关闭浏览器，整个过程称之为一个会话..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/03/02/cookie.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/02/cookie.html|Cookie会话(Session)跟踪是 Web 程序中常用的技术，用来跟踪用户的整个会话。理论上，一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话。常用的会话跟踪技术是 cookie 与 s..." property='og:description'
+<meta content="http://localhost:4000/2018/03/02/cookie.html|Cookie会话(Session) 是一个客户与服务器之间的不中断的请求响应序列。可简单理解为：用户开一个浏览器，访问某一个 web 站点，在这个站点点击多个超链接，访问服务器多个 web 资源，然后关闭浏览器，整个过程称之为一个会话..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -170,7 +170,9 @@
             </p>
             <h1 id="cookie">Cookie</h1>
 
-<p><strong>会话(Session)</strong>跟踪是 Web 程序中常用的技术，用来跟踪用户的整个会话。理论上，一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话。常用的会话跟踪技术是 cookie 与 session。</p>
+<p><strong>会话(Session)</strong> 是一个客户与服务器之间的不中断的请求响应序列。可简单理解为：用户开一个浏览器，访问某一个 web 站点，在这个站点点击多个超链接，访问服务器多个 web 资源，然后关闭浏览器，整个过程称之为一个会话。</p>
+
+<p><strong>HTTP 会话</strong> 由于 HTTP 协议的无状态特征，为了识别不同的请求是否来自同一客户，引用 HTTP 会话机制，即多次 HTTP 连接间维护用户与同一用户发出的不同请求之间关联的情况称为维护一个会话(session)。</p>
 
 <ul>
   <li><strong>cookie</strong> - 通过在客户端记录信息确定用户身份</li>
