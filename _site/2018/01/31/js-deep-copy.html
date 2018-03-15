@@ -293,6 +293,7 @@ Reference value stored in the variable location is a pointer to a location in me
 <span class="c1">// $.extend(true, {}, obj)为深拷贝</span>
 <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Tate'</span><span class="p">,</span> <span class="p">{</span><span class="na">age</span><span class="p">:</span> <span class="mi">18</span><span class="p">}];</span>
 <span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
+<span class="c1">// var p2 = [...p1]; ES6 使用扩展运算符...</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span> <span class="o">===</span> <span class="nx">p2</span><span class="p">);</span> <span class="c1">// false</span>
 <span class="nx">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>

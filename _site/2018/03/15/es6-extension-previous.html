@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='尾调用优化 - Tate & Snow' name='title' />
-    <meta content='尾调用优化 - Tate & Snow' name='og:title' />
-    <title>尾调用优化 - Tate & Snow</title>
+    <meta content='对象扩展(上) - Tate & Snow' name='title' />
+    <meta content='对象扩展(上) - Tate & Snow' name='og:title' />
+    <title>对象扩展(上) - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>尾调用优化 - Tate & Snow</title>
+<title>对象扩展(上) - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="尾调用优化 - Tate & Snow">
-<meta name="twitter:keywords" content="尾调用优化 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="对象扩展(上) - Tate & Snow">
+<meta name="twitter:keywords" content="对象扩展(上) - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="尾调用优化 - Tate & Snow">
-<meta name="og:keywords" content="尾调用优化 - Tate & Snow|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..."
+<meta property="og:title" content="对象扩展(上) - Tate & Snow">
+<meta name="og:keywords" content="对象扩展(上) - Tate & Snow|对象扩展(上)字符串扩展ES6 中字符串主要扩展:            扩展      描述                  Unicode 表示法      \u{20BB7}codePointAt()、String.fromC..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
+<meta name="keywords" content="对象扩展(上)字符串扩展ES6 中字符串主要扩展:            扩展      描述                  Unicode 表示法      \u{20BB7}codePointAt()、String.fromC..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/05/js-tail-call-optimization.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/05/js-tail-call-optimization.html|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
+<meta content='http://localhost:4000/2018/03/15/es6-extension-previous.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/15/es6-extension-previous.html|对象扩展(上)字符串扩展ES6 中字符串主要扩展:            扩展      描述                  Unicode 表示法      \u{20BB7}codePointAt()、String.fromC..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -133,20 +133,14 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    尾调用优化</h1>
+                    对象扩展(上)</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-05 23:26:00" itemprop="datePublished">发布时间：2018-02-05 23:26:00</time>
+                    <time datetime="2018-03-15 16:00:00" itemprop="datePublished">发布时间：2018-03-15 16:00:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
                 <div class="post-tags">
                        
-                    <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                        JavaScript
-                        <span>(13)</span>
-                        
-                    </a>
-                    
                     <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
                         ES6
                         <span>(3)</span>
@@ -160,161 +154,439 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                尾调用优化</h1>
+                对象扩展(上)</h1>
             <div class="post-data">
-                <time datetime="2018-02-05 23:26:00" itemprop="datePublished">2018-02-05 23:26:00</time>
+                <time datetime="2018-03-15 16:00:00" itemprop="datePublished">2018-03-15 16:00:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
             <p class="post-tags">
                    
-                <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                    JavaScript
-                    <span>(13)</span>
-                    </a>
-                
                 <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
                     ES6
                     <span>(3)</span>
                     </a>
                    
             </p>
-            <h1 id="尾调用优化">尾调用优化</h1>
+            <h1 id="对象扩展上">对象扩展(上)</h1>
 
-<h2 id="什么是尾调用和尾递归">什么是尾调用和尾递归</h2>
+<h2 id="字符串扩展">字符串扩展</h2>
 
-<p><strong>尾调用(Tail Call)</strong> 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 <strong>尾递归</strong>。</p>
+<p>ES6 中字符串主要扩展:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
-<span class="p">}</span>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">扩展</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Unicode 表示法</td>
+      <td style="text-align: left"><code>\u{20BB7}</code>codePointAt()、String.fromCodePoint()</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">新增方法</td>
+      <td style="text-align: left">includes()、startsWith()、padStart()、repeat() 等</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">字符串模板</td>
+      <td style="text-align: left">`这是值 ${value}`</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">标签模板</td>
+      <td style="text-align: left">fn`这是参数 ${param}`</td>
+    </tr>
+  </tbody>
+</table>
 
-<span class="c1">// 以下均不属于尾调用</span>
-<span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
+<h3 id="unicode-表示法">Unicode 表示法</h3>
 
-<span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
-  <span class="k">return</span> <span class="nx">b</span><span class="p">;</span>
-<span class="p">}</span>
+<p>具体可以参考 <a href="http://localhost:4000/2018/03/08/http-unicode.html">Unicode 一节</a>。</p>
+
+<h3 id="includes">includes()</h3>
+
+<p>ES6 之前只有 indexOf 方法，可以用来确定一个字符串是否包含在另一个字符串中。ES6 又提供了三种新方法，这三个方法都支持第二个参数，表示开始搜索的位置:</p>
+
+<ul>
+  <li><strong>includes()</strong> - 返回布尔值，表示是否找到了参数字符串</li>
+  <li><strong>startsWith()</strong> - 返回布尔值，表示参数字符串是否在原字符串的头部</li>
+  <li><strong>endsWith()</strong> - 返回布尔值，表示参数字符串是否在原字符串的尾部</li>
+</ul>
+
+<pre><code class="language-JS">const name = 'Tate';
+
+// ES5
+name.indexOf('a') !== -1; // true
+
+// ES6
+name.includes('a'); // true
+name.startsWith('T'); // true
+name.endsWith('e'); // true
+
+name.includes('a', 2); // false
 </code></pre>
-</div>
 
-<h2 id="尾调用优化-1">尾调用优化</h2>
+<h3 id="padstart">padStart()</h3>
 
-<p><a href="http://localhost:4000/2018/02/05/js-event-loop.html">上一篇事件循环</a>有介绍栈帧和调用栈。使用尾调用优化后由于不会用到外层函数栈帧里的调用位置、内部变量等信息，所以不会在调用栈上增加新的栈帧，而是更新它，如同迭代一般。既节省了内存，又避免了爆栈的可能性。</p>
+<p>字符串补全长度的功能，即如果某个字符串不够指定长度，会在头部或尾部补全，否则返回原字符串。一共接收两个参数，第一个参数用来指定字符串的最小长度，第二个参数是用来补全的字符串:</p>
 
-<blockquote>
-  <p>尾调用优化是在支持 ES6 的解释器里添加的，只在ES6严格模式下生效。</p>
-</blockquote>
+<ul>
+  <li><strong>padStart()</strong> - 头部补全</li>
+  <li><strong>padEnd()</strong> - 尾部补全</li>
+</ul>
 
-<h2 id="尾递归优化">尾递归优化</h2>
+<pre><code class="language-JS">'a'.padStart(6, 'tate'); // 'tateta'
+'a'.padEnd(3, '10'); // 'a10'
 
-<p>由于递归有过多的函数调用，会产生比较多的栈帧，所以十分消耗内存空间，很容易发生 <strong><a href="https://zh.wikipedia.org/wiki/%E5%A0%86%E7%96%8A%E6%BA%A2%E4%BD%8D">堆栈溢出(stack overflow)</a></strong>。但对于尾递归来说，则只存在一个栈帧。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Bad</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 基准条件，停止递归调用</span>
-  <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
+// 原字符串的长度不小于指定的最小长度，则返回原字符串
+'ab'.padStart(1, 'tate'); // 'ab'
 </code></pre>
-</div>
 
-<p>上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 <a href="https://zh.wikipedia.org/wiki/%E5%A4%A7O%E7%AC%A6%E5%8F%B7">O(n)</a>。如果改写成尾递归，只保留一个调用记录，复杂度降至 O(1) 。</p>
+<h3 id="repeat">repeat()</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Good</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">m</span><span class="p">);</span>
-<span class="p">}</span>
+<p><strong>repeat</strong> 方法返回一个新字符串，表示将原字符串重复 n 次。</p>
 
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// 120</span>
+<pre><code class="language-JS">'a'.repeat(3); // 'aaa'
+
+// 参数如果是小数，会被取整
+'a'.repeat(2.9); // 'aa'
+
+// 如果repeat的参数是负数或者Infinity，会报错
+// 如果参数是 0 到- 1 之间的小数，则等同于 0，因为会先进行取整
+'a'.repeat(-1); // RangeError
+'a'.repeat(-0.9); // ''
+
+// 如果repeat的参数是字符串，则会先转换成数字
+'a'.repeat(NaN); // ''
+'a'.repeat('3'); // 'aaa'
 </code></pre>
-</div>
 
-<p>此处实行函数式编程里的 <strong><a href="https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96">柯里化(currying)</a></strong>，把接受多个参数的函数变换成接受一个单一参数的函数。</p>
+<h3 id="模板字符串-">模板字符串 ``</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">}</span>
+<p><strong>模板字符串(template string)</strong> 是增强版的字符串，用反引号 <strong>(`)</strong> 标识。它可以当作普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量。</p>
 
-<span class="kd">function</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">total</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">);</span>
-<span class="p">}</span>
+<pre><code class="language-JS">// ES5
+$('#body').append('Welcome to &lt;b&gt;'
+    + person.house
+    + '&lt;/b&gt; '
+    + '.We are '
+    + '&lt;em&gt;'
+    + person.name
+    + '&lt;/em&gt; and glad to see you all here!'
+);
 
-<span class="kr">const</span> <span class="nx">factorial</span> <span class="o">=</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">tailFactorial</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
+// ES6
+$('#body').append(
+    `Welcome to &lt;b&gt;${person.house}&lt;/b&gt;.We are &lt;em&gt;${person.name}&lt;/em&gt; and glad to see you all here!`
+);
 </code></pre>
-</div>
 
-<p>或者直接使用 ES6 函数默认值：</p>
+<h3 id="标签模板">标签模板</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Best</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">);</span>
-<span class="p">}</span>
+<p><strong>标签模板(tagged template)</strong> 中”标签”指的就是函数，紧跟在后面的模板字符串就是它的参数。</p>
 
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
+<pre><code class="language-JS">function tag(stringArr, value1, value2){
+  // ...
+}
 </code></pre>
-</div>
 
-<h2 id="es5替代方案">ES5替代方案</h2>
+<ul>
+  <li>tag 函数的第一个参数是一个数组，该数组的成员是模板字符串中那些没有变量替换的部分</li>
+  <li>tag 函数的其他参数，都是模板字符串各个变量被替换后的值，以此类推</li>
+</ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 堆栈溢出示例</span>
-<span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<pre><code class="language-JS">const t = 'tate', s = 'snow';
 
-<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span> <span class="c1">// Uncaught RangeError: Maximum call stack size exceeded</span>
+tag`Hi ${t} and ${s}`;
+// stringArr - ["Hi ", " and ", "", raw: Array(3)]
+// value1 - tate
+// value2 - snow
+
+// 相当于调用
+tag(['Hi ', ' and ', ''], 'tate', 'snow');
+
+// 国际化的使用案例
+i18n`${boy} is getting along well with ${girl} and they are managing to get married!`
 </code></pre>
-</div>
 
-<p>在当前的JS版本（ES5）中可以使用以下方式来优化递归。我们可以定义一个 <strong>trampoline(蹦床)</strong> 函数来解决参数过大造成的“堆栈溢出”问题。其原理是将递归执行转为循环执行。</p>
+<h2 id="数值扩展">数值扩展</h2>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">//放入trampoline中的函数将被转换为函数的输出结果</span>
-<span class="kd">function</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">(</span><span class="nx">f</span> <span class="o">&amp;&amp;</span> <span class="nx">f</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">f</span> <span class="o">=</span> <span class="nx">f</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">f</span><span class="p">;</span>
-<span class="p">}</span>
+<p>ES6 中数值主要扩展:</p>
 
-<span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="nx">recur</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// recur函数的每次执行，都会返回自身的另一个版本</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">));</span>
-<span class="p">}</span>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">扩展</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">新增方法</td>
+      <td style="text-align: left">Number.isFinite()、Number.isNaN()、Number.isInteger()</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">指数运算符</td>
+      <td style="text-align: left"><code>**</code></td>
+    </tr>
+  </tbody>
+</table>
 
-<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">);</span> <span class="c1">// =&gt; 100001</span>
+<h3 id="numberisnan">Number.isNaN()</h3>
+
+<p>ES6 中新增了数据类型的检测:</p>
+
+<ul>
+  <li><strong>Number.isFinite()</strong> - 检测一个数值是否为有限的(finite)，即不是 Infinity</li>
+  <li><strong>Number.isNaN()</strong> - 检测一个值是否为 NaN</li>
+  <li><strong>Number.isInteger()</strong> - 检测一个数值是否为整数</li>
+</ul>
+
+<p>前两个在 ES5 中都有对应的 isFinite() 和 isNaN()，但他们在判断的时候都会先转换成数字类型，具体参照<a href="http://localhost:4000/2018/02/04/js-data-detection.html">类型检测一节</a>。</p>
+
+<pre><code class="language-JS">isNaN([1, 2]); // true
+Number.isNaN([1, 2]); // false
+Number.isNaN(NaN); // true
+
+isFinite('10'); // true
+Number.isFinite('10'); // false
+Number.isFinite(Infinity); // false
 </code></pre>
-</div>
 
-<blockquote>
-  <p>以上替代方案实际改变了递归函数本身，是属于“入侵式”的。关于如何实现“非入侵式”，可以参考更多以下链接。</p>
-</blockquote>
+<h3 id="numberparseint">Number.parseInt()</h3>
+
+<p>ES6 将全局方法 parseInt() 和 parseFloat()，移植到 Number 对象上面，行为完全保持不变。</p>
+
+<pre><code class="language-JS">parseInt('2.333'); // 2
+parseInt('110', 2); // 6
+
+Number.parseInt('2.333'); // 2
+Number.parseInt === parseInt; // true
+</code></pre>
+
+<h3 id="指数运算符-">指数运算符 **</h3>
+
+<p><strong>指数运算符(**)</strong> 可以与等号结合，形成一个新的赋值运算符(**=)，指数运算符类似于 Math 对象的 pow 方法。</p>
+
+<pre><code class="language-JS">2 ** 2; // 4
+Math.pow(2, 2); // 4
+
+let a = 2;
+a **= 2; // a = 4
+</code></pre>
+
+<h2 id="数组扩展">数组扩展</h2>
+
+<p>ES6 中数组主要扩展:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">扩展</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">扩展运算符</td>
+      <td style="text-align: left"><code>...numbers</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">新增方法</td>
+      <td style="text-align: left">Array.from()、Array.of()、find()、fill()、includes() 等</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">空位优化</td>
+      <td style="text-align: left">明确将空位转为 undefined</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="扩展运算符-">扩展运算符 …</h3>
+
+<p><strong>扩展运算符(spread)</strong> 是三个点(…)，即 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列，可以代替 apply 方法。任何 Iterator 接口的对象，都可以用扩展运算符转为真正的数组，其调用的实际上是<strong>遍历器接口(Symbol.iterator)</strong>。</p>
+
+<pre><code class="language-JS">console.log(...[1, 2, 3]); // 1, 2, 3
+[...'hello']; // [ "h", "e", "l", "l", "o" ]
+
+// ES5
+Math.max.apply(null, [1, 3, 2])
+
+// ES6
+Math.max(...[1, 3, 2])
+
+// 等同于
+Math.max(1, 3, 2); // 3
+</code></pre>
+
+<p>再举个栗子 🌰:</p>
+
+<pre><code class="language-JS">// ES5
+var arr1 = [1, 2, 3];
+var arr2 = [4, 5, 6];
+Array.prototype.push.apply(arr1, arr2);
+
+// ES6
+let arr1 = [1, 2, 3];
+let arr2 = [4, 5, 6];
+arr1.push(...arr2);
+
+// 合并数组
+// ES5
+[1, 2].concat(more)
+
+// ES6
+[1, 2, ...more]
+</code></pre>
+
+<p>扩展运算符进行复制数组时也是浅拷贝，类似于 concat()，可参考 <a href="http://localhost:4000/2018/01/31/js-deep-copy.html#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%B5%85%E6%8B%B7%E8%B4%9D">深浅拷贝这一节</a>。</p>
+
+<h3 id="arrayfrom">Array.from()</h3>
+
+<p><strong>Array.from</strong> 方法用于将两类对象转为真正的数组:</p>
+
+<ul>
+  <li>类似数组的对象(array-like object)</li>
+  <li>可遍历(iterable)的对象，包括 ES6 新增的数据结构 Set 和 Map</li>
+</ul>
+
+<p>类似数组的对象转换示例:</p>
+
+<pre><code class="language-JS">let arrayLike = {
+    '0': 'a',
+    '1': 'b',
+    '2': 'c',
+    length: 3
+};
+
+// ES5
+var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
+
+// ES6
+let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+</code></pre>
+
+<p>可遍历对象转换示例:</p>
+
+<pre><code class="language-JS">Array.from('hello'); // ['h', 'e', 'l', 'l', 'o']
+
+let tempSet = new Set(['a', 'b']);
+Array.from(tempSet); // ['a', 'b']
+</code></pre>
+
+<p>Array.from 还可以接受第二个参数，作用类似于数组的 map 方法，用来对每个元素进行处理，将处理后的值放入返回的数组。</p>
+
+<pre><code class="language-JS">Array.from([1, , 2, 3], (n) =&gt; n ** 2 || 0); // [1, 0, 4, 9]
+
+Array.from({ length: 2 }, () =&gt; 'tate'); // ['tate', 'tate']
+</code></pre>
+
+<h3 id="arrayof">Array.of()</h3>
+
+<p><strong>Array.of</strong> 方法用于将一组值，转换为数组。</p>
+
+<pre><code class="language-JS">Array.of(1, 2, 3); // [1, 2, 3]
+
+// ES5 的实现
+function ArrayOf(){
+  return [].slice.call(arguments);
+}
+</code></pre>
+
+<h3 id="find">find()</h3>
+
+<p><strong>find</strong> 方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为 true 的成员，然后返回该成员，否则返回 undefined。<strong>findIndex</strong> 方法则返回第一个符合条件的数组成员的索引值。</p>
+
+<pre><code class="language-JS">// 可以接收三个参数，依次为当前的值、索引值和原数组
+[1, 2, 3, 4].find(function(value, index, arr) {
+  return value &gt; 2;
+}) // 3
+</code></pre>
+
+<h3 id="fill">fill()</h3>
+
+<p><strong>fill</strong> 方法使用给定值，填充一个数组。可以接收第二个和第三个参数，用于指定填充的起始位置和结束位置。</p>
+
+<pre><code class="language-JS">new Array(3).fill(1); // [1, 1, 1]
+
+['a', 'b', 'c'].fill('d', 1, 2); // ['a', 'd', 'c']
+</code></pre>
+
+<h3 id="entries">entries()</h3>
+
+<p>以下三个方法均用于遍历数组。它们都返回一个遍历器对象，可以用 for…of 循环进行遍历或者调用遍历器对象的 next 方法，进行遍历:</p>
+
+<ul>
+  <li><strong>keys()</strong> - 对键名的遍历</li>
+  <li><strong>values()</strong> - 对键值的遍历</li>
+  <li><strong>entries()</strong> - 对键值对的遍历</li>
+</ul>
+
+<pre><code class="language-JS">for (let [index, elem] of ['a', 'b'].entries()) {
+  console.log(index, elem); // 0, 'a'  1, 'b'
+}
+
+let entries = ['a', 'b'].entries();
+entries.next().value; // [0, 'a']
+entries.next().value; // [1, 'b']
+entries.next().value; // undefined
+</code></pre>
+
+<h3 id="includes-1">includes()</h3>
+
+<p><strong>includes</strong> 方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的 includes 方法类似。</p>
+
+<pre><code class="language-JS">[1, 2, 3].includes(2); // true
+[1, 2, 3].includes(2, 2); // false
+
+// ES5
+// indexOf 内部使用严格相等运算符（===）进行判断，因此 NaN 判断有误 NaN !== NaN
+[NaN].indexOf(NaN); // -1
+
+// ES6
+[NaN].includes(NaN); // true
+</code></pre>
+
+<h3 id="数组空位">数组空位</h3>
+
+<p>空位不是 undefined，一个位置的值等于 undefined，依然是有值的。空位是没有任何值。</p>
+
+<pre><code class="language-JS">Array(3) // [, , ,]
+
+0 in [undefined, undefined] // true
+0 in [, ,] // false
+</code></pre>
+
+<p>ES5 对空位的处理，大多数情况下会忽略。</p>
+
+<ul>
+  <li>forEach()、filter()、reduce()、every() 和 some() 都会跳过空位。</li>
+  <li>map() 会跳过空位，但会保留这个值</li>
+  <li>join() 和 toString() 会将空位视为 undefined，而 undefined 和 null 会被处理成空字符串。</li>
+</ul>
+
+<pre><code class="language-JS">// forEach 方法
+[, 'a'].forEach((x, index) =&gt; console.log(index)); // 1
+
+// map 方法
+[, 'a'].map(x =&gt; 1); // [, 1]
+
+// join 方法
+[, 'a', undefined, null].join('-'); // "-a--"
+</code></pre>
+
+<p>ES6 则是明确将空位转为 undefined，for of 也可以遍历空位:</p>
+
+<pre><code class="language-JS">Array.from([, 'a']); // [undefined, 'a']
+[...[, 'a']]; // [undefined, 'a']
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://es6.ruanyifeng.com/#docs/function#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96">函数的扩展</a> By 阮一峰</li>
-  <li><a href="https://segmentfault.com/a/1190000004018047">JS 的递归与 TCO 尾调用优化</a> By 囧囧</li>
+  <li><a href="http://es6.ruanyifeng.com/#docs/string">ECMAScript 6 入门</a> By 阮一峰</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -325,9 +597,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/05/js-tail-call-optimization.html';
-        this.page.identifier = '/2018/02/05/js-tail-call-optimization';
-        this.page.title = '尾调用优化';
+        this.page.url = 'https://tate-young.github.io/2018/03/15/es6-extension-previous.html';
+        this.page.identifier = '/2018/03/15/es6-extension-previous';
+        this.page.title = '对象扩展(上)';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -345,7 +617,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-05 23:26:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-15 16:00:00</p> -->
         </div>
     </article>
 

@@ -105,6 +105,7 @@ console.log(p1[1].age); // 26
 // $.extend(true, {}, obj)为深拷贝
 var p1 = ['Tate', {age: 18}];
 var p2 = p1.slice();
+// var p2 = [...p1]; ES6 使用扩展运算符...
 
 console.log(p1 === p2); // false
 p2[0] = 'Snow';

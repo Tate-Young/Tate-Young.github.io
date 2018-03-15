@@ -3,8 +3,16 @@
 	"data" : [
 	 
 	{
+		"title" : "对象扩展(上) - ",
+		"url" : "/2018/03/15/es6-extension-previous.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "console & FIGlet - ",
-		"url" : "/2018/03/13/js.console.html"
+		"url" : "/2018/03/13/js-console.html"
 	}
 	
 	,
