@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Class & Decorator - ",
+		"url" : "/2018/03/16/es6-class.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "对象扩展(下) - ",
 		"url" : "/2018/03/16/es6-extension-next.html"
 	}

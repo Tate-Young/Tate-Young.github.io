@@ -227,7 +227,9 @@ Array.prototype.push.apply(arr1, arr2);
 let arr1 = [1, 2, 3];
 let arr2 = [4, 5, 6];
 arr1.push(...arr2);
+```
 
+```JS
 // 合并数组
 // ES5
 [1, 2].concat(more)
@@ -249,10 +251,10 @@ arr1.push(...arr2);
 
 ```JS
 let arrayLike = {
-    '0': 'a',
-    '1': 'b',
-    '2': 'c',
-    length: 3
+  '0': 'a',
+  '1': 'b',
+  '2': 'c',
+  length: 3
 };
 
 // ES5

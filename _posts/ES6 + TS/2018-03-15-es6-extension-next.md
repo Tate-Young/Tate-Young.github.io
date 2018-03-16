@@ -36,7 +36,9 @@ function sayName(x, name) {
 }
 
 sayName('hi', null); // hi snow
+```
 
+```JS
 // ES6
 function sayName(x, name = 'snow') {
     console.log(x, name);
@@ -138,6 +140,7 @@ ES6 中对象主要扩展:
 |:--------------|:---------|
 | 属性格式 | 更简洁 |
 | 新增方法 | Object.is()、Object.assign()、Object.keys() |
+| super 关键字 | 指向当前对象的原型对象 |
 
 ### 属性格式
 
@@ -151,7 +154,9 @@ var person = {
         return 'snow';
     }
 };
+```
 
+```JS
 // ES6
 let person = {
     name, // 等价于 name: name
@@ -203,7 +208,9 @@ const source2 = { c: 3 };
 // 只要是同名属性就覆盖
 Object.assign(target, source1, source2);
 target; //  {a:1, b:2, c:3}
+```
 
+```JS
 // 浅拷贝
 let obj1 = { a: 1, b: 2 };
 let obj2 = { ...obj1 };
