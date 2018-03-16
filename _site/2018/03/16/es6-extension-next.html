@@ -1,0 +1,892 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='对象扩展(下) - Tate & Snow' name='title' />
+    <meta content='对象扩展(下) - Tate & Snow' name='og:title' />
+    <title>对象扩展(下) - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>对象扩展(下) - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对象扩展(下) - Tate & Snow">
+<meta name="twitter:keywords" content="对象扩展(下) - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="对象扩展(下) - Tate & Snow">
+<meta name="og:keywords" content="对象扩展(下) - Tate & Snow|对象扩展(下)函数扩展ES6 中函数主要扩展:            扩展      描述                  默认值      可以使用参数默认值              rest 参数      ...args  ..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="对象扩展(下)函数扩展ES6 中函数主要扩展:            扩展      描述                  默认值      可以使用参数默认值              rest 参数      ...args  ..." property='og:description'
+/>
+<meta name="description" content="nothing is more practicla than a good theory" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2018/03/16/es6-extension-next.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/16/es6-extension-next.html|对象扩展(下)函数扩展ES6 中函数主要扩展:            扩展      描述                  默认值      可以使用参数默认值              rest 参数      ...args  ..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="http://localhost:4000/style/images/tate.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    对象扩展(下)</h1>
+                <div class="post-data">
+                    <time datetime="2018-03-16 11:43:00" itemprop="datePublished">发布时间：2018-03-16 11:43:00</time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
+                        ES6
+                        <span>(4)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                对象扩展(下)</h1>
+            <div class="post-data">
+                <time datetime="2018-03-16 11:43:00" itemprop="datePublished">2018-03-16 11:43:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
+                    ES6
+                    <span>(4)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="对象扩展下">对象扩展(下)</h1>
+
+<h2 id="函数扩展">函数扩展</h2>
+
+<p>ES6 中函数主要扩展:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">扩展</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">默认值</td>
+      <td style="text-align: left">可以使用参数默认值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">rest 参数</td>
+      <td style="text-align: left"><code>...args</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">函数名</td>
+      <td style="text-align: left">name</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">箭头函数</td>
+      <td style="text-align: left">=&gt;</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="默认值">默认值</h3>
+
+<p>ES6 可以为函数的参数指定默认值。</p>
+
+<pre><code class="language-JS">// ES5
+function sayName(x, name) {
+    name = name || 'snow';
+    console.log(x, name);
+}
+
+sayName('hi', null); // hi snow
+
+// ES6
+function sayName(x, name = 'snow') {
+    console.log(x, name);
+}
+
+sayName('hi'); // hi snow
+sayName('hi', undefined); // hi snow
+sayName('hi', null); // hi null，null 无法触发默认值
+</code></pre>
+
+<p>一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域，等到初始化结束，这个作用域就会消失。</p>
+
+<pre><code class="language-JS">let x = 1;
+
+// 函数调用时，函数体内部的局部变量 x 影响不到默认值变量x
+function f(y = x) {
+    let x = 2;
+    console.log(y);
+}
+
+f() // 1
+</code></pre>
+
+<h3 id="length">length</h3>
+
+<p><strong>length</strong> 属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了。同理，rest 参数也不会计入 length 属性。</p>
+
+<pre><code class="language-JS">(function (a, b, c = 2){}).length // 2
+(function (...args){}).length // 0
+
+// 若设置了默认值的参数不是尾参数，那么 length 属性也不再计入后面的参数了
+(function (a = 0, b, c) {}).length // 0
+(function (a, b = 1, c) {}).length // 1
+</code></pre>
+
+<h3 id="rest-参数">rest 参数</h3>
+
+<p><strong>rest 参数</strong>(形式为…变量名)，用于获取函数的多余参数，这样就不需要使用 arguments 对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。</p>
+
+<pre><code class="language-JS">// arguments 变量
+function sortNumbers() {
+    return Array.prototype.slice.call(arguments).sort();
+}
+
+// rest 参数
+const sortNumbers = (...numbers) =&gt; numbers.sort();
+</code></pre>
+
+<p>rest 参数只能在最后，否则报错:</p>
+
+<pre><code class="language-JS">function f(a, ...b, c) { } // SyntaxError: Rest parameter must be last formal parameter
+</code></pre>
+
+<h3 id="name">name</h3>
+
+<p>ES5 的 name 属性，会返回空字符串，而 ES6 的 name 属性会返回实际的函数名。</p>
+
+<pre><code class="language-JS">(function foo(){}).name; // 'foo'
+(new Function).name; // 'anonymous'
+
+// bind 返回的函数，name 属性值会加上 bound 前缀
+(function foo(){}).bind({}).name // "bound foo"
+</code></pre>
+
+<h3 id="箭头函数-">箭头函数 =&gt;</h3>
+
+<p>ES6 允许使用”箭头”<strong>(=&gt;)</strong>定义函数。箭头函数里面实际上没有自己的 this 属性，而是引用外层的 this。 其指向定义时所在的对象，<a href="http://localhost:4000/2018/01/30/js-this.html">详见 this</a>。</p>
+
+<pre><code class="language-JS">// ES5
+var foo = function(bar) {
+    return bar;
+};
+
+// ES6
+let foo = bar =&gt; bar;
+
+[1, 2, 3].map(x =&gt; x ** 2); // [1, 4, 9]
+[1, 2, 3].map(x =&gt; {return x ** 2}); // 与上面等价，一般用于多条执行语句
+</code></pre>
+
+<p>除了 this，以下三个变量在箭头函数之中也是不存在的，指向外层函数的对应变量：arguments、super、new.target。</p>
+
+<pre><code class="language-JS">var foo = bar =&gt; {console.log(arguments)}
+foo('tate'); // ReferenceError: arguments is not defined
+</code></pre>
+
+<h2 id="对象扩展">对象扩展</h2>
+
+<p>ES6 中对象主要扩展:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">扩展</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">属性格式</td>
+      <td style="text-align: left">更简洁</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">新增方法</td>
+      <td style="text-align: left">Object.is()、Object.assign()、Object.keys()</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="属性格式">属性格式</h3>
+
+<pre><code class="language-JS">var name = 'tate';
+
+// ES5
+var person = {
+    name: name,
+    method: function() {
+        return 'snow';
+    }
+};
+
+// ES6
+let person = {
+    name, // 等价于 name: name
+    method() {
+        return 'snow';
+    }
+};
+</code></pre>
+
+<p>ES6 允许字面量定义对象时，用表达式作为对象的属性名。属性名表达式如果是一个对象，默认情况下会自动将对象转为字符串 [object Object]:</p>
+
+<pre><code class="language-JS">let name = 'tate';
+let obj = {'age': 18};
+
+let person = {
+  [name]: 'snow',
+  ['a' + 'bc']: 1,
+  [obj]: 26
+};
+
+person.tate; // 'snow'
+person.abc; // 1
+
+Reflect.ownKeys(person); // ["tate", "abc", "[object Object]"]
+</code></pre>
+
+<h3 id="objectis">Object.is()</h3>
+
+<p>ES6 提出”Same-value equality”(同值相等)算法，用来比较两个值是否严格相等，与严格比较运算符 (===) 的行为基本一致。</p>
+
+<pre><code class="language-JS">+0 === -0 //true
+NaN === NaN // false
+
+Object.is(+0, -0) // false
+Object.is(NaN, NaN) // true
+</code></pre>
+
+<h3 id="objectassign">Object.assign()</h3>
+
+<p><strong>Object.assign</strong> 方法用于对象的合并，将源对象(source)的所有 <em>可枚举</em> 属性，复制到目标对象(target)。关于其浅拷贝可以参考 <a href="http://localhost:4000/2018/01/31/js-deep-copy.html#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%B5%85%E6%8B%B7%E8%B4%9D">深浅拷贝一节</a>。</p>
+
+<pre><code class="language-JS">const target = { a: 1, b: 1, c: {d: 4} };
+const source1 = { b: 2, c: 2 };
+const source2 = { c: 3 };
+
+// 只要是同名属性就覆盖
+Object.assign(target, source1, source2);
+target; //  {a:1, b:2, c:3}
+
+// 浅拷贝
+let obj1 = { a: 1, b: 2 };
+let obj2 = { ...obj1 };
+obj2 // { a: 1, b: 2 }
+
+// 等价于
+Object.assign({}, obj1);
+</code></pre>
+
+<p>Object.assign 拷贝的属性是有限制的，只拷贝源对象的自身属性(不拷贝继承属性)，也不拷贝不可枚举的属性(enumerable: false):</p>
+
+<pre><code class="language-JS">Object.assign({name: 'tate'},
+  Object.defineProperty({}, 'spouse', {
+    enumerable: false,
+    value: 'snow'
+  })
+)
+// {name: 'tate'}
+</code></pre>
+
+<h3 id="可枚举性">可枚举性</h3>
+
+<p>对象的每个属性都有一个<strong>描述对象(Descriptor)</strong>，用来控制该属性的行为。<strong>Object.getOwnPropertyDescriptor</strong> 方法可以获取该属性的描述对象。</p>
+
+<pre><code class="language-JS">Object.getOwnPropertyDescriptor(target, 'a');
+// configurable:true - 当且仅当指定对象的属性描述可以被改变或者属性可被删除时，为true
+// enumerable:true - 当且仅当指定对象的属性可以被枚举出时，为 true
+// value:1 - 该属性的值
+// writable:true - 当且仅当属性的值可以被改变时为true
+
+Object.getOwnPropertyDescriptors(target); // 获取一个对象的所有自身属性的描述符
+</code></pre>
+
+<p>目前，有四个操作会忽略 enumerable:false 的属性。</p>
+
+<ul>
+  <li>for…in循环 - 只遍历对象自身的和继承的可枚举的属性。</li>
+  <li>Object.keys() - 返回对象自身的所有可枚举的属性的键名。</li>
+  <li>JSON.stringify() - 只串行化对象自身的可枚举的属性。</li>
+  <li>Object.assign() - 忽略不可枚举的属性，只拷贝对象自身的可枚举的属性。</li>
+</ul>
+
+<p>另外，ES6 规定，所有 Class 的原型的方法都是不可枚举的。</p>
+
+<pre><code class="language-JS">Object.getOwnPropertyDescriptor(class {foo() {}}.prototype, 'foo').enumerable; // false
+
+Object.getOwnPropertyDescriptor([], 'length').enumerable； // false 数组的 length 属性不可枚举
+</code></pre>
+
+<h3 id="遍历">遍历</h3>
+
+<p>目前一共有 5 种方法可以遍历对象的属性。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">方法</th>
+      <th style="text-align: left">属性</th>
+      <th style="text-align: left">可枚举性</th>
+      <th style="text-align: left">Symbol</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>for…in</strong></td>
+      <td style="text-align: left">自身和继承</td>
+      <td style="text-align: left">可枚举</td>
+      <td style="text-align: left">不含 Symbol</td>
+      <td style="text-align: left">循环遍历对象自身的和继承的可枚举属性(不含 Symbol 属性)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Object.keys(obj)</strong></td>
+      <td style="text-align: left">自身</td>
+      <td style="text-align: left">可枚举</td>
+      <td style="text-align: left">不含 Symbol</td>
+      <td style="text-align: left">返回一个数组，包括对象自身的(不含继承的)所有可枚举属性(不含 Symbol 属性)的键名</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Object.getOwnPropertyNames(obj)</strong></td>
+      <td style="text-align: left">自身</td>
+      <td style="text-align: left">包括可枚举与不可枚举</td>
+      <td style="text-align: left">不含 Symbol</td>
+      <td style="text-align: left">返回一个数组，包含对象自身的所有属性(不含 Symbol 属性，但是包括不可枚举属性)的键名</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Object.getOwnPropertySymbols(obj)</strong></td>
+      <td style="text-align: left">自身</td>
+      <td style="text-align: left">包括可枚举与不可枚举</td>
+      <td style="text-align: left">只包含 Symbol</td>
+      <td style="text-align: left">返回一个数组，包含对象自身的所有 Symbol 属性的键名</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Reflect.ownKeys(obj)</strong></td>
+      <td style="text-align: left">自身</td>
+      <td style="text-align: left">包括可枚举与不可枚举</td>
+      <td style="text-align: left">包含 Symbol</td>
+      <td style="text-align: left">返回一个数组，包含对象自身的所有键名，不管键名是 Symbol 或字符串，也不管是否可枚举</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>以上的 5 种方法遍历对象的键名，都遵守同样的属性遍历的次序规则。</p>
+
+<ol>
+  <li>首先遍历所有数值键，按照数值升序排列;</li>
+  <li>其次遍历所有字符串键，按照加入时间升序排列;</li>
+  <li>最后遍历所有 Symbol 键，按照加入时间升序排列。</li>
+</ol>
+
+<pre><code class="language-JS">Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 }); // ["2", "10", "b", "a", Symbol()]
+</code></pre>
+
+<h3 id="objectkeys">Object.keys()</h3>
+
+<p>以下三个方法均用于遍历对象，都返回一个数组，成员是针对参数对象自身的(不含继承的)所有可遍历（enumerable）属性。可以用 for…of 循环进行遍历:</p>
+
+<ul>
+  <li><strong>Object.keys()</strong> - 对键名的遍历</li>
+  <li><strong>Object.values()</strong> - 对键值的遍历</li>
+  <li><strong>Object.entries()</strong> - 对键值对的遍历</li>
+</ul>
+
+<pre><code class="language-JS">let {keys, values, entries} = Object;
+
+for (let key of keys(obj)) { }
+</code></pre>
+
+<h3 id="super-关键字">super 关键字</h3>
+
+<p>this 关键字总是指向函数所在的当前对象，ES6 又新增了另一个类似的关键字 <strong>super</strong>，指向当前对象的原型对象。只能用在对象的方法之中。</p>
+
+<pre><code class="language-JS">const person = {
+  name: 'tate'
+};
+
+const anotherPerson = {
+  name: 'snow',
+  sayName() {
+    return super.name;
+  }
+};
+
+Object.setPrototypeOf(anotherPerson, person); // anotherPerson.__proto__ = person
+anotherPerson.sayName(); // 'tate'
+</code></pre>
+
+<h2 id="symbol">Symbol</h2>
+
+<h3 id="symbol-1">Symbol()</h3>
+
+<p><strong>Symbol</strong> 是 ES6 引入的一种新的原始数据类型，表示独一无二的值。</p>
+
+<pre><code class="language-JS">let a = Symbol();
+let b = Symbol();
+// Symbol函数的参数只是表示对当前 Symbol 值的描述
+let c = Symbol('tate');
+
+typeof a; // 'symbol'
+a === b; // false
+</code></pre>
+
+<p>作为属性名的写法，可以通过 Object.getOwnPropertySymbols 返回包含所有 Symbol 值的数组:</p>
+
+<pre><code class="language-JS">let mySymbol = Symbol();
+
+// 第一种写法
+let a = {};
+a[mySymbol] = 'Hello!';
+
+// 第二种写法
+let a = {
+  [mySymbol]: 'Hello!'
+};
+
+// 第三种写法
+let a = {};
+Object.defineProperty(a, mySymbol, { value: 'Hello!' });
+
+// 以上写法都得到同样结果
+a[mySymbol]; // 'Hello!' 不能使用 点运算符.
+Object.getOwnPropertySymbols(a); // '[Symbol()]'
+</code></pre>
+
+<h3 id="symbolfor">Symbol.for()</h3>
+
+<p><strong>Symbol.for</strong> 可以复用同一个 Symbol 值，会被登记在全局环境中供搜索。</p>
+
+<pre><code class="language-JS">let a = Symbol.for('tate');
+let b = Symbol.for('tate');
+
+a === b; // true
+</code></pre>
+
+<h3 id="内置-symbol-值">内置 Symbol 值</h3>
+
+<p>除了定义自己使用的 Symbol 值以外，ES6 还提供了 11 个内置的 Symbol 值，指向语言内部使用的方法。举两个栗子 🌰:</p>
+
+<ul>
+  <li>Symbol.hasInstance</li>
+</ul>
+
+<pre><code class="language-JS">// foo instanceof Foo在语言内部，实际调用的是Foo[Symbol.hasInstance](foo)
+class MyClass {
+  [Symbol.hasInstance](foo) {
+    return foo instanceof Array;
+  }
+}
+
+[1, 2, 3] instanceof new MyClass(); // true
+</code></pre>
+
+<ul>
+  <li>Symbol.replace</li>
+</ul>
+
+<pre><code class="language-JS">String.prototype.replace(searchValue, replaceValue)
+// 等同于
+searchValue[Symbol.replace](this, replaceValue)
+
+const x = {};
+x[Symbol.replace] = (...s) =&gt; console.log(s);
+
+'Hello'.replace(x, 'World'); // ["Hello", "World"]
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="http://es6.ruanyifeng.com/#docs/string">ECMAScript 6 入门</a> By 阮一峰</li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/03/16/es6-extension-next.html';
+        this.page.identifier = '/2018/03/16/es6-extension-next';
+        this.page.title = '对象扩展(下)';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-16 11:43:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
