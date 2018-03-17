@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='尾调用优化 - Tate & Snow' name='title' />
-    <meta content='尾调用优化 - Tate & Snow' name='og:title' />
-    <title>尾调用优化 - Tate & Snow</title>
+    <meta content='Class & Decorator - Tate & Snow' name='title' />
+    <meta content='Class & Decorator - Tate & Snow' name='og:title' />
+    <title>Class & Decorator - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>尾调用优化 - Tate & Snow</title>
+<title>Class & Decorator - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="尾调用优化 - Tate & Snow">
-<meta name="twitter:keywords" content="尾调用优化 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Class & Decorator - Tate & Snow">
+<meta name="twitter:keywords" content="Class & Decorator - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="尾调用优化 - Tate & Snow">
-<meta name="og:keywords" content="尾调用优化 - Tate & Snow|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..."
+<meta property="og:title" content="Class & Decorator - Tate & Snow">
+<meta name="og:keywords" content="Class & Decorator - Tate & Snow|Class &amp; Decorator什么是 class定义 classES6 的 class 可以看作只是一个语法糖，本质是构造函数。类和模块的内部，默认就是严格模式，所以不需要使用 use strict 指定运行模式。// E..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
+<meta name="keywords" content="Class &amp; Decorator什么是 class定义 classES6 的 class 可以看作只是一个语法糖，本质是构造函数。类和模块的内部，默认就是严格模式，所以不需要使用 use strict 指定运行模式。// E..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/05/js-tail-call-optimization.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/05/js-tail-call-optimization.html|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
+<meta content='http://localhost:4000/2018/03/16/es6-class-decorator.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/16/es6-class-decorator.html|Class &amp; Decorator什么是 class定义 classES6 的 class 可以看作只是一个语法糖，本质是构造函数。类和模块的内部，默认就是严格模式，所以不需要使用 use strict 指定运行模式。// E..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -133,20 +133,14 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    尾调用优化</h1>
+                    Class & Decorator</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-05 23:26:00" itemprop="datePublished">发布时间：2018-02-05 23:26:00</time>
+                    <time datetime="2018-03-16 16:07:00" itemprop="datePublished">发布时间：2018-03-16 16:07:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
                 <div class="post-tags">
                        
-                    <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                        JavaScript
-                        <span>(13)</span>
-                        
-                    </a>
-                    
                     <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
                         ES6
                         <span>(6)</span>
@@ -160,161 +154,259 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                尾调用优化</h1>
+                Class & Decorator</h1>
             <div class="post-data">
-                <time datetime="2018-02-05 23:26:00" itemprop="datePublished">2018-02-05 23:26:00</time>
+                <time datetime="2018-03-16 16:07:00" itemprop="datePublished">2018-03-16 16:07:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
             <p class="post-tags">
                    
-                <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                    JavaScript
-                    <span>(13)</span>
-                    </a>
-                
                 <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
                     ES6
                     <span>(6)</span>
                     </a>
                    
             </p>
-            <h1 id="尾调用优化">尾调用优化</h1>
+            <h1 id="class--decorator">Class &amp; Decorator</h1>
 
-<h2 id="什么是尾调用和尾递归">什么是尾调用和尾递归</h2>
+<h2 id="什么是-class">什么是 class</h2>
 
-<p><strong>尾调用(Tail Call)</strong> 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 <strong>尾递归</strong>。</p>
+<h3 id="定义-class">定义 class</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
-<span class="p">}</span>
+<p>ES6 的 class 可以看作只是一个语法糖，本质是构造函数。类和模块的内部，默认就是严格模式，所以不需要使用 use strict 指定运行模式。</p>
 
-<span class="c1">// 以下均不属于尾调用</span>
-<span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
+<pre><code class="language-JS">// ES5
+function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}
 
-<span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
-  <span class="k">return</span> <span class="nx">b</span><span class="p">;</span>
-<span class="p">}</span>
+Point.prototype.toString = function () {
+  return '(' + this.x + ', ' + this.y + ')';
+};
+
+var p = new Point(1, 2);
 </code></pre>
-</div>
 
-<h2 id="尾调用优化-1">尾调用优化</h2>
+<pre><code class="language-JS">// ES6 注意 class 不存在变量提升
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 
-<p><a href="http://localhost:4000/2018/02/05/js-event-loop.html">上一篇事件循环</a>有介绍栈帧和调用栈。使用尾调用优化后由于不会用到外层函数栈帧里的调用位置、内部变量等信息，所以不会在调用栈上增加新的栈帧，而是更新它，如同迭代一般。既节省了内存，又避免了爆栈的可能性。</p>
+  toString() {
+    return '(' + this.x + ', ' + this.y + ')';
+  }
+}
 
-<blockquote>
-  <p>尾调用优化是在支持 ES6 的解释器里添加的，只在ES6严格模式下生效。</p>
-</blockquote>
-
-<h2 id="尾递归优化">尾递归优化</h2>
-
-<p>由于递归有过多的函数调用，会产生比较多的栈帧，所以十分消耗内存空间，很容易发生 <strong><a href="https://zh.wikipedia.org/wiki/%E5%A0%86%E7%96%8A%E6%BA%A2%E4%BD%8D">堆栈溢出(stack overflow)</a></strong>。但对于尾递归来说，则只存在一个栈帧。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Bad</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 基准条件，停止递归调用</span>
-  <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
+var p = new Point(1, 2);
+typeof Point // 'function'
+Point === Point.prototype.constructor // true
 </code></pre>
-</div>
 
-<p>上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 <a href="https://zh.wikipedia.org/wiki/%E5%A4%A7O%E7%AC%A6%E5%8F%B7">O(n)</a>。如果改写成尾递归，只保留一个调用记录，复杂度降至 O(1) 。</p>
+<p>由于类的方法都定义在 prototype 对象上面，所以类的新方法可以通过 <strong>Object.assign</strong> 方法添加到原型上。类的内部所有定义的方法，都是不可枚举的(non-enumerable)。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Good</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">m</span><span class="p">);</span>
-<span class="p">}</span>
+<pre><code class="language-JS">class Point { } // 不显示定义 constructor 构造方法的话默认会自动添加，默认返回实例对象
 
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// 120</span>
+// Object.assign 往原型添加方法
+Object.assign(Point.prototype, {
+  toString(){},
+  toValue(){}
+});
+
+Object.keys(Point.prototype); // [] 'toString' 在 ES5 中是可枚举的，但 ES6 中不可枚举
+Object.getOwnPropertyNames(Point.prototype); // ['constructor', 'toString', 'toValue']
+Object.getOwnPropertyNames(Point); // ['length', 'prototype', 'name']
 </code></pre>
-</div>
 
-<p>此处实行函数式编程里的 <strong><a href="https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96">柯里化(currying)</a></strong>，把接受多个参数的函数变换成接受一个单一参数的函数。</p>
+<h3 id="实例属性">实例属性</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">}</span>
+<p>与 ES5 一样，实例的属性除非显式定义在其本身(即定义在this对象上)，否则都是定义在原型上(即定义在class上):</p>
 
-<span class="kd">function</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">total</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kr">const</span> <span class="nx">factorial</span> <span class="o">=</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">tailFactorial</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
+<pre><code class="language-JS">p.hasOwnProperty('x'); // true
+p.hasOwnProperty('y'); // true
+p.hasOwnProperty('toString'); // false
+p.__proto__.hasOwnProperty('toString'); // true
 </code></pre>
-</div>
 
-<p>或者直接使用 ES6 函数默认值：</p>
+<h3 id="getter--setter">getter / setter</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Best</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">);</span>
-<span class="p">}</span>
+<p>与 ES5 一样，在”类”的内部可以使用 get 和 set 关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为:</p>
 
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
+<pre><code class="language-JS">class MyClass {
+  constructor() { }
+  get prop() {
+    return 'getter';
+  }
+  set prop(value) {
+    console.log('setter: ' + value);
+  }
+}
+
+let inst = new MyClass();
+
+inst.prop = 123; // setter: 123
+inst.prop; // 'getter'
 </code></pre>
-</div>
 
-<h2 id="es5替代方案">ES5替代方案</h2>
+<h3 id="静态方法-static">静态方法 static</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 堆栈溢出示例</span>
-<span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<p>通过关键字 <strong>static</strong> 可以设置静态方法，该方法不会被实例继承，而是直接通过类来调用。</p>
 
-<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span> <span class="c1">// Uncaught RangeError: Maximum call stack size exceeded</span>
+<pre><code class="language-JS">class Person {
+  static sayName() { // 静态方法
+    return 'tate';
+  }
+}
+
+Person.sayName(); // 'tate'
+
+var person = new Person();
+person.sayName(); // TypeError: person.sayName is not a function
 </code></pre>
-</div>
 
-<p>在当前的JS版本（ES5）中可以使用以下方式来优化递归。我们可以定义一个 <strong>trampoline(蹦床)</strong> 函数来解决参数过大造成的“堆栈溢出”问题。其原理是将递归执行转为循环执行。</p>
+<p>父类的静态方法，可以被子类继承:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">//放入trampoline中的函数将被转换为函数的输出结果</span>
-<span class="kd">function</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">(</span><span class="nx">f</span> <span class="o">&amp;&amp;</span> <span class="nx">f</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">f</span> <span class="o">=</span> <span class="nx">f</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">f</span><span class="p">;</span>
-<span class="p">}</span>
+<pre><code class="language-JS">class AnotherPerson extends Person { }
+AnotherPerson.sayName(); // 'tate'
 
-<span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="nx">recur</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// recur函数的每次执行，都会返回自身的另一个版本</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">));</span>
-<span class="p">}</span>
-
-<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">);</span> <span class="c1">// =&gt; 100001</span>
+// 或者通过 super 关键字调用父类的静态方法
+class AnotherPerson extends Person {
+  static sayName() {
+    return super.sayName() + ' loves snow';
+  }
+}
 </code></pre>
-</div>
 
-<blockquote>
-  <p>以上替代方案实际改变了递归函数本身，是属于“入侵式”的。关于如何实现“非入侵式”，可以参考更多以下链接。</p>
-</blockquote>
+<h3 id="newtarget">new.target</h3>
+
+<p>new 是从构造函数生成实例对象的命令。ES6 为 new 命令引入了一个 new.target 属性，该属性一般用在构造函数之中，返回 new 命令作用于的那个构造函数。如果构造函数不是通过 new 命令调用的，则 new.target 会返回 undefined。</p>
+
+<pre><code class="language-JS">class Shape {
+  constructor() {
+    if (new.target === Shape) {
+      throw new Error('本类不能实例化');
+    }
+  }
+}
+
+// 子类继承时 new.target 会返回子类
+class Rectangle extends Shape {
+  constructor(length, width) {
+    super();
+    // ...
+  }
+}
+
+var shape = new Shape();  // 报错
+var rec = new Rectangle(1, 2);  // 正确
+</code></pre>
+
+<h2 id="class-继承">class 继承</h2>
+
+<p>Class 可以通过 <strong>extends</strong> 关键字实现继承。关于继承详情可参考 <a href="http://localhost:4000/2018/02/06/js-prototype.html#class-%E7%BB%A7%E6%89%BF">原型链与继承</a> 一节。</p>
+
+<pre><code class="language-JS">class Shape { }
+class Rectangle extends Shape { } // 继承
+</code></pre>
+
+<pre><code class="language-JS">class Rectangle extends Shape {
+  constructor(x, y, color) {
+    // this.color = color; // ReferenceError 子类没有自己的 this 对象，必须继承于父类
+    super(x, y); // 调用父类的 constructor(x, y)
+    this.color = color;
+  }
+
+  toString() {
+    return this.color + ' ' + super.toString(); // 调用父类的 toString()
+  }
+}
+</code></pre>
+
+<h2 id="修饰器-decorator">修饰器 Decorator</h2>
+
+<h3 id="类的修饰">类的修饰</h3>
+
+<p><strong>修饰器(Decorator)</strong> 用来修改类的行为，目前只有提案。但在 TypeScript 里已做为一项实验性特性予以支持。更多修饰器可查看第三方模块 <a href="https://github.com/jayphelps/core-decorators">core-decorator</a>。</p>
+
+<pre><code class="language-JS">// 修饰器只能用于类和类的方法，不能用于函数，因为存在函数提升
+@decorator
+class A {}
+
+// 等价于
+class A {}
+A = decorator(A) || A;
+</code></pre>
+
+<pre><code class="language-JS">@testable
+class MyTestableClass { }
+
+function testable(target) {
+  target.isTestable = true;
+}
+
+MyTestableClass.isTestable; // true
+</code></pre>
+
+<h3 id="方法的修饰">方法的修饰</h3>
+
+<pre><code class="language-JS">class Person {
+  @readonly
+  @nonenumerable
+  get kidCount() { return this.children.length; }
+}
+
+function nonenumerable(target, name, descriptor) { // 接收三个参数
+  descriptor.enumerable = false;
+  return descriptor;
+}
+</code></pre>
+
+<p>Angular 的组件 @Component 修饰符示例:</p>
+
+<pre><code class="language-JS">@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.less']
+})
+</code></pre>
+
+<p>使用第三方模块里的修饰符，以 @deprecated 为例:</p>
+
+<pre><code class="language-JS">import { deprecate } from 'core-decorators';
+
+class Person {
+  @deprecate
+  facepalm() {}
+
+  @deprecate('We stopped facepalming')
+  facepalmHard() {}
+
+  @deprecate('We stopped facepalming', { url: 'http://knowyourmeme.com/memes/facepalm' })
+  facepalmHarder() {}
+}
+
+let person = new Person();
+
+person.facepalm();
+// DEPRECATION Person#facepalm: This function will be removed in future versions.
+
+person.facepalmHard();
+// DEPRECATION Person#facepalmHard: We stopped facepalming
+
+person.facepalmHarder();
+// DEPRECATION Person#facepalmHarder: We stopped facepalming
+//
+//     See http://knowyourmeme.com/memes/facepalm for more details.
+//
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://es6.ruanyifeng.com/#docs/function#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96">函数的扩展</a> By 阮一峰</li>
-  <li><a href="https://segmentfault.com/a/1190000004018047">JS 的递归与 TCO 尾调用优化</a> By 囧囧</li>
+  <li><a href="http://es6.ruanyifeng.com/#docs/string">ECMAScript 6 入门</a> By 阮一峰</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -325,9 +417,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/05/js-tail-call-optimization.html';
-        this.page.identifier = '/2018/02/05/js-tail-call-optimization';
-        this.page.title = '尾调用优化';
+        this.page.url = 'https://tate-young.github.io/2018/03/16/es6-class-decorator.html';
+        this.page.identifier = '/2018/03/16/es6-class-decorator';
+        this.page.title = 'Class & Decorator';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -345,7 +437,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-05 23:26:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-16 16:07:00</p> -->
         </div>
     </article>
 

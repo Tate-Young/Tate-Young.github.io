@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='Class & Decorator - Tate & Snow' name='title' />
-    <meta content='Class & Decorator - Tate & Snow' name='og:title' />
-    <title>Class & Decorator - Tate & Snow</title>
+    <meta content='Proxy & Reflect - Tate & Snow' name='title' />
+    <meta content='Proxy & Reflect - Tate & Snow' name='og:title' />
+    <title>Proxy & Reflect - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Class & Decorator - Tate & Snow</title>
+<title>Proxy & Reflect - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Class & Decorator - Tate & Snow">
-<meta name="twitter:keywords" content="Class & Decorator - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Proxy & Reflect - Tate & Snow">
+<meta name="twitter:keywords" content="Proxy & Reflect - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Class & Decorator - Tate & Snow">
-<meta name="og:keywords" content="Class & Decorator - Tate & Snow|Class &amp; Decorator什么是 class定义 classES6 的 class 可以看作只是一个语法糖，本质是构造函数。类和模块的内部，默认就是严格模式，所以不需要使用 use strict 指定运行模式。// E..."
+<meta property="og:title" content="Proxy & Reflect - Tate & Snow">
+<meta name="og:keywords" content="Proxy & Reflect - Tate & Snow|Proxy &amp; ReflectProxy使用方法Proxy 代理用于修改某些操作的默认行为，可以对外界的访问进行过滤和改写。// 使用方法var proxy = new Proxy(target, handler);var h..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Class &amp; Decorator什么是 class定义 classES6 的 class 可以看作只是一个语法糖，本质是构造函数。类和模块的内部，默认就是严格模式，所以不需要使用 use strict 指定运行模式。// E..." property='og:description'
+<meta name="keywords" content="Proxy &amp; ReflectProxy使用方法Proxy 代理用于修改某些操作的默认行为，可以对外界的访问进行过滤和改写。// 使用方法var proxy = new Proxy(target, handler);var h..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/03/16/es6-class.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/16/es6-class.html|Class &amp; Decorator什么是 class定义 classES6 的 class 可以看作只是一个语法糖，本质是构造函数。类和模块的内部，默认就是严格模式，所以不需要使用 use strict 指定运行模式。// E..." property='og:description'
+<meta content='http://localhost:4000/2018/03/17/es6-proxy-reflect.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/17/es6-proxy-reflect.html|Proxy &amp; ReflectProxy使用方法Proxy 代理用于修改某些操作的默认行为，可以对外界的访问进行过滤和改写。// 使用方法var proxy = new Proxy(target, handler);var h..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -133,9 +133,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    Class & Decorator</h1>
+                    Proxy & Reflect</h1>
                 <div class="post-data">
-                    <time datetime="2018-03-16 16:07:00" itemprop="datePublished">发布时间：2018-03-16 16:07:00</time>
+                    <time datetime="2018-03-17 11:09:00" itemprop="datePublished">发布时间：2018-03-17 11:09:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -143,7 +143,7 @@
                        
                     <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
                         ES6
-                        <span>(5)</span>
+                        <span>(6)</span>
                         
                     </a>
                        
@@ -154,9 +154,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                Class & Decorator</h1>
+                Proxy & Reflect</h1>
             <div class="post-data">
-                <time datetime="2018-03-16 16:07:00" itemprop="datePublished">2018-03-16 16:07:00</time>
+                <time datetime="2018-03-17 11:09:00" itemprop="datePublished">2018-03-17 11:09:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -164,249 +164,395 @@
                    
                 <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
                     ES6
-                    <span>(5)</span>
+                    <span>(6)</span>
                     </a>
                    
             </p>
-            <h1 id="class--decorator">Class &amp; Decorator</h1>
+            <h1 id="proxy--reflect">Proxy &amp; Reflect</h1>
 
-<h2 id="什么是-class">什么是 class</h2>
+<h2 id="proxy">Proxy</h2>
 
-<h3 id="定义-class">定义 class</h3>
+<h3 id="使用方法">使用方法</h3>
 
-<p>ES6 的 class 可以看作只是一个语法糖，本质是构造函数。类和模块的内部，默认就是严格模式，所以不需要使用 use strict 指定运行模式。</p>
+<p><strong>Proxy</strong> 代理用于修改某些操作的默认行为，可以对外界的访问进行过滤和改写。</p>
 
-<pre><code class="language-JS">// ES5
-function Point(x, y) {
-  this.x = x;
-  this.y = y;
-}
+<pre><code class="language-JS">// 使用方法
+var proxy = new Proxy(target, handler);
+</code></pre>
 
-Point.prototype.toString = function () {
-  return '(' + this.x + ', ' + this.y + ')';
+<pre><code class="language-JS">var handler = {
+  get(target, key) {
+    if (key === 'prototype') {
+      return Object.prototype;
+    }
+    return 'Hi, ' + key;
+  },
+  apply(target, thisBinding, args) {
+    return args[0];
+  },
+  construct(target, args) {
+    return {value: args[1]};
+  }
 };
 
-var p = new Point(1, 2);
+var proxy = new Proxy(function(x, y) {
+  return x + y;
+}, handler);
+
+proxy(1, 2); // 1
+new proxy(1, 2); // {value: 2}
+proxy.prototype === Object.prototype; // true
+proxy.tate; // 'Hi, tate'
 </code></pre>
 
-<pre><code class="language-JS">// ES6 注意 class 不存在变量提升
-class Point {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
+<p>下面是 Proxy 支持的拦截操作一览，一共 13 种:</p>
 
-  toString() {
-    return '(' + this.x + ', ' + this.y + ')';
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">命令</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>get</strong>(target, propKey, receiver)</td>
+      <td style="text-align: left">拦截对象属性的读取</td>
+      <td style="text-align: left">proxy.foo 和 proxy[‘foo’]</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>set</strong>(target, propKey, value, receiver)</td>
+      <td style="text-align: left">拦截对象属性的设置</td>
+      <td style="text-align: left">proxy.foo = bar 或 proxy[‘foo’] = bar，返回一个布尔值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>has</strong>(target, propKey)</td>
+      <td style="text-align: left">拦截 in 遍历</td>
+      <td style="text-align: left">propKey in proxy 的操作，返回一个布尔值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>deleteProperty</strong>(target, propKey)</td>
+      <td style="text-align: left">拦截 delete 操作</td>
+      <td style="text-align: left">delete proxy[propKey] 的操作，返回一个布尔值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>ownKeys</strong>(target)</td>
+      <td style="text-align: left">拦截 Object 遍历</td>
+      <td style="text-align: left">Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而Object.keys()的返回结果仅包括目标对象自身的可遍历属性</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>getOwnPropertyDescriptor</strong>(target, propKey)</td>
+      <td style="text-align: left">拦截描述符的获取</td>
+      <td style="text-align: left">Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>defineProperty</strong>(target, propKey, propDesc)</td>
+      <td style="text-align: left">拦截对象的定义</td>
+      <td style="text-align: left">Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)，返回一个布尔值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>preventExtensions</strong>(target)</td>
+      <td style="text-align: left">拦截对象的不可扩展</td>
+      <td style="text-align: left">Object.preventExtensions(proxy)，返回一个布尔值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>isExtensible</strong>(target)</td>
+      <td style="text-align: left">拦截判断对象是否可扩展</td>
+      <td style="text-align: left">Object.isExtensible(proxy)，返回一个布尔值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>getPrototypeOf</strong>(target)</td>
+      <td style="text-align: left">拦截对象__proto__指针的获取</td>
+      <td style="text-align: left">Object.getPrototypeOf(proxy)，返回一个对象</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>setPrototypeOf</strong>(target, proto)</td>
+      <td style="text-align: left">拦截对象__proto__指针的设置</td>
+      <td style="text-align: left">Object.setPrototypeOf(proxy, proto)，返回一个布尔值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>apply</strong>(target, object, args)</td>
+      <td style="text-align: left">拦截 Proxy 实例作为函数调用的操作</td>
+      <td style="text-align: left">proxy(…args)、proxy.call(object, …args)、proxy.apply(…)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>construct</strong>(target, args)</td>
+      <td style="text-align: left">拦截 Proxy 实例作为构造函数调用的操作</td>
+      <td style="text-align: left">new proxy(…args)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="使用案例">使用案例</h3>
+
+<ul>
+  <li>剥离验证逻辑</li>
+</ul>
+
+<pre><code class="language-JS">const handler = {
+  set(target, key, value, proxy) {
+    if (typeof value !== 'number') {
+      throw Error("Properties can only be numbers");
+    }
+    return Reflect.set(target, key, value, proxy);
   }
+};
+
+function numericLimit(target) {
+  return new Proxy(target, handler);
 }
 
-var p = new Point(1, 2);
-typeof Point // 'function'
-Point === Point.prototype.constructor // true
-</code></pre>
-
-<p>由于类的方法都定义在 prototype 对象上面，所以类的新方法可以通过 <strong>Object.assign</strong> 方法添加到原型上。类的内部所有定义的方法，都是不可枚举的(non-enumerable)。</p>
-
-<pre><code class="language-JS">class Point { } // 不显示定义 constructor 构造方法的话默认会自动添加，默认返回实例对象
-
-// Object.assign 往原型添加方法
-Object.assign(Point.prototype, {
-  toString(){},
-  toValue(){}
+let numericDataStore = numericLimit({
+  count: 0,
+  total: 10
 });
 
-Object.keys(Point.prototype); // [] 'toString' 在 ES5 中是可枚举的，但 ES6 中不可枚举
-Object.getOwnPropertyNames(Point.prototype); // ['constructor', 'toString', 'toValue']
-Object.getOwnPropertyNames(Point); // ['length', 'prototype', 'name']
+numericDataStore.count = 'foo'; // 报错
+numericDataStore.count = 1;
 </code></pre>
 
-<h3 id="实例属性">实例属性</h3>
+<ul>
+  <li>私有属性</li>
+</ul>
 
-<p>与 ES5 一样，实例的属性除非显式定义在其本身(即定义在this对象上)，否则都是定义在原型上(即定义在class上):</p>
+<pre><code class="language-JS">let api = {
+  _pcode: '591550',
+  /* mock methods that use this._pcode */
+  getUsers: function(){ },
+  getUser: function(userId){ },
+  setUser: function(userId, config){ }
+};
 
-<pre><code class="language-JS">p.hasOwnProperty('x'); // true
-p.hasOwnProperty('y'); // true
-p.hasOwnProperty('toString'); // false
-p.__proto__.hasOwnProperty('toString'); // true
-</code></pre>
+// Add other restricted properties to this array
+const RESTRICTED = ['_pcode'];
 
-<h3 id="getter--setter">getter / setter</h3>
-
-<p>与 ES5 一样，在”类”的内部可以使用 get 和 set 关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为:</p>
-
-<pre><code class="language-JS">class MyClass {
-  constructor() { }
-  get prop() {
-    return 'getter';
-  }
-  set prop(value) {
-    console.log('setter: ' + value);
-  }
-}
-
-let inst = new MyClass();
-
-inst.prop = 123; // setter: 123
-inst.prop; // 'getter'
-</code></pre>
-
-<h3 id="静态方法-static">静态方法 static</h3>
-
-<p>通过关键字 <strong>static</strong> 可以设置静态方法，该方法不会被实例继承，而是直接通过类来调用。</p>
-
-<pre><code class="language-JS">class Person {
-  static sayName() { // 静态方法
-    return 'tate';
-  }
-}
-
-Person.sayName(); // 'tate'
-
-var person = new Person();
-person.sayName(); // TypeError: person.sayName is not a function
-</code></pre>
-
-<p>父类的静态方法，可以被子类继承:</p>
-
-<pre><code class="language-JS">class AnotherPerson extends Person { }
-AnotherPerson.sayName(); // 'tate'
-
-// 或者通过 super 关键字调用父类的静态方法
-class AnotherPerson extends Person {
-  static sayName() {
-    return super.sayName() + ' loves snow';
-  }
-}
-</code></pre>
-
-<h3 id="newtarget">new.target</h3>
-
-<p>new 是从构造函数生成实例对象的命令。ES6 为 new 命令引入了一个 new.target 属性，该属性一般用在构造函数之中，返回 new 命令作用于的那个构造函数。如果构造函数不是通过 new 命令调用的，则 new.target 会返回 undefined。</p>
-
-<pre><code class="language-JS">class Shape {
-  constructor() {
-    if (new.target === Shape) {
-      throw new Error('本类不能实例化');
+api = new Proxy(api, {
+  get(target, key, proxy) {
+    if(RESTRICTED.includes(key)) {
+        throw Error(`${key} is restricted. Please see api documentation for further info.`);
     }
+    return Reflect.get(target, key, proxy);
+  },
+  set(target, key, value, proxy) {
+    if(RESTRICTED.includes(key)) {
+        throw Error(`${key} is restricted. Please see api documentation for further info.`);
+    }
+    return Reflect.get(target, key, value, proxy);
+  },
+  has(target, key) {
+    return (RESTRICTED.includes(key)) ? false : Reflect.has(target, key);
   }
-}
+});
 
-// 子类继承时 new.target 会返回子类
-class Rectangle extends Shape {
-  constructor(length, width) {
-    super();
-    // ...
+api._pcode; // 报错
+api._pcode = '01102618'; // 报错
+'_pcode' in api; // false
+</code></pre>
+
+<ul>
+  <li>预警和拦截</li>
+</ul>
+
+<pre><code class="language-JS">let dataStore = {
+  noDelete: 10,
+  oldMethod: function() { },
+  doNotChange: 'tate'
+};
+
+const NODELETE = ['noDelete'];
+const DEPRECATED = ['oldMethod'];
+const NOCHANGE = ['doNotChange'];
+
+dataStore = new Proxy(dataStore, {
+  set(target, key, value, proxy) {
+    if (NOCHANGE.includes(key)) {
+      throw Error(`Error! ${key} is immutable.`);
+    }
+    return Reflect.set(target, key, value, proxy);
+  },
+  deleteProperty(target, key) {
+    if (NODELETE.includes(key)) {
+      throw Error(`Error! ${key} cannot be deleted.`);
+    }
+    return Reflect.deleteProperty(target, key);
+
+  },
+  get(target, key, proxy) {
+    if (DEPRECATED.includes(key)) {
+      console.warn(`Warning! ${key} is deprecated.`);
+    }
+    var val = target[key];
+
+    return typeof val === 'function' ?
+      function(...args) {
+        Reflect.apply(target[key], target, args);
+      } :
+      val;
   }
+});
+
+// these will throw errors or log warnings, respectively
+dataStore.doNotChange = "foo";
+delete dataStore.noDelete;
+dataStore.oldMethod();
+</code></pre>
+
+<blockquote>
+  <p>ES7 中定义的 <a href="http://localhost:4000/2018/03/16/es6-class-decorator.html">Decorator</a> 修饰符也可以实现上述部分功能。Proxy 的核心作用是控制外界对被代理者内部的访问，Decorator 的核心作用是增强被装饰者的功能。</p>
+</blockquote>
+
+<h2 id="reflect">Reflect</h2>
+
+<h3 id="设计目的">设计目的</h3>
+
+<p><strong>Reflect</strong> 对象设计的目的:</p>
+
+<ul>
+  <li>将 Object 对象的一些明显属于语言内部的方法(比如 Object.defineProperty)，放到 Reflect 对象上</li>
+  <li>修改某些 Object 方法的返回结果，让其变得更合理</li>
+</ul>
+
+<pre><code class="language-JS">// 老写法
+try {
+  Object.defineProperty(target, property, attributes); // 无法定义属性时会抛出错误
+  // success
+} catch (e) {
+  // failure
 }
 
-var shape = new Shape();  // 报错
-var rec = new Rectangle(1, 2);  // 正确
+// 新写法
+if (Reflect.defineProperty(target, property, attributes)) { // 无法定义属性时会返回 false
+  // success
+} else {
+  // failure
+}
 </code></pre>
 
-<h2 id="class-继承">class 继承</h2>
+<ul>
+  <li>让 Object 操作都变成函数行为</li>
+</ul>
 
-<p>Class 可以通过 <strong>extends</strong> 关键字实现继承。关于继承详情可参考 <a href="http://localhost:4000/2018/02/06/js-prototype.html#class-%E7%BB%A7%E6%89%BF">原型链与继承</a> 一节。</p>
+<pre><code class="language-JS">// 老写法 命令式
+'assign' in Object; // true
 
-<pre><code class="language-JS">class Shape { }
-class Rectangle extends Shape { } // 继承
+// 新写法 函数式
+Reflect.has(Object, 'assign'); // true
 </code></pre>
 
-<pre><code class="language-JS">class Rectangle extends Shape {
-  constructor(x, y, color) {
-    // this.color = color; // ReferenceError 子类没有自己的 this 对象，必须继承于父类
-    super(x, y); // 调用父类的 constructor(x, y)
-    this.color = color;
+<ul>
+  <li>Reflect 对象的方法与 Proxy 对象的方法一一对应，只要是 Proxy 对象的方法，就能在 Reflect 对象上找到对应的方法</li>
+</ul>
+
+<pre><code class="language-JS">// 每一个Proxy对象的拦截操作（get、delete、has），内部都调用对应的Reflect方法，保证原生行为能够正常执行
+var loggedObj = new Proxy(obj, {
+  get(target, name) {
+    console.log('get', target, name);
+    return Reflect.get(target, name);
+  },
+  deleteProperty(target, name) {
+    console.log('delete' + name);
+    return Reflect.deleteProperty(target, name);
+  },
+  has(target, name) {
+    console.log('has' + name);
+    return Reflect.has(target, name);
   }
-
-  toString() {
-    return this.color + ' ' + super.toString(); // 调用父类的 toString()
-  }
-}
+});
 </code></pre>
 
-<h2 id="修饰器-decorator">修饰器 Decorator</h2>
-
-<h3 id="类的修饰">类的修饰</h3>
-
-<p><strong>修饰器(Decorator)</strong> 用来修改类的行为，目前只有提案。但在 TypeScript 里已做为一项实验性特性予以支持。更多修饰器可查看第三方模块 <a href="https://github.com/jayphelps/core-decorators">core-decorator</a>。</p>
-
-<pre><code class="language-JS">// 修饰器只能用于类和类的方法，不能用于函数，因为存在函数提升
-@decorator
-class A {}
-
-// 等价于
-class A {}
-A = decorator(A) || A;
+<pre><code class="language-JS">Math.max.apply(null, [1, 2, 3]);
+Math.max.call(null, 1, 2, 3);
+Function.prototype.apply.call(Math.max, null, [1, 2, 3]);
+Reflect.apply(Math.max, null, [1, 2, 3]);
 </code></pre>
 
-<pre><code class="language-JS">@testable
-class MyTestableClass { }
+<h3 id="静态方法">静态方法</h3>
 
-function testable(target) {
-  target.isTestable = true;
-}
+<p>Reflect 对象一有共 13 种静态方法，大部分与 Object 对象的同名方法的作用都是相同的，而且它与 Proxy 对象的方法是一一对应的。</p>
 
-MyTestableClass.isTestable; // true
-</code></pre>
-
-<h3 id="方法的修饰">方法的修饰</h3>
-
-<pre><code class="language-JS">class Person {
-  @readonly
-  @nonenumerable
-  get kidCount() { return this.children.length; }
-}
-
-function nonenumerable(target, name, descriptor) { // 接收三个参数
-  descriptor.enumerable = false;
-  return descriptor;
-}
-</code></pre>
-
-<p>Angular 的组件 @Component 修饰符示例:</p>
-
-<pre><code class="language-JS">@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
-})
-</code></pre>
-
-<p>使用第三方模块里的修饰符，以 @deprecated 为例:</p>
-
-<pre><code class="language-JS">import { deprecate } from 'core-decorators';
-
-class Person {
-  @deprecate
-  facepalm() {}
-
-  @deprecate('We stopped facepalming')
-  facepalmHard() {}
-
-  @deprecate('We stopped facepalming', { url: 'http://knowyourmeme.com/memes/facepalm' })
-  facepalmHarder() {}
-}
-
-let person = new Person();
-
-person.facepalm();
-// DEPRECATION Person#facepalm: This function will be removed in future versions.
-
-person.facepalmHard();
-// DEPRECATION Person#facepalmHard: We stopped facepalming
-
-person.facepalmHarder();
-// DEPRECATION Person#facepalmHarder: We stopped facepalming
-//
-//     See http://knowyourmeme.com/memes/facepalm for more details.
-//
-</code></pre>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">方法</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Reflect.apply(target, thisArg, args)</td>
+      <td style="text-align: left">Function.prototype.apply.call(func, thisArg, args)，用于绑定 this 对象后执行给定函数</td>
+      <td style="text-align: left"><code>Reflect.apply(Math.min, Math, ages)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.construct(target, args)</td>
+      <td style="text-align: left">new target(…args)，调用构造函数</td>
+      <td style="text-align: left"><code>const person = Reflect.construct(Person, ['tate', 18])</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.get(target, name, receiver)</td>
+      <td style="text-align: left">查找并返回 target 对象的 name 属性</td>
+      <td style="text-align: left"><code>Reflect.get(obj, 'foo')</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.set(target, name, value, receiver)</td>
+      <td style="text-align: left">设置 target 对象的 name 属性等于 value</td>
+      <td style="text-align: left"><code>Reflect.set(obj, 'foo', 'bar')</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.defineProperty(target, name, desc)</td>
+      <td style="text-align: left">同 Object.defineProperty，但返回布尔值</td>
+      <td style="text-align: left"><code>Reflect.defineProperty(obj, 'foo', {value: 'bar'})</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.deleteProperty(target, name)</td>
+      <td style="text-align: left">delete obj[name]，用于删除对象的属性</td>
+      <td style="text-align: left"><code>Reflect.deleteProperty(obj, 'foo')</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.has(target, name)</td>
+      <td style="text-align: left">对应 name in obj 里面的 in 运算符</td>
+      <td style="text-align: left"><code>Reflect.has(obj, 'foo')</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.ownKeys(target)</td>
+      <td style="text-align: left">返回对象的所有属性</td>
+      <td style="text-align: left"><code>Reflect.ownKeys(obj)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.isExtensible(target)</td>
+      <td style="text-align: left">同 Object.isExtensible</td>
+      <td style="text-align: left"><code>Reflect.isExtensible(obj)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.preventExtensions(target)</td>
+      <td style="text-align: left">同 Object.preventExtensions</td>
+      <td style="text-align: left"><code>Reflect.preventExtensions(obj)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.getOwnPropertyDescriptor(target, name)</td>
+      <td style="text-align: left">同 Object.getOwnPropertyDescriptor</td>
+      <td style="text-align: left"><code> Reflect.getOwnPropertyDescriptor(obj, 'foo');</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.getPrototypeOf(target)</td>
+      <td style="text-align: left">同 Object.getPrototypeOf(obj)</td>
+      <td style="text-align: left"><code>Reflect.getPrototypeOf(obj)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Reflect.setPrototypeOf(target, prototype)</td>
+      <td style="text-align: left">同 Object.setPrototypeOf(obj, newProto)</td>
+      <td style="text-align: left"><code>Reflect.setPrototypeOf(obj, newProto)</code></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="http://es6.ruanyifeng.com/#docs/string">ECMAScript 6 入门</a> By 阮一峰</li>
+  <li><a href="https://www.w3cplus.com/javascript/use-cases-for-es6-proxies.html">实例解析 ES6 Proxy 使用场景</a> By loveky</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -417,9 +563,9 @@ person.facepalmHarder();
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/03/16/es6-class.html';
-        this.page.identifier = '/2018/03/16/es6-class';
-        this.page.title = 'Class & Decorator';
+        this.page.url = 'https://tate-young.github.io/2018/03/17/es6-proxy-reflect.html';
+        this.page.identifier = '/2018/03/17/es6-proxy-reflect';
+        this.page.title = 'Proxy & Reflect';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -437,7 +583,7 @@ person.facepalmHarder();
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-16 16:07:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-17 11:09:00</p> -->
         </div>
     </article>
 

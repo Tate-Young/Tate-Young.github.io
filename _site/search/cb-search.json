@@ -3,8 +3,16 @@
 	"data" : [
 	 
 	{
+		"title" : "Proxy & Reflect - ",
+		"url" : "/2018/03/17/es6-proxy-reflect.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Class & Decorator - ",
-		"url" : "/2018/03/16/es6-class.html"
+		"url" : "/2018/03/16/es6-class-decorator.html"
 	}
 	
 	,
