@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='对象扩展(下) - Tate & Snow' name='title' />
-    <meta content='对象扩展(下) - Tate & Snow' name='og:title' />
-    <title>对象扩展(下) - Tate & Snow</title>
+    <meta content='Set & Map - Tate & Snow' name='title' />
+    <meta content='Set & Map - Tate & Snow' name='og:title' />
+    <title>Set & Map - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>对象扩展(下) - Tate & Snow</title>
+<title>Set & Map - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对象扩展(下) - Tate & Snow">
-<meta name="twitter:keywords" content="对象扩展(下) - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Set & Map - Tate & Snow">
+<meta name="twitter:keywords" content="Set & Map - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="对象扩展(下) - Tate & Snow">
-<meta name="og:keywords" content="对象扩展(下) - Tate & Snow|对象扩展(下)函数扩展ES6 中函数主要扩展:            扩展      描述                  默认值      可以使用参数默认值              rest 参数      ...args  ..."
+<meta property="og:title" content="Set & Map - Tate & Snow">
+<meta name="og:keywords" content="Set & Map - Tate & Snow|Set &amp; MapSetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undefined ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="对象扩展(下)函数扩展ES6 中函数主要扩展:            扩展      描述                  默认值      可以使用参数默认值              rest 参数      ...args  ..." property='og:description'
+<meta name="keywords" content="Set &amp; MapSetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undefined ..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/03/16/es6-extension-next.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/16/es6-extension-next.html|对象扩展(下)函数扩展ES6 中函数主要扩展:            扩展      描述                  默认值      可以使用参数默认值              rest 参数      ...args  ..." property='og:description'
+<meta content='http://localhost:4000/2018/03/18/es6-set-map.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/18/es6-set-map.html|Set &amp; MapSetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undefined ..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -133,9 +133,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    对象扩展(下)</h1>
+                    Set & Map</h1>
                 <div class="post-data">
-                    <time datetime="2018-03-16 11:43:00" itemprop="datePublished">发布时间：2018-03-16 11:43:00</time>
+                    <time datetime="2018-03-18 10:40:00" itemprop="datePublished">发布时间：2018-03-18 10:40:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -154,9 +154,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                对象扩展(下)</h1>
+                Set & Map</h1>
             <div class="post-data">
-                <time datetime="2018-03-16 11:43:00" itemprop="datePublished">2018-03-16 11:43:00</time>
+                <time datetime="2018-03-18 10:40:00" itemprop="datePublished">2018-03-18 10:40:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -168,452 +168,183 @@
                     </a>
                    
             </p>
-            <h1 id="对象扩展下">对象扩展(下)</h1>
+            <h1 id="set--map">Set &amp; Map</h1>
 
-<h2 id="函数扩展">函数扩展</h2>
+<h2 id="set">Set</h2>
 
-<p>ES6 中函数主要扩展:</p>
+<p>Set 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。</p>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">扩展</th>
-      <th style="text-align: left">描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">默认值</td>
-      <td style="text-align: left">可以使用参数默认值</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">rest 参数</td>
-      <td style="text-align: left"><code>...args</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">函数名</td>
-      <td style="text-align: left">name</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">箭头函数</td>
-      <td style="text-align: left">=&gt;</td>
-    </tr>
-  </tbody>
-</table>
+<pre><code class="language-JS">var set = new Set(1, 2, 3); // TypeError: undefined is not a function
+var set = new Set({}); // TypeError: undefined is not a function
 
-<h3 id="默认值">默认值</h3>
-
-<p>ES6 可以为函数的参数指定默认值。</p>
-
-<pre><code class="language-JS">// ES5
-function sayName(x, name) {
-    name = name || 'snow';
-    console.log(x, name);
-}
-
-sayName('hi', null); // hi snow
+var set = new Set([1, 2, 3]); // Set(3) {1, 2, 3}
+var set = new Set('tate'); //  Set(3) {'t', 'a', 'e'}
 </code></pre>
 
-<pre><code class="language-JS">// ES6
-function sayName(x, name = 'snow') {
-    console.log(x, name);
-}
+<pre><code class="language-JS">// 在 Set 内部，两个 NaN 是相等
+let set = new Set([1, 2, 2, 3]); // Set(3) {1, 2, 3}
+[...set]; // [1, 2, 3]
+set.size; // 3 获取 Set 结构长度
 
-sayName('hi'); // hi snow
-sayName('hi', undefined); // hi snow
-sayName('hi', null); // hi null，null 无法触发默认值
+// 数组去重
+[...new Set(array)];
+Array.from(new Set(array));
 </code></pre>
 
-<p>一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域，等到初始化结束，这个作用域就会消失。</p>
-
-<pre><code class="language-JS">let x = 1;
-
-// 函数调用时，函数体内部的局部变量 x 影响不到默认值变量x
-function f(y = x) {
-    let x = 2;
-    console.log(y);
-}
-
-f() // 1
-</code></pre>
-
-<h3 id="length">length</h3>
-
-<p><strong>length</strong> 属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了。同理，rest 参数也不会计入 length 属性。</p>
-
-<pre><code class="language-JS">(function (a, b, c = 2){}).length // 2
-(function (...args){}).length // 0
-
-// 若设置了默认值的参数不是尾参数，那么 length 属性也不再计入后面的参数了
-(function (a = 0, b, c) {}).length // 0
-(function (a, b = 1, c) {}).length // 1
-</code></pre>
-
-<h3 id="rest-参数">rest 参数</h3>
-
-<p><strong>rest 参数</strong>(形式为…变量名)，用于获取函数的多余参数，这样就不需要使用 arguments 对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。</p>
-
-<pre><code class="language-JS">// arguments 变量
-function sortNumbers() {
-    return Array.prototype.slice.call(arguments).sort();
-}
-
-// rest 参数
-const sortNumbers = (...numbers) =&gt; numbers.sort();
-</code></pre>
-
-<p>rest 参数只能在最后，否则报错:</p>
-
-<pre><code class="language-JS">function f(a, ...b, c) { } // SyntaxError: Rest parameter must be last formal parameter
-</code></pre>
-
-<h3 id="name">name</h3>
-
-<p>ES5 的 name 属性，会返回空字符串，而 ES6 的 name 属性会返回实际的函数名。</p>
-
-<pre><code class="language-JS">(function foo(){}).name; // 'foo'
-(new Function).name; // 'anonymous'
-
-// bind 返回的函数，name 属性值会加上 bound 前缀
-(function foo(){}).bind({}).name // "bound foo"
-</code></pre>
-
-<h3 id="箭头函数-">箭头函数 =&gt;</h3>
-
-<p>ES6 允许使用”箭头”<strong>(=&gt;)</strong>定义函数。箭头函数里面实际上没有自己的 this 属性，而是引用外层的 this。 其指向定义时所在的对象，<a href="http://localhost:4000/2018/01/30/js-this.html">详见 this</a>。</p>
-
-<pre><code class="language-JS">// ES5
-var foo = function(bar) {
-    return bar;
-};
-
-// ES6
-let foo = bar =&gt; bar;
-
-[1, 2, 3].map(x =&gt; x ** 2); // [1, 4, 9]
-[1, 2, 3].map(x =&gt; {return x ** 2}); // 与上面等价，一般用于多条执行语句
-</code></pre>
-
-<p>除了 this，以下三个变量在箭头函数之中也是不存在的，指向外层函数的对应变量：arguments、super、new.target。</p>
-
-<pre><code class="language-JS">var foo = bar =&gt; {console.log(arguments)}
-foo('tate'); // ReferenceError: arguments is not defined
-</code></pre>
-
-<h2 id="对象扩展">对象扩展</h2>
-
-<p>ES6 中对象主要扩展:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">扩展</th>
-      <th style="text-align: left">描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">属性格式</td>
-      <td style="text-align: left">更简洁</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">新增方法</td>
-      <td style="text-align: left">Object.is()、Object.assign()、Object.keys()</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">super 关键字</td>
-      <td style="text-align: left">指向当前对象的原型对象</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="属性格式">属性格式</h3>
-
-<pre><code class="language-JS">var name = 'tate';
-
-// ES5
-var person = {
-    name: name,
-    method: function() {
-        return 'snow';
-    }
-};
-</code></pre>
-
-<pre><code class="language-JS">// ES6
-let person = {
-    name, // 等价于 name: name
-    method() {
-        return 'snow';
-    }
-};
-</code></pre>
-
-<p>ES6 允许字面量定义对象时，用表达式作为对象的属性名。属性名表达式如果是一个对象，默认情况下会自动将对象转为字符串 [object Object]:</p>
-
-<pre><code class="language-JS">let name = 'tate';
-let obj = {'age': 18};
-
-let person = {
-  [name]: 'snow',
-  ['a' + 'bc']: 1,
-  [obj]: 26
-};
-
-person.tate; // 'snow'
-person.abc; // 1
-
-Reflect.ownKeys(person); // ["tate", "abc", "[object Object]"]
-</code></pre>
-
-<h3 id="objectis">Object.is()</h3>
-
-<p>ES6 提出”Same-value equality”(同值相等)算法，用来比较两个值是否严格相等，与严格比较运算符 (===) 的行为基本一致。</p>
-
-<pre><code class="language-JS">+0 === -0 //true
-NaN === NaN // false
-
-Object.is(+0, -0) // false
-Object.is(NaN, NaN) // true
-</code></pre>
-
-<h3 id="objectassign">Object.assign()</h3>
-
-<p><strong>Object.assign</strong> 方法用于对象的合并，将源对象(source)的所有 <em>可枚举</em> 属性，复制到目标对象(target)。关于其浅拷贝可以参考 <a href="http://localhost:4000/2018/01/31/js-deep-copy.html#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%B5%85%E6%8B%B7%E8%B4%9D">深浅拷贝一节</a>。</p>
-
-<pre><code class="language-JS">const target = { a: 1, b: 1, c: {d: 4} };
-const source1 = { b: 2, c: 2 };
-const source2 = { c: 3 };
-
-// 只要是同名属性就覆盖
-Object.assign(target, source1, source2);
-target; //  {a:1, b:2, c:3}
-</code></pre>
-
-<pre><code class="language-JS">// 浅拷贝
-let obj1 = { a: 1, b: 2 };
-let obj2 = { ...obj1 };
-obj2 // { a: 1, b: 2 }
-
-// 等价于
-Object.assign({}, obj1);
-</code></pre>
-
-<p>Object.assign 拷贝的属性是有限制的，只拷贝源对象的自身属性(不拷贝继承属性)，也不拷贝不可枚举的属性(enumerable: false):</p>
-
-<pre><code class="language-JS">Object.assign({name: 'tate'},
-  Object.defineProperty({}, 'spouse', {
-    enumerable: false,
-    value: 'snow'
-  })
-)
-// {name: 'tate'}
-</code></pre>
-
-<h3 id="可枚举性">可枚举性</h3>
-
-<p>对象的每个属性都有一个<strong>描述对象(Descriptor)</strong>，用来控制该属性的行为。<strong>Object.getOwnPropertyDescriptor</strong> 方法可以获取该属性的描述对象。</p>
-
-<pre><code class="language-JS">Object.getOwnPropertyDescriptor(target, 'a');
-// configurable:true - 当且仅当指定对象的属性描述可以被改变或者属性可被删除时，为true
-// enumerable:true - 当且仅当指定对象的属性可以被枚举出时，为 true
-// value:1 - 该属性的值
-// writable:true - 当且仅当属性的值可以被改变时为true
-
-Object.getOwnPropertyDescriptors(target); // 获取一个对象的所有自身属性的描述符
-</code></pre>
-
-<p>目前，有四个操作会忽略 enumerable:false 的属性。</p>
+<p>Set 实例的操作方法:</p>
 
 <ul>
-  <li>for…in循环 - 只遍历对象自身的和继承的可枚举的属性。</li>
-  <li>Object.keys() - 返回对象自身的所有可枚举的属性的键名。</li>
-  <li>JSON.stringify() - 只串行化对象自身的可枚举的属性。</li>
-  <li>Object.assign() - 忽略不可枚举的属性，只拷贝对象自身的可枚举的属性。</li>
+  <li><strong>add()</strong> - 添加某个值，返回 Set 结构本身，因此可采用链式写法</li>
+  <li><strong>delete()</strong> - 删除某个值，返回一个布尔值，表示删除是否成功</li>
+  <li><strong>has()</strong> - 返回一个布尔值，表示该值是否为 Set 的成员</li>
+  <li><strong>clear()</strong> - 清除所有成员</li>
 </ul>
 
-<p>另外，ES6 规定，所有 Class 的原型的方法都是不可枚举的。</p>
-
-<pre><code class="language-JS">Object.getOwnPropertyDescriptor(class {foo() {}}.prototype, 'foo').enumerable; // false
-
-Object.getOwnPropertyDescriptor([], 'length').enumerable； // false 数组的 length 属性不可枚举
+<pre><code class="language-JS">set.add(4).add(3).add(2); // Set(4) {1, 2, 3, 4}
+set.has(4); // true
+set.delete(4); // true Set(3) {1, 2, 3}
+set.clear(); // Set(0) {}
 </code></pre>
 
-<h3 id="遍历">遍历</h3>
-
-<p>目前一共有 5 种方法可以遍历对象的属性。</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">方法</th>
-      <th style="text-align: left">属性</th>
-      <th style="text-align: left">可枚举性</th>
-      <th style="text-align: left">Symbol</th>
-      <th style="text-align: left">描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><strong>for…in</strong></td>
-      <td style="text-align: left">自身和继承</td>
-      <td style="text-align: left">可枚举</td>
-      <td style="text-align: left">不含 Symbol</td>
-      <td style="text-align: left">循环遍历对象自身的和继承的可枚举属性(不含 Symbol 属性)</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong>Object.keys(obj)</strong></td>
-      <td style="text-align: left">自身</td>
-      <td style="text-align: left">可枚举</td>
-      <td style="text-align: left">不含 Symbol</td>
-      <td style="text-align: left">返回一个数组，包括对象自身的(不含继承的)所有可枚举属性(不含 Symbol 属性)的键名</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong>Object.getOwnPropertyNames(obj)</strong></td>
-      <td style="text-align: left">自身</td>
-      <td style="text-align: left">包括可枚举与不可枚举</td>
-      <td style="text-align: left">不含 Symbol</td>
-      <td style="text-align: left">返回一个数组，包含对象自身的所有属性(不含 Symbol 属性，但是包括不可枚举属性)的键名</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong>Object.getOwnPropertySymbols(obj)</strong></td>
-      <td style="text-align: left">自身</td>
-      <td style="text-align: left">包括可枚举与不可枚举</td>
-      <td style="text-align: left">只包含 Symbol</td>
-      <td style="text-align: left">返回一个数组，包含对象自身的所有 Symbol 属性的键名</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong>Reflect.ownKeys(obj)</strong></td>
-      <td style="text-align: left">自身</td>
-      <td style="text-align: left">包括可枚举与不可枚举</td>
-      <td style="text-align: left">包含 Symbol</td>
-      <td style="text-align: left">返回一个数组，包含对象自身的所有键名，不管键名是 Symbol 或字符串，也不管是否可枚举</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>以上的 5 种方法遍历对象的键名，都遵守同样的属性遍历的次序规则。</p>
-
-<ol>
-  <li>首先遍历所有数值键，按照数值升序排列;</li>
-  <li>其次遍历所有字符串键，按照加入时间升序排列;</li>
-  <li>最后遍历所有 Symbol 键，按照加入时间升序排列。</li>
-</ol>
-
-<pre><code class="language-JS">Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 }); // ["2", "10", "b", "a", Symbol()]
-</code></pre>
-
-<h3 id="objectkeys">Object.keys()</h3>
-
-<p>以下三个方法均用于遍历对象，都返回一个数组，成员是针对参数对象自身的(不含继承的)所有可遍历（enumerable）属性。可以用 for…of 循环进行遍历:</p>
+<p>Set 实例的遍历方法，Set 结构中键名和键值相等，因此 keys() 和 values() 是等价的。返回的遍历器可以用 for…of 循环进行遍历或者调用遍历器对象的 next 方法，进行遍历:</p>
 
 <ul>
-  <li><strong>Object.keys()</strong> - 对键名的遍历</li>
-  <li><strong>Object.values()</strong> - 对键值的遍历</li>
-  <li><strong>Object.entries()</strong> - 对键值对的遍历</li>
+  <li><strong>keys()</strong> - 返回键名的遍历器</li>
+  <li><strong>values()</strong> - 返回键值的遍历器</li>
+  <li><strong>entries()</strong> - 返回键值对的遍历器</li>
+  <li><strong>forEach()</strong> - 使用回调函数遍历每个成员</li>
 </ul>
 
-<pre><code class="language-JS">let {keys, values, entries} = Object;
+<pre><code class="language-JS">let set = new Set([1, 2, 3]);
 
-for (let key of keys(obj)) { }
+// 以下三种写法等价
+for (let item of set.keys()) { }
+for (let item of set.values()) { }
+for (let item of set) { }
+
+set.forEach((value, key) =&gt; console.log(key + ' : ' + value))
+
+set = new Set([...set].map(x =&gt; x * 2)); // Set(3) {2, 4, 6}
+set = new Set(Array.from(set, val =&gt; val * 2));
 </code></pre>
 
-<h3 id="super-关键字">super 关键字</h3>
+<h2 id="weakset">WeakSet</h2>
 
-<p>this 关键字总是指向函数所在的当前对象，ES6 又新增了另一个类似的关键字 <strong>super</strong>，指向当前对象的原型对象。只能用在对象的方法之中。</p>
+<p><strong>WeakSet</strong> 结构与 Set 类似，但</p>
 
-<pre><code class="language-JS">const person = {
-  name: 'tate'
-};
+<ul>
+  <li>成员只能是对象，而不能是其他类型的值</li>
+  <li>对象成员都是弱引用，即垃圾回收机制不考虑 WeakSet 对该对象的引用</li>
+  <li>不可遍历，没有 size 属性，没有 clear 方法</li>
+</ul>
 
-const anotherPerson = {
-  name: 'snow',
-  sayName() {
-    return super.name;
+<pre><code class="language-JS">var ws = new WeakSet([1, 2, 3]); // TypeError: Invalid value used in weak set
+ws.add(1) // TypeError: Invalid value used in weak set
+
+var ws = new WeakSet([[1, 2], [3, 4]]); // WeakSet {Array(2), Array(2)}
+</code></pre>
+
+<h2 id="map">Map</h2>
+
+<p>Object 结构提供了”字符串—值”的对应，Map 结构提供了”值—值”的对应，是一种更完善的 Hash 结构实现。</p>
+
+<pre><code class="language-JS">const map = new Map([
+  ['name', 'snow'],
+  ['age', 18]
+]); // Map(2) {'name' =&gt; 'snow', 'age' =&gt; 18}
+
+map.size; // 2
+map.has('name'); // true
+</code></pre>
+
+<p>Map 实例的操作方法:</p>
+
+<ul>
+  <li><strong>set(key, value)</strong> - 置键名 key 对应的键值为 value，返回 Map 结构本身，因此可以采用链式写法</li>
+  <li><strong>get()</strong> - 读取 key 对应的键值</li>
+  <li><strong>delete()</strong> - 返回一个布尔值，删除某个键</li>
+  <li><strong>has()</strong> - 返回一个布尔值，表示该值是否为 Map 的成员</li>
+  <li><strong>clear()</strong> - 清除所有成员</li>
+</ul>
+
+<pre><code class="language-JS">map.set({'a': 1}, 2); // Map(3) {'name' =&gt; 'snow', 'age' =&gt; 18, {…} =&gt; 2}
+map.get('age'); // 18
+map.delete('age');
+map.clear();
+</code></pre>
+
+<p>Map 实例的遍历方法和 Set 类似，返回的遍历器可以用 for…of 循环进行遍历或者调用遍历器对象的 next 方法，进行遍历:</p>
+
+<ul>
+  <li><strong>keys()</strong> - 返回键名的遍历器。</li>
+  <li><strong>values()</strong> - 返回键值的遍历器。</li>
+  <li><strong>entries()</strong> - 返回所有成员的遍历器。</li>
+  <li><strong>forEach()</strong> - 遍历 Map 的所有成员。</li>
+</ul>
+
+<pre><code class="language-JS">for (let key of map.keys()) { } // MapIterator {'name', 'age'}
+for (let [key, value] of map.entries()) { } // MapIterator {'name' =&gt; 'snow', 'age' =&gt; 18}
+
+// 转为数组
+[...map.keys()]; // ['name', 'age']
+
+new Map([...map].filter(([x, y]) =&gt; Number.isInteger(y))); // Map(1) {'age' =&gt; 18}
+</code></pre>
+
+<h2 id="weakmap">WeakMap</h2>
+
+<p><strong>WeakMap</strong> 结构与 Map 结构类似，也是用于生成键值对的集合。主要区别是:</p>
+
+<ul>
+  <li>WeakMap 只接受对象作为键名(null除外)，不接受其他类型的值作为键名</li>
+  <li>WeakMap 的键名所指向的对象，不计入垃圾回收机制，有助于防止内存泄漏</li>
+  <li>WeakMap 没有遍历操作(即没有key()、values() 和 entries()方法)，也没有 size 属性，不支持 clear() 清空操作</li>
+</ul>
+
+<p>使用场景</p>
+
+<ul>
+  <li>以 DOM 节点作为键名，一旦该 DOM 节点删除，该状态就会自动消失，不存在内存泄漏风险</li>
+</ul>
+
+<pre><code class="language-JS">let myElement = document.getElementById('logo');
+let myWeakmap = new WeakMap();
+
+myWeakmap.set(myElement, {timesClicked: 0});
+
+myElement.addEventListener('click', function() {
+  let logoData = myWeakmap.get(myElement);
+  logoData.timesClicked++;
+}, false);
+</code></pre>
+
+<ul>
+  <li>设置私有成员，而不用约定以下划线 ‘_’ 开头的成员名作为私有成员</li>
+</ul>
+
+<pre><code class="language-JS">const _counter = new WeakMap();
+const _action = new WeakMap();
+
+class Countdown {
+  constructor(counter, action) {
+    _counter.set(this, counter);
+    _action.set(this, action);
   }
-};
-
-Object.setPrototypeOf(anotherPerson, person); // anotherPerson.__proto__ = person
-anotherPerson.sayName(); // 'tate'
-</code></pre>
-
-<h2 id="symbol">Symbol</h2>
-
-<h3 id="symbol-1">Symbol()</h3>
-
-<p><strong>Symbol</strong> 是 ES6 引入的一种新的原始数据类型，表示独一无二的值。</p>
-
-<pre><code class="language-JS">let a = Symbol();
-let b = Symbol();
-// Symbol函数的参数只是表示对当前 Symbol 值的描述
-let c = Symbol('tate');
-
-typeof a; // 'symbol'
-a === b; // false
-</code></pre>
-
-<p>作为属性名的写法，可以通过 Object.getOwnPropertySymbols 返回包含所有 Symbol 值的数组:</p>
-
-<pre><code class="language-JS">let mySymbol = Symbol();
-
-// 第一种写法
-let a = {};
-a[mySymbol] = 'Hello!';
-
-// 第二种写法
-let a = {
-  [mySymbol]: 'Hello!'
-};
-
-// 第三种写法
-let a = {};
-Object.defineProperty(a, mySymbol, { value: 'Hello!' });
-
-// 以上写法都得到同样结果
-a[mySymbol]; // 'Hello!' 不能使用 点运算符.
-Object.getOwnPropertySymbols(a); // '[Symbol()]'
-</code></pre>
-
-<h3 id="symbolfor">Symbol.for()</h3>
-
-<p><strong>Symbol.for</strong> 可以复用同一个 Symbol 值，会被登记在全局环境中供搜索。</p>
-
-<pre><code class="language-JS">let a = Symbol.for('tate');
-let b = Symbol.for('tate');
-
-a === b; // true
-</code></pre>
-
-<h3 id="内置-symbol-值">内置 Symbol 值</h3>
-
-<p>除了定义自己使用的 Symbol 值以外，ES6 还提供了 11 个内置的 Symbol 值，指向语言内部使用的方法。举两个栗子 🌰:</p>
-
-<ul>
-  <li>Symbol.hasInstance</li>
-</ul>
-
-<pre><code class="language-JS">// foo instanceof Foo在语言内部，实际调用的是Foo[Symbol.hasInstance](foo)
-class MyClass {
-  [Symbol.hasInstance](foo) {
-    return foo instanceof Array;
+  descend() {
+    let counter = _counter.get(this);
+    if (counter &lt; 1) return;
+    counter--;
+    _counter.set(this, counter);
+    if (counter === 0) {
+      _action.get(this)();
+    }
   }
 }
 
-[1, 2, 3] instanceof new MyClass(); // true
-</code></pre>
+const countdown = new Countdown(2, () =&gt; console.log('well done!'));
 
-<ul>
-  <li>Symbol.replace</li>
-</ul>
-
-<pre><code class="language-JS">String.prototype.replace(searchValue, replaceValue)
-// 等同于
-searchValue[Symbol.replace](this, replaceValue)
-
-const x = {};
-x[Symbol.replace] = (...s) =&gt; console.log(s);
-
-'Hello'.replace(x, 'World'); // ["Hello", "World"]
+countdown.descend();
+countdown.descend(); // 'well done!'
 </code></pre>
 
 <h2 id="参考链接">参考链接</h2>
@@ -630,9 +361,9 @@ x[Symbol.replace] = (...s) =&gt; console.log(s);
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/03/16/es6-extension-next.html';
-        this.page.identifier = '/2018/03/16/es6-extension-next';
-        this.page.title = '对象扩展(下)';
+        this.page.url = 'https://tate-young.github.io/2018/03/18/es6-set-map.html';
+        this.page.identifier = '/2018/03/18/es6-set-map';
+        this.page.title = 'Set & Map';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -650,7 +381,7 @@ x[Symbol.replace] = (...s) =&gt; console.log(s);
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-16 11:43:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-18 10:40:00</p> -->
         </div>
     </article>
 

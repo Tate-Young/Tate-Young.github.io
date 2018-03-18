@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Set & Map - ",
+		"url" : "/2018/03/18/es6-set-map.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Proxy & Reflect - ",
 		"url" : "/2018/03/17/es6-proxy-reflect.html"
 	}
