@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='Set & Map 数据结构 - Tate & Snow' name='title' />
-    <meta content='Set & Map 数据结构 - Tate & Snow' name='og:title' />
-    <title>Set & Map 数据结构 - Tate & Snow</title>
+    <meta content='Generator & Async - Tate & Snow' name='title' />
+    <meta content='Generator & Async - Tate & Snow' name='og:title' />
+    <title>Generator & Async - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Set & Map 数据结构 - Tate & Snow</title>
+<title>Generator & Async - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Set & Map 数据结构 - Tate & Snow">
-<meta name="twitter:keywords" content="Set & Map 数据结构 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Generator & Async - Tate & Snow">
+<meta name="twitter:keywords" content="Generator & Async - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Set & Map 数据结构 - Tate & Snow">
-<meta name="og:keywords" content="Set & Map 数据结构 - Tate & Snow|Set &amp; Map 数据结构SetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undef..."
+<meta property="og:title" content="Generator & Async - Tate & Snow">
+<meta name="og:keywords" content="Generator & Async - Tate & Snow|Generator &amp; AsyncGenerator 函数yield / nextGenerator 函数是 ES6 提供的一种异步编程解决方案，执行 Generator 函数会返回一个指向内部状态的遍历器对象。Generat..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Set &amp; Map 数据结构SetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undef..." property='og:description'
+<meta name="keywords" content="Generator &amp; AsyncGenerator 函数yield / nextGenerator 函数是 ES6 提供的一种异步编程解决方案，执行 Generator 函数会返回一个指向内部状态的遍历器对象。Generat..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/03/18/es6-set-map.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/18/es6-set-map.html|Set &amp; Map 数据结构SetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undef..." property='og:description'
+<meta content='http://localhost:4000/2018/03/18/es6-generator-async.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/18/es6-generator-async.html|Generator &amp; AsyncGenerator 函数yield / nextGenerator 函数是 ES6 提供的一种异步编程解决方案，执行 Generator 函数会返回一个指向内部状态的遍历器对象。Generat..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -133,9 +133,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    Set & Map 数据结构</h1>
+                    Generator & Async</h1>
                 <div class="post-data">
-                    <time datetime="2018-03-18 10:40:00" itemprop="datePublished">发布时间：2018-03-18 10:40:00</time>
+                    <time datetime="2018-03-18 00:00:00" itemprop="datePublished">发布时间：2018-03-18 00:00:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -154,9 +154,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                Set & Map 数据结构</h1>
+                Generator & Async</h1>
             <div class="post-data">
-                <time datetime="2018-03-18 10:40:00" itemprop="datePublished">2018-03-18 10:40:00</time>
+                <time datetime="2018-03-18 00:00:00" itemprop="datePublished">2018-03-18 00:00:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -168,352 +168,506 @@
                     </a>
                    
             </p>
-            <h1 id="set--map-数据结构">Set &amp; Map 数据结构</h1>
+            <h1 id="generator--async">Generator &amp; Async</h1>
 
-<h2 id="set">Set</h2>
+<h2 id="generator-函数">Generator 函数</h2>
 
-<p>Set 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。</p>
+<h3 id="yield--next">yield / next</h3>
 
-<pre><code class="language-JS">var set = new Set(1, 2, 3); // TypeError: undefined is not a function
-var set = new Set({}); // TypeError: undefined is not a function
+<p><strong>Generator</strong> 函数是 ES6 提供的一种异步编程解决方案，执行 Generator 函数会返回一个指向内部状态的遍历器对象。Generator 函数是分段执行的，yield 表达式是暂停执行的标记，而 next 方法可以恢复执行。</p>
 
-var set = new Set([1, 2, 3]); // Set(3) {1, 2, 3}
-var set = new Set('tate'); //  Set(3) {'t', 'a', 'e'}
-</code></pre>
-
-<pre><code class="language-JS">// 在 Set 内部，使用 Object.is 方法进行对比，如两个 NaN 视为相等
-let set = new Set([1, 2, 2, 3]); // Set(3) {1, 2, 3}
-[...set]; // [1, 2, 3]
-set.size; // 3 获取 Set 结构长度
-
-// 数组去重
-[...new Set(array)];
-Array.from(new Set(array));
-</code></pre>
-
-<p>Set 实例的操作方法:</p>
-
-<ul>
-  <li><strong>add()</strong> - 添加某个值，返回 Set 结构本身，因此可采用链式写法</li>
-  <li><strong>delete()</strong> - 删除某个值，返回一个布尔值，表示删除是否成功</li>
-  <li><strong>has()</strong> - 返回一个布尔值，表示该值是否为 Set 的成员</li>
-  <li><strong>clear()</strong> - 清除所有成员</li>
-</ul>
-
-<pre><code class="language-JS">set.add(4).add(3).add(2); // Set(4) {1, 2, 3, 4}
-set.has(4); // true
-set.delete(4); // true Set(3) {1, 2, 3}
-set.clear(); // Set(0) {}
-</code></pre>
-
-<p>Set 实例的遍历方法，Set 结构中键名和键值相等，因此 keys() 和 values() 是等价的。返回的遍历器可以用 for…of 循环进行遍历或者调用遍历器对象的 next 方法，进行遍历:</p>
-
-<ul>
-  <li><strong>keys()</strong> - 返回键名的遍历器</li>
-  <li><strong>values()</strong> - 返回键值的遍历器</li>
-  <li><strong>entries()</strong> - 返回键值对的遍历器</li>
-  <li><strong>forEach()</strong> - 使用回调函数遍历每个成员</li>
-</ul>
-
-<pre><code class="language-JS">let set = new Set([1, 2, 3]);
-
-// 以下三种写法等价
-for (let item of set.keys()) { }
-for (let item of set.values()) { }
-for (let item of set) { }
-
-set.forEach((value, key) =&gt; console.log(key + ' : ' + value))
-
-set = new Set([...set].map(x =&gt; x * 2)); // Set(3) {2, 4, 6}
-set = new Set(Array.from(set, val =&gt; val * 2));
-</code></pre>
-
-<h2 id="weakset">WeakSet</h2>
-
-<p><strong>WeakSet</strong> 结构与 Set 类似，但</p>
-
-<ul>
-  <li>成员只能是对象，而不能是其他类型的值</li>
-  <li>对象成员都是弱引用，即垃圾回收机制不考虑 WeakSet 对该对象的引用</li>
-  <li>不可遍历，没有 size 属性，没有 clear 方法</li>
-</ul>
-
-<pre><code class="language-JS">var ws = new WeakSet([1, 2, 3]); // TypeError: Invalid value used in weak set
-ws.add(1) // TypeError: Invalid value used in weak set
-
-var ws = new WeakSet([[1, 2], [3, 4]]); // WeakSet {Array(2), Array(2)}
-</code></pre>
-
-<h2 id="map">Map</h2>
-
-<p>Object 结构提供了”字符串—值”的对应，Map 结构提供了”值—值”的对应，是一种更完善的 Hash 结构实现。</p>
-
-<pre><code class="language-JS">const map = new Map([
-  ['name', 'snow'],
-  ['age', 18]
-]); // Map(2) {'name' =&gt; 'snow', 'age' =&gt; 18}
-
-map.size; // 2
-map.has('name'); // true
-</code></pre>
-
-<p>Map 实例的操作方法:</p>
-
-<ul>
-  <li><strong>set(key, value)</strong> - 置键名 key 对应的键值为 value，返回 Map 结构本身，因此可以采用链式写法</li>
-  <li><strong>get()</strong> - 读取 key 对应的键值</li>
-  <li><strong>delete()</strong> - 返回一个布尔值，删除某个键</li>
-  <li><strong>has()</strong> - 返回一个布尔值，表示该值是否为 Map 的成员</li>
-  <li><strong>clear()</strong> - 清除所有成员</li>
-</ul>
-
-<pre><code class="language-JS">map.set({'a': 1}, 2); // Map(3) {'name' =&gt; 'snow', 'age' =&gt; 18, {…} =&gt; 2}
-map.get('age'); // 18
-map.delete('age');
-map.clear();
-</code></pre>
-
-<p>Map 实例的遍历方法和 Set 类似，返回的遍历器可以用 for…of 循环进行遍历或者调用遍历器对象的 next 方法，进行遍历:</p>
-
-<ul>
-  <li><strong>keys()</strong> - 返回键名的遍历器。</li>
-  <li><strong>values()</strong> - 返回键值的遍历器。</li>
-  <li><strong>entries()</strong> - 返回所有成员的遍历器。</li>
-  <li><strong>forEach()</strong> - 遍历 Map 的所有成员。</li>
-</ul>
-
-<pre><code class="language-JS">for (let key of map.keys()) { } // MapIterator {'name', 'age'}
-for (let [key, value] of map.entries()) { } // MapIterator {'name' =&gt; 'snow', 'age' =&gt; 18}
-
-// 转为数组
-[...map.keys()]; // ['name', 'age']
-
-new Map([...map].filter(([x, y]) =&gt; Number.isInteger(y))); // Map(1) {'age' =&gt; 18}
-</code></pre>
-
-<h2 id="weakmap">WeakMap</h2>
-
-<p><strong>WeakMap</strong> 结构与 Map 结构类似，也是用于生成键值对的集合。主要区别是:</p>
-
-<ul>
-  <li>WeakMap 只接受对象作为键名(null除外)，不接受其他类型的值作为键名</li>
-  <li>WeakMap 的键名所指向的对象，不计入垃圾回收机制，有助于防止内存泄漏</li>
-  <li>WeakMap 没有遍历操作(即没有key()、values() 和 entries()方法)，也没有 size 属性，不支持 clear() 清空操作</li>
-</ul>
-
-<p>使用场景</p>
-
-<ul>
-  <li>以 DOM 节点作为键名，一旦该 DOM 节点删除，该状态就会自动消失，不存在内存泄漏风险</li>
-</ul>
-
-<pre><code class="language-JS">let myElement = document.getElementById('logo');
-let myWeakmap = new WeakMap();
-
-myWeakmap.set(myElement, {timesClicked: 0});
-
-myElement.addEventListener('click', function() {
-  let logoData = myWeakmap.get(myElement);
-  logoData.timesClicked++;
-}, false);
-</code></pre>
-
-<ul>
-  <li>设置私有成员，而不用约定以下划线 ‘_’ 开头的成员名作为私有成员</li>
-</ul>
-
-<pre><code class="language-JS">const _counter = new WeakMap();
-const _action = new WeakMap();
-
-class Countdown {
-  constructor(counter, action) {
-    _counter.set(this, counter);
-    _action.set(this, action);
-  }
-  descend() {
-    let counter = _counter.get(this);
-    if (counter &lt; 1) return;
-    counter--;
-    _counter.set(this, counter);
-    if (counter === 0) {
-      _action.get(this)();
-    }
-  }
+<pre><code class="language-JS">function* helloTate() {
+  yield 'tate';
+  yield 'loves';
+  return 'snow';
 }
 
-const countdown = new Countdown(2, () =&gt; console.log('well done!'));
-
-countdown.descend();
-countdown.descend(); // 'well done!'
+var ht = helloTate();
+ht.next(); // {value: 'tate', done: false}
+ht.next(); // {value: 'loves', done: false}
+ht.next(); // {value: 'snow', done: false}
+ht.next(); // {value: undefined, done: true}
 </code></pre>
 
-<h2 id="iterator-遍历器">Iterator 遍历器</h2>
+<p>Generator 函数执行后，返回一个遍历器对象。该对象本身也具有 Symbol.iterator 属性，执行后返回自身:</p>
 
-<h3 id="symboliterator">Symbol.iterator</h3>
+<pre><code class="language-JS">function* gen(){ }
 
-<p><strong>遍历器(Iterator)</strong> 是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署 Iterator 接口，就可以完成遍历操作，即调用这个接口，就会返回一个遍历器对象，如 for…of。默认的 Iterator 接口部署在数据结构的 <strong>Symbol.iterator</strong> 属性。</p>
-
-<p>原生具备 Iterator 接口的数据结构如下:</p>
-
-<ul>
-  <li>Array</li>
-  <li>Map</li>
-  <li>Set</li>
-  <li>String</li>
-  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArray</a> - 描述一个底层的二进制数据缓存区(<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>)的一个类似数组(array-like)视图</li>
-  <li>函数的 arguments 对象</li>
-  <li>NodeList 对象</li>
-</ul>
-
-<pre><code class="language-JS">let arr = ['a', 'b', 'c'];
-
-// 原生就具有遍历器接口，部署在数组的 Symbol.iterator 属性上面。所以，调用这个属性，就得到遍历器对象
-let iter = arr[Symbol.iterator]();
-
-// 或者通过数组的遍历方法 keys() 返回遍历器对象
-let iter1 = arr.entries();
-
-iter.next() // { value: 'a', done: false }
-iter.next() // { value: 'b', done: false }
-iter.next() // { value: 'c', done: false }
-iter.next() // { value: undefined, done: true }
+var g = gen();
+g[Symbol.iterator]() === g; // true
 </code></pre>
 
-<h3 id="修改遍历行为">修改遍历行为</h3>
+<p>作为对象属性的 Generator 函数写法:</p>
 
-<p>可以覆盖原生的 Symbol.iterator 方法，达到修改遍历器行为的目的:</p>
+<pre><code class="language-JS">let obj = {
+  *myGeneratorMethod() { }
+};
 
-<pre><code class="language-JS">let str = 'tate';
-let strIter = str[Symbol.iterator]();
-strIter.next().value; // 't'
+// 等价于
+let obj = {
+  myGeneratorMethod: function* () { }
+};
+</code></pre>
 
-str = new String(str); // 包装成 String 引用类型
-str[Symbol.iterator] = _ =&gt; {
-  return {
-    next() {
-      if (this._isMe) {
-        this._isMe = false;
-        return { value: 'snow', done: false };
-      } else {
-        return { value: undefined, done: true };
-      }
-  },
-  _isMe: true
-  }
+<p>next 带参数的情况:</p>
+
+<pre><code class="language-JS">function* foo(x) {
+  var y = 2 * (yield (x + 1));
+  var z = yield (y / 3);
+  return (x + y + z);
 }
-strIter = str[Symbol.iterator]();
-strIter.next().value; // 'snow'
+
+// 由于 next 方法的参数表示上一个 yield 表达式的返回值，所以在第一次使用 next 方法时，传递参数是无效的
+var a = foo(5);
+a.next(); // Object{value:6, done:false}
+a.next(); // Object{value:NaN, done:false}
+a.next(); // Object{value:NaN, done:true}
+
+var b = foo(5);
+b.next(); // { value:6, done:false }
+b.next(12); // { value:8, done:false }
+b.next(13); // { value:42, done:true }
 </code></pre>
 
-<h3 id="部署-iterator-接口">部署 Iterator 接口</h3>
+<h3 id="throw">throw</h3>
 
-<p>其他数据结构要具备可被 for…of 循环调用的 Iterator 接口，就必须在 Symbol.iterator 的属性上部署遍历器生成方法(原型链上的对象具有该方法也可):</p>
+<p>Generator 函数返回的遍历器对象，都有一个 throw 方法，可以在函数体外抛出错误，然后在 Generator 函数体内捕获。</p>
 
-<pre><code class="language-JS">// 对象部署 Iterator 接口
-const obj = {
-  [Symbol.iterator]() {
-    return {
-      next: function () {
-        return {
-          value: 1,
-          done: true
-        };
-      }
-    };
+<pre><code class="language-JS">var g = function* () {
+  try {
+    yield;
+  } catch (e) {
+    console.log('内部捕获', e);
   }
 };
 
-var o = obj[Symbol.iterator]();
-o.next(); // {value: 1, done: true}
+var i = g();
+i.next();
 
-Reflect.ownKeys(obj) // [Symbol(Symbol.iterator)]
+try {
+  i.throw('a');
+  i.throw('b');
+  i.throw('c'); // 不会再执行
+  // throw new Error('d'); // 注意全局 throw 命令的不同，只能被函数体外的 catch 捕获
+} catch (e) {
+  console.log('外部捕获', e);
+}
+// 内部捕获 a // 第一个错误被 Generator 函数体内的 catch 语句捕获
+// 外部捕获 b // 由于上述 Generator 函数体内的 catch 已经执行捕获，因此第二个错误被函数体外的 catch 捕获
 </code></pre>
 
-<pre><code class="language-JS">// 类部署 Iterator 接口
-class RangeIterator {
-  constructor(start, stop) {
-    this.value = start;
-    this.stop = stop;
-  }
+<p>throw 方法被捕获以后，会附带执行下一条 yield 表达式。即执行一次 next 方法:</p>
 
-  [Symbol.iterator]() { return this; }
+<pre><code class="language-JS">var gen = function* gen(){
+  try {
+    yield console.log('a');
+  } catch (e) { }
 
-  next() {
-    var value = this.value;
-    if (value &lt; this.stop) {
-      this.value++;
-      return {done: false, value: value};
-    }
-    return {done: true, value: undefined};
-  }
+  yield console.log('b');
+  yield console.log('c');
 }
 
-function range(start, stop) {
-  return new RangeIterator(start, stop);
-}
-
-for (var value of range(0, 3)) {
-  console.log(value); // 0, 1, 2
-}
-
-var v = range(0, 3); // RangeIterator {value: 0, stop: 3}
-v.next().value; // 0
-v.next().value; // 1
-v.next().value; // 2
+var g = gen();
+g.next(); // a
+g.throw(); // b 若 Generator 函数体内没有 try catch 代码块进行捕获错误则会中断执行
+g.next(); // c
 </code></pre>
 
-<p>Symbol.iterator 方法的最简单实现，是使用 Generator 函数:</p>
+<h3 id="return">return</h3>
 
-<pre><code class="language-JS">let myIterable = {
-  *[Symbol.iterator]() {
-    yield 1;
+<p>Generator 函数返回的遍历器对象，还有一个 return 方法，可以返回给定的值，并且终止遍历 Generator 函数。</p>
+
+<pre><code class="language-JS">function* gen() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+var g = gen();
+
+g.next(); // { value: 1, done: false }
+g.return('tate'); // { value: 'tate', done: true } 不提供参数则为 undefined
+g.next(); // { value: undefined, done: true }
+</code></pre>
+
+<p>如果 Generator 函数内部有 try…finally 代码块，那么return方法会推迟到finally代码块执行完再执行</p>
+
+<pre><code class="language-JS">function* numbers () {
+  yield 1;
+  try {
     yield 2;
     yield 3;
+  } finally {
+    yield 4;
+    yield 5;
+  }
+  yield 6;
+}
+var g = numbers();
+g.next(); // { value: 1, done: false }
+g.next(); // { value: 2, done: false }
+g.return(7); // { value: 4, done: false }
+g.next(); // { value: 5, done: false }
+g.next(); // { value: 7, done: true }
+</code></pre>
+
+<h3 id="yield">yield*</h3>
+
+<p><strong>yield</strong>* 表达式，用来在一个 Generator 函数里面执行另一个 Generator 函数。</p>
+
+<pre><code class="language-JS">function* foo() {
+  yield 'a';
+  yield 'b';
+}
+
+// 任何数据结构只要部署 Iterator 接口，就可以被 yield* 遍历
+function* bar() {
+  yield 'x';
+  yield* foo();
+  yield 'y';
+  yield [1, 2];
+  yield* [1, 2];
+}
+
+for (let v of bar()){
+  console.log(v); // a x b y [1, 2] 1 2
+}
+</code></pre>
+
+<p>注意 yield* 中 return 语句的返回值:</p>
+
+<pre><code class="language-JS">function* genFuncWithReturn() {
+  yield 'a';
+  yield 'b';
+  return 'c';
+}
+function* logReturned(genObj) {
+  console.log(yield* genObj); // c
+}
+
+[...logReturned(genFuncWithReturn())] // ['a', 'b']
+</code></pre>
+
+<p>举个栗子 🌰，使用 yield* 语句遍历完全二叉树:</p>
+
+<pre><code class="language-JS">// 下面是二叉树的构造函数，
+// 三个参数分别是左树、当前节点和右树
+function Tree(left, label, right) {
+  this.left = left;
+  this.label = label;
+  this.right = right;
+}
+
+// 下面是中序(inorder)遍历函数。
+// 由于返回的是一个遍历器，所以要用 generator 函数。
+// 函数体内采用递归算法，所以左树和右树要用 yield* 遍历
+function* inorder(t) {
+  if (t) {
+    yield* inorder(t.left);
+    yield t.label;
+    yield* inorder(t.right);
   }
 }
-[...myIterable]; // [1, 2, 3]
-</code></pre>
 
-<h2 id="forof">for…of</h2>
+// 下面生成二叉树
+function make(array) {
+  // 判断是否为叶节点
+  if (array.length == 1) return new Tree(null, array[0], null);
+  return new Tree(make(array[0]), array[1], make(array[2]));
+}
+let tree = make([[['a'], 'b', ['c']], 'd', [['e'], 'f', ['g']]]);
 
-<p><strong>for…of</strong> 循环内部调用的是数据结构的 Symbol.iterator 方法。</p>
-
-<pre><code class="language-JS">const arr = ['a', 'b', 'c'];
-
-for(let v of arr) {
-  console.log(v); // a b c
+// 遍历二叉树
+var result = [];
+for (let node of inorder(tree)) {
+  result.push(node);
 }
 
-const obj = {};
-obj[Symbol.iterator] = arr[Symbol.iterator].bind(arr); // 空对象部署了数组的 Symbol.iterator 属性
+result; // ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+</code></pre>
 
-for(let v of obj) {
-  console.log(v); // a b c
+<h3 id="上下文">上下文</h3>
+
+<p>在<a href="http://localhost:4000/2018/02/09/js-scope.html">执行上下文一节</a>已经介绍过可执行代码产生如何产生执行上下文。而 Generator 函数却不同，其执行产生的上下文，一旦遇到 yield 命令，就会暂时退出堆栈，但是并不消失，里面的所有变量和对象会冻结在当前状态。等到对它执行 next 命令时，这个执行上下文又会重新加入调用栈，冻结的变量和对象恢复执行。</p>
+
+<h3 id="状态机">状态机</h3>
+
+<p><strong><a href="https://zh.wikipedia.org/wiki/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA">状态机</a></strong>是表示有限个状态以及在这些状态之间的转移和动作等行为的数学模型，Generator 可以实现状态机。举个栗子 🌰:</p>
+
+<pre><code class="language-JS">// 通常写法 clock 即是一个状态机
+var ticking = true;
+var clock = function() {
+  if (ticking)
+    console.log('Tick!');
+  else
+    console.log('Tock!');
+  ticking = !ticking;
 }
 </code></pre>
 
-<p>与其他遍历语法的比较:</p>
+<pre><code class="language-JS">var clock = function* () {
+  while (true) {
+    console.log('Tick!');
+    yield;
+    console.log('Tock!');
+    yield;
+  }
+};
+</code></pre>
+
+<h3 id="控制流程管理案例">控制流程管理案例</h3>
+
+<p>假设有多个异步操作需要执行，采用回调的写法:</p>
+
+<pre><code class="language-JS">step1(function (value1) {
+  step2(value1, function(value2) {
+    step3(value2, function(value3) {
+      step4(value3, function(value4) {
+        // do something
+      });
+    });
+  });
+});
+</code></pre>
+
+<p>采用 Promise 的写法:</p>
+
+<pre><code class="language-JS">Promise.resolve(step1)
+  .then(step2)
+  .then(step3)
+  .then(step4)
+  .then(function (value4) {
+    // do something
+  }, function (error) {
+    // Handle any error from step1 through step4
+  })
+  .done();
+</code></pre>
+
+<p>采用 Generator 函数的写法，但只支持多任务的同步执行:</p>
+
+<pre><code class="language-JS">function* longRunningTask(value1) {
+  try {
+    var value2 = yield step1(value1);
+    var value3 = yield step2(value2);
+    var value4 = yield step3(value3);
+    var value5 = yield step4(value4);
+    // do something
+  } catch (e) {
+    // Handle any error from step1 through step4
+  }
+}
+
+run(longRunningTask(initialValue));
+
+// 此时的 task 都是同步执行，因为只要有返回值就继续往下执行，没有判断异步操作何时完成。
+function run(task) {
+  var taskObj = task.next(task.value);
+  // 如果 Generator 函数未结束，就继续调用
+  if (!taskObj.done) {
+    task.value = taskObj.value;
+    run(task);
+  }
+}
+</code></pre>
+
+<p>Generator 就是一个异步操作的容器。它的自动执行需要一种机制(执行器)，当异步操作有了结果，能够自动交回执行权。有两种方法可以实现，即 yield 命令后面，只能是 Thunk 函数或 Promise 对象:</p>
 
 <ul>
-  <li>for 循环</li>
-  <li>forEach - 无法中途跳出 forEach 循环，break 命令无效</li>
-  <li>for…in - 遍历键名，循环遍历对象自身的和继承的可枚举属性(不含 Symbol 属性)</li>
+  <li>回调函数 - 将异步操作包装成 Thunk 函数，在回调函数里面交回执行权。例如<a href="https://github.com/tj/node-thunkify">模块 Thunkify</a></li>
+  <li>Promise - 将异步操作包装成 Promise 对象，用 then 方法交回执行权。例如<a href="https://github.com/tj/co">模块 co</a></li>
 </ul>
 
-<pre><code class="language-JS">for(let v in arr) {
-  console.log(arr[v]); // a b c
+<p>关于 Thunk 函数可以<a href="http://es6.ruanyifeng.com/#docs/generator-async#Thunk-%E5%87%BD%E6%95%B0">参考这里</a>，其本质是传名调用，只包含一个参数和一个回调。</p>
+
+<pre><code class="language-JS">// ES5
+var Thunk = function(fn){
+  return function (){
+    var args = Array.prototype.slice.call(arguments);
+    return function (callback){
+      args.push(callback);
+      return fn.apply(this, args);
+    }
+  };
+};
+
+// ES6
+const Thunk = function(fn) {
+  return function (...args) {
+    return function (callback) {
+      return fn.call(this, ...args, callback);
+    }
+  };
+};
+
+var readFileThunk = Thunk(fs.readFile);
+readFileThunk(fileA)(callback);
+</code></pre>
+
+<h2 id="async-函数">async 函数</h2>
+
+<h3 id="语法糖">语法糖</h3>
+
+<p><strong>async</strong> 函数就是 Generator 函数的语法糖。async 函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而 await 命令就是内部 then 命令的语法糖，对比 Generator 主要有以下四点改进:</p>
+
+<ul>
+  <li><strong>内置执行器</strong></li>
+</ul>
+
+<p>Generator 函数的执行必须靠执行器，所以才有了 co 模块，而 async 函数自带执行器，如 asyncReadFile();</p>
+
+<ul>
+  <li><strong>更好的语义</strong></li>
+</ul>
+
+<p>async 和 await，比起星号 * 和 yield，语义更清楚了。async 表示函数里有异步操作，await 表示紧跟在后面的表达式需要等待结果。</p>
+
+<ul>
+  <li><strong>更广的适用性</strong></li>
+</ul>
+
+<p>co 模块约定，yield 命令后面只能是 Thunk 函数或 Promise 对象，而 async 函数的 await 命令后面，可以是 Promise 对象和原始类型的值(数值、字符串和布尔值，但这时等同于同步操作)。</p>
+
+<ul>
+  <li><strong>返回值是 Promise</strong></li>
+</ul>
+
+<p>async 函数的返回值是 Promise 对象，而 Generator 函数的返回值是 Iterator 对象。</p>
+
+<pre><code class="language-JS">// Generator
+const fs = require('fs');
+
+const readFile = function (fileName) {
+  return new Promise(function (resolve, reject) {
+    fs.readFile(fileName, function(error, data) {
+      if (error) return reject(error);
+      resolve(data);
+    });
+  });
+};
+
+const gen = function* () {
+  const f1 = yield readFile('/etc/fstab');
+  const f2 = yield readFile('/etc/shells');
+  console.log(f1.toString());
+  console.log(f2.toString());
+};
+
+var g = gen();
+g.next();
+</code></pre>
+
+<pre><code class="language-JS">// async
+const asyncReadFile = async function () {
+  const f1 = await readFile('/etc/fstab');
+  const f2 = await readFile('/etc/shells');
+  console.log(f1.toString());
+  console.log(f2.toString());
+};
+asyncReadFile(); // 内置执行器
+</code></pre>
+
+<h3 id="书写形式">书写形式</h3>
+
+<pre><code class="language-JS">// 函数声明
+async function foo() {}
+
+// 函数表达式
+const foo = async () =&gt; {};
+
+// 对象的方法
+let person = { async sayName() {return 'tate'} };
+
+person.sayName().then((data) =&gt; console.log(data)); // 'tate'
+
+// Class 的方法
+class Storage {
+  constructor() {
+    this.cachePromise = caches.open('avatars');
+  }
+
+  async getAvatar(name) {
+    const cache = await this.cachePromise;
+    return cache.match(`/avatars/${name}.jpg`);
+  }
 }
 
-for(let v of arr) {
-  if(v === 'b') break;
-  console.log(v); // a
+const storage = new Storage();
+storage.getAvatar('tate').then(…);
+</code></pre>
+
+<h3 id="实现原理">实现原理</h3>
+
+<p>async 函数的实现原理，就是将 Generator 函数和自动执行器，包装在一个函数里。</p>
+
+<pre><code class="language-JS">async function fn(args) { }
+
+// 等价于
+function fn(args) {
+  return spawn(function* () { });
 }
 </code></pre>
+
+<pre><code class="language-JS">function spawn(genF) {
+  return new Promise(function(resolve, reject) {
+    const gen = genF();
+    function step(nextF) {
+      let next;
+      try {
+        next = nextF();
+      } catch(e) {
+        return reject(e);
+      }
+      if(next.done) {
+        return resolve(next.value);
+      }
+      Promise.resolve(next.value).then(function(v) {
+        step(function() { return gen.next(v); });
+      }, function(e) {
+        step(function() { return gen.throw(e); });
+      });
+    }
+    step(function() { return gen.next(undefined); });
+  });
+}
+</code></pre>
+
+<h3 id="按顺序完成异步操作">按顺序完成异步操作</h3>
+
+<p>例如依次远程读取 URL，并按照读取顺序输出结果:</p>
+
+<pre><code class="language-JS">async function logInOrder(urls) {
+  for (const url of urls) {
+    const response = await fetch(url);
+    console.log(await response.text());
+  }
+}
+</code></pre>
+
+<p>上述例子中所有远程操作都是继发，即只有前一个 URL 返回结果，才会去读取下一个 URL，会影响效率，改写如下:</p>
+
+<pre><code class="language-JS">async function logInOrder(urls) {
+  // 并发读取远程 URL
+  const textPromises = urls.map(async url =&gt; {
+    const response = await fetch(url);
+    return response.text();
+  });
+
+  // 按次序输出
+  for (const textPromise of textPromises) {
+    console.log(await textPromise);
+  }
+}
+</code></pre>
+
+<blockquote>
+  <p>本节内容不是很了解，未完待续。直接<a href="http://es6.ruanyifeng.com/#docs">参考阮一峰 ES6 入门</a>。</p>
+</blockquote>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://es6.ruanyifeng.com/#docs/set-map">ECMAScript 6 入门</a> By 阮一峰</li>
+  <li><a href="http://es6.ruanyifeng.com/#docs/iterator">ECMAScript 6 入门</a> By 阮一峰</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -524,9 +678,9 @@ for(let v of arr) {
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/03/18/es6-set-map.html';
-        this.page.identifier = '/2018/03/18/es6-set-map';
-        this.page.title = 'Set & Map 数据结构';
+        this.page.url = 'https://tate-young.github.io/2018/03/18/es6-generator-async.html';
+        this.page.identifier = '/2018/03/18/es6-generator-async';
+        this.page.title = 'Generator & Async';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -544,7 +698,7 @@ for(let v of arr) {
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-18 10:40:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-18 00:00:00</p> -->
         </div>
     </article>
 
