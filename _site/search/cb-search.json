@@ -3,8 +3,16 @@
 	"data" : [
 	 
 	{
-		"title" : "Set & Map - ",
+		"title" : "Set & Map 数据结构 - ",
 		"url" : "/2018/03/18/es6-set-map.html"
+	}
+	
+	,
+	
+    
+	{
+		"title" : "Generator & Async - ",
+		"url" : "/2018/03/18/es6-generator-async.html"
 	}
 	
 	,

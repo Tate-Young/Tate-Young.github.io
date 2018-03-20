@@ -1813,6 +1813,10 @@ pre code::after {
     color: #eb5055;
 }
 
+.lists-navigator ol li.current a.page-turning {
+    padding: 0;
+}
+
 #comments .lists-navigator {
     margin: 20px 0;
 }

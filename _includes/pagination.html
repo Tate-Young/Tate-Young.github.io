@@ -10,7 +10,7 @@
             {% if paginator.page == 1 %}
             <span>&laquo;</span>
             {% else %} {% if paginator.previous_page == 1 %}
-            <a href="/?tate">
+            <a class="page-turning" href="/?tate">
                 {% else %}
                 <a href="/blog{{ paginator.previous_page }}?tate">
                     {% endif %}

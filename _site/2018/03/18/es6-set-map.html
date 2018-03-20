@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='Set & Map - Tate & Snow' name='title' />
-    <meta content='Set & Map - Tate & Snow' name='og:title' />
-    <title>Set & Map - Tate & Snow</title>
+    <meta content='Set & Map 数据结构 - Tate & Snow' name='title' />
+    <meta content='Set & Map 数据结构 - Tate & Snow' name='og:title' />
+    <title>Set & Map 数据结构 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Set & Map - Tate & Snow</title>
+<title>Set & Map 数据结构 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Set & Map - Tate & Snow">
-<meta name="twitter:keywords" content="Set & Map - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Set & Map 数据结构 - Tate & Snow">
+<meta name="twitter:keywords" content="Set & Map 数据结构 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Set & Map - Tate & Snow">
-<meta name="og:keywords" content="Set & Map - Tate & Snow|Set &amp; MapSetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undefined ..."
+<meta property="og:title" content="Set & Map 数据结构 - Tate & Snow">
+<meta name="og:keywords" content="Set & Map 数据结构 - Tate & Snow|Set &amp; Map 数据结构SetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undef..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Set &amp; MapSetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undefined ..." property='og:description'
+<meta name="keywords" content="Set &amp; Map 数据结构SetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undef..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/03/18/es6-set-map.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/18/es6-set-map.html|Set &amp; MapSetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undefined ..." property='og:description'
+<meta content="http://localhost:4000/2018/03/18/es6-set-map.html|Set &amp; Map 数据结构SetSet 数据结构类似于数组，但成员的值都是唯一的。本身是一个构造函数，用来生成 Set 数据结构。var set = new Set(1, 2, 3); // TypeError: undef..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -133,7 +133,7 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    Set & Map</h1>
+                    Set & Map 数据结构</h1>
                 <div class="post-data">
                     <time datetime="2018-03-18 10:40:00" itemprop="datePublished">发布时间：2018-03-18 10:40:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -143,7 +143,7 @@
                        
                     <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
                         ES6
-                        <span>(7)</span>
+                        <span>(8)</span>
                         
                     </a>
                        
@@ -154,7 +154,7 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                Set & Map</h1>
+                Set & Map 数据结构</h1>
             <div class="post-data">
                 <time datetime="2018-03-18 10:40:00" itemprop="datePublished">2018-03-18 10:40:00</time>
             </div>
@@ -164,11 +164,11 @@
                    
                 <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
                     ES6
-                    <span>(7)</span>
+                    <span>(8)</span>
                     </a>
                    
             </p>
-            <h1 id="set--map">Set &amp; Map</h1>
+            <h1 id="set--map-数据结构">Set &amp; Map 数据结构</h1>
 
 <h2 id="set">Set</h2>
 
@@ -347,10 +347,173 @@ countdown.descend();
 countdown.descend(); // 'well done!'
 </code></pre>
 
+<h2 id="iterator-遍历器">Iterator 遍历器</h2>
+
+<h3 id="symboliterator">Symbol.iterator</h3>
+
+<p><strong>遍历器(Iterator)</strong> 是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署 Iterator 接口，就可以完成遍历操作，即调用这个接口，就会返回一个遍历器对象，如 for…of。默认的 Iterator 接口部署在数据结构的 <strong>Symbol.iterator</strong> 属性。</p>
+
+<p>原生具备 Iterator 接口的数据结构如下:</p>
+
+<ul>
+  <li>Array</li>
+  <li>Map</li>
+  <li>Set</li>
+  <li>String</li>
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArray</a> - 描述一个底层的二进制数据缓存区(<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>)的一个类似数组(array-like)视图</li>
+  <li>函数的 arguments 对象</li>
+  <li>NodeList 对象</li>
+</ul>
+
+<pre><code class="language-JS">let arr = ['a', 'b', 'c'];
+
+// 原生就具有遍历器接口，部署在数组的 Symbol.iterator 属性上面。所以，调用这个属性，就得到遍历器对象
+let iter = arr[Symbol.iterator]();
+
+// 或者通过数组的遍历方法 keys() 返回遍历器对象
+let iter1 = arr.entries();
+
+iter.next() // { value: 'a', done: false }
+iter.next() // { value: 'b', done: false }
+iter.next() // { value: 'c', done: false }
+iter.next() // { value: undefined, done: true }
+</code></pre>
+
+<h3 id="修改遍历行为">修改遍历行为</h3>
+
+<p>可以覆盖原生的 Symbol.iterator 方法，达到修改遍历器行为的目的:</p>
+
+<pre><code class="language-JS">let str = 'tate';
+let strIter = str[Symbol.iterator]();
+strIter.next().value; // 't'
+
+str = new String(str); // 包装成 String 引用类型
+str[Symbol.iterator] = _ =&gt; {
+  return {
+    next() {
+      if (this._isMe) {
+        this._isMe = false;
+        return { value: 'snow', done: false };
+      } else {
+        return { value: undefined, done: true };
+      }
+  },
+  _isMe: true
+  }
+}
+strIter = str[Symbol.iterator]();
+strIter.next().value; // 'snow'
+</code></pre>
+
+<h3 id="部署-iterator-接口">部署 Iterator 接口</h3>
+
+<p>其他数据结构要具备可被 for…of 循环调用的 Iterator 接口，就必须在 Symbol.iterator 的属性上部署遍历器生成方法(原型链上的对象具有该方法也可):</p>
+
+<pre><code class="language-JS">// 对象部署 Iterator 接口
+const obj = {
+  [Symbol.iterator]() {
+    return {
+      next: function () {
+        return {
+          value: 1,
+          done: true
+        };
+      }
+    };
+  }
+};
+
+var o = obj[Symbol.iterator]();
+o.next(); // {value: 1, done: true}
+
+Reflect.ownKeys(obj) // [Symbol(Symbol.iterator)]
+</code></pre>
+
+<pre><code class="language-JS">// 类部署 Iterator 接口
+class RangeIterator {
+  constructor(start, stop) {
+    this.value = start;
+    this.stop = stop;
+  }
+
+  [Symbol.iterator]() { return this; }
+
+  next() {
+    var value = this.value;
+    if (value &lt; this.stop) {
+      this.value++;
+      return {done: false, value: value};
+    }
+    return {done: true, value: undefined};
+  }
+}
+
+function range(start, stop) {
+  return new RangeIterator(start, stop);
+}
+
+for (var value of range(0, 3)) {
+  console.log(value); // 0, 1, 2
+}
+
+var v = range(0, 3); // RangeIterator {value: 0, stop: 3}
+v.next().value; // 0
+v.next().value; // 1
+v.next().value; // 2
+</code></pre>
+
+<p>Symbol.iterator 方法的最简单实现，是使用 Generator 函数:</p>
+
+<pre><code class="language-JS">let myIterable = {
+  *[Symbol.iterator]() {
+    yield 1;
+    yield 2;
+    yield 3;
+  }
+}
+[...myIterable]; // [1, 2, 3]
+</code></pre>
+
+<h2 id="forof">for…of</h2>
+
+<p><strong>for…of</strong> 循环内部调用的是数据结构的 Symbol.iterator 方法。</p>
+
+<pre><code class="language-JS">const arr = ['a', 'b', 'c'];
+
+for(let v of arr) {
+  console.log(v); // a b c
+}
+
+const obj = {};
+obj[Symbol.iterator] = arr[Symbol.iterator].bind(arr); // 空对象部署了数组的 Symbol.iterator 属性
+
+for(let v of obj) {
+  console.log(v); // a b c
+}
+</code></pre>
+
+<p>与其他遍历语法的比较:</p>
+
+<ul>
+  <li>for 循环</li>
+  <li>forEach - 无法中途跳出 forEach 循环，break 命令无效</li>
+  <li>for…in - 遍历键名，循环遍历对象自身的和继承的可枚举属性(不含 Symbol 属性)</li>
+</ul>
+
+<pre><code class="language-JS">for(let v in arr) {
+  console.log(arr[v]); // a b c
+}
+
+for(let v of arr) {
+  if(v === 'b') break;
+  console.log(v); // a
+}
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://es6.ruanyifeng.com/#docs/string">ECMAScript 6 入门</a> By 阮一峰</li>
+  <li><a href="http://es6.ruanyifeng.com/#docs/set-map">ECMAScript 6 入门</a> By 阮一峰</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -363,7 +526,7 @@ countdown.descend(); // 'well done!'
     var disqus_config = function () {
         this.page.url = 'https://tate-young.github.io/2018/03/18/es6-set-map.html';
         this.page.identifier = '/2018/03/18/es6-set-map';
-        this.page.title = 'Set & Map';
+        this.page.title = 'Set & Map 数据结构';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW

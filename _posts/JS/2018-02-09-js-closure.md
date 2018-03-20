@@ -15,25 +15,41 @@ tags:
 
 ## 什么是闭包
 
-**闭包(closure)**: 指有权访问另一个函数作用域中的变量的函数。
+**闭包(closure)**: 当一个函数返回了一个函数后，其内部的局部变量还被新函数引用。
 
 ```js
-// 创建闭包的常见方式，就是在一个函数内部创建另一个函数。
+// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。
 var name = 'Tate';
 function person(){
     var name = 'Snow';
     function sayName(){
-        return name;
+        alert(name);
     }
     return sayName;
 }
 
+// 第一次执行 person() 返回的是函数 sayName
 person()(); // 'Snow'
 ```
 
-通过上一节[执行上下文]( {{site.url}}/2018/02/09/js-scope.html )来解释，person 函数执行完毕时，执行上下文会从调用栈上 pop 出来，然后压入 sayName 函数并执行。然而变量 name 是存在于 person 的上下文中的，sayName 函数创建的执行上下文是如何通过作用域链访问到的呢？
+注意上述闭包写法与普通函数的区别:
 
-原因就在于，即使 person 执行上下文销毁，但是其活动对象VO仍然会留在内存中，实际上 sayName 维护的作用域链可抽象为
+```js
+// 可以通过词法作用域解释
+function person(){
+    var name = 'Snow';
+    function sayName(){
+        alert(name);
+    }
+    sayName();
+}
+
+person(); // 'Snow'
+```
+
+闭包的栗子通过上一节[执行上下文]( {{site.url}}/2018/02/09/js-scope.html )来解释，person 函数执行完毕时，执行上下文会从调用栈上 pop 出来，然后压入 sayName 函数并执行。然而变量 name 是存在于 person 的上下文中的，sayName 函数创建的执行上下文是如何通过作用域链访问到的呢？
+
+原因就在于，即使 person 执行上下文销毁，但是其活动对象 VO 仍然会留在内存中，实际上 sayName 维护的作用域链可抽象为
 
 ```js
 sayNameContext = {
@@ -108,7 +124,7 @@ a[0]Context = {
 }
 ```
 
-### 私有成员
+### 模拟私有成员
 
  JavaScript 没有这种原生支持，但我们可以使用闭包来模拟私有方法，私有方法不仅仅有利于限制对代码的访问，还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。
 
@@ -164,3 +180,4 @@ function assignHandler() {
 
 1. [MDN - 闭包](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures)
 1. [JavaScript 深入之闭包](https://github.com/mqyqingfeng/Blog/issues/9) By mqyqingfeng
+1. [闭包](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143449934543461c9d5dfeeb848f5b72bd012e1113d15000) By 廖雪峰

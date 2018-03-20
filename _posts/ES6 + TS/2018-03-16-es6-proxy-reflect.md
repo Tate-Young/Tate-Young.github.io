@@ -266,5 +266,5 @@ Reflect 对象一有共 13 种静态方法，大部分与 Object 对象的同名
 
 ## 参考链接
 
-1. [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/string) By 阮一峰
+1. [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/proxy) By 阮一峰
 1. [实例解析 ES6 Proxy 使用场景](https://www.w3cplus.com/javascript/use-cases-for-es6-proxies.html) By loveky
