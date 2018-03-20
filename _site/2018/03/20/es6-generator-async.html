@@ -514,7 +514,7 @@ readFileThunk(fileA)(callback);
   <li><strong>内置执行器</strong></li>
 </ul>
 
-<p>Generator 函数的执行必须靠执行器，所以才有了 co 模块，而 async 函数自带执行器，如 asyncReadFile();</p>
+<p>Generator 函数的执行必须靠执行器，所以才有了 co 模块，而 async 函数内置了执行器，只需按照普通函数执行即可，如 asyncReadFile();</p>
 
 <ul>
   <li><strong>更好的语义</strong></li>
@@ -526,74 +526,48 @@ readFileThunk(fileA)(callback);
   <li><strong>更广的适用性</strong></li>
 </ul>
 
-<p>co 模块约定，yield 命令后面只能是 Thunk 函数或 Promise 对象，而 async 函数的 await 命令后面，可以是 Promise 对象和原始类型的值(数值、字符串和布尔值，但这时等同于同步操作)。</p>
+<p>co 模块约定，yield 命令后面只能是 Thunk 函数或 Promise 对象，而 async 函数的 await 命令后面，可以是 Promise 对象和原始类型的值，如若不是 Promise 对象，则会被转成一个 resolve 状态的 Promise 对象。</p>
 
 <ul>
   <li><strong>返回值是 Promise</strong></li>
 </ul>
 
-<p>async 函数的返回值是 Promise 对象，而 Generator 函数的返回值是 Iterator 对象。</p>
+<p>async 函数的返回值是 Promise 对象，而 Generator 函数的返回值是 Iterator 对象。注意只有 async 函数内部的异步操作执行完，才会执行 then 方法指定的回调函数。</p>
 
-<pre><code class="language-JS">// Generator
-const fs = require('fs');
-
-const readFile = function (fileName) {
-  return new Promise(function (resolve, reject) {
-    fs.readFile(fileName, function(error, data) {
-      if (error) return reject(error);
-      resolve(data);
-    });
-  });
-};
-
-const gen = function* () {
-  const f1 = yield readFile('/etc/fstab');
-  const f2 = yield readFile('/etc/shells');
-  console.log(f1.toString());
-  console.log(f2.toString());
-};
-
-var g = gen();
-g.next();
+<pre><code class="language-JS">function logger() {
+  let data = fetch('http://sampleapi.com/posts')
+  console.log(data) // 'undefined'
+}
 </code></pre>
 
-<pre><code class="language-JS">// async
-const asyncReadFile = async function () {
-  const f1 = await readFile('/etc/fstab');
-  const f2 = await readFile('/etc/shells');
-  console.log(f1.toString());
-  console.log(f2.toString());
-};
-asyncReadFile(); // 内置执行器
+<pre><code class="language-JS">// async 异步执行
+async function logger() {
+  let data = await fetch('http:sampleapi.com/posts') // 暂停直到获取到返回数据
+  console.log(data) // 输出获取的数据
+}
 </code></pre>
 
 <h3 id="书写形式">书写形式</h3>
 
-<pre><code class="language-JS">// 函数声明
-async function foo() {}
+<ul>
+  <li>异步函数声明 - <code>async function foo() {}</code></li>
+  <li>异步函数表达式 - <code>const foo = async function () {}</code></li>
+  <li>异步函数定义 - <code>let obj = { async foo() {} }</code></li>
+  <li>异步箭头函数 - <code>const foo = async () =&gt; {}</code></li>
+</ul>
 
-// 函数表达式
-const foo = async () =&gt; {};
-
-// 对象的方法
-let person = { async sayName() {return 'tate'} };
-
-person.sayName().then((data) =&gt; console.log(data)); // 'tate'
-
-// Class 的方法
-class Storage {
-  constructor() {
-    this.cachePromise = caches.open('avatars');
-  }
-
-  async getAvatar(name) {
-    const cache = await this.cachePromise;
-    return cache.match(`/avatars/${name}.jpg`);
+<pre><code class="language-JS">async function logPosts() {
+  try {
+    let user_id = await fetch('/api/users/username')
+    let post_ids = await fetch('/api/posts/${user_id}')
+    let promises = post_ids.map(post_id =&gt; {
+      return fetch('/api/posts/${post_id}')
+    }
+    let posts = await Promise.all(promises)
+  } catch (error) {
+    console.error('Error:', error)
   }
 }
-
-const storage = new Storage();
-storage.getAvatar('tate').then(…);
 </code></pre>
 
 <h3 id="实现原理">实现原理</h3>
@@ -632,42 +606,143 @@ function fn(args) {
 }
 </code></pre>
 
-<h3 id="按顺序完成异步操作">按顺序完成异步操作</h3>
+<h3 id="异步操作">异步操作</h3>
 
-<p>例如依次远程读取 URL，并按照读取顺序输出结果:</p>
+<p>按顺序处理多个 async(异步) 返回值:</p>
 
-<pre><code class="language-JS">async function logInOrder(urls) {
-  for (const url of urls) {
-    const response = await fetch(url);
-    console.log(await response.text());
-  }
+<pre><code class="language-JS">async function asyncFunc() {
+  const result1 = await otherAsyncFunc1();
+  console.log(result1);
+  const result2 = await otherAsyncFunc2();
+  console.log(result2);
 }
-</code></pre>
 
-<p>上述例子中所有远程操作都是继发，即只有前一个 URL 返回结果，才会去读取下一个 URL，会影响效率，改写如下:</p>
-
-<pre><code class="language-JS">async function logInOrder(urls) {
-  // 并发读取远程 URL
-  const textPromises = urls.map(async url =&gt; {
-    const response = await fetch(url);
-    return response.text();
+// 等价于
+function asyncFunc() {
+  return otherAsyncFunc1()
+  .then(result1 =&gt; {
+    console.log(result1);
+    return otherAsyncFunc2();
+  })
+  .then(result2 =&gt; {
+    console.log(result2);
   });
+}
+</code></pre>
 
-  // 按次序输出
-  for (const textPromise of textPromises) {
-    console.log(await textPromise);
+<p>并行处理多个 async(异步) 返回值:</p>
+
+<pre><code class="language-JS">async function asyncFunc() {
+  const [result1, result2] = await Promise.all([
+    otherAsyncFunc1(),
+    otherAsyncFunc2(),
+  ]);
+  console.log(result1, result2);
+}
+
+// 等价于
+function asyncFunc() {
+  return Promise.all([
+    otherAsyncFunc1(),
+    otherAsyncFunc2(),
+  ])
+  .then([result1, result2] =&gt; {
+    console.log(result1, result2);
+  });
+}
+</code></pre>
+
+<p>错误处理:</p>
+
+<pre><code class="language-JS">async function asyncFunc() {
+  try {
+    await otherAsyncFunc();
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+// 等价于
+function asyncFunc() {
+  return otherAsyncFunc()
+  .catch(err =&gt; {
+    console.error(err);
+  });
+}
+</code></pre>
+
+<h3 id="案例比较">案例比较</h3>
+
+<pre><code class="language-JS">// Promise
+function fetchJson(url) {
+  return fetch(url)
+  .then(request =&gt; request.text())
+  .then(text =&gt; {
+    return JSON.parse(text);
+  })
+  .catch(error =&gt; {
+    console.log(`ERROR: ${error.stack}`);
+  });
+}
+
+fetchJson('http://example.com/some_file.json')
+.then(obj =&gt; console.log(obj));
+</code></pre>
+
+<pre><code class="language-JS">// Generator + co
+const fetchJson = co.wrap(function* (url) {
+  try {
+    let request = yield fetch(url);
+    let text = yield request.text();
+    return JSON.parse(text);
+  }
+  catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+  }
+});
+</code></pre>
+
+<pre><code class="language-JS">// async
+async function fetchJson(url) {
+  try {
+    let request = await fetch(url);
+    let text = await request.text();
+    return JSON.parse(text);
+  }
+  catch (error) {
+    console.log(`ERROR: ${error.stack}`);
   }
 }
 </code></pre>
 
-<blockquote>
-  <p>本节内容不是很了解，未完待续。直接<a href="http://es6.ruanyifeng.com/#docs">参考阮一峰 ES6 入门</a>。</p>
-</blockquote>
+<p>再看个继发和并发的栗子 🌰:</p>
+
+<pre><code class="language-JS">async function logContent(urls) {
+  for (const url of urls) { // 继发
+    const content = await httpGet(url);
+    console.log(content);
+  }
+}
+</code></pre>
+
+<p>上述例子中所有远程操作都是继发。只有前一个 URL 返回结果，才会去读取下一个 URL，效率低下，可改写为:</p>
+
+<pre><code class="language-JS">async function logContent(urls) {
+  await Promise.all(urls.map( // 并发
+    async url =&gt; { // 正常箭头函数中 await 语法上是非法的，因此前面必须加上 async
+      const content = await httpGet(url);
+      console.log(content);
+    }
+  ));
+}
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="http://es6.ruanyifeng.com/#docs/iterator">ECMAScript 6 入门</a> By 阮一峰</li>
+  <li><a href="http://www.css88.com/archives/7980">使用 ES2017 中的 Async(异步) 函数 和 Await(等待)</a> By 渔人码头</li>
+  <li><a href="http://www.css88.com/archives/7731">ES2017 新特性：Async Functions (异步函数)</a> By 渔人码头</li>
 </ol>
  
 <div id="disqus_thread"></div>

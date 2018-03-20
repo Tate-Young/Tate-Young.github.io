@@ -370,7 +370,7 @@ readFileThunk(fileA)(callback);
 
 * **内置执行器**
 
-Generator 函数的执行必须靠执行器，所以才有了 co 模块，而 async 函数自带执行器，如 asyncReadFile();
+Generator 函数的执行必须靠执行器，所以才有了 co 模块，而 async 函数内置了执行器，只需按照普通函数执行即可，如 asyncReadFile();
 
 * **更好的语义**
 
@@ -378,75 +378,47 @@ async 和 await，比起星号 * 和 yield，语义更清楚了。async 表示�
 
 * **更广的适用性**
 
-co 模块约定，yield 命令后面只能是 Thunk 函数或 Promise 对象，而 async 函数的 await 命令后面，可以是 Promise 对象和原始类型的值(数值、字符串和布尔值，但这时等同于同步操作)。
+co 模块约定，yield 命令后面只能是 Thunk 函数或 Promise 对象，而 async 函数的 await 命令后面，可以是 Promise 对象和原始类型的值，如若不是 Promise 对象，则会被转成一个 resolve 状态的 Promise 对象。
 
 * **返回值是 Promise**
 
-async 函数的返回值是 Promise 对象，而 Generator 函数的返回值是 Iterator 对象。
+async 函数的返回值是 Promise 对象，而 Generator 函数的返回值是 Iterator 对象。注意只有 async 函数内部的异步操作执行完，才会执行 then 方法指定的回调函数。
 
 ```JS
-// Generator
-const fs = require('fs');
-
-const readFile = function (fileName) {
-  return new Promise(function (resolve, reject) {
-    fs.readFile(fileName, function(error, data) {
-      if (error) return reject(error);
-      resolve(data);
-    });
-  });
-};
-
-const gen = function* () {
-  const f1 = yield readFile('/etc/fstab');
-  const f2 = yield readFile('/etc/shells');
-  console.log(f1.toString());
-  console.log(f2.toString());
-};
-
-var g = gen();
-g.next();
+function logger() {
+  let data = fetch('http://sampleapi.com/posts')
+  console.log(data) // 'undefined'
+}
 ```
 
 ```JS
-// async
-const asyncReadFile = async function () {
-  const f1 = await readFile('/etc/fstab');
-  const f2 = await readFile('/etc/shells');
-  console.log(f1.toString());
-  console.log(f2.toString());
-};
-asyncReadFile(); // 内置执行器
+// async 异步执行
+async function logger() {
+  let data = await fetch('http:sampleapi.com/posts') // 暂停直到获取到返回数据
+  console.log(data) // 输出获取的数据
+}
 ```
 
 ### 书写形式
 
+* 异步函数声明 - <code>async function foo() {}</code>
+* 异步函数表达式 - <code>const foo = async function () {}</code>
+* 异步函数定义 - <code>let obj = { async foo() {} }</code>
+* 异步箭头函数 - <code>const foo = async () => {}</code>
+
 ```JS
-// 函数声明
-async function foo() {}
-
-// 函数表达式
-const foo = async () => {};
-
-// 对象的方法
-let person = { async sayName() {return 'tate'} };
-
-person.sayName().then((data) => console.log(data)); // 'tate'
-
-// Class 的方法
-class Storage {
-  constructor() {
-    this.cachePromise = caches.open('avatars');
-  }
-
-  async getAvatar(name) {
-    const cache = await this.cachePromise;
-    return cache.match(`/avatars/${name}.jpg`);
+async function logPosts() {
+  try {
+    let user_id = await fetch('/api/users/username')
+    let post_ids = await fetch('/api/posts/${user_id}')
+    let promises = post_ids.map(post_id => {
+      return fetch('/api/posts/${post_id}')
+    }
+    let posts = await Promise.all(promises)
+  } catch (error) {
+    console.error('Error:', error)
   }
 }
-
-const storage = new Storage();
-storage.getAvatar('tate').then(…);
 ```
 
 ### 实现原理
@@ -487,38 +459,147 @@ function spawn(genF) {
 }
 ```
 
-### 按顺序完成异步操作
+### 异步操作
 
-例如依次远程读取 URL，并按照读取顺序输出结果:
+按顺序处理多个 async(异步) 返回值:
 
 ```JS
-async function logInOrder(urls) {
-  for (const url of urls) {
-    const response = await fetch(url);
-    console.log(await response.text());
-  }
+async function asyncFunc() {
+  const result1 = await otherAsyncFunc1();
+  console.log(result1);
+  const result2 = await otherAsyncFunc2();
+  console.log(result2);
 }
-```
 
-上述例子中所有远程操作都是继发，即只有前一个 URL 返回结果，才会去读取下一个 URL，会影响效率，改写如下:
-
-```JS
-async function logInOrder(urls) {
-  // 并发读取远程 URL
-  const textPromises = urls.map(async url => {
-    const response = await fetch(url);
-    return response.text();
+// 等价于
+function asyncFunc() {
+  return otherAsyncFunc1()
+  .then(result1 => {
+    console.log(result1);
+    return otherAsyncFunc2();
+  })
+  .then(result2 => {
+    console.log(result2);
   });
+}
+```
 
-  // 按次序输出
-  for (const textPromise of textPromises) {
-    console.log(await textPromise);
+并行处理多个 async(异步) 返回值:
+
+```JS
+async function asyncFunc() {
+  const [result1, result2] = await Promise.all([
+    otherAsyncFunc1(),
+    otherAsyncFunc2(),
+  ]);
+  console.log(result1, result2);
+}
+
+// 等价于
+function asyncFunc() {
+  return Promise.all([
+    otherAsyncFunc1(),
+    otherAsyncFunc2(),
+  ])
+  .then([result1, result2] => {
+    console.log(result1, result2);
+  });
+}
+```
+
+错误处理:
+
+```JS
+async function asyncFunc() {
+  try {
+    await otherAsyncFunc();
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+// 等价于
+function asyncFunc() {
+  return otherAsyncFunc()
+  .catch(err => {
+    console.error(err);
+  });
+}
+```
+
+### 案例比较
+
+```JS
+// Promise
+function fetchJson(url) {
+  return fetch(url)
+  .then(request => request.text())
+  .then(text => {
+    return JSON.parse(text);
+  })
+  .catch(error => {
+    console.log(`ERROR: ${error.stack}`);
+  });
+}
+
+fetchJson('http://example.com/some_file.json')
+.then(obj => console.log(obj));
+```
+
+```JS
+// Generator + co
+const fetchJson = co.wrap(function* (url) {
+  try {
+    let request = yield fetch(url);
+    let text = yield request.text();
+    return JSON.parse(text);
+  }
+  catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+  }
+});
+```
+
+```JS
+// async
+async function fetchJson(url) {
+  try {
+    let request = await fetch(url);
+    let text = await request.text();
+    return JSON.parse(text);
+  }
+  catch (error) {
+    console.log(`ERROR: ${error.stack}`);
   }
 }
 ```
 
-> 本节内容不是很了解，未完待续。直接[参考阮一峰 ES6 入门](http://es6.ruanyifeng.com/#docs)。
+再看个继发和并发的栗子 🌰:
+
+```JS
+async function logContent(urls) {
+  for (const url of urls) { // 继发
+    const content = await httpGet(url);
+    console.log(content);
+  }
+}
+```
+
+上述例子中所有远程操作都是继发。只有前一个 URL 返回结果，才会去读取下一个 URL，效率低下，可改写为:
+
+```JS
+async function logContent(urls) {
+  await Promise.all(urls.map( // 并发
+    async url => { // 正常箭头函数中 await 语法上是非法的，因此前面必须加上 async
+      const content = await httpGet(url);
+      console.log(content);
+    }
+  ));
+}
+```
 
 ## 参考链接
 
 1. [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/iterator) By 阮一峰
+1. [使用 ES2017 中的 Async(异步) 函数 和 Await(等待)](http://www.css88.com/archives/7980) By 渔人码头
+1. [ES2017 新特性：Async Functions (异步函数)](http://www.css88.com/archives/7731) By 渔人码头
