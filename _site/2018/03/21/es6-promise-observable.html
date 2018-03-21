@@ -14,7 +14,7 @@
 <meta name="twitter:keywords" content="Promise & Observable - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise & Observable - Tate & Snow">
-<meta name="og:keywords" content="Promise & Observable - Tate & Snow|Promise &amp; ObservablePromise状态Promise 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:  pending - 进行中  fulfilled ..."
+<meta name="og:keywords" content="Promise & Observable - Tate & Snow|Promise &amp; ObservablePromise三种状态Promise 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:  pending - 进行中  fulfille..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Promise &amp; ObservablePromise状态Promise 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:  pending - 进行中  fulfilled ..." property='og:description'
+<meta name="keywords" content="Promise &amp; ObservablePromise三种状态Promise 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:  pending - 进行中  fulfille..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/03/21/es6-promise-observable.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/21/es6-promise-observable.html|Promise &amp; ObservablePromise状态Promise 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:  pending - 进行中  fulfilled ..." property='og:description'
+<meta content="http://localhost:4000/2018/03/21/es6-promise-observable.html|Promise &amp; ObservablePromise三种状态Promise 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:  pending - 进行中  fulfille..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -172,7 +172,7 @@
 
 <h2 id="promise">Promise</h2>
 
-<h3 id="状态">状态</h3>
+<h3 id="三种状态">三种状态</h3>
 
 <p><strong>Promise</strong> 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:</p>
 
@@ -189,8 +189,6 @@
   <li>如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部</li>
   <li>当处于 pending 状态时，无法得知目前进展到哪一个阶段</li>
 </ul>
-
-<h3 id="用法">用法</h3>
 
 <p>ES6 规定，Promise 对象是一个构造函数，用来生成 Promise 实例。</p>
 
@@ -340,6 +338,8 @@ Promise.all([p1, p2])
 
 <h2 id="observable">Observable</h2>
 
+<h3 id="核心概念">核心概念</h3>
+
 <p><strong>RxJS</strong> 是 ReactiveX 编程理念的 JavaScript 版本。ReactiveX 来自微软，它是一种针对异步数据流的编程。简单来说，它将一切数据，包括 HTTP 请求、DOM 事件或者普通数据等包装成流的形式，然后用强大丰富的操作符对流进行处理，使你能以同步编程的方式处理异步数据，并组合不同的操作符来轻松优雅的实现你所需要的功能。RxJS 中解决异步事件管理的基本概念如下:</p>
 
 <ul>
@@ -350,8 +350,6 @@ Promise.all([p1, p2])
   <li><strong>Subject</strong> 主题 - 多播，是允许值被多播到多个观察者的一种特殊的 Observable，同时也可作为 Observer</li>
   <li><strong>Schedulers</strong> 调度者 -  用来控制并发，当计算发生的时候允许我们协调，比如 setTimeout、requestAnimationFrame</li>
 </ul>
-
-<h3 id="使用方式">使用方式</h3>
 
 <p>在代码中使用时避免添加整个 RxJS 库:</p>
 
@@ -447,9 +445,9 @@ console.log('after');
 <p><strong>Observer</strong> 观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数，分别对应一种被可观察对象发送的通知的类型，即 next, error 和 complete。要想使用观察者，需要订阅可观察对象，即<code>observable.subscribe(observer)</code>。</p>
 
 <pre><code class="language-JS">observable.subscribe({
-    next: x =&gt; console.log(x),
-    error: err =&gt; console.error(err),
-    complete: () =&gt; console.log('end of the stream')
+  next: x =&gt; console.log(x),
+  error: err =&gt; console.error(err),
+  complete: () =&gt; console.log('end of the stream')
 })
 
 // 当订阅一个可观察对象，你可能仅仅提供回调来作为参数就够了，并不需要完整的观察者对象，作为示例:
@@ -457,9 +455,9 @@ observable.subscribe(x =&gt; console.log('Observer got a next value: ' + x));
 
 // 或者通过将三个函数作为参数提供三种回调
 observable.subscribe(
-x =&gt; console.log('Observer got a next value: ' + x),
-err =&gt; console.error('Observer got an error: ' + err),
-() =&gt; console.log('Observer got a complete notification')
+  x =&gt; console.log('Observer got a next value: ' + x),
+  err =&gt; console.error('Observer got an error: ' + err),
+  () =&gt; console.log('Observer got a complete notification')
 );
 </code></pre>
 

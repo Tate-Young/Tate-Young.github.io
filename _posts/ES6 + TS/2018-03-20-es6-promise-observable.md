@@ -15,7 +15,7 @@ tags:
 
 ## Promise
 
-### 状态
+### 三种状态
 
 **Promise** 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:
 
@@ -28,8 +28,6 @@ tags:
 * 一旦执行便无法取消
 * 如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部
 * 当处于 pending 状态时，无法得知目前进展到哪一个阶段
-
-### 用法
 
 ES6 规定，Promise 对象是一个构造函数，用来生成 Promise 实例。
 
@@ -184,6 +182,8 @@ const p = Promise.race([p1, p2, p3]).then(...);
 
 ## Observable
 
+### 核心概念
+
 **RxJS** 是 ReactiveX 编程理念的 JavaScript 版本。ReactiveX 来自微软，它是一种针对异步数据流的编程。简单来说，它将一切数据，包括 HTTP 请求、DOM 事件或者普通数据等包装成流的形式，然后用强大丰富的操作符对流进行处理，使你能以同步编程的方式处理异步数据，并组合不同的操作符来轻松优雅的实现你所需要的功能。RxJS 中解决异步事件管理的基本概念如下:
 
 * **Observable** 可观察对象 - 单播，表示一个可调用的未来值或者事件的集合
@@ -192,8 +192,6 @@ const p = Promise.race([p1, p2, p3]).then(...);
 * **Operators** 操作符 -  纯粹的函数，使得以函数式编程的方式处理集合，比如 map、filter、contact、flatmap
 * **Subject** 主题 - 多播，是允许值被多播到多个观察者的一种特殊的 Observable，同时也可作为 Observer
 * **Schedulers** 调度者 -  用来控制并发，当计算发生的时候允许我们协调，比如 setTimeout、requestAnimationFrame
-
-### 使用方式
 
 在代码中使用时避免添加整个 RxJS 库:
 
@@ -296,9 +294,9 @@ console.log('after');
 
 ```JS
 observable.subscribe({
-    next: x => console.log(x),
-    error: err => console.error(err),
-    complete: () => console.log('end of the stream')
+  next: x => console.log(x),
+  error: err => console.error(err),
+  complete: () => console.log('end of the stream')
 })
 
 // 当订阅一个可观察对象，你可能仅仅提供回调来作为参数就够了，并不需要完整的观察者对象，作为示例:
@@ -306,9 +304,9 @@ observable.subscribe(x => console.log('Observer got a next value: ' + x));
 
 // 或者通过将三个函数作为参数提供三种回调
 observable.subscribe(
-x => console.log('Observer got a next value: ' + x),
-err => console.error('Observer got an error: ' + err),
-() => console.log('Observer got a complete notification')
+  x => console.log('Observer got a next value: ' + x),
+  err => console.error('Observer got an error: ' + err),
+  () => console.log('Observer got a complete notification')
 );
 ```
 
