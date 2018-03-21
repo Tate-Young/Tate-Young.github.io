@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Promise & Observable - ",
+		"url" : "/2018/03/21/es6-promise-observable.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Generator & Async - ",
 		"url" : "/2018/03/20/es6-generator-async.html"
 	}

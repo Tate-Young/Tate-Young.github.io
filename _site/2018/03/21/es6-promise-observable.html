@@ -1,0 +1,1273 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='Promise & Observable - Tate & Snow' name='title' />
+    <meta content='Promise & Observable - Tate & Snow' name='og:title' />
+    <title>Promise & Observable - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Promise & Observable - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promise & Observable - Tate & Snow">
+<meta name="twitter:keywords" content="Promise & Observable - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise & Observable - Tate & Snow">
+<meta name="og:keywords" content="Promise & Observable - Tate & Snow|Promise &amp; ObservablePromise状态Promise 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:  pending - 进行中  fulfilled ..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="Promise &amp; ObservablePromise状态Promise 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:  pending - 进行中  fulfilled ..." property='og:description'
+/>
+<meta name="description" content="nothing is more practicla than a good theory" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2018/03/21/es6-promise-observable.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/21/es6-promise-observable.html|Promise &amp; ObservablePromise状态Promise 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:  pending - 进行中  fulfilled ..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="http://localhost:4000/style/images/tate.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Promise & Observable</h1>
+                <div class="post-data">
+                    <time datetime="2018-03-21 15:07:00" itemprop="datePublished">发布时间：2018-03-21 15:07:00</time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
+                        ES6
+                        <span>(9)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Promise & Observable</h1>
+            <div class="post-data">
+                <time datetime="2018-03-21 15:07:00" itemprop="datePublished">2018-03-21 15:07:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
+                    ES6
+                    <span>(9)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="promise--observable">Promise &amp; Observable</h1>
+
+<h2 id="promise">Promise</h2>
+
+<h3 id="状态">状态</h3>
+
+<p><strong>Promise</strong> 是异步编程的一种解决方案，ES6 将其写进了语言标准，统一了用法。Promise 对象有三种状态:</p>
+
+<ul>
+  <li><strong>pending</strong> - 进行中</li>
+  <li><strong>fulfilled</strong> - 已成功 - Promise.resolve()</li>
+  <li><strong>rejected</strong> - 已失败 - Promise.reject()</li>
+</ul>
+
+<p>只有异步操作的结果可以决定当前是哪一种状态，任何其他操作都无法改变这个状态，即一旦状态改变，就不会再变化。Promise 对象的缺点:</p>
+
+<ul>
+  <li>一旦执行便无法取消</li>
+  <li>如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部</li>
+  <li>当处于 pending 状态时，无法得知目前进展到哪一个阶段</li>
+</ul>
+
+<h3 id="用法">用法</h3>
+
+<p>ES6 规定，Promise 对象是一个构造函数，用来生成 Promise 实例。</p>
+
+<pre><code class="language-JS">const promise = new Promise((resolve, reject) =&gt; {
+  if (/* 异步操作成功 */){
+    resolve(value);
+  } else {
+    reject(error);
+  }
+});
+
+promise
+.then(function(value) {
+  // success
+})
+.catch(function(err) {
+  // err
+});
+</code></pre>
+
+<p>举个用 Promise 对象实现的 Ajax 操作的栗子 🌰:</p>
+
+<pre><code class="language-JS">const getJSON = (url) =&gt; {
+  const promise = new Promise((resolve, reject) =&gt; {
+    const handler = _ =&gt; {
+      if (this.readyState !== 4) {
+        return;
+      }
+      if (this.status === 200) {
+        resolve(this.response);
+      } else {
+        reject(new Error(this.statusText));
+      }
+    };
+    const client = new XMLHttpRequest();
+    client.open("GET", url);
+    client.onreadystatechange = handler;
+    client.responseType = "json";
+    client.setRequestHeader("Accept", "application/json");
+    client.send();
+
+  });
+
+  return promise;
+};
+
+getJSON("/posts.json").then((json) =&gt; {
+  console.log('Contents: ' + json);
+}, (err) =&gt; {
+  console.error('出错了', err);
+});
+</code></pre>
+
+<h3 id="then--catch--finally">then / catch / finally</h3>
+
+<p><strong>then</strong> 方法返回的是一个新的 Promise 实例(若不是 Promise 实例，则会调用 Promise.resolve 方法，将返回值转为 Promise 实例)，因此可以采用链式写法。第一个回调函数完成以后，会将返回结果作为参数，传入第二个回调函数。</p>
+
+<pre><code class="language-JS">promise.then((data) =&gt; {
+  return data.info;
+}).then((info) =&gt; {
+  // ...
+});
+</code></pre>
+
+<p><strong>catch</strong> 是用于指定发生错误时的回调函数，可以捕获 then 方法里回调函数运行中抛出的错误和 rejected 状态。跟传统的 try/catch 代码块不同的是，如果没有使用 catch 方法指定错误处理的回调函数，Promise 对象抛出的错误不会传递到外层代码。</p>
+
+<pre><code class="language-JS">getJSON('/post/test.json').then((post) =&gt; {
+  return getJSON(post.commentURL);
+}).then((comments) =&gt; {
+  // some code
+}).catch((error) =&gt; {
+  // 捕获前面三个 Promise 产生的错误或 rejected 状态
+});
+</code></pre>
+
+<p>then 方法的第二个参数只可以捕获当前回调函数里运行的错误和 rejected 状态，因此一般使用 catch 进行捕获。若在 then 之前调用 catch 方法，则 catch 只会捕获之前产生的错误。</p>
+
+<pre><code class="language-JS">// bad
+promise
+  .then(function(data) {
+    // success
+  }, function(err) {
+    // error
+  });
+
+// good
+promise
+  .then(function(data) {
+    // success
+  })
+  .catch(function(err) {
+    // error
+  });
+</code></pre>
+
+<p><strong>finally</strong> 是 ES2018 引入标准的新方法，不管 promise 最后的状态如何，在执行完 then 或 catch 指定的回调函数以后，都会执行 finally 方法指定的回调函数。
+实现方式如下:</p>
+
+<pre><code class="language-JS">Promise.prototype.finally = function(callback) {
+  let P = this.constructor;
+  return this.then(
+    value  =&gt; P.resolve(callback()).then(() =&gt; value),
+    reason =&gt; P.resolve(callback()).then(() =&gt; { throw reason })
+  );
+};
+</code></pre>
+
+<h3 id="promiseall">Promise.all</h3>
+
+<p><strong>Promise.all</strong> 方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
+
+<pre><code class="language-JS">const p = Promise.all([p1, p2, p3]).then(...);
+</code></pre>
+
+<ul>
+  <li>只有 p1、p2、p3 的状态都变成 fulfilled，p 的状态才会变成 fulfilled，此时 p1、p2、p3 的返回值组成一个数组，传递给 p 的回调函数</li>
+  <li>只要 p1、p2、p3 之中有一个被 rejected，p 的状态就变成 rejected，此时第一个被 reject 的实例的返回值，会传递给 p 的回调函数</li>
+</ul>
+
+<p>如果作为参数的 Promise 实例定义了 catch 方法，那么它一旦处于 rejected 状态，将不会触发 Promise.all() 的 catch 方法:</p>
+
+<pre><code class="language-JS">const p1 = new Promise((resolve, reject) =&gt; {
+  resolve('tate');
+})
+
+const p2 = new Promise((resolve, reject) =&gt; {
+  throw new Error('something goes wrong');
+})
+.then(result =&gt; result)
+.catch(e =&gt; e); // 返回值状态变为 resovled，将会执行下面的 then 回调，除非显示 Promise.reject(e) 才会被 下面的 catch 捕获
+
+Promise.all([p1, p2])
+.then(result =&gt; console.log(result))
+.catch(e =&gt; console.log(e)); // ["tate", Error: something goes wrong at Promise]
+</code></pre>
+
+<h3 id="promiserace">Promise.race</h3>
+
+<p><strong>Promise.race</strong> 方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
+
+<pre><code class="language-JS">const p = Promise.race([p1, p2, p3]).then(...);
+</code></pre>
+
+<ul>
+  <li>只要 p1、p2、p3 之中有一个实例率先改变状态，p 的状态就跟着改变。率先改变的 Promise 实例的返回值，就传递给 p 的回调函数</li>
+</ul>
+
+<h2 id="observable">Observable</h2>
+
+<p><strong>RxJS</strong> 是 ReactiveX 编程理念的 JavaScript 版本。ReactiveX 来自微软，它是一种针对异步数据流的编程。简单来说，它将一切数据，包括 HTTP 请求、DOM 事件或者普通数据等包装成流的形式，然后用强大丰富的操作符对流进行处理，使你能以同步编程的方式处理异步数据，并组合不同的操作符来轻松优雅的实现你所需要的功能。RxJS 中解决异步事件管理的基本概念如下:</p>
+
+<ul>
+  <li><strong>Observable</strong> 可观察对象 - 单播，表示一个可调用的未来值或者事件的集合</li>
+  <li><strong>Observer</strong> 观察者 - 一个回调函数集合,它知道怎样去监听被 Observable 发送的值</li>
+  <li><strong>Subscription</strong> 订阅 -  表示一个可观察对象的执行，主要用于取消执行</li>
+  <li><strong>Operators</strong> 操作符 -  纯粹的函数，使得以函数式编程的方式处理集合，比如 map、filter、contact、flatmap</li>
+  <li><strong>Subject</strong> 主题 - 多播，是允许值被多播到多个观察者的一种特殊的 Observable，同时也可作为 Observer</li>
+  <li><strong>Schedulers</strong> 调度者 -  用来控制并发，当计算发生的时候允许我们协调，比如 setTimeout、requestAnimationFrame</li>
+</ul>
+
+<h3 id="使用方式">使用方式</h3>
+
+<p>在代码中使用时避免添加整个 RxJS 库:</p>
+
+<pre><code class="language-JS">// bad
+import Rx from 'rxjs/Rx';
+Rx.Observable.of(1,2,3);
+
+// good
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+Observable.of(1,2,3).map(x =&gt; x + '!!!'); // etc
+</code></pre>
+
+<p>Observable 可以和 Promise 之间互相转换:</p>
+
+<pre><code class="language-JS">const ob = Observable.fromPromise(somePromise); // Promise --&gt; Observable
+const promise = someObservable.toPromise(); // Observable --&gt; Promise
+</code></pre>
+
+<p>举个栗子 🌰，例如注册事件监听:</p>
+
+<pre><code class="language-JS">// 以往
+var button = document.querySelector('button');
+button.addEventListener('click', () =&gt; console.log('Clicked!'));
+</code></pre>
+
+<pre><code class="language-JS">// Observable
+var button = document.querySelector('button');
+Observable.fromEvent(button, 'click').subscribe(() =&gt; console.log('Clicked!'));
+</code></pre>
+
+<p>栗子拓展开，比如每秒最多只能点击一次的实现:</p>
+
+<pre><code class="language-JS">// 纯 JS
+var count = 0;
+var rate = 1000;
+var lastClick = Date.now() - rate;
+var button = document.querySelector('button');
+button.addEventListener('click', () =&gt; {
+  if (Date.now() - lastClick &gt;= rate) {
+    console.log(`Clicked ${++count} times`);
+    lastClick = Date.now();
+  }
+});
+</code></pre>
+
+<pre><code class="language-JS">// Observable
+var button = document.querySelector('button');
+Observable.fromEvent(button, 'click')
+.throttleTime(1000)
+.scan(count =&gt; count + 1, 0) // 类似 reduce，回调函数的返回值将成为下一次回调函数运行时要传递的下一个参数值
+.subscribe(count =&gt; console.log(`Clicked ${count} times`));
+</code></pre>
+
+<h3 id="observable-可观察对象">Observable 可观察对象</h3>
+
+<p><strong>Observable</strong> 可观察对象，简单来说数据就在 Observable 中流动，你可以使用各种 <strong>operator</strong> 操作符对流进行处理。作为 Observable 序列必须被”订阅”才能够触发上述过程，也就是 <strong>subscribe</strong>(发布/订阅模式)。订阅是完全同步的，就像调用一个函数。</p>
+
+<pre><code class="language-JS">const ob = Observable.interval(1000); // 每隔 1000ms 发射一个递增的数据，即 0 -&gt; 1 -&gt; 2 ...
+ob.take(3).map(n =&gt; n * 2).filter(n =&gt; n &gt; 0).subscribe(n =&gt; console.log(n)); // take(3) 为取前三个数据
+// 2 第二秒
+// 4 第三秒
+</code></pre>
+
+<p>下面是可观察对象执行可以发送的三种类型的值:</p>
+
+<ul>
+  <li><strong>next</strong> - 发送一个数字 / 字符串 / 对象等值。</li>
+  <li><strong>error</strong> - 发送一个错误或者异常。</li>
+  <li><strong>complete</strong> - 不发送值。</li>
+</ul>
+
+<pre><code class="language-JS">// create 方法用于创建一个新的 Observable 对象，接收 Observer 观察者参数
+var foo = Observable.create((observer) =&gt; {
+console.log('tate');
+observer.next(0);
+observer.next(1);
+observer.next(2);
+// observer.complete();
+});
+
+console.log('before');
+foo.subscribe((x) =&gt; { // 同步 返回一个 subscription 对象
+console.log(x);
+});
+console.log('after');
+// 'before' 'tate' 0 1 2 'after'
+</code></pre>
+
+<h3 id="observer-观察者">Observer 观察者</h3>
+
+<p><strong>Observer</strong> 观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数，分别对应一种被可观察对象发送的通知的类型，即 next, error 和 complete。要想使用观察者，需要订阅可观察对象，即<code>observable.subscribe(observer)</code>。</p>
+
+<pre><code class="language-JS">observable.subscribe({
+    next: x =&gt; console.log(x),
+    error: err =&gt; console.error(err),
+    complete: () =&gt; console.log('end of the stream')
+})
+
+// 当订阅一个可观察对象，你可能仅仅提供回调来作为参数就够了，并不需要完整的观察者对象，作为示例:
+observable.subscribe(x =&gt; console.log('Observer got a next value: ' + x));
+
+// 或者通过将三个函数作为参数提供三种回调
+observable.subscribe(
+x =&gt; console.log('Observer got a next value: ' + x),
+err =&gt; console.error('Observer got an error: ' + err),
+() =&gt; console.log('Observer got a complete notification')
+);
+</code></pre>
+
+<h3 id="subscription-订阅">Subscription 订阅</h3>
+
+<p><strong>Subscription</strong> 订阅通常是一个可观察对象的执行，订阅对象有一个 <strong>unsubscribe</strong> 方法用来释放资源或者取消可观察对象的执行。</p>
+
+<pre><code class="language-JS">var observable = Observable.from([10, 20, 30]); // from 可将几乎所有的东西转化一个可观察对象
+var subscription = observable.subscribe(x =&gt; console.log(x));
+// Later:
+subscription.unsubscribe();
+</code></pre>
+
+<h3 id="subject-主题">Subject 主题</h3>
+
+<h4 id="subject">Subject</h4>
+
+<p><strong>Subject</strong> 主题是允许值被多播到多个观察者的一种特殊的 Observable，然而纯粹的可观察对象是单播的(每一个订阅的观察者拥有单独的可观察对象的执行)。</p>
+
+<ul>
+  <li><strong>每一个 Subject 都是一个 Observable 可观察对象</strong> - 给定一个 Subject 后，你可以订阅它，提供的观察者将会正常的开始接收值。从观察者的角度来看，它不能判断一个可观察对象的执行时来自于单播的 Observable 还是来自于一个 Subject</li>
+  <li><strong>每一个 Subject 都是一个 Observer 观察者对象</strong> - 它是一个拥有 next/error/complete 方法的对象。要想 Subject 提供一个新的值，只需调用 next()，它将会被多播至用来监听Subject 的观察者</li>
+</ul>
+
+<pre><code class="language-JS">// import { BehaviorSubject, Observable, Subscription } from 'rxjs'
+// Subject 有两个观察者
+var subject = new Subject();
+
+subject.subscribe({
+  next: (v) =&gt; console.log('observerA: ' + v)
+});
+subject.subscribe({
+  next: (v) =&gt; console.log('observerB: ' + v)
+});
+
+subject.next(1); // observerA: 1 observerB: 1
+subject.next(2); // observerA: 2 observerB: 2
+</code></pre>
+
+<p>由于 Subject 也是一个观察者，这就意味着你可以提供一个 Subject 当做 observable.subscribe() 的参数，如下:</p>
+
+<pre><code class="language-JS">var observable = Observable.from([1, 2, 3]);
+
+observable.subscribe(subject); // You can subscribe providing a Subject
+// observerA: 1 observerB: 1
+// observerA: 2 observerB: 2
+// observerA: 3 observerB: 3
+</code></pre>
+
+<h4 id="behaviorsubject">BehaviorSubject</h4>
+
+<p><strong>BehaviorSubject</strong> 也属于 Subject，它储存着要发射给消费者的最新的值。无论何时一个新的观察者订阅它，都会立即接受到这个来自 BehaviorSubject 的当前值。对于表示”随时间的值”是很有用的。举个例子，人的生日的事件流是一个 Subject,然而人的年龄的流是一个 BehaviorSubject。</p>
+
+<p>在下面的例子中，BehaviorSubject 被初始化为 0，第一个观察者将会在订阅的时候接收到这个值。第二个观察者接收数值 2，即使它是在数值 2 被发送之后订阅的:</p>
+
+<pre><code class="language-JS">var subject = new BehaviorSubject(0); // 0 is the initial value
+
+subject.subscribe({
+  next: (v) =&gt; console.log('observerA: ' + v)
+});
+
+subject.next(1);
+subject.next(2);
+
+subject.subscribe({
+  next: (v) =&gt; console.log('observerB: ' + v)
+});
+
+subject.next(3);
+// observerA: 0
+// observerA: 1
+// observerA: 2 observerB: 2
+// observerA: 3 observerB: 3
+</code></pre>
+
+<h4 id="replaysubject">ReplaySubject</h4>
+
+<p><strong>ReplaySubect</strong> 类似于 BehaviorSubject，一个 ReplaySubject 从一个可观察对象的执行中记录多个值，并且可以重新发送给新的订阅者。</p>
+
+<pre><code class="language-JS">var subject = new ReplaySubject(3); // buffer 3 values for new subscribers ，注:缓存了三个值。
+// 除了指定缓存值个数之外，还可以指定一个以毫秒为单位的时间，表示这个有效时间段内的有效个数
+// var subject = new ReplaySubject(3, 500 /* windowTime */);
+
+subject.subscribe({
+  next: (v) =&gt; console.log('observerA: ' + v)
+});
+
+subject.next(1);
+subject.next(2);
+subject.next(3);
+subject.next(4);
+
+subject.subscribe({
+  next: (v) =&gt; console.log('observerB: ' + v)
+});
+
+subject.next(5);
+// observerA: 1 observerA: 2 observerA: 3 observerA: 4
+// observerB: 2 observerB: 3 observerB: 4
+// observerA: 5 observerB: 5
+</code></pre>
+
+<h4 id="asyncsubject">AsyncSubject</h4>
+
+<p><strong>AsyncSubject</strong> 仅在执行结束(complete)时发送给观察者可观察对象执行的最新值。</p>
+
+<pre><code class="language-JS">var subject = new AsyncSubject();
+
+subject.subscribe({
+  next: (v) =&gt; console.log('observerA: ' + v)
+});
+
+subject.next(1);
+subject.next(2);
+
+subject.subscribe({
+  next: (v) =&gt; console.log('observerB: ' + v)
+});
+
+subject.next(3);
+subject.complete(); // observerA: 3 observerB: 3
+</code></pre>
+
+<h3 id="operators-操作符">Operators 操作符</h3>
+
+<h4 id="操作符一览表">操作符一览表</h4>
+
+<p><strong>Operators</strong> 操作符是可观察对象上定义的方法。每一个操作符都是基于当前可观察对象创建一个新的可观察对象的函数。这是一个单纯无害的操作，之前的可观察对象仍然保持不变。</p>
+
+<p>常用操作符一览:</p>
+
+<ul>
+  <li><strong>创建操作符</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">创建操作符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>create</strong></td>
+      <td style="text-align: left">创建一个新的 Observable</td>
+      <td style="text-align: left"><code>Observable.create((observer) =&gt; ...)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>empty</strong></td>
+      <td style="text-align: left">仅仅发出 complete 通知，其他什么也不做</td>
+      <td style="text-align: left"><code>Observable.empty()</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>from</strong></td>
+      <td style="text-align: left">转化为一个 Observable</td>
+      <td style="text-align: left"><code>Observable.from([1, 2, 3])</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>fromEvent</strong></td>
+      <td style="text-align: left">创建一个来自于 DOM 事件，或者 Node 的 EventEmitter 事件或者其他事件的 Observable</td>
+      <td style="text-align: left"><code>Observable.fromEvent(document, 'click')</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>fromPromise</strong></td>
+      <td style="text-align: left">将 Promise 转化为一个 Observable</td>
+      <td style="text-align: left"><code>Observable.fromPromise(fetch('http://myserver.com/'))</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>of</strong></td>
+      <td style="text-align: left">创建一个 Observable，连续发射指定参数的值，最后发出 complete</td>
+      <td style="text-align: left"><code>Observable.of(1, 2, 3)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>interval</strong></td>
+      <td style="text-align: left">返回一个在固定时间间隔发出无限自增的序列整数,如每 1 秒发出自增的数字</td>
+      <td style="text-align: left"><code>Observable.interval(1000)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>timer</strong></td>
+      <td style="text-align: left">同 interval，但增加延迟执行，如每隔 1 秒发出自增的数字，5 秒后开始发送</td>
+      <td style="text-align: left"><code>Observable.timer(5000, 1000)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>range</strong></td>
+      <td style="text-align: left">发出区间范围内的数字序列</td>
+      <td style="text-align: left"><code>Observable.range(1, 10)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>error</strong></td>
+      <td style="text-align: left">仅仅发出 error 通知，其他什么也不做</td>
+      <td style="text-align: left"><code>Observable.throw(new Error('oops!'))</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>转换操作符</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">转换操作符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>map</strong></td>
+      <td style="text-align: left">同 Array.prototype.map()</td>
+      <td style="text-align: left"><code>ob.map(ev =&gt; ev.clientX)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>mapTo</strong></td>
+      <td style="text-align: left">可以把传进来的值改成一个固定的值</td>
+      <td style="text-align: left"><code>ob.mapTo(1)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>scan</strong></td>
+      <td style="text-align: left">类似 reduce + last，回调函数的返回值将成为下一次回调函数运行时要传递的下一个参数值</td>
+      <td style="text-align: left"><code>ob.scan((count) =&gt; count + 1, 0)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>mergeMap</strong></td>
+      <td style="text-align: left">将每个源值投射成 Observable，再将该 Observable 会合并到输出 Observable 中</td>
+      <td style="text-align: left"><code>ob.mergeMap(x =&gt; Observable.interval(1000).map(i =&gt; x+i)))</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>switchMap</strong></td>
+      <td style="text-align: left">将每个值映射成 Observable，然后使用 switch 打平所有的内部 Observable</td>
+      <td style="text-align: left"><code>ob.switchMap((ev) =&gt; Observable.interval(1000))</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">const source = Rx.Observable.of('Hello');
+//map to inner observable and flatten
+const example = source.mergeMap(val =&gt; Observable.of(`${val} World!`));
+const subscribe = example.subscribe(val =&gt; console.log(val)); // 'Hello World!'
+</code></pre>
+
+<ul>
+  <li><strong>过滤操作符</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">过滤操作符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>debounceTime</strong></td>
+      <td style="text-align: left">延时执行，但是只通过每次大量发送中的最新值</td>
+      <td style="text-align: left"><code>ob.debounceTime(500)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>distinct</strong></td>
+      <td style="text-align: left">得到的不同的值</td>
+      <td style="text-align: left"><code>Observable.of(1, 2, 2, 3).max()</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>distinctUntilChanged</strong></td>
+      <td style="text-align: left">得到的与前一项不同的值</td>
+      <td style="text-align: left"><code>Observable.of(1, 2, 2, 3).distinctUntilChanged()</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>distinctUntilKeyChanged</strong></td>
+      <td style="text-align: left">基于指定的 key 得到与前一项不同的值</td>
+      <td style="text-align: left"><code>ob.distinctUntilKeyChanged()</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>filter</strong></td>
+      <td style="text-align: left">同 Array.prototype.filter()</td>
+      <td style="text-align: left"><code>ob.filter(x =&gt; x % 2 === 1)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>first</strong></td>
+      <td style="text-align: left">只发出第一次满足条件的值，反之则为 last</td>
+      <td style="text-align: left"><code>ob.first(x =&gt; x % 2 === 1)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>skip</strong></td>
+      <td style="text-align: left">跳过发出的前 n 个值，跳过后 n 个值则为 skipLast</td>
+      <td style="text-align: left"><code>ob.skip(2)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>throttleTime</strong></td>
+      <td style="text-align: left">让一个值通过，然后在接下来的 duration 毫秒内忽略源值</td>
+      <td style="text-align: left"><code>ob.throttleTime(1000)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">Observable.of(1, 1, 2, 2, 2, 1, 1, 2, 3, 3, 4)
+  .distinctUntilChanged()
+  .subscribe(x =&gt; console.log(x)); // 1, 2, 1, 2, 3, 4
+
+Observable.of&lt;Person&gt;(
+  { age: 1, name: 'tate'},
+  { age: 2, name: 'snow'},
+  { age: 3, name: 'tate'},
+  { age: 4, name: 'tate'})
+  .distinctUntilKeyChanged('name')
+  .subscribe(x =&gt; console.log(x.age)); // 1, 2, 3
+</code></pre>
+
+<ul>
+  <li><strong>组合操作符</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">组合操作符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>concat</strong></td>
+      <td style="text-align: left">拼接，按照顺序将发出的多个值拼接起来，可以有静态方法和实例方法</td>
+      <td style="text-align: left"><code>ob.concat(ob1)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>merge</strong></td>
+      <td style="text-align: left">合并，把多个值合并到一个值中，可以有静态方法和实例方法</td>
+      <td style="text-align: left"><code>ob.merge(ob1)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>forkJoin</strong></td>
+      <td style="text-align: left">同 Promise.all，等到所有的 Observable 都完成后，才一次性返回值</td>
+      <td style="text-align: left"><code>ob.forkJoin(ob1, ob2)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>race</strong></td>
+      <td style="text-align: left">类似 Promise.race，返回组合中第一个发出项的 Observable 的镜像</td>
+      <td style="text-align: left"><code>ob.race(ob1, ob2)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>startWith</strong></td>
+      <td style="text-align: left">先发出指定项，然后发出由源 Observable 发出的项</td>
+      <td style="text-align: left"><code>ob.startWith(1)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>注意 concat 和 merge 的区别，concat 是按顺序拼接值:</p>
+
+<pre><code class="language-JS">var source = Observable.interval(500).take(3);
+var source2 = Observable.interval(300).take(6);
+var example = source.merge(source2);
+example.subscribe({
+    x =&gt;  console.log(x)
+});
+// 0 0 1 2 1 3 2 4 5
+</code></pre>
+
+<p>按照 <strong>Marble Diagram</strong> 图解的话:</p>
+
+<pre><code class="language-TEXT">source : ----0----1----2|
+source2: --0--1--2--3--4--5|
+            merge()
+example: --0-01--21-3--(24)--5|
+            concat()
+example: ----0----1----2--0--1--2--3--4--5|
+</code></pre>
+
+<ul>
+  <li><strong>其他操作符</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">其他操作符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>delay</strong></td>
+      <td style="text-align: left">延迟执行，每个数据项的发出时间都往后推移固定的毫秒数</td>
+      <td style="text-align: left"><code>ob.delay(1000)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>toPromise</strong></td>
+      <td style="text-align: left">转换为 Promise</td>
+      <td style="text-align: left"><code>ob.toPromise()</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>max</strong></td>
+      <td style="text-align: left">获取一连串数字中的最大值，反之为 min</td>
+      <td style="text-align: left"><code>Observable.of(1, 2, 3).max()</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>every</strong></td>
+      <td style="text-align: left">返回布尔值，所有项是否都满足指定条件</td>
+      <td style="text-align: left"><code>Observable.of(1, 2, 3).every(x =&gt; x &gt; 0)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>find</strong></td>
+      <td style="text-align: left">找到第一个通过测试的值并将其发出，findIndex 则返回索引值</td>
+      <td style="text-align: left"><code>Observable.of(1, 2, 3).find(x =&gt; x &gt; 0)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>count</strong></td>
+      <td style="text-align: left">计算源的发送数量，并当源完成时发出该数值</td>
+      <td style="text-align: left"><code>ob.count(x =&gt; x &gt; 0)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>reduce</strong></td>
+      <td style="text-align: left">当源 Observable 完成时，返回 累加的结果，只会返回一个值</td>
+      <td style="text-align: left"><code>ob.reduce((acc, one) =&gt; acc + one, seed)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">// 使用比较函数 max 来获取最大值的项
+interface Person {
+  age: number,
+  name: string
+}
+Observable.of&lt;Person&gt;({age: 26, name: 'tate'},
+                      {age: 18, name: 'snow'}
+          .max&lt;Person&gt;((a: Person, b: Person) =&gt; a.age &lt; b.age ? -1 : 1)
+          .subscribe((x: Person) =&gt; console.log(x.name)); // 'tate'
+}
+</code></pre>
+
+<h4 id="mergemap--forkjoin">mergeMap / forkJoin</h4>
+
+<p>举个栗子 🌰，如果发送的一个请求时，需要依赖于上一个请求的数据，嵌套的写法很冗长:</p>
+
+<pre><code class="language-JS">// Angular
+apiUrl = 'https://jsonplaceholder.typicode.com/users';
+username: string = '';
+user: any;
+
+ngOnInit() {
+  this.http.get(this.apiUrl)
+    .map(res =&gt; res.json())
+    .subscribe(users =&gt; {
+      let username = users[0].username;
+      this.http.get(`${this.apiUrl}?username=${username}`)
+        .map(res =&gt; res.json())
+        .subscribe(
+          user =&gt; {
+            this.username = username;
+            this.user = user;
+          });
+    });
+  }
+</code></pre>
+
+<p>使用 mergeMap 可以优化改写为:</p>
+
+<pre><code class="language-JS"> ngOnInit() {
+    this.http.get(this.apiUrl)
+      .map(res =&gt; res.json())
+      .mergeMap(users =&gt; {
+        this.username = users[0].username;
+        return this.http.get(`${this.apiUrl}?username=${this.username}`)
+          .map(res =&gt; res.json())
+      })
+      .subscribe(user =&gt; this.user = user);
+  }
+</code></pre>
+
+<p>若对于并发的 http 请求，则可以采用类似 Promise.all 的写法，即使用 forkJoin():</p>
+
+<pre><code class="language-JS">ngOnInit() {
+    let post1 = this.http.get(`${this.apiUrl}/1`);
+    let post2 = this.http.get(`${this.apiUrl}/2`);
+
+    Observable.forkJoin(post1, post2)
+      .subscribe(results =&gt; {
+        this.post1 = results[0];
+        this.post2 = results[1];
+      });
+  }
+</code></pre>
+
+<h4 id="switchmap">switchMap</h4>
+
+<p>switchMap 操作符用于对源 Observable 对象发出的值，做映射处理。若有新的 Observable 对象出现，会在新的 Observable 对象发出新值后，退订前一个未处理完的 Observable 对象。举个搜索的栗子 🌰，摘自 Angular 官网:</p>
+
+<pre><code class="language-JS">export class HeroSearchComponent implements OnInit {
+  heroes: Observable&lt;Hero[]&gt;;
+  private searchTerms = new Subject&lt;string&gt;(); // 创建一个主题
+  constructor(
+    private heroSearchService: HeroSearchService,
+    private router: Router) {}
+  // Push a search term into the observable stream.
+  search(term: string): void {
+    this.searchTerms.next(term);
+  }
+  ngOnInit(): void {
+    this.heroes = this.searchTerms
+      .debounceTime(300)        // wait 300ms after each keystroke before considering the term
+      .distinctUntilChanged()   // ignore if next search term is same as previous
+      .switchMap(term =&gt; term   // switch to new observable each time the term changes
+        // return the http search observable
+        ? this.heroSearchService.search(term)
+        // or the observable of empty heroes if there was no search term
+        : Observable.of&lt;Hero[]&gt;([]))
+      .catch(error =&gt; {
+        // TODO: add real error handling
+        console.log(error);
+        return Observable.of&lt;Hero[]&gt;([]);
+      });
+  }
+  gotoDetail(hero: Hero): void {
+    this.router.navigate(['/detail', hero.id]);
+  }
+}
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="http://es6.ruanyifeng.com/#docs/iterator">ECMAScript 6 入门</a> By 阮一峰</li>
+  <li><a href="http://cn.rx.js.org/">RxJS - 官方译文</a></li>
+  <li><a href="https://segmentfault.com/a/1190000012252368">Introduction to RxJS</a> By TonyZhu</li>
+  <li><a href="https://segmentfault.com/a/1190000010088631">使用 RxJS 处理多个 Http 请求</a> By semlinker</li>
+  <li><a href="http://www.cnblogs.com/solodancer/p/7954846.html">Observable 的 Operators 集合</a> By soloDancer_讠</li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/03/21/es6-promise-observable.html';
+        this.page.identifier = '/2018/03/21/es6-promise-observable';
+        this.page.title = 'Promise & Observable';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-21 15:07:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
