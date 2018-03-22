@@ -222,7 +222,7 @@
 
 <p><img src="https://cdn-images-1.medium.com/max/1600/1*-MMBHKy_ZxCrouecRqvsBg.png" alt="Javascript Event Loop Visual Representation" /></p>
 
-<p>调用栈中遇到 DOM 操作、ajax 请求以及 setTimeout 等 WebAPIs 的时候就会交给浏览器内核的其他模块进行处理，webkit 内核在 Javasctipt 执行引擎之外，有一个重要的模块是 webcore 模块。对于图中 WebAPIs 提到的三种 API，webcore 分别提供了 DOM Binding、network、timer 模块来处理底层实现。等到这些模块处理完这些操作的时候将回调函数放入任务队列中，之后等栈中的 task 执行完之后再去执行任务队列之中的回调函数。</p>
+<p>当调用 setTimeout() 方法等 WebAPIs 时，浏览器内核相应模块开始延时方法的处理，当延时方法到达触发条件时，方法被添加到用于回调的任务队列，后面的事件循环过程同上。</p>
 
 <h3 id="定时器">定时器</h3>
 

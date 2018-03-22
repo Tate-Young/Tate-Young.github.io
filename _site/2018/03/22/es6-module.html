@@ -28,8 +28,8 @@
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/03/21/es6-module.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/21/es6-module.html|Module 模块Module静态加载在 ES6 推出 Module(模块)之前，模块加载方案主要有以下几种:  CommonJS - 同步加载模块，一般用于服务器，如 NodeJS  AMD - 异步加载模块，一般用于浏览器，如 R..." property='og:description'
+<meta content='http://localhost:4000/2018/03/22/es6-module.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/22/es6-module.html|Module 模块Module静态加载在 ES6 推出 Module(模块)之前，模块加载方案主要有以下几种:  CommonJS - 同步加载模块，一般用于服务器，如 NodeJS  AMD - 异步加载模块，一般用于浏览器，如 R..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -135,7 +135,7 @@
                 <h1 class="post-title" itemprop="name headline">
                     Module 模块</h1>
                 <div class="post-data">
-                    <time datetime="2018-03-21 00:00:00" itemprop="datePublished">发布时间：2018-03-21 00:00:00</time>
+                    <time datetime="2018-03-22 23:11:00" itemprop="datePublished">发布时间：2018-03-22 23:11:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -156,7 +156,7 @@
             <h1 class="post-title" itemprop="name headline">
                 Module 模块</h1>
             <div class="post-data">
-                <time datetime="2018-03-21 00:00:00" itemprop="datePublished">2018-03-21 00:00:00</time>
+                <time datetime="2018-03-22 23:11:00" itemprop="datePublished">2018-03-22 23:11:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -392,7 +392,62 @@ console.log(name) // 'tate'
 
 <h2 id="babel">Babel</h2>
 
-<p>未完待续。</p>
+<h3 id="推荐配置">推荐配置</h3>
+
+<p>Babel 在版本 6 之前是采用全家桶的安装方式，自从版本 6 发布后，变成了可插拔模式，即需要安装插件才能完成部分功能。按照官方推荐的方案进行配置即可。</p>
+
+<ul>
+  <li><strong>babel-preset-env</strong></li>
+</ul>
+
+<p>每年每个 preset 只编译当年批准的内容，而 babel-preset-env 相当于 es2015 ，es2016 ，es2017 及最新版本。</p>
+
+<pre><code class="language-SHELL">yarn add babel-preset-env -D
+</code></pre>
+
+<ul>
+  <li><strong>.babelrc</strong></li>
+</ul>
+
+<p>Babel 会在正在被转录的文件的当前目录中查找一个 .babelrc 文件。如果不存在，它会遍历目录树，直到找到一个 .babelrc 文件，或一个 package.json 文件中有 “babel”: {}。</p>
+
+<pre><code class="language-JSON">// .babelrc
+// 不进行配置 - babel-preset-env 默认行为是和 babel-preset-latest 是一样的
+{
+  "presets": ["env"], // 预设，即一组插件
+  "plugins": ["es2015-arrow-functions"], // 插件
+  "ignore": [ // 忽略文件
+    "foo.js",
+    "bar/**/*.js"
+  ]
+}
+</code></pre>
+
+<pre><code class="language-JSON">// 进行配置
+"presets": [
+  [
+    "env",
+    {
+      "targets": {
+        "browsers": ["last 2 versions", "ie &gt;= 7"], // 指定支持主流浏览器最新的两个版本以及IE 7+
+        // "browsers": "&gt; 5%" // 支持超过市场份额5%的浏览器
+         "chrome": 56 // 指定版本的浏览器 current 为当前版本
+      }
+    }
+  ]
+]
+</code></pre>
+
+<p>也可以在 package.json 文件中配置:</p>
+
+<pre><code class="language-JS">{
+  "name": "my-package",
+  "version": "1.0.0",
+  "babel": {
+    // my babel config here
+  }
+}
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
@@ -400,6 +455,7 @@ console.log(name) // 'tate'
   <li><a href="http://es6.ruanyifeng.com/#docs/module">ECMAScript 6 入门</a> By 阮一峰</li>
   <li><a href="http://2ality.com/2017/09/native-esm-node.html">Using ES modules natively in Node.js</a> By Axel Rauschmayer</li>
   <li><a href="http://luckyabby.com/post/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/">前端模块化开发</a> By luckyabby</li>
+  <li><a href="https://segmentfault.com/a/1190000008159877">Babel 的使用</a> By ziison</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -410,8 +466,8 @@ console.log(name) // 'tate'
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/03/21/es6-module.html';
-        this.page.identifier = '/2018/03/21/es6-module';
+        this.page.url = 'https://tate-young.github.io/2018/03/22/es6-module.html';
+        this.page.identifier = '/2018/03/22/es6-module';
         this.page.title = 'Module 模块';
     };
 
@@ -430,7 +486,7 @@ console.log(name) // 'tate'
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-21 00:00:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-22 23:11:00</p> -->
         </div>
     </article>
 
