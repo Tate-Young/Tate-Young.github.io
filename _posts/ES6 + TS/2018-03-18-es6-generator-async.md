@@ -600,6 +600,6 @@ async function logContent(urls) {
 
 ## 参考链接
 
-1. [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/iterator) By 阮一峰
+1. [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/async) By 阮一峰
 1. [使用 ES2017 中的 Async(异步) 函数 和 Await(等待)](http://www.css88.com/archives/7980) By 渔人码头
 1. [ES2017 新特性：Async Functions (异步函数)](http://www.css88.com/archives/7731) By 渔人码头

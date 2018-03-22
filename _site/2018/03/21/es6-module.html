@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='尾调用优化 - Tate & Snow' name='title' />
-    <meta content='尾调用优化 - Tate & Snow' name='og:title' />
-    <title>尾调用优化 - Tate & Snow</title>
+    <meta content='Module 模块 - Tate & Snow' name='title' />
+    <meta content='Module 模块 - Tate & Snow' name='og:title' />
+    <title>Module 模块 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>尾调用优化 - Tate & Snow</title>
+<title>Module 模块 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="尾调用优化 - Tate & Snow">
-<meta name="twitter:keywords" content="尾调用优化 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Module 模块 - Tate & Snow">
+<meta name="twitter:keywords" content="Module 模块 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="尾调用优化 - Tate & Snow">
-<meta name="og:keywords" content="尾调用优化 - Tate & Snow|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..."
+<meta property="og:title" content="Module 模块 - Tate & Snow">
+<meta name="og:keywords" content="Module 模块 - Tate & Snow|Module 模块Module静态加载在 ES6 推出 Module(模块)之前，模块加载方案主要有以下几种:  CommonJS - 同步加载模块，一般用于服务器，如 NodeJS  AMD - 异步加载模块，一般用于浏览器，如 R..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
+<meta name="keywords" content="Module 模块Module静态加载在 ES6 推出 Module(模块)之前，模块加载方案主要有以下几种:  CommonJS - 同步加载模块，一般用于服务器，如 NodeJS  AMD - 异步加载模块，一般用于浏览器，如 R..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/05/js-tail-call-optimization.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/05/js-tail-call-optimization.html|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
+<meta content='http://localhost:4000/2018/03/21/es6-module.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/21/es6-module.html|Module 模块Module静态加载在 ES6 推出 Module(模块)之前，模块加载方案主要有以下几种:  CommonJS - 同步加载模块，一般用于服务器，如 NodeJS  AMD - 异步加载模块，一般用于浏览器，如 R..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -133,20 +133,14 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    尾调用优化</h1>
+                    Module 模块</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-05 23:26:00" itemprop="datePublished">发布时间：2018-02-05 23:26:00</time>
+                    <time datetime="2018-03-21 00:00:00" itemprop="datePublished">发布时间：2018-03-21 00:00:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
                 <div class="post-tags">
                        
-                    <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                        JavaScript
-                        <span>(13)</span>
-                        
-                    </a>
-                    
                     <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
                         ES6
                         <span>(10)</span>
@@ -160,161 +154,252 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                尾调用优化</h1>
+                Module 模块</h1>
             <div class="post-data">
-                <time datetime="2018-02-05 23:26:00" itemprop="datePublished">2018-02-05 23:26:00</time>
+                <time datetime="2018-03-21 00:00:00" itemprop="datePublished">2018-03-21 00:00:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
             <p class="post-tags">
                    
-                <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
-                    JavaScript
-                    <span>(13)</span>
-                    </a>
-                
                 <a href="/tags#ES6" title="访问ES6" data-hover="ES6">
                     ES6
                     <span>(10)</span>
                     </a>
                    
             </p>
-            <h1 id="尾调用优化">尾调用优化</h1>
+            <h1 id="module-模块">Module 模块</h1>
 
-<h2 id="什么是尾调用和尾递归">什么是尾调用和尾递归</h2>
+<h2 id="module">Module</h2>
 
-<p><strong>尾调用(Tail Call)</strong> 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 <strong>尾递归</strong>。</p>
+<h3 id="静态加载">静态加载</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
-<span class="p">}</span>
+<p>在 ES6 推出 <strong>Module</strong>(模块)之前，模块加载方案主要有以下几种:</p>
 
-<span class="c1">// 以下均不属于尾调用</span>
-<span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
+<ul>
+  <li><strong>CommonJS</strong> - 同步加载模块，一般用于服务器，如 NodeJS</li>
+  <li><strong>AMD</strong> - 异步加载模块，一般用于浏览器，如 RequireJS</li>
+  <li><strong>CMD</strong> - 异步加载模块，一般用于浏览器，如 SeaJS</li>
+</ul>
 
-<span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
-  <span class="k">return</span> <span class="nx">b</span><span class="p">;</span>
-<span class="p">}</span>
+<p>ES6 模块的设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西。比如，CommonJS 模块就是对象，输入时必须查找对象属性:</p>
+
+<pre><code class="language-JS">// CommonJS模块 运行时加载
+let { stat, exists, readFile } = require('fs');
+
+// 等价于
+let _fs = require('fs');
+let stat = _fs.stat;
+let exists = _fs.exists;
+let readfile = _fs.readfile;
 </code></pre>
-</div>
 
-<h2 id="尾调用优化-1">尾调用优化</h2>
+<p>ES6 模块不是对象，而是通过 export 命令显式指定输出的代码，再通过 import 命令输入。</p>
 
-<p><a href="http://localhost:4000/2018/02/05/js-event-loop.html">上一篇事件循环</a>有介绍栈帧和调用栈。使用尾调用优化后由于不会用到外层函数栈帧里的调用位置、内部变量等信息，所以不会在调用栈上增加新的栈帧，而是更新它，如同迭代一般。既节省了内存，又避免了爆栈的可能性。</p>
+<pre><code class="language-JS">// 编译时加载
+import { stat, exists, readFile } from 'fs';
+</code></pre>
+
+<h3 id="export">export</h3>
+
+<p><strong>export</strong> 命令用于规定模块的对外接口。对于输出变量，可以采用以下三种写法:</p>
+
+<pre><code class="language-JS">// 写法一
+export var foo = 1;
+
+// 写法二
+var foo = 1;
+export { foo };
+// export foo; // 报错
+
+// 写法三 as 取别名
+var bar = 1;
+export { bar as foo };
+</code></pre>
+
+<p>同样对于函数或者类，也要注意写法:</p>
+
+<pre><code class="language-JS">// 报错
+function f() {}
+export f;
+
+// 正确
+export function f() {};
+
+// 正确
+function f() {}
+export { f };
+</code></pre>
+
+<p>export 语句输出的接口，与其对应的值是动态绑定关系，即通过该接口，可以取到模块内部实时的值，而 CommonJS 模块输出的是值的缓存，不存在动态更新。</p>
+
+<pre><code class="language-JS">// 输出变量 foo，值为 bar，500 毫秒之后变成 baz
+export var foo = 'bar';
+setTimeout(() =&gt; foo = 'baz', 500);
+</code></pre>
+
+<h3 id="import">import</h3>
+
+<p><strong>import</strong> 命令用于输入其他模块提供的功能。import 命令具有提升效果，会提升到整个模块的头部执行。除了指定加载某个输出值，还可以使用整体加载，即用星号 (*) 指定一个对象:</p>
+
+<pre><code class="language-JS">// circle.js
+export function area(radius) {
+  return Math.PI * radius * radius;
+}
+
+export function circumference(radius) {
+  return 2 * Math.PI * radius;
+}
+</code></pre>
+
+<pre><code class="language-JS">// 加载模块
+import { area, circumference } from './circle';
+
+console.log('圆面积：' + area(4));
+console.log('圆周长：' + circumference(14));
+
+// 等价于
+import * as circle from './circle';
+
+console.log('圆面积：' + circle.area(4));
+console.log('圆周长：' + circle.circumference(14));
+</code></pre>
+
+<p>import 识别加载文件的三种姿势:</p>
+
+<ul>
+  <li>引用相对路径，则直接寻找该相对路径文件 export 输出。</li>
+  <li>绝对路径，则会依次寻找 node_modules 目录，直到全局目录。</li>
+  <li>路径为文件夹时，则会首先观察文件夹下是否有 package.json ,如果有 package.json 则会去加载 main 字段指向的文件，如果没有 package.json，则会在这个文件夹下寻找 index.js 文件并加载。</li>
+</ul>
+
+<pre><code class="language-JS">const api = require('./api'); // api 是文件夹
+
+// 若 api 文件夹下无 package.json 则等价于
+const api = require('./api/index.js');
+</code></pre>
 
 <blockquote>
-  <p>尾调用优化是在支持 ES6 的解释器里添加的，只在ES6严格模式下生效。</p>
+  <p>import * 会忽略 circle 模块里输出的 default 方法</p>
 </blockquote>
 
-<h2 id="尾递归优化">尾递归优化</h2>
+<h3 id="export-default">export default</h3>
 
-<p>由于递归有过多的函数调用，会产生比较多的栈帧，所以十分消耗内存空间，很容易发生 <strong><a href="https://zh.wikipedia.org/wiki/%E5%A0%86%E7%96%8A%E6%BA%A2%E4%BD%8D">堆栈溢出(stack overflow)</a></strong>。但对于尾递归来说，则只存在一个栈帧。</p>
+<p>使用 import 命令的时候，用户需要知道所要加载的变量名或函数名，否则无法加载，因此可以用 <strong>export default</strong> 为模块指定默认输出。一个模块只能有一个默认输出，因此 export default 命令只能使用一次。import 命令后面可以不用加大括号。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Bad</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 基准条件，停止递归调用</span>
-  <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
+<pre><code class="language-JS">function add(x, y) {
+  return x + y;
+}
+export {add as default};
+// 等同于
+export default add;
 </code></pre>
-</div>
 
-<p>上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 <a href="https://zh.wikipedia.org/wiki/%E5%A4%A7O%E7%AC%A6%E5%8F%B7">O(n)</a>。如果改写成尾递归，只保留一个调用记录，复杂度降至 O(1) 。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Good</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">m</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// 120</span>
+<pre><code class="language-JS">// 输入
+import { default as foo } from 'modules';
+// 等同于
+import foo from 'modules';
 </code></pre>
-</div>
 
-<p>此处实行函数式编程里的 <strong><a href="https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96">柯里化(currying)</a></strong>，把接受多个参数的函数变换成接受一个单一参数的函数。</p>
+<p>因为 export default 命令只是输出一个叫 default 的变量，所以它后面不能跟变量声明语句:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">}</span>
+<pre><code class="language-JS">// 正确
+export var foo = 1;
 
-<span class="kd">function</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">total</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">);</span>
-<span class="p">}</span>
+// 正确
+var foo = 1;
+export default foo;
 
-<span class="kr">const</span> <span class="nx">factorial</span> <span class="o">=</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">tailFactorial</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
+// 错误
+export default var foo = 1;
 </code></pre>
-</div>
 
-<p>或者直接使用 ES6 函数默认值：</p>
+<h3 id="加载实现">加载实现</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Best</span>
-<span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">);</span>
-<span class="p">}</span>
+<ul>
+  <li>浏览器</li>
+</ul>
 
-<span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
+<pre><code class="language-HTML">&lt;!-- 代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见，且默认使用严格模式 --&gt;
+&lt;script type="module" src="./foo.js"&gt;&lt;/script&gt;
+&lt;!-- 等同于 --&gt;
+&lt;script type="module" src="./foo.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- 或者采用内联 --&gt;
+&lt;script type="module"&gt;
+  // your ES6 code here
+&lt;/script&gt;
 </code></pre>
-</div>
 
-<h2 id="es5替代方案">ES5替代方案</h2>
+<ul>
+  <li>NodeJS</li>
+</ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 堆栈溢出示例</span>
-<span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<p>NodeJS 遵循的是 CommonJS 规范，ES6 模块与 CommonJS 的区别主要是以下两点:</p>
 
-<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span> <span class="c1">// Uncaught RangeError: Maximum call stack size exceeded</span>
+<ul>
+  <li>CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用</li>
+  <li>CommonJS 模块是运行时加载，ES6 模块是编译时输出接口</li>
+</ul>
+
+<p>NodeJS 要求 ES6 模块采用 .mjs 后缀文件名，目前只是试验版本:</p>
+
+<pre><code class="language-JS">// lib.mjs
+export function add(x, y) {
+    return x + y;
+}
+
+// main.mjs
+import { add } from './lib.mjs';
+
+console.log('Result: ' + add(2, 3));
 </code></pre>
-</div>
 
-<p>在当前的JS版本（ES5）中可以使用以下方式来优化递归。我们可以定义一个 <strong>trampoline(蹦床)</strong> 函数来解决参数过大造成的“堆栈溢出”问题。其原理是将递归执行转为循环执行。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">//放入trampoline中的函数将被转换为函数的输出结果</span>
-<span class="kd">function</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">(</span><span class="nx">f</span> <span class="o">&amp;&amp;</span> <span class="nx">f</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">f</span> <span class="o">=</span> <span class="nx">f</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">f</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="nx">recur</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// recur函数的每次执行，都会返回自身的另一个版本</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">));</span>
-<span class="p">}</span>
-
-<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">);</span> <span class="c1">// =&gt; 100001</span>
+<pre><code class="language-SHELL">node --experimental-modules main.mjs
+# ExperimentalWarning: The ESM module loader is experimental.
+# Result 5
 </code></pre>
-</div>
 
-<blockquote>
-  <p>以上替代方案实际改变了递归函数本身，是属于“入侵式”的。关于如何实现“非入侵式”，可以参考更多以下链接。</p>
-</blockquote>
+<p>CommonJS 模块的输出都定义在 module.exports 这个属性上面。NodeJS 上用 import 命令加载 CommonJS 模块时，会自动将 module.exports 属性当作模块的默认输出，即等同于 export default:</p>
+
+<pre><code class="language-JS">// tate.js
+module.exports = 'tate'
+
+// 等同于
+export default 'tate'
+</code></pre>
+
+<pre><code class="language-JS">// main.mjs
+import name from './tate.js'
+console.log(name) // 'tate'
+</code></pre>
+
+<p>CommonJS 加载是具有缓存的，无论加载多少次，都只会在第一次加载时运行，以后再加载就返回第一次运行的结果，除非手动清除系统缓存。原因是 require 命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象:</p>
+
+<pre><code class="language-JS">{
+  id: '...', // 模块名
+  exports: { ... }, // 模块输出的各个接口
+  loaded: true, // 布尔值，表示该模块的脚本是否执行完毕
+  ...
+}
+</code></pre>
+
+<ul>
+  <li>转码工具</li>
+</ul>
+
+<p>可以使用转码工具将 ES6 语法转换为 ES5 语法。如 <a href="https://babeljs.cn/">Babel</a>、<a href="https://github.com/esnext/es6-module-transpiler">ES6 module transpiler</a>、<a href="https://github.com/systemjs/systemjs">SystemJS</a> 等。</p>
+
+<h2 id="babel">Babel</h2>
+
+<p>未完待续。</p>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://es6.ruanyifeng.com/#docs/function#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96">函数的扩展</a> By 阮一峰</li>
-  <li><a href="https://segmentfault.com/a/1190000004018047">JS 的递归与 TCO 尾调用优化</a> By 囧囧</li>
+  <li><a href="http://es6.ruanyifeng.com/#docs/module">ECMAScript 6 入门</a> By 阮一峰</li>
+  <li><a href="http://2ality.com/2017/09/native-esm-node.html">Using ES modules natively in Node.js</a> By Axel Rauschmayer</li>
+  <li><a href="http://luckyabby.com/post/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/">前端模块化开发</a> By luckyabby</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -325,9 +410,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/05/js-tail-call-optimization.html';
-        this.page.identifier = '/2018/02/05/js-tail-call-optimization';
-        this.page.title = '尾调用优化';
+        this.page.url = 'https://tate-young.github.io/2018/03/21/es6-module.html';
+        this.page.identifier = '/2018/03/21/es6-module';
+        this.page.title = 'Module 模块';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -345,7 +430,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-05 23:26:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-21 00:00:00</p> -->
         </div>
     </article>
 

@@ -315,6 +315,10 @@ table thead tr {
     background-color: #f7f7f7;
 }
 
+iframe {
+    max-height: 30rem;
+}
+
 button,
 input,
 select,
@@ -1323,6 +1327,10 @@ textarea:-ms-input-placeholder {
     color: #313131;
     background-color: #f7f7f7;
     /* max-height: 20rem; */
+}
+
+#tabs pre {
+    overflow: auto;
 }
 
 pre code::after {

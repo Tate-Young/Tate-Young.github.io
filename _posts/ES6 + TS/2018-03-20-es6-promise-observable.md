@@ -588,30 +588,30 @@ ngOnInit() {
 使用 mergeMap 可以优化改写为:
 
 ```JS
- ngOnInit() {
-    this.http.get(this.apiUrl)
-      .map(res => res.json())
-      .mergeMap(users => {
-        this.username = users[0].username;
-        return this.http.get(`${this.apiUrl}?username=${this.username}`)
-          .map(res => res.json())
-      })
-      .subscribe(user => this.user = user);
-  }
+ngOnInit() {
+  this.http.get(this.apiUrl)
+    .map(res => res.json())
+    .mergeMap(users => {
+      this.username = users[0].username;
+      return this.http.get(`${this.apiUrl}?username=${this.username}`)
+        .map(res => res.json())
+    })
+    .subscribe(user => this.user = user);
+}
 ```
 
 若对于并发的 http 请求，则可以采用类似 Promise.all 的写法，即使用 forkJoin():
 
 ```JS
 ngOnInit() {
-    let post1 = this.http.get(`${this.apiUrl}/1`);
-    let post2 = this.http.get(`${this.apiUrl}/2`);
+  let post1 = this.http.get(`${this.apiUrl}/1`);
+  let post2 = this.http.get(`${this.apiUrl}/2`);
 
-    Observable.forkJoin(post1, post2)
-      .subscribe(results => {
-        this.post1 = results[0];
-        this.post2 = results[1];
-      });
+  Observable.forkJoin(post1, post2)
+    .subscribe(results => {
+      this.post1 = results[0];
+      this.post2 = results[1];
+    });
   }
 ```
 
@@ -653,7 +653,7 @@ export class HeroSearchComponent implements OnInit {
 
 ## 参考链接
 
-1. [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/iterator) By 阮一峰
+1. [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/promise) By 阮一峰
 1. [RxJS - 官方译文](http://cn.rx.js.org/)
 1. [Introduction to RxJS](https://segmentfault.com/a/1190000012252368) By TonyZhu
 1. [使用 RxJS 处理多个 Http 请求](https://segmentfault.com/a/1190000010088631) By semlinker
