@@ -388,7 +388,7 @@ console.log(name) // 'tate'
   <li>转码工具</li>
 </ul>
 
-<p>可以使用转码工具将 ES6 语法转换为 ES5 语法。如 <a href="https://babeljs.cn/">Babel</a>、<a href="https://github.com/esnext/es6-module-transpiler">ES6 module transpiler</a>、<a href="https://github.com/systemjs/systemjs">SystemJS</a> 等。</p>
+<p>可以使用转码工具将 ES6 语法转换为 ES5 语法。如 <a href="https://babeljs.cn/">Babel</a>、<a href="https://github.com/esnext/es6-module-transpiler">ES6 module transpiler</a>、<a href="https://github.com/systemjs/systemjs">SystemJS</a> 等。ES6 模块会默认转换为 CommonJS 语法。</p>
 
 <h2 id="babel">Babel</h2>
 
@@ -449,6 +449,101 @@ console.log(name) // 'tate'
 }
 </code></pre>
 
+<h3 id="搭配-gulp">搭配 gulp</h3>
+
+<p>由于 ES6 模块会默认转换为 CommonJS 语法，要想支持该语法，就可搭配 <a href="https://www.gulpjs.com.cn/docs/recipes/browserify-with-globs/">gulp + browserify + babelify 套餐</a>进行食用。更多 <a href="https://www.gulpjs.com.cn/docs/recipes/">gulp 技巧可点击这里</a> 👈👈👈</p>
+
+<pre><code class="language-JS">// gulpfile.babel.js 可以配合 .babelrc 文件配置进行语法转换
+const gulp = require('gulp')
+const browserify = require('browserify')
+const source = require('vinyl-source-stream')
+const buffer = require('vinyl-buffer')
+const babelify = require('babelify')
+const sourcemaps = require('gulp-sourcemaps')
+const uglify = require('gulp-uglify')
+const gutil = require('gulp-util')
+
+gulp.task('browserify', bundle)
+gulp.task('watch', watch)
+
+function bundle() {
+  // 在一个基础的 task 中创建一个 browserify 实例
+  let b = browserify({
+    entries: 'src/index.js',
+    debug: true
+  })
+
+  return b
+    .transform(babelify)
+    .bundle()
+    // Pass desired output filename to vinyl-source-stream
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+      // 在这里将转换任务加入管道
+      .pipe(uglify())
+      .on('error', gutil.log)
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('dist/')); //生成未压缩文件
+}
+
+function watch() {
+  gulp.watch(['src/**/*.js'], ['browserify'])
+}
+</code></pre>
+
+<pre><code class="language-SHELL">执行 browserify 任务
+# gulp browserify
+[14:59:21] Requiring external module babel-register
+[14:59:22] Using gulpfile ~/test/gulpfile.babel.js
+[14:59:22] Starting 'browserify'...
+[14:59:27] Finished 'browserify' after 5.18 s
+</code></pre>
+
+<p>broswerify 是基于整个文件进行打包，效率比较低，可以优化使用 <a href="https://www.gulpjs.com.cn/docs/recipes/fast-browserify-builds-with-watchify/">watchify</a> 增量打包:</p>
+
+<pre><code class="language-JS">const watchify = require('watchify')
+const assign = require('lodash.assign')
+
+// 在这里添加自定义 browserify 选项
+const customOpts = {
+  entries: ['src/index.js'],
+  debug: true
+}
+const opts = assign({}, watchify.args, customOpts)
+let b = watchify(browserify(opts))
+
+// 在这里加入变换操作
+b.transform(babelify)
+
+b.on('update', bundle) // 当任何依赖发生改变的时候，运行打包工具
+b.on('log', gutil.log) // 输出编译日志到终端
+
+function bundle() {
+  return b.bundle()
+    // 如果有错误发生，记录这些错误
+    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+    .pipe(source('bundle.js'))
+    // 可选项，如果你不需要缓存文件内容，就删除
+    .pipe(buffer())
+    // 可选项，如果你不需要 sourcemaps，就删除
+    .pipe(sourcemaps.init({loadMaps: true})) // 从 browserify 文件载入 map
+    // 在这里将变换操作加入管道
+    .pipe(sourcemaps.write('.')) // 写入 .map 文件
+    .pipe(gulp.dest('dist/'))
+}
+</code></pre>
+
+<pre><code class="language-SHELL">再次执行 browserify 任务，其实这里执行的是 watchify
+# gulp browserify
+[15:08:47] Requiring external module babel-register
+[15:08:48] Using gulpfile ~/test/gulpfile.babel.js
+[15:08:48] Starting 'browserify'...
+[15:08:50] 2344256 bytes written (1.33 seconds)
+[15:08:50] Finished 'browserify' after 1.51 s
+[15:08:56] 2344251 bytes written (0.27 seconds) // 增量打包，耗时较少
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
@@ -456,6 +551,7 @@ console.log(name) // 'tate'
   <li><a href="http://2ality.com/2017/09/native-esm-node.html">Using ES modules natively in Node.js</a> By Axel Rauschmayer</li>
   <li><a href="http://luckyabby.com/post/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/">前端模块化开发</a> By luckyabby</li>
   <li><a href="https://segmentfault.com/a/1190000008159877">Babel 的使用</a> By ziison</li>
+  <li><a href="https://www.gulpjs.com.cn/docs/recipes/">gulp 技巧集</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
