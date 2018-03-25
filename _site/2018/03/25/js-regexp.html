@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='闭包 - Tate & Snow' name='title' />
-    <meta content='闭包 - Tate & Snow' name='og:title' />
-    <title>闭包 - Tate & Snow</title>
+    <meta content='正则表达式 - Tate & Snow' name='title' />
+    <meta content='正则表达式 - Tate & Snow' name='og:title' />
+    <title>正则表达式 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>闭包 - Tate & Snow</title>
+<title>正则表达式 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="闭包 - Tate & Snow">
-<meta name="twitter:keywords" content="闭包 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="正则表达式 - Tate & Snow">
+<meta name="twitter:keywords" content="正则表达式 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="闭包 - Tate & Snow">
-<meta name="og:keywords" content="闭包 - Tate & Snow|闭包什么是闭包闭包(closure): 一个函数有权访问函数作用域中另一个函数的变量。// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。var name = 'Tate';function person(){    var ..."
+<meta property="og:title" content="正则表达式 - Tate & Snow">
+<meta name="og:keywords" content="正则表达式 - Tate & Snow|正则表达式什么是正则表达式正则表达式(Regular Expressions) 是用于匹配字符串中字符组合的模式，构建正则表达式有两种形式:/*   /pattern/flags*/var regex = /[0-9a-zA-Z]/g..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="闭包什么是闭包闭包(closure): 一个函数有权访问函数作用域中另一个函数的变量。// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。var name = 'Tate';function person(){    var ..." property='og:description'
+<meta name="keywords" content="正则表达式什么是正则表达式正则表达式(Regular Expressions) 是用于匹配字符串中字符组合的模式，构建正则表达式有两种形式:/*   /pattern/flags*/var regex = /[0-9a-zA-Z]/g..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/09/js-closure.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/09/js-closure.html|闭包什么是闭包闭包(closure): 一个函数有权访问函数作用域中另一个函数的变量。// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。var name = 'Tate';function person(){    var ..." property='og:description'
+<meta content='http://localhost:4000/2018/03/25/js-regexp.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/25/js-regexp.html|正则表达式什么是正则表达式正则表达式(Regular Expressions) 是用于匹配字符串中字符组合的模式，构建正则表达式有两种形式:/*   /pattern/flags*/var regex = /[0-9a-zA-Z]/g..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,9 +134,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    闭包</h1>
+                    正则表达式</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-09 16:35:00" itemprop="datePublished">发布时间：2018-02-09 16:35:00</time>
+                    <time datetime="2018-03-25 23:21:00" itemprop="datePublished">发布时间：2018-03-25 23:21:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -155,9 +155,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                闭包</h1>
+                正则表达式</h1>
             <div class="post-data">
-                <time datetime="2018-02-09 16:35:00" itemprop="datePublished">2018-02-09 16:35:00</time>
+                <time datetime="2018-03-25 23:21:00" itemprop="datePublished">2018-03-25 23:21:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -169,181 +169,266 @@
                     </a>
                    
             </p>
-            <h1 id="闭包">闭包</h1>
+            <h1 id="正则表达式">正则表达式</h1>
 
-<h2 id="什么是闭包">什么是闭包</h2>
+<h2 id="什么是正则表达式">什么是正则表达式</h2>
 
-<p><strong>闭包(closure)</strong>: 一个函数有权访问函数作用域中另一个函数的变量。</p>
+<p><strong>正则表达式(Regular Expressions)</strong> 是用于匹配字符串中字符组合的模式，构建正则表达式有两种形式:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。</span>
-<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
-<span class="kd">function</span> <span class="nx">person</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="nx">sayName</span><span class="p">(){</span>
-        <span class="nx">alert</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">sayName</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// 第一次执行 person() 返回的是函数 sayName</span>
-<span class="nx">person</span><span class="p">()();</span> <span class="c1">// 'Snow'</span>
+<pre><code class="language-JS">/*
+   /pattern/flags
+*/
+var regex = /[0-9a-zA-Z]/g;
 </code></pre>
-</div>
 
-<p>注意上述闭包写法与普通函数的区别:</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 可以通过词法作用域解释</span>
-<span class="kd">function</span> <span class="nx">person</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="nx">sayName</span><span class="p">(){</span>
-        <span class="nx">alert</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="nx">sayName</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="nx">person</span><span class="p">();</span> <span class="c1">// 'Snow'</span>
+<pre><code class="language-JS">/*
+    new RegExp(pattern [, flags])
+*/
+var regex = new RegExp('[0-9a-zA-Z]', 'g');
+var regex = new RegExp(/[0-9a-zA-Z]/g);
 </code></pre>
-</div>
 
-<p>闭包的栗子通过上一节<a href="http://localhost:4000/2018/02/09/js-scope.html">执行上下文</a>来解释，person 函数执行完毕时，执行上下文会从调用栈上 pop 出来，然后压入 sayName 函数并执行。然而变量 name 是存在于 person 的上下文中的，sayName 函数创建的执行上下文是如何通过作用域链访问到的呢？</p>
+<h2 id="特殊字符pattern">特殊字符(pattern)</h2>
 
-<p>原因就在于，即使 person 执行上下文销毁，但是其活动对象 VO 仍然会留在内存中，实际上 sayName 维护的作用域链可抽象为</p>
+<p><img src="https://i.loli.net/2018/03/24/5ab65abe04a13.png" alt="regexp.png" /></p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">sayNameContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">personContext</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span><span class="p">]</span>
-<span class="p">}</span>
+<h2 id="标志flags">标志(flags)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">标志</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">g</td>
+      <td style="text-align: left">全局搜索</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">i</td>
+      <td style="text-align: left">不区分大小写搜索</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">m</td>
+      <td style="text-align: left">多行搜索</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">u</td>
+      <td style="text-align: left">unicode 模式，用来正确处理大于 \uFFFF 的 Unicode 字符</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">y</td>
+      <td style="text-align: left">执行”粘性”搜索,匹配从目标字符串的当前位置开始，可以使用 y 标志</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">var reg = /\w+\s/g; // 匹配一个或多个字符后有一个空格的字符串，全局搜索
+var str = 'a b c';
+
+reg.flags; // 'g' 可通过 flags 获取标志
+str.match(reg); // ['a', 'b', 'c'] 全局匹配
 </code></pre>
-</div>
 
-<blockquote>
-  <p>此处讨论的闭包皆为 <em>实践角度</em>，按照 <em>技术角度</em> 来讲，所有函数都是闭包，详情可查看参考链接。</p>
-</blockquote>
+<p>u 标志为 ES6 新增:</p>
 
-<h2 id="闭包的用处">闭包的用处</h2>
+<pre><code class="language-JS">/^\uD83D/.test('\uD83D\uDC2A') // true
+/^\uD83D/u.test('\uD83D\uDC2A') // false 修正错误
 
-<h3 id="for-循环计数器">for 循环计数器</h3>
-
-<p>引用<a href="http://localhost:4000/2018/02/08/js-hoisting.html#%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F">变量提升</a>一节中 for 循环的计数器的问题。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-    <span class="p">};</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
-<span class="nx">b</span><span class="p">();</span> <span class="c1">// 10</span>
+// 有些 Unicode 字符的编码不同，但是字型很相近，比如，\u004B 与 \u212A 都是大写的 K
+'\u004B'.normalize() === '\u212A'.normalize(); // true
+/[a-z]/i.test('\u212A') // false
+/[a-z]/iu.test('\u212A') // true
 </code></pre>
-</div>
 
-<p>当执行到 b() 前，此时全局上下文的变量对象如下，因此当其执行时，通过作用域链寻找到此全局变量 i，即为 10。</p>
+<p>y 标志位 ES6 新增，表示”粘性(sticky)”搜索，y 标志的作用与 g 标志类似，也是全局匹配，但后一次匹配都从上一次匹配成功的第一个位置开始:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">globalContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">VO</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">a</span><span class="p">:</span> <span class="p">[...],</span>
-        <span class="na">i</span><span class="p">:</span> <span class="mi">10</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<pre><code class="language-JS">var s = 'aaa_aa_a';
+var r1 = /a+/g;
+var r2 = /a+/y;
+r2.sticky; // true
+
+r1.exec(s) // ['aaa']
+r2.exec(s) // ['aaa']
+
+r1.exec(s) // ['aa']
+r2.exec(s) // null 从 '_aa_a' 首位开始匹配
 </code></pre>
-</div>
 
-<p>通过闭包改写</p>
+<h2 id="方法">方法</h2>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">})(</span><span class="nx">i</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
-<span class="nx">b</span><span class="p">();</span> <span class="c1">// 5</span>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">方法</th>
+      <th style="text-align: left">描述</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">exec</td>
+      <td style="text-align: left">RegExp 方法</td>
+      <td>执行查找匹配，返回一个数组或 null</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">test</td>
+      <td style="text-align: left">RegExp 方法</td>
+      <td>测试是否匹配，返回布尔值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">match</td>
+      <td style="text-align: left">String 方法</td>
+      <td>执行查找匹配，返回一个数组或 null</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">search</td>
+      <td style="text-align: left">String 方法</td>
+      <td>测试匹配，返回匹配到的位置索引或 -1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">replace</td>
+      <td style="text-align: left">String 方法</td>
+      <td>执行查找匹配，并且使用替换字符串替换掉匹配到的子字符串</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">split</td>
+      <td style="text-align: left">String 方法</td>
+      <td>一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">var reg = /^t|$e/;
+var name = 'tate';
+
+reg.test(name); // true
+reg.exec(name); // ['t', index: 0, input: 'tate']
+
+name.match(reg); // ['t', index: 0, input: 'tate']
+name.search(reg); // 0
+name.split(reg); // ['', 'ate']
 </code></pre>
-</div>
 
-<p>当执行到 b() 前，全局对象与改写前一样，执行时，匿名函数又会创新新的执行上下文，作用域链可表示为</p>
+<h2 id="搭配-replace">搭配 replace</h2>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="nx">Context</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="err">匿名函数</span><span class="nx">Context</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span><span class="p">]</span>
-<span class="p">}</span>
+<p><strong>replace</strong> 方法并不改变调用它的字符串本身，而只是返回一个新的替换后的字符串。替换字符串可以插入下面的特殊变量名:</p>
+
+<pre><code class="language-JS">// 使用方法
+str.replace(regexp|substr, newSubStr|function)
 </code></pre>
-</div>
 
-<p>而匿名函数执行上下文的活动变量如下，因此通过作用域链寻找到变量 i 的值后，不会再去全局对象中寻找了。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="err">匿名函数</span><span class="nx">Context</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-            <span class="mi">0</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-            <span class="na">length</span><span class="p">:</span> <span class="mi">1</span>
-        <span class="p">},</span>
-        <span class="na">i</span><span class="p">:</span> <span class="mi">5</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<pre><code class="language-JS">var str = 'Twas the night before Xmas...';
+var newstr = str.replace(/xmas/i, 'Christmas');
+console.log(newstr);  // Twas the night before Christmas...
 </code></pre>
-</div>
 
-<h3 id="模拟私有成员">模拟私有成员</h3>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">变量名</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">$$</td>
+      <td style="text-align: left">插入一个 “$”</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$&amp;</td>
+      <td style="text-align: left">插入匹配的子串</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$`</td>
+      <td style="text-align: left">插入当前匹配的子串左边的内容</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$’</td>
+      <td style="text-align: left">插入当前匹配的子串右边的内容</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">$</td>
+      <td style="text-align: left">假如第一个参数是 RegExp 对象，并且 n 是个小于 100 的非负整数，那么插入第 n 个括号匹配的字符串</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>JavaScript 没有这种原生支持，但我们可以使用闭包来模拟私有方法，私有方法不仅仅有利于限制对代码的访问，还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// 变量作用域为函数内部，外部无法访问</span>
-    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="na">getName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nx">name</span><span class="p">;</span>
-        <span class="p">},</span>
-        <span class="na">setName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">anotherName</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">name</span> <span class="o">=</span> <span class="nx">anotherName</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">})()</span>
-
-<span class="nx">person</span><span class="p">.</span><span class="nx">getName</span><span class="p">();</span> <span class="c1">// 'Tate'</span>
+<pre><code class="language-JS">var re = /(\w+)\s(\w+)/;
+var str = 'John Smith';
+var newstr = str.replace(re, '$2, $1');
+console.log(newstr); // Smith, John
 </code></pre>
-</div>
 
-<h2 id="闭包的缺点">闭包的缺点</h2>
+<p>replace 还可以指定一个函数作为参数，该参数可以为:</p>
 
-<h3 id="性能考量">性能考量</h3>
+<table>
+  <tbody>
+    <tr>
+      <td>match</td>
+      <td>匹配的子串。(对应于上述的 $&amp;）</td>
+    </tr>
+    <tr>
+      <td>p1,p2, …</td>
+      <td>假如 replace 方法的第一个参数是一个 RegExp 对象，则代表第 n 个括号匹配的字符串。(对应于上述的 $1，$2 等)</td>
+    </tr>
+    <tr>
+      <td>offset</td>
+      <td>匹配到的子字符串在原字符串中的偏移量。(比如，如果原字符串是“abcd”，匹配到的子字符串是“bc”，那么这个参数将是 1)</td>
+    </tr>
+    <tr>
+      <td>string</td>
+      <td>被匹配的原字符串</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>闭包在处理速度和内存消耗方面对脚本性能具有负面影响，由于闭包会携带包含它的函数的作用域，因此会增大内存使用量，使用不当很容易造成内存泄露，降低程序的性能。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">assignHandler</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'someElement'</span><span class="p">);</span>
-    <span class="nx">element</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">alert</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
-    <span class="p">};</span>
-<span class="p">}</span>
+<pre><code class="language-JS">function replacer(match, p1, p2, p3, offset, string) {
+  // p1 is nondigits, p2 digits, and p3 non-alphanumerics
+  return [p1, p2, p3].join(' - ');
+}
+var newString = 'abc12345#$*%'.replace(/([^\d]*)(\d*)([^\w]*)/, replacer);
+console.log(newString);  // abc - 12345 - #$*%
 </code></pre>
-</div>
 
-<ol>
-  <li>通过把 element.id 的一个副本保存在变量中，消除其在闭包中的循环引用。</li>
-  <li>通过把 element 变量设置为 null，可以解除 DOM 对象的引用，顺利地减少其引用数，确保正常回收其占用的内存。</li>
-</ol>
+<h2 id="示例">示例</h2>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">assignHandler</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'someElement'</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
-    <span class="nx">element</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">alert</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
-    <span class="p">};</span>
+<p>1、验证 QQ 号合法性，合法 QQ 号规则:</p>
 
-    <span class="nx">element</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="p">}</span>
+<ul>
+  <li>5-15 位</li>
+  <li>全是数字</li>
+  <li>不以 0 开头</li>
+</ul>
+
+<pre><code class="language-JS">var reg = /^[1-9][0-9]{4,15}$/;
 </code></pre>
-</div>
+
+<p>2、验证国内电话号码，如 0555-6581752、021-86128488:</p>
+
+<pre><code class="language-JS">var reg = /(^0[0-9]{3}-[1-9][0-9]{6}$)|(^0[0-9]{2}-[1-9][0-9]{7}$)/;
+</code></pre>
+
+<p>其他常用示例:</p>
+
+<pre><code class="language-JS">// 检验中文输入，对于两个双字节表示的汉字无效，如 '𠮷'
+/[\u4e00-\u9fa5]/
+// URL
+/^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&amp;?[a-zA-Z0-9_-](\?)?)*)*$/i
+// Email
+/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+// trim() 去掉前后空格
+/^\s+|\s+$/g
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures">MDN - 闭包</a></li>
-  <li><a href="https://github.com/mqyqingfeng/Blog/issues/9">JavaScript 深入之闭包</a> By mqyqingfeng</li>
-  <li><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143449934543461c9d5dfeeb848f5b72bd012e1113d15000">闭包</a> By 廖雪峰</li>
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">MDN - 正则表达式</a></li>
+  <li><a href="https://segmentfault.com/a/1190000009324194">JS 正则表达式入门，看这篇就够了</a> By wuming</li>
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace">String.prototype.replace()</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -354,9 +439,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/09/js-closure.html';
-        this.page.identifier = '/2018/02/09/js-closure';
-        this.page.title = '闭包';
+        this.page.url = 'https://tate-young.github.io/2018/03/25/js-regexp.html';
+        this.page.identifier = '/2018/03/25/js-regexp';
+        this.page.title = '正则表达式';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -374,7 +459,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-09 16:35:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-25 23:21:00</p> -->
         </div>
     </article>
 

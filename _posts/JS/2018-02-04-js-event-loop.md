@@ -104,7 +104,7 @@ console.log('end');
 **任务源(task resource)** 分为两种，不同的任务会放进不同的任务队列之中:
 
 * **macro-task** 宏任务(也称为 task) - 如 setTimeout、setInterval
-* **micro-task** 微任务 - 如 Promise
+* **micro-task** 微任务 - 如 Promise、Observable
 
 在检测到调用栈清空时，先从 micro-task 队列依次执行任务，之后再从 macro-task 任务队列开始执行:
 

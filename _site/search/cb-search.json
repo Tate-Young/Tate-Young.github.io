@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "正则表达式 - ",
+		"url" : "/2018/03/25/js-regexp.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Module 模块 - ",
 		"url" : "/2018/03/22/es6-module.html"
 	}
