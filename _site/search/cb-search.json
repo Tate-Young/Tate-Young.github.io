@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "事件代理 - ",
+		"url" : "/2018/03/26/js-delegate.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "正则表达式 - ",
 		"url" : "/2018/03/25/js-regexp.html"
 	}

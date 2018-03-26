@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='执行上下文与作用域 - Tate & Snow' name='title' />
-    <meta content='执行上下文与作用域 - Tate & Snow' name='og:title' />
-    <title>执行上下文与作用域 - Tate & Snow</title>
+    <meta content='事件代理 - Tate & Snow' name='title' />
+    <meta content='事件代理 - Tate & Snow' name='og:title' />
+    <title>事件代理 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>执行上下文与作用域 - Tate & Snow</title>
+<title>事件代理 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="执行上下文与作用域 - Tate & Snow">
-<meta name="twitter:keywords" content="执行上下文与作用域 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="事件代理 - Tate & Snow">
+<meta name="twitter:keywords" content="事件代理 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="执行上下文与作用域 - Tate & Snow">
-<meta name="og:keywords" content="执行上下文与作用域 - Tate & Snow|执行上下文与作用域什么是执行上下文执行上下文可执行代码(executable code) 包含三种  全局代码(global code) - 代码首次执行的默认环境  函数代码(function code) - 执行流进入函数体  e..."
+<meta property="og:title" content="事件代理 - Tate & Snow">
+<meta name="og:keywords" content="事件代理 - Tate & Snow|事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="执行上下文与作用域什么是执行上下文执行上下文可执行代码(executable code) 包含三种  全局代码(global code) - 代码首次执行的默认环境  函数代码(function code) - 执行流进入函数体  e..." property='og:description'
+<meta name="keywords" content="事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/09/js-scope.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/09/js-scope.html|执行上下文与作用域什么是执行上下文执行上下文可执行代码(executable code) 包含三种  全局代码(global code) - 代码首次执行的默认环境  函数代码(function code) - 执行流进入函数体  e..." property='og:description'
+<meta content='http://localhost:4000/2018/03/26/js-delegate.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/26/js-delegate.html|事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,9 +134,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    执行上下文与作用域</h1>
+                    事件代理</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-09 11:25:00" itemprop="datePublished">发布时间：2018-02-09 11:25:00</time>
+                    <time datetime="2018-03-26 14:38:00" itemprop="datePublished">发布时间：2018-03-26 14:38:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -155,9 +155,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                执行上下文与作用域</h1>
+                事件代理</h1>
             <div class="post-data">
-                <time datetime="2018-02-09 11:25:00" itemprop="datePublished">2018-02-09 11:25:00</time>
+                <time datetime="2018-03-26 14:38:00" itemprop="datePublished">2018-03-26 14:38:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -169,208 +169,270 @@
                     </a>
                    
             </p>
-            <h1 id="执行上下文与作用域">执行上下文与作用域</h1>
+            <h1 id="事件代理">事件代理</h1>
 
-<h2 id="什么是执行上下文">什么是执行上下文</h2>
+<h2 id="事件流">事件流</h2>
 
-<h3 id="执行上下文">执行上下文</h3>
-
-<p><strong>可执行代码(executable code)</strong> 包含三种</p>
+<p>几个重要的事件定义:</p>
 
 <ul>
-  <li>全局代码(global code) - 代码首次执行的默认环境</li>
-  <li>函数代码(function code) - 执行流进入函数体</li>
-  <li>eval代码(eval code) - 执行eval方法</li>
+  <li><strong>事件流</strong> - 描述的是从页面中接收事件的顺序</li>
+  <li><strong>事件</strong> - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等</li>
+  <li><strong>事件处理程序</strong> - 响应某个事件的函数就叫事件处理程序(或事件侦听器)</li>
 </ul>
 
-<p><strong>执行上下文(execution context)</strong>: 也叫执行环境，当 JavaScript 执行一段可执行代码时，会创建对应的执行上下文，全局执行上下文即是最外围的一个执行环境。一个执行上下文的生命周期可以分为两个阶段:</p>
+<p>DOM 事件流主要包括三个阶段:</p>
 
 <ul>
-  <li>创建阶段 - 执行上下文会分别创建变量对象，建立作用域链，以及确定this的指向。</li>
-  <li>代码执行阶段 - 完成变量赋值，函数引用，以及执行其他代码。</li>
+  <li><strong>事件捕获(event capturing)</strong> - 事件的传播是从最特定的事件目标到最不特定的事件目标。实际目标(<code>&lt;div&gt;</code>)在捕获阶段不会接收事件</li>
+  <li>处于目标阶段 - 实际的目标接收到事件，但是事件处理会被看成是冒泡阶段的一部分</li>
+  <li><strong>冒泡(event bubbling)</strong> - 事件的传播是从最不特定的事件目标到最特定的事件目标</li>
 </ul>
 
-<p>对于每个执行上下文，都有三个重要属性：</p>
+<p><img src="https://i.loli.net/2018/03/26/5ab8781326713.png" alt="event-bubbling.png" /></p>
+
+<p>然而需要注意的是:</p>
 
 <ul>
-  <li><strong>变量对象(variable object)</strong></li>
-  <li><strong>作用域链(scope chain)</strong></li>
-  <li><strong><a href="http://localhost:4000/2018/01/30/js-this.html">this</a></strong></li>
+  <li>尽管 “DOM2级事件” 标准规范明确规定事件捕获阶段不会涉及事件目标，但是在 IE9、Safari、Chrome、Firefox 和 Opera9.5 及更高版本都会在捕获阶段触发事件对象上的事件。即在实际目标上可能会触发两次事件操作。</li>
+  <li>并非所有的事件都会经过冒泡阶段 。所有的事件都要经过捕获阶段和处于目标阶段，但是有些事件会跳过冒泡阶段，如 focus 和 blur。</li>
 </ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// ---------------global context---------------</span>
-<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
+<h2 id="事件模型">事件模型</h2>
 
-<span class="kd">function</span> <span class="nx">person</span><span class="p">(){</span>
-    <span class="c1">// ---------------execution context---------------</span>
-    <span class="kd">var</span> <span class="nx">anotherName</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+<h3 id="dom0-级事件">DOM0 级事件</h3>
 
-    <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// ---------------execution context---------------</span>
-        <span class="k">return</span> <span class="nx">anotherName</span><span class="p">;</span>
-    <span class="p">}</span>
+<p><strong>DOM0 级事件</strong>又称为原始事件模型，在该模型中，事件不会传播，即没有事件流的概念。事件绑定监听函数比较简单, 有两种方式:</p>
 
-    <span class="kd">function</span> <span class="nx">sayAge</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// ---------------execution context---------------</span>
-        <span class="k">return</span> <span class="nx">age</span><span class="p">;</span>
-    <span class="p">}</span>
+<ul>
+  <li>内联事件 - 标签中的事件</li>
+  <li>动态绑定 - on + 事件名</li>
+</ul>
 
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:%s &amp; age:%s'</span><span class="p">,</span> <span class="nx">sayName</span><span class="p">(),</span> <span class="nx">sayAge</span><span class="p">());</span>
-<span class="p">}</span>
+<pre><code class="language-HTML">&lt;!-- 内联 --&gt;
+&lt;button id="myBtn" onclick="sayName()"&gt;click&lt;/button&gt;
 </code></pre>
-</div>
 
-<h3 id="执行上下文栈">执行上下文栈</h3>
+<pre><code class="language-JS">// 动态绑定
+// 一个 DOM 对象只能注册一个类型的事件，否则覆盖
+// 事件处理程序在当前元素的作用域中运行，this 指向当前元素
+var btn = document.getElementById('myBtn')[];
+btn.onclick = _ =&gt; console.log(this.id); // 'myBtn'
 
-<p><strong>执行上下文栈(execution context stack)</strong> : 即<a href="http://localhost:4000/2018/02/05/js-event-loop.html">调用栈</a>，也称为执行栈。管理所有生成的执行上下文。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 一旦上下文执行完毕之后, 它就会从栈中弹出并且返回控制权到下一个上下文当中，直到全局上下文又再次被访问。</span>
-<span class="p">(</span><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">foo</span><span class="p">(</span><span class="o">++</span><span class="nx">i</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}(</span><span class="mi">0</span><span class="p">));</span>
+// 移除绑定事件
+btn.onclick = null;
 </code></pre>
-</div>
-
-<p><img src="http://davidshariff.com/blog/wp-content/uploads/2012/06/es1.gif" alt="执行上下文" /></p>
-
-<h2 id="变量对象">变量对象</h2>
-
-<p><strong>变量对象(variable object)</strong> 是与执行上下文相关的数据作用域，存储了在执行上下文中定义的所有变量和函数声明。变量对象对于程序而言是不可读的，只有编译器才有权访问变量对象。</p>
-
-<p><strong>活动对象(activation object)</strong> 是在进入函数上下文时刻被创建的，它通过函数的 arguments 属性初始化。随后，它被当做变量对象用于变量初始化。</p>
 
 <blockquote>
-  <p>未进入执行阶段之前，变量对象(VO)中的属性都不能访问！但是进入执行阶段之后，变量对象(VO)转变为了活动对象(AO)，里面的属性都能被访问了，然后开始进行执行阶段的操作。</p>
+  <p>为什么木有 DOM1 级事件 ? 是因为 DOM1 标准中并没有定义事件相关的内容 😳。</p>
 </blockquote>
 
-<h2 id="作用域">作用域</h2>
+<h3 id="dom2-级事件">DOM2 级事件</h3>
 
-<p>JavaScript 采用 <strong>词法作用域(lexical scoping)</strong>，也就是静态作用域，用来确定当前执行代码对变量的访问权限。分为全局作用域和局部作用域(函数作用域)，ES6中新增块级作用域。函数的作用域在函数定义的时候就决定了。</p>
+<h4 id="addeventlistener">addEventListener</h4>
 
-<h2 id="作用域链">作用域链</h2>
+<p><strong>DOM2 级事件</strong> 新增两个方法用来添加和移除事件处理程序，第三个参数表示采取哪种事件流处理程序，默认为 false，即冒泡；true 为捕获:</p>
 
-<p>当查找变量的时候，会先从当前上下文的变量对象中查找，如果没有找到，就会从上层执行上下文的变量对象中查找，一直找到全局上下文的变量对象，也就是全局对象。这样由多个执行上下文的变量对象构成的链表就叫做<strong>作用域链</strong>。</p>
+<ul>
+  <li><strong>addEventListener()</strong></li>
+  <li><strong>removeEventListener()</strong></li>
+</ul>
 
-<h3 id="scope">[[scope]]</h3>
+<pre><code class="language-JS">// 一个 DOM 对象能够注册一个类型的多个事件，依次触发
+btn.addEventListener('click', handler, false); // 冒泡
 
-<p>在定义函数时， <strong>[[scope]]</strong> 内部属性包含了函数被创建的作用域中对象的集合，这个集合被称为函数的作用域链，它决定了哪些数据能被函数访问。。</p>
-
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{}</span>
-<span class="p">}</span>
+btn.addEventListener('click', function() {
+  alert(this.id);
+}, false);
 </code></pre>
-</div>
 
-<p>当函数在创建时，各自的 [[scope]] 属性可抽象化理解为:</p>
+<pre><code class="language-JS">// 移除事件监听，注意要对应同一个事件才有效。若直接采用匿名函数表示，则会识别成不同函数，此时移除无效
+btn.removeEventListener('click', handler, false); // 有效
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">foo</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
-<span class="p">];</span>
-
-<span class="nx">bar</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nx">fooContext</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span>
-    <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
-<span class="p">];</span>
+btn.removeEventListener('click', function() {
+  alert(this.id);
+}, false); // 无效
 </code></pre>
-</div>
 
-<blockquote>
-  <p>作用域链是一个由变量对象组成的带头结点的单向链表，其主要作用就是用来进行变量查找。而[[scope]]属性是一个指向这个链表头结点的指针。</p>
-</blockquote>
+<h4 id="attachevent">attachEvent</h4>
 
-<h3 id="构建过程">构建过程</h3>
+<p>IE 事件处理程序实现了与 DOM 中类似的两个方法:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s1">'global scope'</span><span class="p">;</span>
-<span class="kd">function</span> <span class="nx">checkscope</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">scope2</span> <span class="o">=</span> <span class="s1">'local scope'</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">scope2</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">checkscope</span><span class="p">();</span>
+<ul>
+  <li><strong>attachEvent()</strong></li>
+  <li><strong>detachEvent()</strong></li>
+</ul>
+
+<p>由于 IE8 及更早版本只支持冒泡事件，因此只能将添加的事件程序添加到冒泡阶段，且与 DOM0 级的主要区别是事件处理程序的作用域，皆为全局作用域:</p>
+
+<pre><code class="language-JS">// 和 DOM0 一样采用 on + 事件名
+// attachEvent 方法也可对一个 DOM 对象注册一个类型的多个事件，但会反向触发
+btn.attachEvent('onclick', _ =&gt; console.log(this === window)); // true
+
+btn.attachEvent('onclick', _ =&gt; console.log('tate'); // 'tate' 先触发
 </code></pre>
-</div>
 
-<p>作用域链的构建过程可抽象化为:</p>
+<h4 id="兼容写法">兼容写法</h4>
 
-<p>1、checkscope 函数被创建，保存作用域链到 内部属性[[scope]];</p>
+<p>跨浏览器的事件处理的兼容性写法:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
-<span class="p">];</span>
+<pre><code class="language-JS">var EventUtil = {
+  // 添加句柄
+  addHandler(ele, type, handler) {
+    if (ele.addEventListener) {
+      ele.addEventListener(type, handler, false);
+    } else if (ele.attachEvent) { // 兼容 IE8 及以下
+      ele.attachEvent('on' + type, handler);
+    } else {
+      ele['on' + type] = handler;
+    }
+  },
+  // 删除句柄
+  removeHandler(ele, type, handler){
+    if (ele.removeEventListener) {
+      ele.removeEventListener(type, handler, false);
+    } else if (ele.detachEvent) {
+      ele.detachEvent('on' + type, handler);
+    } else {
+      ele['on' + type] = null;
+    }
+  }
+}
 </code></pre>
-</div>
 
-<p>2、 执行 checkscope 函数，创建 checkscope 函数执行上下文，并被压入执行上下文栈上;</p>
+<h2 id="事件对象">事件对象</h2>
 
-<p>3、 checkscope 函数在执行前:</p>
+<p>当一个事件被触发时，会产生一个<strong>事件对象(event)</strong>, 这个对象里面包含了与该事件相关的属性或者方法。DOM 和 IE 中的事件常用对象相比较:</p>
 
-<p>第一步：复制函数 [[scope]] 属性创建作用域链;</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">作用</th>
+      <th style="text-align: left">DOM</th>
+      <th style="text-align: left">IE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">获取事件类型</td>
+      <td style="text-align: left"><code>event.type</code></td>
+      <td style="text-align: left"><code>event.type</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">获取事件源</td>
+      <td style="text-align: left"><code>event.target</code></td>
+      <td style="text-align: left"><code>event.srcElement</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">阻止默认行为</td>
+      <td style="text-align: left"><code>event.preventDefault()</code></td>
+      <td style="text-align: left"><code>event.returnValue = false</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">阻止冒泡行为</td>
+      <td style="text-align: left"><code>event.stopPropagation()</code></td>
+      <td style="text-align: left"><code>event.cancelBubble = true</code></td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
-<span class="p">}</span>
+<p>DOM 事件中还有个 currentTarget 属性，与 target 的区别是:</p>
+
+<ul>
+  <li><strong>target</strong> - 实际触发事件的目标</li>
+  <li><strong>currentTarget</strong> - 事件绑定的元素，总是与 this 指向一致</li>
+</ul>
+
+<p>DOM 事件中还可以通过 stopPropagation 阻止冒泡行为，与 stopImmediatePropagation 的区别是:</p>
+
+<ul>
+  <li><strong>stopPropagation()</strong> - 阻止冒泡行为</li>
+  <li><strong>stopImmediatePropagation()</strong> - 同上，且当一个事件有多个事件处理程序时，stopImmediatePropagation() 可以阻止之后事件处理程序被调用</li>
+</ul>
+
+<p>在 DOM 事件中，兼容 DOM 的浏览器都会将一个 event 对象作为参数传入到事件处理程序中，而 IE 事件中的 event 是一个 window 全局对象:</p>
+
+<pre><code class="language-JS">// DOM 事件
+btn.removeEventListener('click', (event) =&gt; {
+  console.log(event.type); // 'click'
+}, false);
+
+// IE 事件
+btn.attachEvent('onclick', _ =&gt; console.log(window.event.type)); // 'click'
 </code></pre>
-</div>
 
-<p>第二步：用 arguments 创建活动对象，随后初始化活动对象，加入形参、函数声明、变量声明;</p>
+<p>跨浏览器的事件对象的兼容性写法:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-            <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="p">},</span>
-        <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
-    <span class="p">}</span><span class="err">，</span>
-    <span class="na">scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
-<span class="p">}</span>
+<pre><code class="language-JS">var EventUtil = {
+  //获取事件对象
+  //IE模型中 event 是一个全局唯一的对象绑定在 window 对象上
+  getEvent(event){
+      return event ? event : window.event;
+  },
+  //获取类型
+  getType(event){
+    return event.type;
+  },
+  getElement(event){
+    return event.target || event.srcElement;
+  },
+  //阻止默认事件
+  preventDefault(event){
+    if(event.preventDefault){
+      event.preventDefault();
+    }else{
+      event.returnValue=false;
+    }
+  },
+  //阻止冒泡
+  stopPropagation(event){
+    if(event.stopPropagation){
+      event.stopPropagation();
+    }else{
+      event.cancelBubble=true;
+    }
+  }
+}
 </code></pre>
-</div>
 
-<p>第三步：将活动对象压入 checkscope 作用域链顶端。</p>
+<h2 id="事件代理-1">事件代理</h2>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-            <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="p">},</span>
-        <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
-    <span class="p">},</span>
-    <span class="na">scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">scope</span><span class="p">]]]</span>
-<span class="p">}</span>
+<p>事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为<strong>事件代理(Event delegation)</strong>。</p>
+
+<script async="" src="//jsfiddle.net/4eyhd7zy/10/embed/js,html,result/"></script>
+
+<pre><code class="language-HTML">&lt;ul id="color-list"&gt;
+  &lt;li&gt;red&lt;/li&gt;
+  &lt;li&gt;yellow&lt;/li&gt;
+  &lt;li&gt;green&lt;/li&gt;
+  &lt;li&gt;orange&lt;/li&gt;
+  &lt;!-- ...动态扩展 --&gt;
+&lt;/ul&gt;
 </code></pre>
-</div>
 
-<p>4、 开始执行函数，随着函数的执行，修改 AO 的属性值;</p>
+<pre><code class="language-JS">var colorList = document.getElementById('color-list');
+var liArr = colorList.querySelectorAll('ul li');
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-            <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="p">},</span>
-        <span class="na">scope2</span><span class="p">:</span> <span class="s1">'local scope'</span>
-    <span class="p">},</span>
-    <span class="na">scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">scope</span><span class="p">]]]</span>
-<span class="p">}</span>
+colorList.addEventListener('click', showColor, false);
+
+function showColor(ev) {
+  var event = ev || window.event;
+  var targetElement= event.target || event.srcElement;
+
+  var content = targetElement.innerHTML; // 获取标签内容
+  var index = [].indexOf.call(liArr, targetElement); // 获取索引值
+
+  if (targetElement.nodeName.toLowerCase() === 'li') {
+    alert(index + ' : ' + content);
+  }
+}
 </code></pre>
-</div>
-
-<p>5、 查找到 scope2 的值，返回后函数执行完毕，函数上下文从执行上下文栈中弹出。</p>
-
-<blockquote>
-  <p>作用域链的前端始终是当前的执行上下文中的变量对象，终端是全局执行上下文中的变量对象。</p>
-</blockquote>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/">What is the Execution Context &amp; Stack in JavaScript?</a> By David Shariff</li>
-  <li><a href="https://medium.com/@Alexandra2XU/javascript-execution-context-call-stack-and-event-queue-d58b672d76f7">JavaScript: Execution Context, Call Stack, and Event Queue</a> By Alexandra Williams</li>
-  <li><a href="https://github.com/mqyqingfeng/Blog/issues/6">JavaScript 深入之作用域链</a> By mqyqingfeng</li>
-  <li><a href="https://github.com/kuitos/kuitos.github.io/issues/18">一道 js 面试题引发的思考</a> By kuitos</li>
+  <li><a href="https://www.cnblogs.com/starof/p/4066381.html">javaScript事件(一) 事件流</a> By starof</li>
+  <li><a href="https://segmentfault.com/a/1190000006934031">JS 事件模型</a> By simon_woo</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -381,9 +443,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/09/js-scope.html';
-        this.page.identifier = '/2018/02/09/js-scope';
-        this.page.title = '执行上下文与作用域';
+        this.page.url = 'https://tate-young.github.io/2018/03/26/js-delegate.html';
+        this.page.identifier = '/2018/03/26/js-delegate';
+        this.page.title = '事件代理';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -401,7 +463,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-09 11:25:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-26 14:38:00</p> -->
         </div>
     </article>
 
