@@ -12,7 +12,7 @@
             {% else %} {% if paginator.previous_page == 1 %}
             <a class="page-turning" href="/?tate">
                 {% else %}
-                <a href="/blog{{ paginator.previous_page }}?tate">
+                <a class="page-turning" href="/blog{{ paginator.previous_page }}?tate">
                     {% endif %}
                     <span>&laquo;</span>
                 </a>
@@ -33,7 +33,7 @@
                 {% if paginator.page == paginator.total_pages %}
                 <span>&raquo;</span>
                 {% else %}
-                <a href="/blog{{ paginator.next_page }}?tate" data-hover="&raquo;">
+            <a class="page-turning" href="/blog{{ paginator.next_page }}?tate" data-hover="&raquo;">
                     <span>&raquo;</span>
                 </a>
                 {% endif %}
