@@ -3,8 +3,16 @@
 	"data" : [
 	 
 	{
+		"title" : "Touch 事件 - ",
+		"url" : "/2018/03/26/js-touch.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "事件代理 - ",
-		"url" : "/2018/03/26/js-delegate.html"
+		"url" : "/2018/03/26/js-event-delegate.html"
 	}
 	
 	,

@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='this 指针 - Tate & Snow' name='title' />
-    <meta content='this 指针 - Tate & Snow' name='og:title' />
-    <title>this 指针 - Tate & Snow</title>
+    <meta content='事件代理 - Tate & Snow' name='title' />
+    <meta content='事件代理 - Tate & Snow' name='og:title' />
+    <title>事件代理 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>this 指针 - Tate & Snow</title>
+<title>事件代理 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="this 指针 - Tate & Snow">
-<meta name="twitter:keywords" content="this 指针 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="事件代理 - Tate & Snow">
+<meta name="twitter:keywords" content="事件代理 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="this 指针 - Tate & Snow">
-<meta name="og:keywords" content="this 指针 - Tate & Snow|this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是window.getName()，window对象并没有name属..."
+<meta property="og:title" content="事件代理 - Tate & Snow">
+<meta name="og:keywords" content="事件代理 - Tate & Snow|事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是window.getName()，window对象并没有name属..." property='og:description'
+<meta name="keywords" content="事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/01/30/js-this.html' property='og:url' />
-<meta content="http://localhost:4000/2018/01/30/js-this.html|this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是window.getName()，window对象并没有name属..." property='og:description'
+<meta content='http://localhost:4000/2018/03/26/js-event-delegate.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/26/js-event-delegate.html|事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,9 +134,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    this 指针</h1>
+                    事件代理</h1>
                 <div class="post-data">
-                    <time datetime="2018-01-30 22:48:00" itemprop="datePublished">发布时间：2018-01-30 22:48:00</time>
+                    <time datetime="2018-03-26 14:38:00" itemprop="datePublished">发布时间：2018-03-26 14:38:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -155,9 +155,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                this 指针</h1>
+                事件代理</h1>
             <div class="post-data">
-                <time datetime="2018-01-30 22:48:00" itemprop="datePublished">2018-01-30 22:48:00</time>
+                <time datetime="2018-03-26 14:38:00" itemprop="datePublished">2018-03-26 14:38:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -169,173 +169,270 @@
                     </a>
                    
             </p>
-            <h1 id="this-指针">this 指针</h1>
+            <h1 id="事件代理">事件代理</h1>
 
-<h2 id="this-指针指向">this 指针指向</h2>
+<h2 id="事件流">事件流</h2>
 
-<p><strong>this</strong> 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。</p>
+<p>几个重要的事件定义:</p>
 
-<h3 id="this-指针案例">this 指针案例</h3>
+<ul>
+  <li><strong>事件流</strong> - 描述的是从页面中接收事件的顺序</li>
+  <li><strong>事件</strong> - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等</li>
+  <li><strong>事件处理程序</strong> - 响应某个事件的函数就叫事件处理程序(或事件侦听器)</li>
+</ul>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 实际执行的是window.getName()，window对象并没有name属性</span>
-<span class="c1">// 严格模式中指向的是undefined</span>
-<span class="k">this</span> <span class="o">===</span> <span class="nb">window</span><span class="p">;</span> <span class="c1">// true</span>
-<span class="kd">function</span> <span class="nx">getName</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">"Tate"</span><span class="p">;</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// undefined</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// Window</span>
-<span class="p">}</span>
-<span class="nx">getName</span><span class="p">();</span>
+<p>DOM 事件流主要包括三个阶段:</p>
+
+<ul>
+  <li><strong>事件捕获(event capturing)</strong> - 事件的传播是从最特定的事件目标到最不特定的事件目标。实际目标(<code>&lt;div&gt;</code>)在捕获阶段不会接收事件</li>
+  <li>处于目标阶段 - 实际的目标接收到事件，但是事件处理会被看成是冒泡阶段的一部分</li>
+  <li><strong>冒泡(event bubbling)</strong> - 事件的传播是从最不特定的事件目标到最特定的事件目标</li>
+</ul>
+
+<p><img src="https://i.loli.net/2018/03/26/5ab8781326713.png" alt="event-bubbling.png" /></p>
+
+<p>然而需要注意的是:</p>
+
+<ul>
+  <li>尽管 “DOM2级事件” 标准规范明确规定事件捕获阶段不会涉及事件目标，但是在 IE9、Safari、Chrome、Firefox 和 Opera9.5 及更高版本都会在捕获阶段触发事件对象上的事件。即在实际目标上可能会触发两次事件操作。</li>
+  <li>并非所有的事件都会经过冒泡阶段 。所有的事件都要经过捕获阶段和处于目标阶段，但是有些事件会跳过冒泡阶段，如 focus 和 blur。</li>
+</ul>
+
+<h2 id="事件模型">事件模型</h2>
+
+<h3 id="dom0-级事件">DOM0 级事件</h3>
+
+<p><strong>DOM0 级事件</strong>又称为原始事件模型，在该模型中，事件不会传播，即没有事件流的概念。事件绑定监听函数比较简单, 有两种方式:</p>
+
+<ul>
+  <li>内联事件 - 标签中的事件</li>
+  <li>动态绑定 - on + 事件名</li>
+</ul>
+
+<pre><code class="language-HTML">&lt;!-- 内联 --&gt;
+&lt;button id="myBtn" onclick="sayName()"&gt;click&lt;/button&gt;
 </code></pre>
-</div>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// this只是指向当前一层的对象，而不会向上继承</span>
-<span class="c1">// 调用的是person.spouse对象，但spouse无name属性</span>
-<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
-    <span class="na">spouse</span><span class="p">:{</span>
-        <span class="na">fn</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// undefined</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">spouse</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
+<pre><code class="language-JS">// 动态绑定
+// 一个 DOM 对象只能注册一个类型的事件，否则覆盖
+// 事件处理程序在当前元素的作用域中运行，this 指向当前元素
+var btn = document.getElementById('myBtn')[];
+btn.onclick = _ =&gt; console.log(this.id); // 'myBtn'
+
+// 移除绑定事件
+btn.onclick = null;
 </code></pre>
-</div>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 赋值但并未执行函数，相当于执行的是window.fn()</span>
-<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
-    <span class="na">spouse</span><span class="p">:{</span>
-        <span class="na">name</span><span class="p">:</span> <span class="s1">'Snow'</span><span class="p">,</span>
-        <span class="na">fn</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// undefined</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// Window</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="nx">person</span><span class="p">.</span><span class="nx">spouse</span><span class="p">.</span><span class="nx">fn</span><span class="p">;</span>
-<span class="nx">fn</span><span class="p">();</span>
+<blockquote>
+  <p>为什么木有 DOM1 级事件 ? 是因为 DOM1 标准中并没有定义事件相关的内容 😳。</p>
+</blockquote>
+
+<h3 id="dom2-级事件">DOM2 级事件</h3>
+
+<h4 id="addeventlistener">addEventListener</h4>
+
+<p><strong>DOM2 级事件</strong> 新增两个方法用来添加和移除事件处理程序，第三个参数表示采取哪种事件流处理程序，默认为 false，即冒泡；true 为捕获:</p>
+
+<ul>
+  <li><strong>addEventListener()</strong></li>
+  <li><strong>removeEventListener()</strong></li>
+</ul>
+
+<pre><code class="language-JS">// 一个 DOM 对象能够注册一个类型的多个事件，依次触发
+btn.addEventListener('click', handler, false); // 冒泡
+
+btn.addEventListener('click', function() {
+  alert(this.id);
+}, false);
 </code></pre>
-</div>
 
-<h3 id="this-指针案例-多层嵌套">this 指针案例-多层嵌套</h3>
+<pre><code class="language-JS">// 移除事件监听，注意要对应同一个事件才有效。若直接采用匿名函数表示，则会识别成不同函数，此时移除无效
+btn.removeEventListener('click', handler, false); // 有效
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 内层的this不指向外部，而指向顶层对象Window</span>
-<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
-    <span class="na">spouse</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Tate</span>
-
-        <span class="kd">var</span> <span class="nx">f2</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// Window</span>
-        <span class="p">}();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">spouse</span><span class="p">();</span>
+btn.removeEventListener('click', function() {
+  alert(this.id);
+}, false); // 无效
 </code></pre>
-</div>
 
-<p>可以用变量来保存当前所引用的对象，如下面例子的 that:</p>
+<h4 id="attachevent">attachEvent</h4>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
-    <span class="na">spouse</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Tate</span>
-        <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">f2</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">that</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Tate</span>
-        <span class="p">}();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">person</span><span class="p">.</span><span class="nx">spouse</span><span class="p">();</span>
+<p>IE 事件处理程序实现了与 DOM 中类似的两个方法:</p>
+
+<ul>
+  <li><strong>attachEvent()</strong></li>
+  <li><strong>detachEvent()</strong></li>
+</ul>
+
+<p>由于 IE8 及更早版本只支持冒泡事件，因此只能将添加的事件程序添加到冒泡阶段，且与 DOM0 级的主要区别是事件处理程序的作用域，皆为全局作用域:</p>
+
+<pre><code class="language-JS">// 和 DOM0 一样采用 on + 事件名
+// attachEvent 方法也可对一个 DOM 对象注册一个类型的多个事件，但会反向触发
+btn.attachEvent('onclick', _ =&gt; console.log(this === window)); // true
+
+btn.attachEvent('onclick', _ =&gt; console.log('tate'); // 'tate' 先触发
 </code></pre>
-</div>
 
-<p>ES6 <strong>箭头函数(=&gt;)</strong>实际上实现方式与上例类似:</p>
+<h4 id="兼容写法">兼容写法</h4>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
-<span class="nx">sayName</span><span class="p">.</span><span class="nx">call</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Snow'</span> <span class="p">});</span>
+<p>跨浏览器的事件处理的兼容性写法:</p>
 
-<span class="c1">// ES6</span>
-<span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// snow</span>
-  <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// ES5</span>
-<span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="p">,</span> <span class="nx">_this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-  <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
-<span class="p">}</span>
+<pre><code class="language-JS">var EventUtil = {
+  // 添加句柄
+  addHandler(ele, type, handler) {
+    if (ele.addEventListener) {
+      ele.addEventListener(type, handler, false);
+    } else if (ele.attachEvent) { // 兼容 IE8 及以下
+      ele.attachEvent('on' + type, handler);
+    } else {
+      ele['on' + type] = handler;
+    }
+  },
+  // 删除句柄
+  removeHandler(ele, type, handler){
+    if (ele.removeEventListener) {
+      ele.removeEventListener(type, handler, false);
+    } else if (ele.detachEvent) {
+      ele.detachEvent('on' + type, handler);
+    } else {
+      ele['on' + type] = null;
+    }
+  }
+}
 </code></pre>
-</div>
 
-<h3 id="this-指针案例-return">this 指针案例-return</h3>
+<h2 id="事件对象">事件对象</h2>
 
-<p>一般情况下若返回的是引用类型，则返回该引用类型；若返回的是基本类型，则无影响。</p>
+<p>当一个事件被触发时，会产生一个<strong>事件对象(event)</strong>, 这个对象里面包含了与该事件相关的属性或者方法。DOM 和 IE 中的事件常用对象相比较:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-  <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
-<span class="p">}</span>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">作用</th>
+      <th style="text-align: left">DOM</th>
+      <th style="text-align: left">IE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">获取事件类型</td>
+      <td style="text-align: left"><code>event.type</code></td>
+      <td style="text-align: left"><code>event.type</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">获取事件源</td>
+      <td style="text-align: left"><code>event.target</code></td>
+      <td style="text-align: left"><code>event.srcElement</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">阻止默认行为</td>
+      <td style="text-align: left"><code>event.preventDefault()</code></td>
+      <td style="text-align: left"><code>event.returnValue = false</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">阻止冒泡行为</td>
+      <td style="text-align: left"><code>event.stopPropagation()</code></td>
+      <td style="text-align: left"><code>event.cancelBubble = true</code></td>
+    </tr>
+  </tbody>
+</table>
 
-<span class="c1">// ES5</span>
-<span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
-    <span class="c1">// return undefined; // Tate</span>
-    <span class="c1">// return null; // Tate</span>
-    <span class="c1">// return 'Snow'; // Tate</span>
-    <span class="c1">// return [1, 2]; // undefined</span>
-    <span class="c1">// return {name: 'Snow'}; // Snow</span>
-    <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Snow'</span><span class="p">);</span> <span class="p">};</span> <span class="c1">// undefined</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<p>DOM 事件中还有个 currentTarget 属性，与 target 的区别是:</p>
+
+<ul>
+  <li><strong>target</strong> - 实际触发事件的目标</li>
+  <li><strong>currentTarget</strong> - 事件绑定的元素，总是与 this 指向一致</li>
+</ul>
+
+<p>DOM 事件中还可以通过 stopPropagation 阻止冒泡行为，与 stopImmediatePropagation 的区别是:</p>
+
+<ul>
+  <li><strong>stopPropagation()</strong> - 阻止冒泡行为</li>
+  <li><strong>stopImmediatePropagation()</strong> - 同上，且当一个事件有多个事件处理程序时，stopImmediatePropagation() 可以阻止之后事件处理程序被调用</li>
+</ul>
+
+<p>在 DOM 事件中，兼容 DOM 的浏览器都会将一个 event 对象作为参数传入到事件处理程序中，而 IE 事件中的 event 是一个 window 全局对象:</p>
+
+<pre><code class="language-JS">// DOM 事件
+btn.removeEventListener('click', (event) =&gt; {
+  console.log(event.type); // 'click'
+}, false);
+
+// IE 事件
+btn.attachEvent('onclick', _ =&gt; console.log(window.event.type)); // 'click'
 </code></pre>
-</div>
 
-<h2 id="call--apply--bind">call / apply / bind</h2>
+<p>跨浏览器的事件对象的兼容性写法:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Tate</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span> <span class="o">+</span> <span class="nx">p2</span><span class="p">);</span> <span class="c1">// 3</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span>
-<span class="p">};</span>
-<span class="nx">foo</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-<span class="nx">foo</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span> <span class="c1">// apply和call类似，只是参数不同，立即执行</span>
-<span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="nx">bar</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// bind绑定指针后并没有立即执行，参数按顺序注入，相当于bind(person,1,2)</span>
+<pre><code class="language-JS">var EventUtil = {
+  //获取事件对象
+  //IE模型中 event 是一个全局唯一的对象绑定在 window 对象上
+  getEvent(event){
+      return event ? event : window.event;
+  },
+  //获取类型
+  getType(event){
+    return event.type;
+  },
+  getElement(event){
+    return event.target || event.srcElement;
+  },
+  //阻止默认事件
+  preventDefault(event){
+    if(event.preventDefault){
+      event.preventDefault();
+    }else{
+      event.returnValue=false;
+    }
+  },
+  //阻止冒泡
+  stopPropagation(event){
+    if(event.stopPropagation){
+      event.stopPropagation();
+    }else{
+      event.cancelBubble=true;
+    }
+  }
+}
 </code></pre>
-</div>
 
-<h2 id="构造函数实例化本质">构造函数实例化本质</h2>
+<h2 id="事件代理-1">事件代理</h2>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+<p>事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为<strong>事件代理(Event delegation)</strong>。</p>
 
-<span class="c1">// new操作符的操作实际是</span>
-<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// 申明一个空对象</span>
-<span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span>  <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span> <span class="c1">// 将__proto__指针指向Person的prototype，即其原型对象</span>
-<span class="c1">// Object.setPrototypeOf(p, Person.prototype);</span>
-<span class="nx">Person</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// 改变Person内部this指针，指向p对象</span>
+<script async="" src="//jsfiddle.net/4eyhd7zy/10/embed/js,html,result/"></script>
+
+<pre><code class="language-HTML">&lt;ul id="color-list"&gt;
+  &lt;li&gt;red&lt;/li&gt;
+  &lt;li&gt;yellow&lt;/li&gt;
+  &lt;li&gt;green&lt;/li&gt;
+  &lt;li&gt;orange&lt;/li&gt;
+  &lt;!-- ...动态扩展 --&gt;
+&lt;/ul&gt;
 </code></pre>
-</div>
+
+<pre><code class="language-JS">var colorList = document.getElementById('color-list');
+var liArr = colorList.querySelectorAll('ul li');
+
+colorList.addEventListener('click', showColor, false);
+
+function showColor(ev) {
+  var event = ev || window.event;
+  var targetElement = event.target || event.srcElement;
+
+  var content = targetElement.innerHTML; // 获取标签内容
+  var index = [].indexOf.call(liArr, targetElement); // 获取索引值
+
+  if (targetElement.nodeName.toLowerCase() === 'li') {
+    alert(index + ' : ' + content);
+  }
+}
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://www.cnblogs.com/pssp/p/5216085.html">彻底理解 js 中 this 的指向，不必硬背</a> By 追梦子</li>
-  <li><a href="http://javascript.ruanyifeng.com/oop/this.html#toc5">this 关键字</a> By 阮一峰</li>
+  <li><a href="https://www.cnblogs.com/starof/p/4066381.html">javaScript事件(一) 事件流</a> By starof</li>
+  <li><a href="https://segmentfault.com/a/1190000006934031">JS 事件模型</a> By simon_woo</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -346,9 +443,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/01/30/js-this.html';
-        this.page.identifier = '/2018/01/30/js-this';
-        this.page.title = 'this 指针';
+        this.page.url = 'https://tate-young.github.io/2018/03/26/js-event-delegate.html';
+        this.page.identifier = '/2018/03/26/js-event-delegate';
+        this.page.title = '事件代理';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -366,7 +463,7 @@
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-01-30 22:48:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-26 14:38:00</p> -->
         </div>
     </article>
 

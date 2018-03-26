@@ -2236,9 +2236,9 @@ pre code::after {
     .post-header-thumb-cover {
         height: 250px;
     }
-    .post-header-thumb-container {
+    /* .post-header-thumb-container {
         top: 60px;
-    }
+    } */
     .footer-meta .footer-container {
         padding: 0;
     }

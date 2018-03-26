@@ -226,7 +226,7 @@ colorList.addEventListener('click', showColor, false);
 
 function showColor(ev) {
   var event = ev || window.event;
-  var targetElement= event.target || event.srcElement;
+  var targetElement = event.target || event.srcElement;
 
   var content = targetElement.innerHTML; // 获取标签内容
   var index = [].indexOf.call(liArr, targetElement); // 获取索引值
