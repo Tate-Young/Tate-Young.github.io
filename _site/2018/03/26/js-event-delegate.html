@@ -397,7 +397,7 @@ btn.attachEvent('onclick', _ =&gt; console.log(window.event.type)); // 'click'
 
 <h2 id="事件代理-1">事件代理</h2>
 
-<p>事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为<strong>事件代理(Event delegation)</strong>。</p>
+<p>事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为<strong>事件代理(Event delegation)</strong>。事件代理利用了事件冒泡，只指定一个事件处理程序，便可以管理某一类型的所有事件。</p>
 
 <script async="" src="//jsfiddle.net/4eyhd7zy/10/embed/js,html,result/"></script>
 

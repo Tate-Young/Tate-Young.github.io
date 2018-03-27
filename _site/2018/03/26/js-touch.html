@@ -180,10 +180,10 @@
 <p>主要有以下几种:</p>
 
 <ul>
-  <li><strong>touchStart</strong> - 当用户在触摸平面上放置了一个触点时触发</li>
-  <li><strong>touchMove</strong> - 当用户在触摸平面上移动触点时触发</li>
-  <li><strong>touchEnd</strong> - 当一个触点被用户从触摸平面上移除时触发</li>
-  <li><strong>touchCancel</strong> - 当触点由于某些原因被中断时触发，如由于某个事件取消了触摸或触点个数超过了设备支持的个数</li>
+  <li><strong>touchstart</strong> - 当用户在触摸平面上放置了一个触点时触发</li>
+  <li><strong>touchmove</strong> - 当用户在触摸平面上移动触点时触发</li>
+  <li><strong>touchend</strong> - 当一个触点被用户从触摸平面上移除时触发</li>
+  <li><strong>touchcancel</strong> - 当触点由于某些原因被中断时触发，如由于某个事件取消了触摸或触点个数超过了设备支持的个数</li>
 </ul>
 
 <pre><code class="language-JS">document.addEventListener('touchstart', touchEvent ,false);
@@ -217,7 +217,55 @@
 
 <p>查看以下 JSFiddle 示例:</p>
 
-<script async="" src="//jsfiddle.net/heyp0jxd/1/embed/"></script>
+<script async="" src="//jsfiddle.net/Tate_Young/heyp0jxd/5/embed/"></script>
+
+<h2 id="touch-案例">Touch 案例</h2>
+
+<p>做一个移动端触摸点，仅限于屏幕窗口内移动，也可响应点击事件:</p>
+
+<script async="" src="//jsfiddle.net/Tate_Young/vjgpdqLt/20/embed/"></script>
+
+<pre><code class="language-JS">var doc = document;
+var screenW = doc.body.clientWidth || screen.width;
+var screenH = doc.body.clientHeight || screen.height;
+var width = 48;
+var isMoved = false;
+var backToTop = doc.querySelector('.back-to-top');
+
+backToTop.addEventListener('touchstart', touchstart, false);
+backToTop.addEventListener('touchmove', touchmove, false);
+backToTop.addEventListener('touchend', touchend, false);
+
+function touchstart(ev) {
+  isMoved = false;
+}
+
+function touchmove(ev) {
+  isMoved = true;
+
+  var event = getEvent(ev);
+  var coordinateX = event.changedTouches[0].clientX;
+  var coordinateY = event.changedTouches[0].clientY;
+  var left = parseFloat(coordinateX) - 20;
+  var top = parseFloat(coordinateY) - 20;
+
+
+  left = left &lt;= 1.45 ? 1.45 : (left &gt;= screenW - width ? screenW - width : left);
+  top = top &lt;= 1 ? 1 : (top &gt;= screenH - width ? screenH - width : top);
+
+  backToTop.style.left = left + 'px';
+  backToTop.style.top = top + 'px';
+  console.log('left: %f, top: %f', left, top);
+}
+
+function touchend(ev) {
+  !isMoved &amp;&amp; alert('click');
+}
+
+function getEvent(ev) {
+  return ev ? ev : window.event;
+}
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
