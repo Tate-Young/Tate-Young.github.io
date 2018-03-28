@@ -3,8 +3,16 @@
 	"data" : [
 	 
 	{
+		"title" : "XHR & Fetch - ",
+		"url" : "/2018/03/28/js-formdata.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Touch & Drag 事件 - ",
-		"url" : "/2018/03/28/js-touch.html"
+		"url" : "/2018/03/28/js-touch-drag.html"
 	}
 	
 	,
