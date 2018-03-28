@@ -28,8 +28,8 @@
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/03/26/js-touch.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/26/js-touch.html|Touch &amp; Drag 事件Touch 事件TouchEvent 是一类描述手指在触摸平面(如触摸屏、触摸板等)的状态变化的事件。TouchList 对象代表多个触点的一个列表。每个 Touch 对象代表一个触点，每个触点都..." property='og:description'
+<meta content='http://localhost:4000/2018/03/28/js-touch.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/28/js-touch.html|Touch &amp; Drag 事件Touch 事件TouchEvent 是一类描述手指在触摸平面(如触摸屏、触摸板等)的状态变化的事件。TouchList 对象代表多个触点的一个列表。每个 Touch 对象代表一个触点，每个触点都..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -136,7 +136,7 @@
                 <h1 class="post-title" itemprop="name headline">
                     Touch & Drag 事件</h1>
                 <div class="post-data">
-                    <time datetime="2018-03-26 16:51:00" itemprop="datePublished">发布时间：2018-03-26 16:51:00</time>
+                    <time datetime="2018-03-28 09:52:00" itemprop="datePublished">发布时间：2018-03-28 09:52:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -157,7 +157,7 @@
             <h1 class="post-title" itemprop="name headline">
                 Touch & Drag 事件</h1>
             <div class="post-data">
-                <time datetime="2018-03-26 16:51:00" itemprop="datePublished">2018-03-26 16:51:00</time>
+                <time datetime="2018-03-28 09:52:00" itemprop="datePublished">2018-03-28 09:52:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -227,7 +227,7 @@
 
 <p>做一个移动端触摸点，仅限于屏幕窗口内移动，也可响应点击事件:</p>
 
-<script async="" src="//jsfiddle.net/Tate_Young/vjgpdqLt/20/embed/"></script>
+<script async="" src="//jsfiddle.net/Tate_Young/vjgpdqLt/25/embed/"></script>
 
 <pre><code class="language-JS">var doc = document;
 var screenW = doc.body.clientWidth || screen.width;
@@ -302,7 +302,7 @@ function getEvent(ev) {
   <li>dropEffect - 拖拽交互类型,通常决定浏览器如何显示鼠标光标并控制拖放操作.常见的取值有 copy、move、link、none</li>
   <li>effectAllowed - 指定允许的交互类型,可以取值: copy、move、link、copyLink、copyMove、limkMove、all、none，默认为 uninitialized(允许所有操作)</li>
   <li>files - 包含 File 对象的 FileList 对象.从操作系统向浏览器拖放文件时有用.</li>
-  <li>types - 保存DataTransfer对象中设置的所有数据类型.</li>
+  <li>types - 保存 DataTransfer 对象中设置的所有数据类型.</li>
   <li><strong>setData(format, data)</strong> - 以键值对设置数据,format 通常为数据格式,如 text、text/html</li>
   <li><strong>getData(format)</strong> - 获取设置的对应格式数据,format 与 setData()中一致</li>
   <li>clearData(format) - 清除指定格式的数据</li>
@@ -361,8 +361,15 @@ function ondrag(ev) {
 function ondragend(ev) {
   console.log('drag end');
 }
-
 </code></pre>
+
+<p>做一个垃圾回收示例 JSFiddle:</p>
+
+<script async="" src="//jsfiddle.net/Tate_Young/wb0dxtaj/6/embed/"></script>
+
+<p>拖拽图片预览 JSFiddle:</p>
+
+<script async="" src="//jsfiddle.net/Tate_Young/v7ccwr1L/6/embed/"></script>
 
 <h2 id="事件对象的位置">事件对象的位置</h2>
 
@@ -387,8 +394,8 @@ function ondragend(ev) {
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/03/26/js-touch.html';
-        this.page.identifier = '/2018/03/26/js-touch';
+        this.page.url = 'https://tate-young.github.io/2018/03/28/js-touch.html';
+        this.page.identifier = '/2018/03/28/js-touch';
         this.page.title = 'Touch & Drag 事件';
     };
 
@@ -407,7 +414,7 @@ function ondragend(ev) {
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-26 16:51:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-28 09:52:00</p> -->
         </div>
     </article>
 
