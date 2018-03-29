@@ -3,8 +3,16 @@
 	"data" : [
 	 
 	{
-		"title" : "XHR & Fetch - ",
-		"url" : "/2018/03/28/js-formdata.html"
+		"title" : "FormData & File API - ",
+		"url" : "/2018/03/29/js-formdata-file.html"
+	}
+	
+	,
+	
+    
+	{
+		"title" : "XHR & Fetch API - ",
+		"url" : "/2018/03/28/js-xhr-fetch.html"
 	}
 	
 	,

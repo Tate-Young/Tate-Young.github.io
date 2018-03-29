@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='事件代理 - Tate & Snow' name='title' />
-    <meta content='事件代理 - Tate & Snow' name='og:title' />
-    <title>事件代理 - Tate & Snow</title>
+    <meta content='XHR & Fetch API - Tate & Snow' name='title' />
+    <meta content='XHR & Fetch API - Tate & Snow' name='og:title' />
+    <title>XHR & Fetch API - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>事件代理 - Tate & Snow</title>
+<title>XHR & Fetch API - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="事件代理 - Tate & Snow">
-<meta name="twitter:keywords" content="事件代理 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="XHR & Fetch API - Tate & Snow">
+<meta name="twitter:keywords" content="XHR & Fetch API - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="事件代理 - Tate & Snow">
-<meta name="og:keywords" content="事件代理 - Tate & Snow|事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..."
+<meta property="og:title" content="XHR & Fetch API - Tate & Snow">
+<meta name="og:keywords" content="XHR & Fetch API - Tate & Snow|XHR &amp; Fetch API什么是 AJAXAJAX(Asynchronous JavaScript and XML) 是一种技术方案，能够向服务器请求额外的数据而无须卸载页面。其技术核心为 XMLHttpRequest(X..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..." property='og:description'
+<meta name="keywords" content="XHR &amp; Fetch API什么是 AJAXAJAX(Asynchronous JavaScript and XML) 是一种技术方案，能够向服务器请求额外的数据而无须卸载页面。其技术核心为 XMLHttpRequest(X..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/03/26/js-event-delegate.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/26/js-event-delegate.html|事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..." property='og:description'
+<meta content='http://localhost:4000/2018/03/28/js-xhr-fetch.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/28/js-xhr-fetch.html|XHR &amp; Fetch API什么是 AJAXAJAX(Asynchronous JavaScript and XML) 是一种技术方案，能够向服务器请求额外的数据而无须卸载页面。其技术核心为 XMLHttpRequest(X..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,9 +134,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    事件代理</h1>
+                    XHR & Fetch API</h1>
                 <div class="post-data">
-                    <time datetime="2018-03-26 14:38:00" itemprop="datePublished">发布时间：2018-03-26 14:38:00</time>
+                    <time datetime="2018-03-28 15:46:00" itemprop="datePublished">发布时间：2018-03-28 15:46:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -155,9 +155,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                事件代理</h1>
+                XHR & Fetch API</h1>
             <div class="post-data">
-                <time datetime="2018-03-26 14:38:00" itemprop="datePublished">2018-03-26 14:38:00</time>
+                <time datetime="2018-03-28 15:46:00" itemprop="datePublished">2018-03-28 15:46:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -169,270 +169,307 @@
                     </a>
                    
             </p>
-            <h1 id="事件代理">事件代理</h1>
+            <h1 id="xhr--fetch-api">XHR &amp; Fetch API</h1>
 
-<h2 id="事件流">事件流</h2>
+<h2 id="什么是-ajax">什么是 AJAX</h2>
 
-<p>几个重要的事件定义:</p>
+<p><strong>AJAX(Asynchronous JavaScript and XML)</strong> 是一种技术方案，能够向服务器请求额外的数据而无须卸载页面。其技术核心为 <strong>XMLHttpRequest(XHR)</strong> 对象，通过它可以发出 HTTP 请求和接收 HTTP 响应。</p>
 
-<ul>
-  <li><strong>事件流</strong> - 描述的是从页面中接收事件的顺序</li>
-  <li><strong>事件</strong> - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等</li>
-  <li><strong>事件处理程序</strong> - 响应某个事件的函数就叫事件处理程序(或事件侦听器)</li>
-</ul>
+<h2 id="xhr">XHR</h2>
 
-<p>DOM 事件流主要包括三个阶段:</p>
+<h3 id="xhr-level-2">XHR level 2</h3>
 
-<ul>
-  <li><strong>事件捕获(event capturing)</strong> - 事件的传播是从最特定的事件目标到最不特定的事件目标。实际目标(<code>&lt;div&gt;</code>)在捕获阶段不会接收事件</li>
-  <li>处于目标阶段 - 实际的目标接收到事件，但是事件处理会被看成是冒泡阶段的一部分</li>
-  <li><strong>冒泡(event bubbling)</strong> - 事件的传播是从最不特定的事件目标到最特定的事件目标</li>
-</ul>
+<p><strong>XMLHttpRequest(XHR)</strong> 最初只是微软引入的一个特性，后来其他浏览器提供商也提供了相同的实现。之后 W3C 对它进行了标准化，提出了 XMLHttpRequest 标准，其中又分为 Level 1 和 Level 2。</p>
 
-<p><img src="https://i.loli.net/2018/03/26/5ab8781326713.png" alt="event-bubbling.png" /></p>
-
-<p>然而需要注意的是:</p>
+<p><strong>XMLHttpRequest Level 1</strong> 主要存在以下缺点:</p>
 
 <ul>
-  <li>尽管 “DOM2级事件” 标准规范明确规定事件捕获阶段不会涉及事件目标，但是在 IE9、Safari、Chrome、Firefox 和 Opera9.5 及更高版本都会在捕获阶段触发事件对象上的事件。即在实际目标上可能会触发两次事件操作。</li>
-  <li>并非所有的事件都会经过冒泡阶段 。所有的事件都要经过捕获阶段和处于目标阶段，但是有些事件会跳过冒泡阶段，如 focus 和 blur。</li>
+  <li>受同源策略的限制，不能发送跨域请求</li>
+  <li>无法读取和上传二进制文件(如图片、视频、音频等)，只支持纯文本数据</li>
+  <li>在发送和获取数据的过程中，无法实时获取进度信息，只能判断是否完成</li>
 </ul>
 
-<h2 id="事件模型">事件模型</h2>
-
-<h3 id="dom0-级事件">DOM0 级事件</h3>
-
-<p><strong>DOM0 级事件</strong>又称为原始事件模型，在该模型中，事件不会传播，即没有事件流的概念。事件绑定监听函数比较简单, 有两种方式:</p>
+<p><strong>XMLHttpRequest Level 2</strong> 新增了以下功能:</p>
 
 <ul>
-  <li>内联事件 - 标签中的事件</li>
-  <li>动态绑定 - on + 事件名</li>
+  <li>可以实现跨域请求</li>
+  <li>支持发送和接收二进制数据</li>
+  <li>发可以获得数据传输的进度信息</li>
+  <li>可以设置请求的超时时间</li>
+  <li>新增 FormData 对象，用来管理表单数据</li>
 </ul>
 
-<pre><code class="language-HTML">&lt;!-- 内联 --&gt;
-&lt;button id="myBtn" onclick="sayName()"&gt;click&lt;/button&gt;
+<pre><code class="language-JS">function sendAjax() {
+  //构造表单数据
+  var formData = new FormData();
+  formData.append('username', 'johndoe');
+  formData.append('id', 123456);
+  //创建 XHR 对象
+  var xhr = new XMLHttpRequest();
+  // 设置 XHR 请求的超时时间，同步请求只能为 0
+  xhr.timeout = 5000;
+  // 设置响应返回的数据格式，同步请求无效
+  xhr.responseType = ‘text’;
+  // 进度事件，可能有浏览器兼容问题
+  xhr.onload = function(e) {
+    if((this.status &gt;= 200 &amp;&amp; this.status &lt; 300) || this.status == 304){
+        alert(this.responseText);
+    }
+  };
+
+  xhr.ontimeout = function(e) { ... }; // 请求超时时调用
+  xhr.onerror = function(e) { ... };
+  xhr.upload.onprogress = function(e) { ... };
+
+  // 创建一个异步 post 请求
+  xhr.open('POST', '/server', true);
+  //发送数据
+  xhr.send(formData);
+}
 </code></pre>
 
-<pre><code class="language-JS">// 动态绑定
-// 一个 DOM 对象只能注册一个类型的事件，否则覆盖
-// 事件处理程序在当前元素的作用域中运行，this 指向当前元素
-var btn = document.getElementById('myBtn')[];
-btn.onclick = _ =&gt; console.log(this.id); // 'myBtn'
+<h3 id="xhr-方法">XHR 方法</h3>
 
-// 移除绑定事件
-btn.onclick = null;
+<ul>
+  <li><strong>open()</strong> - 启动一个请求以备发送</li>
+</ul>
+
+<pre><code class="language-JS">// 第一个参数为请求类型，不区分大小写
+// 第二个参数为请求的 URL
+// 第三个参数为布尔值，表示是否异步发送请求，默认为 true 异步
+xhr.open('get', 'https://jsonplaceholder.typicode.com/posts/1', true);
 </code></pre>
+
+<ul>
+  <li><strong>send()</strong> - 发送一个请求</li>
+</ul>
+
+<pre><code class="language-JS">// 接收一个参数，即作为请求主题发送的数据
+xhr.send(null);
+</code></pre>
+
+<ul>
+  <li><strong>setRequestHeader()</strong> - 设置请求头信息</li>
+</ul>
+
+<pre><code class="language-JS">// 必须在 open 方法之后，send 方法之前调用，否则会抛错
+// 多次调用采用追加，最终请求头中显示 'my-header: tate, snow'
+xhr.setRequestHeader('my-header', 'tate');
+xhr.setRequestHeader('my-header', 'snow');
+</code></pre>
+
+<ul>
+  <li><strong>getResponseHeader()</strong> - 获取指定响应头信息，<strong>getAllResponseHeaders</strong> 方法可以获取所有响应头信息。这里 W3C 的 CORS 标准对于跨域请求做了限制规定，对于跨域请求，客户端允许获取的 response header 字段只限于 “simple response header” 和 “Access-Control-Expose-Headers”:
+    <ul>
+      <li>simple response header - 包括的 header 字段有：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma</li>
+      <li>Access-Control-Expose-Headers - 属于跨域请求时响应头部中的一个字段，对于同域请求则没有这个字段的。此字段中列举的 header 字段就是服务器允许暴露给客户端访问的字段</li>
+    </ul>
+  </li>
+</ul>
+
+<pre><code class="language-JS">xhr.getResponseHeader('my-header'); // Refused to get unsafe header "my-header"
+xhr.getAllResponseHeaders();
+// pragma: no-cache
+// content-type: application/json; charset=utf-8
+// cache-control: public, max-age=14400
+// expires: Wed, 28 Mar 2018 07:31:37 GMT
+</code></pre>
+
+<h3 id="获取-response-数据">获取 response 数据</h3>
+
+<p>在收到响应后，响应的数据会自动填充 XHR 对象的属性:</p>
+
+<ul>
+  <li><strong>responseText</strong> - 作为相应主体被返回的文本</li>
+  <li><strong>responseXML</strong> - 若响应的内容类型为 “text/html” 或 “application/xml”，则此属性将保存响应数据的 XML DOM 文档</li>
+  <li><strong>status</strong> - 响应的 HTTP 状态码</li>
+  <li><strong>statusText</strong> - HTTP 状态的说明</li>
+</ul>
+
+<h3 id="onreadystatechange">onreadystatechange</h3>
+
+<p>若采用异步请求的话，XHR 对象的 <strong>readyState</strong> 属性可以检测当前请求的状态:</p>
+
+<ul>
+  <li><strong>0</strong> - 未初始化。尚未调用 open 方法;</li>
+  <li><strong>1</strong> - 启动。已经调用 open 方法，尚未调用 send 方法;</li>
+  <li><strong>2</strong> - 发送。已经调用 send 方法，尚未接收到响应;</li>
+  <li><strong>3</strong> - 接收。已经接收到部分响应数据;</li>
+  <li><strong>4</strong> - 完成。已经接收到全部响应数据。</li>
+</ul>
+
+<pre><code class="language-JS">// 这里使用 this 对象的话，在部分浏览器可能会导致函数执行失败，因此尽量采用 XHR 实例变量
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4) {
+    if ((xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) || xhr.status == 304) {
+      alert(xhr.responseText);
+    }
+  }
+}
+</code></pre>
+
+<h3 id="load-进度事件">load 进度事件</h3>
+
+<p><strong>Progress Events</strong> 进度事件定义了客户端和服务器通信有关的事件:</p>
+
+<ul>
+  <li><strong>loadstart</strong> - 在接收到响应数据的第一个字节时触发</li>
+  <li><strong>progress</strong> - 在接收响应期间持续不断地触发</li>
+  <li><strong>error</strong> - 在请求发生错误时触发</li>
+  <li><strong>abort</strong> - 调用 abort 方法终止连接时触发</li>
+  <li><strong>load</strong> - 在接收到完整的响应数据时触发，相当于 readyState 为 4</li>
+  <li><strong>loadend</strong> - 在通信完成或者 error、abort 或 load 事件后触发</li>
+</ul>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Events/%E8%BF%9B%E5%BA%A6%E6%9D%A1">progress</a> 进度事件可以用来实时显示进度，默认每 50ms 触发一次。需要注意的是，上传过程和下载过程触发的是不同对象的 onprogress 事件:</p>
+
+<ul>
+  <li>上传触发的是 <strong>xhr.upload</strong> 对象的 onprogress 事件</li>
+  <li>下载触发的是 xhr 对象的 onprogress 事件</li>
+</ul>
+
+<p>onprogress 事件处理程序会接收到一个 event 对象，其 target 属性是 XHR 对象，但包含着三个额外的属性:</p>
+
+<ul>
+  <li><strong>lengthComputable</strong> - 布尔值，表示进度信息是否可用</li>
+  <li><strong>loaded</strong> - 已经接收的字节数</li>
+  <li><strong>total</strong> - 根据 content-length 响应头确定的预期字节数，未知则为 0</li>
+</ul>
+
+<pre><code class="language-JS">xhr.onprogress = updateProgress;
+xhr.upload.onprogress = updateProgress;
+function updateProgress(event) {
+  if (event.lengthComputable) {
+    statusElement.innerHTML = 'Received ' + event.loaded + ' of ' + event.total + ' bytes';
+  }
+}
+</code></pre>
+
+<h2 id="fetch-api">Fetch API</h2>
+
+<p>XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离(Separation of Concerns)的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的 Promise，generator/yield，async/await 友好。因此 Fetch API 的出现就是为了解决 XHR 的问题。</p>
+
+<h3 id="fecth">fecth()</h3>
+
+<p><strong>Fetch API</strong> 提供了一个获取资源的接口(包括跨域)，最常用的就是 fetch() 函数。它接收一个 URL 参数，返回一个 promise 来处理 response。</p>
+
+<pre><code class="language-JS">// GET
+fetch('https://jsonplaceholder.typicode.com/posts')
+  .then(response =&gt; response.json())
+  .then(json =&gt; console.log(json))
+</code></pre>
+
+<pre><code class="language-JS">// POST
+var headers = {
+  method: 'POST',
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  },
+  body: JSON.stringify({
+    title: 'foo',
+    body: 'bar',
+    userId: 1
+  })
+}
+fetch('https://jsonplaceholder.typicode.com/posts', headers)
+  .then(response =&gt; response.json())
+  .then(json =&gt; console.log(json))
+</code></pre>
+
+<p>Fetch 引入了三个接口，它们分别是 Headers、Request 以及 Response。</p>
+
+<h3 id="headers">Headers</h3>
+
+<p><strong>Headers</strong> 接口是一个简单的多映射的名-值表。</p>
+
+<pre><code class="language-JS">// 创建一个空的 Headers 对象
+var headers = new Headers();
+
+// 添加(append)请求头信息
+headers.append('Content-Type', 'text/plain');
+headers.append('X-My-Custom-Header', 'CustomValue');
+
+// 判断(has), 获取(get), 以及修改(set)请求头的值
+headers.has('Content-Type'); // true
+headers.get('Content-Type'); // 'text/plain'
+headers.set('Content-Type', 'application/json');
+
+// 删除某条请求头信息
+headers.delete('X-My-Custom-Header');
+
+// 创建对象时设置初始化信息
+var headers = new Headers({
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer ' + token,
+});
+</code></pre>
+
+<h3 id="request">Request</h3>
+
+<p><strong>Request</strong> 对象表示一次 fetch 调用的请求信息:</p>
+
+<ul>
+  <li><strong>method</strong> - 支持 GET、POST、PUT、DELETE、HEAD</li>
+  <li>url - 请求的 URL</li>
+  <li><strong>headers</strong> - 对应的 Headers 对象</li>
+  <li><strong>body</strong> - 请求体</li>
+  <li>referrer - 请求的 referrer 信息</li>
+  <li>mode - 可以设置 cors、no-cors、same-origin</li>
+  <li>credentials - 设置 cookies 是否随请求一起发送。可以设置: omit(默认)、same-origin、include</li>
+  <li>redirect - follow、error、manual</li>
+  <li>integrity - subresource 完整性值(integrity value)</li>
+  <li>cache - 设置 cache 模式(default, reload, no-cache)</li>
+</ul>
+
+<pre><code class="language-JS">var request = new Request('/users.json', {
+  method: 'POST',
+  mode: 'cors',
+  redirect: 'follow',
+  headers: new Headers({
+    'Content-Type': 'text/plain'
+  })
+});
+
+fetch(request).then(function() { /* handle response */ });
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<p><strong>Response</strong> 代表响应, fetch 的 then 方法接收一个 Response 实例，其可配置的参数如下:</p>
+
+<ul>
+  <li>type - 类型，支持: basic、cors</li>
+  <li>url - 请求的 url</li>
+  <li>useFinalURL - Boolean 值, 代表 url 是否是最终 URL</li>
+  <li><strong>status</strong> - 状态码</li>
+  <li><strong>ok</strong> - 布尔值，代表成功响应(status 值在 200-299 之间)</li>
+  <li>statusText - 状态值(例如: OK)</li>
+  <li>headers - 与响应相关联的 Headers 对象</li>
+</ul>
+
+<p>Response 提供的方法如下:</p>
+
+<ul>
+  <li>clone() - 创建一个新的 Response 克隆对象</li>
+  <li>error() - 返回一个新的,与网络错误相关的 Response 对象</li>
+  <li>redirect() - 重定向,使用新的 URL 创建新的 response 对象</li>
+  <li>arrayBuffer() - 返回一个 promise，resolves 是一个 ArrayBuffer 对象</li>
+  <li>blob() - 返回一个 promise, resolves 是一个 Blob.</li>
+  <li>formData() - 返回一个 promise, resolves 是一个 FormData 对象</li>
+  <li><strong>json()</strong> - 返回一个 promise, resolves 是一个 JSON 对象</li>
+  <li>text() - 返回一个 promise, resolves 是一个 USVString (text)</li>
+</ul>
 
 <blockquote>
-  <p>为什么木有 DOM1 级事件 ? 是因为 DOM1 标准中并没有定义事件相关的内容 😳。</p>
+  <p>Fetch API 的兼容情况可<a href="https://caniuse.com/#search=fetch">查看 caniuse</a>，可以使用 <a href="https://github.com/github/fetch">whatwg-fetch 填充库</a>进行兼容处理。</p>
 </blockquote>
-
-<h3 id="dom2-级事件">DOM2 级事件</h3>
-
-<h4 id="addeventlistener">addEventListener</h4>
-
-<p><strong>DOM2 级事件</strong> 新增两个方法用来添加和移除事件处理程序，第三个参数表示采取哪种事件流处理程序，默认为 false，即冒泡；true 为捕获:</p>
-
-<ul>
-  <li><strong>addEventListener()</strong></li>
-  <li><strong>removeEventListener()</strong></li>
-</ul>
-
-<pre><code class="language-JS">// 一个 DOM 对象能够注册一个类型的多个事件，依次触发
-btn.addEventListener('click', handler, false); // 冒泡
-
-btn.addEventListener('click', function() {
-  alert(this.id);
-}, false);
-</code></pre>
-
-<pre><code class="language-JS">// 移除事件监听，注意要对应同一个事件才有效。若直接采用匿名函数表示，则会识别成不同函数，此时移除无效
-btn.removeEventListener('click', handler, false); // 有效
-
-btn.removeEventListener('click', function() {
-  alert(this.id);
-}, false); // 无效
-</code></pre>
-
-<h4 id="attachevent">attachEvent</h4>
-
-<p>IE 事件处理程序实现了与 DOM 中类似的两个方法:</p>
-
-<ul>
-  <li><strong>attachEvent()</strong></li>
-  <li><strong>detachEvent()</strong></li>
-</ul>
-
-<p>由于 IE8 及更早版本只支持冒泡事件，因此只能将添加的事件程序添加到冒泡阶段，且与 DOM0 级的主要区别是事件处理程序的作用域，皆为全局作用域:</p>
-
-<pre><code class="language-JS">// 和 DOM0 一样采用 on + 事件名
-// attachEvent 方法也可对一个 DOM 对象注册一个类型的多个事件，但会反向触发
-btn.attachEvent('onclick', _ =&gt; console.log(this === window)); // true
-
-btn.attachEvent('onclick', _ =&gt; console.log('tate'); // 'tate' 先触发
-</code></pre>
-
-<h4 id="兼容写法">兼容写法</h4>
-
-<p>跨浏览器的事件处理的兼容性写法:</p>
-
-<pre><code class="language-JS">var EventUtil = {
-  // 添加句柄
-  addHandler(ele, type, handler) {
-    if (ele.addEventListener) {
-      ele.addEventListener(type, handler, false);
-    } else if (ele.attachEvent) { // 兼容 IE8 及以下
-      ele.attachEvent('on' + type, handler);
-    } else {
-      ele['on' + type] = handler;
-    }
-  },
-  // 删除句柄
-  removeHandler(ele, type, handler){
-    if (ele.removeEventListener) {
-      ele.removeEventListener(type, handler, false);
-    } else if (ele.detachEvent) {
-      ele.detachEvent('on' + type, handler);
-    } else {
-      ele['on' + type] = null;
-    }
-  }
-}
-</code></pre>
-
-<h2 id="事件对象">事件对象</h2>
-
-<p>当一个事件被触发时，会产生一个<strong>事件对象(event)</strong>, 这个对象里面包含了与该事件相关的属性或者方法。DOM 和 IE 中的事件常用对象相比较:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">作用</th>
-      <th style="text-align: left">DOM</th>
-      <th style="text-align: left">IE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">获取事件类型</td>
-      <td style="text-align: left"><code>event.type</code></td>
-      <td style="text-align: left"><code>event.type</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">获取事件源</td>
-      <td style="text-align: left"><code>event.target</code></td>
-      <td style="text-align: left"><code>event.srcElement</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">阻止默认行为</td>
-      <td style="text-align: left"><code>event.preventDefault()</code></td>
-      <td style="text-align: left"><code>event.returnValue = false</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">阻止冒泡行为</td>
-      <td style="text-align: left"><code>event.stopPropagation()</code></td>
-      <td style="text-align: left"><code>event.cancelBubble = true</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>DOM 事件中还有个 currentTarget 属性，与 target 的区别是:</p>
-
-<ul>
-  <li><strong>target</strong> - 实际触发事件的目标</li>
-  <li><strong>currentTarget</strong> - 事件绑定的元素，总是与 this 指向一致</li>
-</ul>
-
-<p>DOM 事件中还可以通过 stopPropagation 阻止冒泡行为，与 stopImmediatePropagation 的区别是:</p>
-
-<ul>
-  <li><strong>stopPropagation()</strong> - 阻止冒泡行为</li>
-  <li><strong>stopImmediatePropagation()</strong> - 同上，且当一个事件有多个事件处理程序时，stopImmediatePropagation() 可以阻止之后事件处理程序被调用</li>
-</ul>
-
-<p>在 DOM 事件中，兼容 DOM 的浏览器都会将一个 event 对象作为参数传入到事件处理程序中，而 IE 事件中的 event 是一个 window 全局对象:</p>
-
-<pre><code class="language-JS">// DOM 事件
-btn.removeEventListener('click', (event) =&gt; {
-  console.log(event.type); // 'click'
-}, false);
-
-// IE 事件
-btn.attachEvent('onclick', _ =&gt; console.log(window.event.type)); // 'click'
-</code></pre>
-
-<p>跨浏览器的事件对象的兼容性写法:</p>
-
-<pre><code class="language-JS">var EventUtil = {
-  //获取事件对象
-  //IE模型中 event 是一个全局唯一的对象绑定在 window 对象上
-  getEvent(event){
-      return event ? event : window.event;
-  },
-  //获取类型
-  getType(event){
-    return event.type;
-  },
-  getElement(event){
-    return event.target || event.srcElement;
-  },
-  //阻止默认事件
-  preventDefault(event){
-    if(event.preventDefault){
-      event.preventDefault();
-    }else{
-      event.returnValue=false;
-    }
-  },
-  //阻止冒泡
-  stopPropagation(event){
-    if(event.stopPropagation){
-      event.stopPropagation();
-    }else{
-      event.cancelBubble=true;
-    }
-  }
-}
-</code></pre>
-
-<h2 id="事件代理-1">事件代理</h2>
-
-<p>事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为<strong>事件代理(Event delegation)</strong>。事件代理利用了事件冒泡，只指定一个事件处理程序，便可以管理某一类型的所有事件。</p>
-
-<script async="" src="//jsfiddle.net/4eyhd7zy/10/embed/js,html,result/"></script>
-
-<pre><code class="language-HTML">&lt;ul id="color-list"&gt;
-  &lt;li&gt;red&lt;/li&gt;
-  &lt;li&gt;yellow&lt;/li&gt;
-  &lt;li&gt;green&lt;/li&gt;
-  &lt;li&gt;orange&lt;/li&gt;
-  &lt;!-- ...动态扩展 --&gt;
-&lt;/ul&gt;
-</code></pre>
-
-<pre><code class="language-JS">var colorList = document.getElementById('color-list');
-var liArr = colorList.querySelectorAll('ul li');
-
-colorList.addEventListener('click', showColor, false);
-
-function showColor(ev) {
-  var event = ev || window.event;
-  var targetElement = event.target || event.srcElement;
-
-  var content = targetElement.innerHTML; // 获取标签内容
-  var index = [].indexOf.call(liArr, targetElement); // 获取索引值
-
-  if (targetElement.nodeName.toLowerCase() === 'li') {
-    alert(index + ' : ' + content);
-  }
-}
-</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://www.cnblogs.com/starof/p/4066381.html">javaScript事件(一) 事件流</a> By starof</li>
-  <li><a href="https://segmentfault.com/a/1190000006934031">JS 事件模型</a> By simon_woo</li>
+  <li><a href="https://segmentfault.com/a/1190000004322487">你真的会使用 XMLHttpRequest 吗？</a> By ruoyiqing</li>
+  <li><a href="https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/">This API is so Fetching!</a></li>
+  <li><a href="https://davidwalsh.name/fetch">fetch API</a> By David Walsh</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -443,9 +480,9 @@ function showColor(ev) {
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/03/26/js-event-delegate.html';
-        this.page.identifier = '/2018/03/26/js-event-delegate';
-        this.page.title = '事件代理';
+        this.page.url = 'https://tate-young.github.io/2018/03/28/js-xhr-fetch.html';
+        this.page.identifier = '/2018/03/28/js-xhr-fetch';
+        this.page.title = 'XHR & Fetch API';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -463,7 +500,7 @@ function showColor(ev) {
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-26 14:38:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-28 15:46:00</p> -->
         </div>
     </article>
 

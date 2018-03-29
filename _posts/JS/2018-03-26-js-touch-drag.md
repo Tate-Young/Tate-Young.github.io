@@ -133,7 +133,7 @@ function getEvent(ev) {
 
 * dropEffect - 拖拽交互类型,通常决定浏览器如何显示鼠标光标并控制拖放操作.常见的取值有 copy、move、link、none
 * effectAllowed - 指定允许的交互类型,可以取值: copy、move、link、copyLink、copyMove、limkMove、all、none，默认为 uninitialized(允许所有操作)
-* files - 包含 File 对象的 FileList 对象.从操作系统向浏览器拖放文件时有用.
+* **files** - 包含 File 对象的 FileList 对象，一般用于从本地向浏览器拖放文件.
 * types - 保存 DataTransfer 对象中设置的所有数据类型.
 * **setData(format, data)** - 以键值对设置数据,format 通常为数据格式,如 text、text/html
 * **getData(format)** - 获取设置的对应格式数据,format 与 setData()中一致

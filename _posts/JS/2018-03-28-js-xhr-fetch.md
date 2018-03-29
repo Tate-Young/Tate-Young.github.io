@@ -5,7 +5,7 @@ comments: True
 flag: JS
 background: blue
 category: 前端
-title:  XHR & Fetch
+title:  XHR & Fetch API
 date:   2018-03-28 15:46:00 GMT+0800 (CST)
 background-image: /style/images/darling.jpg
 tags:
@@ -148,7 +148,7 @@ xhr.onreadystatechange = function() {
 * **load** - 在接收到完整的响应数据时触发，相当于 readyState 为 4
 * **loadend** - 在通信完成或者 error、abort 或 load 事件后触发
 
-progress 进度事件可以用来实时显示进度，默认每 50ms 触发一次。需要注意的是，上传过程和下载过程触发的是不同对象的 onprogress 事件:
+[progress](https://developer.mozilla.org/zh-CN/docs/Web/Events/%E8%BF%9B%E5%BA%A6%E6%9D%A1) 进度事件可以用来实时显示进度，默认每 50ms 触发一次。需要注意的是，上传过程和下载过程触发的是不同对象的 onprogress 事件:
 
 * 上传触发的是 **xhr.upload** 对象的 onprogress 事件
 * 下载触发的是 xhr 对象的 onprogress 事件
@@ -156,20 +156,22 @@ progress 进度事件可以用来实时显示进度，默认每 50ms 触发一�
 onprogress 事件处理程序会接收到一个 event 对象，其 target 属性是 XHR 对象，但包含着三个额外的属性:
 
 * **lengthComputable** - 布尔值，表示进度信息是否可用
-* **position** - 已经接收的字节数
-* **totalSize** - 根据 content-length 响应头确定的预期字节数
+* **loaded** - 已经接收的字节数
+* **total** - 根据 content-length 响应头确定的预期字节数，未知则为 0
 
 ```JS
 xhr.onprogress = updateProgress;
 xhr.upload.onprogress = updateProgress;
 function updateProgress(event) {
   if (event.lengthComputable) {
-    statusElement.innerHTML = 'Received ' + event.position + ' of ' + event.totalSize + ' bytes';
+    statusElement.innerHTML = 'Received ' + event.loaded + ' of ' + event.total + ' bytes';
   }
 }
 ```
 
-## Fetch
+## Fetch API
+
+XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离(Separation of Concerns)的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的 Promise，generator/yield，async/await 友好。因此 Fetch API 的出现就是为了解决 XHR 的问题。
 
 ### fecth()
 
