@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='Grid 布局 - Tate & Snow' name='title' />
-    <meta content='Grid 布局 - Tate & Snow' name='og:title' />
-    <title>Grid 布局 - Tate & Snow</title>
+    <meta content='DOM - Tate & Snow' name='title' />
+    <meta content='DOM - Tate & Snow' name='og:title' />
+    <title>DOM - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Grid 布局 - Tate & Snow</title>
+<title>DOM - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grid 布局 - Tate & Snow">
-<meta name="twitter:keywords" content="Grid 布局 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="DOM - Tate & Snow">
+<meta name="twitter:keywords" content="DOM - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Grid 布局 - Tate & Snow">
-<meta name="og:keywords" content="Grid 布局 - Tate & Snow|Grid 布局网格布局网格布局(Grid Layout)是一个基于网格的二维布局系统，而 flexbox 布局则是一维的。.grid-container {  display: grid | inline-grid | subgrid..."
+<meta property="og:title" content="DOM - Tate & Snow">
+<meta name="og:keywords" content="DOM - Tate & Snow|DOM什么是 DOMDOM(Document Object Model) 是针对 HTML 和 XML 文档的一个 API，绘制了一个层次化的节点树，允许对其中的内容进行增删修改。node 节点参考链接"
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Grid 布局网格布局网格布局(Grid Layout)是一个基于网格的二维布局系统，而 flexbox 布局则是一维的。.grid-container {  display: grid | inline-grid | subgrid..." property='og:description'
+<meta name="keywords" content="DOM什么是 DOMDOM(Document Object Model) 是针对 HTML 和 XML 文档的一个 API，绘制了一个层次化的节点树，允许对其中的内容进行增删修改。node 节点参考链接" property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/16/css-grid.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/16/css-grid.html|Grid 布局网格布局网格布局(Grid Layout)是一个基于网格的二维布局系统，而 flexbox 布局则是一维的。.grid-container {  display: grid | inline-grid | subgrid..." property='og:description'
+<meta content='http://localhost:4000/2018/03/29/html-dom.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/29/html-dom.html|DOM什么是 DOMDOM(Document Object Model) 是针对 HTML 和 XML 文档的一个 API，绘制了一个层次化的节点树，允许对其中的内容进行增删修改。node 节点参考链接" property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,9 +134,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    Grid 布局</h1>
+                    DOM</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-16 23:24:00" itemprop="datePublished">发布时间：2018-02-16 23:24:00</time>
+                    <time datetime="2018-03-29 00:00:00" itemprop="datePublished">发布时间：2018-03-29 00:00:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -155,9 +155,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                Grid 布局</h1>
+                DOM</h1>
             <div class="post-data">
-                <time datetime="2018-02-16 23:24:00" itemprop="datePublished">2018-02-16 23:24:00</time>
+                <time datetime="2018-03-29 00:00:00" itemprop="datePublished">2018-03-29 00:00:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -169,284 +169,15 @@
                     </a>
                    
             </p>
-            <h1 id="grid-布局">Grid 布局</h1>
+            <h1 id="dom">DOM</h1>
 
-<h2 id="网格布局">网格布局</h2>
+<h2 id="什么是-dom">什么是 DOM</h2>
 
-<p><strong>网格布局(Grid Layout)</strong>是一个基于网格的二维布局系统，而 flexbox 布局则是一维的。</p>
+<p><strong>DOM(Document Object Model)</strong> 是针对 HTML 和 XML 文档的一个 API，绘制了一个层次化的节点树，允许对其中的内容进行增删修改。</p>
 
-<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nc">.grid-container</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">grid</span> <span class="err">|</span> <span class="n">inline-grid</span> <span class="err">|</span> <span class="n">subgrid</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-
-<ul>
-  <li>grid - 生成一个块级网格</li>
-  <li>inline-grid - 生成一个内联网格</li>
-  <li>subgrid - 生成一个子网格，可以继承父级网格容器行/列的大小</li>
-</ul>
-
-<blockquote>
-  <p>Grid 布局<a href="https://alialaa.github.io/css-grid-cheat-sheet/">在线 demo 戳这里</a>或者<a href="https://www.cssgridplayground.com/">css-grid-playground</a> 👈👈👈</p>
-</blockquote>
-
-<blockquote>
-  <p>在网格容器(Grid Container) 上使用float、clear、vertical-align 会失效。</p>
-</blockquote>
-
-<h2 id="container-属性">container 属性</h2>
-
-<p>Grid 容器上有下列属性:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">属性</th>
-      <th style="text-align: left">描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">grid-template-columns/rows</td>
-      <td style="text-align: left">定义网格的列和行</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">grid-template-areas</td>
-      <td style="text-align: left">通过引用 grid-area 属性指定的网格区域(Grid Area)名称来定义网格模板</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">grid-template</td>
-      <td style="text-align: left">以上三者的复合属性</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">grid-gap</td>
-      <td style="text-align: left">grid-row-gap 和 grid-column-gap 的复合属性，定义网格线(grid lines)的大小</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">justify-items</td>
-      <td style="text-align: left">沿着 行轴线(row axis) 对齐 网格项(grid items) 内的内容</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">align-items</td>
-      <td style="text-align: left">沿着 列轴线(column axis) 对齐 网格项(grid items) 内的内容</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">justify-content</td>
-      <td style="text-align: left">设置网格容器内的网格的对齐方式。 此属性沿着 行轴线(row axis) 对齐网格</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">align-content</td>
-      <td style="text-align: left">设置网格容器内的网格的对齐方式。 此属性沿着 列轴线(column axis) 对齐网格</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">grid-auto-columns/rows</td>
-      <td style="text-align: left">指定任何自动生成的网格轨道(grid tracks)的大小</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">grid-auto-flow</td>
-      <td style="text-align: left">控制自动布局算法如何工作</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">grid</td>
-      <td style="text-align: left">复合属性</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="grid-template-columns">grid-template-columns</h3>
-
-<p>和 grid-template-rows 一起，使用空格分隔的值列表，用来定义网格的列和行。这些值表示<strong>网格轨道(Grid Track)</strong>大小，它们之间的空格表示网格线。</p>
-
-<h4 id="网格轨道">网格轨道</h4>
-
-<p>两条相邻网格线之间的空间，你可以把它们想象成网格的列或行。</p>
-
-<pre><code class="language-CSS">/* &lt;track-size&gt;： 可以是长度值，百分比，或者等份网格容器中可用空间（使用 fr 单位） */
-grid-template-columns: &lt;track-size&gt; ... | &lt;line-name&gt; &lt;track-size&gt; ...;
-grid-template-rows: &lt;track-size&gt; ... | &lt;line-name&gt; &lt;track-size&gt; ...;
-</code></pre>
-
-<pre><code class="language-CSS">.grid-container {
-  grid-template-columns: 40px 50px auto 50px 40px;
-  grid-template-rows: 25% 100px auto;
-}
-</code></pre>
-
-<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-numbers.png" alt="grid-template-columns" /></p>
-
-<h4 id="repeat">repeat()</h4>
-
-<p>如果你的定义包含多个重复值，则可以使用 repeat() 表示法来简化定义：</p>
-
-<pre><code class="language-CSS">grid-template-columns: repeat(3, 20px [col-start]) 5%;
-/* 等同于 */
-grid-template-columns: 20px [col-start] 20px [col-start] 20px [col-start] 5%;
-</code></pre>
-
-<h4 id="fr-可用空间">fr 可用空间</h4>
-
-<p>fr 单元允许你用等分网格容器剩余可用空间来设置网格轨道的大小。剩余可用空间是除去所有非灵活网格项之后计算得到的。</p>
-
-<pre><code class="language-CSS">/* 可用空间总量除去50px，再均分为三等分 */
-grid-template-columns: 1fr 50px 1fr 1fr;
-</code></pre>
-
-<h3 id="grid-template-areas">grid-template-areas</h3>
-
-<p>通过引用 grid-area 属性指定的<strong>网格区域(Grid Area)</strong>名称来定义网格模板。一个点号（.）代表一个空的网格单元。</p>
-
-<pre><code class="language-CSS">/* 创建一个 4 列 3 行的网格。 */
-/* 整个顶行将由 header 区域组成。 */
-/* 中间一排将由两个 main 区域、一个空网格单元和一个 sidebar 区域组成。 */
-/* 整个最后一行将由 footer 区域组成。 */
-.item-a {
-  grid-area: header;
-}
-.item-b {
-  grid-area: main;
-}
-.item-c {
-  grid-area: sidebar;
-}
-.item-d {
-  grid-area: footer;
-}
-
-.grid-container {
-  grid-template-columns: 50px 50px 50px 50px;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "header header header header"
-    "main main . sidebar"
-    "footer footer footer footer";
-}
-</code></pre>
-
-<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-template-areas.png" alt="grid-template-areas" /></p>
-
-<h3 id="grid-template">grid-template</h3>
-
-<p>属于 grid-template-rows、grid-template-columns 和 grid-template-areas 的复合属性。</p>
-
-<h3 id="grid-gap">grid-gap</h3>
-
-<p>grid-row-gap 和 grid-column-gap 一样，指定<strong>网格线(grid lines)</strong>的大小，即设置列/行之间的间距。</p>
-
-<pre><code class="language-CSS">/* grid-gap 为复合属性 */
-/* 如果 grid-row-gap 没有定义，那么就会被设置为等同于 grid-column-gap 的值 */
-grid-gap: &lt;grid-row-gap&gt; &lt;grid-column-gap&gt;;
-grid-column-gap: &lt;line-size&gt;;
-grid-row-gap: &lt;line-size&gt;;
-</code></pre>
-
-<h3 id="justify-items">justify-items</h3>
-
-<p>沿着 行轴线(row axis) 对齐 网格项(grid items) 内的内容。</p>
-
-<pre><code class="language-CSS">justify-items: start | end | center | stretch;
-</code></pre>
-
-<p><img src="http://localhost:4000/style/images/justify-items.png" alt="justify-items" /></p>
-
-<h3 id="align-items">align-items</h3>
-
-<p>沿着 列轴线(column axis) 对齐 网格项(grid items) 内的内容。</p>
-
-<pre><code class="language-CSS">align-items: start | end | center | stretch;
-</code></pre>
-
-<p><img src="http://localhost:4000/style/images/align-items.png" alt="align-items" /></p>
-
-<h3 id="justify-content">justify-content</h3>
-
-<p>设置网格容器内的网格的对齐方式。 此属性沿着 行轴线(row axis) 对齐网格</p>
-
-<pre><code class="language-CSS">/* 针对网格合计大小可能小于其 网格容器(grid container) 大小 */
-justify-content: start | end | center | stretch | space-around | space-between | space-evenly;
-</code></pre>
-
-<h3 id="align-content">align-content</h3>
-
-<p>设置网格容器内的网格的对齐方式。 此属性沿着 列轴线(column axis) 对齐网格</p>
-
-<pre><code class="language-CSS">/* 针对网格合计大小可能小于其 网格容器(grid container) 大小 */
-align-content: start | end | center | stretch | space-around | space-between | space-evenly;
-</code></pre>
-
-<h3 id="grid-auto-columns">grid-auto-columns</h3>
-
-<p>和 grid-auto-rows 指定任何自动生成的网格轨道(grid tracks)的大小，又称<strong>隐式网格轨道</strong>。在你明确定位的行或列（通过  grid-template-rows / grid-template-columns）超出定义的网格范围时，隐式网格轨道将被创建。</p>
-
-<pre><code class="language-CSS">/* 第五和第六列网格线未被定义 */
-.item-a {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-}
-.item-b {
-  grid-column: 5 / 6;
-  grid-row: 2 / 3;
-}
-
-.grid-container {
-  grid-template-columns: 60px 60px;
-  grid-template-rows: 90px 90px
-}
-</code></pre>
-
-<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/implicit-tracks.png" alt="grid-tracks" /></p>
-
-<pre><code class="language-CSS">/* 指定这些隐式轨道的大小 */
-.grid-container {
-  grid-auto-columns: 60px;
-}
-</code></pre>
-
-<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/implicit-tracks-with-widths.png" alt="grid-auto-columns" /></p>
-
-<h3 id="grid-auto-flow">grid-auto-flow</h3>
-
-<p>如果存在一些没有明确放置在网格上的网格项(grid items)，自动放置算法会自动放置这些网格项。该属性控制自动布局算法如何工作。</p>
-
-<pre><code class="language-CSS">grid-auto-flow: row | column | row dense | column dense
-</code></pre>
-
-<h3 id="grid">grid</h3>
-
-<p>属于 grid-template-rows、grid-template-columns、grid-template-areas、grid-auto-rows、grid-auto-columns 和 grid-auto-flow 的复合属性。它还将 grid-column-gap 和 grid-column-gap 设置为初始值，即使它们不可以通过 grid 属性显式地设置。</p>
-
-<pre><code class="language-CSS">/* 此用例的grid属性相当于grid-template */
-.grid-container {
-  grid: [row1-start] "header header header" 1fr [row1-end]
-        [row2-start] "footer footer footer" 25px [row2-end]
-        / auto 50px auto;
-}
-
-/* 等价于 */
-
-.grid-container {
-  grid-template-areas: 
-    "header header header"
-    "footer footer footer";
-  grid-template-rows: [row1-start] 1fr [row1-end row2-start] 25px [row2-end];
-  grid-template-columns: auto 50px auto;
-}
-</code></pre>
-
-<h2 id="item-属性">item 属性</h2>
-
-<blockquote>
-  <p>未完待续</p>
-</blockquote>
+<h2 id="node-节点">node 节点</h2>
 
 <h2 id="参考链接">参考链接</h2>
-
-<ol>
-  <li><a href="https://css-tricks.com/snippets/css/complete-guide-grid/">A Complete Guide to Grid</a> By Chris House</li>
-  <li><a href="https://tutorialzine.com/2017/03/css-grid-vs-flexbox">CSS Grid VS Flexbox: A Practical Comparison</a> By Danny Markov</li>
-  <li><a href="https://www.w3cplus.com/css3/playing-with-css-grid-layout.html">CSS Grid 布局这样玩</a> By 大漠</li>
-  <li><a href="http://www.css88.com/archives/8510">CSS Grid 布局完全指南</a> By 渔人码头</li>
-</ol>
  
 <div id="disqus_thread"></div>
 <script>
@@ -456,9 +187,9 @@ align-content: start | end | center | stretch | space-around | space-between | s
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/16/css-grid.html';
-        this.page.identifier = '/2018/02/16/css-grid';
-        this.page.title = 'Grid 布局';
+        this.page.url = 'https://tate-young.github.io/2018/03/29/html-dom.html';
+        this.page.identifier = '/2018/03/29/html-dom';
+        this.page.title = 'DOM';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -476,7 +207,7 @@ align-content: start | end | center | stretch | space-around | space-between | s
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-16 23:24:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-29 00:00:00</p> -->
         </div>
     </article>
 

@@ -11,6 +11,14 @@
 	
     
 	{
+		"title" : "DOM - ",
+		"url" : "/2018/03/29/html-dom.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "XHR & Fetch API - ",
 		"url" : "/2018/03/28/js-xhr-fetch.html"
 	}
