@@ -284,4 +284,5 @@ targetElement.fireEvent('onmouseover', event); // 触发事件
 
 1. [javaScript事件(一) 事件流](https://www.cnblogs.com/starof/p/4066381.html) By starof
 1. [JS 事件模型](https://segmentfault.com/a/1190000006934031) By simon_woo
+1. [事件触发器 - dispatchEvent](https://blog.csdn.net/magic__man/article/details/51831227) By magic__man
 1. [深入理解 DOM 事件机制系列第四篇 —— 事件模拟](https://www.cnblogs.com/xiaohuochai/p/5880851.html) By 小火柴的蓝色理想

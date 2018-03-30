@@ -262,20 +262,6 @@ document.querySelector('a').nodeType === 1 // true
 document.querySelector('a').nodeType === Node.ELEMENT_NODE // true
 </code></pre>
 
-<p>返回当前节点的内容:</p>
-
-<ul>
-  <li><strong>nodeValue</strong> - 一般只用在 Text 类型节点，其他大部分节点一律返回 null</li>
-  <li><strong>textContent</strong> - 返回当前节点和它的所有后代节点的文本内容</li>
-</ul>
-
-<pre><code class="language-JS">// HTML代码为
-// &lt;div id="text"&gt;This is &lt;span&gt;some&lt;/span&gt; text&lt;/div&gt;
-
-document.getElementById('text').textContent;
-// This is some text
-</code></pre>
-
 <h3 id="node-关系">node 关系</h3>
 
 <p><img src="https://i.loli.net/2018/03/29/5abca648d9419.jpg" alt="dom-node.jpg" /></p>
@@ -480,7 +466,7 @@ document.getElementById('container').appendChild(newNode);
 <ul>
   <li><strong>addEventListener()</strong> - 添加事件监听函数</li>
   <li><strong>removeEventListener()</strong> - 移除事件监听函数</li>
-  <li><strong>dispatchEvent()</strong> - 当前节点上触发指定事件，从而触发监听函数的执行，IE 用 <strong>fireEvent()</strong></li>
+  <li><strong>dispatchEvent()</strong> - 当前节点上触发指定事件，从而触发监听函数的执行，IE 用 fireEvent()</li>
 </ul>
 
 <h2 id="element">Element</h2>
@@ -648,11 +634,53 @@ pElementText.substringData(7, 10);
 // 页面显示不变，返回 "World "
 </code></pre>
 
+<h2 id="不同用法的区分">不同用法的区分</h2>
+
+<p>返回当前节点的内容，几种方法的比较:</p>
+
+<ul>
+  <li><strong>nodeValue</strong> - 一般只用在 Text 类型节点，其他大部分节点一律返回 null</li>
+  <li><strong>textContent</strong> - 返回当前节点和它的所有后代节点的文本内容，会获取 display:none 的节点的文本，且不会理会 html 格式，直接输出不换行的文本</li>
+  <li><strong>innerText</strong> - 返回当前节点和它的所有后代节点的文本内容，会忽略 display:none 的节点的文本</li>
+  <li><strong>innerHTML</strong> - 返回该元素包含的 HTML 代码，该属性可读写，常用来设置某个节点的内容</li>
+</ul>
+
+<pre><code class="language-HTML">&lt;article&gt;
+  &lt;div id="div-01"&gt;Here is div-01
+    &lt;div id="div-02"&gt;Here is div-02
+      &lt;div id="div-03" style="display: none;"&gt;Here is div-03&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+</code></pre>
+
+<pre><code class="language-JS">var article = document.getElementsByTagName('article')[0];
+
+article.innerText;
+// "Here is div-01
+// Here is div-02"
+
+article.textContent;
+// "
+//   Here is div-01
+//     Here is div-02
+//       Here is div-03
+// "
+
+article.innerHTML;
+// "
+//   &lt;div id="div-01"&gt;Here is div-01
+//     &lt;div id="div-02"&gt;Here is div-02
+//       &lt;div id="div-03" style="display: none;"&gt;Here is div-03&lt;/div&gt;
+//     &lt;/div&gt;
+//   &lt;/div&gt;
+// "
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://wohugb.gitbooks.io/javascript/dom/node.html">Gitbooks - JavaScript 标准参考教程</a></li>
-  <li><a href="https://blog.csdn.net/magic__man/article/details/51831227">事件触发器 - dispatchEvent</a> By magic__man</li>
   <li><a href="https://segmentfault.com/a/1190000005897042">容易混淆的 client-<em>,scroll-</em>,offset-*</a> By zhangguixu</li>
 </ol>
  
