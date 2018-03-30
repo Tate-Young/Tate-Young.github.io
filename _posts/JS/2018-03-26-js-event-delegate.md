@@ -237,7 +237,51 @@ function showColor(ev) {
 }
 ```
 
+## 事件模拟
+
+**createEvent()** - 生成一个事件对象，参数是事件类型，比如:
+
+| 事件类型 | 事件初始化方法 |
+|:--------------|:---------|
+| UIEvents | event.initUIEvent |
+| MouseEvents | event.initMouseEvent |
+| MutationEvents | event.initMutationEvent |
+| HTMLEvents | event.initEvent |
+| Event | event.initEvent |
+| CustomEvent | event.initCustomEvent |
+| KeyboardEvent | event.initKeyEvent |
+
+**dispatchEvent()** - 当前节点上触发指定事件，从而触发监听函数的执行，参数是一个 Event 对象的实例，如果在事件传播过程中调用了 event.preventDefault 方法，则返回 false，否则返回 true。IE 用 fireEvent()
+
+```JS
+document.addEventListener('myEvent', function (event) {
+  console.log('Name: %s, Age: %d', event.name, event.age); // Name: tate, Age: 18
+}, false);
+
+//创建 event 的对象实例。
+var event = document.createEvent('HTMLEvents');
+// 3个参数：事件类型，是否冒泡，是否阻止浏览器的默认行为
+event.initEvent('myEvent', true, true);
+// 自定义事件属性，只要你开心
+event.name = 'tate';
+event.age = 18;
+
+//触发自定义事件
+document.dispatchEvent(event);
+```
+
+IE 为 **createEventObject()**，不接受参数，返回通用 event 对象:
+
+```JS
+var event = document.createEventObject();
+event.bubbles = true;
+event.cancelable = true;
+event.name = 'tate';
+targetElement.fireEvent('onmouseover', event); // 触发事件
+```
+
 ## 参考链接
 
 1. [javaScript事件(一) 事件流](https://www.cnblogs.com/starof/p/4066381.html) By starof
 1. [JS 事件模型](https://segmentfault.com/a/1190000006934031) By simon_woo
+1. [深入理解 DOM 事件机制系列第四篇 —— 事件模拟](https://www.cnblogs.com/xiaohuochai/p/5880851.html) By 小火柴的蓝色理想

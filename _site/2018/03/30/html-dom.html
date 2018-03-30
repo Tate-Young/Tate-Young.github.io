@@ -1,0 +1,933 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='DOM - Tate & Snow' name='title' />
+    <meta content='DOM - Tate & Snow' name='og:title' />
+    <title>DOM - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>DOM - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DOM - Tate & Snow">
+<meta name="twitter:keywords" content="DOM - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM - Tate & Snow">
+<meta name="og:keywords" content="DOM - Tate & Snow|DOM什么是 DOMDOM(Document Object Model) 的基本思想是把结构化文档(如 HTML 和 XML)解析成一系列的节点，再由这些节点组成一个树状结构(DOM Tree)。所有的节点和最终的树状结构，都有规范的..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="DOM什么是 DOMDOM(Document Object Model) 的基本思想是把结构化文档(如 HTML 和 XML)解析成一系列的节点，再由这些节点组成一个树状结构(DOM Tree)。所有的节点和最终的树状结构，都有规范的..." property='og:description'
+/>
+<meta name="description" content="nothing is more practicla than a good theory" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2018/03/30/html-dom.html' property='og:url' />
+<meta content="http://localhost:4000/2018/03/30/html-dom.html|DOM什么是 DOMDOM(Document Object Model) 的基本思想是把结构化文档(如 HTML 和 XML)解析成一系列的节点，再由这些节点组成一个树状结构(DOM Tree)。所有的节点和最终的树状结构，都有规范的..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    DOM</h1>
+                <div class="post-data">
+                    <time datetime="2018-03-30 16:30:00" itemprop="datePublished">发布时间：2018-03-30 16:30:00</time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#html" title="访问html" data-hover="html">
+                        html
+                        <span>(5)</span>
+                        
+                    </a>
+                    
+                    <a href="/tags#js" title="访问js" data-hover="js">
+                        js
+                        <span>(1)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                DOM</h1>
+            <div class="post-data">
+                <time datetime="2018-03-30 16:30:00" itemprop="datePublished">2018-03-30 16:30:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#html" title="访问html" data-hover="html">
+                    html
+                    <span>(5)</span>
+                    </a>
+                
+                <a href="/tags#js" title="访问js" data-hover="js">
+                    js
+                    <span>(1)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="dom">DOM</h1>
+
+<h2 id="什么是-dom">什么是 DOM</h2>
+
+<p><strong>DOM(Document Object Model)</strong> 的基本思想是把结构化文档(如 HTML 和 XML)解析成一系列的节点，再由这些节点组成一个树状结构(DOM Tree)。所有的节点和最终的树状结构，都有规范的对外接口，以达到使用编程语言操作文档的目的(比如增删内容)。所以，DOM 可以理解成文档的 API。而 JavaScript 是最常用于 DOM 操作的语言。</p>
+
+<h2 id="node-节点">node 节点</h2>
+
+<h3 id="node-类型">node 类型</h3>
+
+<p>DOM 的最小组成单位叫做<strong>节点(node)</strong>，一个文档的树形结构，就是由各种不同类型的节点组成。主要有以下几种类型，它们都继承了 Node 对象的属性和方法:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">节点</th>
+      <th style="text-align: left">类型</th>
+      <th style="text-align: left">nodeName</th>
+      <th>nodeType</th>
+      <th>含义</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Document</strong></td>
+      <td style="text-align: left">Node.DOCUMENT_NODE</td>
+      <td style="text-align: left">#document</td>
+      <td>9</td>
+      <td>文档节点</td>
+      <td>整个文档(window.document)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Element</strong></td>
+      <td style="text-align: left">ELEMENT_NODE</td>
+      <td style="text-align: left">大写的 HTML 元素名</td>
+      <td>1</td>
+      <td>元素节点</td>
+      <td>HTML元素(比如&lt;body&gt;、<a>等)</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Attribute</strong></td>
+      <td style="text-align: left">ATTRIBUTE_NODE</td>
+      <td style="text-align: left">等同于 Attr.name</td>
+      <td>2</td>
+      <td>属性节点</td>
+      <td>HTML元素的属性(比如 class=”right”)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Text</strong></td>
+      <td style="text-align: left">TEXT_NODE</td>
+      <td style="text-align: left">#text</td>
+      <td>3</td>
+      <td>文本节点</td>
+      <td>HTML 文档中出现的文本</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>DocumentType</strong></td>
+      <td style="text-align: left">DOCUMENT_TYPE_NODE</td>
+      <td style="text-align: left">等同于 DocumentType.name</td>
+      <td>10</td>
+      <td>文档类型节点</td>
+      <td>文档的类型(比如&lt;!DOCTYPE html&gt;)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>DocumentFragment</strong></td>
+      <td style="text-align: left">DOCUMENT_FRAGMENT_NODE</td>
+      <td style="text-align: left">#document-fragment</td>
+      <td>11</td>
+      <td>文档碎片节点</td>
+      <td>文档的片段</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">document.nodeName // "#document"
+document.nodeType // 9
+
+document.querySelector('a').nodeType === 1 // true
+document.querySelector('a').nodeType === Node.ELEMENT_NODE // true
+</code></pre>
+
+<p>返回当前节点的内容:</p>
+
+<ul>
+  <li><strong>nodeValue</strong> - 一般只用在 Text 类型节点，其他大部分节点一律返回 null</li>
+  <li><strong>textContent</strong> - 返回当前节点和它的所有后代节点的文本内容</li>
+</ul>
+
+<pre><code class="language-JS">// HTML代码为
+// &lt;div id="text"&gt;This is &lt;span&gt;some&lt;/span&gt; text&lt;/div&gt;
+
+document.getElementById('text').textContent;
+// This is some text
+</code></pre>
+
+<h3 id="node-关系">node 关系</h3>
+
+<p><img src="https://i.loli.net/2018/03/29/5abca648d9419.jpg" alt="dom-node.jpg" /></p>
+
+<h3 id="node-操作">node 操作</h3>
+
+<ul>
+  <li><strong>appenChild()</strong> - 接受一个节点对象作为参数，将其作为最后一个子节点，插入当前节点</li>
+  <li><strong>removeChild()</strong> - 接受一个子节点作为参数，用于从当前节点移除该节点</li>
+  <li><strong>replaceChild(new, old)</strong> - 将一个新的节点，替换当前节点的某一个子节点。它接受两个参数，第一个参数是用来替换的新节点，第二个参数将要被替换走的子节点</li>
+  <li><strong>hasChildNodes()</strong> - 返回一个布尔值，表示当前节点是否有子节点</li>
+  <li><strong>cloneNode()</strong> - 克隆一个节点。它接受一个布尔值作为参数，表示是否同时克隆子节点，默认是 false，即不克隆子节点</li>
+  <li><strong>insertBefore(new, old)</strong> - 将某个节点插入当前节点的指定位置。它接受两个参数，第一个参数是所要插入的节点，第二个参数是当前节点的一个子节点，新的节点将插在这个节点的前面</li>
+  <li><strong>contains()</strong> - 接受一个节点作为参数，返回一个布尔值，表示参数节点是否为当前节点的后代节点</li>
+  <li><strong>isEqualNode()</strong> - 返回一个布尔值，用于检查两个节点是否相等。所谓相等的节点，指的是两个节点的类型相同、属性相同、子节点相同</li>
+</ul>
+
+<pre><code class="language-JS">// removeChild
+newElement.parentNode.removeChild(newElement);
+
+// cloneNode
+var cloneUL = document.querySelector('ul').cloneNode(true);
+
+// insertBefore 将新节点插在当前节点的最前面
+parentElement.insertBefore(newElement, parentElement.firstChild);
+</code></pre>
+
+<h3 id="node-接口类型">Node 接口类型</h3>
+
+<p>节点对象都是单个节点，但是有时会需要一种数据结构，能够容纳多个节点。DOM 提供两种接口，用于部署这种节点的集合，即 <strong>NodeList</strong> 接口和 <strong>HTMLCollection</strong> 接口。</p>
+
+<ul>
+  <li><strong>NodeList</strong></li>
+</ul>
+
+<p>如 Node.childNodes、document.querySelectorAll() 返回的则是一组节点，即一个部署了 NodeList 接口的对象。不同的是前者返回的是动态集合，后者返回的是静态集合。NodeList 接口提供 length 属性和数字索引，因此可以像数组那样，使用数字索引取出每个节点，但是它本身并不是数组，不能使用 pop 或 push 之类数组特有的方法。当然可以转成数组。</p>
+
+<pre><code class="language-JS">// NodeList的继承链
+myNodeList --&gt; NodeList.prototype --&gt; Object.prototype --&gt; null
+</code></pre>
+
+<pre><code class="language-JS">// 转成数组
+var div_list = document.querySelectorAll('div');
+
+var div_array = Array.prototype.slice.call(div_list); // ES5
+var div_array = Array.from(div_list); // ES6
+</code></pre>
+
+<p>NodeList 部署了 Iterator 接口，因此还可以用 for…of 进行遍历。</p>
+
+<ul>
+  <li><strong>HTMLCollection</strong></li>
+</ul>
+
+<p>如 document.links、docuement.forms、document.images 等属性，返回的都是 HTMLCollection 接口对象，该接口都是动态集合，节点的变化会实时反映在集合中。提供 <strong>namedItem</strong> 方法根据成员的 id 属性(优先)或 name 属性，返回该成员。如果没有对应的成员，则返回 null。</p>
+
+<pre><code class="language-JS">var elem = document.forms.namedItem('myForm');
+// 等价于
+var elem = document.forms['myForm'];
+</code></pre>
+
+<h2 id="html-元素">html 元素</h2>
+
+<p>html 元素是网页的根元素，<code>document.documentElement</code> 即指向这个元素。</p>
+
+<h3 id="dataset">dataset</h3>
+
+<p><strong>dataset</strong> 属性用于操作 HTML 标签元素的 <strong>data-*</strong> 属性，返回一个 DOMStringMap 对象。</p>
+
+<pre><code class="language-HTML">&lt;!-- data 属性只能使用连词号 - --&gt;
+&lt;div id="myDiv" data-id="myId" data-hello-world="tate"&gt;&lt;/div&gt;
+</code></pre>
+
+<pre><code class="language-JS">// dataset 属性使用骆驼拼写法表示属性名
+var id = document.getElementById("myDiv").dataset.id; // myId
+var id = document.getElementById("myDiv").dataset.helloWorld; // tate
+
+// delete 可以删除指定 dataset 属性
+delete document.getElementById("myDiv").dataset.id;
+</code></pre>
+
+<h3 id="tabindex">tabindex</h3>
+
+<p><strong>tabindex</strong> 属性用来指定当前 HTML 元素节点是否被 tab 键遍历，以及遍历的优先级：</p>
+
+<ul>
+  <li>tabindex = -1 - tab 键跳过当前元素。</li>
+  <li>tabindex = 0 - 表示 tab 键将遍历当前元素。如果一个元素没有设置 tabindex，默认值就是 0。</li>
+  <li>tabindex &gt; 0 - 表示 tab 键优先遍历。值越大，就表示优先级越大。</li>
+</ul>
+
+<pre><code class="language-JS">var btn = document.getElementById('btn');
+
+btn.tabIndex = 1; // tab 遍历优先级为1，大于默认的 0
+</code></pre>
+
+<h3 id="页面位置">页面位置</h3>
+
+<p><a href="https://www.cnblogs.com/youxin/archive/2012/09/21/2697514.html">查看这里</a></p>
+
+<h2 id="document">Document</h2>
+
+<p><strong>document</strong> 节点是文档的根节点，有不同的办法可以获取，且都部署了 Document 接口:</p>
+
+<ul>
+  <li>对于正常的网页，直接使用 document 或 window.document</li>
+  <li>对于 iframe 载入的网页，使用 iframe 节点的 contentDocument 属性</li>
+  <li>对 Ajax 操作返回的文档，使用 XMLHttpRequest 对象的 responseXML 属性</li>
+  <li>对于某个节点包含的文档，使用该节点的 ownerDocument 属性</li>
+</ul>
+
+<h3 id="document-属性">Document 属性</h3>
+
+<ul>
+  <li><strong>doctype</strong> - 包含了当前文档类型信息，对于 HTML5 文档，该节点就代表&lt;!DOCTYPE html&gt;</li>
+  <li><strong>documentElement</strong> - 表示当前文档的根节点，即 html</li>
+  <li><strong>body</strong> - 返回当前文档的 body 节点</li>
+  <li><strong>head</strong> - 返回当前文档的 head 节点</li>
+  <li><strong>domain</strong> - 返回当前文档的域名</li>
+  <li><strong>lastModified</strong> - 返回当前文档最后修改的时间戳，格式为字符串</li>
+  <li><strong>location</strong> - 返回一个只读对象，提供了当前文档的 URL 信息，具体<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location">查看 MDN-location</a></li>
+  <li><strong>title</strong> - 返回当前文档的标题</li>
+  <li><strong>readyState</strong> - 表示页面的加载状态，可以在 <strong>readystatechange</strong> 中追踪页面的变化状态，可<a href="http://localhost:4000/2018/02/11/html-page-lifecycle.html">点击查看页面生命周期一节</a></li>
+  <li><strong>cookie</strong> - 返回当前网页的 cookie，可<a href="http://localhost:4000/2018/03/02/cookie.html">点击查看 cookie 一节</a></li>
+</ul>
+
+<pre><code class="language-JS">{ // document.location 对象的属性
+  host: "localhost:8080"
+  hostname: "localhost"
+  href : "http://localhost:8080/test/babel.html?username=tate&amp;age=18&amp;file="
+  origin: "http://localhost:8080"
+  pathname : "/test/babel.html"
+  port: "8080"
+  protocol: "http:"
+}
+</code></pre>
+
+<p>以下属性返回文档内部特定元素的动态集合(HTMLCollection)，可配合 namedItem 使用:</p>
+
+<ul>
+  <li><strong>anchors</strong> - 返回网页中所有指定了 name 属性的 a 节点元素</li>
+  <li><strong>forms</strong> - 返回页面中所有表单，即 form 标签</li>
+  <li><strong>images</strong> - 返回页面所有图片元素，即 img 标签</li>
+  <li><strong>links</strong> - 返回当前文档所有的链接元素，即具有 href 属性的元素，如 a 标签</li>
+  <li><strong>scripts</strong> - 返回当前文档的所有脚本，即 script 标签</li>
+  <li><strong>styleSheets</strong> - 返回一个类似数组的对象，包含了当前网页的所有样式表。该属性提供了样式表操作的接口</li>
+</ul>
+
+<h3 id="document-方法">Document 方法</h3>
+
+<ul>
+  <li><strong>write()</strong> - open 方法新建一个文档；write 方法写入内容；close 方法关闭文档</li>
+  <li><strong>querySelector()</strong> - 返回第一个匹配指定的 CSS 选择器的元素节点</li>
+  <li><strong>querySelectorAll()</strong> - 返回所有匹配指定的 CSS 选择器的节点，返回的是 NodeList 类型的对象，静态集合</li>
+  <li><strong>getElementById()</strong> - 返回匹配指定 ID 属性的元素节点</li>
+  <li><strong>getElementsByClassName()</strong> - 返回一个类似数组的对象(HTMLCollection)，包括了所有 class 名字符合指定条件的元素，动态集合</li>
+  <li><strong>getElementsByTagName()</strong> - 返回一个类似数组的对象(HTMLCollection)，包括了所有指定标签的元素，动态集合</li>
+  <li><strong>getElementsByName()</strong> - 用于选择拥有 name 属性的 HTML 元素，返回的是 NodeList 类型的对象，静态集合</li>
+</ul>
+
+<pre><code class="language-JS">document.getElementById('myElement') // 参数为 属性
+document.querySelector('#myElement') // 参数为 CSS 选择器语法
+
+document.getElementsByClassName('red orange'); // 返回同时具有 red 和 orange 样式名的节点
+</code></pre>
+
+<p>以下方法用于生成元素节点:</p>
+
+<ul>
+  <li><strong>createElement()</strong> - 生成 HTML 元素节点</li>
+  <li><strong>createTextNode()</strong> - 生成文本节点，参数为所要生成的文本节点的内容</li>
+  <li><strong>createAttribute()</strong> - 生成一个新的属性对象节点</li>
+  <li><strong>createEvent()</strong> - 生成一个事件对象，参数是事件类型，比如 UIEvents、MouseEvents、MutationEvents、HTMLEvents。IE 为 <strong>createEventObject()</strong>，不接受参数，返回通用 event 对象</li>
+  <li><strong>adoptNode()</strong> - 将某个节点，从其原来所在的文档移除，插入当前文档，并返回插入后的新节点</li>
+  <li><strong>importNode()</strong> - 用于创造一个外部节点的拷贝，然后插入当前文档。它的第一个参数是外部节点，第二个参数是一个布尔值，表示对外部节点是深拷贝还是浅拷贝，默认为 false 浅拷贝</li>
+</ul>
+
+<pre><code class="language-JS">var newDiv = document.createElement('div');
+var newContent = document.createTextNode('Hello');
+newDiv.appendChild(newContent);
+</code></pre>
+
+<pre><code class="language-JS">var node = document.getElementById('myId');
+var a = document.createAttribute('data-hi');
+a.value = 'tate';
+node.setAttributeNode(a);
+
+// 等价于
+var node = document.getElementById('myId');
+node.setAttribute('data-hi', 'tate');
+</code></pre>
+
+<pre><code class="language-JS">// 从 iframe 窗口，拷贝一个指定节点 myNode，插入当前文档
+var iframe = document.getElementsByTagName('iframe')[0];
+var oldNode = iframe.contentWindow.document.getElementById('myNode');
+var newNode = document.importNode(oldNode, true);
+document.getElementById('container').appendChild(newNode);
+</code></pre>
+
+<p>与事件相关的三个方法，详情<a href="http://localhost:4000/2018/03/26/js-event-delegate.html">查看事件代理一节</a>:</p>
+
+<ul>
+  <li><strong>addEventListener()</strong> - 添加事件监听函数</li>
+  <li><strong>removeEventListener()</strong> - 移除事件监听函数</li>
+  <li><strong>dispatchEvent()</strong> - 当前节点上触发指定事件，从而触发监听函数的执行，IE 用 <strong>fireEvent()</strong></li>
+</ul>
+
+<h2 id="element">Element</h2>
+
+<p><strong>Element</strong> 对象对应网页的 HTML 标签元素，元素节点的 nodeType 属性都是 1。</p>
+
+<h3 id="element-属性">Element 属性</h3>
+
+<ul>
+  <li><strong>id</strong> - 返回指定元素的 id 标识</li>
+  <li><strong>attributes</strong> - 返回一个类似数组的对象 NamedNodeMap，成员是当前元素节点的所有属性节点，动态集合</li>
+  <li><strong>tagName</strong> - 返回指定元素的大写的标签名，与 nodeName 属性的值相等</li>
+  <li><strong>innerHTML</strong> - 返回该元素包含的 HTML 代码，该属性可读写，常用来设置某个节点的内容</li>
+  <li><strong>outerHTML</strong> - 返回一个字符串，内容为指定元素的所有 HTML 代码，包括它自身和包含的所有子元素</li>
+  <li><strong>style</strong> - 用来操作 CSS 样式，如 element.style.backgroundColor 等</li>
+  <li><strong>className</strong> - 用来读取和设置当前元素的 class 属性。它的值是一个字符串，每个 class 之间用空格分割</li>
+  <li><strong>classList</strong> - 返回一个类似数组的对象，当前元素节点的每个 class 就是这个对象的一个成员
+    <ul>
+      <li><strong>add()</strong> - 增加一个 class</li>
+      <li><strong>remove()</strong> - 移除一个 class</li>
+      <li><strong>contains()</strong> - 检查当前元素是否包含某个 class</li>
+      <li><strong>toggle()</strong> - 将某个 class 移入或移出当前元素，可以接受第二个布尔值参数，true 则添加该属性</li>
+      <li><strong>item()</strong> - 返回指定索引位置的 class</li>
+      <li><strong>toString()</strong> - 将 class 的列表转为字符</li>
+    </ul>
+  </li>
+</ul>
+
+<pre><code class="language-JS">var para = document.getElementById('para');
+var attr = para.attributes[0];
+
+// 等同于 nodeName 属性和 nodeValue 属性
+attr.name // id
+attr.value // para
+</code></pre>
+
+<pre><code class="language-JS">// 添加 class
+document.getElementById('foo').classList.add('bold'); // good
+document.getElementById('foo').className += 'bold';
+
+// 删除 class
+document.getElementById('foo').classList.remove('bold');
+document.getElementById('foo').className = document.getElementById('foo').className.replace(/^bold$/, '');
+</code></pre>
+
+<pre><code class="language-JS">// toggle 方法可以接受一个布尔值作为第二个参数。如果为 true，则添加该属性，否则去除
+el.classList.toggleClass('abc', someBool);
+
+// 等价于
+if (someBool){
+  el.classList.add('abc');
+} else {
+  el.classList.remove('abc');
+}
+</code></pre>
+
+<p>获取 Element 节点相关的属性:</p>
+
+<ul>
+  <li><strong>children</strong> - 返回一个动态的 HTMLCollection 集合，由当前节点的所有 Element 子节点组成</li>
+  <li><strong>childElementCount</strong> - 返回当前节点的所有 Element 子节点的数目</li>
+  <li><strong>firstElementChild</strong> - 返回当前节点的第一个 Element 子节点，否则为 null；<strong>lastElementChild</strong> 返回最后一个子 Element 节点</li>
+  <li><strong>nextElementSibling</strong> - 返回指定元素的后一个同级元素，否则为 null；<strong>previousElementSibling</strong> 为前一个同级元素</li>
+</ul>
+
+<pre><code class="language-JS">document.firstChild
+// 返回第一个节点 &lt;!DOCTYPE html&gt;
+
+document.firstElementChild
+// 返回第一个 Element 节点 &lt;html lang=​"en"&gt;​&lt;head&gt;​…​&lt;/head&gt;​&lt;body&gt;​…​&lt;/body&gt;​&lt;/html&gt;​
+</code></pre>
+
+<h3 id="element-位置信息">Element 位置信息</h3>
+
+<ul>
+  <li><strong>clientHeight</strong> - 返回元素节点的可见高度，包括 padding、但不包括水平滚动条、 border 和 margin 的高度；对应为 clientWidth</li>
+  <li><strong>clientLeft</strong> - 返回元素节点左 border 的宽度，单位为像素，包括垂直滚动条的宽度，不包括左侧的 margin 和 padding；</li>
+  <li><strong>clientTop</strong> - 返回网页元素顶部 border 的宽度，不包括顶部的 margin 和 padding</li>
+  <li><strong>scrollHeight</strong> - 返回指定元素的总高度，包括由于溢出而无法展示在网页的不可见部分，包括 padding，但不包括 border 和 margin；对应为 scrollWidth</li>
+  <li><strong>scrollLeft</strong> - 设置或返回水平滚动条向右侧滚动的像素数量。它的值等于元素的最左边与其可见的最左侧之间的距离</li>
+  <li><strong>scrollTop</strong> - 设置或返回垂直滚动条向下滚动的像素数量。它的值等于元素的顶部与其可见的最高位置之间的距离</li>
+</ul>
+
+<pre><code class="language-JS">// 判断页面是否滚动到底部
+element.scrollHeight - element.scrollTop === element.clientHeight;
+</code></pre>
+
+<p><img src="https://i.loli.net/2018/03/30/5abdd0266642a.gif" alt="element-clientLeft.gif" /></p>
+
+<h3 id="element-方法">Element 方法</h3>
+
+<ul>
+  <li><strong>hasAttribute()</strong> - 返回一个布尔值，表示当前元素节点是否包含指定的 HTML 属性</li>
+  <li><strong>getAttribute()</strong> - 返回当前元素节点的指定属性</li>
+  <li><strong>removeAttribute()</strong> - 从当前元素节点移除属性</li>
+  <li><strong>setAttribute()</strong> - 为当前元素节点新增属性，或编辑已存在的属性</li>
+  <li><strong>querySelector()</strong> - 同 Document 方法，包括 querySelectorAll()、getElementBy…()</li>
+  <li><strong>closest()</strong> - 返回当前元素节点的最接近的父元素(或者当前节点本身)</li>
+  <li><strong>matches()</strong> - 返回一个布尔值，表示当前元素是否匹配给定的 CSS 选择器</li>
+  <li><strong>remove()</strong> - 用于将当前元素节点从 DOM 树删除</li>
+  <li><strong>scrollIntoView()</strong> - 滚动当前元素，进入浏览器的可见区域，可以接受一个布尔值作为参数。默认为 true，表示元素的顶部与当前区域的可见部分的顶部对齐(前提是当前区域可滚动)；false 则为两者尾部对齐。</li>
+</ul>
+
+<pre><code class="language-HTML">&lt;article&gt;
+  &lt;div id="div-01"&gt;Here is div-01
+    &lt;div id="div-02"&gt;Here is div-02
+      &lt;div id="div-03"&gt;Here is div-03&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+</code></pre>
+
+<pre><code class="language-JS">var el = document.getElementById('div-03');
+el.closest("#div-02") // div-02
+el.closest("div div") // div-03
+el.closest("article &gt; div") //div-01
+el.closest(":not(div)") // article
+</code></pre>
+
+<h2 id="text">Text</h2>
+
+<p>Text 节点代表 Element 节点和 Attribute 节点的文本内容，可以使用 Document 节点的 createTextNode 方法创造一个 Text 节点。通过 firstChild、nextSibling 等获取 Text 节点。</p>
+
+<h3 id="text-属性">Text 属性</h3>
+
+<ul>
+  <li><strong>data</strong> - 等同于 nodeValue 属性，用来设置或读取 Text 节点的内容</li>
+  <li><strong>wholeText</strong> - 将当前 Text 节点与毗邻的 Text 节点，作为一个整体返回。大多数情况下，wholeText 属性的返回值，与 data 属性和 textContent 属性相同</li>
+  <li><strong>length</strong> - 回当前 Text 节点的文本长度</li>
+</ul>
+
+<pre><code class="language-JS">// 读取文本内容
+document.querySelector('p').firstChild.data
+// 等价于
+document.querySelector('p').firstChild.nodeValue
+
+// 设置文本内容
+document.querySelector('p').firstChild.data = 'Hello World';
+</code></pre>
+
+<h3 id="text-方法">Text 方法</h3>
+
+<ul>
+  <li><strong>appendData()</strong> - 在 Text 节点尾部追加字符串</li>
+  <li><strong>deleteData()</strong> - 删除 Text 节点内部的子字符串，第一个参数为子字符串位置，第二个参数为子字符串长度</li>
+  <li><strong>insertData()</strong> - 在 Text 节点插入字符串，第一个参数为插入位置，第二个参数为插入的子字符串</li>
+  <li><strong>replaceData()</strong> - 用于替换文本，第一个参数为替换开始位置，第二个参数为需要被替换掉的长度，第三个参数为新加入的字符串</li>
+  <li><strong>subStringData()</strong> - 用于获取子字符串，第一个参数为子字符串在 Text 节点中的开始位置，第二个参数为子字符串长度</li>
+  <li><strong>remove</strong> - 移除当前 Text 节点</li>
+</ul>
+
+<pre><code class="language-JS">// HTML代码为
+// &lt;p&gt;Hello World&lt;/p&gt;
+var pElementText = document.querySelector('p').firstChild;
+
+pElementText.appendData('!');
+// 页面显示 Hello World!
+pElementText.deleteData(7, 5);
+// 页面显示 Hello W
+pElementText.insertData(7, 'Hello ');
+// 页面显示 Hello WHello
+pElementText.replaceData(7, 5, 'World');
+// 页面显示 Hello WWorld
+pElementText.substringData(7, 10);
+// 页面显示不变，返回 "World "
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://wohugb.gitbooks.io/javascript/dom/node.html">Gitbooks - JavaScript 标准参考教程</a></li>
+  <li><a href="https://blog.csdn.net/magic__man/article/details/51831227">事件触发器 - dispatchEvent</a> By magic__man</li>
+  <li><a href="https://segmentfault.com/a/1190000005897042">容易混淆的 client-<em>,scroll-</em>,offset-*</a> By zhangguixu</li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/03/30/html-dom.html';
+        this.page.identifier = '/2018/03/30/html-dom';
+        this.page.title = 'DOM';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-30 16:30:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>

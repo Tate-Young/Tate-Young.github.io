@@ -122,11 +122,11 @@ demo.style.removeProperty('--size');
 ```JS
 // 兼容性方法
 function readStyle(element, cssPropertyName){
-    if(getComputedStyle) { // 如果支持 getComputedStyle 属性(IE9 及以上，ie9 以下不兼容)
-        return getComputedStyle(element)[cssPropertyName];
-    } else { // 如果支持 currentStyle(IE9 以下使用)
-        return element.currentStyle[cssPropertyName];
-    }
+  if(getComputedStyle) { // 如果支持 getComputedStyle 属性(IE9 及以上，ie9 以下不兼容)
+    return getComputedStyle(element)[cssPropertyName];
+  } else { // 如果支持 currentStyle(IE9 以下使用)
+    return element.currentStyle[cssPropertyName];
+  }
 }
 ```
 

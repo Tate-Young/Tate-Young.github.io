@@ -428,11 +428,82 @@ function showColor(ev) {
 }
 </code></pre>
 
+<h2 id="事件模拟">事件模拟</h2>
+
+<p><strong>createEvent()</strong> - 生成一个事件对象，参数是事件类型，比如:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">事件类型</th>
+      <th style="text-align: left">事件初始化方法</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">UIEvents</td>
+      <td style="text-align: left">event.initUIEvent</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MouseEvents</td>
+      <td style="text-align: left">event.initMouseEvent</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MutationEvents</td>
+      <td style="text-align: left">event.initMutationEvent</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">HTMLEvents</td>
+      <td style="text-align: left">event.initEvent</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Event</td>
+      <td style="text-align: left">event.initEvent</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">CustomEvent</td>
+      <td style="text-align: left">event.initCustomEvent</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">KeyboardEvent</td>
+      <td style="text-align: left">event.initKeyEvent</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>dispatchEvent()</strong> - 当前节点上触发指定事件，从而触发监听函数的执行，参数是一个 Event 对象的实例，如果在事件传播过程中调用了 event.preventDefault 方法，则返回 false，否则返回 true。IE 用 fireEvent()</p>
+
+<pre><code class="language-JS">document.addEventListener('myEvent', function (event) {
+  console.log('Name: %s, Age: %d', event.name, event.age); // Name: tate, Age: 18
+}, false);
+
+//创建 event 的对象实例。
+var event = document.createEvent('HTMLEvents');
+// 3个参数：事件类型，是否冒泡，是否阻止浏览器的默认行为
+event.initEvent('myEvent', true, true);
+// 自定义事件属性，只要你开心
+event.name = 'tate';
+event.age = 18;
+
+//触发自定义事件
+document.dispatchEvent(event);
+</code></pre>
+
+<p>IE 为 <strong>createEventObject()</strong>，不接受参数，返回通用 event 对象:</p>
+
+<pre><code class="language-JS">var event = document.createEventObject();
+event.bubbles = true;
+event.cancelable = true;
+event.name = 'tate';
+targetElement.fireEvent('onmouseover', event); // 触发事件
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://www.cnblogs.com/starof/p/4066381.html">javaScript事件(一) 事件流</a> By starof</li>
   <li><a href="https://segmentfault.com/a/1190000006934031">JS 事件模型</a> By simon_woo</li>
+  <li><a href="https://www.cnblogs.com/xiaohuochai/p/5880851.html">深入理解 DOM 事件机制系列第四篇 —— 事件模拟</a> By 小火柴的蓝色理想</li>
 </ol>
  
 <div id="disqus_thread"></div>

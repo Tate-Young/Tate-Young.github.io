@@ -206,6 +206,9 @@ function ondragend(ev) {
 
 ## 事件对象的位置
 
+* pageX = clientX + ScrollLeft(滚动条水平滚动距离)
+* pageY = clientY + ScrollTop(滚动条垂直滚动距离)
+
 [![event-clientX.png](https://i.loli.net/2018/03/27/5aba02a113334.png)](https://i.loli.net/2018/03/27/5aba02a113334.png)
 
 ## 参考链接

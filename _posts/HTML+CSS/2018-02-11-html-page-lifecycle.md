@@ -20,9 +20,9 @@ tags:
 * **beforeunload** 在用户即将离开页面时触发，它返回一个字符串，浏览器会向用户展示并询问这个字符串以确定是否离开。
 * **unload** 在用户已经离开时触发。
 * **document.readyState** 表示页面的加载状态，可以在 **readystatechange** 中追踪页面的变化状态：
-  * loading — 页面正在加载中。
-  * interactive -- 页面解析完毕，和 DOMContentLoaded 几乎同时发生，不过顺序在它之前。
-  * complete -- 页面上的资源都已加载完毕，和 window.onload 几乎同时发生，不过顺序在他之前。
+  * **loading** — 页面正在加载中。
+  * **interactive** -- 页面解析完毕，和 DOMContentLoaded 几乎同时发生，不过顺序在它之前。
+  * **complete** -- 页面上的资源都已加载完毕，和 window.onload 几乎同时发生，不过顺序在他之前。
 
 ## DOMContentLoaded
 
