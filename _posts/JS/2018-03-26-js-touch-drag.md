@@ -178,7 +178,7 @@ function ondrag(ev) {
   var coordinateX = event.clientX;
   var coordinateY = event.clientY;
   if (coordinateX === 0 && coordinateY === 0) {
-    return; //不处理拖动最后一刻X和Y都为0的情形
+    return; // 不处理拖动最后一刻X和Y都为0的情形
   }
   coordinateX -= offsetX;
   coordinateY -= offsetY;

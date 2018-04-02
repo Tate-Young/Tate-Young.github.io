@@ -677,6 +677,22 @@ article.innerHTML;
 // "
 </code></pre>
 
+<p>通过改变节点内容，加上 style 标签还可以增添样式:</p>
+
+<pre><code class="language-JS">var style = document.createElement('style');
+
+style.setAttribute('media', 'screen');
+// 或者
+// style.setAttribute("media", "@media only screen and (max-width : 1024px)");
+
+style.innerHTML = 'body{color:red}';
+// 或者
+// sheet.insertRule("header { float: left; opacity: 0.8; }", 1);
+
+document.head.appendChild(style);
+// &lt;style media="screen"&gt;body{color:red}&lt;/style&gt;
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
