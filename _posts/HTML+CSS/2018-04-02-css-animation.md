@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  CSS 动画
 date:   2018-04-02 17:07:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: https://i.loli.net/2018/02/25/5a922e9961a07.gif
 tags:
 - css
 ---
@@ -151,7 +151,7 @@ transition-delay: .1s;
   * backwards - 设置对象状态为动画开始时的状态
   * both - 设置对象状态为动画结束或开始的状态
 
-使用 @keyframe 定义动画时，简单的动画可以直接使用关键字 from 和 to，也可使用 \<percentage\> 去设置某个时间段内的任意时间点的样式:
+使用 **@keyframe** 定义动画时，简单的动画可以直接使用关键字 from 和 to，也可使用 \<percentage\> 去设置某个时间段内的任意时间点的样式:
 
 ```CSS
 /* animation: testanimations 3s linear */
