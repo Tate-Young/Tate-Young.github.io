@@ -174,7 +174,7 @@ transition-delay: .1s;
 
 使用 perspective 和 transform 实现容器上的悬浮效果，
 
-<iframe id="bvwYrg" src="//codepen.io/airen/embed/bvwYrg?height=400&amp;theme-id=0&amp;slug-hash=bvwYrg&amp;default-tab=result&amp;user=airen" scrolling="no" frameborder="0" height="400" allowtransparency="true" allowfullscreen="true" class="cp_embed_iframe undefined" style="width: 100%; overflow: hidden;"></iframe>
+<script async src="//jsfiddle.net/Tate_Young/r82cssjt/embed/"></script>
 
 <style>
 .under-line{
@@ -194,7 +194,7 @@ transition-delay: .1s;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
 }
-.under-line:hover::before, .under-line:focus::before {
+.under-line:hover:before, .under-line:focus:before {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
@@ -207,24 +207,227 @@ transition-delay: .1s;
 /* 宝塔镇河妖 样式参考 */
 .under-line{
   position: relative;
+  &::before {
+    position: absolute;
+    top: auto;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background-color: #ff4081;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  &:hover:before, &:focus:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
 }
-.under-line::before {
-  content: '';
-  position: absolute;
-  top: auto;
-  bottom: -2px;
-  left: 0;
+```
+
+<style>
+.animation-content{
   width: 100%;
-  height: 1px;
-  background-color: #ff4081;
-  -webkit-transition: all .2s;
-  transition: all .2s;
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
+  background-color: rgba(0, 0, 0, .05);
+  height: 40px;
+  line-height: 40px;
+  padding-left: 20px;
 }
-.under-line:hover::before, .under-line:focus::before {
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1);
+.animation-content div{
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 30px;
+}
+.timer{
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  box-shadow: inset 0px 0px 0px 2px black;
+  /* border: 2px solid white;
+  border-radius: 20px; */
+  border-radius: 50%;
+  position: relative;
+}
+.timer:after, .timer:before{
+  position: absolute;
+  content:"";
+  background-color: black;
+  height: 2px;
+  top: 11px;
+  left: 11px;
+  -webkit-transform-origin: 1px 1px;
+  -moz-transform-origin: 1px 1px;
+  transform-origin: 1px 1px;
+  -webkit-animation: ticktock linear infinite;
+  -moz-animation: ticktock linear infinite;
+  animation: ticktock linear infinite;
+}
+.timer:after{
+  width: 10px;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  animation-duration: 2s;
+}
+.timer:before{
+  width: 8px;
+  -webkit-animation-duration: 8s;
+  -moz-animation-duration: 8s;
+  animation-duration: 8s;
+}
+@-webkit-keyframes ticktock{
+  0%{-webkit-transform:rotate(0deg)}
+  100%{-webkit-transform:rotate(360deg)}
+}
+@-moz-keyframes ticktock{
+  0%{-moz-transform:rotate(0deg)}
+  100%{-moz-transform:rotate(360deg)}
+}
+@keyframes ticktock{
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
+}
+/*eye ball*/
+.eye{
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  box-shadow: 30px 0px 0px 0px rgba(255,255,255,0.8);
+  position: relative;
+}
+.eye:after{
+  background-color: #59488b;
+  width: 10px;
+  height: 10px;
+  box-shadow: 30px 0px 0px 0px #59488b;
+  border-radius: 50%;
+  left: 9px;
+  top: 8px;
+  position: absolute;
+  content: "";
+  -webkit-animation: eyeball 1s linear infinite alternate;
+  -moz-animation: eyeball 1s linear infinite alternate;
+  animation: eyeball 1s linear infinite alternate;
+}
+@-webkit-keyframes eyeball{
+  0%{left: 9px;}
+  100%{left: 1px;}
+}
+@-moz-keyframes eyeball{
+  0%{left: 9px;}
+  100%{left: 1px;}
+}
+@keyframes eyeball{
+  0%{left: 9px;}
+  100%{left: 1px;}
+}
+.typing_loader {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  -webkit-animation: typing 1s linear infinite alternate;
+  -moz-animation: Typing 1s linear infinite alternate;
+  animation: typing 1s linear infinite alternate;
+  position: relative;
+  margin-left: 30px;
+}
+@-webkit-keyframes typing {
+  0% {
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 12px 0px 0px 0px rgba(0, 0, 0, 0.2), 24px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  }
+  25% {
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(0, 0, 0, 2), 24px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  }
+  75% {
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(0, 0, 0, 0.2), 24px 0px 0px 0px rgba(0, 0, 0, 1);
+  }
+}
+@-moz-keyframes typing {
+  0% {
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 12px 0px 0px 0px rgba(0, 0, 0, 0.2), 24px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  }
+  25% {
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(0, 0, 0, 2), 24px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  }
+  75% {
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(0, 0, 0, 0.2), 24px 0px 0px 0px rgba(0, 0, 0, 1);
+  }
+}
+@keyframes typing {
+  0% {
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 12px 0px 0px 0px rgba(0, 0, 0, 0.2), 24px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  }
+  25% {
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(0, 0, 0, 2), 24px 0px 0px 0px rgba(0, 0, 0, 0.2);
+  }
+  75% {
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 12px 0px 0px 0px rgba(0, 0, 0, 0.2), 24px 0px 0px 0px rgba(0, 0, 0, 1);
+  }
+}
+</style>
+
+<div class="animation-content">
+  <div class="timer"></div>
+  <div class="eye"></div>
+  <div class="typing_loader"></div>
+</div>
+
+```CSS
+/* 时钟 loading 动画 */
+.timer {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  box-shadow: inset 0px 0px 0px 2px #fff;
+ /*  border: 2px solid white;
+  border-radius: 20px; */
+  border-radius: 50%;
+  position: relative;
+  &:after,
+  &:before {
+    position: absolute;
+    content: "";
+    background-color: #fff;
+    height: 2px;
+    top: 11px;
+    left: 11px;
+    -webkit-transform-origin: 1px 1px;
+    -moz-transform-origin: 1px 1px;
+    transform-origin: 1px 1px;
+    -webkit-animation: ticktock linear infinite;
+    -moz-animation: ticktock linear infinite;
+    animation: ticktock linear infinite;
+  }
+  &:after {
+    width: 10px;
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    animation-duration: 2s;
+  }
+  &:before {
+    width: 8px;
+    -webkit-animation-duration: 8s;
+    -moz-animation-duration: 8s;
+    animation-duration: 8s;
+  }
+}
+@keyframes ticktock {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
 }
 ```
 
