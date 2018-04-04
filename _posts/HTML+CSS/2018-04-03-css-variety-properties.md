@@ -5,7 +5,7 @@ comments: True
 flag: CSS
 background: purple
 category: 前端
-title:  box-shadow
+title:  CSS 属性集合
 date:   2018-04-03 16:46:00 GMT+0800 (CST)
 background-image: /style/images/darling.jpg
 tags:
@@ -425,6 +425,18 @@ CSS **滤镜(filter)** 属提供的图形特效，像模糊、锐化或元素变
 查看 JSFiddle 示例:
 
 <script async src="//jsfiddle.net/Tate_Young/r88t8kcg/3/embed/html,css,result/"></script>
+
+## pointer-events
+
+**pointer-events** 设置或检索在何时成为属性事件的 target，取值为:
+
+* **auto** - 与 pointer-events 属性未指定时的表现效果相同
+* **none** - 元素永远不会成为鼠标事件的 target。但是，当其后代元素的 pointer-events 属性指定其他值时，鼠标事件可以指向后代元素，在这种情况下，鼠标事件将在捕获或冒泡阶触发父元素的事件侦听器
+
+```CSS
+ /* 其他针对 SVG 的属性: visiblepainted | visiblefill | visiblestroke | visible | painted | fill | stroke | all */
+pointer-events：auto | none
+```
 
 ## 参考链接
 
