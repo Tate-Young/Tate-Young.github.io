@@ -439,3 +439,4 @@ transition-delay: .1s;
 1. [alloyteam 简单动画演示](http://css3lib.alloyteam.com/uilib/animation/demo1/#cta)
 1. [前端观察 - HTML5+CSS3 loading 效果收集](https://www.qianduan.net/free-html5-css3-loaders-preloaders/)
 1. [cubic-bezier 在线生成器](http://yisibl.github.io/cubic-bezier/#.17,.67,.91,.43)
+1. [Creative Link Effects](https://tympanus.net/Development/CreativeLinkEffects/)
