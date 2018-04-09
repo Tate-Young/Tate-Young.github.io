@@ -212,9 +212,7 @@
 
 <p>示例如下:</p>
 
-<ul>
-  <li><strong>basename</strong></li>
-</ul>
+<h3 id="basename">basename</h3>
 
 <p>basename(p, [ext])，参数 p 是要处理的 path，可选参数 ext 是要过滤的字符:</p>
 
@@ -226,9 +224,7 @@ path.basename('/foo/bar/baz/asdf/quux.html', '.html'); // 返回: 'quux'
 path.extname('index.coffee.md'); // 返回: '.md'
 </code></pre>
 
-<ul>
-  <li><strong>join</strong></li>
-</ul>
+<h3 id="join--normalize">join / normalize</h3>
 
 <p>join([p1], [p2], […]) 将多个参数拼接成一个 path，拼接时会执行 normalize 方法:</p>
 
@@ -237,9 +233,7 @@ path.extname('index.coffee.md'); // 返回: '.md'
 path.normalize('/foo/bar//baz/asdf/quux/..'); // 返回: '/foo/bar/baz/asdf'
 </code></pre>
 
-<ul>
-  <li><strong>format</strong></li>
-</ul>
+<h3 id="format--parse">format / parse</h3>
 
 <pre><code class="language-JS">path.format({
   root: '/ignored', // 忽略
@@ -266,9 +260,7 @@ path.normalize('/foo/bar//baz/asdf/quux/..'); // 返回: '/foo/bar/baz/asdf'
 └──────┴──────────────┴──────┴─────┘
 </code></pre>
 
-<ul>
-  <li><strong>sep</strong></li>
-</ul>
+<h3 id="sep">sep</h3>
 
 <p>sep 表示路径片段分隔符，windows 为 \，macOS 为 /:</p>
 
@@ -292,8 +284,8 @@ path.normalize('/foo/bar//baz/asdf/quux/..'); // 返回: '/foo/bar/baz/asdf'
 <p>以上是基于底层的操作，更便捷的文件操作如下，不用打开和关闭文件:</p>
 
 <ul>
-  <li><strong>readFile</strong>(file[, options], callback) - 读取文件</li>
-  <li><strong>writeFile</strong>(file, data[, options], callback) - 写入文件</li>
+  <li><strong>readFile</strong>(file[, options], callback) - 读取文件，读取文件流 createReadStream</li>
+  <li><strong>writeFile</strong>(file, data[, options], callback) - 写入文件，写入文件流 createWriteStream</li>
   <li><strong>appendFile</strong>(filename, data, [options], callback) - 追加文件，若文件不存在则创建</li>
   <li><strong>access</strong>(path, callback) - 代替 exists，判断文件是否存在，还可以用来判断文件的权限</li>
   <li><strong>unlink</strong>(path, callback) - 删除文件</li>
@@ -312,9 +304,7 @@ path.normalize('/foo/bar//baz/asdf/quux/..'); // 返回: '/foo/bar/baz/asdf'
 
 <p>以上皆为异步方法，同步方法为 “方法名 + Sync”，一般情况下不建议使用。示例如下:</p>
 
-<ul>
-  <li><strong>open</strong></li>
-</ul>
+<h3 id="open--close">open / close</h3>
 
 <p>open(path, flags[, mode], callback) 中 flags 的取值有:</p>
 
@@ -389,9 +379,7 @@ path.normalize('/foo/bar//baz/asdf/quux/..'); // 返回: '/foo/bar/baz/asdf'
 })
 </code></pre>
 
-<ul>
-  <li><strong>readFile</strong> / <strong>createFileStream</strong></li>
-</ul>
+<h3 id="readfile--createfilestream">readFile / createFileStream</h3>
 
 <p>readFile(file[, options], callback) 用于读取文件，options 该参数是一个对象，包含 {encoding, flag}:</p>
 
@@ -436,9 +424,7 @@ writeStream.write('world');
 writeStream.end('');
 </code></pre>
 
-<ul>
-  <li><strong>stat</strong></li>
-</ul>
+<h3 id="stat">stat</h3>
 
 <p>stat(path, callback) 查看文件信息，会将 stats 类的实例返回给其回调函数。stats 类的方法有:</p>
 
@@ -449,11 +435,12 @@ writeStream.end('');
   <li><strong>isCharacterDevice()</strong> - 如果是字符设备返回 true，否则返回 false</li>
   <li><strong>isSymbolicLink()</strong> - 如果是软链接返回 true，否则返回 false</li>
   <li><strong>isFIFO()</strong> - 如果是 FIFO，返回 true，否则返回 false。FIFO 是 UNIX 中的一种特殊类型的命令管道</li>
-  <li>
-    <p><strong>isSocket()</strong> - 如果是 Socket 返回 true，否则返回 false</p>
-  </li>
-  <li>遍历目录</li>
+  <li><strong>isSocket()</strong> - 如果是 Socket 返回 true，否则返回 false</li>
 </ul>
+
+<h3 id="遍历目录">遍历目录</h3>
+
+<p>使用 fs 模块遍历目录的同步和异步写法:</p>
 
 <pre><code class="language-JS">// 同步写法
 function travel(dir, callback) {

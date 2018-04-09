@@ -1,6 +1,6 @@
 ---
 layout: blog
-front: true
+back: true
 comments: True
 flag: Node
 background: blue
@@ -39,7 +39,7 @@ const path = require('path');
 
 示例如下:
 
-* **basename**
+### basename
 
 basename(p, [ext])，参数 p 是要处理的 path，可选参数 ext 是要过滤的字符:
 
@@ -53,7 +53,7 @@ path.dirname('/foo/bar/baz/asdf/quux'); // 返回: '/foo/bar/baz/asdf'
 path.extname('index.coffee.md'); // 返回: '.md'
 ```
 
-* **join**
+### join / normalize
 
 join([p1], [p2], [...]) 将多个参数拼接成一个 path，拼接时会执行 normalize 方法:
 
@@ -63,7 +63,7 @@ path.join('/foo', 'bar', 'baz/asdf', 'quux', '..'); // 返回: '/foo/bar/baz/asd
 path.normalize('/foo/bar//baz/asdf/quux/..'); // 返回: '/foo/bar/baz/asdf'
 ```
 
-* **format**
+### format / parse
 
 ```JS
 path.format({
@@ -93,7 +93,7 @@ path.parse('/home/user/dir/file.txt');
 └──────┴──────────────┴──────┴─────┘
 ```
 
-* **sep**
+### sep
 
 sep 表示路径片段分隔符，windows 为 \，macOS 为 /:
 
@@ -116,8 +116,8 @@ const fs = require('fs');
 
 以上是基于底层的操作，更便捷的文件操作如下，不用打开和关闭文件:
 
-* **readFile**(file[, options], callback) - 读取文件
-* **writeFile**(file, data[, options], callback) - 写入文件
+* **readFile**(file[, options], callback) - 读取文件，读取文件流 createReadStream
+* **writeFile**(file, data[, options], callback) - 写入文件，写入文件流 createWriteStream
 * **appendFile**(filename, data, [options], callback) - 追加文件，若文件不存在则创建
 * **access**(path, callback) - 代替 exists，判断文件是否存在，还可以用来判断文件的权限
 * **unlink**(path, callback) - 删除文件
@@ -133,7 +133,7 @@ const fs = require('fs');
 
 以上皆为异步方法，同步方法为 "方法名 + Sync"，一般情况下不建议使用。示例如下:
 
-* **open**
+### open / close
 
 open(path, flags[, mode], callback) 中 flags 的取值有:
 
@@ -165,7 +165,7 @@ fs.open('input.txt', 'r+', function(err, fd) {
 })
 ```
 
-* **readFile** / **createFileStream**
+### readFile / createFileStream
 
 readFile(file[, options], callback) 用于读取文件，options 该参数是一个对象，包含 {encoding, flag}:
 
@@ -213,7 +213,7 @@ writeStream.write('world');
 writeStream.end('');
 ```
 
-* **stat**
+### stat
 
 stat(path, callback) 查看文件信息，会将 stats 类的实例返回给其回调函数。stats 类的方法有:
 
@@ -225,7 +225,9 @@ stat(path, callback) 查看文件信息，会将 stats 类的实例返回给其�
 * **isFIFO()** - 如果是 FIFO，返回 true，否则返回 false。FIFO 是 UNIX 中的一种特殊类型的命令管道
 * **isSocket()** - 如果是 Socket 返回 true，否则返回 false
 
-* 遍历目录
+### 遍历目录
+
+使用 fs 模块遍历目录的同步和异步写法:
 
 ```JS
 // 同步写法
