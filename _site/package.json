@@ -17,6 +17,6 @@
     "scripty": "^1.7.2"
   },
   "dependencies": {
-    "npm": "^5.7.1"
+    "npm": "^5.8.0"
   }
 }
