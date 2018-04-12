@@ -421,7 +421,7 @@ var cb1 = function (req, res, next) {
 
 app.get('/example/d', [cb0, cb1], function (req, res, next) {
   console.log('response will be sent by the next function ...');
-  next();
+  next(); // 跳到下一个路由句柄
 }, function (req, res) {
   res.send('Hello from D!');
 });
@@ -478,4 +478,4 @@ app.use('/birds', birds);
 
 1. [Express 4.x API 中文手册](http://www.expressjs.com.cn/4x/api.html)
 2. [nodejs 的 express 使用介绍](https://www.cnblogs.com/mq0036/p/5243312.html)
-3. [](http://blog.jobbole.com/41325/)
+3. [深入理解 Express.js](http://blog.jobbole.com/41325/)

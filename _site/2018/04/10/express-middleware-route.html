@@ -657,7 +657,7 @@ var cb1 = function (req, res, next) {
 
 app.get('/example/d', [cb0, cb1], function (req, res, next) {
   console.log('response will be sent by the next function ...');
-  next();
+  next(); // 跳到下一个路由句柄
 }, function (req, res) {
   res.send('Hello from D!');
 });
@@ -712,7 +712,7 @@ app.use('/birds', birds);
 <ol>
   <li><a href="http://www.expressjs.com.cn/4x/api.html">Express 4.x API 中文手册</a></li>
   <li><a href="https://www.cnblogs.com/mq0036/p/5243312.html">nodejs 的 express 使用介绍</a></li>
-  <li><a href="http://blog.jobbole.com/41325/"></a></li>
+  <li><a href="http://blog.jobbole.com/41325/">深入理解 Express.js</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
