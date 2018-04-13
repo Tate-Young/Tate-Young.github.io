@@ -438,6 +438,68 @@ CSS **滤镜(filter)** 属提供的图形特效，像模糊、锐化或元素变
 pointer-events：auto | none
 ```
 
+## 伪对象选择符
+
+### ::placeholder
+
+**::placeholder** 伪元素用于控制表单输入框占位符的外观，默认的文字占位符为浅灰色，可修改文字占位符的样式。
+
+<style>
+input{
+  -webkit-appearance:none;
+  border:1px solid #35495e;
+  border-radius:10px;
+  outline:none;
+  padding: 0 14px;
+}
+input::-webkit-input-placeholder {
+  color: #41b883;
+}
+input:-ms-input-placeholder { // IE 10+
+  color: #41b883;
+}
+input:-moz-placeholder { // Firefox 4-18
+  color: #41b883;
+}
+input::-moz-placeholder { // Firefox 19+
+  color: #41b883;
+}
+</style>
+
+<input placeholder="我就是文字占位符">
+
+```CSS
+input::-webkit-input-placeholder {
+  color: #41b883;
+}
+input:-ms-input-placeholder { // IE 10+
+  color: #41b883;
+}
+input:-moz-placeholder { // Firefox 4-18
+  color: #41b883;
+}
+input::-moz-placeholder { // Firefox 19+
+  color: #41b883;
+}
+```
+
+### ::selection
+
+<style>
+  .selection{user-select:all;}
+  .selection::selection{background-color:#41b883;color:white;}
+  .selection strong::selection{background-color:#41b883;color:white;}
+</style>
+
+<p class="selection"><strong>::selection</strong> 用来设置被选中时的样式，只能定义被选择时的 background-color、color 及 text-shadow(IE11 尚不支持定义该属性)，选择这段话试试。</p>
+
+```CSS
+p::selection {
+  background-color: #41b883;
+  color: white;
+}
+```
+
 ## 移动端常用的属性
 
 ### -webkit-touch-callout
