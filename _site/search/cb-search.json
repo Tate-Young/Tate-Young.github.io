@@ -3,6 +3,22 @@
 	"data" : [
 	 
 	{
+		"title" : "换行与断词 - ",
+		"url" : "/2018/04/13/css-word-wrap.html"
+	}
+	
+	,
+	
+    
+	{
+		"title" : "盒子模型与定位 - ",
+		"url" : "/2018/04/12/css-box-model.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Express 中间件与路由 - ",
 		"url" : "/2018/04/10/express-middleware-route.html"
 	}
@@ -267,7 +283,7 @@
 	
     
 	{
-		"title" : "Flexbox 布局 - ",
+		"title" : "Flex 布局 - ",
 		"url" : "/2018/02/12/css-flex.html"
 	}
 	

@@ -34,7 +34,7 @@ tags:
 
 CSS3 引进了 **box-sizing** 属性，用来设置或检索对象的盒模型组成模式，取值为:
 
-* **content-box** - 使用标准盒子模型
+* **content-box** - 使用标准盒子模型，默认
 * **border-box** - 使用 IE 盒子模型
 
 ```CSS
