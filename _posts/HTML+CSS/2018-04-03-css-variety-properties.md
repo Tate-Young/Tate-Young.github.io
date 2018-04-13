@@ -438,6 +438,58 @@ CSS **滤镜(filter)** 属提供的图形特效，像模糊、锐化或元素变
 pointer-events：auto | none
 ```
 
+## 移动端常用的属性
+
+### -webkit-touch-callout
+
+当触摸并按住目标，如一个链接，Safari 浏览器将显示链接有关的系统默认菜单。这个属性可以让你禁用系统默认菜单。取值为:
+
+* **none** - 系统默认菜单被禁用
+* **default** - 系统默认菜单不被禁用，默认值
+
+```CSS
+-webkit-touch-callout: none;
+```
+
+### -webkit-tap-hightlight-color
+
+当用户点击 Safari 浏览器中的链接或其他可点击的元素时，会出现一个半透明的灰色背景，使用该属性可以覆盖显示的高亮颜色，取值为:
+
+* color - 颜色值
+* transparent - 透明值
+
+```CSS
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+```
+
+### user-select
+
+```CSS
+user-select：none | text | all | element
+```
+
+**user-select** 用来设置用户是否允许用户选中文本，取值为:
+
+* **none** - 文本不能被选择
+* **text** - 默认值，文本可以被选择
+* **all** - 当所有内容作为一个整体时可以被选择
+
+尝试选择以下几个栗子:
+
+<style>
+  .user-select-none{
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .user-select-all{
+    user-select: all;
+    -webkit-user-select: all;
+  }
+</style>
+
+<p class="user-select-none"><strong>none</strong> --> 我猜你们根本就选择不到我</p>
+<p class="user-select-all"><strong>all</strong> --> 你只需要点我试一试</p>
+
 ## 参考链接
 
 1. [CSS3 - 参考手册 - box-shadow](http://www.css88.com/book/css/properties/border/box-shadow.htm)
