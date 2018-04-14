@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Linux 文件属性及操作 - ",
+		"url" : "/2018/04/14/linux-profile.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "换行与断词 - ",
 		"url" : "/2018/04/13/css-word-wrap.html"
 	}
@@ -51,7 +59,7 @@
 	
     
 	{
-		"title" : "DOM - ",
+		"title" : "DOM 节点操作 - ",
 		"url" : "/2018/03/30/html-dom.html"
 	}
 	
