@@ -455,6 +455,49 @@ mkdir -p test/test1
   </tbody>
 </table>
 
+<h2 id="文件编辑-vim">文件编辑 vim</h2>
+
+<p><strong>vim</strong> 是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富。基本上 vi/vim 共分为三种模式，分别是:</p>
+
+<ul>
+  <li><strong>命令模式</strong>(Command mode)</li>
+  <li><strong>输入模式</strong>(Insert mode)</li>
+  <li><strong>底线命令模式</strong>(Last line mode)</li>
+</ul>
+
+<p>1、命令模式</p>
+
+<p>启动 vim 时便进入命令模式，此时支持常用的命令:</p>
+
+<ul>
+  <li><strong>i/o/a</strong> - 切换到输入模式，以输入字符，区别在于进入到输入模式时光标的位置不同</li>
+  <li><strong>:</strong> - 切换到底线命令模式</li>
+  <li><strong>x</strong> - 删除当前光标所在处的字符，相当于 Del;大写 X 则删除光标之前的字符，相当于退格键</li>
+  <li><strong>dd</strong> - 删除当前光标所在一整行，ndd 则删除当前光标及其以下的 n 行</li>
+  <li><strong>gg</strong> - 光标移动到该档案的第一行</li>
+  <li><strong>0/[home]</strong> - 光标移动到该行的首个字符处；反之则为 $ 或功能键[End]</li>
+  <li><strong>n[enter]</strong> - n 为输入的数字，光标向下移动 n 行；配合 [space] 则为向右移动这一行的 n 个字符</li>
+  <li><strong>.</strong> - 重复上一个动作</li>
+  <li><strong>u</strong> - 复原上一个动作</li>
+</ul>
+
+<p>2、输入模式</p>
+
+<p>在输入模式中可以进行常规的编写，按 [HOME/END]，移动光标到行首/行尾；按 [ESC] 退出该模式，切换到命令模式。</p>
+
+<p>3、底线命令模式</p>
+
+<p>底线命令模式可以输入单个或多个字符的命令，按 [ESC] 退出该模式，切换到命令模式:</p>
+
+<ul>
+  <li><strong>q</strong> - 退出程序</li>
+  <li><strong>q!</strong> - 强制退出程序</li>
+  <li><strong>w</strong> - 保存文件</li>
+  <li><strong>x</strong> - 保存并退出程序，同 wq</li>
+</ul>
+
+<p><img src="http://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png" alt="vim" /></p>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
