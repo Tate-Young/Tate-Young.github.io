@@ -169,6 +169,7 @@ chmod o+rw test.txt
 | **pwd** | 显示目前的目录 |
 | **mkdir** | 创建一个新的目录 |
 | **rmdir** | 删除一个空的目录 |
+| **touch** | 创建一个空的文件 |
 | **rm** | 移除文件或目录 |
 | **cp** | 复制文件或目录 |
 
@@ -258,6 +259,8 @@ mkdir -p test/test1
 * **q!** - 强制退出程序
 * **w** - 保存文件
 * **x** - 保存并退出程序，同 wq
+
+> 在编辑文件的时候如果异常退出，会自动生成 swp 文件以保证文件的安全性，导致每次启动 vim 编辑该文件时都会进行扰人的提示，解决的办法是 <code>rm -f .[basename].swp</code>。
 
 ![vim](http://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png)
 

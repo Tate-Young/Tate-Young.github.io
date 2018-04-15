@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Linux 常用命令 - ",
+		"url" : "/2018/04/15/linux-command.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Linux 文件属性及操作 - ",
 		"url" : "/2018/04/14/linux-profile.html"
 	}
@@ -11,7 +19,7 @@
 	
     
 	{
-		"title" : "换行与断词 - ",
+		"title" : "CSS 换行与断词 - ",
 		"url" : "/2018/04/13/css-word-wrap.html"
 	}
 	
@@ -19,7 +27,7 @@
 	
     
 	{
-		"title" : "盒子模型与定位 - ",
+		"title" : "CSS 盒子模型与定位 - ",
 		"url" : "/2018/04/12/css-box-model.html"
 	}
 	
