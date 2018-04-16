@@ -203,6 +203,11 @@
       <td style="text-align: left"><code>find . -name '*.txt'</code></td>
     </tr>
     <tr>
+      <td style="text-align: left"><strong>tr</strong></td>
+      <td style="text-align: left">对字符进行替换、压缩和删除</td>
+      <td style="text-align: left"><code>echo "HELLO" | tr 'A-Z' 'a-z'</code></td>
+    </tr>
+    <tr>
       <td style="text-align: left"><strong>pwd</strong></td>
       <td style="text-align: left">以绝对路径的方式显示用户当前工作目录</td>
       <td style="text-align: left"><code>pwd</code></td>
@@ -211,6 +216,16 @@
       <td style="text-align: left"><strong>whoami</strong></td>
       <td style="text-align: left">查看当前有效用户名</td>
       <td style="text-align: left"><code>whoami</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>date</strong></td>
+      <td style="text-align: left">显示或设置系统时间与日期</td>
+      <td style="text-align: left"><code>date +"%Y-%m-%d"</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>mount</strong></td>
+      <td style="text-align: left">挂载，umount 接触挂载</td>
+      <td style="text-align: left"><code>mount -t cifs -o ...</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>alias</strong></td>
@@ -281,7 +296,7 @@
 </code></pre>
 
 <pre><code class="language-SHELL">grep '^chmod' test.txt
-# chmod用法
+# chmod 用法
 # chmod a=rwx file
 # chmod 777 file
 # chmod ug=rwx,o=x file
@@ -342,6 +357,65 @@ find . -type f -atime -7
 find . -type f -size +10k
 </code></pre>
 
+<h2 id="tr">tr</h2>
+
+<p><strong>tr</strong> 用来对字符进行替换、压缩和删除，参数为:</p>
+
+<ul>
+  <li><strong>-c</strong>(–complerment) - 取代所有不属于第一字符集的字符</li>
+  <li><strong>-d</strong>(–delete) - 删除所有属于第一字符集的字符</li>
+  <li><strong>-s</strong>(–squeeze-repeats) - 把连续重复的字符以单独一个字符表示</li>
+  <li><strong>-t</strong>(–truncate-set1) - 先删除第一字符集较第二字符集多出的字符</li>
+</ul>
+
+<p>转换大小写:</p>
+
+<pre><code class="language-SHELL">echo "HELLO WORLD" | tr 'A-Z' 'a-z'
+# hello world
+</code></pre>
+
+<p>删除所匹配的字符:</p>
+
+<pre><code class="language-SHELL">echo "hello 123 world 456" | tr -d '0-9'
+# hello  world
+</code></pre>
+
+<p>压缩字符:</p>
+
+<pre><code class="language-SHELL">echo "thissss is      a text linnnnnnne." | tr -s ' sn'
+this is a text line.
+</code></pre>
+
+<h2 id="date">date</h2>
+
+<p><strong>date</strong> 用来显示或设置系统时间与日期，用法为 <code>&lt;+时间日期格式&gt;</code>，指定显示时使用的<a href="http://man.linuxde.net/date">日期时间格式</a>:</p>
+
+<pre><code class="language-SHELL">date +"%Y-%m-%d"
+# 2018-04-16
+</code></pre>
+
+<p>例如检查某个命令花费的时间:</p>
+
+<pre><code class="language-SHELL">start=$(date +%s)
+nmap man.linuxde.net &amp;&gt; /dev/null
+
+end=$(date +%s)
+difference=$(( end - start ))
+echo $difference seconds.
+</code></pre>
+
+<h2 id="mount">mount</h2>
+
+<p><strong>mount</strong> 用来挂载资源以供访问，常用的方式为:</p>
+
+<pre><code class="language-SHELL">mount -t 类型 -o 挂接方式 源路径 目标路径
+</code></pre>
+
+<p>一般情况下要是访问 Windows 文件共享，则类型采用 <strong>cifs</strong>，详情<a href="https://blog.csdn.net/q1059081877q/article/details/48251893">查看此篇博客</a>，目标路径一定要在挂载前创建，否则报错:</p>
+
+<pre><code class="language-SHELL">mount -t cifs -o username=591550,password=Bestsfer20175 //10.88.1.8/test $reportletMnt
+</code></pre>
+
 <h2 id="alias">alias</h2>
 
 <p><strong>alias</strong> 用来设置命令的别名，只局限于该次登入的操作。若要每次登入都能够使用这些命令别名，则可将相应的 alias 命令存放到 bash 的初始化文件 /etc/bashrc 中。<strong>unalias</strong> 可删除别名。</p>
@@ -367,7 +441,9 @@ say -v Daniel i am Daniel
 
 <ol>
   <li><a href="http://man.linuxde.net/grep">Linux 命令大全</a></li>
+  <li><a href="http://man.linuxde.net/shell-script">Linux Shell 脚本攻略</a></li>
   <li><a href="http://www.aboutyun.com/thread-9226-1-1.html">yum 与 rpm、apt 的区别：rpm 的缺陷及 yum 的优势</a> By pig2</li>
+  <li><a href="https://blog.csdn.net/q1059081877q/article/details/48251893">Mount 挂载命令使用方法</a></li>
 </ol>
  
 <div id="disqus_thread"></div>

@@ -360,10 +360,10 @@ echo $name
 
 ```SHELL
 reportletMnt="/home/tate/deploy/tmp/mnt"
-if [ ! -d "$reportletMnt"];then
-mkdir $reportletMnt
+if [ ! -d "$reportletMnt" ];then
+  mkdir $reportletMnt
 fi
-mount -t cifs -o username=591550,password=Bestsfer20175  //10.88.1.8/test $reportletMnt
+mount -t cifs -o username=591550,password=Bestsfer20175 //10.88.1.8/test $reportletMnt
 echo 'mount & cp reportlets.zip to tmp'
 
 cp $reportletMnt/reportlets.zip ./deploy/tmp/
@@ -377,7 +377,7 @@ echo move to upload dir
 DATE=$(date +%Y%m%d)
 mkdir /home/tate/deploy/$DATE
 mv reportlets.zip /home/tate/deploy/$DATE/
-umount  /$reportletMnt
+umount /$reportletMnt
 echo umount
 ```
 

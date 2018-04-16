@@ -21,8 +21,11 @@ tags:
 | **grep** | 文本搜索 | <code>grep '^tate' filename</code> |
 | **ps** | 查看进程 | <code>ps -ef</code> |
 | **find** | 指定目录下查找文件 | <code>find . -name '*.txt'</code> |
+| **tr** | 对字符进行替换、压缩和删除 | <code>echo "HELLO" | tr 'A-Z' 'a-z'</code> |
 | **pwd** | 以绝对路径的方式显示用户当前工作目录 | <code>pwd</code> |
 | **whoami** | 查看当前有效用户名 | <code>whoami</code> |
+| **date** | 显示或设置系统时间与日期 | <code>date +"%Y-%m-%d"</code> |
+| **mount** | 挂载，umount 接触挂载 | <code>mount -t cifs -o ...</code> |
 | **alias** | 设置命令的别名 | <code>alias ll='ls -al'</code> |
 | **say** | macOS 系统中激活语音合成系统 | <code>say -v Ting-Ting hello</code> |
 
@@ -57,7 +60,7 @@ grep "match_pattern" file_name
 
 ```SHELL
 grep '^chmod' test.txt
-# chmod用法
+# chmod 用法
 # chmod a=rwx file
 # chmod 777 file
 # chmod ug=rwx,o=x file
@@ -122,6 +125,70 @@ find . -type f -atime -7
 find . -type f -size +10k
 ```
 
+## tr
+
+**tr** 用来对字符进行替换、压缩和删除，参数为:
+
+* **-c**(--complerment) - 取代所有不属于第一字符集的字符
+* **-d**(--delete) - 删除所有属于第一字符集的字符
+* **-s**(--squeeze-repeats) - 把连续重复的字符以单独一个字符表示
+* **-t**(--truncate-set1) - 先删除第一字符集较第二字符集多出的字符
+
+转换大小写:
+
+```SHELL
+echo "HELLO WORLD" | tr 'A-Z' 'a-z'
+# hello world
+```
+
+删除所匹配的字符:
+
+```SHELL
+echo "hello 123 world 456" | tr -d '0-9'
+# hello  world
+```
+
+压缩字符:
+
+```SHELL
+echo "thissss is      a text linnnnnnne." | tr -s ' sn'
+this is a text line.
+```
+
+## date
+
+**date** 用来显示或设置系统时间与日期，用法为 <code><+时间日期格式></code>，指定显示时使用的[日期时间格式](http://man.linuxde.net/date):
+
+```SHELL
+date +"%Y-%m-%d"
+# 2018-04-16
+```
+
+例如检查某个命令花费的时间:
+
+```SHELL
+start=$(date +%s)
+nmap man.linuxde.net &> /dev/null
+
+end=$(date +%s)
+difference=$(( end - start ))
+echo $difference seconds.
+```
+
+## mount
+
+**mount** 用来挂载资源以供访问，常用的方式为:
+
+```SHELL
+mount -t 类型 -o 挂接方式 源路径 目标路径
+```
+
+一般情况下要是访问 Windows 文件共享，则类型采用 **cifs**，详情[查看此篇博客](https://blog.csdn.net/q1059081877q/article/details/48251893)，目标路径一定要在挂载前创建，否则报错:
+
+```SHELL
+mount -t cifs -o username=591550,password=Bestsfer20175 //10.88.1.8/test $reportletMnt
+```
+
 ## alias
 
 **alias** 用来设置命令的别名，只局限于该次登入的操作。若要每次登入都能够使用这些命令别名，则可将相应的 alias 命令存放到 bash 的初始化文件 /etc/bashrc 中。**unalias** 可删除别名。
@@ -149,4 +216,6 @@ say -v Daniel i am Daniel
 ## 参考链接
 
 1. [Linux 命令大全](http://man.linuxde.net/grep)
-2. [yum 与 rpm、apt 的区别：rpm 的缺陷及 yum 的优势](http://www.aboutyun.com/thread-9226-1-1.html) By pig2
+2. [Linux Shell 脚本攻略](http://man.linuxde.net/shell-script)
+3. [yum 与 rpm、apt 的区别：rpm 的缺陷及 yum 的优势](http://www.aboutyun.com/thread-9226-1-1.html) By pig2
+4. [Mount 挂载命令使用方法](https://blog.csdn.net/q1059081877q/article/details/48251893)
