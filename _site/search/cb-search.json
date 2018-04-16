@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Shell 脚本编写 - ",
+		"url" : "/2018/04/16/linux-shell.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Linux 常用命令 - ",
 		"url" : "/2018/04/15/linux-command.html"
 	}

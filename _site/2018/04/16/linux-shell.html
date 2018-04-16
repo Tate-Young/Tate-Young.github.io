@@ -1,0 +1,1022 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='Shell 脚本编写 - Tate & Snow' name='title' />
+    <meta content='Shell 脚本编写 - Tate & Snow' name='og:title' />
+    <title>Shell 脚本编写 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Shell 脚本编写 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shell 脚本编写 - Tate & Snow">
+<meta name="twitter:keywords" content="Shell 脚本编写 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell 脚本编写 - Tate & Snow">
+<meta name="og:keywords" content="Shell 脚本编写 - Tate & Snow|Shell 脚本编写什么是 ShellShell 既是一种命令语言，又是一种程序设计语言。作为命令语言，它交互式解释和执行用户输入的命令或者自动地解释和执行预先设定好的一连串的命令；作为程序设计语言，它定义了各种变量和参数，并提供了许..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="Shell 脚本编写什么是 ShellShell 既是一种命令语言，又是一种程序设计语言。作为命令语言，它交互式解释和执行用户输入的命令或者自动地解释和执行预先设定好的一连串的命令；作为程序设计语言，它定义了各种变量和参数，并提供了许..." property='og:description'
+/>
+<meta name="description" content="nothing is more practicla than a good theory" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2018/04/16/linux-shell.html' property='og:url' />
+<meta content="http://localhost:4000/2018/04/16/linux-shell.html|Shell 脚本编写什么是 ShellShell 既是一种命令语言，又是一种程序设计语言。作为命令语言，它交互式解释和执行用户输入的命令或者自动地解释和执行预先设定好的一连串的命令；作为程序设计语言，它定义了各种变量和参数，并提供了许..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Shell 脚本编写</h1>
+                <div class="post-data">
+                    <time datetime="2018-04-16 16:16:00" itemprop="datePublished">发布时间：2018-04-16 16:16:00</time>
+                    <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#Linux" title="访问Linux" data-hover="Linux">
+                        Linux
+                        <span>(3)</span>
+                        
+                    </a>
+                    
+                    <a href="/tags#shell" title="访问shell" data-hover="shell">
+                        shell
+                        <span>(1)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Shell 脚本编写</h1>
+            <div class="post-data">
+                <time datetime="2018-04-16 16:16:00" itemprop="datePublished">2018-04-16 16:16:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#Linux" title="访问Linux" data-hover="Linux">
+                    Linux
+                    <span>(3)</span>
+                    </a>
+                
+                <a href="/tags#shell" title="访问shell" data-hover="shell">
+                    shell
+                    <span>(1)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="shell-脚本编写">Shell 脚本编写</h1>
+
+<h2 id="什么是-shell">什么是 Shell</h2>
+
+<p><strong>Shell</strong> 既是一种命令语言，又是一种程序设计语言。作为命令语言，它交互式解释和执行用户输入的命令或者自动地解释和执行预先设定好的一连串的命令；作为程序设计语言，它定义了各种变量和参数，并提供了许多在高级语言中才具有的控制结构，包括循环和分支。<strong>Shell 脚本(shell script)</strong>，是一种为 shell 编写的脚本程序。</p>
+
+<p>Linux 中 Shell 种类繁多，一般默认为 <strong>bash(Bourne Again Shell)</strong>，易用且免费。当执行 shell 脚本时，一定要确保脚本可执行:</p>
+
+<pre><code class="language-SHELL"># 添加执行权限
+chmod +x shell.sh
+
+# 当前目录下执行 shell 脚本
+./shell.sh
+sh shell.sh
+</code></pre>
+
+<h2 id="变量声明">变量声明</h2>
+
+<pre><code class="language-SHELL">name='tate'
+</code></pre>
+
+<p>需要注意的是，变量名和等号之间<strong>不能有空格</strong>。同时，变量名的命名须遵循如下规则:</p>
+
+<ul>
+  <li>命名只能使用英文字母，数字和下划线，首个字符不能以数字开头</li>
+  <li>中间不能有空格，可以使用下划线 _</li>
+  <li>不能使用标点符号</li>
+  <li>不能使用 bash 里的关键字(可用 help 命令查看保留关键字)</li>
+</ul>
+
+<p>使用变量时，只要在变量名前加美元符号 $ 即可:</p>
+
+<pre><code class="language-SHELL">echo $name
+# 或者
+echo ${name}
+</code></pre>
+
+<p>通过 <strong>readonly</strong> 关键字可以设置只读变量:</p>
+
+<pre><code class="language-SHELL">readonly name
+</code></pre>
+
+<p>通过 <strong>unset</strong> 关键字可以删除变量:</p>
+
+<pre><code class="language-SHELL">unset name
+</code></pre>
+
+<h2 id="字符串--数组">字符串 / 数组</h2>
+
+<p>Shell 里的字符串可以使用单引号，也可双引号，单引号字符串的限制:</p>
+
+<ul>
+  <li>单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的</li>
+  <li>单引号字串中不能出现单引号(转义也无效)</li>
+</ul>
+
+<p>因此一般建议使用双引号。获取字符串和提取子字符串的方法如下:</p>
+
+<pre><code class="language-SHELL">str="abcd"
+echo ${#str} # 输出 4
+</code></pre>
+
+<pre><code class="language-SHELL">str="welcome to our house"
+echo ${str:1:4} # 输出 elco
+</code></pre>
+
+<p>bash 支持一维数组(不支持多维数组)，并且没有限定数组的大小:</p>
+
+<pre><code class="language-SHELL">数组名=(val1 val2 ... valn)
+</code></pre>
+
+<p>读取数组元素的值:</p>
+
+<pre><code class="language-SHELL"># 读取数组中该索引下的值
+${数组名[n]}
+
+# 读取数组中所有值，@ 等价于 *
+${数组名[@/*]}
+</code></pre>
+
+<p>通过符号 <strong>#</strong> 获取数组的长度:</p>
+
+<pre><code class="language-SHELL"># 取得数组元素的个数
+len=${#数组名[@]}
+</code></pre>
+
+<h2 id="传递参数">传递参数</h2>
+
+<p>在执行 Shell 脚本时，可以向脚本传递参数，脚本内获取参数的格式为: <strong>$n</strong>。n 代表第 n 个参数。<strong>$@/$*</strong>则代表所有参数，只是传递方式不一样。</p>
+
+<pre><code class="language-SHELL">./shell.sh 1 2 3
+</code></pre>
+
+<pre><code class="language-SHELL"># shell.sh
+echo "执行的文件名：$0" # 1
+echo "第一个参数为：$1" # 2
+echo "第二个参数为：$2" # 3
+echo "参数个数为：$#" # 3
+echo "传递的参数作为多个字符串显示：$@" # "1" "2" "3"
+echo "传递的参数作为一个字符串显示：$*" # "1 2 3"
+</code></pre>
+
+<pre><code class="language-SHELL">echo "-- \$@ 演示 ---"
+for i in "$@"; do
+  echo $i # "1" "2" "3"
+done
+
+echo "-- \$* 演示 ---"
+for i in "$*"; do
+  echo $i # "1 2 3"
+done
+</code></pre>
+
+<h2 id="运算符">运算符</h2>
+
+<p>原生 bash 不支持简单的数学运算，但是可以通过其他命令来实现，例如 <strong>let</strong> 和 <strong>expr</strong>。</p>
+
+<h3 id="算术运算符">算术运算符</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">算术运算符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子(a=10,b=20)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>+</strong></td>
+      <td style="text-align: left">加法</td>
+      <td style="text-align: left"><code class="highlighter-rouge">expr $a + $b</code> 结果为 30</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-</strong></td>
+      <td style="text-align: left">减法</td>
+      <td style="text-align: left"><code class="highlighter-rouge">expr $a - $b</code> 结果为 -10</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>*</strong></td>
+      <td style="text-align: left">乘法</td>
+      <td style="text-align: left"><code class="highlighter-rouge">expr $a \* $b</code> 结果为 200，注意乘号(*)必须转义</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>/</strong></td>
+      <td style="text-align: left">除法</td>
+      <td style="text-align: left"><code class="highlighter-rouge">expr $b / $a</code> 结果为 2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>%</strong></td>
+      <td style="text-align: left">取余</td>
+      <td style="text-align: left"><code class="highlighter-rouge">expr $b % $a</code> 结果为 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>=</strong></td>
+      <td style="text-align: left">赋值</td>
+      <td style="text-align: left">a=$b 将把变量 b 的值赋给 a</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>==</strong></td>
+      <td style="text-align: left">相等，用于比较两个数字，相同则返回 true</td>
+      <td style="text-align: left">[ $a == $b ] 返回 false</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>!=</strong></td>
+      <td style="text-align: left">不相等，用于比较两个数字，不相同则返回 true</td>
+      <td style="text-align: left">[ $a != $b ] 返回 true</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>条件表达式要放在方括号之间，并且要有空格，例如: [$a==$b] 是错误的，必须写成 <strong>[ $a == $b ]</strong></p>
+</blockquote>
+
+<h3 id="关系运算符">关系运算符</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">关系运算符</th>
+      <th style="text-align: left">英文对照</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子(a=10,b=20)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>-eq</strong></td>
+      <td style="text-align: left">equal to</td>
+      <td style="text-align: left">检测两个数是否相等，相等返回 true</td>
+      <td style="text-align: left">[ $a -eq $b ] 返回 false</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-ne</strong></td>
+      <td style="text-align: left">not equal to</td>
+      <td style="text-align: left">检测两个数是否相等，不相等返回 true</td>
+      <td style="text-align: left">[ $a -ne $b ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-gt</strong></td>
+      <td style="text-align: left">greater than</td>
+      <td style="text-align: left">检测左边的数是否大于右边的，如果是，则返回 true</td>
+      <td style="text-align: left">[ $a -gt $b ] 返回 false</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-lt</strong></td>
+      <td style="text-align: left">less than</td>
+      <td style="text-align: left">检测左边的数是否小于右边的，如果是，则返回 true</td>
+      <td style="text-align: left">[ $a -lt $b ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-ge</strong></td>
+      <td style="text-align: left">gt or eq</td>
+      <td style="text-align: left">检测左边的数是否大于等于右边的，如果是，则返回 true</td>
+      <td style="text-align: left">[ $a -ge $b ] 返回 false</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-le</strong></td>
+      <td style="text-align: left">lt or eq</td>
+      <td style="text-align: left">检测左边的数是否小于等于右边的，如果是，则返回 true</td>
+      <td style="text-align: left">[ $a -le $b ] 返回 true</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="布尔运算符">布尔运算符</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">布尔运算符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子(a=10,b=20)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>!</strong></td>
+      <td style="text-align: left">非运算，表达式为 true 则返回 false，否则返回 true</td>
+      <td style="text-align: left">[ ! false ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-o</strong></td>
+      <td style="text-align: left">或运算，有一个表达式为 true 则返回 true</td>
+      <td style="text-align: left">[ $a -lt 20 -o $b -gt 100 ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-a</strong></td>
+      <td style="text-align: left">与运算，两个表达式都为 true 才返回 true</td>
+      <td style="text-align: left">[ $a -lt 20 -a $b -gt 100 ] 返回 false</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="逻辑运算符">逻辑运算符</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">逻辑运算符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子(a=10,b=20)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>&amp;&amp;</strong></td>
+      <td style="text-align: left">逻辑的 AND</td>
+      <td style="text-align: left">[[ $a -lt 100 &amp;&amp; $b -gt 100 ]] 返回 false</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>||</strong></td>
+      <td style="text-align: left">逻辑的 OR</td>
+      <td style="text-align: left">[[ $a -lt 100 || $b -gt 100 ]] 返回 true</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>注意，使用逻辑运算符时必须使用 <strong>[[ … ]]</strong> 条件判断结构</p>
+</blockquote>
+
+<h3 id="字符串运算符">字符串运算符</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">字符串运算符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子(a=’abc’,b=’def’)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>=</strong></td>
+      <td style="text-align: left">检测两个字符串是否相等，相等返回 true</td>
+      <td style="text-align: left">[ $a = $b ] 返回 false</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>!=</strong></td>
+      <td style="text-align: left">检测两个字符串是否相等，不相等返回 true</td>
+      <td style="text-align: left">[ $a != $b ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-z</strong></td>
+      <td style="text-align: left">检测字符串长度是否为 0，为 0 返回 true</td>
+      <td style="text-align: left">[ -z $a ] 返回 false</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-n</strong></td>
+      <td style="text-align: left">检测字符串长度是否为 0，不为 0 返回 true</td>
+      <td style="text-align: left">[ -n $a ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>str</strong></td>
+      <td style="text-align: left">检测字符串是否为空，不为空返回 true</td>
+      <td style="text-align: left">[ $a ] 返回 true</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="文件测试运算符">文件测试运算符</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">文件测试运算符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>-d</strong> file</td>
+      <td style="text-align: left">检测文件是否是目录，如果是，则返回 true</td>
+      <td style="text-align: left">[ -d $file ] 返回 false</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-f</strong> file</td>
+      <td style="text-align: left">检测文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true</td>
+      <td style="text-align: left">[ -f $file ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-r</strong> file</td>
+      <td style="text-align: left">检测文件是否可读，如果是，则返回 true</td>
+      <td style="text-align: left">[ -r $file ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-w</strong> file</td>
+      <td style="text-align: left">检测文件是否可写，如果是，则返回 true</td>
+      <td style="text-align: left">[ -w $file ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-x</strong> file</td>
+      <td style="text-align: left">检测文件是否可执行，如果是，则返回 true</td>
+      <td style="text-align: left">[ -x $file ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-s</strong> file</td>
+      <td style="text-align: left">检测文件是否为空(文件大小是否大于 0)，不为空返回 true</td>
+      <td style="text-align: left">[ -s $file ] 返回 true</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>-e</strong> file</td>
+      <td style="text-align: left">检测文件(包括目录)是否存在，如果是，则返回 true</td>
+      <td style="text-align: left">[ -e $file ] 返回 true</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="let--">let / (())</h4>
+
+<p>以下介绍三个相关的关键字或者符号:</p>
+
+<ul>
+  <li><strong>let</strong> - 用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量</li>
+  <li><strong>(())</strong> - 常用于算术运算或比较，双括号中的变量可以不使用 $ 符号前缀</li>
+  <li><strong>test</strong> - 检查某个条件是否成立</li>
+</ul>
+
+<p>let 与 expr 的比较:</p>
+
+<pre><code class="language-SHELL">val=`expr 2 + 2`
+
+# 等价于
+let val=2+2
+
+# 等价于
+((val=2+2))
+</code></pre>
+
+<p>三种条件比较的等价写法:</p>
+
+<pre><code class="language-SHELL">if [ $a == $b ]
+
+# 等价于
+if test $a == $b
+
+# 等价于
+if ((a==b))
+</code></pre>
+
+<h2 id="流程控制">流程控制</h2>
+
+<h3 id="if--else">if / else</h3>
+
+<pre><code class="language-SHELL">if condition1
+then
+  command1
+elif condition2
+then
+  command2
+else
+  commandN
+fi
+</code></pre>
+
+<h3 id="for-循环">for 循环</h3>
+
+<pre><code class="language-SHELL">for var in item1 item2 ... itemN
+do
+  command1
+  command2
+  ...
+  commandN
+done
+</code></pre>
+
+<p>举个栗子 🌰:</p>
+
+<pre><code class="language-SHELL">for ((i=0;i&lt;5;i++));do echo $i;done
+</code></pre>
+
+<h3 id="while">while</h3>
+
+<pre><code class="language-SHELL">while condition
+do
+  command
+done
+</code></pre>
+
+<p>举个栗子 🌰:</p>
+
+<pre><code class="language-SHELL">i=0
+while ((i&lt;=5))
+do
+  echo $i
+  let i++ # 或者 ((i++))
+done
+</code></pre>
+
+<h3 id="case">case</h3>
+
+<pre><code class="language-SHELL">case 值 in
+模式1)
+  command1
+  command2
+  ...
+  commandN
+  ;;
+模式2）
+  command1
+  command2
+  ...
+  commandN
+  ;;
+esac
+</code></pre>
+
+<h2 id="重定向-">重定向 &gt;</h2>
+
+<p>这里只是做简单了解，一般情况下，每个 Unix/Linux 命令运行时都会打开三个文件:</p>
+
+<ul>
+  <li><strong>标准输入文件(stdin)</strong> - stdin 的文件描述符为 0，Unix 程序默认从 stdin 读取数据</li>
+  <li><strong>标准输出文件(stdout)</strong> - stdout 的文件描述符为 1，Unix 程序默认向 stdout 输出数据</li>
+  <li><strong>标准错误文件(stderr)</strong> - stderr 的文件描述符为 2，Unix 程序会向 stderr 流中写入错误信息</li>
+</ul>
+
+<p>常用的重定向命令有:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">命令</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">command &gt; file</td>
+      <td style="text-align: left">将输出重定向到 file</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">command &lt; file</td>
+      <td style="text-align: left">将输入重定向到 file</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">command » file</td>
+      <td style="text-align: left">将输出以追加的方式重定向到 file</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>举个栗子，此时打开目标文件则会看到内容被替换为 “hello tate”:</p>
+
+<pre><code class="language-SHELL">echo "hello tate" &gt; test.txt
+</code></pre>
+
+<h2 id="文件包含">文件包含</h2>
+
+<p>Shell 支持外部脚本，只需要引入即可:</p>
+
+<pre><code class="language-SHELL">. filename
+
+# 或
+source filename
+</code></pre>
+
+<p>举个栗子 🌰:</p>
+
+<pre><code class="language-SHELL"># a.sh
+name="tate"
+</code></pre>
+
+<pre><code class="language-SHELL"># b.sh
+. a.sh
+echo $name
+</code></pre>
+
+<p>执行 b.sh 脚本时，便可以正确打印出 name 的值。</p>
+
+<h2 id="参考案例">参考案例</h2>
+
+<pre><code class="language-SHELL">reportletMnt="/home/tate/deploy/tmp/mnt"
+if [ ! -d "$reportletMnt"];then
+mkdir $reportletMnt
+fi
+mount -t cifs -o username=591550,password=Bestsfer20175  //10.88.1.8/test $reportletMnt
+echo 'mount &amp; cp reportlets.zip to tmp'
+
+cp $reportletMnt/reportlets.zip ./deploy/tmp/
+echo unzip reportlets.zip
+cd ./deploy/tmp/
+unzip reportlets.zip
+rm -rf /home/webapp/fr-web/WEB-INF/reportlets/*
+mv ./reportlets/* /home/webapp/fr-web/WEB-INF/reportlets/
+
+echo move to upload dir
+DATE=$(date +%Y%m%d)
+mkdir /home/tate/deploy/$DATE
+mv reportlets.zip /home/tate/deploy/$DATE/
+umount  /$reportletMnt
+echo umount
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="http://www.runoob.com/linux/linux-shell.html">菜鸟 - Shell 教程</a></li>
+  <li><a href="http://man.linuxde.net/shell-script">Linux Shell 脚本攻略</a></li>
+  <li><a href="http://www.jb51.net/article/123081.htm">shell 中各种括号的作用详解 ()、(())、[]、[[]]、{}</a> By QuintinX</li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/04/16/linux-shell.html';
+        this.page.identifier = '/2018/04/16/linux-shell';
+        this.page.title = 'Shell 脚本编写';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-04-16 16:16:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>

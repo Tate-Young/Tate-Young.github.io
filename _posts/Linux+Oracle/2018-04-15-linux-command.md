@@ -22,6 +22,7 @@ tags:
 | **ps** | 查看进程 | <code>ps -ef</code> |
 | **find** | 指定目录下查找文件 | <code>find . -name '*.txt'</code> |
 | **pwd** | 以绝对路径的方式显示用户当前工作目录 | <code>pwd</code> |
+| **whoami** | 查看当前有效用户名 | <code>whoami</code> |
 | **alias** | 设置命令的别名 | <code>alias ll='ls -al'</code> |
 | **say** | macOS 系统中激活语音合成系统 | <code>say -v Ting-Ting hello</code> |
 

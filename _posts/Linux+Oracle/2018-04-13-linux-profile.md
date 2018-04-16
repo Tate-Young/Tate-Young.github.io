@@ -19,7 +19,7 @@ tags:
 
 1、Linux 的发行版
 
-就是将 Linux 内核与应用软件做一个打包。目前市面上较知名的发行版有：[Ubuntu](https://zh.wikipedia.org/wiki/Ubuntu)、[RedHat](https://zh.wikipedia.org/wiki/Red_Hat_Linux)、[CentOS](https://zh.wikipedia.org/wiki/CentOS)、[Debian](https://zh.wikipedia.org/wiki/Debian)、[Fedora](https://zh.wikipedia.org/wiki/Fedora) 等。
+就是将 Linux 内核与应用软件做一个打包。目前市面上较知名的发行版有: [RedHat](https://zh.wikipedia.org/wiki/Red_Hat_Linux)、[CentOS](https://zh.wikipedia.org/wiki/CentOS)、[Fedora](https://zh.wikipedia.org/wiki/Fedora)、[Debian](https://zh.wikipedia.org/wiki/Debian)、[Ubuntu](https://zh.wikipedia.org/wiki/Ubuntu) 等。
 
 2、Linux 远程登录
 
