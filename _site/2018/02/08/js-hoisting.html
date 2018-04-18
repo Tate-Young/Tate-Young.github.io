@@ -347,7 +347,7 @@
 
 <h3 id="const">const</h3>
 
-<p><strong>const</strong> 声明一个只读的常量，一旦声明，常量的值就不能改变。const 实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动。对于基本类型，值就保存在变量指向的那个内存地址，因此等同于常量。但对于引用类型，变量指向的内存地址，保存的只是一个指针，const只能保证这个指针是固定的，至于它指向的数据结构是不是可变的，就完全不能控制了。</p>
+<p><strong>const</strong> 声明一个只读的常量，一旦声明，常量的值就不能改变。const 实际上保证的，并不是变量的值不得改动，而是变量指向的那个内存地址不得改动。对于基本类型，值就保存在变量指向的那个内存地址，因此等同于常量。但对于引用类型，变量指向的内存地址，保存的只是一个指针，const 只能保证这个指针是固定的，至于它指向的数据结构是不是可变的，就完全不能控制了。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="nx">val</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// TypeError: Assignment to constant variable</span>

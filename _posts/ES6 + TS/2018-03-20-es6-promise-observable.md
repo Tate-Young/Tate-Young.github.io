@@ -29,7 +29,7 @@ tags:
 * 如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部
 * 当处于 pending 状态时，无法得知目前进展到哪一个阶段
 
-ES6 规定，Promise 对象是一个构造函数，用来生成 Promise 实例。
+ES6 规定，Promise 对象是一个构造函数，用来生成 Promise 实例，Promise 常见的问题可[参见这里](https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html) 👈。
 
 ```JS
 const promise = new Promise((resolve, reject) => {
@@ -39,15 +39,23 @@ const promise = new Promise((resolve, reject) => {
     reject(error);
   }
 });
+```
 
+```JS
 promise
 .then(function(value) {
-  // success
+  // 这里如何操作
 })
 .catch(function(err) {
   // err
 });
 ```
+
+如上，这里如何操作，通常有三种选择:
+
+* return another promise
+* return a synchronous value (or undefined)
+* throw a synchronous error
 
 举个用 Promise 对象实现的 Ajax 操作的栗子 🌰:
 
@@ -126,8 +134,6 @@ Promise.resolve().then(function () {
   console.log(err) // 捕获错误: 'previous then'
 })
 ```
-
-> then(resolveHandler, rejectHandler) format, the rejectHandler won't actually catch an error if it's thrown by the resolveHandler itself.
 
 因此建议使用 catch 进行捕获。若在 then 之前调用 catch 方法，则 catch 只会捕获之前产生的错误。
 
@@ -680,4 +686,4 @@ export class HeroSearchComponent implements OnInit {
 1. [Introduction to RxJS](https://segmentfault.com/a/1190000012252368) By TonyZhu
 1. [使用 RxJS 处理多个 Http 请求](https://segmentfault.com/a/1190000010088631) By semlinker
 1. [Observable 的 Operators 集合](http://www.cnblogs.com/solodancer/p/7954846.html) By soloDancer_讠
-1. [](https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html)
+1. [We have a problem with promises](https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html) By Nolan Lawson

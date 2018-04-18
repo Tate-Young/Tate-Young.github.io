@@ -482,6 +482,16 @@ function travel(dir, callback, finish) {
 }
 </code></pre>
 
+<h2 id="exports--moduleexports">exports / module.exports</h2>
+
+<ul>
+  <li>exports 是指向 module.exports 的引用</li>
+  <li>module.exports 初始值为一个空对象 {}</li>
+  <li>require() 返回的是 module.exports 而不是 exports</li>
+</ul>
+
+<p><img src="https://dn-cnode.qbox.me/FjN9jHWiy-yuUtghTUlRgB_0cgUC" alt="module.exports" /></p>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
@@ -489,6 +499,8 @@ function travel(dir, callback, finish) {
   <li><a href="http://nqdeng.github.io/7-days-nodejs/#3.2.4">七天学会 NodeJS</a></li>
   <li><a href="https://github.com/chyingp/nodejs-learning-guide/blob/master/%E6%A8%A1%E5%9D%97/fs.md">nodejs-learning-guide</a> By chyingp</li>
   <li><a href="https://www.jianshu.com/p/dde6a01c4094">5 分钟让你明白“软链接”和“硬链接”的区别</a> By Cyandev</li>
+  <li><a href="https://cnodejs.org/topic/5231a630101e574521e45ef8">exports 和 module.exports 的区别</a> By nswbmw</li>
+  <li><a href="https://cnodejs.org/topic/5734017ac3e4ef7657ab1215">module.exports 与 exports 的区别解释【极简版】这还看不懂就没救了。。。</a> By lellansin</li>
 </ol>
  
 <div id="disqus_thread"></div>

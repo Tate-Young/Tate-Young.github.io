@@ -279,10 +279,9 @@
 
 <p>一般情况下若返回的是引用类型，则返回该引用类型；若返回的是基本类型，则无影响。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code>  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-  <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
 
 <span class="c1">// ES5</span>
 <span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span>

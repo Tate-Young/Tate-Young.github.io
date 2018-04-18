@@ -191,7 +191,7 @@
   <li>当处于 pending 状态时，无法得知目前进展到哪一个阶段</li>
 </ul>
 
-<p>ES6 规定，Promise 对象是一个构造函数，用来生成 Promise 实例。</p>
+<p>ES6 规定，Promise 对象是一个构造函数，用来生成 Promise 实例，Promise 常见的问题可<a href="https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html">参见这里</a> 👈。</p>
 
 <pre><code class="language-JS">const promise = new Promise((resolve, reject) =&gt; {
   if (/* 异步操作成功 */){
@@ -200,15 +200,24 @@
     reject(error);
   }
 });
+</code></pre>
 
-promise
+<pre><code class="language-JS">promise
 .then(function(value) {
-  // success
+  // 这里如何操作
 })
 .catch(function(err) {
   // err
 });
 </code></pre>
+
+<p>如上，这里如何操作，通常有三种选择:</p>
+
+<ul>
+  <li>return another promise</li>
+  <li>return a synchronous value (or undefined)</li>
+  <li>throw a synchronous error</li>
+</ul>
 
 <p>举个用 Promise 对象实现的 Ajax 操作的栗子 🌰:</p>
 
@@ -265,7 +274,26 @@ getJSON("/posts.json").then((json) =&gt; {
 });
 </code></pre>
 
-<p>then 方法的第二个参数只可以捕获当前回调函数里运行的错误和 rejected 状态，因此一般使用 catch 进行捕获。若在 then 之前调用 catch 方法，则 catch 只会捕获之前产生的错误。</p>
+<p>注意 then(resolveHandler, rejectHandler) 方法的第二个参数 rejectHandler 无法捕获 resolveHandler 自身抛出的错误:</p>
+
+<pre><code class="language-JS">Promise.resolve().then(function () {
+  console.log('previous then')
+}).then(function () {
+  throw new Error('current then');
+}, function (err) {
+  console.log(err) // 无法捕获错误
+})
+
+Promise.resolve().then(function () {
+  throw new Error('previous then');
+}).then(function () {
+  throw new Error('current then');
+}, function (err) {
+  console.log(err) // 捕获错误: 'previous then'
+})
+</code></pre>
+
+<p>因此建议使用 catch 进行捕获。若在 then 之前调用 catch 方法，则 catch 只会捕获之前产生的错误。</p>
 
 <pre><code class="language-JS">// bad
 promise
@@ -277,7 +305,7 @@ promise
 
 // good
 promise
-  .then(function(data) {
+  .then(function(data) { //cb
     // success
   })
   .catch(function(err) {
@@ -993,6 +1021,7 @@ ngOnInit() {
   <li><a href="https://segmentfault.com/a/1190000012252368">Introduction to RxJS</a> By TonyZhu</li>
   <li><a href="https://segmentfault.com/a/1190000010088631">使用 RxJS 处理多个 Http 请求</a> By semlinker</li>
   <li><a href="http://www.cnblogs.com/solodancer/p/7954846.html">Observable 的 Operators 集合</a> By soloDancer_讠</li>
+  <li><a href="https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html">We have a problem with promises</a> By Nolan Lawson</li>
 </ol>
  
 <div id="disqus_thread"></div>
