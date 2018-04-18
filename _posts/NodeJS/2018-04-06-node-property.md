@@ -271,9 +271,19 @@ function travel(dir, callback, finish) {
 }
 ```
 
+## exports / module.exports
+
+* exports 是指向 module.exports 的引用
+* module.exports 初始值为一个空对象 {}
+* require() 返回的是 module.exports 而不是 exports
+
+![module.exports](https://dn-cnode.qbox.me/FjN9jHWiy-yuUtghTUlRgB_0cgUC)
+
 ## 参考链接
 
 1. [nodeJS 之 fs 文件系统](https://www.cnblogs.com/xiaohuochai/p/6938104.html) By 小火柴的蓝色理想
 2. [七天学会 NodeJS](http://nqdeng.github.io/7-days-nodejs/#3.2.4)
 3. [nodejs-learning-guide](https://github.com/chyingp/nodejs-learning-guide/blob/master/%E6%A8%A1%E5%9D%97/fs.md) By chyingp
 4. [5 分钟让你明白“软链接”和“硬链接”的区别](https://www.jianshu.com/p/dde6a01c4094) By Cyandev
+5. [exports 和 module.exports 的区别](https://cnodejs.org/topic/5231a630101e574521e45ef8) By nswbmw
+6. [module.exports 与 exports 的区别解释【极简版】这还看不懂就没救了。。。](https://cnodejs.org/topic/5734017ac3e4ef7657ab1215) By lellansin

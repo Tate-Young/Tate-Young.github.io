@@ -107,7 +107,29 @@ getJSON('/post/test.json').then((post) => {
 });
 ```
 
-then 方法的第二个参数只可以捕获当前回调函数里运行的错误和 rejected 状态，因此一般使用 catch 进行捕获。若在 then 之前调用 catch 方法，则 catch 只会捕获之前产生的错误。
+注意 then(resolveHandler, rejectHandler) 方法的第二个参数 rejectHandler 无法捕获 resolveHandler 自身抛出的错误:
+
+```JS
+Promise.resolve().then(function () {
+  console.log('previous then')
+}).then(function () {
+  throw new Error('current then');
+}, function (err) {
+  console.log(err) // 无法捕获错误
+})
+
+Promise.resolve().then(function () {
+  throw new Error('previous then');
+}).then(function () {
+  throw new Error('current then');
+}, function (err) {
+  console.log(err) // 捕获错误: 'previous then'
+})
+```
+
+> then(resolveHandler, rejectHandler) format, the rejectHandler won't actually catch an error if it's thrown by the resolveHandler itself.
+
+因此建议使用 catch 进行捕获。若在 then 之前调用 catch 方法，则 catch 只会捕获之前产生的错误。
 
 ```JS
 // bad
@@ -120,7 +142,7 @@ promise
 
 // good
 promise
-  .then(function(data) {
+  .then(function(data) { //cb
     // success
   })
   .catch(function(err) {
@@ -658,3 +680,4 @@ export class HeroSearchComponent implements OnInit {
 1. [Introduction to RxJS](https://segmentfault.com/a/1190000012252368) By TonyZhu
 1. [使用 RxJS 处理多个 Http 请求](https://segmentfault.com/a/1190000010088631) By semlinker
 1. [Observable 的 Operators 集合](http://www.cnblogs.com/solodancer/p/7954846.html) By soloDancer_讠
+1. [](https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html)

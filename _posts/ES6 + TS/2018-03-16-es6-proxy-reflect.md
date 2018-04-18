@@ -213,6 +213,8 @@ if (Reflect.defineProperty(target, property, attributes)) { // 无法定义属�
 // 老写法 命令式
 'assign' in Object; // true
 
+Object.hasOwnProperty('assign'); // true
+
 // 新写法 函数式
 Reflect.has(Object, 'assign'); // true
 ```
