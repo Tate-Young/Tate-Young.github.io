@@ -130,6 +130,26 @@ nodemon --inspect index.js
 
 监听之后执行 debug，终端会显示 "Debugger attached."，另外底边栏会有 <code>Auto Attach:Off</code> 状态，点击可切换为 On 状态，即当内容有修改后，会自动进行 attach 操作。
 
+## 断点
+
+单击编辑器侧边缘即可为所在行添加或删除断点，调试时在 BREAKPOINTS 区域中也可对断点进行操作(enable/disable/reapply)。
+
+* 断点一般显示为红色圆圈
+* 被取消的断点显示为灰色圆圈
+* 调试启动后，不能被注册的断点显示为灰色的空心圆圈
+
+也可以通过代码语句 <code>debugger</code> 设置断点:
+
+```JS
+app.get('/', function(req, res){
+  console.log('tate')
+  debugger // 相当于断点
+  res.send('bbb')
+})
+```
+
+![breakpoints](https://code.visualstudio.com/assets/docs/editor/debugging/debug-session.png)
+
 ## nodemon / supervisor
 
 两种监听文件改动并重启服务的方式，还可以搭配 **[Browsersync](https://browsersync.io/)** 实现客户端自动刷新:

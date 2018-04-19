@@ -471,7 +471,7 @@ console.log('after');
 
 <h3 id="observer-观察者">Observer 观察者</h3>
 
-<p><strong>Observer</strong> 观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数，分别对应一种被可观察对象发送的通知的类型，即 next, error 和 complete。要想使用观察者，需要订阅可观察对象，即<code>observable.subscribe(observer)</code>。</p>
+<p><strong>Observer</strong> 观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数，分别对应一种被可观察对象发送的通知的类型，即 next, error 和 complete。要想使用观察者，需要订阅可观察对象，即 <code>observable.subscribe(observer)</code>。</p>
 
 <pre><code class="language-JS">observable.subscribe({
   next: x =&gt; console.log(x),

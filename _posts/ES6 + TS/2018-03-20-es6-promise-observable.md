@@ -318,7 +318,7 @@ console.log('after');
 
 ### Observer 观察者
 
-**Observer** 观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数，分别对应一种被可观察对象发送的通知的类型，即 next, error 和 complete。要想使用观察者，需要订阅可观察对象，即<code>observable.subscribe(observer)</code>。
+**Observer** 观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数，分别对应一种被可观察对象发送的通知的类型，即 next, error 和 complete。要想使用观察者，需要订阅可观察对象，即 <code>observable.subscribe(observer)</code>。
 
 ```JS
 observable.subscribe({
