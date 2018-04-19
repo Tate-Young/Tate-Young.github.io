@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='NodeJS 常用模块 - Tate & Snow' name='title' />
-    <meta content='NodeJS 常用模块 - Tate & Snow' name='og:title' />
-    <title>NodeJS 常用模块 - Tate & Snow</title>
+    <meta content='NodeJS Debugging - Tate & Snow' name='title' />
+    <meta content='NodeJS Debugging - Tate & Snow' name='og:title' />
+    <title>NodeJS Debugging - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>NodeJS 常用模块 - Tate & Snow</title>
+<title>NodeJS Debugging - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NodeJS 常用模块 - Tate & Snow">
-<meta name="twitter:keywords" content="NodeJS 常用模块 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="NodeJS Debugging - Tate & Snow">
+<meta name="twitter:keywords" content="NodeJS Debugging - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="NodeJS 常用模块 - Tate & Snow">
-<meta name="og:keywords" content="NodeJS 常用模块 - Tate & Snow|NodeJS 常用模块本节涉及的常用模块            Node 模块      描述                  path      用于处理文件与目录的路径              fs      对系统文件及目录..."
+<meta property="og:title" content="NodeJS Debugging - Tate & Snow">
+<meta name="og:keywords" content="NodeJS Debugging - Tate & Snow|NodeJS DebuggingNode 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch 配置launch.json 文件配..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="NodeJS 常用模块本节涉及的常用模块            Node 模块      描述                  path      用于处理文件与目录的路径              fs      对系统文件及目录..." property='og:description'
+<meta name="keywords" content="NodeJS DebuggingNode 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch 配置launch.json 文件配..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/04/08/node-property.html' property='og:url' />
-<meta content="http://localhost:4000/2018/04/08/node-property.html|NodeJS 常用模块本节涉及的常用模块            Node 模块      描述                  path      用于处理文件与目录的路径              fs      对系统文件及目录..." property='og:description'
+<meta content='http://localhost:4000/2018/04/19/node-debugging.html' property='og:url' />
+<meta content="http://localhost:4000/2018/04/19/node-debugging.html|NodeJS DebuggingNode 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch 配置launch.json 文件配..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,9 +134,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    NodeJS 常用模块</h1>
+                    NodeJS Debugging</h1>
                 <div class="post-data">
-                    <time datetime="2018-04-08 10:54:00" itemprop="datePublished">发布时间：2018-04-08 10:54:00</time>
+                    <time datetime="2018-04-19 21:48:00" itemprop="datePublished">发布时间：2018-04-19 21:48:00</time>
                     <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -155,9 +155,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                NodeJS 常用模块</h1>
+                NodeJS Debugging</h1>
             <div class="post-data">
-                <time datetime="2018-04-08 10:54:00" itemprop="datePublished">2018-04-08 10:54:00</time>
+                <time datetime="2018-04-19 21:48:00" itemprop="datePublished">2018-04-19 21:48:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -169,338 +169,208 @@
                     </a>
                    
             </p>
-            <h1 id="nodejs-常用模块">NodeJS 常用模块</h1>
+            <h1 id="nodejs-debugging">NodeJS Debugging</h1>
 
-<h2 id="本节涉及的常用模块">本节涉及的常用模块</h2>
+<h2 id="node-侦错">Node 侦错</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Node 模块</th>
-      <th style="text-align: left">描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><a href="#path-模块">path</a></td>
-      <td style="text-align: left">用于处理文件与目录的路径</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="#fs-模块">fs</a></td>
-      <td style="text-align: left">对系统文件及目录进行读写操作</td>
-    </tr>
-  </tbody>
-</table>
+<p>本文只针对 VS code 工具进行调试举例。需要额外插件一枚: <a href="https://github.com/Microsoft/vscode-chrome-debug">Debugger for Chrome</a>，可以配合 Chrome 进行调试。</p>
 
-<h2 id="path-模块">path 模块</h2>
+<p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png" alt="debug" /></p>
 
-<pre><code class="language-JS">const path = require('path');
-</code></pre>
+<h3 id="launch-配置">launch 配置</h3>
 
-<p><strong>path</strong> 用于处理文件与目录的路径，常用的属性及方法有:</p>
+<p><strong>launch.json</strong> 文件配置里的有两个重要的属性 <strong>type</strong> 和 <strong>request</strong>，取值为:</p>
 
 <ul>
-  <li><strong>basename(p, [ext])</strong> - 返回 path 的文件名，提取出用 ‘/’ 隔开的 path 的最后一部分</li>
-  <li><strong>dirname(p)</strong> - 返回 path 的目录名</li>
-  <li><strong>extname(p)</strong> - 返回 path 的扩展名</li>
-  <li><strong>join([p1], [p2], […])</strong> - 将多个参数拼接成一个 path，拼接时会执行 normalize 方法</li>
-  <li><strong>normalize(p)</strong> - 会规范化给定的 path，并解析 ‘..’ 和 ‘.’ 片段</li>
-  <li><strong>format()</strong> - 从一个对象返回一个路径字符串，与 parse() 相反，对象包含 dir/root/base/name/ext 几个属性</li>
-  <li><strong>parse()</strong> - 返回一个对象，对象的属性表示 path 的元素</li>
-  <li><strong>sep</strong> - 路径片段分隔符，常用的是通过 <code>split(path.sep)</code> 分割成数组</li>
+  <li><strong>type</strong> - 设置需要启动的调试类型，选项是根据所安装的 debug 插件决定，如 “node” for built-in node debugger</li>
+  <li><strong>request</strong> - 设置需要启动的 request 类型，有两种取值:
+    <ul>
+      <li><strong>launch</strong> - 启动一个独立的具有 debug 模式的程序</li>
+      <li><strong>attach</strong> - 附加于已启动的程序并进行 debug</li>
+    </ul>
+  </li>
 </ul>
 
-<p>示例如下:</p>
+<p>当配置完成后，会在根目录下自动生成文件 <code>.vscode/launch.json</code>。配置参数选项有很多，可以直接<a href="https://code.visualstudio.com/Docs/editor/debugging">参考官网文档</a>。</p>
 
-<h3 id="basename">basename</h3>
-
-<p>basename(p, [ext])，参数 p 是要处理的 path，可选参数 ext 是要过滤的字符:</p>
-
-<pre><code class="language-JS">path.basename('/foo/bar/baz/asdf/quux.html'); // 返回: 'quux.html'
-path.basename('/foo/bar/baz/asdf/quux.html', '.html'); // 返回: 'quux'
-</code></pre>
-
-<pre><code class="language-JS">path.dirname('/foo/bar/baz/asdf/quux'); // 返回: '/foo/bar/baz/asdf'
-path.extname('index.coffee.md'); // 返回: '.md'
-</code></pre>
-
-<h3 id="join--normalize">join / normalize</h3>
-
-<p>join([p1], [p2], […]) 将多个参数拼接成一个 path，拼接时会执行 normalize 方法:</p>
-
-<pre><code class="language-JS">path.join('/foo', 'bar', 'baz/asdf', 'quux', '..'); // 返回: '/foo/bar/baz/asdf'
-
-path.normalize('/foo/bar//baz/asdf/quux/..'); // 返回: '/foo/bar/baz/asdf'
-</code></pre>
-
-<h3 id="format--parse">format / parse</h3>
-
-<pre><code class="language-JS">path.format({
-  root: '/ignored', // 忽略
-  dir: '/home/user/dir',
-  base: 'file.txt'
-});
-// 返回: '/home/user/dir/file.txt'
-</code></pre>
-
-<pre><code class="language-JS">path.parse('/home/user/dir/file.txt');
-// 返回:
-// { root: '/',
-//   dir: '/home/user/dir',
-//   base: 'file.txt',
-//   ext: '.txt',
-//   name: 'file' }
-</code></pre>
-
-<pre><code class="language-TXT">┌─────────────────────┬────────────┐
-│          dir        │    base    │
-├──────┬              ├──────┬─────┤
-│ root │              │ name │ ext │
-"  /    home/user/dir / file  .txt "
-└──────┴──────────────┴──────┴─────┘
-</code></pre>
-
-<h3 id="sep">sep</h3>
-
-<p>sep 表示路径片段分隔符，windows 为 \，macOS 为 /:</p>
-
-<pre><code class="language-JS">'foo/bar/baz'.split(path.sep); // 返回: ['foo', 'bar', 'baz']
-</code></pre>
-
-<h2 id="fs-模块">fs 模块</h2>
-
-<pre><code class="language-JS">const fs = require('fs');
-</code></pre>
-
-<p><strong>fs</strong> 对系统文件及目录进行读写操作，常用的属性及方法有:</p>
-
-<ul>
-  <li><strong>open</strong>(path, flags[, mode], callback) - 打开文件</li>
-  <li><strong>read</strong>(fd, buffer, offset, length, position, callback) - 读取文件，会将文件内容读取 buffer 对象中</li>
-  <li><strong>write</strong>(fd, buffer, offset, length[, position], callback - 写入文件</li>
-  <li><strong>close</strong>(fd, callback) - 关闭文件</li>
-</ul>
-
-<p>以上是基于底层的操作，更便捷的文件操作如下，不用打开和关闭文件:</p>
-
-<ul>
-  <li><strong>readFile</strong>(file[, options], callback) - 读取文件，读取文件流 createReadStream</li>
-  <li><strong>writeFile</strong>(file, data[, options], callback) - 写入文件，写入文件流 createWriteStream</li>
-  <li><strong>appendFile</strong>(filename, data, [options], callback) - 追加文件，若文件不存在则创建</li>
-  <li><strong>access</strong>(path, callback) - 代替 exists，判断文件是否存在，还可以用来判断文件的权限</li>
-  <li><strong>unlink</strong>(path, callback) - 删除文件</li>
-  <li><strong>rename</strong>(oldPath, newPath, callback) - 重命名文件</li>
-  <li><strong>stat</strong>(path, callback(err, stats)) - 文件信息，会将 stats 类的实例返回给其回调函数。可通过 stats 类中的提供方法判断文件的相关属性</li>
-  <li><strong>watch</strong>(filename[, options][, listener]) - 监视 filename 的变化，filename 可以是一个文件或一个目录。返回一个 fs.FSWatcher 对象</li>
-</ul>
-
-<p>目录操作有如下方法:</p>
-
-<ul>
-  <li><strong>mkdir</strong>(path[, mode], callback) - 创建目录</li>
-  <li><strong>rmdir</strong>(path, callback) - 删除目录</li>
-  <li><strong>readdir</strong>(path[, options], callback) - 读取目录</li>
-</ul>
-
-<p>以上皆为异步方法，同步方法为 “方法名 + Sync”，一般情况下不建议使用。示例如下:</p>
-
-<h3 id="open--close">open / close</h3>
-
-<p>open(path, flags[, mode], callback) 中 flags 的取值有:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">flags</th>
-      <th style="text-align: left">描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">r</td>
-      <td style="text-align: left">以读取模式打开文件。如果文件不存在抛出异常</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">r+</td>
-      <td style="text-align: left">以读写模式打开文件。如果文件不存在抛出异常</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">rs</td>
-      <td style="text-align: left">以同步的方式读取文件</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">rs+</td>
-      <td style="text-align: left">以同步的方式读取和写入文件</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">w</td>
-      <td style="text-align: left">以写入模式打开文件，如果文件不存在则创建</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">wx</td>
-      <td style="text-align: left">类似 ‘w’，但是如果文件路径存在，则文件写入失败</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">w+</td>
-      <td style="text-align: left">以读写模式打开文件，如果文件不存在则创建</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">wx+</td>
-      <td style="text-align: left">类似 ‘w+’， 但是如果文件路径存在，则文件读写失败</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">a</td>
-      <td style="text-align: left">以追加模式打开文件，如果文件不存在则创建</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ax</td>
-      <td style="text-align: left">类似 ‘a’， 但是如果文件路径存在，则文件追加失败</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">a+</td>
-      <td style="text-align: left">以读取追加模式打开文件，如果文件不存在则创建</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">ax+</td>
-      <td style="text-align: left">类似 ‘a+’， 但是如果文件路径存在，则文件读取追加失败</td>
-    </tr>
-  </tbody>
-</table>
-
-<pre><code class="language-JS">fs.open('input.txt', 'r+', function(err, fd) {
-  if (err) {
-    /* handle error */
-  } else {
-    fs.close(fd, function(err){
-      if (err){ console.log(err) }
-      console.log("文件关闭成功")
-    })
-  }
-})
-</code></pre>
-
-<h3 id="readfile--createfilestream">readFile / createFileStream</h3>
-
-<p>readFile(file[, options], callback) 用于读取文件，options 该参数是一个对象，包含 {encoding, flag}:</p>
-
-<pre><code class="language-JS">fs.readFile(filename, 'utf8', function(err, data){
-  if(err){
-    console.log('文件读取失败');
-  }else{
-    // console.log(data); // 若没设置编码方式，则默认为 buffer 类型: &lt;Buffer 54 61 74 65 20 26 20 53 6e 6f 77 0a&gt;
-    console.log(data.toString()); // 'Tate &amp; Snow'
-  }
-});
-</code></pre>
-
-<p>对于大的文件，可采用文件流进行操作，如方法 <strong>createReadStream</strong> 和 <strong>createWriteStream</strong>:</p>
-
-<pre><code class="language-JS">var readStream = fs.createReadStream('input.txt', 'utf8');
-
-readStream
-  .on('data', function(chunk) {
-    console.log('读取数据: ' + chunk);
-  })
-  .on('error', function(err){
-    console.log('抛出异常: ' + err.message);
-  })
-  .on('end', function(){ // 数据传输完毕
-    console.log('end');
-  })
-  .on('close', function(){ // 已经关闭，不会再有事件抛出
-    console.log('已经关闭');
-  });
-</code></pre>
-
-<pre><code class="language-JS">var writeStream = fs.createWriteStream('input.txt', 'utf8');
-
-writeStream
-  .on('close', function(){  // 已经关闭，不会再有事件抛出
-    console.log('已经关闭');
-  });
-
-writeStream.write('hello');
-writeStream.write('world');
-writeStream.end('');
-</code></pre>
-
-<h3 id="stat">stat</h3>
-
-<p>stat(path, callback) 查看文件信息，会将 stats 类的实例返回给其回调函数。stats 类的方法有:</p>
-
-<ul>
-  <li><strong>isFile()</strong> - 如果是文件返回 true，否则返回 false</li>
-  <li><strong>isDirectory()</strong> - 如果是目录返回 true，否则返回 false</li>
-  <li><strong>isBlockDevice()</strong> - 如果是块设备返回 true，否则返回 false</li>
-  <li><strong>isCharacterDevice()</strong> - 如果是字符设备返回 true，否则返回 false</li>
-  <li><strong>isSymbolicLink()</strong> - 如果是软链接返回 true，否则返回 false</li>
-  <li><strong>isFIFO()</strong> - 如果是 FIFO，返回 true，否则返回 false。FIFO 是 UNIX 中的一种特殊类型的命令管道</li>
-  <li><strong>isSocket()</strong> - 如果是 Socket 返回 true，否则返回 false</li>
-</ul>
-
-<h3 id="遍历目录">遍历目录</h3>
-
-<p>使用 fs 模块遍历目录的同步和异步写法:</p>
-
-<pre><code class="language-JS">// 同步写法
-function travel(dir, callback) {
-  fs.readdirSync(dir).forEach(function(file) {
-    var pathname = path.join(dir, file);
-
-    if (fs.statSync(pathname).isDirectory()) {
-      travel(pathname, callback);
-    } else {
-      callback(pathname);
+<pre><code class="language-JSON">{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/app.js",
+      "stopOnEntry": false,
+      "args": [],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": null,
+      "runtimeExecutable": null,
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "externalConsole": false,
+      "sourceMaps": false,
+      "outDir": null
+    },
+    {
+      "name": "Attach",
+      "type": "node",
+      "request": "attach",
+      "port": 5858,
+      "address": "localhost",
+      "restart": false,
+      "sourceMaps": false,
+      "outDir": null,
+      "localRoot": "${workspaceRoot}",
+      "remoteRoot": null
     }
-  });
+  ]
 }
 </code></pre>
 
-<pre><code class="language-JS">// 异步写法
-function travel(dir, callback, finish) {
-  fs.readdir(dir, function(err, files) {
-    (function next(i) {
-      if (i &lt; files.length) {
-        var pathname = path.join(dir, files[i]);
+<p>此处作为测试，作如下配置:</p>
 
-        fs.stat(pathname, function(err, stats) {
-          if (stats.isDirectory()) {
-            travel(pathname, callback, function() {
-              next(i + 1);
-            });
-          } else {
-            callback(pathname, function () {
-              next(i + 1);
-            });
-          }
-        });
-      } else {
-        finish &amp;&amp; finish();
-      }
-    }(0));
-  });
+<pre><code class="language-JSON">{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch myTest",
+      "program": "${workspaceFolder}/index.js"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach myTest",
+      "port": 9229
+    }
+  ]
 }
 </code></pre>
 
-<h2 id="exports--moduleexports">exports / module.exports</h2>
+<h3 id="launch">launch</h3>
+
+<p>根据 launch.json 配置选项，选择 “Launch myTest” 模式并执行，此时控制台输出:</p>
+
+<pre><code class="language-SHELL">/usr/local/bin/node --inspect-brk=11561 index.js
+Debugger listening on ws://127.0.0.1:11561/ba83731f-67bb-484e-8e7d-4ed842f62a60
+Debugger attached.
+listening on port 8080
+</code></pre>
+
+<p>此时 Chrome 上打开 <code>localhost:8080</code> 即可进行断点调试，但代码有修改的话，必须重新监听。</p>
+
+<h3 id="attach">attach</h3>
+
+<p>根据 launch.json 配置选项，选择 “Attach myTest” 模式，但注意在执行 debug 之前必须让程序启动，否则会报错:</p>
+
+<pre><code class="language-TEXT">Cannot connect to runtime; make sure that runtime is in 'legacy' debug mode.
+</code></pre>
+
+<p>这里使用 <strong>nodemon</strong> 做示例，但根据协议需要新增模式参数的选择:</p>
 
 <ul>
-  <li>exports 是指向 module.exports 的引用</li>
-  <li>module.exports 初始值为一个空对象 {}</li>
-  <li>require() 返回的是 module.exports 而不是 exports</li>
+  <li><strong>Legacy Protocol</strong> - <strong>–debug</strong> 模式，默认 <strong>5858</strong> 端口，一般用于旧版 Node (&lt; 6.3)</li>
+  <li><strong>Inspector Protocol</strong> - <strong>–inspect</strong> 模式，默认 <strong>9229</strong> 端口，一般用于新版 Node (&gt;= 6.3)</li>
 </ul>
 
-<p><img src="https://dn-cnode.qbox.me/FjN9jHWiy-yuUtghTUlRgB_0cgUC" alt="module.exports" /></p>
+<pre><code class="language-SHELL">nodemon --debug index.js
+
+# 或
+nodemon --inspect index.js
+</code></pre>
+
+<p>监听之后执行 debug，终端会显示 “Debugger attached.”，另外底边栏会有 <code>Auto Attach:Off</code> 状态，点击可切换为 On 状态，即当内容有修改后，会自动进行 attach 操作。</p>
+
+<h2 id="nodemon--supervisor">nodemon / supervisor</h2>
+
+<p>两种监听文件改动并重启服务的方式，还可以搭配 <strong><a href="https://browsersync.io/">Browsersync</a></strong> 实现客户端自动刷新:</p>
+
+<ul>
+  <li><strong><a href="https://github.com/remy/nodemon">nodemon</a></strong> - 占用内存更少，易扩展</li>
+  <li><strong><a href="https://github.com/Supervisor/supervisor">supervisor</a></strong></li>
+</ul>
+
+<pre><code class="language-SHELL">nodemon index.js
+</code></pre>
+
+<p>两种在生产环境部署 node 服务的方式:</p>
+
+<ul>
+  <li><strong><a href="https://github.com/foreverjs/forever">forever</a></strong></li>
+  <li><strong><a href="https://github.com/Unitech/pm2">PM2</a></strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Feature</th>
+      <th style="text-align: left">Forever</th>
+      <th style="text-align: left">PM2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Keep Alive</td>
+      <td style="text-align: left">✔</td>
+      <td style="text-align: left">✔</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Coffeescript</td>
+      <td style="text-align: left">✔</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Log aggregation</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">✔</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">API</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">✔</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Terminal monitoring</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">✔</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Clustering</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">✔</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">JSON configuration</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">✔</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-SHELL">pm2 start index.js
+pm2 stop index.js
+
+# 查看监控界面
+pm2 list
+</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2-list.png" alt="pm2" /></p>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://www.cnblogs.com/xiaohuochai/p/6938104.html">nodeJS 之 fs 文件系统</a> By 小火柴的蓝色理想</li>
-  <li><a href="http://nqdeng.github.io/7-days-nodejs/#3.2.4">七天学会 NodeJS</a></li>
-  <li><a href="https://github.com/chyingp/nodejs-learning-guide/blob/master/%E6%A8%A1%E5%9D%97/fs.md">nodejs-learning-guide</a> By chyingp</li>
-  <li><a href="https://www.jianshu.com/p/dde6a01c4094">5 分钟让你明白“软链接”和“硬链接”的区别</a> By Cyandev</li>
-  <li><a href="https://cnodejs.org/topic/5231a630101e574521e45ef8">exports 和 module.exports 的区别</a> By nswbmw</li>
-  <li><a href="https://cnodejs.org/topic/5734017ac3e4ef7657ab1215">module.exports 与 exports 的区别解释【极简版】这还看不懂就没救了。。。</a> By lellansin</li>
+  <li><a href="https://code.visualstudio.com/Docs/editor/debugging">Visual Studio Code - Debugging</a></li>
+  <li><a href="http://jerryzou.com/posts/vscode-debug-guide/">Visual Studio Code 前端调试不完全指南</a> By Jerry</li>
+  <li><a href="https://mrvautin.com/running-nodejs-applications-in-production-forever-vs-supervisord-vs-pm2/">Running Nodejs applications in production forever vs supervisord vs pm2</a> By mrvautin</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -511,9 +381,9 @@ function travel(dir, callback, finish) {
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/04/08/node-property.html';
-        this.page.identifier = '/2018/04/08/node-property';
-        this.page.title = 'NodeJS 常用模块';
+        this.page.url = 'https://tate-young.github.io/2018/04/19/node-debugging.html';
+        this.page.identifier = '/2018/04/19/node-debugging';
+        this.page.title = 'NodeJS Debugging';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -531,7 +401,7 @@ function travel(dir, callback, finish) {
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-04-08 10:54:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-04-19 21:48:00</p> -->
         </div>
     </article>
 

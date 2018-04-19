@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "NodeJS Debugging - ",
+		"url" : "/2018/04/19/node-debugging.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Shell 脚本编写 - ",
 		"url" : "/2018/04/16/linux-shell.html"
 	}
