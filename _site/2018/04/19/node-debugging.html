@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='NodeJS Debugging - Tate & Snow' name='title' />
-    <meta content='NodeJS Debugging - Tate & Snow' name='og:title' />
-    <title>NodeJS Debugging - Tate & Snow</title>
+    <meta content='NodeJS 侦错 - Tate & Snow' name='title' />
+    <meta content='NodeJS 侦错 - Tate & Snow' name='og:title' />
+    <title>NodeJS 侦错 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>NodeJS Debugging - Tate & Snow</title>
+<title>NodeJS 侦错 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NodeJS Debugging - Tate & Snow">
-<meta name="twitter:keywords" content="NodeJS Debugging - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="NodeJS 侦错 - Tate & Snow">
+<meta name="twitter:keywords" content="NodeJS 侦错 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="NodeJS Debugging - Tate & Snow">
-<meta name="og:keywords" content="NodeJS Debugging - Tate & Snow|NodeJS DebuggingNode 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch 配置launch.json 文件配..."
+<meta property="og:title" content="NodeJS 侦错 - Tate & Snow">
+<meta name="og:keywords" content="NodeJS 侦错 - Tate & Snow|NodeJS 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="NodeJS DebuggingNode 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch 配置launch.json 文件配..." property='og:description'
+<meta name="keywords" content="NodeJS 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/04/19/node-debugging.html' property='og:url' />
-<meta content="http://localhost:4000/2018/04/19/node-debugging.html|NodeJS DebuggingNode 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch 配置launch.json 文件配..." property='og:description'
+<meta content="http://localhost:4000/2018/04/19/node-debugging.html|NodeJS 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,7 +134,7 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    NodeJS Debugging</h1>
+                    NodeJS 侦错</h1>
                 <div class="post-data">
                     <time datetime="2018-04-19 21:48:00" itemprop="datePublished">发布时间：2018-04-19 21:48:00</time>
                     <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
@@ -155,7 +155,7 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                NodeJS Debugging</h1>
+                NodeJS 侦错</h1>
             <div class="post-data">
                 <time datetime="2018-04-19 21:48:00" itemprop="datePublished">2018-04-19 21:48:00</time>
             </div>
@@ -169,15 +169,13 @@
                     </a>
                    
             </p>
-            <h1 id="nodejs-debugging">NodeJS Debugging</h1>
-
-<h2 id="node-侦错">Node 侦错</h2>
+            <h1 id="nodejs-侦错">NodeJS 侦错</h1>
 
 <p>本文只针对 VS code 工具进行调试举例。需要额外插件一枚: <a href="https://github.com/Microsoft/vscode-chrome-debug">Debugger for Chrome</a>，可以配合 Chrome 进行调试。</p>
 
 <p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png" alt="debug" /></p>
 
-<h3 id="launch-配置">launch 配置</h3>
+<h2 id="launchjson-配置">launch.json 配置</h2>
 
 <p><strong>launch.json</strong> 文件配置里的有两个重要的属性 <strong>type</strong> 和 <strong>request</strong>，取值为:</p>
 
@@ -404,7 +402,7 @@ pm2 list
     var disqus_config = function () {
         this.page.url = 'https://tate-young.github.io/2018/04/19/node-debugging.html';
         this.page.identifier = '/2018/04/19/node-debugging';
-        this.page.title = 'NodeJS Debugging';
+        this.page.title = 'NodeJS 侦错';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW

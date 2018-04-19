@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  NodeJS 常用模块
 date:   2018-04-08 10:54:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/04/06/5ac6ee540387c.jpg
+background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
 tags:
 - NodeJS
 ---
