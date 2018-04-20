@@ -271,14 +271,6 @@ function travel(dir, callback, finish) {
 }
 ```
 
-## exports / module.exports
-
-* exports 是指向 module.exports 的引用
-* module.exports 初始值为一个空对象 {}
-* require() 返回的是 module.exports 而不是 exports
-
-![module.exports](https://dn-cnode.qbox.me/FjN9jHWiy-yuUtghTUlRgB_0cgUC)
-
 ## 参考链接
 
 1. [nodeJS 之 fs 文件系统](https://www.cnblogs.com/xiaohuochai/p/6938104.html) By 小火柴的蓝色理想

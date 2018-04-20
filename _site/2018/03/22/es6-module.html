@@ -195,7 +195,7 @@ let exists = _fs.exists;
 let readfile = _fs.readfile;
 </code></pre>
 
-<p>ES6 模块不是对象，而是通过 export 命令显式指定输出的代码，再通过 import 命令输入。</p>
+<p>ES6 模块不是对象，只用引入模块下对应的方法，即在编译时即可加载(静态加载)，效率明显高于 CommonJS。</p>
 
 <pre><code class="language-JS">// 编译时加载
 import { stat, exists, readFile } from 'fs';
@@ -270,7 +270,7 @@ console.log('圆周长：' + circle.circumference(14));
 
 <ul>
   <li>引用相对路径，则直接寻找该相对路径文件 export 输出。</li>
-  <li>绝对路径，则会依次寻找 node_modules 目录，直到全局目录。</li>
+  <li>绝对路径，可能一个核心模块或加载自 node_modules 目录，后者的话则会当前目录下寻找 node_modules 目录，直到全局目录。</li>
   <li>路径为文件夹时，则会首先观察文件夹下是否有 package.json ,如果有 package.json 则会去加载 main 字段指向的文件，如果没有 package.json，则会在这个文件夹下寻找 index.js 文件并加载。</li>
 </ul>
 
@@ -315,7 +315,7 @@ export default foo;
 export default var foo = 1;
 </code></pre>
 
-<h3 id="加载实现">加载实现</h3>
+<h3 id="模块加载实现">模块加载实现</h3>
 
 <ul>
   <li>浏览器</li>
@@ -375,7 +375,7 @@ import name from './tate.js'
 console.log(name) // 'tate'
 </code></pre>
 
-<p>CommonJS 加载是具有缓存的，无论加载多少次，都只会在第一次加载时运行，以后再加载就返回第一次运行的结果，除非手动清除系统缓存。原因是 require 命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象:</p>
+<p>CommonJS 加载是具有缓存的，无论加载多少次，都只会在第一次加载时运行，以后再加载就返回第一次运行的结果，除非手动清除系统缓存。原因是 require 命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象，这个对象是根据模块名创建的，有大小写区分:</p>
 
 <pre><code class="language-JS">{
   id: '...', // 模块名
@@ -390,6 +390,117 @@ console.log(name) // 'tate'
 </ul>
 
 <p>可以使用转码工具将 ES6 语法转换为 ES5 语法。如 <a href="https://babeljs.cn/">Babel</a>、<a href="https://github.com/esnext/es6-module-transpiler">ES6 module transpiler</a>、<a href="https://github.com/systemjs/systemjs">SystemJS</a> 等。ES6 模块会默认转换为 CommonJS 语法。</p>
+
+<h2 id="循环加载">循环加载</h2>
+
+<p><strong>循环加载(circular dependency)</strong>指的是不同脚本之间的相互依赖，如:</p>
+
+<pre><code class="language-JS">// a.js
+var b = require('b');
+
+// b.js
+var a = require('a');
+</code></pre>
+
+<h3 id="commonjs-循环加载">CommonJS 循环加载</h3>
+
+<p>根据 CommonJS 加载特性，代码在 require 时就会全部执行，一旦出现某个模块被”循环加载”，就只输出已经执行的部分，还未执行的部分不会输出。</p>
+
+<pre><code class="language-JS">// a.js
+console.log('a 开始');
+exports.done = false;
+var b = require('./b.js');
+console.log('在 a 之中，b.done = %j', b.done);
+exports.done = true;
+console.log('a 结束');
+</code></pre>
+
+<pre><code class="language-JS">// b.js
+console.log('b 开始');
+exports.done = false;
+var a = require('./a.js');
+console.log('在 b 之中，a.done = %j', a.done);
+exports.done = true;
+console.log('b 结束');
+</code></pre>
+
+<pre><code class="language-JS">// main.js
+console.log('main 开始');
+const a = require('./a.js');
+const b = require('./b.js');
+console.log('在 main 中，a.done=%j，b.done=%j', a.done, b.done);
+</code></pre>
+
+<p>分解下步骤:</p>
+
+<ol>
+  <li>当 a 被 require 时，立即执行 a 的代码，导出变量 <code>done=false</code>，此时加载 b，a 的执行会暂停;</li>
+  <li>b 的执行同上，会发生循环加载，此时系统会去 a 模块对应对象的 module.exports 属性取值，即为 <code>done=false</code>;</li>
+  <li>b 的执行不会暂停，直到结束，最终导出的变量为 <code>done=true</code></li>
+  <li>a 继续执行，直到结束，最终导出的变量为 <code>done=true</code></li>
+</ol>
+
+<p>因此打印顺序为:</p>
+
+<pre><code class="language-TEXT">main 开始
+a 开始
+b 开始
+在 b 中，a.done = false
+b 结束
+在 a 中，b.done = true
+a 结束
+在 main 中，a.done=true，b.done=true
+</code></pre>
+
+<h3 id="es6-模块加载循环">ES6 模块加载循环</h3>
+
+<p>ES6 模块是动态引用，如果使用 import 从一个模块加载变量(即 <code>import foo from 'foo'</code>)，那些变量不会被缓存，而是成为一个指向被加载模块的引用。</p>
+
+<pre><code class="language-JS">// a.mjs
+import { bar } from './b';
+console.log('a.mjs');
+console.log(bar);
+export let foo = 'foo';
+
+// b.mjs
+import { foo } from './a';
+console.log('b.mjs');
+console.log(foo);
+export let bar = 'bar';
+</code></pre>
+
+<p>终端执行 <code>node a.mjs</code>，分解下步骤:</p>
+
+<ol>
+  <li>a 执行时引入了 b，因此会优先执行 b，a 的执行会暂停;</li>
+  <li>b 执行时引入了 a，发生循环引用，此时不会再去执行 a，而是认为这个接口 foo 已经存在，继续往下执行;</li>
+  <li>执行到 <code>console.log(foo)</code> 发现 foo 未定义，故最终打印 undefined。</li>
+</ol>
+
+<p>可以根据变量提升进行修改，让 b 在引入 foo 接口时就已经定义好了:</p>
+
+<pre><code class="language-JS">// a.mjs
+import { bar } from './b';
+console.log('a.mjs');
+console.log(bar());
+function foo() { return 'foo' }
+export {foo};
+
+// b.mjs
+import { foo } from './a';
+console.log('b.mjs');
+console.log(foo());
+function bar() { return 'bar' }
+export {bar};
+</code></pre>
+
+<p>此时在终端执行 <code>node a.mjs</code>，便会依次打印:</p>
+
+<pre><code class="language-TEXT">b.mjs
+foo
+a.mjs
+bar
+</code></pre>
 
 <h2 id="babel">Babel</h2>
 
