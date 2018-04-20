@@ -15,7 +15,10 @@ tags:
 
 ## 什么是闭包
 
-**闭包(closure)**: 一个函数有权访问函数作用域中另一个函数的变量。
+**闭包(closure)** 个人认为一定要遵循两个条件:
+
+* 函数嵌套，且内层函数持有外层函数的变量
+* 内层函数在外层函数所在作用域外被调用
 
 ```js
 // 创建闭包的常见方式，就是在一个函数内部返回另一个函数。
@@ -150,7 +153,7 @@ person.getName(); // 'Tate'
 
 ### 性能考量
 
-闭包在处理速度和内存消耗方面对脚本性能具有负面影响，由于闭包会携带包含它的函数的作用域，因此会增大内存使用量，使用不当很容易造成内存泄露，降低程序的性能。
+闭包在处理速度和内存消耗方面对脚本性能具有负面影响，由于闭包会携带包含它的函数的作用域，因此会增大内存使用量，使用不当很容易造成内存泄露，降低程序的性能。要么手动去除对其内存中变量对象的引用，要么关闭程序或页面。
 
 ```js
 function assignHandler() {
@@ -181,3 +184,4 @@ function assignHandler() {
 1. [MDN - 闭包](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures)
 1. [JavaScript 深入之闭包](https://github.com/mqyqingfeng/Blog/issues/9) By mqyqingfeng
 1. [闭包](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143449934543461c9d5dfeeb848f5b72bd012e1113d15000) By 廖雪峰
+1. [深入理解闭包系列第二篇——从执行环境角度看闭包](http://www.cnblogs.com/xiaohuochai/p/5730085.html)

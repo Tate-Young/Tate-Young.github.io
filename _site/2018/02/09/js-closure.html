@@ -14,7 +14,7 @@
 <meta name="twitter:keywords" content="闭包 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="闭包 - Tate & Snow">
-<meta name="og:keywords" content="闭包 - Tate & Snow|闭包什么是闭包闭包(closure): 一个函数有权访问函数作用域中另一个函数的变量。// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。var name = 'Tate';function person(){    var ..."
+<meta name="og:keywords" content="闭包 - Tate & Snow|闭包什么是闭包闭包(closure) 个人认为一定要遵循两个条件:  函数嵌套，且内层函数持有外层函数的变量  内层函数在外层函数所在作用域外被调用// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。var name = 'T..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="闭包什么是闭包闭包(closure): 一个函数有权访问函数作用域中另一个函数的变量。// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。var name = 'Tate';function person(){    var ..." property='og:description'
+<meta name="keywords" content="闭包什么是闭包闭包(closure) 个人认为一定要遵循两个条件:  函数嵌套，且内层函数持有外层函数的变量  内层函数在外层函数所在作用域外被调用// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。var name = 'T..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/02/09/js-closure.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/09/js-closure.html|闭包什么是闭包闭包(closure): 一个函数有权访问函数作用域中另一个函数的变量。// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。var name = 'Tate';function person(){    var ..." property='og:description'
+<meta content="http://localhost:4000/2018/02/09/js-closure.html|闭包什么是闭包闭包(closure) 个人认为一定要遵循两个条件:  函数嵌套，且内层函数持有外层函数的变量  内层函数在外层函数所在作用域外被调用// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。var name = 'T..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -173,7 +173,12 @@
 
 <h2 id="什么是闭包">什么是闭包</h2>
 
-<p><strong>闭包(closure)</strong>: 一个函数有权访问函数作用域中另一个函数的变量。</p>
+<p><strong>闭包(closure)</strong> 个人认为一定要遵循两个条件:</p>
+
+<ul>
+  <li>函数嵌套，且内层函数持有外层函数的变量</li>
+  <li>内层函数在外层函数所在作用域外被调用</li>
+</ul>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。</span>
 <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
@@ -310,7 +315,7 @@
 
 <h3 id="性能考量">性能考量</h3>
 
-<p>闭包在处理速度和内存消耗方面对脚本性能具有负面影响，由于闭包会携带包含它的函数的作用域，因此会增大内存使用量，使用不当很容易造成内存泄露，降低程序的性能。</p>
+<p>闭包在处理速度和内存消耗方面对脚本性能具有负面影响，由于闭包会携带包含它的函数的作用域，因此会增大内存使用量，使用不当很容易造成内存泄露，降低程序的性能。要么手动去除对其内存中变量对象的引用，要么关闭程序或页面。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">assignHandler</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'someElement'</span><span class="p">);</span>
@@ -344,6 +349,7 @@
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures">MDN - 闭包</a></li>
   <li><a href="https://github.com/mqyqingfeng/Blog/issues/9">JavaScript 深入之闭包</a> By mqyqingfeng</li>
   <li><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/00143449934543461c9d5dfeeb848f5b72bd012e1113d15000">闭包</a> By 廖雪峰</li>
+  <li><a href="http://www.cnblogs.com/xiaohuochai/p/5730085.html">深入理解闭包系列第二篇——从执行环境角度看闭包</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
