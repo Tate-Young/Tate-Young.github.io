@@ -402,7 +402,7 @@ var b = require('b');
 var a = require('a');
 </code></pre>
 
-<h3 id="commonjs-循环加载">CommonJS 循环加载</h3>
+<h3 id="commonjs">CommonJS</h3>
 
 <p>根据 CommonJS 加载特性，代码在 require 时就会全部执行，一旦出现某个模块被”循环加载”，就只输出已经执行的部分，还未执行的部分不会输出。</p>
 
@@ -452,7 +452,7 @@ a 结束
 在 main 中，a.done=true，b.done=true
 </code></pre>
 
-<h3 id="es6-模块加载循环">ES6 模块加载循环</h3>
+<h3 id="es6-模块">ES6 模块</h3>
 
 <p>ES6 模块是动态引用，如果使用 import 从一个模块加载变量(即 <code>import foo from 'foo'</code>)，那些变量不会被缓存，而是成为一个指向被加载模块的引用。</p>
 

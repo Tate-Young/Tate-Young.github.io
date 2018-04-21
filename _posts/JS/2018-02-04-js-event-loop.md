@@ -48,20 +48,20 @@ bar(520); // 1564
 
 ### Event Loop
 
-JavaScript 属于单线程语言，执行的任务可分为同步和异步，ES6 诞生以前，异步编程的方法，大概有下列四种：
+JavaScript 属于单线程语言，执行的任务可分为同步和异步，ES6 诞生以前，异步编程的方法，大概有下列四种:
 
 * 回调函数
 * 事件监听
 * 发布/订阅
 * Promise 对象
 
-在主线程中，如果有定时器或者其他异步操作，他们会被添加到浏览器 **Event Table** 事件表中，当事件(timeout、click、mouse move)满足触发条件后，它会将其发送至 **事件队列(Event Queue)**，实行先进先出。
+在主线程中，如果有定时器或者其他异步操作，他们会被添加到浏览器 **Event Table** 事件表(Web APIS)中，当事件(timeout、click、mouse move)满足触发条件后，它会将其发送至 **事件队列(Event Queue)**，实行先进先出。
 
-事件循环是个进程，会持续监测调用栈是否为空(只剩下栈底的全局上下文)，若为空，则监测事件队列，将里面的事件移至调用栈执行，如此循环。当然也有通过下图来解释的:
+事件循环是个进程，会持续监测调用栈是否为空(只剩下栈底的全局上下文)，若为空，则监测事件队列，将里面的事件移至调用栈执行，如此循环。
 
 ![Javascript Event Loop Visual Representation](https://cdn-images-1.medium.com/max/1600/1*-MMBHKy_ZxCrouecRqvsBg.png)
 
-当调用 setTimeout() 方法等 WebAPIs 时，浏览器内核相应模块开始延时方法的处理，当延时方法到达触发条件时，方法被添加到用于回调的任务队列，后面的事件循环过程同上。
+> 事件循环在线测试地址可以[戳这里](http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D) 👈👈
 
 ### 定时器
 
@@ -143,4 +143,5 @@ console.log('script end');
 1. [Understanding the JavaScript call stack](https://medium.freecodecamp.org/understanding-the-javascript-call-stack-861e41ae61d4) By Charles Freeborn Eteure
 1. [深入浅出 Javascript 事件循环机制](https://zhuanlan.zhihu.com/p/26229293) By 一只萌媛的自我修炼
 1. [Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) By Jake
-1. [[译] 深入理解 JavaScript 事件循环（二）— task and microtask](https://www.cnblogs.com/dong-xu/p/7000139.html) By Shelton_Dong
+1. [[译]深入理解 JavaScript 事件循环（二）— task and microtask](https://www.cnblogs.com/dong-xu/p/7000139.html) By Shelton_Dong
+1. [事件循环在线演示](http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)

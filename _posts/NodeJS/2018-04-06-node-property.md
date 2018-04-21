@@ -5,11 +5,11 @@ comments: True
 flag: Node
 background: gray
 category: 后端
-title:  NodeJS 常用模块
+title:  Node 常用模块
 date:   2018-04-08 10:54:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
 tags:
-- NodeJS
+- Node
 ---
 # {{ page.title }}
 
@@ -17,8 +17,80 @@ tags:
 
 | Node 模块 | 描述 |
 |:--------------|:---------|
-| [path](#path-模块) | 用于处理文件与目录的路径 |
-| [fs](#fs-模块) | 对系统文件及目录进行读写操作 |
+| **[global](#global-对象)** | 全局对象 |
+| **[path](#path-模块)** | 用于处理文件与目录的路径 |
+| **[fs](#fs-模块)** | 对系统文件及目录进行读写操作 |
+
+## global 对象
+
+通过 global 对象可以设置全局变量，内置的常用全局变量有:
+
+### __dirname / __filename
+
+* **__dirname** - 当前模块的文件夹名称。等同于 __filename 的 path.dirname() 的值
+* **__filename** - 当前模块的文件名称解析后的绝对路径
+
+举个栗子，运行位于 /Users/mjr 目录下的 example.js 文件:
+
+```JS
+console.log(__dirname)
+// Prints: /Users/mjr
+console.log(path.dirname(__filename))
+// Prints: /Users/mjr
+console.log(__filename)
+// Prints: /Users/mjr/example.js
+```
+
+### exports / module.exports
+
+* **exports** - 对于 module.exports 的更简短的引用形式
+* **module.exports** - 指定一个模块导出的内容
+
+两者的区别如下:
+
+* exports 是指向 module.exports 的引用
+* module.exports 初始值为一个空对象 {}
+* require() 返回的是 module.exports 而不是 exports
+
+![module.exports](https://dn-cnode.qbox.me/FjN9jHWiy-yuUtghTUlRgB_0cgUC)
+
+### process
+
+process 进程有以下几个常用属性:
+
+* **argv** - 包含命令行参数的数组
+* **env** - 获取当前系统环境信息的对象
+* **versions** - 返回一个对象，此对象列出了 Node 和其依赖的版本信息；**version** 则只返回 Node 版本号
+* **platform** - 返回 Node 程运行其上的操作系统平台
+
+```JS
+// 执行 node index.js name='tate'
+console.log(process.argv)
+// ['/usr/local/Cellar/node/9.3.0_1/bin/node', '/Users/tate/testS/index.js', 'name=tate']
+```
+
+process.env 可以配合跨平台插件 **[cross-env](https://github.com/kentcdodds/cross-env)** 进行设置环境变量:
+
+```JS
+// 执行 cross-env ENV=dev node index.js
+console.log(process.env.ENV)
+// dev 可根据该变量确定是否为开发环境
+```
+
+process 进程有以下几个常用的方法:
+
+* **cwd()** - 返回 Node 进程当前工作的目录
+* **exit([code])** - 终止进程，可以接受一个参数，表示结束状态码，默认为 0，可以[参考状态码 exit code](http://nodejs.cn/api/process.html#process_process_exit_code)
+* **nextTick(callback[, ...args])** - 将 callback 添加到 "next tick 队列"。一旦当前事件轮询队列的任务全部完成，在 next tick 队列中的所有 callbacks 会被依次调用，有关 Node 事件循环可参考这里
+
+执行 <code>process.exit()</code> 终止进程时或 Node 事件循环数组中不再有额外的工作，会触发 exit 事件:
+
+```JS
+// 'exit' 事件监听器的回调函数，只允许包含同步操作
+process.on('exit', (code) => {
+  console.log(`即将退出，退出码：${code}`);
+});
+```
 
 ## path 模块
 

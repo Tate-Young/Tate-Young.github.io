@@ -10,7 +10,7 @@ title:  Express 中间件与路由
 date:   2018-04-10 09:55:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/19/5ad8a98a6133c.png
 tags:
-- NodeJS
+- Node
 ---
 # {{ page.title }}
 

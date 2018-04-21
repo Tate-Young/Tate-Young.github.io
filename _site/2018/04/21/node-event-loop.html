@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='Node 侦错 - Tate & Snow' name='title' />
-    <meta content='Node 侦错 - Tate & Snow' name='og:title' />
-    <title>Node 侦错 - Tate & Snow</title>
+    <meta content='Node 事件循环 - Tate & Snow' name='title' />
+    <meta content='Node 事件循环 - Tate & Snow' name='og:title' />
+    <title>Node 事件循环 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Node 侦错 - Tate & Snow</title>
+<title>Node 事件循环 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node 侦错 - Tate & Snow">
-<meta name="twitter:keywords" content="Node 侦错 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Node 事件循环 - Tate & Snow">
+<meta name="twitter:keywords" content="Node 事件循环 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node 侦错 - Tate & Snow">
-<meta name="og:keywords" content="Node 侦错 - Tate & Snow|Node 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性..."
+<meta property="og:title" content="Node 事件循环 - Tate & Snow">
+<meta name="og:keywords" content="Node 事件循环 - Tate & Snow|Node 事件循环Node 简述官方简述: Node 是一个基于 Chrome V8 引擎的 JavaScript 运行环境；使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node 是单进程单线程应用程序，但是通过事件..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Node 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性..." property='og:description'
+<meta name="keywords" content="Node 事件循环Node 简述官方简述: Node 是一个基于 Chrome V8 引擎的 JavaScript 运行环境；使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node 是单进程单线程应用程序，但是通过事件..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/04/19/node-debugging.html' property='og:url' />
-<meta content="http://localhost:4000/2018/04/19/node-debugging.html|Node 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性..." property='og:description'
+<meta content='http://localhost:4000/2018/04/21/node-event-loop.html' property='og:url' />
+<meta content="http://localhost:4000/2018/04/21/node-event-loop.html|Node 事件循环Node 简述官方简述: Node 是一个基于 Chrome V8 引擎的 JavaScript 运行环境；使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node 是单进程单线程应用程序，但是通过事件..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,9 +134,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    Node 侦错</h1>
+                    Node 事件循环</h1>
                 <div class="post-data">
-                    <time datetime="2018-04-19 21:48:00" itemprop="datePublished">发布时间：2018-04-19 21:48:00</time>
+                    <time datetime="2018-04-21 13:01:00" itemprop="datePublished">发布时间：2018-04-21 13:01:00</time>
                     <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -155,9 +155,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                Node 侦错</h1>
+                Node 事件循环</h1>
             <div class="post-data">
-                <time datetime="2018-04-19 21:48:00" itemprop="datePublished">2018-04-19 21:48:00</time>
+                <time datetime="2018-04-21 13:01:00" itemprop="datePublished">2018-04-21 13:01:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -169,227 +169,247 @@
                     </a>
                    
             </p>
-            <h1 id="node-侦错">Node 侦错</h1>
+            <h1 id="node-事件循环">Node 事件循环</h1>
 
-<p>本文只针对 VS code 工具进行调试举例。需要额外插件一枚: <a href="https://github.com/Microsoft/vscode-chrome-debug">Debugger for Chrome</a>，可以配合 Chrome 进行调试。</p>
+<h2 id="node-简述">Node 简述</h2>
 
-<p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png" alt="debug" /></p>
+<p>官方简述: Node 是一个基于 Chrome V8 引擎的 JavaScript 运行环境；使用了一个<strong>事件驱动</strong>、<strong>非阻塞式 I/O</strong> 的模型，使其轻量又高效。Node 是单进程单线程应用程序，但是通过事件和回调支持并发，所以性能非常高。</p>
 
-<h2 id="launchjson-配置">launch.json 配置</h2>
+<h2 id="event-loop">Event Loop</h2>
 
-<p><strong>launch.json</strong> 文件配置里的有两个重要的属性 <strong>type</strong> 和 <strong>request</strong>，取值为:</p>
+<p>当 Node 启动时会初始化 <strong>Event Loop</strong>，会包含如下六个循环阶段，具体<a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">参考官方文档</a>:</p>
+
+<pre><code class="language-TEXT">   ┌───────────────────────┐
+┌─&gt;│        timers         │
+│  └──────────┬────────────┘
+│  ┌──────────┴────────────┐
+│  │     I/O callbacks     │
+│  └──────────┬────────────┘
+│  ┌──────────┴────────────┐
+│  │     idle, prepare     │
+│  └──────────┬────────────┘      ┌───────────────┐
+│  ┌──────────┴────────────┐      │   incoming:   │
+│  │         poll          │&lt;─────┤  connections, │
+│  └──────────┬────────────┘      │   data, etc.  │
+│  ┌──────────┴────────────┐      └───────────────┘
+│  │        check          │
+│  └──────────┬────────────┘
+│  ┌──────────┴────────────┐
+└──┤    close callbacks    │
+   └───────────────────────┘
+</code></pre>
 
 <ul>
-  <li><strong>type</strong> - 设置需要启动的调试类型，选项是根据所安装的 debug 插件决定，如 “node” for built-in node debugger</li>
-  <li><strong>request</strong> - 设置需要启动的 request 类型，有两种取值:
-    <ul>
-      <li><strong>launch</strong> - 启动一个独立的具有 debug 模式的程序</li>
-      <li><strong>attach</strong> - 附加于已启动的程序并进行 debug</li>
-    </ul>
-  </li>
+  <li><strong>timers</strong> - 执行 setTimeout() 和 setInterval() 中预设的回调</li>
+  <li><strong>I/O callbacks</strong> - 执行大部分的回调，除开 timers、close callbacks 和 setImmediate()</li>
+  <li><strong>idle, prepare</strong> - 仅内部使用</li>
+  <li><strong>poll</strong> - 获取新的 I/O 事件，在适当的条件下 Node 会阻塞在这个阶段</li>
+  <li><strong>check</strong> - 执行 setImmediate() 的回调</li>
+  <li><strong>close callbacks</strong> - 执行 close 事件的回调，例如 socket.on(“close”,func)</li>
 </ul>
 
-<p>当配置完成后，会在根目录下自动生成文件 <code>.vscode/launch.json</code>。配置参数选项有很多，可以直接<a href="https://code.visualstudio.com/Docs/editor/debugging">参考官网文档</a>。</p>
+<p>上述阶段中，每个阶段都有一个包含回调 的 FIFO 队列。每当进入一个阶段，都会从所属的队列中取出回调来执行，直到队列为空或者被执行回调的数量达到系统上限时，才会进入下一阶段。这六个阶段都执行完毕称为一轮循环。</p>
 
-<pre><code class="language-JSON">{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Launch",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceRoot}/app.js",
-      "stopOnEntry": false,
-      "args": [],
-      "cwd": "${workspaceRoot}",
-      "preLaunchTask": null,
-      "runtimeExecutable": null,
-      "runtimeArgs": [
-        "--nolazy"
-      ],
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "externalConsole": false,
-      "sourceMaps": false,
-      "outDir": null
-    },
-    {
-      "name": "Attach",
-      "type": "node",
-      "request": "attach",
-      "port": 5858,
-      "address": "localhost",
-      "restart": false,
-      "sourceMaps": false,
-      "outDir": null,
-      "localRoot": "${workspaceRoot}",
-      "remoteRoot": null
-    }
-  ]
+<h3 id="timers">timers</h3>
+
+<p>此阶段指定线程执行定时器(setTimeout 和 setInterval)的回调函数，但是大多数的时候定时器的回调函数执行的时间要远大于定时器设定的时间。因为必须要等 poll phrase 中的 poll queue 队列为空时，poll 才会去查看 timers 中有没有到期的定时器并执行。</p>
+
+<pre><code class="language-JS">const fs = require('fs');
+
+function someAsyncOperation(callback) {
+  // Assume this takes 95ms to complete
+  fs.readFile('/path/to/file', callback);
+}
+
+const timeoutScheduled = Date.now();
+
+setTimeout(() =&gt; {
+  const delay = Date.now() - timeoutScheduled;
+
+  console.log(`${delay}ms have passed since I was scheduled`);
+}, 100);
+
+
+// do someAsyncOperation which takes 95 ms to complete
+someAsyncOperation(() =&gt; {
+  const startCallback = Date.now();
+
+  // do something that will take 10ms...
+  while (Date.now() - startCallback &lt; 10) {
+    // do nothing
+  }
+});
+</code></pre>
+
+<p>执行的结果打印为:</p>
+
+<pre><code class="language-TEXT">105ms have passed since I was scheduled
+</code></pre>
+
+<p>分解事件循环步骤:</p>
+
+<ol>
+  <li>当事件循环进入到 poll phase，此时队列为空，fs.readFile 未完成;</li>
+  <li>95ms 后，文件读取完成并执行回调，此时会添加至 poll queue 并执行;</li>
+  <li>当回调执行完后，该队列为空，此时 poll 会去 timers 查看有没有到期的定时器，有即执行。</li>
+</ol>
+
+<h3 id="io-callbacks">I/O callbacks</h3>
+
+<p>此阶段执行一些诸如 TCP 的 errors 回调函数，比如 TCP socket 接收到 “ECONNREFUSED” 错误尝试连接时，部分系统会暂缓报告错误，这个时候会被添加到 I/O callbacks 阶段。</p>
+
+<p>一些应该在上轮循环 poll 阶段执行的 callback，因为某些原因不能执行(比如执行数超过最大限制)，也会被延迟到这一轮的循环的 I/O callbacks 阶段执行。</p>
+
+<h3 id="poll">poll</h3>
+
+<p>此阶段有两个重要的任务:</p>
+
+<ul>
+  <li>执行 poll 队列里面的回调</li>
+  <li>当 timers 的定时器到时后，执行定时器(setTimeout 和 setInternal)的回调函数</li>
+</ul>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/704770-bf3f64513807886f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="poll" /></p>
+
+<blockquote>
+  <p>在 poll phrase，一旦 poll queue 为空，Event Loop 就会去检测 timers 有没有到期的定时期需要执行。如果有，就会按循环顺序进入 timers 阶段并执行相应的回调函数。</p>
+</blockquote>
+
+<h3 id="check">check</h3>
+
+<p>如果 poll 中已没有排队的队列，并且存在 setImmediate() 立即执行的回调函数，这时 Event Loop 不会在 poll 阶段阻塞等待相应的 I/O 事件，而是直接去 check 阶段执行 setImmediate() 函数。</p>
+
+<h3 id="close-callbacks">close callbacks</h3>
+
+<p>循环关闭所有的 closing handles。当一个 socket or handle 突然关闭时会触发(如 socket.destroy())，’close’ 事件会在此阶段触发，否则会通过 process.nextTick() 触发。</p>
+
+<h2 id="setimmediate--settimeout">setImmediate() / setTimeout()</h2>
+
+<ul>
+  <li>setImmediate() - Event Loop 的 poll phase 中，poll queue 执行后为空或是执行的回调数目达到上限后，直接进入 check 阶段执行setImmediate 函数。</li>
+  <li>setTimeout/setInterval - poll queue 执行后为空或是执行的回调数目达到上限后，按照循环顺序返回到 timers phase 执行已到期的定时器的回调函数。</li>
+</ul>
+
+<p>关于两者的执行顺序，可以参考:</p>
+
+<pre><code class="language-TEXT">This code will execute after any I/O operations in the current event loop and before any timers scheduled for the next event loop
+</code></pre>
+
+<p>举个栗子，试试两者的打印顺序，会发现顺序并不确定，原因是运行的当前上下文环境中存在其他的程序影响了执行顺序，不处于一个 I/O 循环(cycle)中:</p>
+
+<pre><code class="language-JS">setTimeout(() =&gt; {
+  console.log('timeout');
+}, 0);
+
+setImmediate(() =&gt; {
+  console.log('immediate');
+});
+</code></pre>
+
+<p>写入到一个 I/O 循环中再试试，setImmediate 方法总是先执行:</p>
+
+<pre><code class="language-JS">const fs = require('fs');
+
+fs.readFile(__filename, () =&gt; {
+  setTimeout(() =&gt; {
+    console.log('timeout');
+  }, 0);
+  setImmediate(() =&gt; {
+    console.log('immediate');
+  });
+});
+
+// immediate
+// timeout
+</code></pre>
+
+<h2 id="processnexttick">process.nextTick()</h2>
+
+<p>尽管 process.nextTick() 也是一个异步的函数，但是它并没有出现在上面 Event Loop 的结构图中。无论当前正处于 Event Loop 的哪个阶段，在进入下个阶段前会执行 process.nextTick() 注册的回调。process.nextTick() 会生成一个 “<strong>nextTickQueue</strong>” 队列。</p>
+
+<pre><code class="language-JS">var fs = require('fs');
+
+fs.readFile(__filename, () =&gt; {
+  setTimeout(() =&gt; {
+    console.log('setTimeout');
+  }, 0);
+  setImmediate(() =&gt; {
+    console.log('setImmediate');
+    process.nextTick(()=&gt;{
+      console.log('nextTick3');
+    })
+  });
+  process.nextTick(()=&gt;{
+    console.log('nextTick1');
+  })
+  process.nextTick(()=&gt;{
+    console.log('nextTick2');
+  })
+});
+
+// nextTick1
+// nextTick2
+// setImmediate
+// nextTick3
+// setTimeout
+</code></pre>
+
+<pre><code class="language-JS">// process.nextTick() 还可以接受第二个参数，传入到回调中
+function apiCall(arg, callback) {
+  if (typeof arg !== 'string')
+    return process.nextTick(callback, new TypeError('argument should be string'));
 }
 </code></pre>
 
-<p>此处作为测试，作如下配置:</p>
+<p>应用场景:</p>
 
-<pre><code class="language-JSON">{
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch myTest",
-      "program": "${workspaceFolder}/index.js"
-    },
-    {
-      "type": "node",
-      "request": "attach",
-      "name": "Attach myTest",
-      "port": 9229
-    }
-  ]
+<ul>
+  <li>Event Loop 在准备进入下一个阶段前处理异常、清理一些无用或无关的资源等</li>
+  <li>At times it’s necessary to allow a callback to run after the call stack has unwound but before the event loop continues</li>
+</ul>
+
+<p>举个栗子:</p>
+
+<pre><code class="language-JS">const EventEmitter = require('events');
+const util = require('util');
+
+function MyEmitter() {
+  EventEmitter.call(this);
+  this.emit('event');
+}
+util.inherits(MyEmitter, EventEmitter);
+
+const myEmitter = new MyEmitter();
+myEmitter.on('event', () =&gt; {
+  console.log('an event occurred!');
+});
+</code></pre>
+
+<p>在构造函数 MyEmitter 中，不能立即发射(emit)事件，because the script will not have processed to the point where the user assigns a callback to that event，因此在构造函数内部，需要通过 <code>process.nextTick()</code> 设置一个回调来发射事件。因此构造函数改为:</p>
+
+<pre><code class="language-JS">function MyEmitter() {
+  EventEmitter.call(this);
+
+  // use nextTick to emit the event once a handler is assigned
+  process.nextTick(() =&gt; {
+    this.emit('event');
+  });
 }
 </code></pre>
 
-<h3 id="launch">launch</h3>
-
-<p>根据 launch.json 配置选项，选择 “Launch myTest” 模式并执行，此时控制台输出:</p>
-
-<pre><code class="language-SHELL">/usr/local/bin/node --inspect-brk=11561 index.js
-Debugger listening on ws://127.0.0.1:11561/ba83731f-67bb-484e-8e7d-4ed842f62a60
-Debugger attached.
-listening on port 8080
-</code></pre>
-
-<p>此时 Chrome 上打开 <code>localhost:8080</code> 即可进行断点调试，但代码有修改的话，必须重新监听。</p>
-
-<h3 id="attach">attach</h3>
-
-<p>根据 launch.json 配置选项，选择 “Attach myTest” 模式，但注意在执行 debug 之前必须让程序启动，否则会报错:</p>
-
-<pre><code class="language-TEXT">Cannot connect to runtime; make sure that runtime is in 'legacy' debug mode.
-</code></pre>
-
-<p>这里使用 <strong>nodemon</strong> 做示例，但根据协议需要新增模式参数的选择:</p>
-
-<ul>
-  <li><strong>Legacy Protocol</strong> - <strong>–debug</strong> 模式，默认 <strong>5858</strong> 端口，一般用于旧版 Node (&lt; 6.3)</li>
-  <li><strong>Inspector Protocol</strong> - <strong>–inspect</strong> 模式，默认 <strong>9229</strong> 端口，一般用于新版 Node (&gt;= 6.3)</li>
-</ul>
-
-<pre><code class="language-SHELL">nodemon --debug index.js
-
-# 或
-nodemon --inspect index.js
-</code></pre>
-
-<p>监听之后执行 debug，终端会显示 “Debugger attached.”，另外底边栏会有 <code>Auto Attach:Off</code> 状态，点击可切换为 On 状态，即当内容有修改后，会自动进行 attach 操作。</p>
-
-<h2 id="断点">断点</h2>
-
-<p>单击编辑器侧边缘即可为所在行添加或删除断点，调试时在 BREAKPOINTS 区域中也可对断点进行操作(enable/disable/reapply)。</p>
-
-<ul>
-  <li>断点一般显示为红色圆圈</li>
-  <li>被取消的断点显示为灰色圆圈</li>
-  <li>调试启动后，不能被注册的断点显示为灰色的空心圆圈</li>
-</ul>
-
-<p>也可以通过代码语句 <code>debugger</code> 设置断点:</p>
-
-<pre><code class="language-JS">app.get('/', function(req, res){
-  console.log('tate')
-  debugger // 相当于断点
-  res.send('bbb')
-})
-</code></pre>
-
-<p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debug-session.png" alt="breakpoints" /></p>
-
-<h2 id="nodemon--supervisor">nodemon / supervisor</h2>
-
-<p>两种监听文件改动并重启服务的方式，还可以搭配 <strong><a href="https://browsersync.io/">Browsersync</a></strong> 实现客户端自动刷新:</p>
-
-<ul>
-  <li><strong><a href="https://github.com/remy/nodemon">nodemon</a></strong> - 占用内存更少，易扩展</li>
-  <li><strong><a href="https://github.com/Supervisor/supervisor">supervisor</a></strong></li>
-</ul>
-
-<pre><code class="language-SHELL">nodemon index.js
-</code></pre>
-
-<p>两种在生产环境部署 node 服务的方式:</p>
-
-<ul>
-  <li><strong><a href="https://github.com/foreverjs/forever">forever</a></strong></li>
-  <li><strong><a href="https://github.com/Unitech/pm2">PM2</a></strong></li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Feature</th>
-      <th style="text-align: left">Forever</th>
-      <th style="text-align: left">PM2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">Keep Alive</td>
-      <td style="text-align: left">✔</td>
-      <td style="text-align: left">✔</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Coffeescript</td>
-      <td style="text-align: left">✔</td>
-      <td style="text-align: left"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Log aggregation</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">✔</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">API</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">✔</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Terminal monitoring</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">✔</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Clustering</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">✔</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">JSON configuration</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">✔</td>
-    </tr>
-  </tbody>
-</table>
-
-<pre><code class="language-SHELL">pm2 start index.js
-pm2 stop index.js
-
-# 查看监控界面
-pm2 list
-</code></pre>
-
-<p><img src="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2-list.png" alt="pm2" /></p>
+<blockquote>
+  <p>感觉这一块儿理解的不是很深，基本都是按照官网贴上去的，未完待续…</p>
+</blockquote>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://code.visualstudio.com/Docs/editor/debugging">Visual Studio Code - Debugging</a></li>
-  <li><a href="http://jerryzou.com/posts/vscode-debug-guide/">Visual Studio Code 前端调试不完全指南</a> By Jerry</li>
-  <li><a href="https://mrvautin.com/running-nodejs-applications-in-production-forever-vs-supervisord-vs-pm2/">Running Nodejs applications in production forever vs supervisord vs pm2</a> By mrvautin</li>
+  <li><a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">The Node.js Event Loop, Timers, and process.nextTick()</a></li>
+  <li><a href="https://cnodejs.org/topic/5a9108d78d6e16e56bb80882">不要混淆 nodejs 和浏览器中的 event loop</a> By youth7</li>
+  <li><a href="https://cnodejs.org/topic/57d68794cb6f605d360105bf">Node.js Event Loop 的理解 Timers，process.nextTick()</a> By  vincentLiuxiang</li>
+  <li><a href="https://www.jianshu.com/p/2a7ac1b3b382">Nodejs 解读 event loop 的事件处理机制</a> By 编程 go</li>
+  <li><a href="https://www.oschina.net/translate/understanding-process-next-tick?cmp">[译]理解 Node.js 里的 process.nextTick()</a></li>
+  <li><a href="https://acemood.github.io/2016/02/01/event-loop-in-javascript/">Event loop in JavaScript</a> By AceMood</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -400,9 +420,9 @@ pm2 list
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/04/19/node-debugging.html';
-        this.page.identifier = '/2018/04/19/node-debugging';
-        this.page.title = 'Node 侦错';
+        this.page.url = 'https://tate-young.github.io/2018/04/21/node-event-loop.html';
+        this.page.identifier = '/2018/04/21/node-event-loop';
+        this.page.title = 'Node 事件循环';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -420,7 +440,7 @@ pm2 list
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-04-19 21:48:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-04-21 13:01:00</p> -->
         </div>
     </article>
 
