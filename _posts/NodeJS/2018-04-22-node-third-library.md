@@ -21,12 +21,16 @@ tags:
 |:--------------|:---------|:---------|
 | **[cheerio](https://github.com/cheeriojs/cheerio)** | 以 jQuery 为核心，解析和操作 DOM 模型，如实现网络爬虫 | <code>require('cheerio')</code> |
 | **[request](https://github.com/request/request)** | 精简的 HTTP 请求客户端 | <code>require('request')</code> |
+| **[marked](https://github.com/markedjs/marked)** | 转换 Markdown 为 Html 显示 | <code>require('marked')</code> |
+| **[chalk](https://github.com/chalk/chalk)** | 修改终端输出信息的样式 | <code>require('chalk')</code> |
+| **[shelljs](https://github.com/shelljs/shelljs)** | 执行 shell 命令 | <code>require('shelljs')</code> |
 
 | Express | 描述 | 栗子 |
 |:--------------|:---------|:---------|
 | **[express-session](https://github.com/expressjs/session)** | session 中间件 | <code>require('express-session')</code> |
 | **[connect-mongo](https://github.com/jdesboeufs/connect-mongo)** | 通过 Mongodb 存储 session，基于 express-session | <code>require('connect-mongo')(session)</code> |
 | **[connect-flash](https://github.com/jaredhanson/connect-flash)** | 页面通知中间件，基于 session 实现 | <code>require('connect-flash')</code> |
+| **[express-formidable](https://github.com/utatti/express-formidable)** | Formidable 中间件，解析表单数据 | <code>require('express-formidable')</code> |
 
 ## Node 第三方库
 
@@ -84,6 +88,84 @@ request.post({url:'http://service.com/upload', formData: formData}, function opt
   }
   console.log('Upload successful!  Server responded with:', body);
 });
+```
+
+### marked
+
+**marked** 可以将 Markdown 语法转换为 html 并显示。
+
+```JS
+ document.getElementById('content').innerHTML =
+      marked('# Marked in the browser\n\nRendered by **marked**.');
+```
+
+### chalk
+
+**chalk** 可以修改终端输出信息的样式:
+
+```JS
+chalk.<style>[.<style>...](string, [string...])
+```
+
+![chalk](https://camo.githubusercontent.com/71d70de9a74293b29dbbcca7ac6cd309948a0f3e/68747470733a2f2f63646e2e7261776769742e636f6d2f6368616c6b2f616e73692d7374796c65732f383236313639376339356266333462366337373637653263626539393431613835316435393338352f73637265656e73686f742e737667)
+
+```JS
+const chalk = require('chalk');
+const log = console.log;
+
+// Combine styled and normal strings
+log(chalk.blue('Hello') + ' World' + chalk.red('!'));
+
+// Compose multiple styles using the chainable API
+log(chalk.blue.bgRed.bold('Hello world!'));
+
+// Pass in multiple arguments
+log(chalk.blue('Hello', 'World!', 'Foo', 'bar', 'biz', 'baz'));
+
+// Nest styles
+log(chalk.red('Hello', chalk.underline.bgBlue('world') + '!'));
+```
+
+除了内置的颜色 API 以外，还支持其他颜色自定义的 API，常用的有:
+
+* **rgb** - Example: chalk.rgb(255, 136, 0).bold('Orange!')
+* **hex** - Example: chalk.hex('#FF8800').bold('Orange!')
+* **keyword** (CSS keywords) - Example: chalk.keyword('orange').bold('Orange!')
+* **hsl** - Example: chalk.hsl(32, 100, 50).bold('Orange!')
+
+### shelljs
+
+**shelljs** 可以在 Node 中调用 shell 命令。
+
+```JS
+var shell = require('shelljs');
+
+if (!shell.which('git')) {
+  shell.echo('Sorry, this script requires git');
+  shell.exit(1); // Exits the current process with the given exit code.
+}
+
+// Copy files to release dir
+shell.rm('-rf', 'out/Release');
+shell.cp('-R', 'stuff/', 'out/Release');
+
+// Replace macros in each .js file
+// sed([options,] search_regex, replacement, file [, file ...])
+// or sed([options,] search_regex, replacement, file_array)
+
+shell.cd('lib');
+shell.ls('*.js').forEach(function (file) {
+  shell.sed('-i', 'BUILD_VERSION', 'v0.1.2', file);
+  shell.sed('-i', /^.*REMOVE_THIS_LINE.*$/, '', file);
+  shell.sed('-i', /.*REPLACE_LINE_WITH_MACRO.*\n/, shell.cat('macro.js'), file);
+});
+shell.cd('..');
+
+// Run external tool synchronously
+if (shell.exec('git commit -am "Auto-commit"').code !== 0) {
+  shell.echo('Error: Git commit failed');
+  shell.exit(1);
+}
 ```
 
 ## Express 中间件
@@ -206,6 +288,39 @@ app.get('/flash', function(req, res){
 app.get('/', function(req, res){
   // Get an array of flash messages by passing the key to req.flash()
   res.render('index', { messages: req.flash('info') });
+});
+```
+
+### express-formidable
+
+**express-formidable** 是 Express 与 **[Formidable](https://github.com/felixge/node-formidable)** 的桥梁，用来解析表单数据。
+
+```JS
+const express = require('express');
+const formidable = require('express-formidable');
+
+var app = express();
+
+app.use(formidable(opts));
+
+app.post('/upload', (req, res) => {
+  req.fields; // contains non-file fields
+  req.files; // contains files
+});
+```
+
+这里的 opts 可以参考 Formidable API，以下列出常用的几个:
+
+* **encoding** - 设置编码形式
+* **uploadDir** - 设置需要上传文件的存放路径，默认是 <code>os.tmpdir()</code>
+* **keepExtensions** - 布尔类型，是否保持原始文件的后缀名
+* **multiples** - 布尔类型，设置 true 时，当调用 form.parse，files 参数会包含上传文件的数组
+
+```JS
+app.use(formidable({
+  encoding: 'utf-8',
+  uploadDir: '/my/dir',
+  multiples: true, // req.files to be arrays of files
 });
 ```
 
