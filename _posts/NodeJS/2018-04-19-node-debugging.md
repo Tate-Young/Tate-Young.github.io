@@ -157,6 +157,9 @@ app.get('/', function(req, res){
 
 ```SHELL
 nodemon index.js
+
+# 也可省略写法，默认找 index.js
+nodemon
 ```
 
 两种在生产环境部署 node 服务的方式:

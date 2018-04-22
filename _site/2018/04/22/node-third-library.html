@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='Node 侦错 - Tate & Snow' name='title' />
-    <meta content='Node 侦错 - Tate & Snow' name='og:title' />
-    <title>Node 侦错 - Tate & Snow</title>
+    <meta content='Node 常用库 - Tate & Snow' name='title' />
+    <meta content='Node 常用库 - Tate & Snow' name='og:title' />
+    <title>Node 常用库 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Node 侦错 - Tate & Snow</title>
+<title>Node 常用库 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node 侦错 - Tate & Snow">
-<meta name="twitter:keywords" content="Node 侦错 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Node 常用库 - Tate & Snow">
+<meta name="twitter:keywords" content="Node 常用库 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node 侦错 - Tate & Snow">
-<meta name="og:keywords" content="Node 侦错 - Tate & Snow|Node 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性..."
+<meta property="og:title" content="Node 常用库 - Tate & Snow">
+<meta name="og:keywords" content="Node 常用库 - Tate & Snow|Node 常用库常用库统计本文主要收集 Node 中好用的库，也有包含 Express 框架的中间件等，没有局限性:            Node      描述      栗子                  cheerio  ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Node 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性..." property='og:description'
+<meta name="keywords" content="Node 常用库常用库统计本文主要收集 Node 中好用的库，也有包含 Express 框架的中间件等，没有局限性:            Node      描述      栗子                  cheerio  ..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/04/19/node-debugging.html' property='og:url' />
-<meta content="http://localhost:4000/2018/04/19/node-debugging.html|Node 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性..." property='og:description'
+<meta content='http://localhost:4000/2018/04/22/node-third-library.html' property='og:url' />
+<meta content="http://localhost:4000/2018/04/22/node-third-library.html|Node 常用库常用库统计本文主要收集 Node 中好用的库，也有包含 Express 框架的中间件等，没有局限性:            Node      描述      栗子                  cheerio  ..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,9 +134,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    Node 侦错</h1>
+                    Node 常用库</h1>
                 <div class="post-data">
-                    <time datetime="2018-04-19 21:48:00" itemprop="datePublished">发布时间：2018-04-19 21:48:00</time>
+                    <time datetime="2018-04-22 15:14:00" itemprop="datePublished">发布时间：2018-04-22 15:14:00</time>
                     <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -155,9 +155,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                Node 侦错</h1>
+                Node 常用库</h1>
             <div class="post-data">
-                <time datetime="2018-04-19 21:48:00" itemprop="datePublished">2018-04-19 21:48:00</time>
+                <time datetime="2018-04-22 15:14:00" itemprop="datePublished">2018-04-22 15:14:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -169,230 +169,237 @@
                     </a>
                    
             </p>
-            <h1 id="node-侦错">Node 侦错</h1>
+            <h1 id="node-常用库">Node 常用库</h1>
 
-<p>本文只针对 VS code 工具进行调试举例。需要额外插件一枚: <a href="https://github.com/Microsoft/vscode-chrome-debug">Debugger for Chrome</a>，可以配合 Chrome 进行调试。</p>
+<h2 id="常用库统计">常用库统计</h2>
 
-<p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png" alt="debug" /></p>
-
-<h2 id="launchjson-配置">launch.json 配置</h2>
-
-<p><strong>launch.json</strong> 文件配置里的有两个重要的属性 <strong>type</strong> 和 <strong>request</strong>，取值为:</p>
-
-<ul>
-  <li><strong>type</strong> - 设置需要启动的调试类型，选项是根据所安装的 debug 插件决定，如 “node” for built-in node debugger</li>
-  <li><strong>request</strong> - 设置需要启动的 request 类型，有两种取值:
-    <ul>
-      <li><strong>launch</strong> - 启动一个独立的具有 debug 模式的程序</li>
-      <li><strong>attach</strong> - 附加于已启动的程序并进行 debug</li>
-    </ul>
-  </li>
-</ul>
-
-<p>当配置完成后，会在根目录下自动生成文件 <code>.vscode/launch.json</code>。配置参数选项有很多，可以直接<a href="https://code.visualstudio.com/Docs/editor/debugging">参考官网文档</a>。</p>
-
-<pre><code class="language-JSON">{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Launch",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceRoot}/app.js",
-      "stopOnEntry": false,
-      "args": [],
-      "cwd": "${workspaceRoot}",
-      "preLaunchTask": null,
-      "runtimeExecutable": null,
-      "runtimeArgs": [
-        "--nolazy"
-      ],
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "externalConsole": false,
-      "sourceMaps": false,
-      "outDir": null
-    },
-    {
-      "name": "Attach",
-      "type": "node",
-      "request": "attach",
-      "port": 5858,
-      "address": "localhost",
-      "restart": false,
-      "sourceMaps": false,
-      "outDir": null,
-      "localRoot": "${workspaceRoot}",
-      "remoteRoot": null
-    }
-  ]
-}
-</code></pre>
-
-<p>此处作为测试，作如下配置:</p>
-
-<pre><code class="language-JSON">{
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch myTest",
-      "program": "${workspaceFolder}/index.js"
-    },
-    {
-      "type": "node",
-      "request": "attach",
-      "name": "Attach myTest",
-      "port": 9229
-    }
-  ]
-}
-</code></pre>
-
-<h3 id="launch">launch</h3>
-
-<p>根据 launch.json 配置选项，选择 “Launch myTest” 模式并执行，此时控制台输出:</p>
-
-<pre><code class="language-SHELL">/usr/local/bin/node --inspect-brk=11561 index.js
-Debugger listening on ws://127.0.0.1:11561/ba83731f-67bb-484e-8e7d-4ed842f62a60
-Debugger attached.
-listening on port 8080
-</code></pre>
-
-<p>此时 Chrome 上打开 <code>localhost:8080</code> 即可进行断点调试，但代码有修改的话，必须重新监听。</p>
-
-<h3 id="attach">attach</h3>
-
-<p>根据 launch.json 配置选项，选择 “Attach myTest” 模式，但注意在执行 debug 之前必须让程序启动，否则会报错:</p>
-
-<pre><code class="language-TEXT">Cannot connect to runtime; make sure that runtime is in 'legacy' debug mode.
-</code></pre>
-
-<p>这里使用 <strong>nodemon</strong> 做示例，但根据协议需要新增模式参数的选择:</p>
-
-<ul>
-  <li><strong>Legacy Protocol</strong> - <strong>–debug</strong> 模式，默认 <strong>5858</strong> 端口，一般用于旧版 Node (&lt; 6.3)</li>
-  <li><strong>Inspector Protocol</strong> - <strong>–inspect</strong> 模式，默认 <strong>9229</strong> 端口，一般用于新版 Node (&gt;= 6.3)</li>
-</ul>
-
-<pre><code class="language-SHELL">nodemon --debug index.js
-
-# 或
-nodemon --inspect index.js
-</code></pre>
-
-<p>监听之后执行 debug，终端会显示 “Debugger attached.”，另外底边栏会有 <code>Auto Attach:Off</code> 状态，点击可切换为 On 状态，即当内容有修改后，会自动进行 attach 操作。</p>
-
-<h2 id="断点">断点</h2>
-
-<p>单击编辑器侧边缘即可为所在行添加或删除断点，调试时在 BREAKPOINTS 区域中也可对断点进行操作(enable/disable/reapply)。</p>
-
-<ul>
-  <li>断点一般显示为红色圆圈</li>
-  <li>被取消的断点显示为灰色圆圈</li>
-  <li>调试启动后，不能被注册的断点显示为灰色的空心圆圈</li>
-</ul>
-
-<p>也可以通过代码语句 <code>debugger</code> 设置断点:</p>
-
-<pre><code class="language-JS">app.get('/', function(req, res){
-  console.log('tate')
-  debugger // 相当于断点
-  res.send('bbb')
-})
-</code></pre>
-
-<p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debug-session.png" alt="breakpoints" /></p>
-
-<h2 id="nodemon--supervisor">nodemon / supervisor</h2>
-
-<p>两种监听文件改动并重启服务的方式，还可以搭配 <strong><a href="https://browsersync.io/">Browsersync</a></strong> 实现客户端自动刷新:</p>
-
-<ul>
-  <li><strong><a href="https://github.com/remy/nodemon">nodemon</a></strong> - 占用内存更少，易扩展</li>
-  <li><strong><a href="https://github.com/Supervisor/supervisor">supervisor</a></strong></li>
-</ul>
-
-<pre><code class="language-SHELL">nodemon index.js
-
-# 也可省略写法，默认找 index.js
-nodemon
-</code></pre>
-
-<p>两种在生产环境部署 node 服务的方式:</p>
-
-<ul>
-  <li><strong><a href="https://github.com/foreverjs/forever">forever</a></strong></li>
-  <li><strong><a href="https://github.com/Unitech/pm2">PM2</a></strong></li>
-</ul>
+<p>本文主要收集 Node 中好用的库，也有包含 Express 框架的中间件等，没有局限性:</p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">Feature</th>
-      <th style="text-align: left">Forever</th>
-      <th style="text-align: left">PM2</th>
+      <th style="text-align: left">Node</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">Keep Alive</td>
-      <td style="text-align: left">✔</td>
-      <td style="text-align: left">✔</td>
+      <td style="text-align: left"><strong><a href="https://github.com/cheeriojs/cheerio">cheerio</a></strong></td>
+      <td style="text-align: left">以 jQuery 为核心，解析和操作 DOM 模型，如实现网络爬虫</td>
+      <td style="text-align: left"><code>require('cheerio')</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">Coffeescript</td>
-      <td style="text-align: left">✔</td>
-      <td style="text-align: left"> </td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Log aggregation</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">✔</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">API</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">✔</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Terminal monitoring</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">✔</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Clustering</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">✔</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">JSON configuration</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">✔</td>
+      <td style="text-align: left"><strong><a href="https://github.com/request/request">request</a></strong></td>
+      <td style="text-align: left">精简的 HTTP 请求客户端</td>
+      <td style="text-align: left"><code>require('request')</code></td>
     </tr>
   </tbody>
 </table>
 
-<pre><code class="language-SHELL">pm2 start index.js
-pm2 stop index.js
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Express</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong><a href="https://github.com/expressjs/session">express-session</a></strong></td>
+      <td style="text-align: left">session 中间件</td>
+      <td style="text-align: left"><code>require('express-session')</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="https://github.com/jdesboeufs/connect-mongo">connect-mongo</a></strong></td>
+      <td style="text-align: left">通过 Mongodb 存储 session，基于 express-session</td>
+      <td style="text-align: left"><code>require('connect-mongo')(session)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="https://github.com/jaredhanson/connect-flash">connect-flash</a></strong></td>
+      <td style="text-align: left">页面通知中间件，基于 session 实现</td>
+      <td style="text-align: left"><code>require('connect-flash')</code></td>
+    </tr>
+  </tbody>
+</table>
 
-# 查看监控界面
-pm2 list
+<h2 id="node-第三方库">Node 第三方库</h2>
+
+<h3 id="cheerio">cheerio</h3>
+
+<p><strong>cheerio</strong> 以 jQuery 为核心，可以解析和操作 DOM 模型，如实现网络爬虫，可以<a href="http://www.cnblogs.com/xiaohuochai/p/6960738.html">参考这里的实现</a>。</p>
+
+<pre><code class="language-JS">const cheerio = require('cheerio')
+const $ = cheerio.load('&lt;h2 class="title"&gt;Hello world&lt;/h2&gt;')
+
+$('h2.title').text('Hello there!')
+$('h2').addClass('welcome')
+
+$.html() // =&gt; &lt;h2 class="title welcome"&gt;Hello there!&lt;/h2&gt;
 </code></pre>
 
-<p><img src="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2-list.png" alt="pm2" /></p>
+<h3 id="request">request</h3>
+
+<p><strong>request</strong> 是一个精简的 HTTP 客户端，支持 HTTPS 协议和重定向。</p>
+
+<pre><code class="language-JS">const request = require('request');
+request('http://www.google.com', function (error, response, body) {
+  console.log('error:', error); // Print the error if one occurred
+  console.log('statusCode:', response &amp;&amp; response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the HTML for the Google homepage.
+});
+</code></pre>
+
+<p>任何响应都可以输出到文件流:</p>
+
+<pre><code class="language-JS">request('http://google.com/doodle.png').pipe(fs.createWriteStream('doodle.png'))
+</code></pre>
+
+<pre><code class="language-JS">http.createServer(function (req, resp) {
+  if (req.url === '/doodle.png') {
+    if (req.method === 'PUT') {
+      req.pipe(request.put('http://mysite.com/doodle.png'))
+    } else if (req.method === 'GET' || req.method === 'HEAD') {
+      request.get('http://mysite.com/doodle.png').pipe(resp)
+    }
+  }
+})
+</code></pre>
+
+<p>举个 post 请求提交 formData 的栗子:</p>
+
+<pre><code class="language-JS">request.post({url:'http://service.com/upload', formData: formData}, function optionalCallback(err, httpResponse, body) {
+  if (err) {
+    return console.error('upload failed:', err);
+  }
+  console.log('Upload successful!  Server responded with:', body);
+});
+</code></pre>
+
+<h2 id="express-中间件">Express 中间件</h2>
+
+<h3 id="express-session">express-session</h3>
+
+<p><strong>express-session</strong> 用来操作 session，保存会话信息，常用于登录注册、购物车等。</p>
+
+<pre><code class="language-JS">// session 中间件
+app.use(session({
+  name: config.session.key, // 设置保存 session id 的 cookie 名称
+  secret: config.session.secret, // 通过设置 secret 来计算 hash 值并放在 cookie 中，使产生的 signedCookie 防篡改
+  resave: true, // 强制更新 session
+  saveUninitialized: false, // 设置为 false，强制创建一个 session，即使用户未登录
+  cookie: { // 默认值 { path: '/', httpOnly: true, secure: false, maxAge: null }
+    maxAge: config.session.maxAge
+  },
+  store: new MongoStore({ // 将 session 存储到 mongodb
+    url: config.mongodb // mongodb 地址
+  })
+}))
+</code></pre>
+
+<p>可以通过 <strong>req.session</strong> 来访问或存储 session:</p>
+
+<pre><code class="language-JS">// Use the session middleware
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
+
+// Access the session as req.session
+app.get('/', function(req, res, next) {
+  if (req.session.views) {
+    req.session.views++
+    res.setHeader('Content-Type', 'text/html')
+    res.write('&lt;p&gt;views: ' + req.session.views + '&lt;/p&gt;')
+    res.write('&lt;p&gt;expires in: ' + (req.session.cookie.maxAge / 1000) + 's&lt;/p&gt;')
+    res.end()
+  } else {
+    req.session.views = 1
+    res.end('welcome to the session demo. refresh!')
+  }
+})
+</code></pre>
+
+<p>req.session 还有其他几个属性和方法:</p>
+
+<ul>
+  <li><strong>id</strong> - session id，与 session 唯一绑定，也可通过 <code>req.sessionID</code> 访问，不可修改</li>
+  <li><strong>cookie</strong> - 访问 session id 绑定的 cookie 信息</li>
+  <li><strong>regenerate()</strong> - 重新生成一个 session</li>
+  <li><strong>destroy()</strong> - 销毁一个 session</li>
+  <li><strong>reload()</strong> - 刷新一个 session</li>
+  <li><strong>save()</strong> - 保存一个 session，一般在 session 改变后自动调用，而不用手动去执行</li>
+</ul>
+
+<h3 id="connect-mongo">connect-mongo</h3>
+
+<p><strong>connect-mongo</strong> 是基于 express-session 实现的，可以通过 Mongodb 来存储 session。</p>
+
+<pre><code class="language-JS">const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+app.use(session({
+  secret: 'tate',
+  store: new MongoStore(options)
+}));
+</code></pre>
+
+<p>options 可以创建一个新的连接，也可以复用现成的连接:</p>
+
+<pre><code class="language-JS">// 复用现成的连接
+const mongoose = require('mongoose');
+
+// Basic usage
+mongoose.connect(connectionOptions);
+
+app.use(session({
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+// Advanced usage
+const connection = mongoose.createConnection(connectionOptions);
+
+app.use(session({
+  store: new MongoStore({ mongooseConnection: connection })
+}));
+</code></pre>
+
+<pre><code class="language-JS">// 创建一个新的连接
+app.use(session({
+  store: new MongoStore({
+    url: 'mongodb://localhost/test-app',
+    ttl: 14 * 24 * 60 * 60 // = 14 days. Default 设置 session 过期时间
+  })
+}));
+</code></pre>
+
+<h3 id="connect-flash">connect-flash</h3>
+
+<p><strong>connect-flash</strong> 是基于 session 实现的信息通知中间件，必须在设置 session 后再运行。</p>
+
+<pre><code class="language-JS">const flash = require('connect-flash')
+
+// flash 中间件，用来显示通知
+app.use(flash())
+</code></pre>
+
+<p>可以通过 <strong>req.flash()</strong> 来设置通知:</p>
+
+<pre><code class="language-JS">app.get('/flash', function(req, res){
+  // Set a flash message by passing the key, followed by the value, to req.flash().
+  req.flash('info', 'Flash is back!')
+  res.redirect('/');
+});
+
+app.get('/', function(req, res){
+  // Get an array of flash messages by passing the key to req.flash()
+  res.render('index', { messages: req.flash('info') });
+});
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://code.visualstudio.com/Docs/editor/debugging">Visual Studio Code - Debugging</a></li>
-  <li><a href="http://jerryzou.com/posts/vscode-debug-guide/">Visual Studio Code 前端调试不完全指南</a> By Jerry</li>
-  <li><a href="https://mrvautin.com/running-nodejs-applications-in-production-forever-vs-supervisord-vs-pm2/">Running Nodejs applications in production forever vs supervisord vs pm2</a> By mrvautin</li>
+  <li><a href="https://github.com/nswbmw/N-blog/blob/master/book/4.2%20%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C.md">N-Blog</a> By nswbmw</li>
+  <li><a href="http://www.cnblogs.com/xiaohuochai/p/6960738.html">nodeJS 实现简单网页爬虫功能</a> By 小火柴的蓝色理想</li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -403,9 +410,9 @@ pm2 list
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/04/19/node-debugging.html';
-        this.page.identifier = '/2018/04/19/node-debugging';
-        this.page.title = 'Node 侦错';
+        this.page.url = 'https://tate-young.github.io/2018/04/22/node-third-library.html';
+        this.page.identifier = '/2018/04/22/node-third-library';
+        this.page.title = 'Node 常用库';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -423,7 +430,7 @@ pm2 list
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-04-19 21:48:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-04-22 15:14:00</p> -->
         </div>
     </article>
 

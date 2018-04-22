@@ -81,7 +81,7 @@ process 进程有以下几个常用的方法:
 
 * **cwd()** - 返回 Node 进程当前工作的目录
 * **exit([code])** - 终止进程，可以接受一个参数，表示结束状态码，默认为 0，可以[参考状态码 exit code](http://nodejs.cn/api/process.html#process_process_exit_code)
-* **nextTick(callback[, ...args])** - 将 callback 添加到 "next tick 队列"。一旦当前事件轮询队列的任务全部完成，在 next tick 队列中的所有 callbacks 会被依次调用，有关 Node 事件循环可参考这里
+* **nextTick(callback[, ...args])** - 将 callback 添加到 "next tick 队列"。一旦当前事件轮询队列的任务全部完成，在 next tick 队列中的所有 callbacks 会被依次调用，有关 Node 事件循环[可参考这里]( {{site.url}}/2018/04/21/node-event-loop.html )
 
 执行 <code>process.exit()</code> 终止进程时或 Node 事件循环数组中不再有额外的工作，会触发 exit 事件:
 
