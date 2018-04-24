@@ -153,6 +153,7 @@ function SuperType() {
     this.name = 'Tate';
     this.arr = [1, 2, 3];
 }
+SuperType.prototype.age = 18;
 SuperType.prototype.sayName = function() {
     console.log(this.name);
 }
@@ -166,11 +167,14 @@ var b = new SubType();
 a.arr.push(4); // [1, 2, 3, 4]
 b.arr; // [1, 2, 3, 4]
 
-a.name = 'Snow'; // 'Snow'
+a.name = 'Snow';
 b.name; // 'Tate'
 
-a.sayName(); // 'Snow'
+a.age = 20;
+b.age; // 18 基础类型的修改不会影响原型响应属性
 ```
+
+> 注意每个实例都共享原型上的引用类型值的属性，一旦修改后，原型相应属性也会修改。
 
 ### 借用构造函数
 
@@ -192,7 +196,7 @@ var a = new SubType();
 var b = new SubType();
 
 a.arr.push(4); // [1, 2, 3, 4]
-b.arr; // [1, 2, 3, 4]
+b.arr; // [1, 2, 3] 实例属性不共享，互不影响
 
 a.sayName(); // TypeError: a.sayName is not a function
 ```

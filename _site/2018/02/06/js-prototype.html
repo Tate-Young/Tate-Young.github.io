@@ -310,6 +310,7 @@
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
 <span class="p">}</span>
+<span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
 <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 <span class="p">}</span>
@@ -323,12 +324,17 @@
 <span class="nx">a</span><span class="p">.</span><span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// [1, 2, 3, 4]</span>
 <span class="nx">b</span><span class="p">.</span><span class="nx">arr</span><span class="p">;</span> <span class="c1">// [1, 2, 3, 4]</span>
 
-<span class="nx">a</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span> <span class="c1">// 'Snow'</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
 <span class="nx">b</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// 'Tate'</span>
 
-<span class="nx">a</span><span class="p">.</span><span class="nx">sayName</span><span class="p">();</span> <span class="c1">// 'Snow'</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span> <span class="c1">// 18 基础类型的修改不会影响原型响应属性</span>
 </code></pre>
 </div>
+
+<blockquote>
+  <p>注意每个实例都共享原型上的引用类型值的属性，一旦修改后，原型相应属性也会修改。</p>
+</blockquote>
 
 <h3 id="借用构造函数">借用构造函数</h3>
 
@@ -349,7 +355,7 @@
 <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">();</span>
 
 <span class="nx">a</span><span class="p">.</span><span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// [1, 2, 3, 4]</span>
-<span class="nx">b</span><span class="p">.</span><span class="nx">arr</span><span class="p">;</span> <span class="c1">// [1, 2, 3, 4]</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">arr</span><span class="p">;</span> <span class="c1">// [1, 2, 3] 实例属性不共享，互不影响</span>
 
 <span class="nx">a</span><span class="p">.</span><span class="nx">sayName</span><span class="p">();</span> <span class="c1">// TypeError: a.sayName is not a function</span>
 </code></pre>
