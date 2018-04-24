@@ -38,7 +38,7 @@ jqLite(function() { // 初始化和启动 angular
 
 这里引用作者城池的一张图:
 
-![angularInit](https://images0.cnblogs.com/i/198011/201406/042315138498282.jpg)
+![angularInit](https://i.loli.net/2018/04/24/5adef95123f4f.jpg)
 
 ## bindJQuery()
 

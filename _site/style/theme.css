@@ -2198,7 +2198,10 @@ pre code::after {
         top: 80px;
     } */
     .post-page {
-        padding: 0 7rem;
+        padding: 0 4rem;
+    }
+    .post-header-thumb-container {
+        padding-left: 4rem;
     }
 }
 
