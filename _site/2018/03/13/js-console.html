@@ -185,42 +185,42 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">log</td>
+      <td style="text-align: left"><strong>log</strong></td>
       <td style="text-align: left">打印信息，类似的有 debug、info</td>
       <td style="text-align: left"><code>console.log('Tate')</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">warn</td>
+      <td style="text-align: left"><strong>warn</strong></td>
       <td style="text-align: left">打印警告信息，类似的有 error 打印错误信息</td>
       <td style="text-align: left"><code>console.warn('warning!')</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">assert</td>
+      <td style="text-align: left"><strong>assert</strong></td>
       <td style="text-align: left">断言</td>
       <td style="text-align: left"><code>console.assert(1===2, '等式不成立')</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">dir</td>
+      <td style="text-align: left"><strong>dir</strong></td>
       <td style="text-align: left">对一个对象进行检查(inspect)，并以易于阅读和打印的格式显示</td>
       <td style="text-align: left"><code>console.dir(document.body)</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">table</td>
+      <td style="text-align: left"><strong>table</strong></td>
       <td style="text-align: left">以表格形式打印对象</td>
       <td style="text-align: left"><code>console.table(object)</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">count</td>
+      <td style="text-align: left"><strong>count</strong></td>
       <td style="text-align: left">计数器</td>
       <td style="text-align: left"><code>console.count('count_name')</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">time</td>
+      <td style="text-align: left"><strong>time</strong></td>
       <td style="text-align: left">计时，和 timeEnd 配合使用</td>
       <td style="text-align: left"><code>console.time('link start')</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">group</td>
+      <td style="text-align: left"><strong>group</strong></td>
       <td style="text-align: left">分组，和 groupEnd 配合使用</td>
       <td style="text-align: left"><code>console.group('my group')</code></td>
     </tr>
@@ -385,6 +385,18 @@ console.groupEnd()
 // my group(可折叠，默认不折叠显示)
 // 1
 // 2
+</code></pre>
+
+<h2 id="复写-log-方法">复写 log 方法</h2>
+
+<p>如果想要实现复写 <code>console.log</code> 方法，并且每次打印都在前面加上标签，可以参考下面这种写法:</p>
+
+<pre><code class="language-JS">console.log = ((log) =&gt; {
+  let n = 0;
+  return (str) =&gt; {
+  log(`${n++}:${str}`)
+}
+})(console.log)
 </code></pre>
 
 <h2 id="figlet">FIGlet</h2>

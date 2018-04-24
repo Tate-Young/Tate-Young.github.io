@@ -19,14 +19,14 @@ tags:
 
 | 方法 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| log | 打印信息，类似的有 debug、info | <code>console.log('Tate')</code> |
-| warn | 打印警告信息，类似的有 error 打印错误信息 | <code>console.warn('warning!')</code> |
-| assert | 断言 | <code>console.assert(1===2, '等式不成立')</code> |
-| dir | 对一个对象进行检查(inspect)，并以易于阅读和打印的格式显示 | <code>console.dir(document.body)</code> |
-| table | 以表格形式打印对象 | <code>console.table(object)</code> |
-| count | 计数器 | <code>console.count('count_name')</code> |
-| time | 计时，和 timeEnd 配合使用 | <code>console.time('link start')</code> |
-| group | 分组，和 groupEnd 配合使用 | <code>console.group('my group')</code> |
+| **log** | 打印信息，类似的有 debug、info | <code>console.log('Tate')</code> |
+| **warn** | 打印警告信息，类似的有 error 打印错误信息 | <code>console.warn('warning!')</code> |
+| **assert** | 断言 | <code>console.assert(1===2, '等式不成立')</code> |
+| **dir** | 对一个对象进行检查(inspect)，并以易于阅读和打印的格式显示 | <code>console.dir(document.body)</code> |
+| **table** | 以表格形式打印对象 | <code>console.table(object)</code> |
+| **count** | 计数器 | <code>console.count('count_name')</code> |
+| **time** | 计时，和 timeEnd 配合使用 | <code>console.time('link start')</code> |
+| **group** | 分组，和 groupEnd 配合使用 | <code>console.group('my group')</code> |
 
 ### log
 
@@ -153,6 +153,19 @@ console.groupEnd()
 // my group(可折叠，默认不折叠显示)
 // 1
 // 2
+```
+
+## 复写 log 方法
+
+如果想要实现复写 <code>console.log</code> 方法，并且每次打印都在前面加上标签，可以参考下面这种写法:
+
+```JS
+console.log = ((log) => {
+  let n = 0;
+  return (str) => {
+  log(`${n++}:${str}`)
+}
+})(console.log)
 ```
 
 ## FIGlet
