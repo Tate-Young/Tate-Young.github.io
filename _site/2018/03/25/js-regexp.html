@@ -192,6 +192,98 @@ var regex = new RegExp(/[0-9a-zA-Z]/g);
 
 <p><img src="https://i.loli.net/2018/03/24/5ab65abe04a13.png" alt="regexp.png" /></p>
 
+<h3 id="x--x">(x) / (?:x)</h3>
+
+<p>正则中，(x) 表示捕获数组，(?:x) 表示不捕获数组，在正则表达式的替换环节，则要使用像 $1、$2、$n 这样的语法，例如:</p>
+
+<pre><code class="language-JS">'bar foo'.replace( /(\w+) (\w+)/, '$2 $1'); // 'foo bar'
+</code></pre>
+
+<p>(?:x) 匹配 ‘x’ 但是不记住匹配项:</p>
+
+<pre><code class="language-JS">/foo{1,2}/; // {1,2} 将只对 'foo' 的最后一个字符 'o' 生效
+/(?:foo){1,2}/; // 使用非捕获括号，则{1,2}会匹配整个 'foo' 单词
+</code></pre>
+
+<pre><code class="language-JS">'abcabc'.match(/(?:a)(b)(c)/);
+// 结果 ['abc', 'b', 'c']
+// m[0] 是/(?:a)(b)(c)/匹配到的整个字符串，这里包括了 a
+// m[1] 是捕获组1，即(b)匹配的子字符串
+// m[2] 是捕获组2，即(c)匹配的子字符串
+
+var m = 'abcabc'.match(/(a)(b)(c)/);
+// 结果 ['abc', 'a', 'b', 'c']
+</code></pre>
+
+<h3 id="1--n">\1 / \n</h3>
+
+<p><strong>\1</strong> 需要和分组符号 (x) 一起使用，代表与第一个小括号中要匹配的内容相同，同理 \2 匹配第二个括号的内容，举个栗子:</p>
+
+<pre><code class="language-JS">var reg = /(foo) (bar) \1 \2/;
+var str = 'foo bar foo bar';
+reg.test(str); // true
+</code></pre>
+
+<pre><code class="language-JS">// 匹配重复 4 次或以上的字母和数字
+var reg = /(\w)(?=\1{3,})/;
+reg.test('tttttt'); // true
+reg.test('ttts'); // false
+</code></pre>
+
+<h3 id="先行断言--后行断言">先行断言 / 后行断言</h3>
+
+<p>正则表达式的先行断言和后行断言一共有 4 种形式:</p>
+
+<ul>
+  <li><strong>(?=pattern)</strong> - 零宽正向先行断言(zero-width positive lookahead assertion)，代表字符串中的一个位置，紧接该位置之后的字符序列能够匹配 pattern</li>
+  <li><strong>(?!pattern)</strong> - 零宽负向先行断言(zero-width negative lookahead assertion)，代表字符串中的一个位置，紧接该位置之后的字符序列不能匹配 pattern</li>
+  <li>(?&lt;=pattern) - 零宽正向后行断言(zero-width positive lookbehind assertion)，代表字符串中的一个位置，紧接该位置之前的字符序列能够匹配 pattern</li>
+  <li>(?&lt;!pattern) - 零宽负向后行断言(zero-width negative lookbehind assertion)，代表字符串中的一个位置，紧接该位置之前的字符序列不能匹配 pattern</li>
+</ul>
+
+<p><strong>零宽</strong>的含义是它们只匹配某些位置，在匹配过程中不占用字符。但是 JS 不支持后行断言，这里只考虑先行断言，举个栗子 🌰:</p>
+
+<pre><code class="language-JS">var str='snowTATE520snowZZ';
+var reg=/snow(?=[A-Z])/g; // 匹配位置后面跟随任意一个大写字母的字符串 'snow'
+console.log(str.match(reg)); // ['snow', 'snow']
+</code></pre>
+
+<p>再看个栗子，将数字转成金额显示，每三个位置用逗号隔开，如 15000 -&gt; 15,000:</p>
+
+<pre><code class="language-JS">Number.prototype.formatNum = function() {
+  let myNum = this + '';
+  const reg = /\B(?=(?:\d{3})+$)/g;
+  return myNum.replace(reg, ',')
+};
+var money = 15000;
+console.log(money.formatNum());
+</code></pre>
+
+<p>如果对上述正则持有疑问，可以首先看下 \b 和 \B 的用法，可以查下上面的表格，看看两者有什么区别，简单来讲:</p>
+
+<ul>
+  <li><strong>\b</strong> - 匹配单词边界，即单词和符号的边界</li>
+  <li><strong>\B</strong> - 匹配非单词边界</li>
+</ul>
+
+<blockquote>
+  <p><strong>[\b]</strong> 是匹配一个退格(U+0008)。切勿与 \b 混淆。</p>
+</blockquote>
+
+<pre><code class="language-JS">var str = 'this is,test';
+str.split(/\B/); // ['t', 'h', 'i', 's i', 's,t', 'e', 's', 't']
+str.split(/\b/); // ['this', ' ', 'is', ',', 'test']
+
+'15000'.replace(/\B/g, ','); // '1, 5, 0, 0, 0'
+</code></pre>
+
+<p>因此正则中的 \B 可以看成匹配 “15000” 中的非单词边界，即每两个数字间的位置，但同时要满足先行断言 <code>(\d{3}+$)</code>，即三个数字为一组，必须以一个或多个组结尾。进行 replace 位置替换后，过程如下图所示:</p>
+
+<pre><code class="language-TEXT">1 5 0 0 0       1 5 0 0 0      1 5,0 0 0
+ | | | |    =&gt;   | | | |   =&gt;
+ x ✔ x x           ,
+</code></pre>
+
 <h2 id="标志flags">标志(flags)</h2>
 
 <table>
@@ -220,7 +312,7 @@ var regex = new RegExp(/[0-9a-zA-Z]/g);
     </tr>
     <tr>
       <td style="text-align: left">y</td>
-      <td style="text-align: left">执行”粘性”搜索,匹配从目标字符串的当前位置开始，可以使用 y 标志</td>
+      <td style="text-align: left">执行’粘性’搜索,匹配从目标字符串的当前位置开始，可以使用 y 标志</td>
     </tr>
   </tbody>
 </table>
@@ -269,32 +361,32 @@ r2.exec(s) // null 从 '_aa_a' 首位开始匹配
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">exec</td>
+      <td style="text-align: left"><strong>exec</strong></td>
       <td style="text-align: left">RegExp 方法</td>
       <td>执行查找匹配，返回一个数组或 null</td>
     </tr>
     <tr>
-      <td style="text-align: left">test</td>
+      <td style="text-align: left"><strong>test</strong></td>
       <td style="text-align: left">RegExp 方法</td>
       <td>测试是否匹配，返回布尔值</td>
     </tr>
     <tr>
-      <td style="text-align: left">match</td>
+      <td style="text-align: left"><strong>match</strong></td>
       <td style="text-align: left">String 方法</td>
       <td>执行查找匹配，返回一个数组或 null</td>
     </tr>
     <tr>
-      <td style="text-align: left">search</td>
+      <td style="text-align: left"><strong>search</strong></td>
       <td style="text-align: left">String 方法</td>
       <td>测试匹配，返回匹配到的位置索引或 -1</td>
     </tr>
     <tr>
-      <td style="text-align: left">replace</td>
+      <td style="text-align: left"><strong>replace</strong></td>
       <td style="text-align: left">String 方法</td>
       <td>执行查找匹配，并且使用替换字符串替换掉匹配到的子字符串</td>
     </tr>
     <tr>
-      <td style="text-align: left">split</td>
+      <td style="text-align: left"><strong>split</strong></td>
       <td style="text-align: left">String 方法</td>
       <td>一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中</td>
     </tr>
@@ -322,7 +414,7 @@ str.replace(regexp|substr, newSubStr|function)
 
 <pre><code class="language-JS">var str = 'Twas the night before Xmas...';
 var newstr = str.replace(/xmas/i, 'Christmas');
-console.log(newstr);  // Twas the night before Christmas...
+console.log(newstr); // Twas the night before Christmas...
 </code></pre>
 
 <table>
@@ -335,7 +427,7 @@ console.log(newstr);  // Twas the night before Christmas...
   <tbody>
     <tr>
       <td style="text-align: left">$$</td>
-      <td style="text-align: left">插入一个 “$”</td>
+      <td style="text-align: left">插入一个 ‘$’</td>
     </tr>
     <tr>
       <td style="text-align: left">$&amp;</td>
@@ -428,6 +520,7 @@ console.log(newString);  // abc - 12345 - #$*%
 <ol>
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">MDN - 正则表达式</a></li>
   <li><a href="https://segmentfault.com/a/1190000009324194">JS 正则表达式入门，看这篇就够了</a> By wuming</li>
+  <li><a href="http://www.cnblogs.com/macq/p/6597366.html">正则表达式零宽断言详解（?=,?&lt;=,?!,?&lt;!）</a> By 无所事事者爱嘲笑</li>
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace">String.prototype.replace()</a></li>
 </ol>
  
