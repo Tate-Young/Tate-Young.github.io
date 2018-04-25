@@ -1,0 +1,692 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='双向数据绑定的实现 - Tate & Snow' name='title' />
+    <meta content='双向数据绑定的实现 - Tate & Snow' name='og:title' />
+    <title>双向数据绑定的实现 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>双向数据绑定的实现 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="双向数据绑定的实现 - Tate & Snow">
+<meta name="twitter:keywords" content="双向数据绑定的实现 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="双向数据绑定的实现 - Tate & Snow">
+<meta name="og:keywords" content="双向数据绑定的实现 - Tate & Snow|双向数据绑定的实现本文主要从 AngularJS 和 Angular 两个框架来讨论这个问题。AngularJS dirty checkingScopeScope(作用域) 相当于 MVVM 中 ViewModel，是连接 View ..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="双向数据绑定的实现本文主要从 AngularJS 和 Angular 两个框架来讨论这个问题。AngularJS dirty checkingScopeScope(作用域) 相当于 MVVM 中 ViewModel，是连接 View ..." property='og:description'
+/>
+<meta name="description" content="nothing is more practicla than a good theory" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2018/04/25/ng-dirty-check.html' property='og:url' />
+<meta content="http://localhost:4000/2018/04/25/ng-dirty-check.html|双向数据绑定的实现本文主要从 AngularJS 和 Angular 两个框架来讨论这个问题。AngularJS dirty checkingScopeScope(作用域) 相当于 MVVM 中 ViewModel，是连接 View ..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    双向数据绑定的实现</h1>
+                <div class="post-data">
+                    <time datetime="2018-04-25 00:00:00" itemprop="datePublished">发布时间：2018-04-25 00:00:00</time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#AngularJS" title="访问AngularJS" data-hover="AngularJS">
+                        AngularJS
+                        <span>(2)</span>
+                        
+                    </a>
+                    
+                    <a href="/tags#Angular" title="访问Angular" data-hover="Angular">
+                        Angular
+                        <span>(1)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                双向数据绑定的实现</h1>
+            <div class="post-data">
+                <time datetime="2018-04-25 00:00:00" itemprop="datePublished">2018-04-25 00:00:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#AngularJS" title="访问AngularJS" data-hover="AngularJS">
+                    AngularJS
+                    <span>(2)</span>
+                    </a>
+                
+                <a href="/tags#Angular" title="访问Angular" data-hover="Angular">
+                    Angular
+                    <span>(1)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="双向数据绑定的实现">双向数据绑定的实现</h1>
+
+<p>本文主要从 AngularJS 和 Angular 两个框架来讨论这个问题。</p>
+
+<h2 id="angularjs-dirty-checking">AngularJS dirty checking</h2>
+
+<h3 id="scope">Scope</h3>
+
+<p><strong>Scope(作用域)</strong> 相当于 MVVM 中 ViewModel，是连接 View 与 Model 的桥梁，它也是一个对象，拥有很多内置的属性和方法:</p>
+
+<pre><code class="language-JS">function Scope() {
+  this.$id = nextUid();
+  /* ... */
+}
+
+Scope.prototype = {
+  constructor: Scope,
+  $new: function(isolate, parent) { /* ... */ },
+  $watch: function(watchExp, listener, objectEquality, prettyPrintExpression) { /* ... */ }
+  /* ... */
+}
+</code></pre>
+
+<p>Scope 一个项目中可能存在多个，他们是通过原型继承进行关联的，根作用域为 $rootScope，在 AngularJS 创建控制器时，你可以将 $scope 对象当作一个参数传递，最简单的绑定栗子:</p>
+
+<pre><code class="language-HTML">&lt;div ng-app="myApp" ng-controller="myCtrl"&gt;
+  &lt;h1&gt;&lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
+
+<pre><code class="language-JS">var app = angular.module('myApp', []);
+
+app.controller('myCtrl', function($scope) {
+  // 根作用域为 $rootScope，$scope 的继承机制即是原型继承
+  $scope.name = 'Tate';
+});
+</code></pre>
+
+<p>而 Scope 与双向数据绑定有着密不可分的关系，而数据的检测正是由<strong>脏检查(dirty checking)</strong>完成，因此涉及到 <code>$watch</code>、<code>$apply</code> 和 <code>$digest</code> 几个重要概念。</p>
+
+<h3 id="watch">$watch</h3>
+
+<p>如上述的栗子，AngularJS 是如何监听 name 变量的值呢，是因为在插值表达式中声明的表达式编译成函数并调用 $watch 方法，类似事件的注册和监听:</p>
+
+<pre><code class="language-JS">// Using a function as a watchExpression
+$scope.$watch(
+  function(scope) { return scope.name; }, // This function returns the value being watched. It is called for each turn of the $digest loop
+  function(newValue, oldValue, scope) { // listener Callback called whenever the value of `watchExpression` changes.
+    // listener code defined here
+  }
+);
+</code></pre>
+
+<p>以下是实现 $watch 的源码:</p>
+
+<pre><code class="language-JS">$watch: function(watchExp, listener, objectEquality, prettyPrintExpression) {
+  var get = $parse(watchExp); // 对传入的 watchExpression 进行解析
+
+  if (get.$$watchDelegate) {
+    return get.$$watchDelegate(this, listener, objectEquality, get, watchExp);
+  }
+  var scope = this,
+      array = scope.$$watchers, // 负责存储所有的 watcher
+      watcher = { // watcher 主要针对 $scope 的某个属性进行监控
+        fn: listener,
+        last: initWatchVal, // 为 watcher 设置初始值，即相对于当前值的上一个值
+        get: get,
+        exp: prettyPrintExpression || watchExp,
+        eq: !!objectEquality
+      };
+  lastDirtyWatch = null;
+  /* ... */
+  // we use unshift since we use a while loop in $digest for speed.
+  // the while loop reads in reverse order.
+  array.unshift(watcher);
+  array.$$digestWatchIndex++;
+  incrementWatchersCount(this, 1);
+
+  return function deregisterWatch() { // 注销监听
+    /* ... */
+  };
+}
+
+/**
+ * function used as an initial value for watchers.
+ * because it's unique we can easily tell it apart from other values
+ */
+function initWatchVal() {}
+</code></pre>
+
+<p>注册过的 watcher 在检测到当前的值和上次检测的值不同时，才会调用 listener 函数，比较方法类似于 (!==)，这里的值可以分为三种情况:</p>
+
+<ul>
+  <li>基础类型值</li>
+  <li>引用类型值 - 根据 $watch 方法的第三个参数 objectEquality 来设置，true 时则使用 <code>angular.equals</code> 来判断，默认为 false</li>
+  <li>集合 - 可使用 $watchCollection，比如数组或对象，性能上会更好，详细分析<a href="https://blog.csdn.net/dm_vincent/article/details/51620193">可参考这里</a></li>
+</ul>
+
+<p>当然也可以通过 $watch、<strong>$watchGroup</strong> 或 <strong>$watchCollection</strong> 方法手动去监听变量的值:</p>
+
+<pre><code class="language-JS">// $watchCollection 用法和 $watch 一致，只是第一个参数是传入的对象
+$scope.$watch('name', function(newValue, oldValue) { // 'name' 即为上面定义的变量 name
+    /* ... */
+});
+
+// $watchGroup 监听一组数据
+$scope.$watchGroup(['teamScore', 'time'], function(newVal, oldVal) {
+  if(newVal[0] &gt; 20){
+    $scope.matchStatus = 'win';
+  } else if (newVal[1] &gt; 60){
+    $scope.matchStatus = 'times up';
+  }
+});
+</code></pre>
+
+<h3 id="apply">$apply</h3>
+
+<p><strong>$apply</strong> 是整个 digest 循环(Digest Cycle，简称 DC)的触发者，它最终调用的就是 <strong>$digest</strong> 方法:</p>
+
+<pre><code class="language-JS">$apply: function(expr) {
+  try {
+    beginPhase('$apply'); // 设置当前运行状态，$rootScope.$$phase = '$apply'，多次调用 $apply 则会抛出异常
+    try {
+      return this.$eval(expr);
+    } finally {
+      clearPhase(); // 清空当前运行状态，$rootScope.$$phase = null
+    }
+  } catch (e) {
+    $exceptionHandler(e);
+  } finally {
+    try {
+      $rootScope.$digest(); // 最终执行 $digest
+    } catch (e) {
+      $exceptionHandler(e);
+      // eslint-disable-next-line no-unsafe-finally
+      throw e;
+    }
+  }
+},
+$eval: function(expr, locals) { // 给定一个表达式，使用当前 scope 对象作为上下文进行该表达式的求值
+  return $parse(expr)(this, locals);
+}
+</code></pre>
+
+<p>一般情况下，AngularJS 总是将我们的代码包裹到一个 function 中并传入 $apply 方法，以此来执行 $digest 循环。而在超出 AngularJS 上下文的地方，则需要我们手动去调用 $apply 方法来触发 DC，例如 setTimeout 方法中我们去改变某个变量的值，会发现页面无更新，此时需要手动调用 $apply 方法才会触发脏检查。类似地，如果你有一个指令用来设置一个 DOM 事件 listener 并且在该 listener 中修改了一些 models，那么你也需要通过手动调用 $apply 方法来确保变更会被正确的反映到视图中。</p>
+
+<pre><code class="language-JS">// 直接使用封装好的 $timeout 服务，则不用手动调用 $apply，因为它已经帮你处理了
+setTimeout(function() {
+  $scope.$apply(function() {
+    // wrapped this within $apply
+    $scope.message = 'Fetched after 3 seconds';
+    console.log('message:' + $scope.message);
+  });
+}, 2000);
+</code></pre>
+
+<h3 id="digest">$digest</h3>
+
+<p><strong>$digest</strong> 在 DC 中主要是对于 watchers 的若干次遍历，直到确定整个 scope 中的数据不再改变，整个数据检测的过程可以<a href="https://blog.csdn.net/dm_vincent/article/details/51614721">参考此篇文章</a>，这里做一部分摘录:</p>
+
+<pre><code class="language-JS">$digest: function() {
+  var next, current, target = this;
+  beginPhase('$digest');
+  /* ... */
+  do { // "while dirty" loop
+    dirty = false;
+    current = target;
+
+    /* ... */
+    traverseScopesLoop:
+    do { // "traverse the scopes" loop
+      /* 遍历当前 current 对象上的 watchers */
+
+      // 深度优先遍历  yes, this code is a bit crazy
+      if (!(next = ((current.$$watchersCount &amp;&amp; current.$$childHead) ||
+          (current !== target &amp;&amp; current.$$nextSibling)))) {
+        while (current !== target &amp;&amp; !(next = current.$$nextSibling)) {
+          current = current.$parent;
+        }
+      }
+    } while ((current = next));
+
+    if ((dirty || asyncQueue.length) &amp;&amp; !(ttl--)) {
+      // 达到最大 digest 数量，抛出异常
+    }
+  } while (dirty || asyncQueue.length);
+  /* ... */
+}
+</code></pre>
+
+<p>解释下深度优先遍历中的两个条件语句:</p>
+
+<pre><code class="language-JS">current.$$watchersCount &amp;&amp; current.$$childHead
+</code></pre>
+
+<p>假如当前 scope 与其子 scope 中 watchersCount 数量大于零，则将 next 取值为 $$childHead，即第一个子节点。</p>
+
+<pre><code class="language-JS">current !== target &amp;&amp; current.$$nextSibling
+</code></pre>
+
+<p>假如当前 scope 不是 digest 循环的起始 scope，即 $rootScope，则 next 取值为 $$nextSibling，即第一个兄弟节点。</p>
+
+<h3 id="digest-cycle">Digest Cycle</h3>
+
+<p>假设存在如下的 scope 树形结构，每个 scope 都拥有各自注册的 watchers 以及对应的计数信息，根据 $digest 方法里的深度优先遍历，粗略还原下脏检查流程。</p>
+
+<pre><code class="language-TEXT">    A
+   / \
+  B   C
+ / \
+D   E
+     \
+      F
+</code></pre>
+
+<p>遍历过程:</p>
+
+<ol>
+  <li>首先遍历 A，之后遍历其 <script type="math/tex">childHead B，再遍历其</script>childHead D;</li>
+  <li>D 之后没有子节点，会去找 <script type="math/tex">nextSibling E，然后在遍历其</script>childHead F;</li>
+  <li>F 之后没有子节点，也没有兄弟节点，则会执行回溯 <code>current = current.$parent</code>;</li>
+  <li>回溯到 B 时，会去找 $$nextSibling C；</li>
+  <li>C 之后没有子节点，也没有兄弟节点，则同样执行回溯到 A，循环终止。</li>
+</ol>
+
+<h2 id="angular-zone">Angular Zone</h2>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://blog.csdn.net/dm_vincent/article/details/50344395">[AngularJS面面观] 1. scope中的Dirty Checking(脏数据检查) — 引言</a> By dm_vincent</li>
+  <li><a href="https://www.sitepoint.com/understanding-angulars-apply-digest/">Understanding Angular’s $apply() and $digest()</a> By Sandeep Panda</li>
+  <li><a href="https://www.cnblogs.com/mafeifan/p/6158260.html">$watch, $watchCollection, $watchGroup 的使用</a> By 飞凡123</li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/04/25/ng-dirty-check.html';
+        this.page.identifier = '/2018/04/25/ng-dirty-check';
+        this.page.title = '双向数据绑定的实现';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-04-25 00:00:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
