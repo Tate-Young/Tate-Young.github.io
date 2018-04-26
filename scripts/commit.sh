@@ -2,4 +2,4 @@ git add .
 git commit -m "$*"
 git push
 echo push success "$*"
-say "Mission Complete"
+say -v Mei-Jia "Mission Complete"
