@@ -45,12 +45,11 @@ Scope 一个项目中可能存在多个，他们是通过原型继承进行关�
 ```
 
 ```JS
-var app = angular.module('myApp', []);
-
-app.controller('myCtrl', function($scope) {
-  // 根作用域为 $rootScope，$scope 的继承机制即是原型继承
-  $scope.name = 'Tate';
-});
+angular.module('myApp', [])
+  .controller('myCtrl', function($scope) {
+    // 根作用域为 $rootScope，$scope 的继承机制即是原型继承
+    $scope.name = 'Tate';
+  });
 ```
 
 而 Scope 与双向数据绑定有着密不可分的关系，而数据的检测正是由**脏检查(dirty checking)**完成，因此涉及到 <code>$watch</code>、<code>$apply</code> 和 <code>$digest</code> 几个重要概念。
@@ -447,10 +446,10 @@ markForCheck() { markParentViewsForCheck(this._view); }
 function markParentViewsForCheck(view) {
   let /** @type {?} */ currView = view;
   while (currView) {
-      if (currView.def.flags & 2 /* OnPush */) {
-          currView.state |= 8 /* ChecksEnabled */;
-      }
-      currView = currView.viewContainerParent || currView.parent;
+    if (currView.def.flags & 2 /* OnPush */) {
+      currView.state |= 8 /* ChecksEnabled */;
+    }
+    currView = currView.viewContainerParent || currView.parent;
   }
 }
 ```

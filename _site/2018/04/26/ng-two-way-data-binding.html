@@ -144,13 +144,13 @@
                        
                     <a href="/tags#AngularJS" title="访问AngularJS" data-hover="AngularJS">
                         AngularJS
-                        <span>(2)</span>
+                        <span>(3)</span>
                         
                     </a>
                     
                     <a href="/tags#Angular" title="访问Angular" data-hover="Angular">
                         Angular
-                        <span>(1)</span>
+                        <span>(2)</span>
                         
                     </a>
                        
@@ -171,12 +171,12 @@
                    
                 <a href="/tags#AngularJS" title="访问AngularJS" data-hover="AngularJS">
                     AngularJS
-                    <span>(2)</span>
+                    <span>(3)</span>
                     </a>
                 
                 <a href="/tags#Angular" title="访问Angular" data-hover="Angular">
                     Angular
-                    <span>(1)</span>
+                    <span>(2)</span>
                     </a>
                    
             </p>
@@ -210,12 +210,11 @@ Scope.prototype = {
 &lt;/div&gt;
 </code></pre>
 
-<pre><code class="language-JS">var app = angular.module('myApp', []);
-
-app.controller('myCtrl', function($scope) {
-  // 根作用域为 $rootScope，$scope 的继承机制即是原型继承
-  $scope.name = 'Tate';
-});
+<pre><code class="language-JS">angular.module('myApp', [])
+  .controller('myCtrl', function($scope) {
+    // 根作用域为 $rootScope，$scope 的继承机制即是原型继承
+    $scope.name = 'Tate';
+  });
 </code></pre>
 
 <p>而 Scope 与双向数据绑定有着密不可分的关系，而数据的检测正是由<strong>脏检查(dirty checking)</strong>完成，因此涉及到 <code>$watch</code>、<code>$apply</code> 和 <code>$digest</code> 几个重要概念。</p>
@@ -599,10 +598,10 @@ export class ProfileCardComponent implements OnInit {
 function markParentViewsForCheck(view) {
   let /** @type {?} */ currView = view;
   while (currView) {
-      if (currView.def.flags &amp; 2 /* OnPush */) {
-          currView.state |= 8 /* ChecksEnabled */;
-      }
-      currView = currView.viewContainerParent || currView.parent;
+    if (currView.def.flags &amp; 2 /* OnPush */) {
+      currView.state |= 8 /* ChecksEnabled */;
+    }
+    currView = currView.viewContainerParent || currView.parent;
   }
 }
 </code></pre>
