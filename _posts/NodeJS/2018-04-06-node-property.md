@@ -104,6 +104,7 @@ const path = require('path');
 * **dirname(p)** - 返回 path 的目录名
 * **extname(p)** - 返回 path 的扩展名
 * **join([p1], [p2], [...])** - 将多个参数拼接成一个 path，拼接时会执行 normalize 方法
+* **resolve** - 把一个路径或路径片段的序列解析为一个绝对路径，如果处理完全部给定的 path 片段后还未生成一个绝对路径，则当前工作目录会被用上
 * **normalize(p)** - 会规范化给定的 path，并解析 '..' 和 '.' 片段
 * **format()** - 从一个对象返回一个路径字符串，与 parse() 相反，对象包含 dir/root/base/name/ext 几个属性
 * **parse()** - 返回一个对象，对象的属性表示 path 的元素
@@ -125,7 +126,7 @@ path.dirname('/foo/bar/baz/asdf/quux'); // 返回: '/foo/bar/baz/asdf'
 path.extname('index.coffee.md'); // 返回: '.md'
 ```
 
-### join / normalize
+### join / resolve
 
 join([p1], [p2], [...]) 将多个参数拼接成一个 path，拼接时会执行 normalize 方法:
 
@@ -133,6 +134,16 @@ join([p1], [p2], [...]) 将多个参数拼接成一个 path，拼接时会执行
 path.join('/foo', 'bar', 'baz/asdf', 'quux', '..'); // 返回: '/foo/bar/baz/asdf'
 
 path.normalize('/foo/bar//baz/asdf/quux/..'); // 返回: '/foo/bar/baz/asdf'
+```
+
+resolve() 把一个路径或路径片段的序列解析为一个绝对路径，方向为从右向左，如果处理完全部给定的 path 片段后还未生成一个绝对路径，则当前工作目录会被用上:
+
+```JS
+path.resolve('/foo', '/bar', 'baz'); // 'bar/baz' 从右到左解析，直到有完整的绝对路径为止
+
+path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
+// 如果当前工作目录为 /home/myself/node
+// 由于未生成一个绝对路径，则返回 '/home/myself/node/wwwroot/static_files/gif/image.gif'
 ```
 
 ### format / parse
