@@ -285,6 +285,7 @@ process.on('exit', (code) =&gt; {
   <li><strong>dirname(p)</strong> - 返回 path 的目录名</li>
   <li><strong>extname(p)</strong> - 返回 path 的扩展名</li>
   <li><strong>join([p1], [p2], […])</strong> - 将多个参数拼接成一个 path，拼接时会执行 normalize 方法</li>
+  <li><strong>resolve</strong> - 把一个路径或路径片段的序列解析为一个绝对路径，如果处理完全部给定的 path 片段后还未生成一个绝对路径，则当前工作目录会被用上</li>
   <li><strong>normalize(p)</strong> - 会规范化给定的 path，并解析 ‘..’ 和 ‘.’ 片段</li>
   <li><strong>format()</strong> - 从一个对象返回一个路径字符串，与 parse() 相反，对象包含 dir/root/base/name/ext 几个属性</li>
   <li><strong>parse()</strong> - 返回一个对象，对象的属性表示 path 的元素</li>
@@ -305,13 +306,22 @@ path.basename('/foo/bar/baz/asdf/quux.html', '.html'); // 返回: 'quux'
 path.extname('index.coffee.md'); // 返回: '.md'
 </code></pre>
 
-<h3 id="join--normalize">join / normalize</h3>
+<h3 id="join--resolve">join / resolve</h3>
 
 <p>join([p1], [p2], […]) 将多个参数拼接成一个 path，拼接时会执行 normalize 方法:</p>
 
 <pre><code class="language-JS">path.join('/foo', 'bar', 'baz/asdf', 'quux', '..'); // 返回: '/foo/bar/baz/asdf'
 
 path.normalize('/foo/bar//baz/asdf/quux/..'); // 返回: '/foo/bar/baz/asdf'
+</code></pre>
+
+<p>resolve() 把一个路径或路径片段的序列解析为一个绝对路径，方向为从右向左，如果处理完全部给定的 path 片段后还未生成一个绝对路径，则当前工作目录会被用上:</p>
+
+<pre><code class="language-JS">path.resolve('/foo', '/bar', 'baz'); // 'bar/baz' 从右到左解析，直到有完整的绝对路径为止
+
+path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
+// 如果当前工作目录为 /home/myself/node
+// 由于未生成一个绝对路径，则返回 '/home/myself/node/wwwroot/static_files/gif/image.gif'
 </code></pre>
 
 <h3 id="format--parse">format / parse</h3>
