@@ -101,8 +101,8 @@ console.log(p1[1].age); // 26
 构造新的对象，并对源对象进行拷贝，但是对其内部的引用类型值，拷贝的是其引用
 
 ```js
-// Array的slice()和concat()方法和Object.assign()、$.extend({}, obj)方法类似
-// $.extend(true, {}, obj)为深拷贝
+// slice 和concat 方法和 Object.assign、$.extend({}, obj)方法类似
+// $.extend(true, {}, obj) 为深拷贝
 var p1 = ['Tate', {age: 18}];
 var p2 = p1.slice();
 // var p2 = [...p1]; ES6 使用扩展运算符...
@@ -146,7 +146,7 @@ function deepCopy(source){
 可用 JSON 对象中的 parse() 和 stringify() 实现深拷贝，不足之处从以下例子可见，源对象的方法在拷贝的过程中丢失了，这是因为 JSON 语法不支持函数，详见[链接3](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)。
 
 ```js
-// 利用JSON序列化实现一个深拷贝
+// 利用 JSON 序列化实现一个深拷贝
 function deepCopy(source){
   return JSON.parse(JSON.stringify(source));
 }

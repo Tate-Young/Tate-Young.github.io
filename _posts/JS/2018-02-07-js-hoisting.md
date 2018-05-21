@@ -23,8 +23,8 @@ tags:
 ```js
 var name = 'Tate';
 (function (){
-    console.log(name); // undefined
-    var name = 'Snow';
+  console.log(name); // undefined
+  var name = 'Snow';
 })();
 ```
 
@@ -34,9 +34,9 @@ var name = 'Tate';
 var name;
 name = 'Tate';
 (function (){
-    var name;
-    console.log(name); // undefined
-    name = 'Snow';
+  var name;
+  console.log(name); // undefined
+  name = 'Snow';
 })();
 ```
 
@@ -55,11 +55,11 @@ sayAnotherName(); // TypeError: sayAnotherName is not a function
 // function () {} // 匿名函数
 
 function sayName() { // 函数声明
-    console.log('Tate');
+  console.log('Tate');
 }
 
 var sayAnotherName = function() { // 函数表达式
-    console.log('Snow');
+  console.log('Snow');
 };
 ```
 
@@ -69,14 +69,14 @@ var sayAnotherName = function() { // 函数表达式
 var sayAnotherName; // undefined
 
 function sayName() { // 函数声明 整个函数体提升
-    console.log('Tate');
+  console.log('Tate');
 }
 
 sayName(); // 'Tate'
 sayAnotherName(); // TypeError
 
 sayAnotherName = function() { // 函数表达式
-    console.log('Snow');
+  console.log('Snow');
 };
 ```
 
@@ -118,8 +118,8 @@ ES5 中只存在全局作用域和函数作用域，let 实际上新增了块级
 
 ```js
 if(true) {
-    var name = 'Tate';
-    let anotherName = 'Snow';
+  var name = 'Tate';
+  let anotherName = 'Snow';
 }
 name; // 'Tate'
 anotherName; // ReferenceError
@@ -130,9 +130,9 @@ let 可以通过块级作用域有效解决 for 循环的计数器的问题。
 ```js
 var a = [];
 for (var i = 0; i < 10; i++) { // var 改为 let
-    a[i] = function () {
-        console.log(i);
-    };
+  a[i] = function () {
+    console.log(i);
+  };
 }
 a[5](); // 10 用来计数的循环变量泄露为全局变量
 
@@ -159,17 +159,17 @@ a[5](); // 5
 
 ```js
 if (true) {
-  // TDZ开始
+  // TDZ 开始
   name = 'Tate'; // ReferenceError
   console.log(name); // ReferenceError
 
-  let name; // TDZ结束
+  let name; // TDZ 结束
   console.log(name); // undefined
 
   name = 123;
   console.log(name); // 123
 
-//   let name; // SyntaxError 不能重复声明
+  // let name; // SyntaxError 不能重复声明
 }
 ```
 

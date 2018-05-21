@@ -27,13 +27,13 @@ tags:
 
 ```js
 function foo(b) {
-    var a = 1;
-    return a + b + 2;
+  var a = 1;
+  return a + b + 2;
 }
 
 function bar(x) {
-    var y = 3;
-    return foo(x * y) + 1;
+  var y = 3;
+  return foo(x * y) + 1;
 }
 
 bar(520); // 1564
@@ -71,20 +71,20 @@ JavaScript 属于单线程语言，执行的任务可分为同步和异步，ES6
 console.log('start');
 
 setTimeout(function(){
-    console.log('hello');
+  console.log('hello');
 }, 200);
 
 setTimeout(function(){
-    console.log('world');
+  console.log('world');
 }, 300);
 
 // 模拟阻塞
 for (var i = 0; i <= 10000; i++){
-    console.log(i);
+  console.log(i);
 }
 
 setTimeout(function(){
-    console.log('Tate');
+  console.log('Tate');
 }, 100);
 
 console.log('end');

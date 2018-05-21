@@ -251,7 +251,7 @@
 
 <p>对象的 <strong>constructor</strong> 属性总是返回它的的构造函数。constructor 属性定义在 prototype 对象上面，可以被所有实例对象继承。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Array.prototype.constructor指向Array构造函数本身</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Array.prototype.constructor 指向 Array 构造函数本身</span>
 <span class="p">[].</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="c1">// true</span>
 
 <span class="p">[].</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">;</span>
@@ -274,7 +274,7 @@
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(){};</span>
 <span class="c1">// Person.prototype.sayHello = function(){ alert('hello'); } // 不会影响constructor指向</span>
-<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">// 重写prototype</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">// 重写 prototype</span>
     <span class="na">sayHello</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){}</span>
 <span class="p">}</span>
 

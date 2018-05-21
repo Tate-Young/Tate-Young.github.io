@@ -202,21 +202,21 @@
 <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">person</span><span class="p">(){</span>
+  <span class="c1">// ---------------execution context---------------</span>
+  <span class="kd">var</span> <span class="nx">anotherName</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+
+  <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// ---------------execution context---------------</span>
-    <span class="kd">var</span> <span class="nx">anotherName</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">anotherName</span><span class="p">;</span>
+  <span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// ---------------execution context---------------</span>
-        <span class="k">return</span> <span class="nx">anotherName</span><span class="p">;</span>
-    <span class="p">}</span>
+  <span class="kd">function</span> <span class="nx">sayAge</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ---------------execution context---------------</span>
+    <span class="k">return</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">sayAge</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// ---------------execution context---------------</span>
-        <span class="k">return</span> <span class="nx">age</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:%s &amp; age:%s'</span><span class="p">,</span> <span class="nx">sayName</span><span class="p">(),</span> <span class="nx">sayAge</span><span class="p">());</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:%s &amp; age:%s'</span><span class="p">,</span> <span class="nx">sayName</span><span class="p">(),</span> <span class="nx">sayAge</span><span class="p">());</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -227,11 +227,11 @@
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 一旦上下文执行完毕之后, 它就会从栈中弹出并且返回控制权到下一个上下文当中，直到全局上下文又再次被访问。</span>
 <span class="p">(</span><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">foo</span><span class="p">(</span><span class="o">++</span><span class="nx">i</span><span class="p">);</span>
-    <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">foo</span><span class="p">(</span><span class="o">++</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">}</span>
 <span class="p">}(</span><span class="mi">0</span><span class="p">));</span>
 </code></pre>
 </div>
@@ -250,7 +250,7 @@
 
 <h2 id="作用域">作用域</h2>
 
-<p>JavaScript 采用 <strong>词法作用域(lexical scoping)</strong>，也就是静态作用域，用来确定当前执行代码对变量的访问权限。分为全局作用域和局部作用域(函数作用域)，ES6中新增块级作用域。函数的作用域在函数定义的时候就决定了。</p>
+<p>JavaScript 采用 <strong>词法作用域(lexical scoping)</strong>，也就是静态作用域，用来确定当前执行代码对变量的访问权限。分为全局作用域和局部作用域(函数作用域)，ES6 中新增块级作用域。函数的作用域在函数定义的时候就决定了。</p>
 
 <h2 id="作用域链">作用域链</h2>
 
@@ -261,7 +261,7 @@
 <p>在定义函数时， <strong>[[scope]]</strong> 内部属性包含了函数被创建的作用域中对象的集合，这个集合被称为函数的作用域链，它决定了哪些数据能被函数访问。。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{}</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -273,8 +273,8 @@
 <span class="p">];</span>
 
 <span class="nx">bar</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nx">fooContext</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span>
-    <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
+  <span class="nx">fooContext</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span>
+  <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
 <span class="p">];</span>
 </code></pre>
 </div>
@@ -287,8 +287,8 @@
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s1">'global scope'</span><span class="p">;</span>
 <span class="kd">function</span> <span class="nx">checkscope</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">scope2</span> <span class="o">=</span> <span class="s1">'local scope'</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">scope2</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">scope2</span> <span class="o">=</span> <span class="s1">'local scope'</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">scope2</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nx">checkscope</span><span class="p">();</span>
 </code></pre>
@@ -296,10 +296,10 @@
 
 <p>作用域链的构建过程可抽象化为:</p>
 
-<p>1、checkscope 函数被创建，保存作用域链到 内部属性[[scope]];</p>
+<p>1、checkscope 函数被创建，保存作用域链到内部属性 [[scope]];</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
+  <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
 <span class="p">];</span>
 </code></pre>
 </div>
@@ -311,7 +311,7 @@
 <p>第一步：复制函数 [[scope]] 属性创建作用域链;</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -319,13 +319,13 @@
 <p>第二步：用 arguments 创建活动对象，随后初始化活动对象，加入形参、函数声明、变量声明;</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-            <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="p">},</span>
-        <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
-    <span class="p">}</span><span class="err">，</span>
-    <span class="na">scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
+  <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
+  <span class="p">}</span><span class="err">，</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -333,13 +333,13 @@
 <p>第三步：将活动对象压入 checkscope 作用域链顶端。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-            <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="p">},</span>
-        <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
+  <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
     <span class="p">},</span>
-    <span class="na">scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">scope</span><span class="p">]]]</span>
+    <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
+  <span class="p">},</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">scope</span><span class="p">]]]</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -347,13 +347,13 @@
 <p>4、 开始执行函数，随着函数的执行，修改 AO 的属性值;</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-            <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="p">},</span>
-        <span class="na">scope2</span><span class="p">:</span> <span class="s1">'local scope'</span>
+  <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
     <span class="p">},</span>
-    <span class="na">scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">scope</span><span class="p">]]]</span>
+    <span class="na">scope2</span><span class="p">:</span> <span class="s1">'local scope'</span>
+  <span class="p">},</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">scope</span><span class="p">]]]</span>
 <span class="p">}</span>
 </code></pre>
 </div>

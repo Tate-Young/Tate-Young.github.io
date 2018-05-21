@@ -182,12 +182,12 @@
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。</span>
 <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
-<span class="kd">function</span> <span class="nx">person</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="nx">sayName</span><span class="p">(){</span>
-        <span class="nx">alert</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">sayName</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">person</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
+  <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">sayName</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">// 第一次执行 person() 返回的是函数 sayName</span>
@@ -198,12 +198,12 @@
 <p>注意上述闭包写法与普通函数的区别:</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 可以通过词法作用域解释</span>
-<span class="kd">function</span> <span class="nx">person</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="nx">sayName</span><span class="p">(){</span>
-        <span class="nx">alert</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="nx">sayName</span><span class="p">();</span>
+<span class="kd">function</span> <span class="nx">person</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
+  <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">sayName</span><span class="p">();</span>
 <span class="p">}</span>
 
 <span class="nx">person</span><span class="p">();</span> <span class="c1">// 'Snow'</span>
@@ -215,7 +215,7 @@
 <p>原因就在于，即使 person 执行上下文销毁，但是其活动对象 VO 仍然会留在内存中，实际上 sayName 维护的作用域链可抽象为</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">sayNameContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">personContext</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span><span class="p">]</span>
+  <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">personContext</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -232,9 +232,9 @@
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-    <span class="p">};</span>
+  <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+  <span class="p">};</span>
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
 <span class="nx">b</span><span class="p">();</span> <span class="c1">// 10</span>
@@ -244,10 +244,10 @@
 <p>当执行到 b() 前，此时全局上下文的变量对象如下，因此当其执行时，通过作用域链寻找到此全局变量 i，即为 10。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">globalContext</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">VO</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">a</span><span class="p">:</span> <span class="p">[...],</span>
-        <span class="na">i</span><span class="p">:</span> <span class="mi">10</span>
-    <span class="p">}</span>
+  <span class="na">VO</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">a</span><span class="p">:</span> <span class="p">[...],</span>
+    <span class="na">i</span><span class="p">:</span> <span class="mi">10</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -270,7 +270,7 @@
 <p>当执行到 b() 前，全局对象与改写前一样，执行时，匿名函数又会创新新的执行上下文，作用域链可表示为</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="nx">Context</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="err">匿名函数</span><span class="nx">Context</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span><span class="p">]</span>
+  <span class="na">Scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="err">匿名函数</span><span class="nx">Context</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span> <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -278,13 +278,13 @@
 <p>而匿名函数执行上下文的活动变量如下，因此通过作用域链寻找到变量 i 的值后，不会再去全局对象中寻找了。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="err">匿名函数</span><span class="nx">Context</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-            <span class="mi">0</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-            <span class="na">length</span><span class="p">:</span> <span class="mi">1</span>
-        <span class="p">},</span>
-        <span class="na">i</span><span class="p">:</span> <span class="mi">5</span>
-    <span class="p">}</span>
+  <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
+      <span class="mi">0</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="na">length</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="na">i</span><span class="p">:</span> <span class="mi">5</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -293,18 +293,18 @@
 
 <p>JavaScript 没有这种原生支持，但我们可以使用闭包来模拟私有方法，私有方法不仅仅有利于限制对代码的访问，还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// 变量作用域为函数内部，外部无法访问</span>
-    <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 变量作用域为函数内部，外部无法访问</span>
+  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
 
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="na">getName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nx">name</span><span class="p">;</span>
-        <span class="p">},</span>
-        <span class="na">setName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">anotherName</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">name</span> <span class="o">=</span> <span class="nx">anotherName</span><span class="p">;</span>
-        <span class="p">}</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">getName</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="na">setName</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">anotherName</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">name</span> <span class="o">=</span> <span class="nx">anotherName</span><span class="p">;</span>
     <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">})()</span>
 
 <span class="nx">person</span><span class="p">.</span><span class="nx">getName</span><span class="p">();</span> <span class="c1">// 'Tate'</span>
@@ -318,10 +318,10 @@
 <p>闭包在处理速度和内存消耗方面对脚本性能具有负面影响，由于闭包会携带包含它的函数的作用域，因此会增大内存使用量，使用不当很容易造成内存泄露，降低程序的性能。要么手动去除对其内存中变量对象的引用，要么关闭程序或页面。</p>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">assignHandler</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'someElement'</span><span class="p">);</span>
-    <span class="nx">element</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">alert</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
-    <span class="p">};</span>
+  <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'someElement'</span><span class="p">);</span>
+  <span class="nx">element</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+  <span class="p">};</span>
 <span class="p">}</span>
 </code></pre>
 </div>
@@ -332,13 +332,13 @@
 </ol>
 
 <div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">assignHandler</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'someElement'</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
-    <span class="nx">element</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">alert</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
-    <span class="p">};</span>
+  <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'someElement'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+  <span class="nx">element</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+  <span class="p">};</span>
 
-    <span class="nx">element</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="nx">element</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
 </div>

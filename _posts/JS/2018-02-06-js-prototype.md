@@ -23,11 +23,11 @@ tags:
 
 ```js
 function Dog(name, color) {
-    this.name = name;
-    this.color = color;
-    this.eat = function () {
+  this.name = name;
+  this.color = color;
+  this.eat = function () {
     console.log('eat');
-  };
+  }
 }
 
 Dog.prototype.species = 'dog';
@@ -65,7 +65,7 @@ Object.prototype.__proto__ === null;
 返回指定对象的原型，即内部 [[Prototype]] 属性的值。
 
 ```js
-// 对于除null和undefined的基本类型，也有私有属性 [[prototype]]。
+// 对于除 null 和 undefined 的基本类型，也有私有属性 [[prototype]]。
 Object.getPrototypeOf(1) === Number.prototype;
 Object.getPrototypeOf([1, 2]) === Array.prototype;
 Object.getPrototypeOf({}) === Object.prototype;
@@ -95,11 +95,11 @@ Object.setPrototypeOf(p, Person.prototype);
 使用指定的原型对象及其属性去创建一个新的对象。
 
 ```js
-// 本质上新建了一个临时性的构造函数，并且将其原型指针指向obj
+// 本质上新建了一个临时性的构造函数，并且将其原型指针指向 obj
 Object.create = function(obj){
-    function F() {}
-    F.prototype = obj;
-    return new F();
+  function F() {}
+  F.prototype = obj;
+  return new F();
 };
 ```
 
@@ -119,7 +119,7 @@ Object.create 和 new 操作符的比较，new 操作符实际操作可参考之
 
 ```js
 var Person = function () {
-    this.name = 'Tate'
+  this.name = 'Tate'
 }
 Person.prototype.name = 'Snow';
 
@@ -150,16 +150,16 @@ Obj.prototype.isPrototypeOf(o2); // true
 // 每个实例都共享原型上的引用类型值的属性，一旦修改后，原型相应属性也会修改
 // 没有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数，
 function SuperType() {
-    this.name = 'Tate';
-    this.arr = [1, 2, 3];
+  this.name = 'Tate';
+  this.arr = [1, 2, 3];
 }
 SuperType.prototype.age = 18;
 SuperType.prototype.sayName = function() {
-    console.log(this.name);
+  console.log(this.name);
 }
 function SubType() {}
 SubType.prototype = new SuperType();
-SubType.prototype.constructor = SubType; // SubType原型被改写，需要将constructor恢复默认值
+SubType.prototype.constructor = SubType; // SubType 原型被改写，需要将 constructor 恢复默认值
 
 var a = new SubType();
 var b = new SubType();
@@ -174,7 +174,7 @@ a.age = 20;
 b.age; // 18 基础类型的修改不会影响原型响应属性
 ```
 
-> 注意每个实例都共享原型上的引用类型值的属性，一旦修改后，原型相应属性也会修改。
+> 注意每个实例都共享原型上的 *引用类型值* 的属性，一旦修改后，原型相应属性也会修改。
 
 ### 借用构造函数
 
@@ -182,14 +182,14 @@ b.age; // 18 基础类型的修改不会影响原型响应属性
 // 可以在子类型构造函数中向超类型构造函数传递参数
 // 在超类型原型中定义的属性和方法，无法在子类型中访问
 function SuperType(name) {
-    this.name = name;
-    this.arr = [1, 2, 3];
+  this.name = name;
+  this.arr = [1, 2, 3];
 }
 SuperType.prototype.sayName = function() {
-    console.log(this.name);
+  console.log(this.name);
 }
 function SubType() {
-    SuperType.call(this, 'Tate'); // 继承了 SuperType
+  SuperType.call(this, 'Tate'); // 继承了 SuperType
 }
 
 var a = new SubType();
@@ -205,24 +205,24 @@ a.sayName(); // TypeError: a.sayName is not a function
 
 ```js
 // 结合上述两种继承的优点
-// 在继承方法时，SubType.prototype会继承name和arr属性，在继承属性时又会创建实例属性name和arr
+// 在继承方法时，SubType.prototype 会继承 name 和 arr 属性，在继承属性时又会创建实例属性 name 和 arr
 function SuperType(name) {
-    this.name = name;
-    this.arr = [1, 2, 3];
+  this.name = name;
+  this.arr = [1, 2, 3];
 }
 SuperType.prototype.sayName = function() {
-    console.log(this.name);
+  console.log(this.name);
 }
 function SubType(name, age) {
-    SuperType.call(this,name); // 继承属性
-    this.age = age;
+  SuperType.call(this, name); // 继承属性
+  this.age = age;
 }
-//继承方法
+// 继承方法
 SubType.prototype = new SuperType();
 SubType.prototype.constructor = SubType;
 
 SubType.prototype.sayAge = function() {
-    console.log(this.age);
+  console.log(this.age);
 }
 
 var a = new SubType('Tate', 18);
@@ -244,8 +244,8 @@ b.sayAge(); // 16
 // 通过 Object.create 可以实现原型式继承，思路是借助原型可以基于已有的对象创建新对象。
 // 同原型链继承一样，引用类型值属性始终都会被所有实例共享
 var person = {
-    name: 'Tate',
-    interests: ['travel', 'badminton']
+  name: 'Tate',
+  interests: ['travel', 'badminton']
 }
 
 var p1 = Object.create(person);
@@ -263,16 +263,16 @@ console.log(p2.interests); // ['travel', 'badminton', 'coding']
 ```js
 // 原理和原型式继承差不多，但是可以增强对象
 function createAnother(original) {
-    var clone = Object.create(original); // 基于orginal创建一个新对象
-    clone.sayHi = function () { // 增强对象，添加属性和方法
-        console.log("hi");
-    };
-    return clone; // 返回对象
+  var clone = Object.create(original); // 基于orginal创建一个新对象
+  clone.sayHi = function () { // 增强对象，添加属性和方法
+    console.log("hi");
+  };
+  return clone; // 返回对象
 }
 
 var person = {
-    name: 'Tate',
-    interests: ['travel', 'badminton']
+  name: 'Tate',
+  interests: ['travel', 'badminton']
 }
 var anotherPerson = createAnother(person);
 anotherPerson.sayHi(); // 'hi'
@@ -283,17 +283,17 @@ anotherPerson.sayHi(); // 'hi'
 ```js
 // 将组合式继承进行优化
 function SuperType(name) {
-    this.name = name;
-    this.arr = [1, 2, 3];
+  this.name = name;
+  this.arr = [1, 2, 3];
 }
 SuperType.prototype.sayName = function() {
-    console.log(this.name);
+  console.log(this.name);
 }
 function SubType(name, age) {
-    SuperType.call(this,name); // 继承属性
-    this.age = age;
+  SuperType.call(this, name); // 继承属性
+  this.age = age;
 }
-//继承方法
+// 继承方法
 SubType.prototype = Object.create(SuperType.prototype);
 SubType.prototype.constructor = SubType;
 
@@ -303,7 +303,7 @@ SubType.prototype.__proto__ = SuperType.prototype;
 
 ### class 继承
 
-class 本质是构造函数，class 之间可以通过 **extends** 关键字实现继承。ES5 借用构造函数的继承，实际是先创造子类的实例对象 this，然后再将父类的方法添加到 this 上面(Parent.apply(this))。ES6 的继承机制完全不同，实际是先创造父类的实例对象 this(所以必须先调用super方法)，然后再用子类的构造函数修改 this。
+class 本质是构造函数，class 之间可以通过 **extends** 关键字实现继承。ES5 借用构造函数的继承，实际是先创造子类的实例对象 this，然后再将父类的方法添加到 this 上面(Parent.apply(this))。ES6 的继承机制完全不同，实际是先创造父类的实例对象 this(所以必须先调用 super 方法)，然后再用子类的构造函数修改 this。
 
 ```js
 class Point {
@@ -320,16 +320,16 @@ class Point {
     console.log('Tate');
   }
 }
-// super关键字表示父类的构造函数，用来新建父类的 this 对象，子类没有自己的 this 对象，必须继承于父类
- class ColorPoint extends Point {
+// super 关键字表示父类的构造函数，用来新建父类的 this 对象，子类没有自己的 this 对象，必须继承于父类
+class ColorPoint extends Point {
   constructor(x, y, color) {
     // this.color = color; // ReferenceError
-    super(x, y); // 调用父类的constructor(x, y)
+    super(x, y); // 调用父类的 constructor(x, y)
     this.color = color;
   }
 
   toString() {
-    return this.color + ' ' + super.toString(); // 调用父类的toString()
+    return this.color + ' ' + super.toString(); // 调用父类的 toString()
   }
 }
 

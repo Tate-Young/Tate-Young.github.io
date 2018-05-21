@@ -94,7 +94,7 @@ arr instanceof Array; // false
 对象的 **constructor** 属性总是返回它的的构造函数。constructor 属性定义在 prototype 对象上面，可以被所有实例对象继承。
 
 ```js
-// Array.prototype.constructor指向Array构造函数本身
+// Array.prototype.constructor 指向 Array 构造函数本身
 [].constructor === Array.prototype.constructor // true
 
 [].constructor === Array;
@@ -117,7 +117,7 @@ p.constructor === Person; // true
 ```js
 function Person(){};
 // Person.prototype.sayHello = function(){ alert('hello'); } // 不会影响constructor指向
-Person.prototype = { // 重写prototype
+Person.prototype = { // 重写 prototype
     sayHello: function(){}
 }
 

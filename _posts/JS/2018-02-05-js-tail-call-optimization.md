@@ -117,21 +117,21 @@ sum(1, 100000) // Uncaught RangeError: Maximum call stack size exceeded
 ```js
 //放入trampoline中的函数将被转换为函数的输出结果
 function trampoline(f) {
-    while (f && f instanceof Function) {
-        f = f();
-    }
-    return f;
+  while (f && f instanceof Function) {
+    f = f();
+  }
+  return f;
 }
 
 function sum(x, y) {
-    function recur(x, y) {
-        if (y > 0) {
-          return recur.bind(null, x + 1, y - 1); // recur函数的每次执行，都会返回自身的另一个版本
-        } else {
-          return x;
-        }
+  function recur(x, y) {
+    if (y > 0) {
+      return recur.bind(null, x + 1, y - 1); // recur函数的每次执行，都会返回自身的另一个版本
+    } else {
+      return x;
     }
-    return trampoline(recur.bind(null, x, y));
+  }
+  return trampoline(recur.bind(null, x, y));
 }
 
 sum(1, 100000); // => 100001

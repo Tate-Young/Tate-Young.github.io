@@ -29,11 +29,11 @@ tags:
 
 | 组合选择器 | 名称 | 描述 |
 |:-------------|:------------------|:------------------|
-| E,F | 多元素选择器 | 选择所有E元素和F元素 |
-| E F | 后代选择器 | 选择E元素内部的所有F元素 |
-| E>F | 子选择器 | 选择父元素为E元素的所有F元素 |
-| E+F | 相邻兄弟选择器 | 选择紧接在E元素之后的所有F元素 |
-| E~F | 通用兄弟选择器 | 选择前面有E元素的每个F元素 |
+| E,F | 多元素选择器 | 选择所有 E 元素和 F 元素 |
+| E F | 后代选择器 | 选择 E 元素内部的所有 F 元素 |
+| E>F | 子选择器 | 选择父元素为 E 元素的所有 F 元素 |
+| E+F | 相邻兄弟选择器 | 选择紧接在 E 元素之后的所有 F 元素 |
+| E~F | 通用兄弟选择器 | 选择前面有 E 元素的每个 F 元素 |
 
 ## CSS选择器优先级
 
@@ -55,21 +55,21 @@ tags:
 * 当同一个元素有多个声明的时候，优先级才会有意义。因为每一个直接作用于元素的 CSS 规则总是会接管或覆盖该元素从祖先元素继承而来的规则。
 
 ```CSS
-/*权值计算 100(#content) + 1(div) + 100(#main-content) + 1(h2) = 202 */
+/* 权值计算 100(#content) + 1(div) + 100(#main-content) + 1(h2) = 202 */
 #content div#main-content h2{
     color:red;
 }
 ```
 
 ```CSS
-/*权值计算 100(#main-content) + 1(div) + 10(.paragraph) + 1(h2) = 112 */
+/* 权值计算 100(#main-content) + 1(div) + 10(.paragraph) + 1(h2) = 112 */
 #main-content div.paragraph h2 {
     color:orange;
 }
 ```
 
 ```CSS
-/*权值计算 100(#main-content) + 10(class="paragraph") + 1(h2) = 111 */
+/* 权值计算 100(#main-content) + 10(class="paragraph") + 1(h2) = 111 */
 #main-content [class="paragraph"] h2 {
     color:yellow;
 }

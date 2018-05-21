@@ -14,7 +14,7 @@
 <meta name="twitter:keywords" content="this 指针 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="this 指针 - Tate & Snow">
-<meta name="og:keywords" content="this 指针 - Tate & Snow|this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是window.getName()，window对象并没有name属..."
+<meta name="og:keywords" content="this 指针 - Tate & Snow|this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是 window.getName()，window 对象并没有 na..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是window.getName()，window对象并没有name属..." property='og:description'
+<meta name="keywords" content="this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是 window.getName()，window 对象并没有 na..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/01/30/js-this.html' property='og:url' />
-<meta content="http://localhost:4000/2018/01/30/js-this.html|this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是window.getName()，window对象并没有name属..." property='og:description'
+<meta content="http://localhost:4000/2018/01/30/js-this.html|this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是 window.getName()，window 对象并没有 na..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -177,8 +177,8 @@
 
 <h3 id="this-指针案例">this 指针案例</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 实际执行的是window.getName()，window对象并没有name属性</span>
-<span class="c1">// 严格模式中指向的是undefined</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 实际执行的是 window.getName()，window 对象并没有 name 属性</span>
+<span class="c1">// 严格模式中指向的是 undefined</span>
 <span class="k">this</span> <span class="o">===</span> <span class="nb">window</span><span class="p">;</span> <span class="c1">// true</span>
 <span class="kd">function</span> <span class="nx">getName</span><span class="p">(){</span>
   <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">"Tate"</span><span class="p">;</span>
@@ -189,8 +189,8 @@
 </code></pre>
 </div>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// this只是指向当前一层的对象，而不会向上继承</span>
-<span class="c1">// 调用的是person.spouse对象，但spouse无name属性</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// this 只是指向当前一层的对象，而不会向上继承</span>
+<span class="c1">// 调用的是 person.spouse 对象，但 spouse 无 name 属性</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
   <span class="na">spouse</span><span class="p">:{</span>
@@ -203,7 +203,7 @@
 </code></pre>
 </div>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 赋值但并未执行函数，相当于执行的是window.fn()</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 赋值但并未执行函数，相当于执行的是 window.fn()</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
   <span class="na">spouse</span><span class="p">:{</span>
@@ -221,7 +221,7 @@
 
 <h3 id="this-指针案例-多层嵌套">this 指针案例-多层嵌套</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 内层的this不指向外部，而指向顶层对象Window</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 内层的 this 不指向外部，而指向顶层对象 Window</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
   <span class="na">spouse</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -330,9 +330,9 @@ obj.say(); // 10
   <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span>
 <span class="p">};</span>
 <span class="nx">foo</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-<span class="nx">foo</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span> <span class="c1">// apply和call类似，只是参数不同，立即执行</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span> <span class="c1">// apply 和 call 类似，只是参数不同，立即执行</span>
 <span class="kd">var</span> <span class="nx">bar</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="nx">bar</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// bind绑定指针后并没有立即执行，参数按顺序注入，相当于bind(person,1,2)</span>
+<span class="nx">bar</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// bind 绑定指针后并没有立即执行，参数按顺序注入，相当于 bind(person,1,2)</span>
 </code></pre>
 </div>
 
@@ -343,11 +343,11 @@ obj.say(); // 10
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
 
-<span class="c1">// new操作符的操作实际是</span>
+<span class="c1">// new 操作符的操作实际是</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// 申明一个空对象</span>
-<span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span>  <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span> <span class="c1">// 将__proto__指针指向Person的prototype，即其原型对象</span>
+<span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span>  <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span> <span class="c1">// 将 __proto__ 指针指向 Person 的 prototype，即其原型对象</span>
 <span class="c1">// Object.setPrototypeOf(p, Person.prototype);</span>
-<span class="nx">Person</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// 改变Person内部this指针，指向p对象</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span> <span class="c1">// 改变 Person 内部 this 指针，指向 p 对象</span>
 </code></pre>
 </div>
 

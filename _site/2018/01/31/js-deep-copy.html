@@ -290,8 +290,8 @@ Reference value stored in the variable location is a pointer to a location in me
 
 <p>构造新的对象，并对源对象进行拷贝，但是对其内部的引用类型值，拷贝的是其引用</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Array的slice()和concat()方法和Object.assign()、$.extend({}, obj)方法类似</span>
-<span class="c1">// $.extend(true, {}, obj)为深拷贝</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// slice 和concat 方法和 Object.assign、$.extend({}, obj)方法类似</span>
+<span class="c1">// $.extend(true, {}, obj) 为深拷贝</span>
 <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Tate'</span><span class="p">,</span> <span class="p">{</span><span class="na">age</span><span class="p">:</span> <span class="mi">18</span><span class="p">}];</span>
 <span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
 <span class="c1">// var p2 = [...p1]; ES6 使用扩展运算符...</span>
@@ -337,7 +337,7 @@ Reference value stored in the variable location is a pointer to a location in me
 
 <p>可用 JSON 对象中的 parse() 和 stringify() 实现深拷贝，不足之处从以下例子可见，源对象的方法在拷贝的过程中丢失了，这是因为 JSON 语法不支持函数，详见<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">链接3</a>。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 利用JSON序列化实现一个深拷贝</span>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 利用 JSON 序列化实现一个深拷贝</span>
 <span class="kd">function</span> <span class="nx">deepCopy</span><span class="p">(</span><span class="nx">source</span><span class="p">){</span>
   <span class="k">return</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">source</span><span class="p">));</span>
 <span class="p">}</span>

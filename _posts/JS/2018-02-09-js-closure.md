@@ -23,12 +23,12 @@ tags:
 ```js
 // 创建闭包的常见方式，就是在一个函数内部返回另一个函数。
 var name = 'Tate';
-function person(){
-    var name = 'Snow';
-    function sayName(){
-        alert(name);
-    }
-    return sayName;
+function person() {
+  var name = 'Snow';
+  function sayName() {
+      alert(name);
+  }
+  return sayName;
 }
 
 // 第一次执行 person() 返回的是函数 sayName
@@ -39,12 +39,12 @@ person()(); // 'Snow'
 
 ```js
 // 可以通过词法作用域解释
-function person(){
-    var name = 'Snow';
-    function sayName(){
-        alert(name);
-    }
-    sayName();
+function person() {
+  var name = 'Snow';
+  function sayName() {
+      alert(name);
+  }
+  sayName();
 }
 
 person(); // 'Snow'
@@ -56,7 +56,7 @@ person(); // 'Snow'
 
 ```js
 sayNameContext = {
-    Scope: [AO, personContext.AO, globalContext.VO]
+  Scope: [AO, personContext.AO, globalContext.VO]
 }
 ```
 
@@ -71,9 +71,9 @@ sayNameContext = {
 ```js
 var a = [];
 for (var i = 0; i < 10; i++) {
-    a[i] = function () {
-        console.log(i);
-    };
+  a[i] = function () {
+      console.log(i);
+  };
 }
 var b = a[5];
 b(); // 10
@@ -83,10 +83,10 @@ b(); // 10
 
 ```js
 globalContext = {
-    VO: {
-        a: [...],
-        i: 10
-    }
+  VO: {
+    a: [...],
+    i: 10
+  }
 }
 ```
 
@@ -109,7 +109,7 @@ b(); // 5
 
 ```js
 a[0]Context = {
-    Scope: [AO, 匿名函数Context.AO, globalContext.VO]
+  Scope: [AO, 匿名函数Context.AO, globalContext.VO]
 }
 ```
 
@@ -117,13 +117,13 @@ a[0]Context = {
 
 ```js
 匿名函数Context = {
-    AO: {
-        arguments: {
-            0: 5,
-            length: 1
-        },
-        i: 5
-    }
+  AO: {
+    arguments: {
+      0: 5,
+      length: 1
+    },
+    i: 5
+  }
 }
 ```
 
@@ -132,18 +132,18 @@ a[0]Context = {
  JavaScript 没有这种原生支持，但我们可以使用闭包来模拟私有方法，私有方法不仅仅有利于限制对代码的访问，还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。
 
 ```js
-var person = (function () {
-    // 变量作用域为函数内部，外部无法访问
-    var name = 'Tate';
+var person = (function() {
+  // 变量作用域为函数内部，外部无法访问
+  var name = 'Tate';
 
-    return {
-        getName: function () {
-            return name;
-        },
-        setName: function (anotherName) {
-            name = anotherName;
-        }
+  return {
+    getName: function() {
+      return name;
+    },
+    setName: function(anotherName) {
+      name = anotherName;
     }
+  }
 })()
 
 person.getName(); // 'Tate'
@@ -157,10 +157,10 @@ person.getName(); // 'Tate'
 
 ```js
 function assignHandler() {
-    var element = document.getElementById('someElement');
-    element.onclick = function() {
-        alert(element.id);
-    };
+  var element = document.getElementById('someElement');
+  element.onclick = function() {
+    alert(element.id);
+  };
 }
 ```
 
@@ -169,13 +169,13 @@ function assignHandler() {
 
 ```js
 function assignHandler() {
-    var element = document.getElementById('someElement');
-    var id = element.id;
-    element.onclick = function() {
-        alert(id);
-    };
+  var element = document.getElementById('someElement');
+  var id = element.id;
+  element.onclick = function() {
+    alert(id);
+  };
 
-    element = null;
+  element = null;
 }
 ```
 
