@@ -163,8 +163,8 @@ console.groupEnd()
 console.log = ((log) => {
   let n = 0;
   return (str) => {
-  log(`${n++}:${str}`)
-}
+    log(`${n++}:${str}`)
+  }
 })(console.log)
 ```
 

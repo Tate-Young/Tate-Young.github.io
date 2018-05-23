@@ -100,19 +100,19 @@ window.onbeforeunload = function() {
 
 ```js
 document.ready = function(callback) {
-    if (document.addEventListener) {
-        document.addEventListener('DOMContentLoaded', function() {
-            document.removeEventListener('DOMContentLoaded', arguments.callee, false);
-            callback();
-        }, false);
-    }else if (document.attachEvent) {// 兼容ie
-        document.attachEvent('onreadytstatechange', function() {
-            if (document.readyState == "complete") {
-                document.detachEvent("onreadystatechange", arguments.callee);
-                callback();
-            }
-        });
-    }
+  if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+      callback();
+    }, false);
+  }else if (document.attachEvent) { // 兼容 ie
+    document.attachEvent('onreadytstatechange', function() {
+      if (document.readyState == "complete") {
+        document.detachEvent("onreadystatechange", arguments.callee);
+        callback();
+      }
+    });
+  }
 }
 ```
 

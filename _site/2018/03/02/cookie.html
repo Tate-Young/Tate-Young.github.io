@@ -309,22 +309,22 @@ localStorage.clear();
 
 <pre><code class="language-JS">var storage = window.localStorage;
 for (var i = 0, len = storage.length; i &lt; len; i++){
-    var key = storage.key(i);
-    var value = storage.getItem(key);
-    console.log(key + " - " + value);
+  var key = storage.key(i);
+  var value = storage.getItem(key);
+  console.log(key + " - " + value);
 }
 </code></pre>
 
 <p>当 Storage 对象发生变化时， StorageEvent 事件会触发:</p>
 
 <pre><code class="language-JS">if(window.addEventListener){
-    window.addEventListener("storage", handle_storage, false);
+  window.addEventListener("storage", handle_storage, false);
 }else if(window.attachEvent){
-    window.attachEvent("onstorage", handle_storage);
+  window.attachEvent("onstorage", handle_storage);
 }
 
 function handle_storage(e){
-    if(!e){e = window.event;}
+  if(!e){e = window.event;}
 }
 </code></pre>
 
@@ -350,9 +350,9 @@ function handle_storage(e){
 
 <pre><code class="language-JS">// Callback version:
 localforage.getItem('somekey', function(err, value) {
-    // Run this code once the value has been
-    // loaded from the offline store.
-    console.log(value);
+  // Run this code once the value has been
+  // loaded from the offline store.
+  console.log(value);
 });
 
 // Supply a list of drivers, in order of preference.

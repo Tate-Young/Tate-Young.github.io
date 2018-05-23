@@ -245,7 +245,7 @@ img.src = 'http://a.example.com/test?name=snow' // 发送 name 参数
 </ul>
 
 <pre><code class="language-JS">function handleResponse(res) {
-    alert('you are at IP address' + res.ip + ',which is in' + res.city + ',' + res.region_name);
+  alert('you are at IP address' + res.ip + ',which is in' + res.city + ',' + res.region_name);
 }
 
 var script = document.createElement('script');
@@ -270,10 +270,10 @@ document.body.insertBefore(script, document.body.firstChild);
 &lt;body&gt;
   &lt;iframe id="myFrame" src="http://b.example.com/sop/b.html"&gt;&lt;/iframe&gt;
   &lt;script&gt;
-      document.domain = 'example.com';
-      $("iframe").load(function(){
-          $(this).contents().find("h1").text('Tate');
-      });
+    document.domain = 'example.com';
+    $("iframe").load(function(){
+      $(this).contents().find("h1").text('Tate');
+    });
   &lt;/script&gt;
 &lt;/body&gt;
 </code></pre>
@@ -285,7 +285,7 @@ document.body.insertBefore(script, document.body.firstChild);
 &lt;body&gt;
   &lt;hi&gt;Snow&lt;/hi&gt;
   &lt;script&gt;
-      document.domain = 'example.com';
+    document.domain = 'example.com';
   &lt;/script&gt;
 &lt;/body&gt;
 </code></pre>
@@ -314,14 +314,14 @@ function checkMessage() {
 
 <pre><code class="language-JS">// b.html 页面
 try {  //有的浏览器(如 Firefox)还是可以直接操作parent.location.hash的
-    parent.location.hash = 'name=tate';
+  parent.location.hash = 'name=tate';
 } catch (e) {
-    // ie、chrome 的安全机制无法修改 parent.location.hash
-    // 所以要利用一个代理 iframe，即 c.html
-    var iframeProxy = document.createElement('iframe');
-    iframeProxy.style.display = 'none';
-    iframeProxy.src = 'http://a.example.com/sop/c.html#name=tate'; //必须跟a.html同域
-    document.body.appendChild(iframeProxy);
+  // ie、chrome 的安全机制无法修改 parent.location.hash
+  // 所以要利用一个代理 iframe，即 c.html
+  var iframeProxy = document.createElement('iframe');
+  iframeProxy.style.display = 'none';
+  iframeProxy.src = 'http://a.example.com/sop/c.html#name=tate'; //必须跟a.html同域
+  document.body.appendChild(iframeProxy);
 }
 </code></pre>
 
@@ -354,12 +354,12 @@ iframeWindow.postMessage('Are you fine?', 'http://b.example.com');
 <pre><code class="language-JS">window.addEventListener('message', receiveMessage);
 
 function receiveMessage(event) {
-    if (event.origin !== 'http://a.example.com') return;
-    if (event.data === 'Are you fine?') {
-        event.source.postMessage('i am fine', event.origin);
-    } else {
-        console.log(event.data);
-    }
+  if (event.origin !== 'http://a.example.com') return;
+  if (event.data === 'Are you fine?') {
+    event.source.postMessage('i am fine', event.origin);
+  } else {
+    console.log(event.data);
+  }
 }
 </code></pre>
 

@@ -22,7 +22,7 @@ CSS 属于 **render blocking resource**，无论外链或内联，都会阻塞�
   <h1>Tate</h1>
   <script>
     function print(){
-        console.log('first print', document.querySelectorAll('h1'));
+      console.log('first print', document.querySelectorAll('h1'));
     }
     print();
     setTimeout(print);
@@ -77,7 +77,7 @@ second print
   <h1>Tate</h1>
   <script>
     function print(){
-        console.log('first print', document.querySelectorAll('h1'));
+      console.log('first print', document.querySelectorAll('h1'));
     }
     print();
     setTimeout(print);

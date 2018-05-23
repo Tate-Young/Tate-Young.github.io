@@ -51,7 +51,7 @@ tags:
 
 /* 在作用域内生效，即只有 Snow 才会响应字体变化 */
 .sub-demo {
-    font-size: var(--font-size);
+  font-size: var(--font-size);
 }
 
 /* media queries 在 Less 和 SASS 使用其变量无效，然而 CSS 变量阔以 */

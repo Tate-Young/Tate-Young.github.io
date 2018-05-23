@@ -92,17 +92,17 @@ name.includes('a', 2); // false
 ```JS
 // ES5
 $('#body').append('Welcome to <b>'
-    + person.house
-    + '</b> '
-    + '.We are '
-    + '<em>'
-    + person.name
-    + '</em> and glad to see you all here!'
+  + person.house
+  + '</b> '
+  + '.We are '
+  + '<em>'
+  + person.name
+  + '</em> and glad to see you all here!'
 );
 
 // ES6
 $('#body').append(
-    `Welcome to <b>${person.house}</b>.We are <em>${person.name}</em> and glad to see you all here!`
+  `Welcome to <b>${person.house}</b>.We are <em>${person.name}</em> and glad to see you all here!`
 );
 ```
 

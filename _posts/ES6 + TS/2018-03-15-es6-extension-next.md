@@ -31,8 +31,8 @@ ES6 可以为函数的参数指定默认值。
 ```JS
 // ES5
 function sayName(x, name) {
-    name = name || 'snow';
-    console.log(x, name);
+  name = name || 'snow';
+  console.log(x, name);
 }
 
 sayName('hi', null); // hi snow
@@ -41,7 +41,7 @@ sayName('hi', null); // hi snow
 ```JS
 // ES6
 function sayName(x, name = 'snow') {
-    console.log(x, name);
+  console.log(x, name);
 }
 
 sayName('hi'); // hi snow
@@ -56,8 +56,8 @@ let x = 1;
 
 // 函数调用时，函数体内部的局部变量 x 影响不到默认值变量x
 function f(y = x) {
-    let x = 2;
-    console.log(y);
+  let x = 2;
+  console.log(y);
 }
 
 f() // 1
@@ -83,7 +83,7 @@ f() // 1
 ```JS
 // arguments 变量
 function sortNumbers() {
-    return Array.prototype.slice.call(arguments).sort();
+  return Array.prototype.slice.call(arguments).sort();
 }
 
 // rest 参数
@@ -115,7 +115,7 @@ ES6 允许使用"箭头"**(=>)**定义函数。箭头函数里面实际上没有
 ```JS
 // ES5
 var foo = function(bar) {
-    return bar;
+  return bar;
 };
 
 // ES6
@@ -149,20 +149,20 @@ var name = 'tate';
 
 // ES5
 var person = {
-    name: name,
-    method: function() {
-        return 'snow';
-    }
+  name: name,
+  method: function() {
+    return 'snow';
+  }
 };
 ```
 
 ```JS
 // ES6
 let person = {
-    name, // 等价于 name: name
-    method() {
-        return 'snow';
-    }
+  name, // 等价于 name: name
+  method() {
+    return 'snow';
+  }
 };
 ```
 
