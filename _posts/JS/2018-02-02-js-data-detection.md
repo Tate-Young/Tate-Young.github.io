@@ -71,7 +71,7 @@ new Person() instanceof Person;
 var person = {name: 'Tate'};
 person instanceof Object; // true
 
-// 所有引用类型都可看做Object的实例，故
+// 所有引用类型都可看做 Object 的实例，故
 [] instanceof Object; // true
 new Date() instanceof Object; // true
 new Person() instanceof Object; // true

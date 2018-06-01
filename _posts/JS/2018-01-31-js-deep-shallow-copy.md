@@ -48,8 +48,8 @@ var a1 = 0;   // 栈内存
 var a2 = 'this is string'; // 栈内存
 var a3 = null; // 栈内存
 
-var b = { m: 20 }; // 变量b存在于栈内存中，{m: 20} 作为对象存在于堆内存中
-var c = [1, 2, 3]; // 变量c存在于栈内存中，[1, 2, 3] 作为对象存在于堆内存中
+var b = { m: 20 }; // 变量 b 存在于栈内存中, {m: 20} 作为对象存在于堆内存中
+var c = [1, 2, 3]; // 变量 c 存在于栈内存中, [1, 2, 3] 作为对象存在于堆内存中
 ```
 
 ![栈内存和堆内存]({{ page.background-image }})
@@ -68,16 +68,16 @@ var c = [1, 2, 3]; // 变量c存在于栈内存中，[1, 2, 3] 作为对象存�
 ```js
 // 仅参考
 function shallowCopy(source) {
-    if (!source || typeof source !== 'object') {
-        throw new Error('error arguments');
+  if (!source || typeof source !== 'object') {
+    throw new Error('error arguments');
+  }
+  var targetObj = source.constructor === Array ? [] : {};
+  for (var keys in source) {
+    if (source.hasOwnProperty(keys)) {
+      targetObj[keys] = source[keys];
     }
-    var targetObj = source.constructor === Array ? [] : {};
-    for (var keys in source) {
-        if (source.hasOwnProperty(keys)) {
-            targetObj[keys] = source[keys];
-        }
-    }
-    return targetObj;
+  }
+  return targetObj;
 }
 ```
 
@@ -123,21 +123,21 @@ console.log(p1[1].age); // 26
 ```js
 // 递归实现一个深拷贝
 function deepCopy(source){
-   if(!source || typeof source !== 'object'){
-     throw new Error('error arguments', 'shallowClone');
-   }
-   var targetObj = source.constructor === Array ? [] : {};
-   for(var keys in source){
-      if(source.hasOwnProperty(keys)){
-         if(source[keys] && typeof source[keys] === 'object'){
-           targetObj[keys] = source[keys].constructor === Array ? [] : {};
-           targetObj[keys] = deepCopy(source[keys]);
-         }else{
-           targetObj[keys] = source[keys];
-         }
+  if (!source || typeof source !== 'object') {
+    throw new Error('error arguments', 'shallowClone');
+  }
+  var targetObj = source.constructor === Array ? [] : {};
+  for (var keys in source) {
+    if (source.hasOwnProperty(keys)) {
+      if (source[keys] && typeof source[keys] === 'object') {
+        targetObj[keys] = source[keys].constructor === Array ? [] : {};
+        targetObj[keys] = deepCopy(source[keys]);
+      } else {
+        targetObj[keys] = source[keys];
       }
-   }
-   return targetObj;
+    }
+  }
+  return targetObj;
 }
 ```
 

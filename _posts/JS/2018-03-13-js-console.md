@@ -155,9 +155,9 @@ console.groupEnd()
 // 2
 ```
 
-## 复写 log 方法
+## 覆写 log 方法
 
-如果想要实现复写 <code>console.log</code> 方法，并且每次打印都在前面加上标签，可以参考下面这种写法:
+如果想要实现覆写 <code>console.log</code> 方法，并且每次打印都在前面加上标签，可以参考下面这种写法:
 
 ```JS
 console.log = ((log) => {

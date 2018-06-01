@@ -26,7 +26,7 @@ var name = 'Tate';
 function person() {
   var name = 'Snow';
   function sayName() {
-      alert(name);
+    alert(name);
   }
   return sayName;
 }
@@ -42,7 +42,7 @@ person()(); // 'Snow'
 function person() {
   var name = 'Snow';
   function sayName() {
-      alert(name);
+    alert(name);
   }
   sayName();
 }
@@ -72,7 +72,7 @@ sayNameContext = {
 var a = [];
 for (var i = 0; i < 10; i++) {
   a[i] = function () {
-      console.log(i);
+    console.log(i);
   };
 }
 var b = a[5];

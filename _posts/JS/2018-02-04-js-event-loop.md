@@ -90,6 +90,7 @@ setTimeout(function(){
 console.log('end');
 // start
 // 1...10000
+// end
 // hello
 // world
 // Tate
