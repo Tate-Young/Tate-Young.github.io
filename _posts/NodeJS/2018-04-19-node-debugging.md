@@ -139,7 +139,7 @@ nodemon --inspect index.js
 也可以通过代码语句 <code>debugger</code> 设置断点:
 
 ```JS
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
   console.log('tate')
   debugger // 相当于断点
   res.send('bbb')

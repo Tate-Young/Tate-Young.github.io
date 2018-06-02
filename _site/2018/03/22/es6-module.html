@@ -496,14 +496,14 @@ import { bar } from './b';
 console.log('a.mjs');
 console.log(bar());
 function foo() { return 'foo' }
-export {foo};
+export { foo };
 
 // b.mjs
 import { foo } from './a';
 console.log('b.mjs');
 console.log(foo());
 function bar() { return 'bar' }
-export {bar};
+export { bar };
 </code></pre>
 
 <p>此时在终端执行 <code>node a.mjs</code>，便会依次打印:</p>
@@ -608,7 +608,7 @@ function bundle() {
       .pipe(uglify())
       .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('dist/')); //生成未压缩文件
+    .pipe(gulp.dest('dist/')); // 生成未压缩文件
 }
 
 function watch() {

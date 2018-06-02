@@ -203,12 +203,12 @@
 </code></pre>
 
 <pre><code class="language-JS">promise
-.then(function(value) {
-  // 这里如何操作
-})
-.catch(function(err) {
-  // err
-});
+  .then(function(value) {
+    // 这里如何操作
+  })
+  .catch(function(err) {
+    // err
+  });
 </code></pre>
 
 <p>如上，这里如何操作，通常有三种选择:</p>
@@ -918,11 +918,11 @@ interface Person {
   age: number,
   name: string
 }
-Observable.of&lt;Person&gt;({age: 26, name: 'tate'},
-                      {age: 18, name: 'snow'}
-          .max&lt;Person&gt;((a: Person, b: Person) =&gt; a.age &lt; b.age ? -1 : 1)
-          .subscribe((x: Person) =&gt; console.log(x.name)); // 'tate'
-}
+Observable.of&lt;Person&gt;(
+  {age: 26, name: 'tate'},
+  {age: 18, name: 'snow'})
+  .max&lt;Person&gt;((a: Person, b: Person) =&gt; a.age &lt; b.age ? -1 : 1)
+  .subscribe((x: Person) =&gt; console.log(x.name)); // 'tate'
 </code></pre>
 
 <h4 id="mergemap--forkjoin">mergeMap / forkJoin</h4>

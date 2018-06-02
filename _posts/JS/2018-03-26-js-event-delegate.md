@@ -122,7 +122,7 @@ var EventUtil = {
     }
   },
   // 删除句柄
-  removeHandler(ele, type, handler){
+  removeHandler(ele, type, handler) {
     if (ele.removeEventListener) {
       ele.removeEventListener(type, handler, false);
     } else if (ele.detachEvent) {
@@ -159,7 +159,7 @@ DOM 事件中还可以通过 stopPropagation 阻止冒泡行为，与 stopImmedi
 
 ```JS
 // DOM 事件
-btn.removeEventListener('click', (event) => {
+btn.addEventListener('click', (event) => {
   console.log(event.type); // 'click'
 }, false);
 
@@ -171,32 +171,32 @@ btn.attachEvent('onclick', _ => console.log(window.event.type)); // 'click'
 
 ```JS
 var EventUtil = {
-  //获取事件对象
-  //IE模型中 event 是一个全局唯一的对象绑定在 window 对象上
-  getEvent(event){
-      return event ? event : window.event;
+  // 获取事件对象
+  // IE 模型中 event 是一个全局唯一的对象绑定在 window 对象上
+  getEvent(event) {
+    return event ? event : window.event;
   },
-  //获取类型
-  getType(event){
+  // 获取类型
+  getType(event) {
     return event.type;
   },
-  getElement(event){
+  getElement(event) {
     return event.target || event.srcElement;
   },
-  //阻止默认事件
-  preventDefault(event){
-    if(event.preventDefault){
+  // 阻止默认事件
+  preventDefault(event) {
+    if (event.preventDefault) {
       event.preventDefault();
-    }else{
-      event.returnValue=false;
+    } else {
+      event.returnValue = false;
     }
   },
-  //阻止冒泡
-  stopPropagation(event){
-    if(event.stopPropagation){
+  // 阻止冒泡
+  stopPropagation(event) {
+    if (event.stopPropagation) {
       event.stopPropagation();
-    }else{
-      event.cancelBubble=true;
+    } else {
+      event.cancelBubble = true;
     }
   }
 }
@@ -279,6 +279,10 @@ event.cancelable = true;
 event.name = 'tate';
 targetElement.fireEvent('onmouseover', event); // 触发事件
 ```
+
+模拟事件示例如下:
+
+<script async src="//jsfiddle.net/Tate_Young/ysmr0vLq/1/embed/js,html,result/"></script>
 
 ## 参考链接
 

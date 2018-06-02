@@ -113,8 +113,7 @@ var file = document.getElementById('fileItem').files[0];
 
 ### File
 
-**File** 对象继承于 [**Blob** 对象](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob)，Blob 对象表示一个不可变、原始数据的类文件对象。
-。File 属性有以下这些:
+**File** 对象继承于 [**Blob** 对象](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob)，Blob 对象表示一个不可变、原始数据的类文件对象。File 属性有以下这些:
 
 * **name** - 文件名，该属性只读
 * **size** - 文件大小，单位为字节，该属性只读

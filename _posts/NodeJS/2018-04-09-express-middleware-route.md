@@ -276,7 +276,7 @@ app.use(function(req, res) {
 
 ## 中间件
 
-**[中间件(Middleware)](http://www.expressjs.com.cn/guide/using-middleware.html)** 是一个函数，它可以访问请求对象(request object (req)), 响应对象(response object (res)), 和 web 应用中处于请求-响应循环流程中的中间件，一般被命名为 next 的变量。如果当前中间件没有终结请求-响应循环，则必须调用 next() 方法将控制权交给下一个中间件，否则请求就会挂起。
+**[中间件(Middleware)](http://www.expressjs.com.cn/guide/using-middleware.html)** 是一个函数，它可以访问请求对象(request object (req)), 响应对象(response object (res))和 web 应用中处于请求-响应循环流程中的中间件，一般被命名为 next 的变量。如果当前中间件没有终结请求-响应循环，则必须调用 next() 方法将控制权交给下一个中间件，否则请求就会挂起。
 
 ```JS
 // 基本的中间件结构
@@ -353,24 +353,24 @@ options 参数可选:
 路由最初的写法:
 
 ```JS
-var http = require("http");
+var http = require('http');
 http.createServer(function(req, res) {
   // Homepage
-  if(req.url == "/") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end("Welcome to the homepage!");
+  if(req.url == '/') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('Welcome to the homepage!');
   }
   // About page
-  else if (req.url == "/about") {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end("Welcome to the about page!");
+  else if (req.url == '/about') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('Welcome to the about page!');
   }
   // 404!
   else {
-    res.writeHead(404, { "Content-Type": "text/plain" });
-    res.end("404 not found");
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('404 not found');
   }
-}).listen(8000, "localhost");
+}).listen(8000, 'localhost');
 ```
 
 Express 里路由的三种写法如下:
@@ -410,20 +410,20 @@ app.get(/.*fly$/, function(req, res) {
 路由句柄有多种形式，可以是一个函数、一个函数数组，或者是两者混合:
 
 ```JS
-var cb0 = function (req, res, next) {
+var cb0 = function(req, res, next) {
   console.log('CB0');
   next();
 }
 
-var cb1 = function (req, res, next) {
+var cb1 = function(req, res, next) {
   console.log('CB1');
   next();
 }
 
-app.get('/example/d', [cb0, cb1], function (req, res, next) {
+app.get('/example/d', [cb0, cb1], function(req, res, next) {
   console.log('response will be sent by the next function ...');
   next(); // 跳到下一个路由句柄
-}, function (req, res) {
+}, function(req, res) {
   res.send('Hello from D!');
 });
 ```
@@ -451,7 +451,7 @@ var express = require('express');
 var router = express.Router();
 
 // 该路由使用的中间件
-router.use(functiontimeLog(req, res, next) {
+router.use(function timeLog(req, res, next) {
   console.log('Time: ', Date.now());
   next();
 });

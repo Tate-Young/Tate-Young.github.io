@@ -112,13 +112,13 @@ const RESTRICTED = ['_pcode'];
 api = new Proxy(api, {
   get(target, key, proxy) {
     if(RESTRICTED.includes(key)) {
-        throw Error(`${key} is restricted. Please see api documentation for further info.`);
+      throw Error(`${key} is restricted. Please see api documentation for further info.`);
     }
     return Reflect.get(target, key, proxy);
   },
   set(target, key, value, proxy) {
     if(RESTRICTED.includes(key)) {
-        throw Error(`${key} is restricted. Please see api documentation for further info.`);
+      throw Error(`${key} is restricted. Please see api documentation for further info.`);
     }
     return Reflect.get(target, key, value, proxy);
   },
@@ -174,7 +174,7 @@ dataStore = new Proxy(dataStore, {
 });
 
 // these will throw errors or log warnings, respectively
-dataStore.doNotChange = "foo";
+dataStore.doNotChange = 'foo';
 delete dataStore.noDelete;
 dataStore.oldMethod();
 ```

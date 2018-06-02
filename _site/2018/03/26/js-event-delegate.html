@@ -288,7 +288,7 @@ btn.attachEvent('onclick', _ =&gt; console.log('tate'); // 'tate' 先触发
     }
   },
   // 删除句柄
-  removeHandler(ele, type, handler){
+  removeHandler(ele, type, handler) {
     if (ele.removeEventListener) {
       ele.removeEventListener(type, handler, false);
     } else if (ele.detachEvent) {
@@ -353,7 +353,7 @@ btn.attachEvent('onclick', _ =&gt; console.log('tate'); // 'tate' 先触发
 <p>在 DOM 事件中，兼容 DOM 的浏览器都会将一个 event 对象作为参数传入到事件处理程序中，而 IE 事件中的 event 是一个 window 全局对象:</p>
 
 <pre><code class="language-JS">// DOM 事件
-btn.removeEventListener('click', (event) =&gt; {
+btn.addEventListener('click', (event) =&gt; {
   console.log(event.type); // 'click'
 }, false);
 
@@ -364,32 +364,32 @@ btn.attachEvent('onclick', _ =&gt; console.log(window.event.type)); // 'click'
 <p>跨浏览器的事件对象的兼容性写法:</p>
 
 <pre><code class="language-JS">var EventUtil = {
-  //获取事件对象
-  //IE模型中 event 是一个全局唯一的对象绑定在 window 对象上
-  getEvent(event){
-      return event ? event : window.event;
+  // 获取事件对象
+  // IE 模型中 event 是一个全局唯一的对象绑定在 window 对象上
+  getEvent(event) {
+    return event ? event : window.event;
   },
-  //获取类型
-  getType(event){
+  // 获取类型
+  getType(event) {
     return event.type;
   },
-  getElement(event){
+  getElement(event) {
     return event.target || event.srcElement;
   },
-  //阻止默认事件
-  preventDefault(event){
-    if(event.preventDefault){
+  // 阻止默认事件
+  preventDefault(event) {
+    if (event.preventDefault) {
       event.preventDefault();
-    }else{
-      event.returnValue=false;
+    } else {
+      event.returnValue = false;
     }
   },
-  //阻止冒泡
-  stopPropagation(event){
-    if(event.stopPropagation){
+  // 阻止冒泡
+  stopPropagation(event) {
+    if (event.stopPropagation) {
       event.stopPropagation();
-    }else{
-      event.cancelBubble=true;
+    } else {
+      event.cancelBubble = true;
     }
   }
 }
@@ -497,6 +497,10 @@ event.cancelable = true;
 event.name = 'tate';
 targetElement.fireEvent('onmouseover', event); // 触发事件
 </code></pre>
+
+<p>模拟事件示例如下:</p>
+
+<script async="" src="//jsfiddle.net/Tate_Young/ysmr0vLq/1/embed/js,html,result/"></script>
 
 <h2 id="参考链接">参考链接</h2>
 

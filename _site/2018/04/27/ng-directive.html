@@ -518,11 +518,11 @@ var directive = {
 
 <p>再看个 pre-link 的示例，示例<a href="https://www.undefinednull.com/2014/07/07/practical-guide-to-prelink-postlink-and-controller-methods-of-angular-directives/">来源于这里</a>:</p>
 
-<script async="" src="//jsfiddle.net/shidhincr/Bpxn2/2/embed/"></script>
+<script async="" src="//jsfiddle.net/Tate_Young/Bpxn2/967/embed/"></script>
 
 <p>如果不用父指令中的 pre-link，而改为 link，根据执行顺序可知 son 会先执行 link(即 post-link)，故此处拿不到 name。当然采用 pre-link 也可以，但一般数据共享可以通过 controller 配合 require 来处理:</p>
 
-<script async="" src="//jsfiddle.net/shidhincr/Bpxn2/3/embed/"></script>
+<script async="" src="//jsfiddle.net/Tate_Young/Bpxn2/966/embed/"></script>
 
 <blockquote>
   <p>controller 执行顺序为: compile –&gt; controller –&gt; pre-link –&gt; post-link。</p>

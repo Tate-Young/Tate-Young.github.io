@@ -69,7 +69,7 @@ Object.getOwnPropertyNames(Point); // ['length', 'prototype', 'name']
 
 ### 实例属性
 
-与 ES5 一样，实例的属性除非显式定义在其本身(即定义在this对象上)，否则都是定义在原型上(即定义在class上):
+与 ES5 一样，实例的属性除非显式定义在其本身(即定义在 this 对象上)，否则都是定义在原型上(即定义在 class 上):
 
 ```JS
 p.hasOwnProperty('x'); // true

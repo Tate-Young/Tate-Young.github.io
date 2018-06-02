@@ -54,7 +54,7 @@ $.html() // => <h2 class="title welcome">Hello there!</h2>
 
 ```JS
 const request = require('request');
-request('http://www.google.com', function (error, response, body) {
+request('http://www.google.com', function(error, response, body) {
   console.log('error:', error); // Print the error if one occurred
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
   console.log('body:', body); // Print the HTML for the Google homepage.
@@ -68,7 +68,7 @@ request('http://google.com/doodle.png').pipe(fs.createWriteStream('doodle.png'))
 ```
 
 ```JS
-http.createServer(function (req, resp) {
+http.createServer(function(req, resp) {
   if (req.url === '/doodle.png') {
     if (req.method === 'PUT') {
       req.pipe(request.put('http://mysite.com/doodle.png'))
@@ -82,12 +82,14 @@ http.createServer(function (req, resp) {
 举个 post 请求提交 formData 的栗子:
 
 ```JS
-request.post({url:'http://service.com/upload', formData: formData}, function optionalCallback(err, httpResponse, body) {
+request.post({url:'http://service.com/upload', formData: formData}, optionalCallback);
+
+function optionalCallback(err, httpResponse, body) {
   if (err) {
     return console.error('upload failed:', err);
   }
   console.log('Upload successful!  Server responded with:', body);
-});
+};
 ```
 
 ### marked
@@ -95,8 +97,7 @@ request.post({url:'http://service.com/upload', formData: formData}, function opt
 **marked** 可以将 Markdown 语法转换为 html 并显示。
 
 ```JS
- document.getElementById('content').innerHTML =
-      marked('# Marked in the browser\n\nRendered by **marked**.');
+document.getElementById('content').innerHTML = marked('# Marked in the browser\n\nRendered by **marked**.');
 ```
 
 ### chalk
@@ -154,7 +155,7 @@ shell.cp('-R', 'stuff/', 'out/Release');
 // or sed([options,] search_regex, replacement, file_array)
 
 shell.cd('lib');
-shell.ls('*.js').forEach(function (file) {
+shell.ls('*.js').forEach(function(file) {
   shell.sed('-i', 'BUILD_VERSION', 'v0.1.2', file);
   shell.sed('-i', /^.*REMOVE_THIS_LINE.*$/, '', file);
   shell.sed('-i', /.*REPLACE_LINE_WITH_MACRO.*\n/, shell.cat('macro.js'), file);
@@ -279,13 +280,13 @@ app.use(flash())
 可以通过 **req.flash()** 来设置通知:
 
 ```JS
-app.get('/flash', function(req, res){
+app.get('/flash', function(req, res) {
   // Set a flash message by passing the key, followed by the value, to req.flash().
   req.flash('info', 'Flash is back!')
   res.redirect('/');
 });
 
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
   // Get an array of flash messages by passing the key to req.flash()
   res.render('index', { messages: req.flash('info') });
 });

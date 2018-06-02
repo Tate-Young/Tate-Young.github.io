@@ -164,7 +164,7 @@ box-sizing：content-box | border-box
 .orange{
   position:fixed;
   top:250px;
-  right:14rem;
+  right:14.5rem;
   width:100px;
   height:100px;
   background-color:orange;

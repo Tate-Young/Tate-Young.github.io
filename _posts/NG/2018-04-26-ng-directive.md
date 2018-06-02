@@ -354,11 +354,11 @@ AngularJS 启动时，会对指令进行编译(compile)和链接(link)，作用�
 
 再看个 pre-link 的示例，示例[来源于这里](https://www.undefinednull.com/2014/07/07/practical-guide-to-prelink-postlink-and-controller-methods-of-angular-directives/):
 
-<script async src="//jsfiddle.net/shidhincr/Bpxn2/2/embed/"></script>
+<script async src="//jsfiddle.net/Tate_Young/Bpxn2/967/embed/"></script>
 
 如果不用父指令中的 pre-link，而改为 link，根据执行顺序可知 son 会先执行 link(即 post-link)，故此处拿不到 name。当然采用 pre-link 也可以，但一般数据共享可以通过 controller 配合 require 来处理:
 
-<script async src="//jsfiddle.net/shidhincr/Bpxn2/3/embed/"></script>
+<script async src="//jsfiddle.net/Tate_Young/Bpxn2/966/embed/"></script>
 
 > controller 执行顺序为: compile --> controller --> pre-link --> post-link。
 

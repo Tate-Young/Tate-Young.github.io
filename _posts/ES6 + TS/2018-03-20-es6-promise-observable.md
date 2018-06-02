@@ -43,12 +43,12 @@ const promise = new Promise((resolve, reject) => {
 
 ```JS
 promise
-.then(function(value) {
-  // 这里如何操作
-})
-.catch(function(err) {
-  // err
-});
+  .then(function(value) {
+    // 这里如何操作
+  })
+  .catch(function(err) {
+    // err
+  });
 ```
 
 如上，这里如何操作，通常有三种选择:
@@ -580,11 +580,11 @@ interface Person {
   age: number,
   name: string
 }
-Observable.of<Person>({age: 26, name: 'tate'},
-                      {age: 18, name: 'snow'}
-          .max<Person>((a: Person, b: Person) => a.age < b.age ? -1 : 1)
-          .subscribe((x: Person) => console.log(x.name)); // 'tate'
-}
+Observable.of<Person>(
+  {age: 26, name: 'tate'},
+  {age: 18, name: 'snow'})
+  .max<Person>((a: Person, b: Person) => a.age < b.age ? -1 : 1)
+  .subscribe((x: Person) => console.log(x.name)); // 'tate'
 ```
 
 #### mergeMap / forkJoin

@@ -236,7 +236,7 @@ D   E
       F
 ```
 
-遍历过程:
+遍历过程( A --> B --> D --> E --> F --> C ):
 
 1. 首先遍历 A，之后遍历其 $$childHead B，再遍历其 $$childHead D;
 2. D 之后没有子节点，会去找 $$nextSibling E，然后在遍历其 $$childHead F;

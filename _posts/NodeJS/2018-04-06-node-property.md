@@ -240,7 +240,7 @@ fs.open('input.txt', 'r+', function(err, fd) {
   if (err) {
     /* handle error */
   } else {
-    fs.close(fd, function(err){
+    fs.close(fd, function(err) {
       if (err){ console.log(err) }
       console.log("文件关闭成功")
     })
@@ -253,7 +253,7 @@ fs.open('input.txt', 'r+', function(err, fd) {
 readFile(file[, options], callback) 用于读取文件，options 该参数是一个对象，包含 {encoding, flag}:
 
 ```JS
-fs.readFile(filename, 'utf8', function(err, data){
+fs.readFile(filename, 'utf8', function(err, data) {
   if(err){
     console.log('文件读取失败');
   }else{
@@ -272,13 +272,13 @@ readStream
   .on('data', function(chunk) {
     console.log('读取数据: ' + chunk);
   })
-  .on('error', function(err){
+  .on('error', function(err) {
     console.log('抛出异常: ' + err.message);
   })
-  .on('end', function(){ // 数据传输完毕
+  .on('end', function() { // 数据传输完毕
     console.log('end');
   })
-  .on('close', function(){ // 已经关闭，不会再有事件抛出
+  .on('close', function() { // 已经关闭，不会再有事件抛出
     console.log('已经关闭');
   });
 ```
@@ -287,7 +287,7 @@ readStream
 var writeStream = fs.createWriteStream('input.txt', 'utf8');
 
 writeStream
-  .on('close', function(){  // 已经关闭，不会再有事件抛出
+  .on('close', function() {  // 已经关闭，不会再有事件抛出
     console.log('已经关闭');
   });
 
