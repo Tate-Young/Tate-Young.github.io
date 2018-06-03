@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='Node 常用库 - Tate & Snow' name='title' />
-    <meta content='Node 常用库 - Tate & Snow' name='og:title' />
-    <title>Node 常用库 - Tate & Snow</title>
+    <meta content='Mongoose 驱动库 - Tate & Snow' name='title' />
+    <meta content='Mongoose 驱动库 - Tate & Snow' name='og:title' />
+    <title>Mongoose 驱动库 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Node 常用库 - Tate & Snow</title>
+<title>Mongoose 驱动库 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node 常用库 - Tate & Snow">
-<meta name="twitter:keywords" content="Node 常用库 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Mongoose 驱动库 - Tate & Snow">
+<meta name="twitter:keywords" content="Mongoose 驱动库 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node 常用库 - Tate & Snow">
-<meta name="og:keywords" content="Node 常用库 - Tate & Snow|Node 常用库常用库统计本文主要收集 Node 中好用的库，也有包含 Express 框架的中间件等，没有局限性:            Node      描述      栗子                  cheerio  ..."
+<meta property="og:title" content="Mongoose 驱动库 - Tate & Snow">
+<meta name="og:keywords" content="Mongoose 驱动库 - Tate & Snow|Mongoose 驱动库连接 Connectionmongoose.connect('mongodb://localhost/myblog');也可以传递配置选项，具体可查看这里mongoose.connect(uri, option..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Node 常用库常用库统计本文主要收集 Node 中好用的库，也有包含 Express 框架的中间件等，没有局限性:            Node      描述      栗子                  cheerio  ..." property='og:description'
+<meta name="keywords" content="Mongoose 驱动库连接 Connectionmongoose.connect('mongodb://localhost/myblog');也可以传递配置选项，具体可查看这里mongoose.connect(uri, option..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/04/22/node-third-library.html' property='og:url' />
-<meta content="http://localhost:4000/2018/04/22/node-third-library.html|Node 常用库常用库统计本文主要收集 Node 中好用的库，也有包含 Express 框架的中间件等，没有局限性:            Node      描述      栗子                  cheerio  ..." property='og:description'
+<meta content='http://localhost:4000/2018/06/03/node-mongoose.html' property='og:url' />
+<meta content="http://localhost:4000/2018/06/03/node-mongoose.html|Mongoose 驱动库连接 Connectionmongoose.connect('mongodb://localhost/myblog');也可以传递配置选项，具体可查看这里mongoose.connect(uri, option..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,9 +134,9 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    Node 常用库</h1>
+                    Mongoose 驱动库</h1>
                 <div class="post-data">
-                    <time datetime="2018-04-22 15:14:00" itemprop="datePublished">发布时间：2018-04-22 15:14:00</time>
+                    <time datetime="2018-06-03 00:00:00" itemprop="datePublished">发布时间：2018-06-03 00:00:00</time>
                     <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -155,9 +155,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                Node 常用库</h1>
+                Mongoose 驱动库</h1>
             <div class="post-data">
-                <time datetime="2018-04-22 15:14:00" itemprop="datePublished">2018-04-22 15:14:00</time>
+                <time datetime="2018-06-03 00:00:00" itemprop="datePublished">2018-06-03 00:00:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -169,367 +169,344 @@
                     </a>
                    
             </p>
-            <h1 id="node-常用库">Node 常用库</h1>
+            <h1 id="mongoose-驱动库">Mongoose 驱动库</h1>
 
-<h2 id="常用库统计">常用库统计</h2>
+<h2 id="连接-connection">连接 Connection</h2>
 
-<p>本文主要收集 Node 中好用的库，也有包含 Express 框架的中间件等，没有局限性:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Node</th>
-      <th style="text-align: left">描述</th>
-      <th style="text-align: left">栗子</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><strong><a href="https://github.com/cheeriojs/cheerio">cheerio</a></strong></td>
-      <td style="text-align: left">以 jQuery 为核心，解析和操作 DOM 模型，如实现网络爬虫</td>
-      <td style="text-align: left"><code>require('cheerio')</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong><a href="https://github.com/request/request">request</a></strong></td>
-      <td style="text-align: left">精简的 HTTP 请求客户端</td>
-      <td style="text-align: left"><code>require('request')</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong><a href="https://github.com/markedjs/marked">marked</a></strong></td>
-      <td style="text-align: left">转换 Markdown 为 Html 显示</td>
-      <td style="text-align: left"><code>require('marked')</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong><a href="https://github.com/chalk/chalk">chalk</a></strong></td>
-      <td style="text-align: left">修改终端输出信息的样式</td>
-      <td style="text-align: left"><code>require('chalk')</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong><a href="https://github.com/shelljs/shelljs">shelljs</a></strong></td>
-      <td style="text-align: left">执行 shell 命令</td>
-      <td style="text-align: left"><code>require('shelljs')</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Express</th>
-      <th style="text-align: left">描述</th>
-      <th style="text-align: left">栗子</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><strong><a href="https://github.com/expressjs/session">express-session</a></strong></td>
-      <td style="text-align: left">session 中间件</td>
-      <td style="text-align: left"><code>require('express-session')</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong><a href="https://github.com/jdesboeufs/connect-mongo">connect-mongo</a></strong></td>
-      <td style="text-align: left">通过 Mongodb 存储 session，基于 express-session</td>
-      <td style="text-align: left"><code>require('connect-mongo')(session)</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong><a href="https://github.com/jaredhanson/connect-flash">connect-flash</a></strong></td>
-      <td style="text-align: left">页面通知中间件，基于 session 实现</td>
-      <td style="text-align: left"><code>require('connect-flash')</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong><a href="https://github.com/utatti/express-formidable">express-formidable</a></strong></td>
-      <td style="text-align: left">Formidable 中间件，解析表单数据</td>
-      <td style="text-align: left"><code>require('express-formidable')</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="node-第三方库">Node 第三方库</h2>
-
-<h3 id="cheerio">cheerio</h3>
-
-<p><strong>cheerio</strong> 以 jQuery 为核心，可以解析和操作 DOM 模型，如实现网络爬虫，可以<a href="http://www.cnblogs.com/xiaohuochai/p/6960738.html">参考这里的实现</a>。</p>
-
-<pre><code class="language-JS">const cheerio = require('cheerio')
-const $ = cheerio.load('&lt;h2 class="title"&gt;Hello world&lt;/h2&gt;')
-
-$('h2.title').text('Hello there!')
-$('h2').addClass('welcome')
-
-$.html() // =&gt; &lt;h2 class="title welcome"&gt;Hello there!&lt;/h2&gt;
+<pre><code class="language-JS">mongoose.connect('mongodb://localhost/myblog');
 </code></pre>
 
-<h3 id="request">request</h3>
+<p>也可以传递配置选项，具体可<a href="https://mongoose.shujuwajue.com/guide/connections.html">查看这里</a></p>
 
-<p><strong>request</strong> 是一个精简的 HTTP 客户端，支持 HTTPS 协议和重定向。</p>
+<pre><code class="language-JS">mongoose.connect(uri, options);
+</code></pre>
 
-<pre><code class="language-JS">const request = require('request');
-request('http://www.google.com', function(error, response, body) {
-  console.log('error:', error); // Print the error if one occurred
-  console.log('statusCode:', response &amp;&amp; response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the HTML for the Google homepage.
+<h2 id="模式-schema">模式 Schema</h2>
+
+<p>Mongoose 的一切都源于 Schema。每个 schema 映射到 <a href="https://docs.mongodb.com/manual/crud/">MongoDB</a> 的<strong>集合(collection)</strong>和定义该集合中文档的形式。</p>
+
+<pre><code class="language-JS">var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var blogSchema = new Schema({
+  title:  String, // String 为 schemaTypes，即内置的数据类型
+  author: String,
+  comments: [{ body: String, date: Date }],
+  date: { type: Date, default: Date.now },
+  array: [],
+  ofString: [String], // 数组
+  ofNumber: [Number],
+  mixed: Schema.Types.Mixed, // 混合类型，等价于空对象 {}，但是 Mongoose 会失去自动检测和保存这些变化的能力，除非手动调用 markModified 方法
+  _someId: Schema.Types.ObjectId // 主键。每个 Schema 都会默认配置这个属性，属性名为 _id，自定义后会覆盖该属性
 });
 </code></pre>
 
-<p>任何响应都可以输出到文件流:</p>
+<p>Schema 有几个可配置的选项，可以直接传递给构造函数或设置该配置，具体选项可<a href="https://mongoose.shujuwajue.com/guide/schemas.html">参考这里 Options</a>:</p>
 
-<pre><code class="language-JS">request('http://google.com/doodle.png').pipe(fs.createWriteStream('doodle.png'))
+<pre><code class="language-JS">new Schema({..}, options);
+
+// 等价于
+
+var schema = new Schema({..});
+schema.set(option, value);
 </code></pre>
 
-<pre><code class="language-JS">http.createServer(function(req, resp) {
-  if (req.url === '/doodle.png') {
-    if (req.method === 'PUT') {
-      req.pipe(request.put('http://mysite.com/doodle.png'))
-    } else if (req.method === 'GET' || req.method === 'HEAD') {
-      request.get('http://mysite.com/doodle.png').pipe(resp)
-    }
-  }
-})
+<blockquote>
+  <p>更多 schemaTypes 可<a href="http://mongoosejs.com/docs/schematypes.html">查询这里</a> 👈</p>
+</blockquote>
+
+<h2 id="模型-model">模型 Model</h2>
+
+<p>schema 不具备操作数据库的能力，必须通过它创建模型:</p>
+
+<pre><code class="language-JS">var Blog = mongoose.model('Blog', blogSchema);
 </code></pre>
 
-<p>举个 post 请求提交 formData 的栗子:</p>
+<h3 id="实例方法">实例方法</h3>
 
-<pre><code class="language-JS">request.post({url:'http://service.com/upload', formData: formData}, optionalCallback);
+<p>模型的实例是<strong>文档(Documents)</strong>，具有很多内置的方法，具体可<a href="http://mongoosejs.com/docs/api.html#document-js">查看这里</a>，也可以自定义:</p>
 
-function optionalCallback(err, httpResponse, body) {
-  if (err) {
-    return console.error('upload failed:', err);
-  }
-  console.log('Upload successful!  Server responded with:', body);
+<pre><code class="language-JS">// define a schema
+var animalSchema = new Schema({ name: String, type: String });
+
+// assign a function to the "methods" object of our animalSchema
+animalSchema.methods.findSimilarTypes = function(cb) {
+  return this.model('Animal').find({ type: this.type }, cb);
 };
 </code></pre>
 
-<h3 id="marked">marked</h3>
+<pre><code class="language-JS">var Animal = mongoose.model('Animal', animalSchema);
+var dog = new Animal({ type: 'dog' });
 
-<p><strong>marked</strong> 可以将 Markdown 语法转换为 html 并显示。</p>
-
-<pre><code class="language-JS">document.getElementById('content').innerHTML = marked('# Marked in the browser\n\nRendered by **marked**.');
-</code></pre>
-
-<h3 id="chalk">chalk</h3>
-
-<p><strong>chalk</strong> 可以修改终端输出信息的样式:</p>
-
-<pre><code class="language-JS">chalk.&lt;style&gt;[.&lt;style&gt;...](string, [string...])
-</code></pre>
-
-<p><img src="https://camo.githubusercontent.com/71d70de9a74293b29dbbcca7ac6cd309948a0f3e/68747470733a2f2f63646e2e7261776769742e636f6d2f6368616c6b2f616e73692d7374796c65732f383236313639376339356266333462366337373637653263626539393431613835316435393338352f73637265656e73686f742e737667" alt="chalk" /></p>
-
-<pre><code class="language-JS">const chalk = require('chalk');
-const log = console.log;
-
-// Combine styled and normal strings
-log(chalk.blue('Hello') + ' World' + chalk.red('!'));
-
-// Compose multiple styles using the chainable API
-log(chalk.blue.bgRed.bold('Hello world!'));
-
-// Pass in multiple arguments
-log(chalk.blue('Hello', 'World!', 'Foo', 'bar', 'biz', 'baz'));
-
-// Nest styles
-log(chalk.red('Hello', chalk.underline.bgBlue('world') + '!'));
-</code></pre>
-
-<p>除了内置的颜色 API 以外，还支持其他颜色自定义的 API，常用的有:</p>
-
-<ul>
-  <li><strong>rgb</strong> - Example: chalk.rgb(255, 136, 0).bold(‘Orange!’)</li>
-  <li><strong>hex</strong> - Example: chalk.hex(‘#FF8800’).bold(‘Orange!’)</li>
-  <li><strong>keyword</strong> (CSS keywords) - Example: chalk.keyword(‘orange’).bold(‘Orange!’)</li>
-  <li><strong>hsl</strong> - Example: chalk.hsl(32, 100, 50).bold(‘Orange!’)</li>
-</ul>
-
-<h3 id="shelljs">shelljs</h3>
-
-<p><strong>shelljs</strong> 可以在 Node 中调用 shell 命令。</p>
-
-<pre><code class="language-JS">var shell = require('shelljs');
-
-if (!shell.which('git')) {
-  shell.echo('Sorry, this script requires git');
-  shell.exit(1); // Exits the current process with the given exit code.
-}
-
-// Copy files to release dir
-shell.rm('-rf', 'out/Release');
-shell.cp('-R', 'stuff/', 'out/Release');
-
-// Replace macros in each .js file
-// sed([options,] search_regex, replacement, file [, file ...])
-// or sed([options,] search_regex, replacement, file_array)
-
-shell.cd('lib');
-shell.ls('*.js').forEach(function(file) {
-  shell.sed('-i', 'BUILD_VERSION', 'v0.1.2', file);
-  shell.sed('-i', /^.*REMOVE_THIS_LINE.*$/, '', file);
-  shell.sed('-i', /.*REPLACE_LINE_WITH_MACRO.*\n/, shell.cat('macro.js'), file);
+dog.findSimilarTypes(function(err, dogs) {
+  console.log(dogs); // woof
 });
-shell.cd('..');
-
-// Run external tool synchronously
-if (shell.exec('git commit -am "Auto-commit"').code !== 0) {
-  shell.echo('Error: Git commit failed');
-  shell.exit(1);
-}
 </code></pre>
 
-<h2 id="express-中间件">Express 中间件</h2>
+<h3 id="静态方法">静态方法</h3>
 
-<h3 id="express-session">express-session</h3>
+<pre><code class="language-JS">// assign a function to the "statics" object of our animalSchema
+animalSchema.statics.findByName = function(name, cb) {
+  return this.find({ name: new RegExp(name, 'i') }, cb);
+};
 
-<p><strong>express-session</strong> 用来操作 session，保存会话信息，常用于登录注册、购物车等。</p>
-
-<pre><code class="language-JS">// session 中间件
-app.use(session({
-  name: config.session.key, // 设置保存 session id 的 cookie 名称
-  secret: config.session.secret, // 通过设置 secret 来计算 hash 值并放在 cookie 中，使产生的 signedCookie 防篡改
-  resave: true, // 强制更新 session
-  saveUninitialized: false, // 设置为 false，强制创建一个 session，即使用户未登录
-  cookie: { // 默认值 { path: '/', httpOnly: true, secure: false, maxAge: null }
-    maxAge: config.session.maxAge
-  },
-  store: new MongoStore({ // 将 session 存储到 mongodb
-    url: config.mongodb // mongodb 地址
-  })
-}))
+var Animal = mongoose.model('Animal', animalSchema);
+Animal.findByName('fido', function(err, animals) {
+  console.log(animals);
+});
 </code></pre>
 
-<p>可以通过 <strong>req.session</strong> 来访问或存储 session:</p>
+<h3 id="虚拟属性">虚拟属性</h3>
 
-<pre><code class="language-JS">// Use the session middleware
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
+<p>虚拟属性是文档属性，可以获取和设置但不保存到 MongoDB，用于格式化或组合字段。举个栗子:</p>
 
-// Access the session as req.session
-app.get('/', function(req, res, next) {
-  if (req.session.views) {
-    req.session.views++
-    res.setHeader('Content-Type', 'text/html')
-    res.write('&lt;p&gt;views: ' + req.session.views + '&lt;/p&gt;')
-    res.write('&lt;p&gt;expires in: ' + (req.session.cookie.maxAge / 1000) + 's&lt;/p&gt;')
-    res.end()
-  } else {
-    req.session.views = 1
-    res.end('welcome to the session demo. refresh!')
+<pre><code class="language-JS">// define a schema
+var personSchema = new Schema({
+  name: {
+    first: String,
+    last: String
   }
+});
+
+// compile our model
+var Person = mongoose.model('Person', personSchema);
+
+// create a document
+var bad = new Person({
+  name: { first: 'Walter', last: 'White' }
+});
+
+// 打印全名
+console.log(bad.name.first + ' ' + bad.name.last); // Walter White
+</code></pre>
+
+<p>打印全名时需要拼接字符串，此时可以通过虚拟属性来实现:</p>
+
+<pre><code class="language-JS">personSchema.virtual('name.full').get(function() {
+  return this.name.first + ' ' + this.name.last;
+});
+
+console.log('%s is insane', bad.name.full); // Walter White is insane
+</code></pre>
+
+<p>当然通过全名来拆分亦可:</p>
+
+<pre><code class="language-JS">personSchema.virtual('name.full').set(function(name) {
+  var split = name.split(' ');
+  this.name.first = split[0];
+  this.name.last = split[1];
+});
+
+mad.name.full = 'Breaking Bad';
+console.log(mad.name.first); // Breaking
+console.log(mad.name.last);  // Bad
+</code></pre>
+
+<h3 id="构建文档">构建文档</h3>
+
+<p>创建文档并保存到数据库的两种方式，删除则都是 <strong>remove</strong> 方法:</p>
+
+<pre><code class="language-JS">var Tank = mongoose.model('Tank', yourSchema);
+
+var small = new Tank({ size: 'small' });
+small.save(function(err) {
+  if (err) return handleError(err);
+  // saved!
+})
+
+// 等价于
+
+Tank.create({ size: 'small' }, function(err, small) {
+  if (err) return handleError(err);
+  // saved!
 })
 </code></pre>
 
-<p>req.session 还有其他几个属性和方法:</p>
+<h2 id="查询-queries">查询 Queries</h2>
+
+<p>查询的 API 可<a href="https://mongodb.github.io/node-mongodb-native/3.0/api/Collection.html">参考这里</a>。</p>
+
+<pre><code class="language-JS">var Person = mongoose.model('Person', yourSchema);
+
+// find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+Person.findOne({ 'name.last': 'Ghost' }, 'name occupation', function (err, person) {
+  if (err) return handleError(err);
+  console.log('%s %s is a %s.', person.name.first, person.name.last, person.occupation) // Space Ghost is a talk show host.
+})
+</code></pre>
+
+<p>实际上等同于执行了:</p>
+
+<pre><code class="language-JS">// find each person with a last name matching 'Ghost'
+var query = Person.findOne({ 'name.last': 'Ghost' });
+
+// selecting the `name` and `occupation` fields
+query.select('name occupation');
+
+// execute the query at a later time
+query.exec(function(err, person) {
+  if (err) return handleError(err);
+  console.log('%s %s is a %s.', person.name.first, person.name.last, person.occupation) // Space Ghost is a talk show host.
+})
+</code></pre>
+
+<p>同样以下两种写法也等价，可以建立一个查询使用链式语法，而不是指定一个 JSON 对象:</p>
+
+<pre><code class="language-JS">// With a JSON doc
+Person.
+  find({
+    occupation: /host/,
+    'name.last': 'Ghost',
+    age: { $gt: 17, $lt: 66 },
+    likes: { $in: ['vaporizing', 'talking'] }
+  }).
+  limit(10).
+  sort({ occupation: -1 }).
+  select({ name: 1, occupation: 1 }).
+  exec(callback);
+</code></pre>
+
+<pre><code class="language-JS">// Using query builder
+Person.
+  find({ occupation: /host/ }).
+  where('name.last').equals('Ghost').
+  where('age').gt(17).lt(66).
+  where('likes').in(['vaporizing', 'talking']).
+  limit(10).
+  sort('-occupation').
+  select('name occupation').
+  exec(callback);
+</code></pre>
+
+<h2 id="验证-validation">验证 Validation</h2>
+
+<p>验证是在 schemaType 中定义的中间件，常用的一些内置验证器有:</p>
+
+<pre><code class="language-JS">var breakfastSchema = new Schema({
+  eggs: {
+    type: Number,
+    min: [6, 'Too few eggs'],
+    max: 12
+  },
+  bacon: {
+    type: Number,
+    required: [true, 'Why no bacon?']
+  },
+  drink: {
+    type: String,
+    enum: ['Coffee', 'Tea']
+  }
+});
+var Breakfast = db.model('Breakfast', breakfastSchema);
+
+// 验证
+var badBreakfast = new Breakfast({
+  eggs: 2,
+  bacon: 0,
+  drink: 'Milk'
+});
+var error = badBreakfast.validateSync();
+
+// error.errors 是错误集合，message 则是错误信息属性
+assert.equal(error.errors['eggs'].message, 'Too few eggs');
+assert.ok(!error.errors['bacon']);
+assert.equal(error.errors['drink'].message, '`Milk` is not a valid enum value for path `drink`.');
+
+badBreakfast.bacon = null;
+error = badBreakfast.validateSync();
+assert.equal(error.errors['bacon'].message, 'Why no bacon?');
+</code></pre>
+
+<p>还可以自定义验证器:</p>
+
+<pre><code class="language-JS">var userSchema = new Schema({
+  phone: {
+    type: String,
+    validate: {
+      validator: function(v) {
+        return /\d{3}-\d{3}-\d{4}/.test(v);
+      },
+      message: '{VALUE} is not a valid phone number!'
+    },
+    required: [true, 'User phone number required']
+  }
+});
+
+// 验证
+var User = db.model('user', userSchema);
+var user = new User();
+var error;
+
+user.phone = '555.0123';
+error = user.validateSync();
+assert.equal(error.errors['phone'].message, '555.0123 is not a valid phone number!');
+
+user.phone = '';
+error = user.validateSync();
+assert.equal(error.errors['phone'].message, 'User phone number required');
+
+user.phone = '201-555-0123';
+// Validation succeeds! Phone number is defined
+</code></pre>
+
+<h2 id="中间件-middleware">中间件 Middleware</h2>
+
+<p>中间件(也称为前置和后置钩子)是异步函数执行过程中传递的控制的函数。支持的主要有两种:</p>
 
 <ul>
-  <li><strong>id</strong> - session id，与 session 唯一绑定，也可通过 <code>req.sessionID</code> 访问，不可修改</li>
-  <li><strong>cookie</strong> - 访问 session id 绑定的 cookie 信息</li>
-  <li><strong>regenerate()</strong> - 重新生成一个 session</li>
-  <li><strong>destroy()</strong> - 销毁一个 session</li>
-  <li><strong>reload()</strong> - 刷新一个 session</li>
-  <li><strong>save()</strong> - 保存一个 session，一般在 session 改变后自动调用，而不用手动去执行</li>
+  <li>文档中间件
+    <ul>
+      <li>init</li>
+      <li>validate</li>
+      <li>save</li>
+      <li>remove</li>
+    </ul>
+  </li>
+  <li>查询中间件
+    <ul>
+      <li>count</li>
+      <li>find</li>
+      <li>findOne</li>
+      <li>findOneAndRemove</li>
+      <li>findOneAndUpdate</li>
+      <li>update</li>
+    </ul>
+  </li>
 </ul>
 
-<h3 id="connect-mongo">connect-mongo</h3>
+<p><strong>前置钩子(pre)</strong> 也分为<strong>串行(serial)</strong>和<strong>并行(parallel)</strong>，<strong>后置钩子(post)</strong> 则一般用来做监听器。</p>
 
-<p><strong>connect-mongo</strong> 是基于 express-session 实现的，可以通过 Mongodb 来存储 session。</p>
+<pre><code class="language-JS">var schema = new Schema(..);
 
-<pre><code class="language-JS">const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-
-app.use(session({
-  secret: 'tate',
-  store: new MongoStore(options)
-}));
-</code></pre>
-
-<p>options 可以创建一个新的连接，也可以复用现成的连接:</p>
-
-<pre><code class="language-JS">// 复用现成的连接
-const mongoose = require('mongoose');
-
-// Basic usage
-mongoose.connect(connectionOptions);
-
-app.use(session({
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
-
-// Advanced usage
-const connection = mongoose.createConnection(connectionOptions);
-
-app.use(session({
-  store: new MongoStore({ mongooseConnection: connection })
-}));
-</code></pre>
-
-<pre><code class="language-JS">// 创建一个新的连接
-app.use(session({
-  store: new MongoStore({
-    url: 'mongodb://localhost/test-app',
-    ttl: 14 * 24 * 60 * 60 // = 14 days. Default 设置 session 过期时间
-  })
-}));
-</code></pre>
-
-<h3 id="connect-flash">connect-flash</h3>
-
-<p><strong>connect-flash</strong> 是基于 session 实现的信息通知中间件，必须在设置 session 后再运行。</p>
-
-<pre><code class="language-JS">const flash = require('connect-flash')
-
-// flash 中间件，用来显示通知
-app.use(flash())
-</code></pre>
-
-<p>可以通过 <strong>req.flash()</strong> 来设置通知:</p>
-
-<pre><code class="language-JS">app.get('/flash', function(req, res) {
-  // Set a flash message by passing the key, followed by the value, to req.flash().
-  req.flash('info', 'Flash is back!')
-  res.redirect('/');
+// 串行中间件是一个接一个的执行，每个中间件调用 next 将执行权移交给下一个中间件
+schema.pre('save', function(next) {
+  // do stuff
+  next();
 });
 
-app.get('/', function(req, res) {
-  // Get an array of flash messages by passing the key to req.flash()
-  res.render('index', { messages: req.flash('info') });
+// `true` means this is a parallel middleware. You **must** specify `true` as the second parameter if you want to use parallel middleware.
+schema.pre('save', true, function(next, done) {
+  // calling next kicks off the next middleware in parallel
+  next();
+  setTimeout(done, 100); // 除非完成 done 操作，否则 save 动作不会执行
 });
 </code></pre>
 
-<h3 id="express-formidable">express-formidable</h3>
+<h2 id="联表-population">联表 Population</h2>
 
-<p><strong>express-formidable</strong> 是 Express 与 <strong><a href="https://github.com/felixge/node-formidable">Formidable</a></strong> 的桥梁，用来解析表单数据。</p>
+<h2 id="插件-plugins">插件 Plugins</h2>
 
-<pre><code class="language-JS">const express = require('express');
-const formidable = require('express-formidable');
-
-var app = express();
-
-app.use(formidable(opts));
-
-app.post('/upload', (req, res) =&gt; {
-  req.fields; // contains non-file fields
-  req.files; // contains files
-});
-</code></pre>
-
-<p>这里的 opts 可以参考 Formidable API，以下列出常用的几个:</p>
-
-<ul>
-  <li><strong>encoding</strong> - 设置编码形式</li>
-  <li><strong>uploadDir</strong> - 设置需要上传文件的存放路径，默认是 <code>os.tmpdir()</code></li>
-  <li><strong>keepExtensions</strong> - 布尔类型，是否保持原始文件的后缀名</li>
-  <li><strong>multiples</strong> - 布尔类型，设置 true 时，当调用 form.parse，files 参数会包含上传文件的数组</li>
-</ul>
-
-<pre><code class="language-JS">app.use(formidable({
-  encoding: 'utf-8',
-  uploadDir: '/my/dir',
-  multiples: true, // req.files to be arrays of files
-});
-</code></pre>
+<blockquote>
+  <p>未完待续</p>
+</blockquote>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://github.com/nswbmw/N-blog/blob/master/book/4.2%20%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C.md">N-Blog</a> By nswbmw</li>
-  <li><a href="http://www.cnblogs.com/xiaohuochai/p/6960738.html">nodeJS 实现简单网页爬虫功能</a> By 小火柴的蓝色理想</li>
+  <li><a href="https://mongoose.shujuwajue.com/guide/schemas.html">mongoose 4.5 中文文档</a></li>
+  <li><a href="http://mongoosejs.com/docs/index.html">mongoose 官网</a></li>
+  <li><a href="https://cnodejs.org/topic/504b4924e2b84515770103dd?utm_source=ourjs.com">Mongoose 学习参考文档 —— 基础篇</a> By a272121742</li>
+  <li><a href="https://mongodb.github.io/node-mongodb-native/3.0/api/Collection.html">Node.js MongoDB Driver API</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -540,9 +517,9 @@ app.post('/upload', (req, res) =&gt; {
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/04/22/node-third-library.html';
-        this.page.identifier = '/2018/04/22/node-third-library';
-        this.page.title = 'Node 常用库';
+        this.page.url = 'https://tate-young.github.io/2018/06/03/node-mongoose.html';
+        this.page.identifier = '/2018/06/03/node-mongoose';
+        this.page.title = 'Mongoose 驱动库';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -560,7 +537,7 @@ app.post('/upload', (req, res) =&gt; {
 </noscript>
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-04-22 15:14:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-06-03 00:00:00</p> -->
         </div>
     </article>
 
