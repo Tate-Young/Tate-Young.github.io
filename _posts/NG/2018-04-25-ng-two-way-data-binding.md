@@ -5,8 +5,8 @@ comments: True
 flag: NG
 background: green
 category: 前端
-title:  双向数据绑定的实现
-date:   2018-04-26 11:47:00 GMT+0800 (CST)
+title: 双向数据绑定的实现
+date: 2018-04-26 11:47:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/24/5ade80f820807.jpg
 tags:
 - AngularJS
@@ -250,7 +250,7 @@ D   E
 
 **Change Detection(变化检测)** 是 Angular 中实现双向数据绑定的核心。当组件中的数据发生变化的时候，Angular 能检测到数据变化并自动反映到视图中。数据的改变一般都是通过异步来操作的，比如 UI 事件、ajax 请求和定时器等，如何检测到这些改变呢，Angular 不同于 AngularJS，它采用的机制为 **[Zone](https://domenic.github.io/zones/)**，并且内部实现了 NgZone 模块，它是用于拦截和跟踪异步工作的机制。
 
-同样拿上文中 setTimeout 的示例，在 Angular 中执行会发现，仍然可以检测到其内部变量的改变，其原因就是在 Angular 中，setTimeout 方法已被覆写。其实在 Angular 应用程序启动之前，Zone 采用**猴子补丁(Monkey-patched)**的方式，将 JavaScript 中的异步任务都进行了包装，这使得这些异步任务都能运行在 Zone 的执行上下文中(NgZone 拥有整个运行环境的执行上下文)，每个异步任务在 Zone 中都是一个任务。
+同样拿上文中 setTimeout 的示例，在 Angular 中执行会发现，仍然可以检测到其内部变量的改变，其原因就是在 Angular 中，setTimeout 方法已被覆写。其实在 Angular 应用程序启动之前，Zone 采用**猴子补丁(Monkey-patched)**运行时动态替换的方式，将 JavaScript 中的异步任务都进行了包装，这使得这些异步任务都能运行在 Zone 的执行上下文中(NgZone 拥有整个运行环境的执行上下文)，每个异步任务在 Zone 中都是一个任务。
 
 实现了异步的监听，那如何去执行变化检测呢。Angular 有一个 ApplicationRef_ 类，其作用是用来监听 NgZone 中的 onMicrotaskEmpty 事件，无论何时只要触发这个事件，那么将会执行一个 tick 方法用来告诉 Angular 去执行变化检测:
 

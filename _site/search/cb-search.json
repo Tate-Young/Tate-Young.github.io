@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Angular FAQ - ",
+		"url" : "/2018/06/10/ng-faq.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Mongoose 驱动库 - ",
 		"url" : "/2018/06/03/node-mongoose.html"
 	}

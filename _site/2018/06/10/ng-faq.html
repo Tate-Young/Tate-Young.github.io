@@ -1,0 +1,2142 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='Angular FAQ - Tate & Snow' name='title' />
+    <meta content='Angular FAQ - Tate & Snow' name='og:title' />
+    <title>Angular FAQ - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Angular FAQ - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular FAQ - Tate & Snow">
+<meta name="twitter:keywords" content="Angular FAQ - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular FAQ - Tate & Snow">
+<meta name="og:keywords" content="Angular FAQ - Tate & Snow|Angular FAQ  本文转自 semlinker，详情查看这里 👈👈目录TypeScript  面向对象编程中类的概念是什么？  面向对象编程中继承的概念是什么？  什么是接口？  什么是泛型？  什么是枚举？  为什么 ES6..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="Angular FAQ  本文转自 semlinker，详情查看这里 👈👈目录TypeScript  面向对象编程中类的概念是什么？  面向对象编程中继承的概念是什么？  什么是接口？  什么是泛型？  什么是枚举？  为什么 ES6..." property='og:description'
+/>
+<meta name="description" content="nothing is more practicla than a good theory" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2018/06/10/ng-faq.html' property='og:url' />
+<meta content="http://localhost:4000/2018/06/10/ng-faq.html|Angular FAQ  本文转自 semlinker，详情查看这里 👈👈目录TypeScript  面向对象编程中类的概念是什么？  面向对象编程中继承的概念是什么？  什么是接口？  什么是泛型？  什么是枚举？  为什么 ES6..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Angular FAQ</h1>
+                <div class="post-data">
+                    <time datetime="2018-06-10 20:47:00" itemprop="datePublished">发布时间：2018-06-10 20:47:00</time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#AngularJS" title="访问AngularJS" data-hover="AngularJS">
+                        AngularJS
+                        <span>(4)</span>
+                        
+                    </a>
+                    
+                    <a href="/tags#Angular" title="访问Angular" data-hover="Angular">
+                        Angular
+                        <span>(3)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Angular FAQ</h1>
+            <div class="post-data">
+                <time datetime="2018-06-10 20:47:00" itemprop="datePublished">2018-06-10 20:47:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#AngularJS" title="访问AngularJS" data-hover="AngularJS">
+                    AngularJS
+                    <span>(4)</span>
+                    </a>
+                
+                <a href="/tags#Angular" title="访问Angular" data-hover="Angular">
+                    Angular
+                    <span>(3)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="angular-faq">Angular FAQ</h1>
+
+<blockquote>
+  <p>本文转自 semlinker，详情<a href="https://github.com/semlinker/angular-faq">查看这里</a> 👈👈</p>
+</blockquote>
+
+<h2 id="目录">目录</h2>
+
+<p><strong><a href="#typescript">TypeScript</a></strong></p>
+
+<ul>
+  <li><a href="#面向对象编程中类的概念是什么">面向对象编程中类的概念是什么？</a></li>
+  <li><a href="#面向对象编程中继承的概念是什么">面向对象编程中继承的概念是什么？</a></li>
+  <li><a href="#什么是接口">什么是接口？</a></li>
+  <li><a href="#什么是泛型">什么是泛型？</a></li>
+  <li><a href="#什么是枚举">什么是枚举？</a></li>
+  <li><a href="#为什么-es6-或-typescript-中的-class-不会自动提升">为什么 ES6 或 TypeScript 中的 Class 不会自动提升？</a></li>
+  <li><a href="#typescrip-中类静态属性和成员属性有什么区别">TypeScrip 中类静态属性和成员属性有什么区别？</a></li>
+</ul>
+
+<p><strong><a href="#rxjs-1">RxJS</a></strong></p>
+
+<ul>
+  <li><a href="#pull-模式-与-push-模式有什么区别">Pull 模式 与 Push 模式有什么区别？</a></li>
+  <li><a href="#observable-与-promise-有什么区别">Observable 与 Promise 有什么区别？</a></li>
+  <li><a href="#rxjs-中-subject-有什么特点">RxJS 中 Subject 有什么特点？</a></li>
+  <li><a href="#rxjs-中-behaviorsubjectreplaysubjectasyncsubject-各有什么作用">RxJS 中 BehaviorSubject、ReplaySubject、AsyncSubject 各有什么作用？</a></li>
+</ul>
+
+<p><strong><a href="#common-1">Common</a></strong></p>
+
+<ul>
+  <li><a href="#angular-1x-与-angular-4x-区别大么">Angular 1.x 与 Angular 4.x 区别大么？</a></li>
+  <li><a href="#angular-2x-与-angular-4x-区别大么">Angular 2.x 与 Angular 4.x 区别大么？</a></li>
+  <li><a href="#angularjs-1x-di-系统有什么问题">AngularJS 1.x DI 系统有什么问题？</a></li>
+  <li><a href="#constructor-与-ngoninit-的应用场景是什么">constructor 与 ngOnInit 的应用场景是什么？</a></li>
+  <li><a href="#elementref-有什么作用">ElementRef 有什么作用？</a></li>
+  <li><a href="#angular-开发-appservice-时injectable-是必须的么">Angular 开发 AppService 时，@Injectable() 是必须的么？</a></li>
+  <li><a href="#angular-中使用-innerhtml-时内容被转义了要怎么办">Angular 中使用 [innerHtml] 时内容被转义了要怎么办？</a></li>
+</ul>
+
+<p><strong><a href="#provider-1">Provider</a></strong></p>
+
+<ul>
+  <li><a href="#angular-中-forwardref-有什么作用">Angular 中 forwardRef 有什么作用？</a></li>
+  <li><a href="#使用字符串作为-token-会有什么问题">使用字符串作为 Token 会有什么问题？</a></li>
+  <li><a href="#angular-中-provider-的作用是什么">Angular 中 Provider 的作用是什么？</a></li>
+  <li><a href="#angular-中配置-provider-有哪几种方式">Angular 中配置 Provider 有哪几种方式？</a></li>
+  <li><a href="#为什么-useclass-可以使用简洁的语法">为什么 useClass 可以使用简洁的语法？</a></li>
+  <li><a href="#angular-中-multi-provider-有什么作用">Angular 中 multi Provider 有什么作用？</a></li>
+</ul>
+
+<p><strong><a href="#component-1">Component</a></strong></p>
+
+<ul>
+  <li><a href="#angular-中-viewencapsulation-模式分为哪几种">Angular 中 ViewEncapsulation 模式分为哪几种？</a></li>
+  <li><a href="#angular-中宿主元素是什么">Angular 中宿主元素是什么？</a></li>
+  <li><a href="#angular-中组件如何实现继承">Angular 中组件如何实现继承？</a></li>
+  <li><a href="#angular-中如何传递异步数据">Angular 中如何传递异步数据？</a></li>
+  <li><a href="#angular-组件通信有哪些方式">Angular 组件通信有哪些方式？</a></li>
+</ul>
+
+<p><strong><a href="#directive-1">Directive</a></strong></p>
+
+<ul>
+  <li><a href="#angular-指令分为哪几种">Angular 指令分为哪几种？</a></li>
+  <li><a href="#angular-中指令与组件之间有什么联系">Angular 中指令与组件之间有什么联系？</a></li>
+  <li><a href="#使用-hidden-属性控制元素可见性有什么问题">使用 <code class="highlighter-rouge">[hidden]</code> 属性控制元素可见性有什么问题？</a></li>
+  <li><a href="#自定义属性指令中的-elementref-与-renderer-有什么作用">自定义属性指令中的 <code class="highlighter-rouge">ElementRef</code> 与 <code class="highlighter-rouge">Renderer</code> 有什么作用？</a></li>
+  <li><a href="#自定义结构指令中的-templateref-与-viewcontainerref-有什么作用">自定义结构指令中的 <code class="highlighter-rouge">TemplateRef</code> 与 <code class="highlighter-rouge">ViewContainerRef</code> 有什么作用？</a></li>
+  <li><a href="#注册指令生命周期钩子时一定要实现对应的接口么">注册指令生命周期钩子时，一定要实现对应的接口么?</a></li>
+  <li><a href="#为什么在构造函数中是获取不到输入属性的值">为什么在构造函数中是获取不到输入属性的值？</a></li>
+</ul>
+
+<p><strong><a href="#decorator-1">Decorator</a></strong></p>
+
+<ul>
+  <li><a href="#装饰器是什么">装饰器是什么？</a></li>
+  <li><a href="#装饰器有几种分类">装饰器有几种分类？</a></li>
+  <li><a href="#component-中--的有什么作用">@Component 中 <code class="highlighter-rouge">@</code> 的有什么作用？</a></li>
+  <li><a href="#为什么在构造函数中非-type-类型的参数只能用-injectsomething-的方式注入-">为什么在构造函数中，非 Type 类型的参数只能用 @Inject(Something) 的方式注入？</a></li>
+  <li><a href="#input-装饰器的作用是什么">@Input 装饰器的作用是什么？</a></li>
+  <li><a href="#output-装饰器的作用是什么">@Output 装饰器的作用是什么?</a></li>
+  <li><a href="#input-与-inputs-有什么区别">@Input 与 inputs 有什么区别？</a></li>
+  <li><a href="#使用input-与-output-有什么注意事项">使用@Input 与 @Output 有什么注意事项？</a></li>
+  <li><a href="#viewchild-与-viewchildren-装饰器的作用是什么">@ViewChild 与 @ViewChildren 装饰器的作用是什么？</a></li>
+  <li><a href="#contentchild-与-contentchildren-装饰器的作用是什么">@ContentChild 与 @ContentChildren 装饰器的作用是什么？</a></li>
+  <li><a href="#viewchild-与-contentchild-有什么区别">@ViewChild 与 @ContentChild 有什么区别？</a></li>
+  <li><a href="#hostlistener-与-hostbinding-有什么用">@HostListener 与 @HostBinding 有什么用？</a></li>
+  <li><a href="#为什么在-root-component-中无法使用-ng-content">为什么在 Root Component 中无法使用 <code class="highlighter-rouge">ng-content</code>？</a></li>
+</ul>
+
+<p><strong><a href="#ngmodule-1">NgModule</a></strong></p>
+
+<ul>
+  <li><a href="#我应该把哪些类添加到declarations中">我应该把哪些类添加到declarations中？</a></li>
+  <li><a href="#我不应该把哪些类添加到declarations中">我不应该把哪些类添加到declarations中？</a></li>
+  <li><a href="#为什么要把同一个组件声明在不同的ngmodule属性中">为什么要把同一个组件声明在不同的NgModule属性中？</a></li>
+  <li><a href="#我应该导入什么">我应该导入什么？</a></li>
+  <li><a href="#我应该导入-browsermodule-还是-commonmodule">我应该导入 BrowserModule 还是 CommonModule？</a></li>
+  <li><a href="#如果我两次导入同一个模块会怎么样">如果我两次导入同一个模块会怎么样？</a></li>
+  <li><a href="#我应该导出什么">我应该导出什么？</a></li>
+  <li><a href="#我不应该导出什么">我不应该导出什么？</a></li>
+  <li><a href="#我可以重新导出类和模块么">我可以重新导出类和模块么？</a></li>
+  <li><a href="#forroot-方法是什么">forRoot() 方法是什么？</a></li>
+  <li><a href="#为什么服务提供商在特性模块中的任何地方都是可见的">为什么服务提供商在特性模块中的任何地方都是可见的？</a></li>
+  <li><a href="#为什么在惰性加载模块中声明的服务提供商只对该模块自身可见">为什么在惰性加载模块中声明的服务提供商只对该模块自身可见？</a></li>
+  <li><a href="#如果两个模块提供了同一个服务会怎么样">如果两个模块提供了同一个服务会怎么样？</a></li>
+  <li><a href="#我们应该如何把服务的范围限制到模块中">我们应该如何把服务的范围限制到模块中？</a></li>
+  <li><a href="#我应该把全应用级提供商添加到根模块appmodule还是根组件appcomponent中">我应该把全应用级提供商添加到根模块(AppModule)还是根组件(AppComponent)中</a></li>
+  <li><a href="#我应该把其它提供商注册到模块中还是组件中">我应该把其它提供商注册到模块中还是组件中？</a></li>
+  <li><a href="#为什么-sharedmodule-为惰性加载模块提供服务是个馊主意">为什么 SharedModule 为惰性加载模块提供服务是个馊主意？</a></li>
+  <li><a href="#为什么惰性加载模块会创建一个子注入器">为什么惰性加载模块会创建一个子注入器？</a></li>
+  <li><a href="#我要如何知道一个模块或服务是否已经加载过了">我要如何知道一个模块或服务是否已经加载过了？</a></li>
+  <li><a href="#什么是入口组件">什么是入口组件？</a></li>
+  <li><a href="#引导组件和入口组件有什么不同">引导组件和入口组件有什么不同？</a></li>
+  <li><a href="#什么时候我应该把组件添加到-entrycomponents-中">什么时候我应该把组件添加到 entryComponents 中？</a></li>
+  <li><a href="#为什么-angular-需要入口组件">为什么 Angular 需要入口组件？</a></li>
+  <li><a href="#sharedmodule-有什么用">SharedModule 有什么用？</a></li>
+  <li><a href="#coremodule-有什么用">CoreModule 有什么用？</a></li>
+</ul>
+
+<p><strong><a href="#form-1">Form</a></strong></p>
+
+<ul>
+  <li><a href="#模板驱动与模型驱动表单各有什么特点">模板驱动与模型驱动表单各有什么特点？</a></li>
+  <li><a href="#angular-中如何使用模板驱动表单">Angular 中如何使用模板驱动表单？</a></li>
+  <li><a href="#angular-中如何使用模型驱动表单">Angular 中如何使用模型驱动表单？</a></li>
+  <li><a href="#form-表单上的-novalidate-属性作用是什么">form 表单上的 <code class="highlighter-rouge">novalidate</code> 属性作用是什么？</a></li>
+  <li><a href="#表单控件的状态除了-touched-外还包含其它几种状态">表单控件的状态除了 <code class="highlighter-rouge">touched</code> 外，还包含其它几种状态？</a></li>
+  <li><a href="#表单控件上-username-和-usernamengmodel-这两种方式有什么区别">表单控件上 <code class="highlighter-rouge">#userName</code> 和 <code class="highlighter-rouge">#userName="ngModel"</code> 这两种方式有什么区别？</a></li>
+  <li><a href="#ngmodelgroup-有什么作用">ngModelGroup 有什么作用？</a></li>
+  <li><a href="#angular-表单中-patchvalue-与-setvalue-方法有什么区别">Angular 表单中 patchValue 与 setValue 方法有什么区别？</a></li>
+  <li><a href="#angular-中内置验证器有哪一些">Angular 中内置验证器有哪一些？</a></li>
+  <li><a href="#angular-中如何自定义验证指令">Angular 中如何自定义验证指令？</a></li>
+  <li><a href="#angular-中如何自定义表单控件">Angular 中如何自定义表单控件？</a></li>
+</ul>
+
+<p><a href="#changedetection-1">ChangeDetection</a></p>
+
+<ul>
+  <li><a href="#changedetectionstrategy-变化检测策略总共有几种">ChangeDetectionStrategy 变化检测策略总共有几种？</a></li>
+  <li><a href="#变化检测器的状态有哪几种">变化检测器的状态有哪几种？</a></li>
+</ul>
+
+<p><strong><a href="#pipe-1">Pipe</a></strong></p>
+
+<ul>
+  <li><a href="#angular-内置管道有哪一些">Angular 内置管道有哪一些？</a></li>
+  <li><a href="#angular-中管道分为哪几类">Angular 中管道分为哪几类？</a></li>
+  <li><a href="#angular-中怎么定义一个管道">Angular 中怎么定义一个管道？</a></li>
+</ul>
+
+<p><strong>Resources</strong></p>
+
+<ul>
+  <li><a href="#frameworks">Frameworks</a></li>
+  <li><a href="#blogs">Blogs</a></li>
+  <li><a href="#tools">Tools</a></li>
+  <li><a href="#platforms">Platforms</a></li>
+</ul>
+
+<h2 id="typescript">TypeScript</h2>
+
+<h3 id="面向对象编程中类的概念是什么">面向对象编程中类的概念是什么？</h3>
+
+<p>虽然 JavaScript 中有类的概念，但是可能大多数 JavaScript 程序员并不是非常熟悉类，这里对类相关的概念做一个简单的介绍。</p>
+
+<ul>
+  <li>类 (Class)：一种面向对象计算机编程语言的构造，是创建对象的蓝图，描述了所创建的对象共同的属性和方法。</li>
+  <li>对象 (Object)：类的实例，通过 <code class="highlighter-rouge">new</code> 创建</li>
+  <li>面向对象 (OOP) 的三大特性：封装、继承、多态</li>
+  <li>封装 (Encapsulation)：将对数据的操作细节隐藏起来，只暴露对外的接口。外界调用端不需要知道细节，就能通过对外提供的接口来访问该对象，同时也保证了外界无法任意更改对象内部的数据</li>
+  <li>继承 (Inheritance)：子类继承父类，子类除了拥有父类的所有特性外，还可以扩展自有的功能特性</li>
+  <li>多态 (Polymorphism)：由继承而产生了相关的不同的类，对同一个方法可以有不同的响应。比如 <code class="highlighter-rouge">Cat</code> 和 <code class="highlighter-rouge">Dog</code> 都继承自 <code class="highlighter-rouge">Animal</code>，但是分别实现了自己的 <code class="highlighter-rouge">eat()</code> 方法。此时针对某一个实例，我们无需了解它是 <code class="highlighter-rouge">Cat</code> 还是 <code class="highlighter-rouge">Dog</code>，就可以直接调用 <code class="highlighter-rouge">eat()</code> 方法，程序会自动判断出来应该如何执行 <code class="highlighter-rouge">eat()</code></li>
+  <li>存取器（getter &amp; setter）：用于属性的读取和赋值</li>
+  <li>修饰符（Modifiers）：修饰符是一些关键字，用于限定成员或类型的性质。比如 <code class="highlighter-rouge">public</code> 表示公有属性或方法</li>
+  <li>抽象类（Abstract Class）：抽象类是供其他类继承的基类，抽象类不允许被实例化。抽象类中的抽象方法必须在子类中被实现</li>
+  <li>接口（Interfaces）：不同类之间公有的属性或方法，可以抽象成一个接口。接口可以被类实现（implements）。一个类只能继承自另一个类，但是可以实现多个接口。</li>
+</ul>
+
+<h3 id="面向对象编程中继承的概念是什么">面向对象编程中继承的概念是什么？</h3>
+
+<blockquote>
+  <p><strong>继承</strong>（英语：inheritance）是<a href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">面向对象</a>软件技术当中的一个概念。如果一个类别A “继承自” 另一个类别B，就把这个A称为 “B的子类别”，而把B称为“A的父类别”也可以称 “B是A的超类”。<strong>继承可以使得子类别具有父类别的各种属性和方法，而不需要再次编写相同的代码。在令子类别继承父类别的同时，可以重新定义某些属性，并重写某些方法，即覆盖父类别的原有属性和方法，使其获得与父类别不同的功能。</strong>另外，为子类别追加新的属性和方法也是常见的做法。 一般静态的面向对象编程语言，继承属于静态的，意即在子类别的行为在编译期就已经决定，无法在执行期扩充。 —— 维基百科</p>
+</blockquote>
+
+<p>继承 (Inheritance) 是一种联结类与类的层次模型。指的是一个类 (称为子类、子接口) 继承另外的一个类 (称为父类、父接口) 的功能，并可以增加它自己的新功能的能力，继承是类与类或者接口与接口之间最常见的关系；继承是一种 <a href="https://zh.wikipedia.org/wiki/Is-a">is-a </a>关系。</p>
+
+<p><img src="https://segmentfault.com//img/bVLPun?w=293&amp;h=204" alt="" /></p>
+
+<h3 id="什么是接口">什么是接口</h3>
+
+<p>在面向对象语言中，接口（Interfaces）是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类（classes）去实现（implements）。</p>
+
+<p>TypeScript 中的接口是一个非常灵活的概念，除了可用于<a href="https://ts.xcatliu.com/advanced/class-and-interfaces.html#类实现接口">对类的一部分行为进行抽象</a>以外，也常用于对「对象的形状（Shape）」进行描述。</p>
+
+<h4 id="对象的形状">对象的形状</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">age</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">semlinker</span><span class="err">:</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s1">'semlinker'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="o">**</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<h4 id="可选只读属性">可选|只读属性</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="k">readonly</span> <span class="nx">name</span><span class="err">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nx">age</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="函数类型">函数类型</h4>
+
+<p>接口能够描述 JavaScript 中对象拥有的各种各样的外形。 除了描述带有属性的普通对象外，接口也可以描述函数类型。</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">SearchFunc</span> <span class="p">{</span>
+  <span class="p">(</span><span class="nx">source</span><span class="err">:</span> <span class="kr">string</span><span class="p">,</span> <span class="nx">subString</span><span class="err">:</span> <span class="kr">string</span><span class="p">)</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">mySearch</span><span class="err">:</span> <span class="nx">SearchFunc</span><span class="p">;</span>
+<span class="nx">mySearch</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">source</span><span class="err">:</span> <span class="kr">string</span><span class="p">,</span> <span class="nx">subString</span><span class="err">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">subString</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">result</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>详细的内容可以参考 - <a href="https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/Interfaces.html">typescript-handbook-interface</a></p>
+
+<h3 id="什么是泛型">什么是泛型？</h3>
+
+<p>泛型（Generics）是允许同一个函数接受不同类型参数的一种模板。相比于使用 any 类型，使用泛型来创建可复用的组件要更好，因为泛型会保留参数类型。</p>
+
+<h4 id="泛型接口">泛型接口</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">GenericIdentityFn</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="p">(</span><span class="na">arg</span><span class="p">:</span> <span class="nx">T</span><span class="p">):</span> <span class="nx">T</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="泛型类">泛型类</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">GenericNumber</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="na">zeroValue</span><span class="p">:</span> <span class="nx">T</span><span class="p">;</span>
+  <span class="nl">add</span><span class="p">:</span> <span class="p">(</span><span class="na">x</span><span class="p">:</span> <span class="nx">T</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="nx">T</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">T</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">myGenericNumber</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GenericNumber</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="nx">myGenericNumber</span><span class="p">.</span><span class="nx">zeroValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nx">myGenericNumber</span><span class="p">.</span><span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span> <span class="p">};</span>
+</code></pre>
+</div>
+
+<h4 id="实际应用">实际应用</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="c1">// Hero接口定义</span>
+<span class="kr">interface</span> <span class="nx">Hero</span> <span class="p">{</span>
+  <span class="nl">id</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">getHeroes</span><span class="p">()</span><span class="err">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Hero</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">Observable</span><span class="p">.</span><span class="nx">of</span><span class="p">([</span>
+    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Windstorm'</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Bombasto'</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Magneta'</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Tornado'</span> <span class="p">}</span>
+  <span class="p">]);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>上面 <code class="highlighter-rouge">getHeroes(): Observable&lt;Hero[]&gt;</code> 表示调用 <code class="highlighter-rouge">getHeroes()</code> 方法后返回的是一个 Observable 对象，<code class="highlighter-rouge">&lt;Hero[]&gt;</code> 用于表示该 Observable 对象的观察者，将会收到的数据类型。示例中表示将会返回 <code class="highlighter-rouge">&lt;Hero[]&gt;</code> 英雄列表。</p>
+
+<h3 id="什么是枚举">什么是枚举？</h3>
+
+<p>枚举用来定义一些有名字的数字常量。枚举通过 <code class="highlighter-rouge">enum</code> 关键字来定义。</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="c1">// angular2/packages/http/src/enums.ts 片段</span>
+<span class="k">export</span> <span class="kr">enum</span> <span class="nx">RequestMethod</span> <span class="p">{</span>
+  <span class="nx">Get</span><span class="p">,</span> <span class="c1">// 0</span>
+  <span class="nx">Post</span><span class="p">,</span> <span class="c1">// 1</span>
+  <span class="nx">Put</span><span class="p">,</span> <span class="c1">// 2</span>
+  <span class="nx">Delete</span><span class="p">,</span> <span class="c1">// 3</span>
+  <span class="nx">Options</span><span class="p">,</span> <span class="c1">// 4</span>
+  <span class="nx">Head</span><span class="p">,</span> <span class="c1">// 5</span>
+  <span class="nx">Patch</span> <span class="c1">// 6</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>编译后的 ES 5 代码</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">RequestMethod</span><span class="p">;</span>
+<span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">RequestMethod</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Get"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Get"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Post"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Post"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Put"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Put"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Delete"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Delete"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Options"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Options"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Head"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Head"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Patch"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Patch"</span><span class="p">;</span>
+<span class="p">})(</span><span class="nx">RequestMethod</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">RequestMethod</span> <span class="o">||</span> <span class="p">(</span><span class="nx">exports</span><span class="p">.</span><span class="nx">RequestMethod</span> <span class="o">=</span> <span class="p">{}));</span>
+</code></pre>
+</div>
+
+<h3 id="为什么-es6-或-typescript-中的-class-不会自动提升">为什么 ES6 或 TypeScript 中的 Class 不会自动提升？</h3>
+
+<p>因为当 class 使用 extends 关键字实现继承的时候，我们不能确保所继承父类是有效的，那么就可能导致一些无法预知的行为。详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008626276">Angular 2 Forward Reference</a> 这篇文章。</p>
+
+<h3 id="typescrip-中类静态属性和成员属性有什么区别">TypeScrip 中类静态属性和成员属性有什么区别？</h3>
+
+<p>AppComponent.ts</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="k">static</span> <span class="kd">type</span><span class="err">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="s1">'component'</span><span class="p">;</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'AppComponent'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>TS 编译成 ES5 的代码：</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">AppComponent</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">AppComponent</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'AppComponent'</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">AppComponent</span><span class="p">;</span>
+<span class="p">}());</span>
+<span class="nx">AppComponent</span><span class="p">.</span><span class="kd">type</span> <span class="o">=</span> <span class="s1">'component'</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>通过转换后的代码，我们可以知道类中的静态属性是作为 AppComponent 构造函数的一个属性，而成员属性是属于 AppComponent 实例。</p>
+
+<h2 id="rxjs">RxJS</h2>
+
+<h3 id="pull-模式-与-push-模式有什么区别">Pull 模式 与 Push 模式有什么区别？</h3>
+
+<p>Pull 和 Push 是数据生产者和数据的消费者两种不同的交流方式。</p>
+
+<h4 id="什么是-pull">什么是 Pull？</h4>
+
+<p>在 “拉” 体系中，数据的消费者决定何时从数据生产者那里获取数据，而生产者自身并不会意识到什么时候数据将会被发送给消费者。</p>
+
+<p>每一个 JavaScript 函数都是一个 “拉” 体系，函数是数据的生产者，调用函数的代码通过 ‘‘拉出” 一个单一的返回值来消费该数据。</p>
+
+<pre><code class="language-JS">const add = (a, b) =&gt; a + b;
+let sum = add(3, 4);
+</code></pre>
+
+<p>ES6介绍了 <a href="http://es6.ruanyifeng.com/#docs/iterator">iterator迭代器</a> 和 <a href="http://es6.ruanyifeng.com/#docs/generator">Generator生成器</a> — 另一种 “拉” 体系，调用 <code class="highlighter-rouge">iterator.next()</code> 的代码是消费者，可从中拉取<em>多个值</em>。</p>
+
+<h4 id="什么是-push">什么是 Push？</h4>
+
+<p>在 “推” 体系中，数据的生产者决定何时发送数据给消费者，消费者不会在接收数据之前意识到它将要接收这个数据。</p>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/promise">Promise(承诺)</a> 是当今 JS 中最常见的 “推” 体系，一个Promise (数据的生产者)发送一个 resolved value (成功状态的值)来执行一个回调(数据消费者)，但是不同于函数的地方的是：Promise 决定着何时数据才被推送至这个回调函数。</p>
+
+<p>RxJS 引入了 Observables (可观察对象)，一个全新的 “推” 体系。一个可观察对象是一个产生多值的生产者，当产生新数据的时候，会主动 “推送给” Observer (观察者)。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>生产者</th>
+      <th>消费者</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pull 拉</td>
+      <td>被请求的时候产生数据</td>
+      <td>决定何时请求数据</td>
+    </tr>
+    <tr>
+      <td>push 推</td>
+      <td>按自己的节奏生产数据</td>
+      <td>对接收的数据进行处理</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="observable-与-promise-有什么区别">Observable 与 Promise 有什么区别？</h3>
+
+<p>Observable（<strong>可观察对象</strong>）是基于推送（<strong>Push</strong>）运行时执行（<strong>lazy</strong>）的多值集合。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>MagicQ</th>
+      <th>单值</th>
+      <th>多值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>拉取(Pull)</strong></td>
+      <td><a href="https://developer.mozilla.org/en-US/docs/Glossary/Function">函数</a></td>
+      <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">遍历器</a></td>
+    </tr>
+    <tr>
+      <td><strong>推送(Push)</strong></td>
+      <td><a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise">Promise</a></td>
+      <td><a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html">Observable</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Promise
+    <ul>
+      <li>返回单个值</li>
+      <li>不可取消的</li>
+    </ul>
+  </li>
+  <li>Observable
+    <ul>
+      <li>随着时间的推移发出多个值</li>
+      <li>可以取消的</li>
+      <li>支持 map、filter、reduce 等操作符</li>
+      <li>延迟执行，当订阅的时候才会开始执行</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="rxjs-中-subject-有什么特点">RxJS 中 Subject 有什么特点？</h3>
+
+<p>Subject 其实是观察者模式的实现，所以当观察者订阅 Subject 对象时，Subject 对象会把订阅者添加到观察者列表中，每当有 subject 对象接收到新值时，它就会遍历观察者列表，依次调用观察者内部的 <code class="highlighter-rouge">next()</code> 方法，把值一一送出。</p>
+
+<p>Subject 既是 Observable 对象，又是 Observer 对象，当有新消息时，Subject 会对内部的 observers 列表进行组播 (multicast)。Subject 之所以具有 Observable 中的所有方法，是因为 Subject 类继承了 Observable 类，在 Subject 类中有五个重要的方法：</p>
+
+<ul>
+  <li>next - 每当 Subject 对象接收到新值的时候，next 方法会被调用</li>
+  <li>error - 运行中出现异常，error 方法会被调用</li>
+  <li>complete - Subject 订阅的 Observable 对象结束后，complete 方法会被调用</li>
+  <li>subscribe - 添加观察者</li>
+  <li>unsubscribe - 取消订阅 (设置终止标识符、清空观察者列表)</li>
+</ul>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008886598">RxJS - Subject</a></p>
+
+<h3 id="rxjs-中-behaviorsubjectreplaysubjectasyncsubject-各有什么作用">RxJS 中 BehaviorSubject、ReplaySubject、AsyncSubject 各有什么作用？</h3>
+
+<h4 id="behaviorsubject-的作用">BehaviorSubject 的作用</h4>
+
+<p>有些时候我们会希望 Subject 能保存当前的最新状态，而不是单纯的进行事件发送，也就是说每当新增一个观察者的时候，我们希望 Subject 能够立即发出当前最新的值，而不是没有任何响应。</p>
+
+<h4 id="replaysubject-的作用">ReplaySubject 的作用</h4>
+
+<p>有些时候我们希望在 Subject 新增订阅者后，能向新增的订阅者重新发送最后几个值，这时我们就可以使用 ReplaySubject 。</p>
+
+<h4 id="asyncsubject-的作用">AsyncSubject 的作用</h4>
+
+<p>AsyncSubject 类似于 <code class="highlighter-rouge">last</code> 操作符，它会在 Subject 结束后发出最后一个值。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008886598">RxJS - Subject</a></p>
+
+<h2 id="common">Common</h2>
+
+<h3 id="angular-1x-与-angular-4x-区别大么">Angular 1.x 与 Angular 4.x 区别大么？</h3>
+
+<p>令人抓狂的是，这变化是 “惊天地泣鬼神”。</p>
+
+<h4 id="主要变化的内容">主要变化的内容</h4>
+
+<ul>
+  <li>数据绑定机制</li>
+  <li>去除 $scope</li>
+  <li>变化检测 - 使用 Zone.js，检测变化(主要是 Event、Timer、XHR 这些事件源，引起的变化)，不需要再使用 $scope.$watch()、$scope.$apply()、$timeout() 等方法。</li>
+  <li>重新设计的 DI 系统，解决 AngularJS 1.x DI 系统中存在的问题</li>
+  <li>组件通信方面，移除了 $broadcast() 、$emit() 等方法</li>
+  <li>重新设计了指令系统，让开发自定义指令变得更简单</li>
+  <li>引入了全新的组件和模块化方案，且 2.3 版本以后还支持组件继承</li>
+  <li>引入了 Render 渲染层，能够更好地实现跨平台</li>
+  <li>引入了视图封装机制，可以灵活地控制视图渲染方式</li>
+  <li>路由支持模块懒加载、预加载等功能</li>
+  <li>编译器支持 AOT 模式，大大减少了包的大小和提高了应用的性能</li>
+</ul>
+
+<h3 id="angular-2x-与-angular-4x-区别大么">Angular 2.x 与 Angular 4.x 区别大么？</h3>
+
+<p>令人欣慰的是，Angular 4.x  向后兼容 Angular 2.x 版本。</p>
+
+<h4 id="angular-4x-主要更新的内容">Angular 4.x 主要更新的内容</h4>
+
+<ul>
+  <li>体积更小，速度更快 - Angular应用程序变得更小更快，并且在未来几个月将进一步改进框架。</li>
+  <li>向后兼容 - 该版本向后兼容 2.x 系列</li>
+  <li>更好的模板引擎 - 改进了AoT，将生成的代码的大小减少约60％。如果模板越复杂，那么优化的代码也会越多。</li>
+  <li>动画模块改进 - 将动画部分从@angular/core拆分出来，单独打包。将核心模块精简后，在不使用动画时产品中将不包含冗余的动画代码。如果需要动画，可使用相关功能自行导入。</li>
+</ul>
+
+<h4 id="angular-4x-新的特性">Angular 4.x 新的特性</h4>
+
+<ul>
+  <li>优化了内置指令nglf和ngFor</li>
+  <li>服务端渲染（Angular Universal）</li>
+  <li>TypeScript 2.1 和 2.2 的兼容</li>
+  <li>模板的Source Maps</li>
+</ul>
+
+<p>建议新人可以直接学习 Angular 4.x 的内容。</p>
+
+<p>详细的内容可以参考 - <a href="https://mp.weixin.qq.com/s?__biz=MzIwNjQwMzUwMQ==&amp;mid=2247485103&amp;idx=1&amp;sn=21dc4fc255fc7ec7d0450c2b123987f6&amp;chksm=9723646da054ed7b893f70501be713864a25f268710990cd64d517013815297811e394587d59&amp;mpshare=1&amp;scene=1&amp;srcid=0326hPdNEf02VmhCiSSpms97&amp;key=dd10c42bc26371bdbd21897ee53ff29cd2517008e5e84dca11d5b40e9803df17f4bec849b580b0e56c6a1b7bdd9d70be0f0875f9d4c5a60687ebe9c75023bc7a272a78b5a769870c790252a9cdeb96ce&amp;ascene=0&amp;uin=NjY5Njk1MDU=&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=o6T399OazPWhRSHEuVQroeEuYrWnbx7co58INRbEi10=">Angular4.0.0正式发布，附新特性及升级指南</a></p>
+
+<h3 id="angularjs-1x-di-系统有什么问题">AngularJS 1.x DI 系统有什么问题？</h3>
+
+<ul>
+  <li>内部缓存： angular1 应用程序中所有的依赖项都是单例，我们不能控制是否使用新的实例</li>
+  <li>命名空间冲突： 在系统中我们使用字符串来标识 service 的名称，假设我们在项目中已有一个 CarService，然而第三方库中也引入了同样的服务，这样的话就容易出现混淆</li>
+  <li>DI 耦合度太高： angular1 中 DI 功能已经被框架集成了，我们不能单独使用它的 DI 特性</li>
+  <li>未能和模块加载器结合： 在浏览器环境中，很多场景都是异步的过程，我们需要的依赖模块并不是一开始就加载好的，或许我们在创建的时候才会去加载依赖模块，再进行依赖创建，而 angualr 的 IoC 容器没法做到这点。</li>
+</ul>
+
+<h3 id="constructor-与-ngoninit-的应用场景是什么">constructor 与 ngOnInit 的应用场景是什么？</h3>
+
+<p>在 Angular 中 constructor 一般用于依赖注入或执行简单的数据初始化操作，ngOnInit 钩子主要用于执行组件的其它初始化操作或获取组件输入的属性值。</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">export</span> <span class="kr">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">public</span> <span class="nx">elementRef</span><span class="err">:</span> <span class="nx">ElementRef</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 使用构造注入的方式注入依赖对象</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Semlinker'</span><span class="p">;</span> <span class="c1">// 执行初始化操作</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008685752">Angular 2 constructor &amp; ngOnInit</a></p>
+
+<h3 id="elementref-有什么作用">ElementRef 有什么作用？</h3>
+
+<p>在应用层直接操作 DOM，就会造成应用层与渲染层之间强耦合，导致我们的应用无法运行在不同环境，如 <code class="highlighter-rouge">web worker</code> 中，因为在 web worker 环境中，是不能直接操作 DOM。有兴趣的读者，可以阅读一下 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Functions_and_classes_available_to_workers">Web Workers 中支持的类和方法</a> 这篇文章。通过 ElementRef 我们就可以封装不同平台下视图层中的 native 元素 (在浏览器环境中，native 元素通常是指 DOM 元素)，最后借助于 Angular 2 提供的强大的依赖注入特性，我们就可以轻松地访问到 native 元素。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008653690">Angular 2 ElementRef</a></p>
+
+<h3 id="angular-开发-appservice-时injectable-是必须的么">Angular 开发 AppService 时，@Injectable() 是必须的么？</h3>
+
+<p>如果 AppService 不依赖于其他对象，是可以不用使用 Injectable 类装饰器。当 AppService 需要在构造函数中注入依赖对象，就需要使用 Injectable 类装饰器。比较推荐的做法不管是否有依赖对象，service 中都使用 Injectable 类装饰器。</p>
+
+<h3 id="angular-中使用-innerhtml-时内容被转义了要怎么办">Angular 中使用 [innerHtml] 时内容被转义了要怎么办？</h3>
+
+<p>Angular 中默认将所有输入值视为不受信任。当我们通过 property，attribute，样式，类绑定或插值等方式，将一个值从模板中插入到DOM中时，Angular 会自帮我们清除和转义不受信任的值。此时，我们 <code class="highlighter-rouge">DomSanitizer</code> 对象中，提供的 <code class="highlighter-rouge">sanitize()</code> 方法来解决上述问题。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008809095">Angular 2 DomSanitizer</a></p>
+
+<h2 id="provider">Provider</h2>
+
+<h3 id="angular-中-forwardref-有什么作用">Angular 中 forwardRef 有什么作用？</h3>
+
+<p>Angular 通过引入 forwardRef 让我们可以在使用构造注入时，使用尚未定义的依赖对象类型。下面我们先看一下如果没有使用 forwardRef ，在开发中可能会遇到的问题：</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="err">@</span><span class="nx">Injectable</span><span class="p">()</span>
+<span class="kr">class</span> <span class="nx">Socket</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">buffer</span><span class="err">:</span> <span class="nx">Buffer</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">);</span> <span class="c1">// undefined</span>
+
+<span class="err">@</span><span class="nx">Injectable</span><span class="p">()</span>
+<span class="kr">class</span> <span class="nx">Buffer</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="err">@</span><span class="nx">Inject</span><span class="p">(</span><span class="nx">BUFFER_SIZE</span><span class="p">)</span> <span class="k">private</span> <span class="nx">size</span><span class="err">:</span> <span class="nb">Number</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">);</span> <span class="c1">// [Function: Buffer]</span>
+</code></pre>
+</div>
+
+<p>若运行上面的例子，将会抛出以下异常:</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="nb">Error</span><span class="err">:</span> <span class="nx">Cannot</span> <span class="nx">resolve</span> <span class="nx">all</span> <span class="nx">parameters</span> <span class="k">for</span> <span class="nx">Socket</span><span class="p">(</span><span class="kc">undefined</span><span class="p">).</span>
+<span class="nx">Make</span> <span class="nx">sure</span> <span class="nx">they</span> <span class="nx">all</span> <span class="nx">have</span> <span class="nx">valid</span> <span class="kd">type</span> <span class="nx">or</span> <span class="nx">annotations</span>
+</code></pre>
+</div>
+
+<p>那么要解决上面的问题，最简单的处理方式是交换类定义的顺序。除此之外，我们还可以使用 Angular  提供的 forward reference 特性来解决问题，具体如下：</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">forwardRef</span> <span class="p">}</span> <span class="k">from</span><span class="s1">'@angular2/core'</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">Injectable</span><span class="p">()</span>
+<span class="kr">class</span> <span class="nx">Socket</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="err">@</span><span class="nx">Inject</span><span class="p">(</span><span class="nx">forwardRef</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">Buffer</span><span class="p">))</span> 
+    <span class="k">private</span> <span class="nx">buffer</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Buffer</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="err">@</span><span class="nx">Inject</span><span class="p">(</span><span class="nx">BUFFER_SIZE</span><span class="p">)</span> <span class="k">private</span> <span class="nx">size</span><span class="err">:</span> <span class="nb">Number</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008626276">Angular 2 Forward Reference</a></p>
+
+<h3 id="使用字符串作为-token-会有什么问题">使用字符串作为 Token 会有什么问题？</h3>
+
+<p>Token 的作用是用来标识依赖对象，Token值可能是 Type、InjectionToken、OpaqueToken 类的实例或字符串。通常不推荐使用字符串，因为如果使用字符串存在命名冲突的可能性比较高。在 Angular 4.x 以前的版本我们一般使用 OpaqueToken 来创建 Token，而在 Angular 4.x 以上的版本版本，推荐使用 InjectionToken 来创建 Token 。</p>
+
+<p>详细的内容可以参考 - <a href="https://github.com/semlinker/angular2-ionic2/issues/3">如何解决 Angular 2 中 Provider 命名冲突</a>。</p>
+
+<h3 id="angular-中-provider-的作用是什么">Angular 中 Provider 的作用是什么？</h3>
+
+<p>Provider 是用来描述与 Token 关联的依赖对象的创建方式。当我们使用 Token 向 DI 系统获取与之相关连的依赖对象时，DI 会根据已设置的创建方式，自动的创建依赖对象并返回给使用者。</p>
+
+<h4 id="provider-接口">Provider 接口</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">export</span> <span class="kr">interface</span> <span class="nx">ClassProvider</span> <span class="p">{</span>
+  <span class="c1">// 用于设置与依赖对象关联的Token值，Token值可能是Type、InjectionToken、OpaqueToken的实例或字符串</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span> 
+  <span class="nl">useClass</span><span class="p">:</span> <span class="nx">Type</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="c1">// 用于标识是否multiple providers，若是multiple类型，则返回与Token关联的依赖对象列表</span>
+  <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span> 
+<span class="p">}</span>
+  
+<span class="k">export</span> <span class="kr">interface</span> <span class="nx">ValueProvider</span> <span class="p">{</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
+  <span class="nl">useValue</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
+  <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+  
+<span class="k">export</span> <span class="kr">interface</span> <span class="nx">ExistingProvider</span> <span class="p">{</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
+  <span class="nl">useExisting</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
+  <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+  
+<span class="k">export</span> <span class="kr">interface</span> <span class="nx">FactoryProvider</span> <span class="p">{</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
+  <span class="nl">useFactory</span><span class="p">:</span> <span class="nb">Function</span><span class="p">;</span>
+  <span class="nx">deps</span><span class="p">?:</span> <span class="kr">any</span><span class="p">[];</span> <span class="c1">// 用于设置工厂函数的依赖对象</span>
+  <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="angular-中配置-provider-有哪几种方式">Angular 中配置 Provider 有哪几种方式？</h3>
+
+<p>Angular 中配置 Provider 有四种方式，它们分别为：</p>
+
+<ul>
+  <li>useClass</li>
+  <li>useValue</li>
+  <li>useExisting</li>
+  <li>useFactory</li>
+</ul>
+
+<h4 id="useclass">useClass</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="nx">ApiService</span><span class="p">,</span> <span class="nx">useClass</span><span class="err">:</span> <span class="nx">ApiService</span> <span class="p">}</span> <span class="c1">// 可使用简洁的语法，即直接使用ApiService</span>
+</code></pre>
+</div>
+
+<h4 id="usevalue">useValue</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="s1">'API_URL'</span><span class="p">,</span> <span class="nx">useValue</span><span class="err">:</span> <span class="s1">'http://my.api.com/v1'</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="useexisting">useExisting</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="s1">'ApiServiceAlias'</span><span class="p">,</span> <span class="nx">useExisting</span><span class="err">:</span> <span class="nx">ApiService</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="usefactory">useFactory</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">export</span> <span class="kd">function</span> <span class="nx">configFactory</span><span class="p">(</span><span class="nx">config</span><span class="err">:</span> <span class="nx">AppConfig</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">config</span><span class="p">.</span><span class="nx">load</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="nx">APP_INITIALIZER</span><span class="p">,</span> <span class="nx">useFactory</span><span class="err">:</span> <span class="nx">configFactory</span><span class="p">,</span> <span class="nx">deps</span><span class="err">:</span> <span class="p">[</span><span class="nx">AppConfig</span><span class="p">],</span> <span class="nx">multi</span><span class="err">:</span> <span class="kc">true</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="为什么-useclass-可以使用简洁的语法">为什么 useClass 可以使用简洁的语法？</h3>
+
+<p>当 DI 解析 Providers 时，都会对提供的每个 provider 进行规范化处理，即转换成标准的形式。具体如下：</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">_normalizeProviders</span><span class="p">(</span><span class="nx">providers</span><span class="err">:</span> <span class="nx">Provider</span><span class="p">[],</span> <span class="nx">res</span><span class="err">:</span> <span class="nx">Provider</span><span class="p">[])</span><span class="err">:</span> <span class="nx">Provider</span><span class="p">[]</span> <span class="p">{</span>
+  <span class="nx">providers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">b</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">b</span> <span class="k">instanceof</span> <span class="nx">Type</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 支持简洁的语法，转换为标准格式</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="na">provide</span><span class="p">:</span> <span class="nx">b</span><span class="p">,</span> <span class="na">useClass</span><span class="p">:</span> <span class="nx">b</span><span class="p">});</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+  <span class="p">});</span>
+  <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="angular-中-multi-provider-有什么作用">Angular 中 multi Provider 有什么作用？</h3>
+
+<p>首先我们先来分析一下，若没有设置 multi: true 属性时，使用同一个 token 注册 provider 时，会出现什么问题？</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Engine</span> <span class="p">{</span> <span class="p">}</span>
+<span class="kr">class</span> <span class="nx">TurboEngine</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">injector</span> <span class="o">=</span> <span class="nx">ReflectiveInjector</span><span class="p">.</span><span class="nx">resolveAndCreate</span><span class="p">([</span>
+  <span class="nx">provide</span><span class="p">(</span><span class="nx">Engine</span><span class="p">,</span> <span class="p">{</span><span class="na">useClass</span><span class="p">:</span> <span class="nx">Engine</span><span class="p">}),</span>
+  <span class="nx">provide</span><span class="p">(</span><span class="nx">Engine</span><span class="p">,</span> <span class="p">{</span><span class="na">useClass</span><span class="p">:</span> <span class="nx">TurboEngine</span><span class="p">})</span>
+<span class="p">]);</span>
+
+<span class="kd">var</span> <span class="nx">engine</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">Engine</span><span class="p">);</span> <span class="c1">// engine instanceof TurboEngine == true</span>
+</code></pre>
+</div>
+
+<p>这说明如果使用同一个 token 注册 provider，后面注册的 provider 将会覆盖前面已注册的 provider。此外，Angular 2 使用 multi provider 的这种机制，为我们提供可插拔的钩子(pluggable hooks) 。另外需要注意的是，multi provider是不能和普通的 provider 混用。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008626215">Angular 2 Multi Providers</a></p>
+
+<h2 id="component">Component</h2>
+
+<h3 id="angular-中-viewencapsulation-模式分为哪几种">Angular 中 ViewEncapsulation 模式分为哪几种？</h3>
+
+<p>ViewEncapsulation 允许设置三个可选的值：</p>
+
+<ul>
+  <li>ViewEncapsulation.Emulated - 无 Shadow DOM，但是通过 Angular 提供的样式包装机制来封装组件，使得组件的样式不受外部影响。这是 Angular 的默认设置。</li>
+  <li>ViewEncapsulation.Native - 使用原生的 Shadow DOM 特性</li>
+  <li>ViewEncapsulation.None - 无 Shadow DOM，并且也无样式包装</li>
+</ul>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008677532">Angular 2 ViewEncapsulation</a></p>
+
+<h3 id="angular-中宿主元素是什么">Angular 中宿主元素是什么？</h3>
+
+<p>宿主元素的概念同时适用于指令和组件。对于指令来说，这个概念是相当简单的。应用指令的元素，就是宿主元素。假设我们已声明了一个 HighlightDirective 指令 (selector: ‘[exeHighlight]’)：</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">exeHighlight</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;span&gt;</span>高亮的文本<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/p&gt;</span>
+</code></pre>
+</div>
+
+<p>上面 html 代码中，<code class="highlighter-rouge">p</code> 元素就是宿主元素。如果该指令应用于自定义组件中如：</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;exe-counter</span> <span class="na">exeHighlight</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span&gt;</span>高亮的文本<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/exe-counter&gt;</span>
+</code></pre>
+</div>
+
+<p>此时 <code class="highlighter-rouge">exe-counter</code> 自定义元素，就是宿主元素。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008878888">Angular 2 HostListener &amp; HostBinding</a></p>
+
+<h3 id="angular-中组件如何实现继承">Angular 中组件如何实现继承？</h3>
+
+<p>组件继承涉及以下的内容：</p>
+
+<ul>
+  <li>Metadata：如 <code class="highlighter-rouge">@Input()</code>、<code class="highlighter-rouge">@Output()</code>、<code class="highlighter-rouge">@ContentChild/Children</code>、<code class="highlighter-rouge">@ViewChild/Children</code> 等。在派生类中定义的元数据将覆盖继承链中的任何先前的元数据，否则将使用基类元数据。</li>
+  <li>Constructor：如果派生类未声明构造函数，它将使用基类的构造函数。这意味着在基类构造函数注入的所有服务，子组件都能访问到。</li>
+  <li>Lifecycle hooks：如果基类中包含生命周期钩子，如 ngOnInit、ngOnChanges 等。尽管在派生类没有定义相应的生命周期钩子，基类的生命周期钩子会被自动调用。</li>
+</ul>
+
+<p><strong>需要注意的是，模板是不能被继承的</strong> ，因此共享的 DOM 结构或行为需要单独处理。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008976996">Angular 2 Component Inheritance</a></p>
+
+<h3 id="angular-中如何传递异步数据">Angular 中如何传递异步数据？</h3>
+
+<p>在父子组件通信时，如果输入属性绑定的数据是异步的，那我们可以使用 *ngIf、ngOnChanges、Observable 等方案解决上述问题。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008986205">Angular 2 Pass Async Data</a></p>
+
+<h3 id="angular-组件通信有哪些方式">Angular 组件通信有哪些方式？</h3>
+
+<p>组件通信的常用方式：@Input、@Output、@ViewChild、模板变量、MessageService、Broadcaster (Angular 1.x $rootScope 中 $on、$broadcast ) 等。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008959575">Angular 2 Components Communicate</a></p>
+
+<h2 id="directive">Directive</h2>
+
+<h3 id="angular-指令分为哪几种">Angular 指令分为哪几种？</h3>
+
+<ul>
+  <li>组件(Component directive)：用于构建UI组件，继承于 Directive 类</li>
+  <li>属性指令(Attribute directive):  用于改变组件的外观或行为</li>
+  <li>结构指令(Structural directive):  用于动态添加或删除DOM元素来改变DOM布局</li>
+</ul>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008626070">Angular 2 Directive</a></p>
+
+<h3 id="angular-中指令与组件之间有什么联系">Angular 中指令与组件之间有什么联系？</h3>
+
+<p>组件继承于指令，并扩展了与 UI 视图相关的属性，如 template、styles、animations、encapsulation 等。</p>
+
+<p>详细的内容可以参考 -  <a href="https://segmentfault.com/a/1190000008716308">Angular 2 Directive Lifecycle</a></p>
+
+<p><img src="https://segmentfault.com/img/bVKJFs?w=300&amp;h=280" alt="" /></p>
+
+<h3 id="使用-hidden-属性控制元素可见性有什么问题">使用 <code class="highlighter-rouge">[hidden]</code> 属性控制元素可见性有什么问题？</h3>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="err">[</span><span class="na">hidden</span><span class="err">]="!</span><span class="na">showGreeting</span><span class="err">"</span><span class="nt">&gt;</span>
+  Hello, there!
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<p>当在对应的 DOM 元素上设置 <code class="highlighter-rouge">display: flex</code> 属性时，尽管<code class="highlighter-rouge">[hidden]</code> 对应的表达式为 <code class="highlighter-rouge">true</code>，但元素却能正常显示。对于这种特殊情况，则推荐使用 <code class="highlighter-rouge">*ngIf</code>。</p>
+
+<h3 id="自定义属性指令中的-elementref-与-renderer-有什么作用">自定义属性指令中的 <code class="highlighter-rouge">ElementRef</code> 与 <code class="highlighter-rouge">Renderer</code> 有什么作用？</h3>
+
+<p>为了能够支持跨平台，Angular 2 通过抽象层封装了不同平台的差异，统一了 API 接口。如定义了抽象类 Renderer 、抽象类 RootRenderer 等。此外还定义了以下引用类型：ElementRef、TemplateRef、ViewRef 、ComponentRef 和 ViewContainerRef 等。</p>
+
+<p>详细内容请参考 - <a href="https://segmentfault.com/a/1190000008653690">Angular 2 ElementRef</a></p>
+
+<h3 id="自定义结构指令中的-templateref-与-viewcontainerref-有什么作用">自定义结构指令中的 <code class="highlighter-rouge">TemplateRef</code> 与 <code class="highlighter-rouge">ViewContainerRef</code> 有什么作用？</h3>
+
+<h4 id="templateref">TemplateRef</h4>
+
+<p>用于表示内嵌的 template 模板元素，通过 TemplateRef 实例，我们可以方便创建内嵌视图(Embedded Views)，且可以轻松地访问到通过 ElementRef 封装后的 nativeElement。需要注意的是组件视图中的 template 模板元素，经过渲染后会被替换成 comment 元素。</p>
+
+<h4 id="viewcontainerref">ViewContainerRef</h4>
+
+<p>用于表示一个视图容器，可添加一个或多个视图。通ViewContainerRef 实例，我们可以基于 TemplateRef 实例创建内嵌视图，并能指定内嵌视图的插入位置，也可以方便对视图容器中已有的视图进行管理。简而言之，ViewContainerRef 的主要作用是创建和管理内嵌视图或组件视图。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008672478">Angular 2 TemplateRef &amp; ViewContainerRef</a></p>
+
+<h3 id="注册指令生命周期钩子时一定要实现对应的接口么">注册指令生命周期钩子时，一定要实现对应的接口么?</h3>
+
+<p>注册指令生命周期钩子时，实现对应的接口不是必须的，接口可以帮助我们在开发阶段尽早地发现错误，因为我们有可能在注册生命周期钩子的时候，写错了某个钩子的名称，在运行时可能不会抛出任何异常，但页面显示却不是预期的效果，因此建议读者还是遵守该开发规范。另外还要注意的一点是，TypeScript 中定义的接口，是不会编译生成 ES5 相关代码，它只用于编译阶段做校验。</p>
+
+<h3 id="为什么在构造函数中是获取不到输入属性的值">为什么在构造函数中是获取不到输入属性的值？</h3>
+
+<p>在子组件的构造函数中，是无法获取输入属性的值，只能在 ngOnChanges 或 ngOnInit 钩子中获取到。因为子组件的构造函数会优先执行，当子组件输入属性变化时会自动调用 ngOnChanges 钩子，然后在调用 ngOnInit 钩子，所以在 ngOnInit 钩子内能获取到输入的属性。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008685752">Angular 2 constructor &amp; ngOnInit</a></p>
+
+<h2 id="decorator">Decorator</h2>
+
+<h3 id="装饰器是什么">装饰器是什么？</h3>
+
+<ul>
+  <li>它是一个表达式</li>
+  <li>该表达式被执行后，返回一个函数</li>
+  <li>函数的入参分别为 targe、name 和 descriptor</li>
+  <li>执行该函数后，可能返回 descriptor 对象，用于配置 target 对象</li>
+</ul>
+
+<h3 id="装饰器有几种分类">装饰器有几种分类？</h3>
+
+<ul>
+  <li>类装饰器 (Class decorators)</li>
+  <li>属性装饰器 (Property decorators)</li>
+  <li>方法装饰器 (Method decorators)</li>
+  <li>参数装饰器 (Parameter decorators)</li>
+</ul>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008626417">Angular 2 Decorators - 1</a></p>
+
+<h3 id="component-中--的有什么作用">@Component 中 <code class="highlighter-rouge">@</code> 的有什么作用？</h3>
+
+<p>@Component 中 <code class="highlighter-rouge">@</code> 是语法糖，用于表示装饰器。</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
+<span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="s1">'exe-app'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="err">`</span>
+   <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">Angular</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span>  <span class="err">`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kr">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>编译后 ES 5 代码：</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">__decorate</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">__decorate</span><span class="p">)</span> <span class="o">||</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">decorators</span><span class="p">,</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">desc</span><span class="p">)</span> <span class="p">{};</span>
+<span class="nx">define</span><span class="p">([</span><span class="s2">"require"</span><span class="p">,</span> <span class="s2">"exports"</span><span class="p">,</span> <span class="s2">"@angular/core"</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">require</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">core_1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="s2">"use strict"</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">AppComponent</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">AppComponent</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">AppComponent</span><span class="p">;</span>
+  <span class="p">}());</span>
+  <span class="nx">AppComponent</span> <span class="o">=</span> <span class="nx">__decorate</span><span class="p">([</span>
+    <span class="nx">core_1</span><span class="p">.</span><span class="nx">Component</span><span class="p">({</span>
+      <span class="na">selector</span><span class="p">:</span> <span class="s1">'exe-app'</span><span class="p">,</span>
+      <span class="na">template</span><span class="p">:</span> <span class="s2">"\n   &lt;h1&gt;Hello Angular&lt;/h1&gt;\n  "</span><span class="p">,</span>
+    <span class="p">})</span>
+  <span class="p">],</span> <span class="nx">AppComponent</span><span class="p">);</span>
+  <span class="nx">exports</span><span class="p">.</span><span class="nx">AppComponent</span> <span class="o">=</span> <span class="nx">AppComponent</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>@Component 中 @ 符号的作用是为了告诉 TypeScript 编译器，@ 后面的是装饰器函数或装饰器工厂，需要特殊处理。假设在 @Component({…}) 中去掉 @ 符号，那么变成了普通的函数调用，这样马上就会报错，因为我们并没有定义 Component 函数。通过观察转换后的代码，我们发现 @Component({…}) 被转换成 core_1.Component ，它就是从 <code class="highlighter-rouge">@angular/core</code> 导入的装饰器函数。</p>
+
+<h3 id="为什么在构造函数中非-type-类型的参数只能用-injectsomething-的方式注入-">为什么在构造函数中，非 Type 类型的参数只能用 @Inject(Something) 的方式注入 ？</h3>
+
+<p>因为只有是 Type 类型的对象，才会被 TypeScript 编译器编译。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008634359">Angular 2 Inject</a></p>
+
+<h3 id="input-装饰器的作用是什么">@Input 装饰器的作用是什么？</h3>
+
+<p>@Input 是属性装饰器，用来定义组件内的输入属性。在实际应用场合，我们主要用来实现父组件向子组件传递数据。Angular 应用是由各式各样的组件组成，当应用启动时，Angular 会从根组件开始启动，并解析整棵组件树，数据由上而下流下下一级子组件。</p>
+
+<p><img src="https://segmentfault.com/img/bVK0py?w=330&amp;h=240" alt="@input" /></p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008780672">Angular 2 Input</a></p>
+
+<h3 id="output-装饰器的作用是什么">@Output 装饰器的作用是什么?</h3>
+
+<p>Output 是属性装饰器，用来定义组件内的输出属性。在 <a href="https://segmentfault.com/a/1190000008780672">Angular 2 Input</a> 文章中，我们介绍了 Input 装饰器的作用，也了解了当应用启动时，Angular 会从根组件开始启动，并解析整棵组件树，数据由上而下流下下一级子组件。而我们今天介绍的 Output 装饰器，是用来实现子组件将信息通过事件的形式通知到父级组件。具体如下图所示：</p>
+
+<p><img src="https://segmentfault.com/img/bVK3VM?w=417&amp;h=250" alt="" /></p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008794323">Angular 2 Output</a></p>
+
+<h3 id="input-与-inputs-有什么区别">@Input 与 inputs 有什么区别？</h3>
+
+<p>相同点：</p>
+
+<ul>
+  <li>它们都是用来定义输入属性</li>
+</ul>
+
+<p>不同点：</p>
+
+<ul>
+  <li>inputs 定义在指令的 metadata 信息中，开发者对指令的输入属性一目了然。此外对于未选用 TypeScript 作为开发语言的开发者，也只能在 metadata 中定义指令的输入属性。</li>
+  <li>@Input 属于属性装饰器，通过它我们可以一起定义属性的访问描述符 (public、private、protected)：</li>
+</ul>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="err">@</span><span class="nx">Input</span><span class="p">()</span> <span class="k">public</span> <span class="nx">attr</span><span class="err">:</span> <span class="kr">string</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h3 id="使用input-与-output-有什么注意事项">使用@Input 与 @Output 有什么注意事项？</h3>
+
+<p>坚持使用 @Input 和 @Output ，而非 @Directive 和 @Component 装饰器的 inputs 和 outputs 属性：</p>
+
+<ul>
+  <li>易于在类里面识别哪些属性是输入属性或输出属性。</li>
+</ul>
+
+<p>坚持把 @Input 或者 @Output 放到所装饰的属性的同一行：</p>
+
+<ul>
+  <li>如果需要重命名与<code class="highlighter-rouge">@Input</code>或者<code class="highlighter-rouge">@Output</code>关联的属性或事件名，你可以在一个位置修改。</li>
+</ul>
+
+<p>避免为输入和输出属性指定别名</p>
+
+<ul>
+  <li>同一个属性有两个名字（一个对内一个对外）很容易导致混淆。</li>
+</ul>
+
+<p>详细的内容可以参考 - <a href="https://angular.cn/docs/ts/latest/guide/style-guide.html">Angular 2 风格指南 - STYLE 05-12</a></p>
+
+<h3 id="viewchild-与-viewchildren-装饰器的作用是什么">@ViewChild 与 @ViewChildren 装饰器的作用是什么？</h3>
+
+<ul>
+  <li>
+    <p>@ViewChild 属性装饰器，用来从模板视图中获取匹配的元素。它支持 Type 类型或 string 类型的选择器，同时支持设置 read 查询条件，以获取不同类型的实例。</p>
+  </li>
+  <li>
+    <p>@ViewChildren 属性装饰器是用来从模板视图中获取匹配的多个元素，返回的结果是一个 QueryList 集合。</p>
+  </li>
+</ul>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008695459">Angular 2 ViewChild &amp; ViewChildren</a></p>
+
+<h3 id="contentchild-与-contentchildren-装饰器的作用是什么">@ContentChild 与 @ContentChildren 装饰器的作用是什么？</h3>
+
+<ul>
+  <li>@ContentChild 属性装饰器，用来从通过 Content Projection 方式 (ng-content) 设置的视图中获取匹配的元素。</li>
+  <li>@ContentChild 属性装饰器，从通过 Content Projection 方式设置的视图中获取匹配的多个元素，返回的结果是一个 QueryList 集合。</li>
+</ul>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008707828">Angular 2 ContentChild &amp; ContentChildren</a></p>
+
+<h3 id="viewchild-与-contentchild-有什么区别">@ViewChild 与 @ContentChild 有什么区别？</h3>
+
+<p>相同点</p>
+
+<ul>
+  <li>都是属性装饰器</li>
+  <li>都有对应的复数形式装饰器：ContentChildren、ViewChildren</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>都支持 <code class="highlighter-rouge">Type&lt;any&gt;</code></td>
+          <td>Function</td>
+          <td>string 类型的选择器</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p>不同点</p>
+
+<ul>
+  <li>ContentChild 用来从通过 Content Projection 方式 (ng-content) 设置的视图中获取匹配的元素</li>
+  <li>ViewChild 用来从模板视图中获取匹配的元素</li>
+  <li>在父组件的 ngAfterContentInit 生命周期钩子中才能成功获取通过 ContentChild 查询的元素</li>
+  <li>在父组件的 ngAfterViewInit 生命周期钩子中才能成功获取通过 ViewChild 查询的元素</li>
+</ul>
+
+<h3 id="hostlistener-与-hostbinding-有什么用">@HostListener 与 @HostBinding 有什么用？</h3>
+
+<p>@HostListener 是属性装饰器，用来为宿主元素添加事件监听。而 @HostBinding 也是属性装饰器，用来动态设置宿主元素的属性值。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008878888">Angular 2 HostListener &amp; HostBinding</a></p>
+
+<h3 id="为什么在-root-component-中无法使用-ng-content">为什么在 Root Component 中无法使用 <code class="highlighter-rouge">ng-content</code>？</h3>
+
+<p>原因主要有以下几点：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">&lt;my-app&gt;&lt;/my-app&gt;</code> 标签之间的信息是用来表明 Angular 的应用程序正在启动中</li>
+  <li>Angular 2 编译器不会处理 <code class="highlighter-rouge">index.html</code> 文件中设置的绑定信息，另外出于安全因素考虑，为了避免 <code class="highlighter-rouge">index.html</code> 中的插值，被服务端使用的模板引擎处理。</li>
+</ul>
+
+<h2 id="ngmodule">NgModule</h2>
+
+<h3 id="我应该把哪些类添加到declarations中">我应该把哪些类添加到declarations中？</h3>
+
+<p>可以把可声明的类添加到模块 <code class="highlighter-rouge">declarations</code> 列表中。可声明的类是指：组件、指令和管道。</p>
+
+<p>这些类只能在应用程序的一个并且只有一个模块中声明。只有当它们从属某个模块时，才能在此模块中声明它们。</p>
+
+<h3 id="我不应该把哪些类添加到declarations中">我不应该把哪些类添加到declarations中？</h3>
+
+<p>只有可声明的类才能添加到模块的 <code class="highlighter-rouge">declarations</code> 列表中。以下类不能添加到 <code class="highlighter-rouge">declarations</code> 列表中：</p>
+
+<ul>
+  <li>已经在其它模块中声明过的类。无论它来自应用内模块还是第三方模块</li>
+  <li>从其它模块中导入的指令</li>
+  <li>模块类</li>
+  <li>服务类</li>
+  <li>非 Angular 的类和对象，比如：字符串、数字、函数、实体模型、配置、业务逻辑和辅助类</li>
+</ul>
+
+<h3 id="为什么要把同一个组件声明在不同的ngmodule属性中">为什么要把同一个组件声明在不同的NgModule属性中？</h3>
+
+<p>我们经常看到 <code class="highlighter-rouge">AppComponent</code> 同时出现在 <code class="highlighter-rouge">declarations</code> 和 <code class="highlighter-rouge">bootstrap</code> 中。我们还可以看到 <code class="highlighter-rouge">HeroComponent</code> 也同时出现在 <code class="highlighter-rouge">declarations</code>、<code class="highlighter-rouge">exports</code> 和 <code class="highlighter-rouge">entryComponent</code> 中。</p>
+
+<p>这看起来是多余的，但因为不同的列表有不同的意义，如果仅在一个列表中声明，我们无法推断它是否出现在其它列表中。</p>
+
+<h3 id="我应该导入什么">我应该导入什么？</h3>
+
+<p>一句话：导入你需要在当前模块的组件模板中使用的那些公开的 (被导出的) 可声明类。</p>
+
+<p>这意味着要从 <code class="highlighter-rouge">@angular/common</code> 中导入 <code class="highlighter-rouge">CommonModule</code> 才能访问 Angular 的内置指令，如 <code class="highlighter-rouge">*ngIf</code> 和 <code class="highlighter-rouge">*ngFor</code>。如果你的组件中需要使用 <code class="highlighter-rouge">[(ngModel)]</code> 双向绑定的功能，就需要从 <code class="highlighter-rouge">@angular/forms</code> 中导入 <code class="highlighter-rouge">FormsModule</code>。</p>
+
+<p>需要注意的是，只能在根模块 (AppModule) 中导入 <code class="highlighter-rouge">BrowserModule</code>。</p>
+
+<h3 id="我应该导入-browsermodule-还是-commonmodule">我应该导入 BrowserModule 还是 CommonModule？</h3>
+
+<p>几乎所有要在浏览器中使用的应用的根模块 (AppModule ) 都应该从<code class="highlighter-rouge">@angular/platform-browser</code> 模块中导入<code class="highlighter-rouge">BrowserModule</code>。</p>
+
+<p>BrowserModule 提供了浏览器平台下运行的基础指令和服务，该模块内部重新导出了 CommonModule，这意味着 AppModule 中组件也可以访问 Angular 的内置指令。</p>
+
+<p>在其它任何模块中都不要导入 <code class="highlighter-rouge">BrowserModule</code> 。在特性模块和惰性加载模块中应该导入 <code class="highlighter-rouge">CommonModule</code>。因为它们只需要 Angular 中提供的内置指令，而不需要重新初始化应用级的服务。</p>
+
+<p>特性模块中导入 <code class="highlighter-rouge">CommonModule</code> 可以让它能用在任何目标平台上，不仅是浏览器平台。</p>
+
+<h3 id="如果我两次导入同一个模块会怎么样">如果我两次导入同一个模块会怎么样？</h3>
+
+<p>不会有问题。当三个模块全都导入模块 ‘A’ 时，Angular 只会首次遇到时加载一次模块 ‘A’，之后就不会这么做了。</p>
+
+<p>无论<code class="highlighter-rouge">A</code>出现在所导入模块的哪个层级，都会如此。 如果模块 ‘B’ 导入模块 ‘A’、模块 ‘C’ 导入模块 ‘B’，模块 ‘D’ 导入<code class="highlighter-rouge">[C, B, A]</code>，那么 ‘D’ 会触发模块 ‘C’ 的加载，’C’ 会触发 ‘B’ 的加载，而 ‘B’ 会加载 ‘A’。 当Angular在 ‘D’ 中想要获取 ‘B’ 和 ‘A’ 时，这两个模块已经被缓存过了，可以立即使用。</p>
+
+<p>Angular 不允许模块之间出现循环依赖，所以不要让模块 ‘A’ 导入模块 ‘B’，而模块 ‘B’ 又导入模块 ‘A’。</p>
+
+<h3 id="我应该导出什么">我应该导出什么？</h3>
+
+<p>导出其它模块需要引用的可声明类，如果你不导出某个类，它就是私有的，只对当前模块中声明的其它组件可见。</p>
+
+<p>你可以导出任何可声明类 (组件、指令和管道)，而不用管它是声明在当前模块中还是某个导入的模块中。</p>
+
+<p>你也可以重新导出整个已导入的模块，这将导致重新导出模块中导出的所有类。模块甚至还可以导出它未曾导入过的模块。</p>
+
+<h3 id="我不应该导出什么">我不应该导出什么？</h3>
+
+<p>不要导出的：</p>
+
+<ul>
+  <li>那些你只想在当前模块中使用的私有组件、指令和管道。如果你不希望在任何模块看到它，就不要导出。</li>
+  <li>不可声明的对象，比如服务、函数、配置、实体模型等</li>
+  <li>纯服务的模块没有公开导出的声明。例如，没有必要重新导出 <code class="highlighter-rouge">HttpModule</code> ，因为它不导出任何东西。它唯一的用途就是把 Http 相关的服务注册到应用中</li>
+</ul>
+
+<h3 id="我可以重新导出类和模块么">我可以重新导出类和模块么？</h3>
+
+<p>模块是从其它模块中选取类并把它们重新导出成统一、便利的新模块的最佳方式。</p>
+
+<p>模块可以重新导出其它模块，这会导致重新导出它们导出的所有类。Angular 的 BrowserModule 就重新导出了一组模块，例如：</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="nx">exports</span><span class="err">:</span> <span class="p">[</span><span class="nx">CommonModule</span><span class="p">,</span> <span class="nx">ApplicationModule</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>不要费心去导出纯服务类。纯服务类的模块不会导出任何可供其它模块使用的可声明类。例如，不用重新导出 <code class="highlighter-rouge">HttpModule</code>，因为它没有导出任何东西。它唯一的用途就是把 Http 相关的服务注册到应用中。</p>
+</blockquote>
+
+<h3 id="forroot-方法是什么">forRoot() 方法是什么？</h3>
+
+<p>静态方法 <code class="highlighter-rouge">forRoot()</code> 是一个约定，它可以让开发人员更轻松的配置模块的服务提供商。</p>
+
+<p><code class="highlighter-rouge">RouterModule.forRoot()</code> 就是一个很好的例子。我们把一个 <code class="highlighter-rouge">Routes</code> 对象作为参数传给 <code class="highlighter-rouge">RouterModule.forRoot()</code> 方法，就是为了配置应用级的路由。<code class="highlighter-rouge">RouterModule.forRoot()</code> 方法返回一个 <code class="highlighter-rouge">ModuleWithProviders</code> 对象，我们把返回的对象添加到根模块的 <code class="highlighter-rouge">imports</code> 列表中。</p>
+
+<blockquote>
+  <p>只能在应用的根模块中调用并导入 <code class="highlighter-rouge">forRoot()</code> 方法返回的对象。在其它模块中导入它，特别是惰性加载模块中，是违反设计目标并会导致一个运行时异常。</p>
+</blockquote>
+
+<p><code class="highlighter-rouge">RootModule</code> 也提供了一个静态方法 <code class="highlighter-rouge">forChild</code>，用于配置惰性加载模块的路由。</p>
+
+<p><strong>forRoot</strong>和<strong>forChild</strong>都是方法的约定名称，它们分别用于在根模块和特性模块中配置服务。</p>
+
+<h3 id="为什么服务提供商在特性模块中的任何地方都是可见的">为什么服务提供商在特性模块中的任何地方都是可见的？</h3>
+
+<p>列在引导模块的 <code class="highlighter-rouge">@NgModule.providers</code> 中的服务提供商具有全应用级作用域。往 <code class="highlighter-rouge">@NgModule.providers</code> 中添加服务提供商将导致该服务被发布到整个应用中。</p>
+
+<p>当我们导入一个模块时，Angular 就会把该模块的服务提供商 (也就是 providers 列表中的内容) 加入该应用的根注入器中，这会让该服务提供商对应用中的所有模块都是可见的。</p>
+
+<p>Angular 就是如此设计的。 通过模块导入来实现可扩展性是 Angular 模块系统的主要设计目标。 把模块的提供商并入应用程序的注入器可以让库模块使用新的服务来强化应用程序变得更容易。 只要添加一次 <code class="highlighter-rouge">HttpModule</code>，那么应用中的每个组件就都可以发起 Http请求了。</p>
+
+<p>不过，如果你期望模块的服务只对那个特性模块内部声明的组件可见，那么这可能会带来一些问题。 如果 <code class="highlighter-rouge">HeroModule</code> 提供了一个 <code class="highlighter-rouge">HeroService</code>，并且根模块 <code class="highlighter-rouge">AppModule</code> 导入了<code class="highlighter-rouge">HeroModule</code>，那么任何知道 <code class="highlighter-rouge">HeroService</code> <em>类型</em>的类都可能注入该服务，而不仅是在 <code class="highlighter-rouge">HeroModule </code>中声明的那些类。</p>
+
+<h3 id="为什么在惰性加载模块中声明的服务提供商只对该模块自身可见">为什么在惰性加载模块中声明的服务提供商只对该模块自身可见？</h3>
+
+<p>和启动时就加载的模块中的提供商不同，惰性加载模块中的提供商是局限于模块自身。</p>
+
+<p>当 Angular 路由器惰性加载一个模块时，它创建了一个新的运行环境。这个环境拥有自己的注入器，它是应用注入器的直属子级。</p>
+
+<p>路由器把惰性加载模块的提供商和它导入模块的提供商添加到这个子注入器中。</p>
+
+<p>这些提供商不会被拥有相同令牌的应用级别提供商的变化所影响。当路由器在惰性加载环境中创建组件时，Angular 会优先使用惰性加载模块中的服务实例，而不是来自应用的根注入器。</p>
+
+<h3 id="如果两个模块提供了同一个服务会怎么样">如果两个模块提供了同一个服务会怎么样？</h3>
+
+<p>当同时加载了两个导入的模块，它们都列出了使用同一个令牌的提供商时，后导入的模块会 “获胜”，这是因为这两个提供商都被添加到了同一个注入器中。</p>
+
+<p>当 Angular 尝试根据令牌注入服务时，它使用第二个提供商来创建并交付服务实例。</p>
+
+<p>每个注入了该服务的类获得的都是由第二个提供商创建的实例。 即使是声明在第一个模块中的类，它取得的实例也是来自第二个提供商的。</p>
+
+<h3 id="我们应该如何把服务的范围限制到模块中">我们应该如何把服务的范围限制到模块中？</h3>
+
+<p>如果一个模块在应用程序启动时就加载，它的<code class="highlighter-rouge">@NgModule.providers</code>具有<strong>全应用级作用域</strong>。 它们也可用于整个应用的注入中。</p>
+
+<p>导入的提供商很容易被由其它导入模块中的提供商替换掉。 虽然设计如此，但是也可能引起意料之外的结果。</p>
+
+<blockquote>
+  <p>作为一个通用的规则，应该<em>只导入一次</em>带提供商的模块，最好在应用的<em>根模块</em>中。 那里也是配置、包装和改写这些服务的最佳位置。</p>
+</blockquote>
+
+<p>假设模块需要一个定制过的 <code class="highlighter-rouge">HttpBackend</code>，它为所有的 Http 请求添加一个特别的请求头。 如果应用中其它地方的另一个模块也定制了<code class="highlighter-rouge">HttpBackend</code> 或仅仅导入了<code class="highlighter-rouge">HttpModule</code>，它就会改写当前模块的<code class="highlighter-rouge">HttpBackend</code>提供商，丢掉了这个特别的请求头。 这样服务器就会拒绝来自该模块的请求。</p>
+
+<p>要消除这个问题，就只能在应用的根模块 <code class="highlighter-rouge">AppModule</code> 中导入 <code class="highlighter-rouge">HttpModule</code>。</p>
+
+<p>只要有可能，就让模块惰性加载。Angular 为惰性加载模块提供了独立的子注入器。该模块中的提供商只对由该注入器创建的组件树可见。</p>
+
+<p>继续看了例子，假设某个模块的组件真的需要一个私有的、自定义的 <code class="highlighter-rouge">HttpBackend</code>。</p>
+
+<p>那就创建一个 “顶级组件” 来扮演该模块中所有组件的根。把这个自定义的 <code class="highlighter-rouge">HttpBackend</code> 提供商添加到这个顶级组件的 <code class="highlighter-rouge">providers</code> 列表中，而不是该模块的 <code class="highlighter-rouge">providers</code> 中。回忆一下，Angular 会为每个组件实例创建一个子注入器，并使用组件自己的 <code class="highlighter-rouge">providers</code> 来配置这个注入器。</p>
+
+<p>当该组件的子组件需要一个 <code class="highlighter-rouge">HttpBackend</code> 服务时，Angular 会提供一个局部的 <code class="highlighter-rouge">HttpBackend</code> 服务，而不是应用根注入器创建的那个服务。此时，子组件将正确发起 http 请求，而不管其它模块对 <code class="highlighter-rouge">HttpBackend</code> 做了什么？同时需要确保模块中的组件都创建成这个顶级组件的子组件。</p>
+
+<h3 id="我应该把全应用级提供商添加到根模块appmodule还是根组件appcomponent中">我应该把全应用级提供商添加到根模块(AppModule)还是根组件(AppComponent)中？</h3>
+
+<p>在根模块 (AppModule) 中注册全应用级提供商，而不是 <code class="highlighter-rouge">AppComponent</code> 中。</p>
+
+<p>惰性加载的模块及其组件可以注入 <code class="highlighter-rouge">AppModule</code> 中的服务，却不能注入 <code class="highlighter-rouge">AppComponent</code> 中注册的服务。</p>
+
+<p>只有当该服务必须对 <code class="highlighter-rouge">AppComponent</code> 组件树之外的组件不可见时，才应该把服务注册进 <code class="highlighter-rouge">AppComponent</code> 的 <code class="highlighter-rouge">providers</code> 中。但这是一个不常见的用法，正常情况下，我们是优先把服务提供商注册进模块中，而不是组件中。</p>
+
+<p>Angular 把所有启动期模块的提供商都注册进了应用的根注入器中。这些服务是由根注入器中的提供商创建的，并且在整个应用中都可用。它们具有应用级作用域。</p>
+
+<p>某些服务 (比如 Router) 只有当注册进应用的根注入器时才能正常工作。</p>
+
+<p>相反，Angular 使用 <code class="highlighter-rouge">AppComponent</code> 自己的注入器注册了 <code class="highlighter-rouge">AppComponent</code> 的提供商。<code class="highlighter-rouge">AppComponent </code>服务只在该组件及其子组件树中才能使用。 它们具有组件级作用域。</p>
+
+<p><code class="highlighter-rouge">AppComponent  </code>的注入器是根注入器的子级，注入器层次中的下一级。 这对于没有路由器的应用来说几乎是整个应用了。 但这个 “几乎” 对于带路有的应用仍然是不够的。</p>
+
+<h3 id="我应该把其它提供商注册到模块中还是组件中">我应该把其它提供商注册到模块中还是组件中？</h3>
+
+<p>通常，优先把模块中具体特性的提供商注册到模块中 (<code class="highlighter-rouge">@NgModule.providers</code>)，而不是组件中 (<code class="highlighter-rouge">@Component.providers</code>)。</p>
+
+<p>当你必须把服务实例的范围限制到某个组件及其子组件树时，就把提供商注册到该组件中。 指令的提供商也同样照此处理。</p>
+
+<p>需要注意的是，总在根模块中注册全应用级服务，而不要在根组件中。</p>
+
+<h3 id="为什么-sharedmodule-为惰性加载模块提供服务是个馊主意">为什么 SharedModule 为惰性加载模块提供服务是个馊主意？</h3>
+
+<p>假设把 <code class="highlighter-rouge">UserService</code> 列在了模块的 <code class="highlighter-rouge">providers</code> 中。 假设每个模块都导入了这个<code class="highlighter-rouge">SharedModule</code> 模块。导入 <code class="highlighter-rouge">SharedModule</code> 的每个模块都会设置 <code class="highlighter-rouge">UserService</code> 提供商。Angular 把它们中的一个注册到根注入器中。当应用中的某些组件要求注入 <code class="highlighter-rouge">UserService</code> ，Angular 就会在应用的根注入器中查找它，并交付一个全应用级的 <code class="highlighter-rouge">UserService</code> 单例对象。</p>
+
+<p>现在，该考虑惰性加载模块了。当路由器惰性加载模块时，它会创建一个子注入器，并且把 <code class="highlighter-rouge">UserService</code> 的提供商注册到那个子注入器中。子注入器和根注入器是不同的。</p>
+
+<p>当 Angular 创建一个惰性加载的组件时，它必须注入 <code class="highlighter-rouge">UserService</code> 服务。这时，它会从惰性加载模块的子注入器查找 <code class="highlighter-rouge">UserService</code> 的提供商，并用它创建一个 <code class="highlighter-rouge">UserService</code> 的新实例。这个 <code class="highlighter-rouge">UserService</code> 实例与 Angular 在主动加载的组件中注入的那个全应用级单例对象截然不同。</p>
+
+<h3 id="为什么惰性加载模块会创建一个子注入器">为什么惰性加载模块会创建一个子注入器？</h3>
+
+<p>Angular会把 <code class="highlighter-rouge">@NgModule.providers</code> 中的提供商添加到应用的根注入器中。除非该模块是惰性加载的，这种情况下，它会创建 一 子注入器，并且把该模块的提供商添加到这个子注入器中。</p>
+
+<p>为什么 Angular 不能像主动加载模块那样把惰性加载模块的提供商也添加到应用程序的根注入器中呢？为什么会出现这种不一致？</p>
+
+<p>归根结底，这来自于 Angular 依赖注入系统的一个基本特征： 在注入器还没有被第一次使用之前，可以不断为其添加提供商。 一旦注入器已经创建和开始交付服务，它的提供商列表就被冻结了，不再接受新的提供商。</p>
+
+<p>当应用启动时，Angular 会首先使用所有主动加载模块中的提供商来配置根注入器，这发生在它创建第一个组件以及注入任何服务之前。 一旦应用开始工作，应用的根注入器就不再接受新的提供商了。</p>
+
+<p>之后，应用逻辑开始惰性加载某个模块。 Angular 必须把这个惰性加载模块中的提供商添加到某个注入器中。 但是它无法将它们添加到应用的根注入器中，因为根注入器已经不再接受新的提供商了。 于是，Angular 在惰性加载模块的上下文中创建了一个新的子注入器。</p>
+
+<h3 id="我要如何知道一个模块或服务是否已经加载过了">我要如何知道一个模块或服务是否已经加载过了？</h3>
+
+<p>某些模块及其服务只能被根模块 <code class="highlighter-rouge">AppModule</code> 加载一次。 在惰性加载模块中再次导入这个模块会<a href="https://angular.cn/docs/ts/latest/cookbook/ngmodule-faq.html#q-why-bad">导致错误的行为</a>，这个错误可能非常难于检测和诊断。</p>
+
+<p>为了防范这种风险，我们可以写一个构造函数，它会尝试从应用的根注入器中注入该模块或服务。如果这种注入成功了，那就说明这个类是被第二次加载的，我们就可以抛出一个错误，或者采取其它挽救措施。</p>
+
+<p>某些 Angular 模块 (例如 <code class="highlighter-rouge">BrowserModule</code>) 就实现了构造函数守卫功能。</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kd">constructor</span> <span class="p">(</span><span class="err">@</span><span class="nx">Optional</span><span class="p">()</span> <span class="err">@</span><span class="nx">SkipSelf</span><span class="p">()</span> <span class="nx">parentModule</span><span class="err">:</span> <span class="nx">CoreModule</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">parentModule</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span>
+      <span class="s1">'CoreModule is already loaded. Import it in the AppModule only'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="什么是入口组件">什么是入口组件？</h3>
+
+<p>Angular 中通过组件选择器加载的组件不是入口组件。大多数应用组件都是声明式加载的，Angular 使用该组件的选择器在模板中定位元素，然后创建表现该组件的 HTML，并把它插入 DOM 中所选元素的内部。它们不是入口组件。</p>
+
+<p>用于引导的根 <code class="highlighter-rouge">AppComponent</code> 就是一个入口组件。虽然它的选择器匹配了 <code class="highlighter-rouge">index.html</code> 中的一个元素，但是 <code class="highlighter-rouge">index.html</code> 并不是组件模板，而且 <code class="highlighter-rouge">AppComponent</code> 选择器也不会在任何组件模板中出现。</p>
+
+<p>Angular 总是会动态加载 <code class="highlighter-rouge">AppComponent</code> —— 无论把它的类型列在了 <code class="highlighter-rouge">@NgModule.bootstrap</code>函数中，还是命令式的调用该模块的<code class="highlighter-rouge">ngDoBootstrap</code>方法来引导它。</p>
+
+<p>在路由定义中用到的组件也同样是入口组件。 路由定义根据类型来引用组件。 路由器会忽略路由组件的选择器 (即使它有选择器)，并且把该组件动态加载到 <code class="highlighter-rouge">RouterOutlet</code> 元素中。</p>
+
+<p>编译器无法通过在其它组件的模板中查找来发现这些入口组件。 我们必须通过把它们加入 <code class="highlighter-rouge">entryComponents</code> 列表中来让编译器知道它们的存在。</p>
+
+<p>Angular 会自动把下列类型的组件添加到模块的 <code class="highlighter-rouge">entryComponents</code> 中：</p>
+
+<ul>
+  <li>那些出现在 <code class="highlighter-rouge">@NgModule.bootstrap</code> 列表中的组件。</li>
+  <li>那些被路由定义引用的组件。</li>
+</ul>
+
+<h3 id="引导组件和入口组件有什么不同">引导组件和入口组件有什么不同？</h3>
+
+<p>引导组件是入口组件的一种。它是被 Angular 的引导 (应用启动) 过程加载到 DOM 中的入口组件。 其它入口组件则是被其它方式动态加载的，比如被路由器加载。</p>
+
+<p><code class="highlighter-rouge">@NgModule.bootstrap </code> 属性告诉编译器这是一个入口组件，同时它应该生成一些代码来用该组件引导此应用。</p>
+
+<p>不需要把组件同时列在 <code class="highlighter-rouge">bootstrap</code> 和 <code class="highlighter-rouge">entryComponent </code> 列表中 —— 虽然这样做也没坏处。</p>
+
+<h3 id="什么时候我应该把组件添加到-entrycomponents-中">什么时候我应该把组件添加到 entryComponents 中？</h3>
+
+<p>大多数应用开发者都不需要把组件添加到 <code class="highlighter-rouge">entryComponents</code> 中。</p>
+
+<p>Angular会自动把恰当的组件添加到<em>入口组件</em>中。 列在 <code class="highlighter-rouge">@NgModule.bootstrap</code> 中的组件会自动加入。 由路由配置引用到的组件会被自动加入。 用这两种机制添加的组件在入口组件中占了绝大多数。</p>
+
+<p>如果你的应用要用其它手段来根据类型引导或动态加载组件，那就得把它显式添加到 <code class="highlighter-rouge">entryComponents</code> 中。</p>
+
+<h3 id="为什么-angular-需要入口组件">为什么 Angular 需要入口组件？</h3>
+
+<p>入口组件也是被声明的。为什么 Angular 编译器不为 <code class="highlighter-rouge">@NgModule.declarations</code> 中的每个组件都生成一份代码呢？那样就不需要入口组件了。</p>
+
+<p>原因在于 <code class="highlighter-rouge">tree shaking</code> 。对于产品化的应用，我们希望加载尽可能小的代码。 代码中应该仅仅包括那些实际用到的类。 它应该排除那些我们从未用过的组件，无论该组件是否被声明过。</p>
+
+<p>事实上，大多数库中声明和导出的组件我们都用不到。如果我们从未引用它们，那么<code class="highlighter-rouge">tree shaking</code> 就会从最终的代码包中把这些组件砍掉。</p>
+
+<p>如果 Angular 编译器为每个声明的组件都生成了代码，那么 <code class="highlighter-rouge">tree shaking</code> 的优化作用就没了。所以，编译器转而采用一种递归策略，它只为我们用到的那些组件生成代码。</p>
+
+<h3 id="sharedmodule-有什么用">SharedModule 有什么用？</h3>
+
+<p>在实际项目中，我们通常会有一些通用的组件、指令或管道。为了便于统一的维护，我们会定义一个 <code class="highlighter-rouge">SharedModule</code> 模块，这种模块应该只包含 <code class="highlighter-rouge">declarations</code> 声明，并且应该导出几乎所有的 <code class="highlighter-rouge">declarations</code> 声明类。</p>
+
+<p>SharedModule 也可以重新导出其它模块，比如 <code class="highlighter-rouge">CommonModule</code>、<code class="highlighter-rouge">FormsModule</code> 和通用的模块 (包含通用 UI组件)。</p>
+
+<p>SharedModule 不应该带有 providers，它导入或重新导出的模块中，也不应该有 <code class="highlighter-rouge">providers</code> 。如果你要违背这条原则，请务必想清楚你在做什么，并要有充分的理由。</p>
+
+<p>在任何特性模块中 (无论是你在应用启动时主动加载的模块还是之后惰性加载的模块)，你都可以随意导入这个<code class="highlighter-rouge">SharedModule</code>。</p>
+
+<h3 id="coremodule-有什么用">CoreModule 有什么用？</h3>
+
+<p>为了便于统一的管理系统中通用的服务，我们可以创建一个 <code class="highlighter-rouge">CoreModule</code> 模块。我们可以把 <code class="highlighter-rouge">CoreModule</code> 当做一个没有 <code class="highlighter-rouge">declarations</code> 的纯服务模块。</p>
+
+<p>需要注意的是，只能在根模块 (AppModule) 中导入 <code class="highlighter-rouge">CoreModule</code>。永远不要在除了根模块之外的任何模块导入 <code class="highlighter-rouge">CoreModule</code>。</p>
+
+<h2 id="form">Form</h2>
+
+<h3 id="模板驱动与模型驱动表单各有什么特点">模板驱动与模型驱动表单各有什么特点？</h3>
+
+<h4 id="模板驱动template-driven表单的特点"><strong>模板驱动(Template-Driven)表单的特点</strong></h4>
+
+<ul>
+  <li>使用方便</li>
+  <li>适用于简单的场景</li>
+  <li>通过 [(ngModel)] 实现数据双向绑定</li>
+  <li>最小化组件类的代码</li>
+  <li>不易于单元测试</li>
+</ul>
+
+<h4 id="模型驱动model-drivenreactive表单的特点"><strong>模型驱动(Model-Driven|Reactive)表单的特点</strong></h4>
+
+<ul>
+  <li>比较灵活</li>
+  <li>适用于复杂的场景</li>
+  <li>简化了HTML模板的代码，把验证逻辑抽离到组件类中</li>
+  <li>方便的跟踪表单控件值的变化</li>
+  <li>易于单元测试</li>
+</ul>
+
+<h3 id="angular-中如何使用模板驱动表单">Angular 中如何使用模板驱动表单？</h3>
+
+<h4 id="1导入-formsmodule-模块">1.导入 FormsModule 模块</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">NgModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/platform-browser'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">FormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/forms'</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">NgModule</span><span class="p">({</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">BrowserModule</span><span class="p">,</span> <span class="nx">FormsModule</span><span class="p">],</span> <span class="c1">// we add FormsModule here</span>
+  <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">],</span>
+  <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kr">class</span> <span class="nx">AppModule</span> <span class="p">{}</span>
+</code></pre>
+</div>
+
+<h4 id="2实际应用">2.实际应用</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">novalidate</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="kd">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"name"</span> <span class="nx">ngModel</span> <span class="nx">required</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="kd">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"street"</span> <span class="nx">ngModel</span> <span class="nx">minlength</span><span class="o">=</span><span class="s2">"3"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="kd">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"city"</span> <span class="nx">ngModel</span> <span class="nx">maxlength</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="kd">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"zip"</span> <span class="nx">ngModel</span> <span class="nx">pattern</span><span class="o">=</span><span class="s2">"[A-Za-z]{5}"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
+</span></code></pre>
+</div>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000009037539">Angular 4.x Template-Driven Forms</a></p>
+
+<h3 id="angular-中如何使用模型驱动表单">Angular 中如何使用模型驱动表单？</h3>
+
+<h4 id="1导入-reactiveformsmodule-模块">1.导入 ReactiveFormsModule 模块</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ReactiveFormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/forms'</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">NgModule</span><span class="p">({</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">BrowserModule</span><span class="p">,</span> <span class="nx">ReactiveFormsModule</span><span class="p">],</span>
+  <span class="p">...</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kr">class</span> <span class="nx">AppModule</span> <span class="p">{}</span>
+</code></pre>
+</div>
+
+<h4 id="2实际应用-1">2.实际应用</h4>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="s1">'exe-app'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="err">`</span>
+	<span class="o">&lt;</span><span class="nx">form</span> <span class="nx">novalidate</span> <span class="p">[</span><span class="nx">formGroup</span><span class="p">]</span><span class="o">=</span><span class="s2">"form"</span><span class="o">&gt;</span>
+  		<span class="p">...</span>
+	<span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
+</span>  <span class="err">`</span>
+<span class="p">})</span>
+<span class="kr">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">fb</span><span class="err">:</span> <span class="nx">FormBuilder</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">form</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">fb</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+      <span class="na">name</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">],</span>
+      <span class="na">street</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">minLength</span><span class="p">(</span><span class="mi">3</span><span class="p">)],</span>
+      <span class="na">city</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+      <span class="na">zip</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">pattern</span><span class="p">(</span><span class="s1">'[A-Za-z]{5}'</span><span class="p">)]</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000009041192">Angular 4.x Reactive Forms</a></p>
+
+<h3 id="form-表单上的-novalidate-属性作用是什么">form 表单上的 <code class="highlighter-rouge">novalidate</code> 属性作用是什么？</h3>
+
+<p>通常情况下，我们需要为每个 <code class="highlighter-rouge">form</code> 都添加 <code class="highlighter-rouge">novalidate</code> 属性，该属性用于禁用浏览器 <code class="highlighter-rouge">native</code> 表单验证。如果想要开启 <code class="highlighter-rouge">native</code> 表单验证，只需添加 <code class="highlighter-rouge">ngNativeValidate</code> 属性。</p>
+
+<p>novalidate</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">novalidate</span><span class="nt">&gt;&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+<p>ngNativeValidate</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">ngNativeValidate</span><span class="nt">&gt;&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="表单控件的状态除了-touched-外还包含其它几种状态">表单控件的状态除了 <code class="highlighter-rouge">touched</code> 外，还包含其它几种状态？</h3>
+
+<p>表单控件有以下 6 种状态，我们可以通过 <code class="highlighter-rouge">#userName="ngModel"</code> 方式获取对应的状态值。具体状态如下：</p>
+
+<ul>
+  <li>valid - 表单控件有效</li>
+  <li>invalid - 表单控件无效</li>
+  <li>pristine - 表单控件值未改变</li>
+  <li>dirty - 表单控件值已改变</li>
+  <li>touched - 表单控件已被访问过</li>
+  <li>untouched - 表单控件未被访问过</li>
+</ul>
+
+<h3 id="表单控件上-username-和-usernamengmodel-这两种方式有什么区别">表单控件上 <code class="highlighter-rouge">#userName</code> 和 <code class="highlighter-rouge">#userName="ngModel"</code> 这两种方式有什么区别？</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">#userName</code> - 指向 input 表单控件</li>
+  <li><code class="highlighter-rouge">#userName="ngModel"</code> - 指向 NgModel 实例</li>
+</ul>
+
+<h3 id="ngmodelgroup-有什么作用">ngModelGroup 有什么作用？</h3>
+
+<p>ngModelGroup 指令是 Angular 提供的另一特殊指令，可以对表单输入内容进行分组，方便我们在语义上区分不同性质的输入。例如联系人的信息包括姓名及住址，现在需对姓名和住址进行精细化信息收集，姓名可精细化成姓和名字，地址可精细化成城市、区、街等。此时就可以将姓名及住址进行分组收集，具体如下:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="err">#</span><span class="na">concatForm =</span><span class="err"> </span><span class="s">"ngForm"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;fieldset</span> <span class="na">ngModelGroup=</span><span class="s">"nameGroup"</span> <span class="err">#</span><span class="na">nameGroup=</span><span class="s">"ngModelGroup"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;label&gt;</span>姓:<span class="nt">&lt;/label&gt;</span>
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"firstname"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">firstname</span><span class="err">"</span> 
+               <span class="na">required</span><span class="nt">&gt;</span> 
+      	<span class="nt">&lt;label&gt;</span>名字:<span class="nt">&lt;/label&gt;</span>
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"lastname"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">lastname</span><span class="err">"</span> 	
+               <span class="na">required</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;/fieldset&gt;</span>
+	<span class="nt">&lt;fieldset</span> <span class="na">ngModelGroup=</span><span class="s">"addressGroup"</span> <span class="err">#</span><span class="na">addressGroup =</span><span class="s">"ngModelGroup"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;label&gt;</span>街:<span class="nt">&lt;/label&gt;</span>
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"street"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">street</span><span class="err">"</span> <span class="na">required</span><span class="nt">&gt;</span> 			<span class="nt">&lt;label&gt;</span>区:<span class="nt">&lt;/label&gt;</span>
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"zip"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">zip</span><span class="err">"</span> <span class="na">required</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;label&gt;</span>城市:<span class="nt">&lt;/label&gt;</span>
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"city"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">city</span><span class="err">"</span> <span class="na">required</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/fieldset&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+</div>
+
+<p>上述例子分别对联系人的姓名和住址进行分组， ngModelGroup 将姓和名字的表单内容进行包裹组成姓名分组，将城市、区和街道的表单内容进行包裹组成住址分组。此时concatForm.value值为:</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">nameGroup</span><span class="p">:</span> <span class="p">{</span>
+	<span class="nl">firstname</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span>
+	<span class="nl">lastname</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span>
+  <span class="p">}</span><span class="err">，</span>
+  <span class="nl">addressGroup</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="nl">street</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span> 
+    <span class="nx">zip</span><span class="err">:</span> <span class="s1">''</span><span class="err">，</span> 
+    <span class="nx">city</span><span class="err">:</span> <span class="s1">''</span>
+  <span class="p">}</span> 
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="angular-表单中-patchvalue-与-setvalue-方法有什么区别">Angular 表单中 patchValue 与 setValue 方法有什么区别？</h3>
+
+<p>在 Angular 4.x 中有多种方式可以更新表单的值，对于使用响应式表单的场景，我们可以通过框架内部提供的 API ，(如 patchValue 和 setValue )方便地更新表单的值。</p>
+
+<h4 id="formcontrol">FormControl</h4>
+
+<p>对于 FormControl 对象来说，patchValue() 和 setValue() 这两个方法是等价的。此外 setValue() 方法中做了三件事：</p>
+
+<ul>
+  <li>更新控件当前值</li>
+  <li>判断是否注册 <code class="highlighter-rouge">onChange</code> 事件，若有则循环调用已注册的 <code class="highlighter-rouge">changeFn</code> 函数。</li>
+  <li>重新计算控件的值和验证状态</li>
+</ul>
+
+<h4 id="formgroup">FormGroup</h4>
+
+<p>对于 FormGroup 对象来说， setValue() 方法相比 patchValue() 会更严格，会执行多个判断：</p>
+
+<ul>
+  <li>判断的是否为所有控件都设置更新值</li>
+  <li>判断控件是否存在</li>
+</ul>
+
+<p>而 patchValue() 方法，会先使用 <code class="highlighter-rouge">this.controls[name]</code> 进行过滤，只更新参数 <code class="highlighter-rouge">value</code> 中设定控件的值。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000009090037">Angular 4.x Forms patchValue and setValue</a></p>
+
+<h3 id="angular-中内置验证器有哪一些">Angular 中内置验证器有哪一些？</h3>
+
+<p>目前 Angular 支持的内建 validators 如下：</p>
+
+<ul>
+  <li>required - 设置表单控件值是非空的</li>
+  <li>email - 设置表单控件值的格式是 email</li>
+  <li>minlength - 设置表单控件值的最小长度</li>
+  <li>maxlength - 设置表单控件值的最大长度</li>
+  <li>pattern - 设置表单控件的值需匹配 pattern 对应的模式</li>
+</ul>
+
+<h3 id="angular-中如何自定义验证指令">Angular 中如何自定义验证指令？</h3>
+
+<p>表单是几乎每个 Web 应用程序的一部分。虽然 Angular 为我们提供了几个内置 validators (验证器)，但在实际工作中为了满足项目需求，我们经常需要为应用添加一些自定义验证功能。</p>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000009053752">Angular 4.x 自定义验证指令</a></p>
+
+<h3 id="angular-中如何自定义表单控件">Angular 中如何自定义表单控件？</h3>
+
+<p>在 Angular 创建自定义控件，需要考虑以下问题：</p>
+
+<ul>
+  <li>如何实现 model -&gt; view 的数据绑定?</li>
+  <li>如何实现 view -&gt; model 的数据同步?</li>
+  <li>若需要自定义验证，应该如何实现?</li>
+  <li>如何向DOM元素添加有效性状态，便于设置不同样式?</li>
+  <li>如何让控件可以访问 (accessible)?</li>
+  <li>该控件能应用于 template-driven 表单?</li>
+  <li>该控件能应用于 model-driven 表单?</li>
+</ul>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000009070500">Angular 4.x 自定义表单控件</a></p>
+
+<h2 id="changedetection">ChangeDetection</h2>
+
+<h3 id="changedetectionstrategy-变化检测策略总共有几种">ChangeDetectionStrategy 变化检测策略总共有几种？</h3>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">export</span> <span class="kr">declare</span> <span class="kr">enum</span> <span class="nx">ChangeDetectionStrategy</span> <span class="p">{</span>
+  <span class="nx">OnPush</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 变化检测器的状态值是 CheckOnce</span>
+  <span class="nx">Default</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 组件默认值 - 变化检测器的状态值是 CheckAlways，即始终执行变化检测</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="变化检测器的状态有哪几种">变化检测器的状态有哪几种？</h3>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">export</span> <span class="kr">declare</span> <span class="kr">enum</span> <span class="nx">ChangeDetectorStatus</span> <span class="p">{</span>
+  <span class="nx">CheckOnce</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 表示在执行detectChanges之后，变化检测器的状态将会变成Checked</span>
+  <span class="nx">Checked</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 表示变化检测将被跳过，直到变化检测器的状态恢复成CheckOnce</span>
+  <span class="nx">CheckAlways</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="c1">// 表示在执行detectChanges之后，变化检测器的状态始终为CheckAlways</span>
+  <span class="nx">Detached</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="c1">// 表示该变化检测器树已从根变化检测器树中移除，变化检测将会被跳过</span>
+  <span class="nx">Errored</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="c1">// 表示在执行变化检测时出现异常</span>
+  <span class="nx">Destroyed</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="c1">// 表示变化检测器已被销毁</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="pipe">Pipe</h2>
+
+<h3 id="angular-内置管道有哪一些">Angular 内置管道有哪一些？</h3>
+
+<ul>
+  <li>String -&gt; String
+    <ul>
+      <li>UpperCasePipe</li>
+      <li>LowerCasePipe</li>
+      <li>TitleCasePipe</li>
+    </ul>
+  </li>
+  <li>Number -&gt; String
+    <ul>
+      <li>DecimalPipe</li>
+      <li>PercentPipe</li>
+      <li>CurrencyPipe</li>
+    </ul>
+  </li>
+  <li>Object -&gt; String
+    <ul>
+      <li>JsonPipe</li>
+      <li>DatePipe</li>
+    </ul>
+  </li>
+  <li>Tools
+    <ul>
+      <li>SlicePipe</li>
+      <li>AsyncPipe</li>
+      <li>I18nPluralPipe</li>
+      <li>I18nSelectPipe</li>
+    </ul>
+  </li>
+</ul>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008646187">Angular 2 Pipe</a></p>
+
+<h3 id="angular-中管道分为哪几类">Angular 中管道分为哪几类？</h3>
+
+<ul>
+  <li>pure 管道：仅当管道输入值变化的时候，才执行转换操作，默认的类型是 pure 类型。(备注：输入值变化是指原始数据类型如：string、number、boolean 等的数值或对象的引用值发生变化)。</li>
+  <li>impure 管道：在每次变化检测期间都会执行，如鼠标点击或移动都会执行 impure 管道。</li>
+</ul>
+
+<h3 id="angular-中怎么定义一个管道">Angular 中怎么定义一个管道？</h3>
+
+<p>自定义管道的步骤：</p>
+
+<ul>
+  <li>使用 @Pipe 装饰器定义 Pipe 的 metadata 信息，如 Pipe 的名称 - 即 name 属性</li>
+  <li>实现 PipeTransform 接口中定义的 transform 方法</li>
+</ul>
+
+<p>RepeatPipe 定义</p>
+
+<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Pipe</span><span class="p">,</span> <span class="nx">PipeTransform</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">Pipe</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="s1">'repeat'</span><span class="p">})</span>
+<span class="k">export</span> <span class="kr">class</span> <span class="nx">RepeatPipe</span> <span class="k">implements</span> <span class="nx">PipeTransform</span> <span class="p">{</span>
+  <span class="nx">transform</span><span class="p">(</span><span class="nx">value</span><span class="err">:</span> <span class="kr">any</span><span class="p">,</span> <span class="nx">times</span><span class="err">:</span> <span class="kr">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="nx">times</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>RepeatPipe 使用</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">ngNonBindable</span><span class="nt">&gt;</span>lo<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>lo<span class="nt">&lt;/p&gt;</span> <span class="c">&lt;!-- Output: lololo --&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008646187">Angular 2 Pipe</a></p>
+
+<h2 id="resources">Resources</h2>
+
+<h3 id="frameworks">Frameworks</h3>
+
+<ul>
+  <li><a href="https://github.com/angular/material2">Angular Material 2</a></li>
+  <li><a href="http://www.telerik.com/kendo-angular-ui/components/">Kendo-UI</a></li>
+  <li><a href="http://valor-software.com/ng2-bootstrap/#/">ng2-bootstrap</a></li>
+  <li><a href="https://github.com/primefaces/primeng">primeng</a></li>
+  <li><a href="https://ng-semantic.herokuapp.com/#/">ngSemantic</a></li>
+  <li><a href="http://ng-lightning.github.io/ng-lightning/#/components">ng-lightning</a></li>
+  <li><a href="https://onsen.io/v2/docs/guide/angular2/">Onsen UI</a></li>
+</ul>
+
+<h3 id="blogs">Blogs</h3>
+
+<ul>
+  <li><a href="https://blog.thoughtram.io/all/">thoughtram</a></li>
+  <li><a href="https://toddmotto.com/">toddmotto</a></li>
+  <li><a href="https://blog.nrwl.io/">nrwl</a></li>
+  <li><a href="http://blog.angular-university.io/">angular-university</a></li>
+  <li><a href="https://scotch.io/tag/angular-js">scotch</a></li>
+  <li><a href="https://medium.com/tag/angular2">medium</a></li>
+</ul>
+
+<h3 id="tools">Tools</h3>
+
+<ul>
+  <li><a href="https://augury.angular.io/">Augury(调试工具)</a></li>
+  <li><a href="https://github.com/mgechev/codelyzer">Codelyzer(代码分析)</a></li>
+  <li><a href="https://github.com/johnpapa/lite-server">Lite-Server(轻量Node服务器)</a></li>
+</ul>
+
+<h3 id="platforms">Platforms</h3>
+
+<ul>
+  <li><a href="https://github.com/angular/angular-electron">angular-electron(桌面版)</a></li>
+  <li><a href="http://ionicframework.com/">ionic(mobile app)</a></li>
+  <li><a href="https://github.com/NativeScript/nativescript-angular">nativescript-angular</a></li>
+  <li><a href="http://angular.github.io/react-native-renderer/">angular 2 and react native</a></li>
+  <li><a href="https://github.com/preboot/angular2-universal-windows-app">universal-windows-app</a></li>
+</ul>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://github.com/semlinker/angular-faq">angular fa - semlinker</a></li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/06/10/ng-faq.html';
+        this.page.identifier = '/2018/06/10/ng-faq';
+        this.page.title = 'Angular FAQ';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-06-10 20:47:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>

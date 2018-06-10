@@ -1741,6 +1741,8 @@ pre code::after {
     margin-top: 230px;
     /* right: 3rem; */
     left: 83%;
+    max-height: 70%;
+    overflow: scroll;
 }
 
 #directory ul,
