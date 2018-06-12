@@ -1742,7 +1742,8 @@ pre code::after {
     /* right: 3rem; */
     left: 83%;
     max-height: 70%;
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #directory ul,
