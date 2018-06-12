@@ -1,0 +1,930 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='Vue 简介 - Tate & Snow' name='title' />
+    <meta content='Vue 简介 - Tate & Snow' name='og:title' />
+    <title>Vue 简介 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Vue 简介 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue 简介 - Tate & Snow">
+<meta name="twitter:keywords" content="Vue 简介 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue 简介 - Tate & Snow">
+<meta name="og:keywords" content="Vue 简介 - Tate & Snow|Vue 简介Vue 实例每个 Vue 应用都是通过创建一个新的 Vue 实例开始的，创建时都要经过一系列的初始化过程。如需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="Vue 简介Vue 实例每个 Vue 应用都是通过创建一个新的 Vue 实例开始的，创建时都要经过一系列的初始化过程。如需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做..." property='og:description'
+/>
+<meta name="description" content="nothing is more practicla than a good theory" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2018/06/12/vue-profile.html' property='og:url' />
+<meta content="http://localhost:4000/2018/06/12/vue-profile.html|Vue 简介Vue 实例每个 Vue 应用都是通过创建一个新的 Vue 实例开始的，创建时都要经过一系列的初始化过程。如需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Vue 简介</h1>
+                <div class="post-data">
+                    <time datetime="2018-06-12 00:00:00" itemprop="datePublished">发布时间：2018-06-12 00:00:00</time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#Vue" title="访问Vue" data-hover="Vue">
+                        Vue
+                        <span>(1)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Vue 简介</h1>
+            <div class="post-data">
+                <time datetime="2018-06-12 00:00:00" itemprop="datePublished">2018-06-12 00:00:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#Vue" title="访问Vue" data-hover="Vue">
+                    Vue
+                    <span>(1)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="vue-简介">Vue 简介</h1>
+
+<h2 id="vue-实例">Vue 实例</h2>
+
+<p>每个 Vue 应用都是通过创建一个新的 Vue 实例开始的，创建时都要经过一系列的初始化过程。如需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。</p>
+
+<pre><code class="language-JS">var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue.js!'
+  }
+})
+
+app.message // 'Hello Vue.js!'
+app.$data // { message: 'Hello Vue.js' }
+app.$el // document.getElementById('app')
+
+// $watch 是一个实例方法，也可以直接提供监听属性 watch
+app.$watch('message', function(newValue, oldValue) {
+  // 这个回调将在 `app.message` 改变后调用
+})
+</code></pre>
+
+<pre><code class="language-HTML">&lt;div id="app"&gt;
+  &lt;p&gt;{ { message } }&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 id="组件-component">组件 component</h2>
+
+<h3 id="组件注册">组件注册</h3>
+
+<p>组件是可复用的 Vue 实例，为了能在模板中使用，这些组件必须先注册以便 Vue 能够识别。这里有两种组件的<a href="https://cn.vuejs.org/v2/guide/components-registration.html">注册类型</a>：全局注册和局部注册。在注册之后可以用在任何新创建的 Vue 根实例 (new Vue) 的模板中:</p>
+
+<pre><code class="language-JS">// 定义一个名为 button-counter 的新组件，且为全局注册
+// 与 Vue 实例接收相同的选项，除了 el 这样根实例特有的选项
+Vue.component('button-counter', {
+  data: function() { // 注意组件的 data 必须是一个函数，因此每个实例可以维护一份被返回对象的独立的拷贝
+    return {
+      count: 0
+    }
+  },
+  template: '&lt;button v-on:click="count++"&gt;You clicked me { { count } } times.&lt;/button&gt;'
+})
+new Vue({ el: '#components-demo' })
+</code></pre>
+
+<pre><code class="language-HTML">&lt;div id="components-demo"&gt;
+  &lt;button-counter&gt;&lt;/button-counter&gt;
+  &lt;button-counter&gt;&lt;/button-counter&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3 id="数据传递-prop">数据传递 Prop</h3>
+
+<h4 id="静态和动态传值">静态和动态传值</h4>
+
+<p>为了复用和解耦，Prop 可以在组件上注册自定义特性，一个组件默认可以拥有任意数量的 prop，任何值都可以传递给任何 prop:</p>
+
+<pre><code class="language-JS">Vue.component('blog-post', {
+  props: ['title'],
+  template: '&lt;h3&gt;{ { title } }&lt;/h3&gt;'
+})
+</code></pre>
+
+<pre><code class="language-HTML">&lt;!-- 静态传值，注意此处不能用 :title --&gt;
+&lt;blog-post title="My journey with Vue"&gt;&lt;/blog-post&gt;
+&lt;blog-post title="Tate and Snow"&gt;&lt;/blog-post&gt;
+</code></pre>
+
+<p>再举个常见动态传值的栗子:</p>
+
+<pre><code class="language-JS">new Vue({
+  el: '#blog-post-demo',
+  data: {
+    posts: [
+      { id: 1, title: 'My journey with Vue' },
+      { id: 2, title: 'Blogging with Vue' },
+      { id: 3, title: 'Why Vue is so fun' },
+    ]
+  }
+})
+</code></pre>
+
+<pre><code class="language-HTML">&lt;blog-post
+  v-for="post in posts"
+  :key="post.id"
+  :title="post.title"
+&gt;&lt;/blog-post&gt;
+</code></pre>
+
+<h4 id="prop-验证">prop 验证</h4>
+
+<pre><code class="language-JS">Vue.component('my-component', {
+  props: {
+    // 基础的类型检查 (`null` 匹配任何类型)
+    propA: Number,
+    // 多个可能的类型
+    propB: [String, Number],
+    // 必填的字符串
+    propC: {
+      type: String,
+      required: true
+    },
+    // 带有默认值的数字
+    propD: {
+      type: Number,
+      default: 100
+    },
+    // 带有默认值的对象
+    propE: {
+      type: Object,
+      // 对象或数组且一定会从一个工厂函数返回默认值
+      default: function () {
+        return { message: 'hello' }
+      }
+    },
+    // 自定义验证函数
+    propF: {
+      validator: function (value) {
+        // 这个值必须匹配下列字符串中的一个
+        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+      }
+    }
+  }
+})
+</code></pre>
+
+<p>当 prop 验证失败的时候，(开发环境构建版本的) Vue 将会产生一个控制台的警告。</p>
+
+<h4 id="emit-触发和监听">$emit 触发和监听</h4>
+
+<p>如果需要通过事件向父级组件发送消息，可以通过 $emit 用来触发和监听事件，举个 todoList 的栗子:</p>
+
+<script async="" src="//jsfiddle.net/Tate_Young/s14cwxh6/2/embed/js,html,result/"></script>
+
+<p>还可以使用 $emit 的第二个参数来提供这个值，比如:</p>
+
+<pre><code class="language-JS">&lt;button @click="$emit('enlarge-text', 0.1)"&gt;
+  Enlarge text
+&lt;/button&gt;
+</code></pre>
+
+<p>然后当在父级组件监听这个事件的时候，我们可以通过 $event 访问到被抛出的这个值：</p>
+
+<pre><code class="language-HTML">&lt;blog-post
+  ...
+  v-on:enlarge-text="postFontSize += $event"
+&gt;&lt;/blog-post&gt;
+</code></pre>
+
+<p>或者，如果这个事件处理函数是一个方法:</p>
+
+<pre><code class="language-HTML">&lt;blog-post
+  ...
+  v-on:enlarge-text="onEnlargeText"
+&gt;&lt;/blog-post&gt;
+</code></pre>
+
+<pre><code class="language-JS">methods: { // 值将会作为第一个参数传入这个方法
+  onEnlargeText: function (enlargeAmount) {
+    this.postFontSize += enlargeAmount
+  }
+}
+</code></pre>
+
+<h3 id="组件内使用-v-model">组件内使用 v-model</h3>
+
+<p>v-model 是用来实现双向数据绑定的，其本质可理解为:</p>
+
+<pre><code class="language-HTML">&lt;input v-model="searchText"&gt;
+
+&lt;!-- 等价于 --&gt;
+&lt;input
+  v-bind:value="searchText"
+  v-on:input="searchText = $event.target.value"
+&gt;
+</code></pre>
+
+<p>当在组件内使用时:</p>
+
+<pre><code class="language-HTML">&lt;custom-input v-model="searchText"&gt;&lt;/custom-input&gt;
+</code></pre>
+
+<pre><code class="language-JS">Vue.component('custom-input', {
+  props: ['value'],
+  template: `
+    &lt;input
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)"
+    &gt;
+  `
+})
+</code></pre>
+
+<h3 id="动态组件">动态组件</h3>
+
+<p>可以通过 Vue 的 <component> 元素加一个特殊的 **is** 特性来实现，详见 JSFiddle:</component></p>
+
+<script async="" src="//jsfiddle.net/chrisvfritz/o3nycadu/embed/"></script>
+
+<p>另外提到解析 DOM 模板时的注意事项，有些 HTML 元素，诸如 &lt;ul&gt;、&lt;ol&gt;、&lt;table&gt; 和 <select>，对于哪些元素可以出现在其内部是有严格限制的。</select></p>
+
+<pre><code class="language-HTML">&lt;!-- 配合组件使用时可能会发生解析问题 --&gt;
+&lt;ul&gt;
+  &lt;blog-post-row&gt;&lt;/blog-post-row&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>推荐的写法为搭配 <strong>is</strong> 属性:</p>
+
+<pre><code class="language-HTML">&lt;ul&gt;
+  &lt;li is="blog-post-row"&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<h2 id="生命周期钩子">生命周期钩子</h2>
+
+<p>可查看官网给出的图 - <a href="https://cn.vuejs.org/images/lifecycle.png">生命周期钩子</a>。</p>
+
+<h2 id="指令">指令</h2>
+
+<h3 id="常用指令">常用指令</h3>
+
+<p>就如 AngularJS 中的 ‘ng’ 指令，Vue 中的指令以 ‘v’ 为前缀:</p>
+
+<pre><code class="language-HTML">&lt;p v-if="seen"&gt;现在你看到我了&lt;/p&gt;
+
+&lt;!-- 指令参数的使用 --&gt;
+&lt;a v-bind:href="url"&gt;...&lt;/a&gt;
+&lt;a v-on:click="doSomething"&gt;...&lt;/a&gt;
+
+&lt;!-- 修饰符 --&gt;
+&lt;!-- .prevent 修饰符告诉 v-on 指令对于触发的事件调用 event.preventDefault() --&gt;
+&lt;form v-on:submit.prevent="onSubmit"&gt;...&lt;/form&gt;
+</code></pre>
+
+<p>对于常用的 <code>v-bind</code> 和 <code>v-on</code> 可以采用缩写:</p>
+
+<pre><code class="language-HTML">&lt;a v-bind:href="url"&gt;...&lt;/a&gt;
+&lt;a v-on:click="doSomething"&gt;...&lt;/a&gt;
+
+&lt;!-- 缩写 --&gt;
+&lt;a :href="url"&gt;...&lt;/a&gt;
+&lt;a @click="doSomething"&gt;...&lt;/a&gt;
+</code></pre>
+
+<p>用 v-for 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序， 而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 <code>track-by="$index"</code>，此时需要为每项提供一个唯一 key 属性:</p>
+
+<pre><code class="language-HTML">&lt;!-- 遍历操作符 of 可以代替 in --&gt;
+&lt;div v-for="item of items" :key="item.id"&gt;{ { item } }&lt;/div&gt;
+</code></pre>
+
+<h3 id="修饰符">修饰符</h3>
+
+<p>修饰符可分为以下几类:</p>
+
+<ul>
+  <li><strong>事件修饰符</strong>:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">修饰符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>.stop</strong></td>
+      <td style="text-align: left">阻止单击事件继续传播，event.stopPropagation()</td>
+      <td style="text-align: left"><code>&lt;a @click.stop="doThis"&gt;&lt;/a&gt;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>.prevent</strong></td>
+      <td style="text-align: left">阻止浏览器默认事件，event.preventDefault()</td>
+      <td style="text-align: left"><code>&lt;form @submit.prevent="onSubmit"&gt;&lt;/form&gt;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>.capture</strong></td>
+      <td style="text-align: left">采用事件捕获</td>
+      <td style="text-align: left"><code>&lt;a @click.capture="doThis"&gt;&lt;/a&gt;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>.self</strong></td>
+      <td style="text-align: left">只当在 event.target 是当前元素自身时触发处理函数</td>
+      <td style="text-align: left"><code>&lt;a @click.self="doThis"&gt;&lt;/a&gt;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>.once</strong></td>
+      <td style="text-align: left">事件只执行一次</td>
+      <td style="text-align: left"><code>&lt;button @click.once="showMsg"&gt;Add&lt;/button&gt;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>.passive</strong></td>
+      <td style="text-align: left">滚动事件的默认行为将会立即触发，能够提升移动端的性能</td>
+      <td style="text-align: left"><code>&lt;div @scroll.passive="onScroll"&gt;&lt;/div&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>不同修饰符可以串联，但是要注意执行顺序:</p>
+
+<pre><code class="language-HTML">&lt;a @click.stop.prevent="doThat"&gt;&lt;/a&gt;
+</code></pre>
+
+<ul>
+  <li><strong>按键修饰符</strong></li>
+</ul>
+
+<p>通过情况下会采用 keycode 来判断按键，Vue 为常用的一些按键提供别名，如 .enter、.space、.esc、.up 等:</p>
+
+<pre><code class="language-HTML">&lt;!-- 只有在 `keyCode` 是 13 时调用 `vm.submit()` --&gt;
+&lt;input @keyup.13="submit"&gt;
+
+&lt;!-- 等价于 --&gt;
+&lt;input @keyup.enter="submit"&gt;
+</code></pre>
+
+<p>也可以通过全局 API 的 <strong><a href="https://cn.vuejs.org/v2/api/#keyCodes">keyCodes</a></strong> 进行配置。在 Vue 2.5.0 也新增了直接将 <strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/key/Key_Values">KeyboardEvent.key</a></strong> 暴露的任意有效按键名转换为 kebab-case 来作为修饰符:</p>
+
+<pre><code class="language-HTML">&lt;input @keyup.page-down="onPageDown"&gt;
+</code></pre>
+
+<ul>
+  <li><strong>系统修饰键</strong></li>
+</ul>
+
+<p>系统修饰键包含以下几个:</p>
+
+<ul>
+  <li>.ctrl</li>
+  <li>.alt</li>
+  <li>.shift</li>
+  <li>.meta - 对应 macOS 的 cmd；对应 Windows 的 ⊞</li>
+</ul>
+
+<pre><code class="language-HTML">&lt;!-- Alt + C --&gt;
+&lt;input @keyup.alt.67="clear"&gt;
+
+&lt;!-- Ctrl + Click --&gt;
+&lt;div @click.ctrl="doSomething"&gt;Do something&lt;/div&gt;
+</code></pre>
+
+<ul>
+  <li><strong>v-model 修饰符</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">修饰符</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>.lazy</strong></td>
+      <td style="text-align: left">在“change”时而非“input”时更新</td>
+      <td style="text-align: left"><code><input v-model.lazy="msg" /></code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>.number</strong></td>
+      <td style="text-align: left">将用户的输入值转为数值类型</td>
+      <td style="text-align: left"><code><input v-model.number="age" type="number" /></code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>.trim</strong></td>
+      <td style="text-align: left">自动过滤用户输入的首尾空白字符</td>
+      <td style="text-align: left"><code><input v-model.trim="msg" /></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="计算属性-computed">计算属性 computed</h2>
+
+<p>模板内的表达式非常便利，但是设计它们的初衷是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护。例如:</p>
+
+<pre><code class="language-HTML">&lt;div id="example"&gt;
+  { { message.split('').reverse().join('') } }
+&lt;/div&gt;
+</code></pre>
+
+<p>因此对于任何复杂逻辑，都应当使用计算属性，改进如下:</p>
+
+<pre><code class="language-HTML">&lt;div id="example"&gt;
+  &lt;p&gt;Original message: "{ { message } }"&lt;/p&gt;
+  &lt;p&gt;Computed reversed message: "{ { reversedMessage } }"&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<pre><code class="language-JS">var vm = new Vue({
+  el: '#example',
+  data: {
+    message: 'Hello'
+  },
+  computed: {
+    // 计算属性的 getter
+    reversedMessage: function () {
+      // `this` 指向 vm 实例
+      return this.message.split('').reverse().join('')
+    }
+  }
+})
+</code></pre>
+
+<p>当然也可以添加方法(method):</p>
+
+<pre><code class="language-HTML">&lt;p&gt;Reversed message: "{ { reversedMessage() } }"&lt;/p&gt;
+</code></pre>
+
+<pre><code class="language-JS">methods: {
+  reversedMessage: function () {
+    return this.message.split('').reverse().join('')
+  }
+}
+</code></pre>
+
+<p>上述两个方法的结果相同，但区别是计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。</p>
+
+<h2 id="更新检测">更新检测</h2>
+
+<h3 id="数组">数组</h3>
+
+<p>Vue 包含一组观察数组的变异方法，所以它们也将会触发视图更新。这些方法比如有 push、pop、splice、sort 等；相反 filter、slice、concat 等方法不会改变原数组，所以不会触发视图更新，是非常高效的操作。举个栗子 🌰:</p>
+
+<pre><code class="language-JS">var vm = new Vue({
+  data: {
+    items: ['a', 'b', 'c']
+  }
+})
+vm.items[1] = 'x' // 不是响应性的
+vm.items.length = 2 // 不是响应性的
+</code></pre>
+
+<p>解决方案:</p>
+
+<pre><code class="language-JS">// Vue.set
+Vue.set(vm.items, indexOfItem, newValue)
+
+// 等价于 vm.$set 实例方法
+vm.$set(vm.items, indexOfItem, newValue)
+
+// 或者转换为变异方法
+vm.items.splice(indexOfItem, 1, newValue)
+</code></pre>
+
+<h3 id="对象">对象</h3>
+
+<p>Vue 不能检测对象属性的添加或删除:</p>
+
+<pre><code class="language-JS">var vm = new Vue({
+  data: {
+    a: 1 // `vm.a` 现在是响应式的
+  }
+})
+
+vm.b = 2 // `vm.b` 不是响应式的
+</code></pre>
+
+<p>当然可以采用上述数组中的 Vue.set 方法，如果利用 Object.assign 方法添加新的响应式属性:</p>
+
+<pre><code class="language-JS">// bad
+Object.assign(vm.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+
+// good
+vm.userProfile = Object.assign({}, vm.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://cn.vuejs.org/">Vue 中文官网</a></li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/06/12/vue-profile.html';
+        this.page.identifier = '/2018/06/12/vue-profile';
+        this.page.title = 'Vue 简介';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-06-12 00:00:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>

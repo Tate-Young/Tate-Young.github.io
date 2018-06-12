@@ -289,3 +289,4 @@ Response 提供的方法如下:
 1. [你真的会使用 XMLHttpRequest 吗？](https://segmentfault.com/a/1190000004322487) By ruoyiqing
 1. [This API is so Fetching!](https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/)
 1. [fetch API](https://davidwalsh.name/fetch) By David Walsh
+1. [fetch 没有你想象的那么美](http://undefinedblog.com/window-fetch-is-not-as-good-as-you-imagined/?utm_source=caibaojian.com) By undefined
