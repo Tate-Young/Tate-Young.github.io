@@ -197,6 +197,8 @@ app.$watch('message', function(newValue, oldValue) {
 &lt;/div&gt;
 </code></pre>
 
+<p>在每个 new Vue 实例的子组件中，其根实例可以通过 $root 属性进行访问，如 <code>this.$root.message</code>。</p>
+
 <h2 id="组件-component">组件 component</h2>
 
 <h3 id="组件注册">组件注册</h3>
@@ -370,7 +372,15 @@ new Vue({ el: '#components-demo' })
 
 <script async="" src="//jsfiddle.net/chrisvfritz/o3nycadu/embed/"></script>
 
-<p>另外提到解析 DOM 模板时的注意事项，有些 HTML 元素，诸如 &lt;ul&gt;、&lt;ol&gt;、&lt;table&gt; 和 <select>，对于哪些元素可以出现在其内部是有严格限制的。</select></p>
+<p>重新创建动态组件的行为通常是非常有用的，但是在这个案例中，我们更希望那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。为了解决这个问题，我们可以用一个 <keep-alive> 元素将其动态组件包裹起来:</keep-alive></p>
+
+<pre><code class="language-HTML">&lt;!-- 失活的组件将会被缓存！--&gt;
+&lt;keep-alive&gt;
+  &lt;component v-bind:is="currentTabComponent"&gt;&lt;/component&gt;
+&lt;/keep-alive&gt;
+</code></pre>
+
+<p>另外提到解析 DOM 模板时的注意事项，有些 HTML 元素，诸如 &lt;ul&gt;、&lt;ol&gt;、&lt;table&gt; 和 &lt;select&gt;，对于哪些元素可以出现在其内部是有严格限制的。</p>
 
 <pre><code class="language-HTML">&lt;!-- 配合组件使用时可能会发生解析问题 --&gt;
 &lt;ul&gt;
@@ -385,9 +395,174 @@ new Vue({ el: '#components-demo' })
 &lt;/ul&gt;
 </code></pre>
 
+<h3 id="插槽-slot">插槽 slot</h3>
+
+<h4 id="单个插槽">单个插槽</h4>
+
+<p><strong>插槽(slot)</strong> 是用来作内容分发的，比如将父组件的内容放到子组件指定的位置，先看个例子:</p>
+
+<pre><code class="language-HTML">&lt;navigation-link url="/profile"&gt;
+  &lt;!-- 添加一个 Font Awesome 图标 --&gt;
+  &lt;span class="fa fa-user"&gt;&lt;/span&gt;
+  Your Profile
+&lt;/navigation-link&gt;
+</code></pre>
+
+<p>&lt;navigation-link&gt; 中模板的实现为:</p>
+
+<pre><code class="language-HTML">&lt;a
+  v-bind:href="url"
+  class="nav-link"
+&gt;
+  &lt;slot&gt;&lt;/slot&gt;
+&lt;/a&gt;
+</code></pre>
+
+<p>当组件渲染的时候，这个 &lt;slot&gt; 元素将会被替换为图标和 “Your Profile”。插槽内可以包含任何模板代码，包括 HTML。</p>
+
+<h4 id="具名插槽">具名插槽</h4>
+
+<p><strong>具名插槽</strong>则是提供了 name 属性的 slot。</p>
+
+<pre><code class="language-HTML">&lt;div class="container"&gt;
+  &lt;header&gt;
+    &lt;slot name="header"&gt;&lt;/slot&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+    &lt;slot name="footer"&gt;&lt;/slot&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre>
+
+<pre><code class="language-HTML">&lt;base-layout&gt;
+  &lt;!-- 或者用 template 标签包裹 --&gt;
+  &lt;h1 slot="header"&gt;Here might be a page title&lt;/h1&gt;
+  &lt;!-- &lt;template slot="header"&gt;
+    &lt;h1&gt;Here might be a page title&lt;/h1&gt;
+  &lt;/template&gt; --&gt;
+
+  &lt;!-- 默认插槽内容 --&gt;
+  &lt;p&gt;A paragraph for the main content.&lt;/p&gt;
+  &lt;p&gt;And another one.&lt;/p&gt;
+
+  &lt;p slot="footer"&gt;Here's some contact info&lt;/p&gt;
+&lt;/base-layout&gt;
+</code></pre>
+
+<h4 id="作用域插槽">作用域插槽</h4>
+
+<p>作用域插槽可以将子组件的值传到父组件供使用，需要在 slot 上绑定数据，以<a href="https://segmentfault.com/a/1190000012996217">此篇博客</a>为例:</p>
+
+<pre><code class="language-JS">// 子组件
+&lt;template&gt;
+  &lt;div class="child"&gt;
+
+    &lt;h3&gt;这里是子组件&lt;/h3&gt;
+
+    &lt;slot  :data="data"&gt;&lt;/slot&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default {
+    data: function(){
+      return {
+        data: ['Tate', 'Snow', 'Alice', 'Bob', 'Candy']
+      }
+    },
+    ...
+  }
+&lt;/script&gt;
+</code></pre>
+
+<pre><code class="language-JS">// 父组件，数据由子组件提供，自己提供样式布局
+&lt;template&gt;
+  &lt;div class="father"&gt;
+    &lt;h3&gt;这里是父组件&lt;/h3&gt;
+    &lt;child&gt;
+      &lt;template slot-scope="user"&gt;
+        &lt;ul&gt;
+          &lt;li v-for="item in user.data"&gt;{ { item } }&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/template&gt;
+    &lt;/child&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import Child from './Child.vue'
+  export default {
+    data: function () {
+      return {
+        msg: ''
+      }
+    },
+    components:{
+      'child': Child
+    }
+  }
+&lt;/script&gt;
+</code></pre>
+
+<p>当我们使用 &lt;todo-list&gt; 组件的时候，</p>
+
 <h2 id="生命周期钩子">生命周期钩子</h2>
 
-<p>可查看官网给出的图 - <a href="https://cn.vuejs.org/images/lifecycle.png">生命周期钩子</a>。</p>
+<p>Vue 2.x 一共有十个钩子，具体可查看官网给出的图 - <a href="https://cn.vuejs.org/images/lifecycle.png">生命周期钩子</a>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">钩子</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>beforeCreate</strong></td>
+      <td style="text-align: left">组件实例刚被创建，$data 和 $el 均未初始化</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>created</strong></td>
+      <td style="text-align: left">组件实例创建完成，$data 属性已绑定，但 $el 未初始化</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>beforeMount</strong></td>
+      <td style="text-align: left">模板编译/挂载之前，$el 初始化完毕，但未完成渲染(虚拟 DOM)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>mounted</strong></td>
+      <td style="text-align: left">模板编译/挂载之后，完成渲染(真实 DOM)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>beforeUpdate</strong></td>
+      <td style="text-align: left">组件更新之前</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>updated</strong></td>
+      <td style="text-align: left">组件更新之后</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>activated</strong></td>
+      <td style="text-align: left">keep-alive 组件激活时</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>deactivated</strong></td>
+      <td style="text-align: left">keep-alive 组件停用时</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>beforeDestroy</strong></td>
+      <td style="text-align: left">实例销毁之前</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>destroyed</strong></td>
+      <td style="text-align: left">实例销毁之后。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="指令">指令</h2>
 
@@ -531,17 +706,17 @@ new Vue({ el: '#components-demo' })
     <tr>
       <td style="text-align: left"><strong>.lazy</strong></td>
       <td style="text-align: left">在“change”时而非“input”时更新</td>
-      <td style="text-align: left"><code><input v-model.lazy="msg" /></code></td>
+      <td style="text-align: left"><code>&lt;\input v-model.lazy="msg"&gt;</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>.number</strong></td>
       <td style="text-align: left">将用户的输入值转为数值类型</td>
-      <td style="text-align: left"><code><input v-model.number="age" type="number" /></code></td>
+      <td style="text-align: left"><code>&lt;\input v-model.number="age" type="number"&gt;</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>.trim</strong></td>
       <td style="text-align: left">自动过滤用户输入的首尾空白字符</td>
-      <td style="text-align: left"><code><input v-model.trim="msg" /></code></td>
+      <td style="text-align: left"><code>&lt;\input v-model.trim="msg"&gt;</code></td>
     </tr>
   </tbody>
 </table>
@@ -651,6 +826,8 @@ vm.userProfile = Object.assign({}, vm.userProfile, {
 
 <ol>
   <li><a href="https://cn.vuejs.org/">Vue 中文官网</a></li>
+  <li><a href="https://m.imooc.com/article/22885">实例化 vue 发生了什么?(详解 vue 生命周期)</a> By giveMeFivePlz</li>
+  <li><a href="https://segmentfault.com/a/1190000012996217">深入理解 vue 中的 slot 与 slot-scope</a> By 云荒杯倾</li>
 </ol>
  
 <div id="disqus_thread"></div>

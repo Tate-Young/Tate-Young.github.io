@@ -41,6 +41,8 @@ app.$watch('message', function(newValue, oldValue) {
 </div>
 ```
 
+在每个 new Vue 实例的子组件中，其根实例可以通过 $root 属性进行访问，如 <code>this.$root.message</code>。
+
 ## 组件 component
 
 ### 组件注册
@@ -228,7 +230,16 @@ Vue.component('custom-input', {
 
 <script async src="//jsfiddle.net/chrisvfritz/o3nycadu/embed/"></script>
 
-另外提到解析 DOM 模板时的注意事项，有些 HTML 元素，诸如 <ul>、<ol>、<table> 和 <select>，对于哪些元素可以出现在其内部是有严格限制的。
+重新创建动态组件的行为通常是非常有用的，但是在这个案例中，我们更希望那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。为了解决这个问题，我们可以用一个 <keep-alive> 元素将其动态组件包裹起来:
+
+```HTML
+<!-- 失活的组件将会被缓存！-->
+<keep-alive>
+  <component v-bind:is="currentTabComponent"></component>
+</keep-alive>
+```
+
+另外提到解析 DOM 模板时的注意事项，有些 HTML 元素，诸如 <ul>、<ol>、<table> 和 \<select\>，对于哪些元素可以出现在其内部是有严格限制的。
 
 ```HTML
 <!-- 配合组件使用时可能会发生解析问题 -->
@@ -245,9 +256,142 @@ Vue.component('custom-input', {
 </ul>
 ```
 
+### 插槽 slot
+
+#### 单个插槽
+
+**插槽(slot)** 是用来作内容分发的，比如将父组件的内容放到子组件指定的位置，先看个例子:
+
+```HTML
+<navigation-link url="/profile">
+  <!-- 添加一个 Font Awesome 图标 -->
+  <span class="fa fa-user"></span>
+  Your Profile
+</navigation-link>
+```
+
+\<navigation-link\> 中模板的实现为:
+
+```HTML
+<a
+  v-bind:href="url"
+  class="nav-link"
+>
+  <slot></slot>
+</a>
+```
+
+当组件渲染的时候，这个 \<slot\> 元素将会被替换为图标和 “Your Profile”。插槽内可以包含任何模板代码，包括 HTML。
+
+#### 具名插槽
+
+**具名插槽**则是提供了 name 属性的 slot。
+
+```HTML
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+```
+
+```HTML
+<base-layout>
+  <!-- 或者用 template 标签包裹 -->
+  <h1 slot="header">Here might be a page title</h1>
+  <!-- <template slot="header">
+    <h1>Here might be a page title</h1>
+  </template> -->
+
+  <!-- 默认插槽内容 -->
+  <p>A paragraph for the main content.</p>
+  <p>And another one.</p>
+
+  <p slot="footer">Here's some contact info</p>
+</base-layout>
+```
+
+#### 作用域插槽
+
+作用域插槽可以将子组件的值传到父组件供使用，需要在 slot 上绑定数据，以[此篇博客](https://segmentfault.com/a/1190000012996217)为例:
+
+```JS
+// 子组件
+<template>
+  <div class="child">
+
+    <h3>这里是子组件</h3>
+
+    <slot  :data="data"></slot>
+  </div>
+</template>
+
+<script>
+  export default {
+    data: function(){
+      return {
+        data: ['Tate', 'Snow', 'Alice', 'Bob', 'Candy']
+      }
+    },
+    ...
+  }
+</script>
+```
+
+```JS
+// 父组件，数据由子组件提供，自己提供样式布局
+<template>
+  <div class="father">
+    <h3>这里是父组件</h3>
+    <child>
+      <template slot-scope="user">
+        <ul>
+          <li v-for="item in user.data">{ { item } }</li>
+        </ul>
+      </template>
+    </child>
+  </div>
+</template>
+
+<script>
+  import Child from './Child.vue'
+  export default {
+    data: function () {
+      return {
+        msg: ''
+      }
+    },
+    components:{
+      'child': Child
+    }
+  }
+</script>
+```
+
+当我们使用 \<todo-list\> 组件的时候，
+
 ## 生命周期钩子
 
-可查看官网给出的图 - [生命周期钩子](https://cn.vuejs.org/images/lifecycle.png)。
+Vue 2.x 一共有十个钩子，具体可查看官网给出的图 - [生命周期钩子](https://cn.vuejs.org/images/lifecycle.png)。
+
+| 钩子 | 描述 |
+|:--------------|:---------|
+| **beforeCreate** | 组件实例刚被创建，$data 和 $el 均未初始化 |
+| **created** | 组件实例创建完成，$data 属性已绑定，但 $el 未初始化 |
+| **beforeMount** | 模板编译/挂载之前，$el 初始化完毕，但未完成渲染(虚拟 DOM) |
+| **mounted** | 模板编译/挂载之后，完成渲染(真实 DOM) |
+| **beforeUpdate** | 组件更新之前 |
+| **updated** | 组件更新之后 |
+| **activated** | keep-alive 组件激活时 |
+| **deactivated** | keep-alive 组件停用时 |
+| **beforeDestroy** | 实例销毁之前 |
+| **destroyed** | 实例销毁之后。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁 |
 
 ## 指令
 
@@ -345,9 +489,9 @@ Vue.component('custom-input', {
 
 | 修饰符 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **.lazy** | 在“change”时而非“input”时更新 | <code><input v-model.lazy="msg"></code> |
-| **.number** | 将用户的输入值转为数值类型 | <code><input v-model.number="age" type="number"></code> |
-| **.trim** | 自动过滤用户输入的首尾空白字符 | <code><input v-model.trim="msg"></code> |
+| **.lazy** | 在“change”时而非“input”时更新 | <code><\input v-model.lazy="msg"></code> |
+| **.number** | 将用户的输入值转为数值类型 | <code><\input v-model.number="age" type="number"></code> |
+| **.trim** | 自动过滤用户输入的首尾空白字符 | <code><\input v-model.trim="msg"></code> |
 
 ## 计算属性 computed
 
@@ -462,3 +606,5 @@ vm.userProfile = Object.assign({}, vm.userProfile, {
 ## 参考链接
 
 1. [Vue 中文官网](https://cn.vuejs.org/)
+2. [实例化 vue 发生了什么?(详解 vue 生命周期)](https://m.imooc.com/article/22885) By giveMeFivePlz
+3. [深入理解 vue 中的 slot 与 slot-scope](https://segmentfault.com/a/1190000012996217) By 云荒杯倾
