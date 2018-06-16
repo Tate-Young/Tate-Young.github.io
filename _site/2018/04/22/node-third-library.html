@@ -241,6 +241,11 @@
       <td style="text-align: left">Formidable 中间件，解析表单数据</td>
       <td style="text-align: left"><code>require('express-formidable')</code></td>
     </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="https://github.com/Soarez/express-ejs-layouts">express-ejs-layouts</a></strong></td>
+      <td style="text-align: left">Layout support for ejs</td>
+      <td style="text-align: left"><code>require('express-ejs-layouts')</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -523,6 +528,96 @@ app.post('/upload', (req, res) =&gt; {
   uploadDir: '/my/dir',
   multiples: true, // req.files to be arrays of files
 });
+</code></pre>
+
+<h3 id="express-ejs-layouts">express-ejs-layouts</h3>
+
+<p>引用官方 demo:</p>
+
+<pre><code class="language-JS">var expressLayouts = require('express-ejs-layouts');
+
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
+app.get('/', function(req, res) {
+  res.locals = {
+    title: 'expressLayouts',
+    message: 'Tate &amp; Snow'
+  };
+  res.render('view');
+});
+</code></pre>
+
+<pre><code class="language-HTML">&lt;!-- layout.ejs --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;
+
+  &lt;% /* Place any styles in the page in this section. */ %&gt;
+  &lt;%- style %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;% /*
+    Define an required placeholder for the header.
+    If a page doesn't define a header, there will be an error when rendering.
+    */ %&gt;
+    &lt;%- header %&gt;
+  &lt;/header&gt;
+
+  &lt;%- body %&gt;
+
+  &lt;footer&gt;
+    &lt;% /*
+    Define an optional placeholder for the footer.
+    If a page doesn't define a footer, this section will simply be empty.
+    */ %&gt;
+    &lt;%- defineContent('footer') %&gt;
+  &lt;/footer&gt;
+
+  &lt;% /* Place any scripts contained in views at the end of the page. */ %&gt;
+  &lt;%- script %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<pre><code class="language-HTML">&lt;!-- view.ejs --&gt;
+&lt;%- contentFor('header') %&gt;
+&lt;h1 class="page-title"&gt;&lt;%= title %&gt;&lt;/h1&gt;
+
+&lt;%- contentFor('footer') %&gt;
+&lt;h1&gt;This is the footer&lt;/h1&gt;
+
+&lt;% /*
+Content for the `body` section should either be the first thing defined
+in the view, or it has to be declared just like any other section.
+*/ %&gt;
+&lt;%- contentFor('body') %&gt;
+
+This is part of the body.
+
+&lt;style&gt;
+  .page-message { color: blue }
+&lt;/style&gt;
+
+&lt;% /*
+Like stylesheets, scripts can also be extracted.
+This script block will end up at the end of the HTML document.
+*/ %&gt;
+&lt;script&gt;
+  // Script content!
+&lt;/script&gt;
+
+&lt;h1 class="page-message"&gt;&lt;%= message %&gt;&lt;/h1&gt;
+</code></pre>
+
+<p>渲染后页面显示为:</p>
+
+<pre><code class="language-TEXT">expressLayouts
+This is part of the body.
+Tate &amp; Snow
+This is the footer
 </code></pre>
 
 <h2 id="参考链接">参考链接</h2>

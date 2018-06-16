@@ -135,13 +135,13 @@ Vue.component('my-component', {
     propE: {
       type: Object,
       // 对象或数组且一定会从一个工厂函数返回默认值
-      default: function () {
+      default: function() {
         return { message: 'hello' }
       }
     },
     // 自定义验证函数
     propF: {
-      validator: function (value) {
+      validator: function(value) {
         // 这个值必须匹配下列字符串中的一个
         return ['success', 'warning', 'danger'].indexOf(value) !== -1
       }
@@ -186,7 +186,7 @@ Vue.component('my-component', {
 
 ```JS
 methods: { // 值将会作为第一个参数传入这个方法
-  onEnlargeText: function (enlargeAmount) {
+  onEnlargeText: function(enlargeAmount) {
     this.postFontSize += enlargeAmount
   }
 }
@@ -325,16 +325,15 @@ Vue.component('custom-input', {
 // 子组件
 <template>
   <div class="child">
-
     <h3>这里是子组件</h3>
 
-    <slot  :data="data"></slot>
+    <slot :data="data"></slot>
   </div>
 </template>
 
 <script>
   export default {
-    data: function(){
+    data: function() {
       return {
         data: ['Tate', 'Snow', 'Alice', 'Bob', 'Candy']
       }
@@ -362,7 +361,7 @@ Vue.component('custom-input', {
 <script>
   import Child from './Child.vue'
   export default {
-    data: function () {
+    data: function() {
       return {
         msg: ''
       }
@@ -520,7 +519,7 @@ var vm = new Vue({
   },
   computed: {
     // 计算属性的 getter
-    reversedMessage: function () {
+    reversedMessage: function() {
       // `this` 指向 vm 实例
       return this.message.split('').reverse().join('')
     }
@@ -536,7 +535,7 @@ var vm = new Vue({
 
 ```JS
 methods: {
-  reversedMessage: function () {
+  reversedMessage: function() {
     return this.message.split('').reverse().join('')
   }
 }

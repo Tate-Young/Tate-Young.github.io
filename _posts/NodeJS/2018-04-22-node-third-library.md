@@ -31,6 +31,7 @@ tags:
 | **[connect-mongo](https://github.com/jdesboeufs/connect-mongo)** | 通过 Mongodb 存储 session，基于 express-session | <code>require('connect-mongo')(session)</code> |
 | **[connect-flash](https://github.com/jaredhanson/connect-flash)** | 页面通知中间件，基于 session 实现 | <code>require('connect-flash')</code> |
 | **[express-formidable](https://github.com/utatti/express-formidable)** | Formidable 中间件，解析表单数据 | <code>require('express-formidable')</code> |
+| **[express-ejs-layouts](https://github.com/Soarez/express-ejs-layouts)** | Layout support for ejs | <code>require('express-ejs-layouts')</code> |
 
 ## Node 第三方库
 
@@ -323,6 +324,100 @@ app.use(formidable({
   uploadDir: '/my/dir',
   multiples: true, // req.files to be arrays of files
 });
+```
+
+### express-ejs-layouts
+
+引用官方 demo:
+
+```JS
+var expressLayouts = require('express-ejs-layouts');
+
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
+app.get('/', function(req, res) {
+  res.locals = {
+    title: 'expressLayouts',
+    message: 'Tate & Snow'
+  };
+  res.render('view');
+});
+```
+
+```HTML
+<!-- layout.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+
+  <% /* Place any styles in the page in this section. */ %>
+  <%- style %>
+</head>
+<body>
+  <header>
+    <% /*
+    Define an required placeholder for the header.
+    If a page doesn't define a header, there will be an error when rendering.
+    */ %>
+    <%- header %>
+  </header>
+
+  <%- body %>
+
+  <footer>
+    <% /*
+    Define an optional placeholder for the footer.
+    If a page doesn't define a footer, this section will simply be empty.
+    */ %>
+    <%- defineContent('footer') %>
+  </footer>
+
+  <% /* Place any scripts contained in views at the end of the page. */ %>
+  <%- script %>
+</body>
+</html>
+```
+
+```HTML
+<!-- view.ejs -->
+<%- contentFor('header') %>
+<h1 class="page-title"><%= title %></h1>
+
+<%- contentFor('footer') %>
+<h1>This is the footer</h1>
+
+<% /*
+Content for the `body` section should either be the first thing defined
+in the view, or it has to be declared just like any other section.
+*/ %>
+<%- contentFor('body') %>
+
+This is part of the body.
+
+<style>
+  .page-message { color: blue }
+</style>
+
+<% /*
+Like stylesheets, scripts can also be extracted.
+This script block will end up at the end of the HTML document.
+*/ %>
+<script>
+  // Script content!
+</script>
+
+<h1 class="page-message"><%= message %></h1>
+```
+
+渲染后页面显示为:
+
+```TEXT
+expressLayouts
+This is part of the body.
+Tate & Snow
+This is the footer
 ```
 
 ## 参考链接
