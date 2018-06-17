@@ -32,7 +32,9 @@ tags:
 | **[connect-flash](https://github.com/jaredhanson/connect-flash)** | 页面通知中间件，基于 session 实现 | <code>require('connect-flash')</code> |
 | **[express-formidable](https://github.com/utatti/express-formidable)** | Formidable 中间件，解析表单数据 | <code>require('express-formidable')</code> |
 | **[express-ejs-layouts](https://github.com/Soarez/express-ejs-layouts)** | Layout support for ejs | <code>require('express-ejs-layouts')</code> |
-| **[cookie-parser](https://github.com/expressjs/cookie-parser)** | 解析 cookie | <code>require('cookie-parser')</code> |
+| **[cookie-parser](https://github.com/expressjs/cookie-parser)** | 解析 cookie，通过 <code>req.cookies</code> 访问 | <code>require('cookie-parser')</code> |
+| **[body-parser](https://github.com/expressjs/body-parser)** | 解析 POST 请求的请求体，通过 <code>req.body</code> 访问 | <code>require('body-parser')</code> |
+| **[compression](https://github.com/expressjs/compression)** | 会尝试压缩所有经过此中间件的响应体 | <code>require('compression')</code> |
 
 ## Node 第三方库
 
@@ -56,7 +58,7 @@ $.html() // => <h2 class="title welcome">Hello there!</h2>
 
 ```JS
 const request = require('request');
-request('http://www.google.com', function(error, response, body) {
+request('http://www.google.com', function (error, response, body) {
   console.log('error:', error); // Print the error if one occurred
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
   console.log('body:', body); // Print the HTML for the Google homepage.
@@ -70,7 +72,7 @@ request('http://google.com/doodle.png').pipe(fs.createWriteStream('doodle.png'))
 ```
 
 ```JS
-http.createServer(function(req, resp) {
+http.createServer(function (req, resp) {
   if (req.url === '/doodle.png') {
     if (req.method === 'PUT') {
       req.pipe(request.put('http://mysite.com/doodle.png'))
@@ -157,7 +159,7 @@ shell.cp('-R', 'stuff/', 'out/Release');
 // or sed([options,] search_regex, replacement, file_array)
 
 shell.cd('lib');
-shell.ls('*.js').forEach(function(file) {
+shell.ls('*.js').forEach(function (file) {
   shell.sed('-i', 'BUILD_VERSION', 'v0.1.2', file);
   shell.sed('-i', /^.*REMOVE_THIS_LINE.*$/, '', file);
   shell.sed('-i', /.*REPLACE_LINE_WITH_MACRO.*\n/, shell.cat('macro.js'), file);
@@ -200,7 +202,7 @@ app.use(session({
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
 // Access the session as req.session
-app.get('/', function(req, res, next) {
+app.get('/', function (req, res, next) {
   if (req.session.views) {
     req.session.views++
     res.setHeader('Content-Type', 'text/html')
@@ -282,13 +284,13 @@ app.use(flash())
 可以通过 **req.flash()** 来设置通知:
 
 ```JS
-app.get('/flash', function(req, res) {
+app.get('/flash', function (req, res) {
   // Set a flash message by passing the key, followed by the value, to req.flash().
   req.flash('info', 'Flash is back!')
   res.redirect('/');
 })
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   // Get an array of flash messages by passing the key to req.flash()
   res.render('index', { messages: req.flash('info') });
 })
@@ -336,7 +338,7 @@ var expressLayouts = require('express-ejs-layouts');
 
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.locals = {
     title: 'expressLayouts',
     message: 'Tate & Snow'
@@ -451,6 +453,31 @@ app.get('/', function (req, res) {
 // 常用的设置
 app.use(bodyParser.json()) // 解析 application/json
 app.use(bodyParser.urlencoded({ extended: false })) // 解析 application/x-www-form-urlencoded
+```
+
+### compression
+
+compression 会尝试压缩所有经过此中间件的响应体。支持两种压缩模式: deflate 和 gzip。
+
+```JS
+var compression = require('compression')
+app.use(compression()) // compress all responses，可以带 options 参数
+```
+
+还可以通过 filter 来过滤哪些不需要压缩的请求:
+
+```JS
+app.use(compression({filter: shouldCompress}))
+
+function shouldCompress (req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res)
+}
 ```
 
 ## 参考链接

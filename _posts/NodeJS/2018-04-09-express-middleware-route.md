@@ -21,7 +21,7 @@ tags:
 ```JS
 var http = require('http')
 
-var app = http.createServer(function(request, response) {
+var app = http.createServer(function (request, response) {
   response.writeHead(200, {'Content-Type': 'text/plain'})
   response.end('Hello world!')
 });
@@ -35,7 +35,7 @@ Express 框架的核心是对 http 模块的再包装，实际上加了一个中
 var express = require('express')
 var app = express()
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.send('Hello world!')
 });
 
@@ -101,17 +101,17 @@ app.locals.blog = {
 **app.all()** 所有请求都必须通过该中间件，参数中的 “*” 表示对所有路径有效，METHOD 是 HTTP 动词方法，包括 **app.get()**、**app.post()** 等，这些方法的第一个参数，都是请求的路径。除了绝对匹配以外，Express 还允许模式匹配:
 
 ```JS
-app.all('*', function(req, res, next) {
+app.all('*', function (req, res, next) {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   next();
 });
 
 // 由于 get 方法的回调函数没有调用 next 方法，所以只要有一个中间件被调用了，后面的中间件就不会再被调用了
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.end('Tate & Snow');
 });
 
-app.get('/hello/:name', function(req, res) {
+app.get('/hello/:name', function (req, res) {
   res.end('Hello, ' + req.params.name + '.');
 });
 ```
@@ -146,7 +146,7 @@ app.disabled('foo') // true
 
 ```JS
 // 监听端口，启动程序
-app.listen(config.port, function() {
+app.listen(config.port, function () {
   console.log(`${pkg.name} listening on port ${config.port}`)
 })
 ```
@@ -174,7 +174,7 @@ app.listen(config.port, function() {
 ### req.baseUrl / req.path
 
 ```JS
-router.get('/jp', function(req, res) {
+router.get('/jp', function (req, res) {
   console.log(req.baseUrl); // greet
   res.send('Konichiwa!');
 });
@@ -192,7 +192,7 @@ req.path
 **req.params** 是一个对象，其包含了一系列的属性，这些属性和在路由中命名的参数名是一一对应的:
 
 ```JS
-router.get('/:postId', function(req, res, next) {
+router.get('/:postId', function (req, res, next) {
   const postId = req.params.postId // 获取路由 /:postId 的参数 postId
 })
 ```
@@ -220,7 +220,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.post('/', function(req, res) {
+app.post('/', function (req, res) {
   console.log(req.body);
   res.json(req.body);
 })
@@ -258,7 +258,7 @@ req.signedCookies.user // 'tate'
 
 ```JS
 // 添加模板必需的三个变量
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.user = req.session.user
   res.locals.success = req.flash('success').toString()
   res.locals.error = req.flash('error').toString()
@@ -304,7 +304,7 @@ res.redirect('back')
 
 ```JS
 // GET /posts/:postId 单独一篇的文章页
-router.get('/:postId', function(req, res, next) {
+router.get('/:postId', function (req, res, next) {
   const postId = req.params.postId
   // 渲染 HTML 路径为 /views/post.ejs，带进去的变量为 post
   res.render('post', { post: postId })
@@ -317,7 +317,7 @@ router.get('/:postId', function(req, res, next) {
 
 ```JS
 // 404 page
-app.use(function(req, res) {
+app.use(function (req, res) {
   if (!res.headersSent) {
     res.status(404).render('404')
   }
@@ -349,19 +349,19 @@ Express 应用可使用如下几种中间件：
 
 ```JS
 // 没有挂载路径的中间件，应用的每个请求都会执行该中间件
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   console.log('Time:', Date.now());
   next();
 });
 
 // 挂载至 /user/:id 的中间件，任何指向 /user/:id 的请求都会执行它
-app.use('/user/:id', function(req, res, next) {
+app.use('/user/:id', function (req, res, next) {
   console.log('Request Type:', req.method);
   next();
 });
 
 // 路由和句柄函数(中间件系统)，处理指向 /user/:id 的 GET 请求
-app.get('/user/:id', function(req, res, next) {
+app.get('/user/:id', function (req, res, next) {
   res.send('USER');
 });
 ```
@@ -371,7 +371,7 @@ app.get('/user/:id', function(req, res, next) {
 3、**错误处理中间件**其他中间件定义类似，只是要使用 4 个参数，而不是 3 个，其签名如下: (err, req, res, next)，一般在其他 app.use() 和路由调用后，最后定义错误处理中间件:
 
 ```JS
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
@@ -404,7 +404,7 @@ options 参数可选:
 
 ```JS
 var http = require('http');
-http.createServer(function(req, res) {
+http.createServer(function (req, res) {
   // Homepage
   if(req.url == '/') {
     res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -429,7 +429,7 @@ Express 里路由的三种写法如下:
 
 ```JS
 // 匹配 /about 路径的请求
-app.get('/about', function(req, res) {
+app.get('/about', function (req, res) {
   res.send('about');
 });
 ```
@@ -438,7 +438,7 @@ app.get('/about', function(req, res) {
 
 ```JS
 // 匹配 acd 和 abcd
-app.get('/ab?cd', function(req, res) {
+app.get('/ab?cd', function (req, res) {
   res.send('ab?cd');
 });
 ```
@@ -447,12 +447,12 @@ app.get('/ab?cd', function(req, res) {
 
 ```JS
 // 匹配任何路径中含有 a 的路径
-app.get(/a/, function(req, res) {
+app.get(/a/, function (req, res) {
   res.send('/a/');
 });
 
 // 匹配 butterfly、dragonfly，不匹配 butterflyman、dragonfly man等
-app.get(/.*fly$/, function(req, res) {
+app.get(/.*fly$/, function (req, res) {
   res.send('/.*fly$/');
 });
 ```
@@ -460,20 +460,20 @@ app.get(/.*fly$/, function(req, res) {
 路由句柄有多种形式，可以是一个函数、一个函数数组，或者是两者混合:
 
 ```JS
-var cb0 = function(req, res, next) {
+var cb0 = function (req, res, next) {
   console.log('CB0');
   next();
 }
 
-var cb1 = function(req, res, next) {
+var cb1 = function (req, res, next) {
   console.log('CB1');
   next();
 }
 
-app.get('/example/d', [cb0, cb1], function(req, res, next) {
+app.get('/example/d', [cb0, cb1], function (req, res, next) {
   console.log('response will be sent by the next function ...');
   next(); // 跳到下一个路由句柄
-}, function(req, res) {
+}, function (req, res) {
   res.send('Hello from D!');
 });
 ```
@@ -482,13 +482,13 @@ app.get('/example/d', [cb0, cb1], function(req, res, next) {
 
 ```JS
 app.route('/book')
-  .get(function(req, res) {
+  .get(function (req, res) {
     res.send('Get a random book');
   })
-  .post(function(req, res) {
+  .post(function (req, res) {
     res.send('Add a book');
   })
-  .put(function(req, res) {
+  .put(function (req, res) {
     res.send('Update the book');
   });
 ```
@@ -506,11 +506,11 @@ router.use(function timeLog(req, res, next) {
   next();
 });
 // 定义网站主页的路由
-router.get('/', function(req, res) {
+router.get('/', function (req, res) {
   res.send('Birds home page');
 });
 // 定义 about 页面的路由
-router.get('/about', function(req, res) {
+router.get('/about', function (req, res) {
   res.send('About birds');
 });
 

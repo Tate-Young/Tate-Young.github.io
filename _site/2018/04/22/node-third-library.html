@@ -248,8 +248,18 @@
     </tr>
     <tr>
       <td style="text-align: left"><strong><a href="https://github.com/expressjs/cookie-parser">cookie-parser</a></strong></td>
-      <td style="text-align: left">解析 cookie</td>
+      <td style="text-align: left">解析 cookie，通过 <code>req.cookies</code> 访问</td>
       <td style="text-align: left"><code>require('cookie-parser')</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="https://github.com/expressjs/body-parser">body-parser</a></strong></td>
+      <td style="text-align: left">解析 POST 请求的请求体，通过 <code>req.body</code> 访问</td>
+      <td style="text-align: left"><code>require('body-parser')</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="https://github.com/expressjs/compression">compression</a></strong></td>
+      <td style="text-align: left">会尝试压缩所有经过此中间件的响应体</td>
+      <td style="text-align: left"><code>require('compression')</code></td>
     </tr>
   </tbody>
 </table>
@@ -274,7 +284,7 @@ $.html() // =&gt; &lt;h2 class="title welcome"&gt;Hello there!&lt;/h2&gt;
 <p><strong>request</strong> 是一个精简的 HTTP 客户端，支持 HTTPS 协议和重定向。</p>
 
 <pre><code class="language-JS">const request = require('request');
-request('http://www.google.com', function(error, response, body) {
+request('http://www.google.com', function (error, response, body) {
   console.log('error:', error); // Print the error if one occurred
   console.log('statusCode:', response &amp;&amp; response.statusCode); // Print the response status code if a response was received
   console.log('body:', body); // Print the HTML for the Google homepage.
@@ -286,7 +296,7 @@ request('http://www.google.com', function(error, response, body) {
 <pre><code class="language-JS">request('http://google.com/doodle.png').pipe(fs.createWriteStream('doodle.png'))
 </code></pre>
 
-<pre><code class="language-JS">http.createServer(function(req, resp) {
+<pre><code class="language-JS">http.createServer(function (req, resp) {
   if (req.url === '/doodle.png') {
     if (req.method === 'PUT') {
       req.pipe(request.put('http://mysite.com/doodle.png'))
@@ -370,7 +380,7 @@ shell.cp('-R', 'stuff/', 'out/Release');
 // or sed([options,] search_regex, replacement, file_array)
 
 shell.cd('lib');
-shell.ls('*.js').forEach(function(file) {
+shell.ls('*.js').forEach(function (file) {
   shell.sed('-i', 'BUILD_VERSION', 'v0.1.2', file);
   shell.sed('-i', /^.*REMOVE_THIS_LINE.*$/, '', file);
   shell.sed('-i', /.*REPLACE_LINE_WITH_MACRO.*\n/, shell.cat('macro.js'), file);
@@ -411,7 +421,7 @@ app.use(session({
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
 // Access the session as req.session
-app.get('/', function(req, res, next) {
+app.get('/', function (req, res, next) {
   if (req.session.views) {
     req.session.views++
     res.setHeader('Content-Type', 'text/html')
@@ -490,13 +500,13 @@ app.use(flash())
 
 <p>可以通过 <strong>req.flash()</strong> 来设置通知:</p>
 
-<pre><code class="language-JS">app.get('/flash', function(req, res) {
+<pre><code class="language-JS">app.get('/flash', function (req, res) {
   // Set a flash message by passing the key, followed by the value, to req.flash().
   req.flash('info', 'Flash is back!')
   res.redirect('/');
 })
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   // Get an array of flash messages by passing the key to req.flash()
   res.render('index', { messages: req.flash('info') });
 })
@@ -543,7 +553,7 @@ app.post('/upload', (req, res) =&gt; {
 
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.locals = {
     title: 'expressLayouts',
     message: 'Tate &amp; Snow'
@@ -653,6 +663,29 @@ app.get('/', function (req, res) {
 <pre><code class="language-JS">// 常用的设置
 app.use(bodyParser.json()) // 解析 application/json
 app.use(bodyParser.urlencoded({ extended: false })) // 解析 application/x-www-form-urlencoded
+</code></pre>
+
+<h3 id="compression">compression</h3>
+
+<p>compression 会尝试压缩所有经过此中间件的响应体。支持两种压缩模式: deflate 和 gzip。</p>
+
+<pre><code class="language-JS">var compression = require('compression')
+app.use(compression()) // compress all responses，可以带 options 参数
+</code></pre>
+
+<p>还可以通过 filter 来过滤哪些不需要压缩的请求:</p>
+
+<pre><code class="language-JS">app.use(compression({filter: shouldCompress}))
+
+function shouldCompress (req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res)
+}
 </code></pre>
 
 <h2 id="参考链接">参考链接</h2>
