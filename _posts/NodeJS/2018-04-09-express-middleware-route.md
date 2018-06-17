@@ -168,6 +168,8 @@ app.listen(config.port, function() {
 | **req.is** | 判断请求头 Content-Type 的 MIME 类型 |
 | **req.params** | 一个对象，其包含了一系列的属性，这些属性和在路由中命名的参数名是一一对应的 |
 | **req.query** | 一个对象，为每一个路由中的 query string 参数都分配一个属性 |
+| **req.body** | body-parser 等解析请求体的中间件后，会返回以 key-value 的数据 |
+| **req.cookies** | cookie-parser/multer 解析后，会返回请求头中包含的 cookies，默认为 {}，访问签名的 cookie 为 <code>req.signedCookies</code> |
 
 ### req.baseUrl / req.path
 
@@ -209,16 +211,42 @@ req.query.shoe.color // => "blue"
 req.query.shoe.type // => "converse"
 ```
 
+### req.body
+
+```JS
+// body-parser 等解析请求体的中间件后，req.body 会返回以 key-value 的数据
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.post('/', function(req, res) {
+  console.log(req.body);
+  res.json(req.body);
+})
+```
+
+### req.cookies / req.signedCookies
+
+```JS
+// cookie-parser/multer 解析后，会返回请求头中包含的 cookies，默认为 {}
+// Cookie: name=tate
+req.cookies.name // 'tate'
+
+// Cookie: user=tate.CP7AWaXDfAKIRfH49dQzKJx7sKzzSoPq7/AcBBRVwlI3
+req.signedCookies.user // 'tate'
+```
+
 ## Response
 
 | res 属性或方法 | 描述 |
 |:--------------|:---------|
 | **res.headersSent** | 布尔类型的属性，指示这个响应是否已经发送 HTTP 头部 |
 | **res.locals** | 一个对象，其包含了本次请求的响应中的变量，它的变量只提供给本次请求响应的周期内视图渲染里使用(如果有视图的话) |
-| **res.end()** | 结束本响应的过程 |
-| **res.json()** | 发送一个 JSON 响应，如 <code>res.json({user:'tobi'})</code>，res.jsonp 可发送 JSONP 响应 |
-| **res.cookie()** | 设置 cookie |
+| **res.cookie()** | 设置 cookie，反之为清除 cookie <code>res.clearCookie()</code> |
 | **res.send()** | 发送 HTTP 响应 |
+| **res.json()** | 发送一个 JSON 响应，如 <code>res.json({user:'tobi'})</code>，res.jsonp 可发送 JSONP 响应，效果同 send() |
+| **res.end()** | 结束本响应的过程 |
 | **res.redirect()** | 重定向来源于指定 path 的 URL |
 | **res.render()** | 渲染一个视图，然后将渲染得到的 HTML 文档发送给客户端 |
 | **res.status()** | 设置响应对象的 HTTP status |
@@ -238,10 +266,32 @@ app.use(function(req, res, next) {
 })
 ```
 
+### res.cookie()
+
+通过 set-cookie 字段进行设置 cookie，反之为清除 <code>res.clearCookie()</code>。
+
+| Property | Type | Description |
+|:--------------|:---------|:---------|
+| domain | String | Domain name for the cookie. Defaults to the domain name of the app. |
+| expires | Date | Expiry date of the cookie in GMT. If not specified or set to 0, creates a session cookie. |
+| httpOnly | Boolean | Flags the cookie to be accessible only by the web server. |
+| maxAge | String | Convenient option for setting the expiry time relative to the current time in milliseconds. |
+| path | String | Path for the cookie. Defaults to “/”. |
+| secure | Boolean | Marks the cookie to be used with HTTPS only. |
+| signed | Boolean | Indicates if the cookie should be signed. |
+
+```JS
+res.cookie('name', 'tate', { domain: '.example.com', path: '/admin', secure: true });
+
+// 当使用 cookie-parser 中间件时，也可以支持 signed。res.cookie() will use the secret passed to cookieParser(secret) to sign the value
+res.cookie('name', 'tate', { signed: true });
+```
+
 ### res.send() / res.redirect()
 
 ```JS
 res.send('Hello World')
+res.json({name: 'tate'}) // 同 send()，转化为 json
 
 res.redirect(`/posts/${post._id}`)
 // back 将重定向请求到 referer，当没有 referer 的时候，默认为 /

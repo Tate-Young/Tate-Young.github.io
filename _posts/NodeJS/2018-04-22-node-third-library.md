@@ -32,6 +32,7 @@ tags:
 | **[connect-flash](https://github.com/jaredhanson/connect-flash)** | 页面通知中间件，基于 session 实现 | <code>require('connect-flash')</code> |
 | **[express-formidable](https://github.com/utatti/express-formidable)** | Formidable 中间件，解析表单数据 | <code>require('express-formidable')</code> |
 | **[express-ejs-layouts](https://github.com/Soarez/express-ejs-layouts)** | Layout support for ejs | <code>require('express-ejs-layouts')</code> |
+| **[cookie-parser](https://github.com/expressjs/cookie-parser)** | 解析 cookie | <code>require('cookie-parser')</code> |
 
 ## Node 第三方库
 
@@ -285,12 +286,12 @@ app.get('/flash', function(req, res) {
   // Set a flash message by passing the key, followed by the value, to req.flash().
   req.flash('info', 'Flash is back!')
   res.redirect('/');
-});
+})
 
 app.get('/', function(req, res) {
   // Get an array of flash messages by passing the key to req.flash()
   res.render('index', { messages: req.flash('info') });
-});
+})
 ```
 
 ### express-formidable
@@ -420,7 +421,41 @@ Tate & Snow
 This is the footer
 ```
 
+### cookie-parser
+
+解析 HTTP 请求中的 cookie。
+
+```JS
+var cookieParser = require('cookie-parser')
+
+// 不使用签名
+app.use(cookiePareser())
+
+// 使用签名，需要指定一个 secret 字符串，否者会报错
+// app.use(cookiePareser('Tate'))
+
+app.get('/', function (req, res) {
+  // Cookies that have not been signed
+  console.log('Cookies: ', req.cookies)
+
+  // Cookies that have been signed
+  console.log('Signed Cookies: ', req.signedCookies)
+})
+```
+
+### body-parser
+
+解析 HTTP POST 请求中的请求体，通过 <code>req.body</code> 访问。
+
+```JS
+// 常用的设置
+app.use(bodyParser.json()) // 解析 application/json
+app.use(bodyParser.urlencoded({ extended: false })) // 解析 application/x-www-form-urlencoded
+```
+
 ## 参考链接
 
-1. [N-Blog](https://github.com/nswbmw/N-blog/blob/master/book/4.2%20%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C.md) By nswbmw
-1. [nodeJS 实现简单网页爬虫功能](http://www.cnblogs.com/xiaohuochai/p/6960738.html) By 小火柴的蓝色理想
+1. [Github - N-Blog](https://github.com/nswbmw/N-blog/blob/master/book/4.2%20%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C.md) By nswbmw
+2. [nodeJS 实现简单网页爬虫功能](http://www.cnblogs.com/xiaohuochai/p/6960738.html) By 小火柴的蓝色理想
+3. [Express 中间件----cookie-parser(六)](https://www.jianshu.com/p/25ffa01466f9) By HowardHuang
+4. [body-parser Node.js(Express) HTTP 请求体解析中间件](https://blog.csdn.net/yanyang1116/article/details/54847560) By yanyang1116

@@ -246,6 +246,11 @@
       <td style="text-align: left">Layout support for ejs</td>
       <td style="text-align: left"><code>require('express-ejs-layouts')</code></td>
     </tr>
+    <tr>
+      <td style="text-align: left"><strong><a href="https://github.com/expressjs/cookie-parser">cookie-parser</a></strong></td>
+      <td style="text-align: left">解析 cookie</td>
+      <td style="text-align: left"><code>require('cookie-parser')</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -489,12 +494,12 @@ app.use(flash())
   // Set a flash message by passing the key, followed by the value, to req.flash().
   req.flash('info', 'Flash is back!')
   res.redirect('/');
-});
+})
 
 app.get('/', function(req, res) {
   // Get an array of flash messages by passing the key to req.flash()
   res.render('index', { messages: req.flash('info') });
-});
+})
 </code></pre>
 
 <h3 id="express-formidable">express-formidable</h3>
@@ -620,11 +625,43 @@ Tate &amp; Snow
 This is the footer
 </code></pre>
 
+<h3 id="cookie-parser">cookie-parser</h3>
+
+<p>解析 HTTP 请求中的 cookie。</p>
+
+<pre><code class="language-JS">var cookieParser = require('cookie-parser')
+
+// 不使用签名
+app.use(cookiePareser())
+
+// 使用签名，需要指定一个 secret 字符串，否者会报错
+// app.use(cookiePareser('Tate'))
+
+app.get('/', function (req, res) {
+  // Cookies that have not been signed
+  console.log('Cookies: ', req.cookies)
+
+  // Cookies that have been signed
+  console.log('Signed Cookies: ', req.signedCookies)
+})
+</code></pre>
+
+<h3 id="body-parser">body-parser</h3>
+
+<p>解析 HTTP POST 请求中的请求体，通过 <code>req.body</code> 访问。</p>
+
+<pre><code class="language-JS">// 常用的设置
+app.use(bodyParser.json()) // 解析 application/json
+app.use(bodyParser.urlencoded({ extended: false })) // 解析 application/x-www-form-urlencoded
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://github.com/nswbmw/N-blog/blob/master/book/4.2%20%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C.md">N-Blog</a> By nswbmw</li>
+  <li><a href="https://github.com/nswbmw/N-blog/blob/master/book/4.2%20%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C.md">Github - N-Blog</a> By nswbmw</li>
   <li><a href="http://www.cnblogs.com/xiaohuochai/p/6960738.html">nodeJS 实现简单网页爬虫功能</a> By 小火柴的蓝色理想</li>
+  <li><a href="https://www.jianshu.com/p/25ffa01466f9">Express 中间件—-cookie-parser(六)</a> By HowardHuang</li>
+  <li><a href="https://blog.csdn.net/yanyang1116/article/details/54847560">body-parser Node.js(Express) HTTP 请求体解析中间件</a> By yanyang1116</li>
 </ol>
  
 <div id="disqus_thread"></div>

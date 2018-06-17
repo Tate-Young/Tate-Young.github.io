@@ -377,6 +377,14 @@ app.listen(config.port, function() {
       <td style="text-align: left"><strong>req.query</strong></td>
       <td style="text-align: left">一个对象，为每一个路由中的 query string 参数都分配一个属性</td>
     </tr>
+    <tr>
+      <td style="text-align: left"><strong>req.body</strong></td>
+      <td style="text-align: left">body-parser 等解析请求体的中间件后，会返回以 key-value 的数据</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>req.cookies</strong></td>
+      <td style="text-align: left">cookie-parser/multer 解析后，会返回请求头中包含的 cookies，默认为 {}，访问签名的 cookie 为 <code>req.signedCookies</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -416,6 +424,30 @@ req.query.shoe.color // =&gt; "blue"
 req.query.shoe.type // =&gt; "converse"
 </code></pre>
 
+<h3 id="reqbody">req.body</h3>
+
+<pre><code class="language-JS">// body-parser 等解析请求体的中间件后，req.body 会返回以 key-value 的数据
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.post('/', function(req, res) {
+  console.log(req.body);
+  res.json(req.body);
+})
+</code></pre>
+
+<h3 id="reqcookies--reqsignedcookies">req.cookies / req.signedCookies</h3>
+
+<pre><code class="language-JS">// cookie-parser/multer 解析后，会返回请求头中包含的 cookies，默认为 {}
+// Cookie: name=tate
+req.cookies.name // 'tate'
+
+// Cookie: user=tate.CP7AWaXDfAKIRfH49dQzKJx7sKzzSoPq7/AcBBRVwlI3
+req.signedCookies.user // 'tate'
+</code></pre>
+
 <h2 id="response">Response</h2>
 
 <table>
@@ -435,20 +467,20 @@ req.query.shoe.type // =&gt; "converse"
       <td style="text-align: left">一个对象，其包含了本次请求的响应中的变量，它的变量只提供给本次请求响应的周期内视图渲染里使用(如果有视图的话)</td>
     </tr>
     <tr>
-      <td style="text-align: left"><strong>res.end()</strong></td>
-      <td style="text-align: left">结束本响应的过程</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong>res.json()</strong></td>
-      <td style="text-align: left">发送一个 JSON 响应，如 <code>res.json({user:'tobi'})</code>，res.jsonp 可发送 JSONP 响应</td>
-    </tr>
-    <tr>
       <td style="text-align: left"><strong>res.cookie()</strong></td>
-      <td style="text-align: left">设置 cookie</td>
+      <td style="text-align: left">设置 cookie，反之为清除 cookie <code>res.clearCookie()</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>res.send()</strong></td>
       <td style="text-align: left">发送 HTTP 响应</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>res.json()</strong></td>
+      <td style="text-align: left">发送一个 JSON 响应，如 <code>res.json({user:'tobi'})</code>，res.jsonp 可发送 JSONP 响应，效果同 send()</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>res.end()</strong></td>
+      <td style="text-align: left">结束本响应的过程</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>res.redirect()</strong></td>
@@ -482,9 +514,67 @@ app.use(function(req, res, next) {
 })
 </code></pre>
 
+<h3 id="rescookie">res.cookie()</h3>
+
+<p>通过 set-cookie 字段进行设置 cookie，反之为清除 <code>res.clearCookie()</code>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Property</th>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">domain</td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">Domain name for the cookie. Defaults to the domain name of the app.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">expires</td>
+      <td style="text-align: left">Date</td>
+      <td style="text-align: left">Expiry date of the cookie in GMT. If not specified or set to 0, creates a session cookie.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">httpOnly</td>
+      <td style="text-align: left">Boolean</td>
+      <td style="text-align: left">Flags the cookie to be accessible only by the web server.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">maxAge</td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">Convenient option for setting the expiry time relative to the current time in milliseconds.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">path</td>
+      <td style="text-align: left">String</td>
+      <td style="text-align: left">Path for the cookie. Defaults to “/”.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">secure</td>
+      <td style="text-align: left">Boolean</td>
+      <td style="text-align: left">Marks the cookie to be used with HTTPS only.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">signed</td>
+      <td style="text-align: left">Boolean</td>
+      <td style="text-align: left">Indicates if the cookie should be signed.</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">res.cookie('name', 'tate', { domain: '.example.com', path: '/admin', secure: true });
+
+// 当使用 cookie-parser 中间件时，也可以支持 signed。res.cookie() will use the secret passed to cookieParser(secret) to sign the value
+res.cookie('name', 'tate', { signed: true });
+</code></pre>
+
 <h3 id="ressend--resredirect">res.send() / res.redirect()</h3>
 
 <pre><code class="language-JS">res.send('Hello World')
+res.json({name: 'tate'}) // 同 send()，转化为 json
 
 res.redirect(`/posts/${post._id}`)
 // back 将重定向请求到 referer，当没有 referer 的时候，默认为 /
