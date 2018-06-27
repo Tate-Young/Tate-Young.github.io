@@ -289,12 +289,12 @@
     <tr>
       <td style="text-align: left">tag</td>
       <td style="text-align: left">标签，版本库的一个快照</td>
-      <td style="text-align: left"><code>git tag v1.0.0 commitId</code></td>
+      <td style="text-align: left"><code>git tag v1.0.0 commit_id</code></td>
     </tr>
     <tr>
       <td style="text-align: left">cherry-pick</td>
       <td style="text-align: left">选择某一个分支中的一个或几个 commit 来进行操作</td>
-      <td style="text-align: left"><code>git cherry-pick commitId</code></td>
+      <td style="text-align: left"><code>git cherry-pick commit_id</code></td>
     </tr>
   </tbody>
 </table>
@@ -383,14 +383,14 @@ gut revert HEAD~1
   </li>
   <li>把 HEAD 移动到特定的提交:
     <ul>
-      <li><code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用</li>
+      <li><code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用。也可以跟 commit id</li>
       <li><strong>detached HEAD</strong>: 当前的 HEAD 没有任何分支引用会造成 HEAD 分离。若此时添加新的提交，然后切换到别的分支之后就没办法回到之前添加的这些提交。因此，在为 detached HEAD 添加新的提交时应该创建一个新的分支。</li>
     </ul>
   </li>
 </ul>
 
 <video controls="">
-    <source src="http://github.liaoxuefeng.com/sinaweibopy/video/master-and-dev-ff.mp4" type="video/mp4" />&lt;/source&gt;
+  &lt;source src="http://github.liaoxuefeng.com/sinaweibopy/video/master-and-dev-ff.mp4 type="video/mp4"&gt;&lt;/source&gt;
 </video>
 
 <h3 id="merge">merge</h3>

@@ -1,18 +1,17 @@
 {
   "name": "Github-Tate-Young",
   "version": "1.0.0",
-  "host": "10.88.66.64",
-  "port": "8090",
   "main": "index.js",
   "repository": "https://github.com/Tate-Young/Tate-Young.github.io.git",
   "author": "Tate-Young <smd_tate@163.com>",
   "scripts": {
     "start": "#jekyll serve\n bundle exec jekyll serve",
-    "test": "npm run start -- --host $npm_package_host --port $npm_package_port",
+    "test": "cross-var echo $npm_package_version",
     "commit": "scripty $*"
   },
   "license": "MIT",
   "devDependencies": {
+    "cross-var": "^1.1.0",
     "editorconfig": "^0.15.0",
     "imagemin-cli": "^3.0.0",
     "scripty": "^1.7.2"

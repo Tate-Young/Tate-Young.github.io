@@ -45,8 +45,8 @@ tags:
 | pull | 拉取自远端仓库 | <code>git pull</code> |
 | log | 查看提交历史，-p 展开显示每次提交的内容差异，-2 则仅显示最近的两次更新 | <code>git log -p -2</code> |
 | reflog | 查看命令历史 | <code>git reflog</code> |
-| tag | 标签，版本库的一个快照 | <code>git tag v1.0.0 commitId</code> |
-| cherry-pick | 选择某一个分支中的一个或几个 commit 来进行操作 | <code>git cherry-pick commitId</code> |
+| tag | 标签，版本库的一个快照 | <code>git tag v1.0.0 commit_id</code> |
+| cherry-pick | 选择某一个分支中的一个或几个 commit 来进行操作 | <code>git cherry-pick commit_id</code> |
 
 > Git 命令也可设置别名 <code>git config --global alias.unstage 'reset HEAD'</code>，之后可直接使用命令 <code>git unstage</code>。
 
@@ -117,11 +117,11 @@ gut revert HEAD~1
   * <code>git checkout -b branchname</code> - 创建并切换至该分支
 
 * 把 HEAD 移动到特定的提交:
-  * <code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用
+  * <code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用。也可以跟 commit id
   * **detached HEAD**: 当前的 HEAD 没有任何分支引用会造成 HEAD 分离。若此时添加新的提交，然后切换到别的分支之后就没办法回到之前添加的这些提交。因此，在为 detached HEAD 添加新的提交时应该创建一个新的分支。
 
 <video controls="">
-    <source src="http://github.liaoxuefeng.com/sinaweibopy/video/master-and-dev-ff.mp4" type="video/mp4"></source>
+  <source src="http://github.liaoxuefeng.com/sinaweibopy/video/master-and-dev-ff.mp4 type="video/mp4"></source>
 </video>
 
 ### merge
