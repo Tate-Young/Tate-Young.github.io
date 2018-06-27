@@ -509,6 +509,84 @@ git show v1.0.0
 # ...
 </code></pre>
 
+<h3 id="log">log</h3>
+
+<p><strong>log</strong> 一般用于查看提交历史，具体可以<a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2">参考官方文档</a>。常用的几个参数如下:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">选项</th>
+      <th style="text-align: left">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">-p</td>
+      <td style="text-align: left">按补丁格式显示每个更新之间的差异</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">–word-diff</td>
+      <td style="text-align: left">按 word diff 格式显示差异</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">–stat</td>
+      <td style="text-align: left">显示每次更新的文件修改统计信息</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">–shortstat</td>
+      <td style="text-align: left">只显示 –stat 中最后的行数修改添加移除统计</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">–name-only</td>
+      <td style="text-align: left">仅在提交信息后显示已修改的文件清单</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">–name-status</td>
+      <td style="text-align: left">显示新增、修改、删除的文件清单</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">–abbrev-commit</td>
+      <td style="text-align: left">仅显示 SHA-1 的前几个字符，而非所有的 40 个字符</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">–graph</td>
+      <td style="text-align: left">显示 ASCII 图形表示的分支合并历史</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">–pretty</td>
+      <td style="text-align: left">使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和 format（后跟指定格式）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">–oneline</td>
+      <td style="text-align: left">–pretty=oneline –abbrev-commit 的简化用法</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-SHELL">git log --pretty=format:"%h %s" --graph
+* 2d3acf9 ignore errors from SIGCHLD on trap
+*  5e3ee11 Merge branch 'master' of git://github.com/dustin/grit
+|\
+| * 420eac9 Added a method for getting the current branch.
+* | 30e367c timeout code and tests
+* | 5a09431 add timeout protection to grit
+* | e1193f8 support for heads with slashes in them
+|/
+* d6016bc require time for xmlschema
+*  11d191e Merge branch 'defunkt' into local
+</code></pre>
+
+<pre><code class="language-SHELL">git log --graph --pretty=oneline --abbrev-commit
+# 简写 git log --oneline
+* 4b2a457c (HEAD -&gt; master, origin/master, origin/HEAD) gitignore
+* 3966c325 delete node_modules
+* 1bac16f5 delete
+* dd0d3981 404
+* e3a6c29d delete
+* 8b0287d5 update
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
