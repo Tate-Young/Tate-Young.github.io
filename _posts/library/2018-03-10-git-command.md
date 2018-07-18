@@ -50,6 +50,28 @@ tags:
 
 > Git 命令也可设置别名 <code>git config --global alias.unstage 'reset HEAD'</code>，之后可直接使用命令 <code>git unstage</code>。
 
+### branch
+
+**branch** 用来查看和创建分支，-d 参数为删除分支，-D 强制删除:
+
+```SHELL
+# 查看本地分支
+git branch
+
+# 查看远端分支
+git branch -r
+```
+
+```SHELL
+# 强制删除本地分支
+git branch -D branchname
+
+# 删除远端分支
+git branch -r -d origin/branchname
+# 或者
+git push origin :branchname
+```
+
 ### commit
 
 **commit** 命令用于提交代码到本地仓库，常用到的参数:
@@ -70,8 +92,49 @@ git commit --amend
 ```
 
 <video controls="">
-    <source src="http://github.liaoxuefeng.com/sinaweibopy/video/master-branch-forward.mp4" type="video/mp4"></source>
+  <source src="http://github.liaoxuefeng.com/sinaweibopy/video/master-branch-forward.mp4" type="video/mp4"></source>
 </video>
+
+### pull
+
+**pull** 命令从远端拉取新的代码并合并，相当于 "fetch + merge"，如果当前分支与远程分支存在追踪关系，git pull 就可以省略远程分支名。
+
+```SHELL
+# 完整写法
+git pull <远程主机名> <远程分支名>:<本地分支名>
+```
+
+```SHELL
+# 手动建立追踪关系，指定 master 分支追踪 origin/branchname 分支
+git branch --set-upstream master origin/branchname
+
+# 当前分支自动与唯一一个追踪分支进行合并
+git pull
+```
+
+### push
+
+**push** 命令用于将本地分支的更新，推送到远程主机，格式类似于 pull:
+
+```SHELL
+# 完整写法
+git push <远程主机名> <本地分支名>:<远程分支名>
+
+# 将本地的 master 分支推送到 origin 主机的 master 分支。若不存在则会被新建
+git push origin master
+
+# Push the new branch, set local branch to track the new remote
+git push --set-upstream origin new_branch
+```
+
+如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支:
+
+```SHELL
+# 删除远程分支
+git push origin :master
+# 等同于
+git push origin --delete master
+```
 
 ### reset
 
@@ -88,7 +151,7 @@ git commit --amend
 * 版本恢复 - <code>git reflog</code> 查看命令历史
 
 <video controls="">
-    <source src="http://github.liaoxuefeng.com/sinaweibopy/video/git-reset.mp4" type="video/mp4"></source>
+  <source src="http://github.liaoxuefeng.com/sinaweibopy/video/git-reset.mp4" type="video/mp4"></source>
 </video>
 
 ### revert
@@ -115,6 +178,7 @@ gut revert HEAD~1
 * 切换分支:
   * <code>git checkout branchname</code> - 切换至指定分支
   * <code>git checkout -b branchname</code> - 创建并切换至该分支
+  * <code>git checkout orgin/branchname -b branchname</code> - 从远端拉取到本地并切换至该分支
 
 * 把 HEAD 移动到特定的提交:
   * <code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用。也可以跟 commit id
@@ -285,10 +349,19 @@ git log --graph --pretty=oneline --abbrev-commit
 * 8b0287d5 update
 ```
 
+```SHELL
+# 查看本地分支的提交历史
+git log (branchname)
+
+# 查看指定远程分支的提交历史
+git log origin/branchname
+```
+
 ## 参考链接
 
 1. [Git](https://git-scm.com/book/zh/v2)
-1. [Git 教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000) By 廖雪峰
-1. [掘金 - Git 原理详解及实用指南](https://juejin.im/book/5a124b29f265da431d3c472e) By 抛物线
-1. [图解 Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html) By marklodato
-1. [atlassian - Resetting, Checking Out & Reverting](https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting)
+2. [Git 教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000) By 廖雪峰
+3. [掘金 - Git 原理详解及实用指南](https://juejin.im/book/5a124b29f265da431d3c472e) By 抛物线
+4. [图解 Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html) By marklodato
+5. [atlassian - Resetting, Checking Out & Reverting](https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting)
+6. [易百教程 - Git](https://www.yiibai.com/git/git_pull.html) By 初生不惑
