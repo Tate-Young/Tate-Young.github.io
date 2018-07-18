@@ -185,7 +185,7 @@ gut revert HEAD~1
   * **detached HEAD**: 当前的 HEAD 没有任何分支引用会造成 HEAD 分离。若此时添加新的提交，然后切换到别的分支之后就没办法回到之前添加的这些提交。因此，在为 detached HEAD 添加新的提交时应该创建一个新的分支。
 
 <video controls="">
-  <source src="http://github.liaoxuefeng.com/sinaweibopy/video/master-and-dev-ff.mp4 type="video/mp4"></source>
+  <source src="http://liaoxuefeng.gitee.io/git-resources/master-and-dev-ff.mp4" type="video/mp4"></source>
 </video>
 
 ### merge
