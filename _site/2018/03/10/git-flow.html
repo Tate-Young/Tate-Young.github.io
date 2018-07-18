@@ -291,6 +291,11 @@ doc/*.txt
 doc/**/*.txt
 </code></pre>
 
+<p>如果某个文件可以放开，直接在 .gitignore 中去除对应配置并重新追踪即可;如果某个文件在忽略前已经被追踪，直接在 .gitignore 中添加是无效的。需要去除文件缓存:</p>
+
+<pre><code class="language-SHELL">git rm -r --cached filename
+</code></pre>
+
 <h2 id="git-hooks">Git Hooks</h2>
 
 <p><strong>Git 钩子(hooks)</strong>都被存储在 Git 目录下的 hooks 子目录中，即大部分项目中的 .git/hooks。在 Git 1.6 版本之后，这些样本名都是以.sample 结尾，因此必须重新命名。Git 提供两组钩子：<a href="https://git-scm.com/book/zh/v1/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git%E6%8C%82%E9%92%A9">客户端和服务端</a>。</p>
