@@ -42,7 +42,7 @@ tags:
 | reset | 文件从暂存区回退到工作区；版本回退 | <code>git reset HEAD filename</code> |
 | revert | 回滚并创建一个新的提交 | <code>git revert HEAD^</code> |
 | push | 推送到远端仓库，--force 参数为强制推送，缩写 -f | <code>git push --force</code> |
-| pull | 拉取自远端仓库 | <code>git pull</code> |
+| pull | 从远端拉取新的代码并合并 | <code>git pull</code> |
 | log | 查看提交历史，-p 展开显示每次提交的内容差异，-2 则仅显示最近的两次更新 | <code>git log -p -2</code> |
 | reflog | 查看命令历史 | <code>git reflog</code> |
 | tag | 标签，版本库的一个快照 | <code>git tag v1.0.0 commit_id</code> |
@@ -309,7 +309,7 @@ git show v1.0.0
 
 ### log
 
-**log** 一般用于查看提交历史，具体可以[参考官方文档](https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2)。常用的几个参数如下:
+**log** 一般用于查看提交历史，具体可以[参考官方文档](https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2)，更多详细用法可[参考这里](https://github.com/geeeeeeeeek/git-recipes/wiki/5.3-Git-log-%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95)。常用的几个参数如下:
 
 |选项 | 说明 |
 |:-------|:-------|
@@ -365,3 +365,4 @@ git log origin/branchname
 4. [图解 Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html) By marklodato
 5. [atlassian - Resetting, Checking Out & Reverting](https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting)
 6. [易百教程 - Git](https://www.yiibai.com/git/git_pull.html) By 初生不惑
+7. [Github - git-recipes](https://github.com/geeeeeeeeek/git-recipes/wiki) By geeeeeeeeek
