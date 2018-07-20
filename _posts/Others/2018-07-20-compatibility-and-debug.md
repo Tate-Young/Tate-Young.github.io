@@ -52,5 +52,5 @@ tags:
 
 > 未完待续
 
-1. [Charles 从入门到精通](https://blog.devtang.com/2015/11/14/charles-introduction/) By  
+1. [Charles 从入门到精通](https://blog.devtang.com/2015/11/14/charles-introduction/) By 唐巧
 2. [iOS Safari 点击事件失效](https://blog.zfanw.com/ios-safari-click-not-working/) By 陈三

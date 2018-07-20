@@ -523,11 +523,11 @@ export default class Watcher {
 
 ![vue-reactive.jpg](https://i.loli.net/2018/07/20/5b51aaa9e325e.jpg)
 
-* 模板编译过程中的指令和数据绑定、computed 属性和 watch 函数中的对象也会生成 Watcher 实例，在模板编译的过程中，会执行 Watcher 实例的 expOrFn（初始化 Watcher 实例时传入的参数），进入 watcher.js 中的 get 函数 访问 expOrFn 涉及的所有属性；
-* 访问属性之前，Watcher 会设置 Dep 的静态属性 Dep.target 指向其自身，然后开始依赖收集；
-* 访问属性的过程中，属性的 getter 函数会被访问；
-* 属性 getter 函数中会判断 Dep.target（target 中保存的是第 2 步中设置的 Watcher 实例）是否存在，若存在则将 getter 函数所在的 Observer 实例的 Dep 实例保存到 Watcher 的列表中，并在此 Dep 实例中添加 Watcher 为订阅者；
-* 重复上述过程直至 Watcher 的 expOrFn 涉及的所有属性均访问结束（即 expOrFn 数中所有的数据的 getter 函数都已被触发），Dep.target 被置为 null，依赖收集完成；
+* 模板编译过程中的指令和数据绑定、computed 属性和 watch 函数中的对象也会生成 Watcher 实例，在模板编译的过程中，会执行 Watcher 实例的 expOrFn（初始化 Watcher 实例时传入的参数），进入 watcher.js 中的 get 函数 访问 expOrFn 涉及的所有属性;
+* 访问属性之前，Watcher 会设置 Dep 的静态属性 Dep.target 指向其自身，然后开始依赖收集;
+* 访问属性的过程中，属性的 getter 函数会被访问;
+* 属性 getter 函数中会判断 Dep.target（target 中保存的是第 2 步中设置的 Watcher 实例）是否存在，若存在则将 getter 函数所在的 Observer 实例的 Dep 实例保存到 Watcher 的列表中，并在此 Dep 实例中添加 Watcher 为订阅者;
+* 重复上述过程直至 Watcher 的 expOrFn 涉及的所有属性均访问结束（即 expOrFn 数中所有的数据的 getter 函数都已被触发），Dep.target 被置为 null，依赖收集完成。
 
 ### 总流程图
 
@@ -535,8 +535,8 @@ export default class Watcher {
 
 总结来说就是：
 
-* 在生命周期的 initState 方法中将 data、prop 中的数据劫持，通过 observe 方法与 defineReactive 方法将相关对象转换为 Observer 对象；
-* 然后在 initRender 方法中解析模板，通过 Watcher 对象，Dep 对象与观察者模式将模板中的指令与对应的数据建立依赖关系，在这个依赖收集的过程中，使用了全局对象 Dep.target ；
+* 在生命周期的 initState 方法中将 data、prop 中的数据劫持，通过 observe 方法与 defineReactive 方法将相关对象转换为 Observer 对象;
+* 然后在 initRender 方法中解析模板，通过 Watcher 对象，Dep 对象与观察者模式将模板中的指令与对应的数据建立依赖关系，在这个依赖收集的过程中，使用了全局对象 Dep.target;
 * 最后，当数据发生改变时，触发 Object.defineProperty 方法中的 dep.notify 方法，遍历该数据的依赖列表，执行其 update 方法通知 Watcher 进行视图更新。
 
 ## 参考链接
