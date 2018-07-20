@@ -436,7 +436,8 @@ gut revert HEAD~1
     <ul>
       <li><code>git checkout branchname</code> - 切换至指定分支</li>
       <li><code>git checkout -b branchname</code> - 创建并切换至该分支</li>
-      <li><code>git checkout orgin/branchname -b branchname</code> - 从远端拉取到本地并切换至该分支</li>
+      <li><code>git checkout -b branchname orgin/branchname</code> - 从远端拉取到本地并切换至该分支</li>
+      <li><code>git checkout orgin/branchname -b branchname</code> - 同上，推荐上面写法</li>
     </ul>
   </li>
   <li>把 HEAD 移动到特定的提交:

@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "记各种调试和兼容问题 - ",
+		"url" : "/2018/07/20/compatibility-and-debug.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "NPM Scripts - ",
 		"url" : "/2018/06/27/npm-scripts.html"
 	}

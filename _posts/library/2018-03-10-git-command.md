@@ -178,7 +178,8 @@ gut revert HEAD~1
 * 切换分支:
   * <code>git checkout branchname</code> - 切换至指定分支
   * <code>git checkout -b branchname</code> - 创建并切换至该分支
-  * <code>git checkout orgin/branchname -b branchname</code> - 从远端拉取到本地并切换至该分支
+  * <code>git checkout -b branchname orgin/branchname</code> - 从远端拉取到本地并切换至该分支
+  * <code>git checkout orgin/branchname -b branchname</code> - 同上，推荐上面写法
 
 * 把 HEAD 移动到特定的提交:
   * <code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用。也可以跟 commit id
