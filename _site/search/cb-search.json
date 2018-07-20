@@ -3,16 +3,16 @@
 	"data" : [
 	 
 	{
-		"title" : "记各种调试和兼容问题 - ",
-		"url" : "/2018/07/20/compatibility-and-debug.html"
+		"title" : "Vue 深入响应式原理 - ",
+		"url" : "/2018/07/20/vue-reactivity-in-depth.html"
 	}
 	
 	,
 	
     
 	{
-		"title" : "Vue 深入响应式原理 - ",
-		"url" : "/2018/07/20/vue-reactivity-in-depth.html"
+		"title" : "记各种调试和兼容问题 - ",
+		"url" : "/2018/07/20/compatibility-and-debug.html"
 	}
 	
 	,
