@@ -428,6 +428,13 @@ Vue 2.x 一共有十个钩子，具体可查看官网给出的图 - [生命周�
 <div v-for="item of items" :key="item.id">{ { item } }</div>
 ```
 
+总结几个 class 类的绑定方式:
+
+```HTML
+<div :class="{ 'active': isActive, 'text-danger': isDangerous }"></div>
+<div :class="['active list-id-' + myId, {'text-danger': isDangerous }]"></div>
+```
+
 ### 修饰符
 
 修饰符可分为以下几类:
@@ -541,69 +548,11 @@ methods: {
 }
 ```
 
-上述两个方法的结果相同，但区别是计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。
-
-## 更新检测
-
-### 数组
-
-Vue 包含一组观察数组的变异方法，所以它们也将会触发视图更新。这些方法比如有 push、pop、splice、sort 等；相反 filter、slice、concat 等方法不会改变原数组，所以不会触发视图更新，是非常高效的操作。举个栗子 🌰:
-
-```JS
-var vm = new Vue({
-  data: {
-    items: ['a', 'b', 'c']
-  }
-})
-vm.items[1] = 'x' // 不是响应性的
-vm.items.length = 2 // 不是响应性的
-```
-
-解决方案:
-
-```JS
-// Vue.set
-Vue.set(vm.items, indexOfItem, newValue)
-
-// 等价于 vm.$set 实例方法
-vm.$set(vm.items, indexOfItem, newValue)
-
-// 或者转换为变异方法
-vm.items.splice(indexOfItem, 1, newValue)
-```
-
-### 对象
-
-Vue 不能检测对象属性的添加或删除:
-
-```JS
-var vm = new Vue({
-  data: {
-    a: 1 // `vm.a` 现在是响应式的
-  }
-})
-
-vm.b = 2 // `vm.b` 不是响应式的
-```
-
-当然可以采用上述数组中的 Vue.set 方法，如果利用 Object.assign 方法添加新的响应式属性:
-
-```JS
-// bad
-Object.assign(vm.userProfile, {
-  age: 27,
-  favoriteColor: 'Vue Green'
-})
-
-// good
-vm.userProfile = Object.assign({}, vm.userProfile, {
-  age: 27,
-  favoriteColor: 'Vue Green'
-})
-```
+上述两个方法的结果相同，但区别是计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。但是计算属性目前无法传参。
 
 ## 参考链接
 
 1. [Vue 中文官网](https://cn.vuejs.org/)
 2. [实例化 vue 发生了什么?(详解 vue 生命周期)](https://m.imooc.com/article/22885) By giveMeFivePlz
 3. [深入理解 vue 中的 slot 与 slot-scope](https://segmentfault.com/a/1190000012996217) By 云荒杯倾
+4. [Vue2.0 源码阅读：响应式原理](https://zhouweicsu.github.io/blog/2017/03/07/vue-2-0-reactivity/) By zhouweicsu
