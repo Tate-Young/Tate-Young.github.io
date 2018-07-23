@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "我的工作输出 - ",
+		"url" : "/2018/07/23/my-sharing.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Vue 深入响应式原理 - ",
 		"url" : "/2018/07/20/vue-reactivity-in-depth.html"
 	}

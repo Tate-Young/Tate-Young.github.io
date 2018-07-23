@@ -559,12 +559,12 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
       // 如果是函数，相当于指定了当前订阅者获取数据的方法，每次订阅者通过这个方法获取数据然后与之前的值进行对比
       this.getter = expOrFn
     } else {
-      this.getter = parsePath(expOrFn)// 否则的话将表达式解析为可执行的函数
+      this.getter = parsePath(expOrFn) // 否则的话将表达式解析为可执行的函数
       ......
     }
     this.value = this.lazy
       ? undefined
-      : this.get()   //如果 lazy 不为 true，则执行 get 函数进行依赖收集
+      : this.get()   // 如果 lazy 不为 true，则执行 get 函数进行依赖收集
   }
    /* 获得 getter 的值并且重新进行依赖收集 */
   get () {
@@ -667,7 +667,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
 <p><img src="https://i.loli.net/2018/07/20/5b51aaa9e325e.jpg" alt="vue-reactive.jpg" /></p>
 
 <ul>
-  <li>模板编译过程中的指令和数据绑定、computed 属性和 watch 函数中的对象也会生成 Watcher 实例，在模板编译的过程中，会执行 Watcher 实例的 expOrFn（初始化 Watcher 实例时传入的参数），进入 watcher.js 中的 get 函数 访问 expOrFn 涉及的所有属性;</li>
+  <li>模板编译过程中的指令和数据绑定、computed 属性和 watch 函数中的对象会生成 Watcher 实例，在模板编译的过程中，会执行 Watcher 实例的 expOrFn（初始化 Watcher 实例时传入的参数），进入 watcher.js 中的 get 函数 访问 expOrFn 涉及的所有属性;</li>
   <li>访问属性之前，Watcher 会设置 Dep 的静态属性 Dep.target 指向其自身，然后开始依赖收集;</li>
   <li>访问属性的过程中，属性的 getter 函数会被访问;</li>
   <li>属性 getter 函数中会判断 Dep.target（target 中保存的是第 2 步中设置的 Watcher 实例）是否存在，若存在则将 getter 函数所在的 Observer 实例的 Dep 实例保存到 Watcher 的列表中，并在此 Dep 实例中添加 Watcher 为订阅者;</li>
