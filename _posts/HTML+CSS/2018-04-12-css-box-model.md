@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  CSS 盒子模型与定位
 date:   2018-04-12 16:00:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: https://i.loli.net/2018/07/24/5b56b1a40824c.jpg
 tags:
 - css
 ---
