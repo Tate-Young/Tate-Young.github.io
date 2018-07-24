@@ -24,6 +24,7 @@ tags:
 | **[marked](https://github.com/markedjs/marked)** | 转换 Markdown 为 Html 显示 | <code>require('marked')</code> |
 | **[chalk](https://github.com/chalk/chalk)** | 修改终端输出信息的样式 | <code>require('chalk')</code> |
 | **[shelljs](https://github.com/shelljs/shelljs)** | 执行 shell 命令 | <code>require('shelljs')</code> |
+| **[async](https://github.com/caolan/async)** | Async utilities | <code>require('async')</code> |
 
 | Express | 描述 | 栗子 |
 |:--------------|:---------|:---------|
@@ -171,6 +172,116 @@ if (shell.exec('git commit -am "Auto-commit"').code !== 0) {
   shell.echo('Error: Git commit failed');
   shell.exit(1);
 }
+```
+
+### async
+
+**async** 库的所有方法可以从[官方这里查看](https://caolan.github.io/async/docs.html#auto)，这里介绍三个比较常用的方法:
+
+* waterfall - 异步执行
+* parallel - 同步执行
+* auto - 可同步可异步
+
+1、waterfall
+
+Runs the tasks array of functions in series, each passing their results to the next in the array. However, if any of the tasks pass an error to their own callback, the next function is not executed, and the main callback is immediately called with the error.
+
+```JS
+import waterfall from 'async/waterfall';
+
+async.waterfall([
+  myFirstFunction,
+  mySecondFunction,
+  myLastFunction,
+], function (err, result) {
+  // result now equals 'done'
+});
+function myFirstFunction (callback) {
+  callback(null, 'one', 'two');
+}
+function mySecondFunction (arg1, arg2, callback) {
+  // arg1 now equals 'one' and arg2 now equals 'two'
+  callback(null, 'three');
+}
+function myLastFunction (arg1, callback) {
+  // arg1 now equals 'three'
+  callback(null, 'done');
+}
+```
+
+2、parallel
+
+Run the tasks collection of functions in parallel, without waiting until the previous function has completed. If any of the functions pass an error to its callback, the main callback is immediately called with the value of the error. Once the tasks have completed, the results are passed to the final callback as an array
+
+```JS
+import parallel from 'async/parallel';
+
+async.parallel([
+  function (callback) {
+    setTimeout(function() {
+      callback(null, 'one');
+    }, 200);
+  },
+  function (callback) {
+    setTimeout(function() {
+      callback(null, 'two');
+    }, 100);
+  }
+],
+// optional callback
+function(err, results) {
+    // the results array will equal ['one','two'] even though the second function had a shorter timeout.
+});
+
+// an example using an object instead of an array
+async.parallel({
+  one: function (callback) {
+    setTimeout(function() {
+      callback(null, 1);
+    }, 200);
+  },
+  two: function (callback) {
+    setTimeout(function() {
+      callback(null, 2);
+    }, 100);
+  }
+}, function (err, results) {
+  // results is now equals to: {one: 1, two: 2}
+});
+```
+
+3、auto
+
+能够同时满足上面两种需求:
+
+```JS
+import auto from 'async/auto';
+
+async.auto({
+  get_data: function(callback) {
+    console.log('in get_data');
+    // async code to get some data
+    callback(null, 'data', 'converted to array');
+  },
+  make_folder: function(callback) {
+    console.log('in make_folder');
+    // async code to create a directory to store a file in,this is run at the same time as getting the data
+    callback(null, 'folder');
+  },
+  write_file: ['get_data', 'make_folder', function(results, callback) {
+    console.log('in write_file', JSON.stringify(results));
+    // once there is some data and the directory exists,write the data to a file in the directory
+    callback(null, 'filename');
+  }],
+  email_link: ['write_file', function(results, callback) {
+    console.log('in email_link', JSON.stringify(results));
+    // once the file is written let's email a link to it...,results.write_file contains the filename returned by write_file.
+    callback(null, {'file':results.write_file, 'email':'user@example.com'});
+  }]
+}, function(err, results) {
+  console.log('err = ', err);
+  console.log('results = ', results);
+});
 ```
 
 ## Express 中间件
@@ -486,3 +597,4 @@ function shouldCompress (req, res) {
 2. [nodeJS 实现简单网页爬虫功能](http://www.cnblogs.com/xiaohuochai/p/6960738.html) By 小火柴的蓝色理想
 3. [Express 中间件----cookie-parser(六)](https://www.jianshu.com/p/25ffa01466f9) By HowardHuang
 4. [body-parser Node.js(Express) HTTP 请求体解析中间件](https://blog.csdn.net/yanyang1116/article/details/54847560) By yanyang1116
+5. [async 官方文档](https://caolan.github.io/async/docs.html)
