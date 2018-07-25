@@ -544,4 +544,3 @@ export default class Watcher {
 1. [Vue 中文官网](https://cn.vuejs.org/)
 2. [Vue2.0 源码阅读：响应式原理](https://zhouweicsu.github.io/blog/2017/03/07/vue-2-0-reactivity/) By zhouweicsu
 3. [深入理解 Vue 响应式原理](http://jungahuang.com/2018/02/07/About-responsive-of-Vue/#more) By Junga Huang
-4. [Vue2.0 源码阅读：响应式原理](https://zhouweicsu.github.io/blog/2017/03/07/vue-2-0-reactivity/) By zhouweicsu
