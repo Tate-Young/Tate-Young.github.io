@@ -13,11 +13,13 @@ tags:
 ---
 # {{ page.title }}
 
+## 转换
+
 借用[这篇文章](https://atendesigngroup.com/blog/array-map-filter-and-reduce-js)的图例，很方便看出来三者的区别:
 
 ![array-map-filter-reduce.png](https://i.loli.net/2018/07/25/5b57e50329aba.png)
 
-## map
+### map
 
 ```JS
 // 完整语法
@@ -47,7 +49,7 @@ var values = Array.prototype.map.call(elems, function(obj) {
 });
 ```
 
-## filter
+### filter
 
 ```JS
 // 完整语法
@@ -72,7 +74,7 @@ r = arr.filter(function (element, index, self) {
 });
 ```
 
-## reduce
+### reduce
 
 ```JS
 // 完整语法
@@ -114,7 +116,7 @@ let result = arr.sort().reduce((init, current) => {
 console.log(result); // [1, 2, 3, 4, 5]
 ```
 
-## 其他方法
+## 分割
 
 ### slice 数组/字符串
 
