@@ -101,7 +101,7 @@ console.log(p1[1].age); // 26
 构造新的对象，并对源对象进行拷贝，但是对其内部的引用类型值，拷贝的是其引用
 
 ```js
-// slice 和concat 方法和 Object.assign、$.extend({}, obj)方法类似
+// slice 和 concat 方法和 Object.assign、$.extend({}, obj) 方法类似
 // $.extend(true, {}, obj) 为深拷贝
 var p1 = ['Tate', {age: 18}];
 var p2 = p1.slice();
