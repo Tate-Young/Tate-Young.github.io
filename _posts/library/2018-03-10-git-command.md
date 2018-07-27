@@ -34,7 +34,7 @@ tags:
 | clone | 从现有仓库克隆到指定文件目录 | <code>git clone 仓库地址 文件目录</code> |
 | status | 查看文件状态 | <code>git status</code> |
 | add | 跟踪文件，暂存 | <code>git add README.md</code> |
-| diff | 比较工作区中当前文件和暂存区域快照之间的差异 | <code>git diff</code> |
+| diff | 比较工作区中当前文件和暂存区域快照之间的差异 | <code>git diff [filename]</code> |
 | branch | 创建分支，-d 参数为删除分支，-D 强制删除 | <code>git branch -d branchname</code> |
 | merge | 合并，--no-ff 禁用 Fast forward 合并模式 | <code>git merge branchname</code> |
 | rebase | 衍合，改变 commit 序列的基础点，本质上是线性化的自动 cherry-pick | <code>git rebase branchname</code> |
