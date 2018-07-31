@@ -42,13 +42,51 @@ tags:
 | reset | 文件从暂存区回退到工作区；版本回退 | <code>git reset HEAD filename</code> |
 | revert | 回滚并创建一个新的提交 | <code>git revert HEAD^</code> |
 | push | 推送到远端仓库，--force 参数为强制推送，缩写 -f | <code>git push --force</code> |
-| pull | 从远端拉取新的代码并合并 | <code>git pull</code> |
+| pull | 从远端拉取新的代码并合并，相当于 fetch + merge | <code>git pull</code> |
 | log | 查看提交历史，-p 展开显示每次提交的内容差异，-2 则仅显示最近的两次更新 | <code>git log -p -2</code> |
 | reflog | 查看命令历史 | <code>git reflog</code> |
 | tag | 标签，版本库的一个快照 | <code>git tag v1.0.0 commit_id</code> |
 | cherry-pick | 选择某一个分支中的一个或几个 commit 来进行操作 | <code>git cherry-pick commit_id</code> |
 
-> Git 命令也可设置别名 <code>git config --global alias.unstage 'reset HEAD'</code>，之后可直接使用命令 <code>git unstage</code>。
+### config
+
+**config** 命令也可设置别名:
+
+* git config - 仅针对当前仓库起作用，配置文件位于 <code>.git/config</code> 文件中
+* git config --global - 针对当前用户起作用，配置文件位于 <code>.gitconfig</code> 文件中
+
+```SHELL
+# git unstage
+git config --global alias.unstage 'reset HEAD'
+
+# git lg
+git config --global alias.lg "log --color --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+```
+
+若要删除别名，则找到对应配置文件，删除 [alias] 下的命令即可:
+
+```TEXT
+[alias]
+  unstage = reset HEAD
+  discard = checkout --
+  lg = log --color --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+```
+
+### remote
+
+使用 remote 修改远端仓库地址的三种方法:
+
+```SHELL
+# 1 - 修改
+git remote set-url origin [url]
+# 2 - 删除和添加
+git remote rm origin
+git remote add origin [url]
+
+# 3 - 修改本地配置
+[remote "origin"]
+  url = https://github.com/Tate-Young/gitignore-test.git
+```
 
 ### branch
 
@@ -169,7 +207,7 @@ gut revert HEAD~1
 
 ### checkout
 
-**checkout** 命令主要有三个用途:
+**checkout** 命令主要有四个用途:
 
 * 可以丢弃工作区中已跟踪文件的修改(*discard*):
   * <code>git checkout -- filename</code> - 放弃指定文件
@@ -184,6 +222,10 @@ gut revert HEAD~1
 * 把 HEAD 移动到特定的提交:
   * <code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用。也可以跟 commit id
   * **detached HEAD**: 当前的 HEAD 没有任何分支引用会造成 HEAD 分离。若此时添加新的提交，然后切换到别的分支之后就没办法回到之前添加的这些提交。因此，在为 detached HEAD 添加新的提交时应该创建一个新的分支。
+
+* 快捷解决冲突
+  * <code>git checkout --ours filename</code> - 使用本地代码
+  * <code>git checkout --theirs filename</code> - 使用他人代码
 
 <video controls="">
   <source src="http://liaoxuefeng.gitee.io/git-resources/master-and-dev-ff.mp4" type="video/mp4"></source>
@@ -356,6 +398,28 @@ git log (branchname)
 
 # 查看指定远程分支的提交历史
 git log origin/branchname
+```
+
+### diff
+
+**diff** 一般用来比较文件差异，下面是常见的一些用法:
+
+```SHELL
+git diff # 工作区和暂存区域快照(index)之间的差异
+git diff <filename> # 当前文件工作区和暂存区差异
+
+git diff <commit> <commit> # 比较两次提交之间的差异
+git diff <commit> <filename> # 比较当前文件工作区与另一次提交之间的差异
+
+git diff <branch> <branch> # 在两个分支之间比较
+git diff <branch> <filename> # 比较当前文件工作区与指定分支之间的差异
+
+git diff HEAD # 比较工作区和上次提交时的快照之间(HEAD)差异
+git diff HEAD HEAD^ # 比较上次和上上次提交时的快照之间差异
+git diff --staged # 比较暂存区和上次提交时的快照之间(HEAD)差异
+git diff --cached
+
+git diff --stat # 仅仅比较统计信息
 ```
 
 ## 参考链接
