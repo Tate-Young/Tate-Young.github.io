@@ -210,7 +210,7 @@ Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
 
 ## yarn & npm
 
-**包管理器**: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的 <code>package-lock.json</code>类似，通过<code>yarn.lock</code>记录每一个依赖项的确切版本信息。
+**包管理器**: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的 <code>package-lock.json</code>锁文件类似，通过<code>yarn.lock</code>记录每一个依赖项的确切版本信息。
 
 | npm 命令 | yarn 命令 | 功能描述 |
 |:--------------|:---------|:---------|
