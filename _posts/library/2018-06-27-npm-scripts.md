@@ -208,8 +208,46 @@ Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
 
 由于目前没有实战，关于如何构建流水线可直接[参考小册这里](https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1214e3f265da432b4a6ad2)。
 
+## yarn & npm
+
+**包管理器**: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的 <code>package-lock.json</code>类似，通过<code>yarn.lock</code>记录每一个依赖项的确切版本信息。
+
+| npm 命令 | yarn 命令 | 功能描述 |
+|:--------------|:---------|:---------|
+| npm i | yarn (install) | 根据 package.json 安装所有依赖 |
+| npm i (--save/-S) [package] | yarn add [package] | 添加依赖包至 dependencies |
+| npm i [--save-dev/-D] [package] | yarn add [--dev/-D] [package] | 添加依赖包至 devDependencies |
+| npm i [--global/-g] | yarn global add | 全局安装依赖包 |
+| npm uninstall [package] | yarn remove [package] | 移除依赖包 |
+| npm update | yarn upgrade | 升级依赖包 |
+| npm init | yarn init | 互动式创建 package.json 文件 |
+| npm run | yarn run | 运行 package.json 中预定义的脚本 |
+
+yarn 在 mac 的两种安装方式:
+
+```SHELL
+# 通过 npm 安装
+npm install --global yarn
+
+# 通过 homebrew 安装
+brew install yarn
+```
+
+更新方式:
+
+```SHELL
+# 通过 Homebrew 更新
+brew upgrade yarn
+
+# 通过 yarn 更新
+yarn global add yarn
+```
+
 ## 参考链接
 
 1. [掘金小册 - 用 npm script 打造超溜的前端工作流](https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1212bcf265da431c6fe677) By 王仕军
 2. [npm scripts 使用指南](http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html) By 阮一峰
 3. [使用 npm scripts 构建项目](http://www.qcyoung.com/2016/02/28/%E4%BD%BF%E7%94%A8npm%20scripts%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE/#bei-jing) By 青春样
+4. [yarn 官网](https://yarnpkg.com/zh-Hans/docs)
+5. [Npm vs Yarn 之备忘详单](https://jeffjade.com/2017/12/30/135-npm-vs-yarn-detial-memo/) By 晚晴幽草轩轩主
+6. [npm5 新版功能特性解析及与 yarn 评测对比](https://cloud.tencent.com/developer/article/1020507) By 马铖

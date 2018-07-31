@@ -59,8 +59,8 @@ tags:
 # git unstage
 git config --global alias.unstage 'reset HEAD'
 
-# git lg
-git config --global alias.lg "log --color --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# git graph
+git config --global alias.graph "log --color --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ```
 
 若要删除别名，则找到对应配置文件，删除 [alias] 下的命令即可:
@@ -69,7 +69,7 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cgreen%h%Cre
 [alias]
   unstage = reset HEAD
   discard = checkout --
-  lg = log --color --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  graph = log --color --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 ```
 
 ### remote
@@ -424,7 +424,7 @@ git diff --stat # 仅仅比较统计信息
 
 ## 参考链接
 
-1. [Git](https://git-scm.com/book/zh/v2)
+1. [Git - book](https://git-scm.com/book/zh/v2)
 2. [Git 教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000) By 廖雪峰
 3. [掘金 - Git 原理详解及实用指南](https://juejin.im/book/5a124b29f265da431d3c472e) By 抛物线
 4. [图解 Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html) By marklodato

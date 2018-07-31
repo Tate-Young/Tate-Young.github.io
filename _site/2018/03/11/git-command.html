@@ -311,8 +311,8 @@
 <pre><code class="language-SHELL"># git unstage
 git config --global alias.unstage 'reset HEAD'
 
-# git lg
-git config --global alias.lg "log --color --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"
+# git graph
+git config --global alias.graph "log --color --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"
 </code></pre>
 
 <p>若要删除别名，则找到对应配置文件，删除 [alias] 下的命令即可:</p>
@@ -320,7 +320,7 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cgreen%h%Cre
 <pre><code class="language-TEXT">[alias]
   unstage = reset HEAD
   discard = checkout --
-  lg = log --color --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit
+  graph = log --color --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit
 </code></pre>
 
 <h3 id="remote">remote</h3>
@@ -718,7 +718,7 @@ git diff --stat # 仅仅比较统计信息
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://git-scm.com/book/zh/v2">Git</a></li>
+  <li><a href="https://git-scm.com/book/zh/v2">Git - book</a></li>
   <li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Git 教程</a> By 廖雪峰</li>
   <li><a href="https://juejin.im/book/5a124b29f265da431d3c472e">掘金 - Git 原理详解及实用指南</a> By 抛物线</li>
   <li><a href="https://marklodato.github.io/visual-git-guide/index-zh-cn.html">图解 Git</a> By marklodato</li>

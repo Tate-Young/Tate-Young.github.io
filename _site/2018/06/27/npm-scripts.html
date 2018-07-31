@@ -351,12 +351,89 @@ Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
 
 <p>由于目前没有实战，关于如何构建流水线可直接<a href="https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1214e3f265da432b4a6ad2">参考小册这里</a>。</p>
 
+<h2 id="yarn--npm">yarn &amp; npm</h2>
+
+<p><strong>包管理器</strong>: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的 <code>package-lock.json</code>类似，通过<code>yarn.lock</code>记录每一个依赖项的确切版本信息。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">npm 命令</th>
+      <th style="text-align: left">yarn 命令</th>
+      <th style="text-align: left">功能描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">npm i</td>
+      <td style="text-align: left">yarn (install)</td>
+      <td style="text-align: left">根据 package.json 安装所有依赖</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm i (–save/-S) [package]</td>
+      <td style="text-align: left">yarn add [package]</td>
+      <td style="text-align: left">添加依赖包至 dependencies</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm i [–save-dev/-D] [package]</td>
+      <td style="text-align: left">yarn add [–dev/-D] [package]</td>
+      <td style="text-align: left">添加依赖包至 devDependencies</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm i [–global/-g]</td>
+      <td style="text-align: left">yarn global add</td>
+      <td style="text-align: left">全局安装依赖包</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm uninstall [package]</td>
+      <td style="text-align: left">yarn remove [package]</td>
+      <td style="text-align: left">移除依赖包</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm update</td>
+      <td style="text-align: left">yarn upgrade</td>
+      <td style="text-align: left">升级依赖包</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm init</td>
+      <td style="text-align: left">yarn init</td>
+      <td style="text-align: left">互动式创建 package.json 文件</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm run</td>
+      <td style="text-align: left">yarn run</td>
+      <td style="text-align: left">运行 package.json 中预定义的脚本</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>yarn 在 mac 的两种安装方式:</p>
+
+<pre><code class="language-SHELL"># 通过 npm 安装
+npm install --global yarn
+
+# 通过 homebrew 安装
+brew install yarn
+</code></pre>
+
+<p>更新方式:</p>
+
+<pre><code class="language-SHELL"># 通过 Homebrew 更新
+brew upgrade yarn
+
+# 通过 yarn 更新
+yarn global add yarn
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1212bcf265da431c6fe677">掘金小册 - 用 npm script 打造超溜的前端工作流</a> By 王仕军</li>
   <li><a href="http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html">npm scripts 使用指南</a> By 阮一峰</li>
   <li><a href="http://www.qcyoung.com/2016/02/28/%E4%BD%BF%E7%94%A8npm%20scripts%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE/#bei-jing">使用 npm scripts 构建项目</a> By 青春样</li>
+  <li><a href="https://yarnpkg.com/zh-Hans/docs">yarn 官网</a></li>
+  <li><a href="https://jeffjade.com/2017/12/30/135-npm-vs-yarn-detial-memo/">Npm vs Yarn 之备忘详单</a> By 晚晴幽草轩轩主</li>
+  <li><a href="https://cloud.tencent.com/developer/article/1020507">npm5 新版功能特性解析及与 yarn 评测对比</a> By 马铖</li>
 </ol>
  
 <div id="disqus_thread"></div>
