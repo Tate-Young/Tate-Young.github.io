@@ -435,6 +435,22 @@ Vue 2.x 一共有十个钩子，具体可查看官网给出的图 - [生命周�
 <div :class="['active list-id-' + myId, {'text-danger': isDangerous }]"></div>
 ```
 
+### v-cloak
+
+这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 <code>[v-cloak] { display: none }</code> 一起用时，这个指令可以隐藏未编译的插值表达式直到实例准备完毕。
+
+```CSS
+[v-cloak] {
+  display: none;
+}
+```
+
+```HTML
+<div v-cloak>
+  { { message } }
+</div>
+```
+
 ### 修饰符
 
 修饰符可分为以下几类:

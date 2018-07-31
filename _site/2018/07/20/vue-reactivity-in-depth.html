@@ -455,7 +455,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
     get: function reactiveGetter () {
       const value = getter ? getter.call(obj) : val /* 如果原本对象拥有 getter 方法则执行 */
       if (Dep.target) {
-        dep.depend() /* 进行依赖收集 */
+        dep.depend() /* 进行依赖收集，即将当前的 Watcher 对象存入 dep 的 subs 中 */
         if (childOb) {
           /* 子对象进行依赖收集，其实就是将同一个 watcher 观察者实例放进了两个 depend 中，一个是正在本身闭包中的 depend，另一个是子元素的depend */
           childOb.dep.depend()
@@ -504,7 +504,9 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
 
 <h3 id="dep-依赖">Dep 依赖</h3>
 
-<p>Dep 类是 Watcher 和 Observer 之间的纽带:</p>
+<p>Dep 类是 Watcher 和 Observer 之间的纽带，它的主要作用是用来存放 Watcher 观察者对象:</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2018/1/5/160c4572fdd738f2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="dep" /></p>
 
 <pre><code class="language-JS">export default class Dep {
   static target: ? Watcher;
@@ -514,7 +516,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
     this.id = uid++
     this.subs = []
   }
-  /* 添加一个观察者对象 */
+  /* 在 subs 中添加一个观察者对象 */
   addSub (sub: Watcher) {
     this.subs.push(sub)
   }
@@ -528,7 +530,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
       Dep.target.addDep(this)
     }
   }
-  /* 通知所有订阅者 */
+  /* 通知所有订阅者更新数据 */
   notify () {
     // stabilize the subscriber list first
     const subs = this.subs.slice()
@@ -686,12 +688,35 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
   <li>最后，当数据发生改变时，触发 Object.defineProperty 方法中的 dep.notify 方法，遍历该数据的依赖列表，执行其 update 方法通知 Watcher 进行视图更新。</li>
 </ul>
 
+<h2 id="virtual-dom">Virtual DOM</h2>
+
+<h3 id="compile-编译">compile 编译</h3>
+
+<p><strong>compile</strong> 编译可以分成 <strong>parse</strong>、<strong>optimize</strong> 与 <strong>generate</strong> 三个阶段，最终需要得到 <strong>render function</strong>。这部分请<a href="https://juejin.im/book/5a36661851882538e2259c0f/section/5a3bb1745188254b8b355428">参考掘金小册</a></p>
+
+<h3 id="render-function">render function</h3>
+
+<p><strong>render function</strong> 会被转化成 <strong>VNode</strong> 节点。<strong>Virtual DOM</strong> 其实就是一棵以 JavaScript 对象(VNode 节点)作为基础的树，用对象属性来描述节点，实际上它只是一层对真实 DOM 的抽象。最终可以通过一系列操作使这棵树映射到真实环境上。由于 Virtual DOM 是以 JavaScript 对象为基础而不依赖真实平台环境，所以使它具有了跨平台的能力，比如说浏览器平台、Weex、Node 等。</p>
+
+<p>在修改数据触发 setter 后，会触发对应 Dep 中的 Watcher 对象。Watcher 对象会调用对应的 update 来修改视图。最终是将新产生的 VNode 节点与老 VNode 进行一个 <strong>patch</strong> 的过程，比对得出「差异」，最终将这些「差异」更新到视图上。patch 的核心算法为 <strong>diff</strong>:</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/28/1609be691ed64525?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="diff-before" /></p>
+
+<p>diff 算法是通过同层的树节点进行比较而非对树进行逐层搜索遍历的方式，所以时间复杂度只有 O(n)，是一种相当高效的算法:</p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/28/1609be700a80c98a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="diff-after" /></p>
+
+<p>因此异步更新的步骤可以简化为 <code>setter -&gt; Dep -&gt; Watcher -&gt; patch -&gt; 视图</code></p>
+
+<p><img src="https://user-gold-cdn.xitu.io/2017/12/19/1606e7eaa2a664e8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="virtual-dom" /></p>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://cn.vuejs.org/">Vue 中文官网</a></li>
   <li><a href="https://zhouweicsu.github.io/blog/2017/03/07/vue-2-0-reactivity/">Vue2.0 源码阅读：响应式原理</a> By zhouweicsu</li>
   <li><a href="http://jungahuang.com/2018/02/07/About-responsive-of-Vue/#more">深入理解 Vue 响应式原理</a> By Junga Huang</li>
+  <li><a href="https://juejin.im/book/5a36661851882538e2259c0f/section/5a37bbb35188257d167a4d64">掘金小册 - 剖析 Vue.js 内部运行机制</a></li>
 </ol>
  
 <div id="disqus_thread"></div>

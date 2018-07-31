@@ -309,7 +309,7 @@ export function defineReactive (
     get: function reactiveGetter () {
       const value = getter ? getter.call(obj) : val /* 如果原本对象拥有 getter 方法则执行 */
       if (Dep.target) {
-        dep.depend() /* 进行依赖收集 */
+        dep.depend() /* 进行依赖收集，即将当前的 Watcher 对象存入 dep 的 subs 中 */
         if (childOb) {
           /* 子对象进行依赖收集，其实就是将同一个 watcher 观察者实例放进了两个 depend 中，一个是正在本身闭包中的 depend，另一个是子元素的depend */
           childOb.dep.depend()
@@ -359,7 +359,9 @@ new Vue({
 
 ### Dep 依赖
 
-Dep 类是 Watcher 和 Observer 之间的纽带:
+Dep 类是 Watcher 和 Observer 之间的纽带，它的主要作用是用来存放 Watcher 观察者对象:
+
+![dep](https://user-gold-cdn.xitu.io/2018/1/5/160c4572fdd738f2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 ```JS
 export default class Dep {
@@ -370,7 +372,7 @@ export default class Dep {
     this.id = uid++
     this.subs = []
   }
-  /* 添加一个观察者对象 */
+  /* 在 subs 中添加一个观察者对象 */
   addSub (sub: Watcher) {
     this.subs.push(sub)
   }
@@ -384,7 +386,7 @@ export default class Dep {
       Dep.target.addDep(this)
     }
   }
-  /* 通知所有订阅者 */
+  /* 通知所有订阅者更新数据 */
   notify () {
     // stabilize the subscriber list first
     const subs = this.subs.slice()
@@ -539,8 +541,35 @@ export default class Watcher {
 * 然后在 initRender 方法中解析模板，通过 Watcher 对象，Dep 对象与观察者模式将模板中的指令与对应的数据建立依赖关系，在这个依赖收集的过程中，使用了全局对象 Dep.target;
 * 最后，当数据发生改变时，触发 Object.defineProperty 方法中的 dep.notify 方法，遍历该数据的依赖列表，执行其 update 方法通知 Watcher 进行视图更新。
 
+## Virtual DOM
+
+### compile 编译
+
+**compile** 编译可以分成 **parse**、**optimize** 与 **generate** 三个阶段，最终需要得到 **render function**。这部分请[参考掘金小册](https://juejin.im/book/5a36661851882538e2259c0f/section/5a3bb1745188254b8b355428):
+
+* **parse** - 会用正则等方式将 template 模板中进行字符串解析，得到指令、class、style 等数据，形成 [AST 抽象语法树](https://zh.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E8%AA%9E%E6%B3%95%E6%A8%B9)
+* **optimize** - 为静态的节点做上一些「标记」，在 patch 的时候可以直接跳过这些被标记的节点的比对，从而达到「优化」的目的
+* **generate** - 会将 AST 转化成 render funtion 字符串
+
+### render function
+
+**render function** 会被转化成 **VNode** 节点。**Virtual DOM** 其实就是一棵以 JavaScript 对象(VNode 节点)作为基础的树，用对象属性来描述节点，实际上它只是一层对真实 DOM 的抽象。最终可以通过一系列操作使这棵树映射到真实环境上。由于 Virtual DOM 是以 JavaScript 对象为基础而不依赖真实平台环境，所以使它具有了跨平台的能力，比如说浏览器平台、Weex、Node 等。
+
+在修改数据触发 setter 后，会触发对应 Dep 中的 Watcher 对象。Watcher 对象会调用对应的 update 来修改视图。最终是将新产生的 VNode 节点与老 VNode 进行一个 **patch** 的过程，比对得出「差异」，最终将这些「差异」更新到视图上。patch 的核心算法为 **diff**:
+
+![diff-before](https://user-gold-cdn.xitu.io/2017/12/28/1609be691ed64525?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+diff 算法是通过同层的树节点进行比较而非对树进行逐层搜索遍历的方式，所以时间复杂度只有 O(n)，是一种相当高效的算法:
+
+![diff-after](https://user-gold-cdn.xitu.io/2017/12/28/1609be700a80c98a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+因此异步更新的步骤可以简化为 <code>setter -> Dep -> Watcher -> patch -> 视图</code>
+
+![virtual-dom](https://user-gold-cdn.xitu.io/2017/12/19/1606e7eaa2a664e8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
 ## 参考链接
 
 1. [Vue 中文官网](https://cn.vuejs.org/)
 2. [Vue2.0 源码阅读：响应式原理](https://zhouweicsu.github.io/blog/2017/03/07/vue-2-0-reactivity/) By zhouweicsu
 3. [深入理解 Vue 响应式原理](http://jungahuang.com/2018/02/07/About-responsive-of-Vue/#more) By Junga Huang
+4. [掘金小册 - 剖析 Vue.js 内部运行机制](https://juejin.im/book/5a36661851882538e2259c0f/section/5a37bbb35188257d167a4d64)
