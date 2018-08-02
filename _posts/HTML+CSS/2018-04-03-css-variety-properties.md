@@ -422,7 +422,30 @@ CSS **滤镜(filter)** 属提供的图形特效，像模糊、锐化或元素变
 | sepia(%) | 将图像转换为深褐色。值在0%到100%之间，100% 则完全为深褐色 |
 | url() | URL 函数接受一个 XML 文件，该文件设置了 一个 SVG 滤镜，且可以包含一个锚点来指定一个具体的滤镜元素 |
 
-查看 JSFiddle 示例:
+举个颜色图标点亮的示例:
+
+<style>
+.test-div:hover .test-sspai {
+  filter: none;
+}
+.test-sspai {
+  height: 22px;
+  filter: contrast(0) brightness(130%);
+  transition: 0.5s;
+}
+</style>
+
+<div class="test-div" style="cursor:pointer">
+  <img class="test-sspai" src="https://pasteapp.me/images/logos/sspai.png">
+</div>
+
+```CSS
+img {
+  filter: contrast(0) brightness(130%);
+}
+```
+
+各种效果比较可查看 JSFiddle 示例:
 
 <script async src="//jsfiddle.net/Tate_Young/r88t8kcg/3/embed/html,css,result/"></script>
 

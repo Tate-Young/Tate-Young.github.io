@@ -222,15 +222,14 @@ Reference value stored in the variable location is a pointer to a location in me
 
 <h3 id="栈内存和堆内存的区别">栈内存和堆内存的区别</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 内存地址指系统 RAM 中的特定位置，通常以十六进制的数字表示</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 内存地址指系统 RAM 中的特定位置，通常以十六进制的数字表示</span>
 <span class="kd">var</span> <span class="nx">a1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>   <span class="c1">// 栈内存</span>
 <span class="kd">var</span> <span class="nx">a2</span> <span class="o">=</span> <span class="s1">'this is string'</span><span class="p">;</span> <span class="c1">// 栈内存</span>
 <span class="kd">var</span> <span class="nx">a3</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// 栈内存</span>
 
 <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">{</span> <span class="na">m</span><span class="p">:</span> <span class="mi">20</span> <span class="p">};</span> <span class="c1">// 变量 b 存在于栈内存中, {m: 20} 作为对象存在于堆内存中</span>
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span> <span class="c1">// 变量 c 存在于栈内存中, [1, 2, 3] 作为对象存在于堆内存中</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="https://user-gold-cdn.xitu.io/2017/2/9/7c13147ecfecd8a6ce7f0b5a9782dd30?imageslim" alt="栈内存和堆内存" /></p>
 
@@ -255,12 +254,12 @@ Reference value stored in the variable location is a pointer to a location in me
 
 <h3 id="浅拷贝-diy">浅拷贝 DIY</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 仅参考</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 仅参考</span>
 <span class="kd">function</span> <span class="nx">shallowCopy</span><span class="p">(</span><span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">source</span> <span class="o">||</span> <span class="k">typeof</span> <span class="nx">source</span> <span class="o">!==</span> <span class="s1">'object'</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'error arguments'</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="kd">var</span> <span class="nx">targetObj</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Array</span> <span class="p">?</span> <span class="p">[]</span> <span class="p">:</span> <span class="p">{};</span>
+  <span class="kd">var</span> <span class="nx">targetObj</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Array</span> <span class="p">?</span> <span class="p">[]</span> <span class="p">:</span> <span class="p">{};</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">keys</span> <span class="k">in</span> <span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">source</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">keys</span><span class="p">))</span> <span class="p">{</span>
       <span class="nx">targetObj</span><span class="p">[</span><span class="nx">keys</span><span class="p">]</span> <span class="o">=</span> <span class="nx">source</span><span class="p">[</span><span class="nx">keys</span><span class="p">];</span>
@@ -268,14 +267,13 @@ Reference value stored in the variable location is a pointer to a location in me
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">targetObj</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="第一种浅拷贝">第一种浅拷贝</h3>
 
 <p>拷贝对象的引用</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Tate'</span><span class="p">,</span> <span class="p">{</span><span class="na">age</span><span class="p">:</span> <span class="mi">18</span><span class="p">}];</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Tate'</span><span class="p">,</span> <span class="p">{</span><span class="na">age</span><span class="p">:</span> <span class="mi">18</span><span class="p">}];</span>
 <span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="nx">p1</span><span class="p">;</span> <span class="c1">// 赋值，指针实际指向同一个对象</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span> <span class="o">===</span> <span class="nx">p2</span><span class="p">);</span> <span class="c1">// true</span>
@@ -283,14 +281,13 @@ Reference value stored in the variable location is a pointer to a location in me
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// "Snow"</span>
 <span class="nx">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">26</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// 26</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="第二种浅拷贝">第二种浅拷贝</h3>
 
 <p>构造新的对象，并对源对象进行拷贝，但是对其内部的引用类型值，拷贝的是其引用</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// slice 和 concat 方法和 Object.assign、$.extend({}, obj) 方法类似</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// slice 和 concat 方法和 Object.assign、$.extend({}, obj) 方法类似</span>
 <span class="c1">// $.extend(true, {}, obj) 为深拷贝</span>
 <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Tate'</span><span class="p">,</span> <span class="p">{</span><span class="na">age</span><span class="p">:</span> <span class="mi">18</span><span class="p">}];</span>
 <span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
@@ -301,8 +298,7 @@ Reference value stored in the variable location is a pointer to a location in me
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// "Tate"</span>
 <span class="nx">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">26</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// 26</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>可参考下 <a href="https://github.com/v8/v8/blob/ad82a40509c5b5b4680d4299c8f08d6c6d31af3c/src/js/array.js">slice 源码</a>，可看出它类似”浅拷贝 DIY”，只对最外层属性做了赋值操作，并没有继续做递归进行深拷贝。</p>
@@ -312,16 +308,16 @@ Reference value stored in the variable location is a pointer to a location in me
 
 <h3 id="深拷贝-diy">深拷贝 DIY</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 递归实现一个深拷贝</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 递归实现一个深拷贝</span>
 <span class="kd">function</span> <span class="nx">deepCopy</span><span class="p">(</span><span class="nx">source</span><span class="p">){</span>
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">source</span> <span class="o">||</span> <span class="k">typeof</span> <span class="nx">source</span> <span class="o">!==</span> <span class="s1">'object'</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'error arguments'</span><span class="p">,</span> <span class="s1">'shallowClone'</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="kd">var</span> <span class="nx">targetObj</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Array</span> <span class="p">?</span> <span class="p">[]</span> <span class="p">:</span> <span class="p">{};</span>
+  <span class="kd">var</span> <span class="nx">targetObj</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Array</span> <span class="p">?</span> <span class="p">[]</span> <span class="p">:</span> <span class="p">{};</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">keys</span> <span class="k">in</span> <span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">source</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">keys</span><span class="p">))</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">source</span><span class="p">[</span><span class="nx">keys</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">source</span><span class="p">[</span><span class="nx">keys</span><span class="p">]</span> <span class="o">===</span> <span class="s1">'object'</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">targetObj</span><span class="p">[</span><span class="nx">keys</span><span class="p">]</span> <span class="o">=</span> <span class="nx">source</span><span class="p">[</span><span class="nx">keys</span><span class="p">].</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Array</span> <span class="p">?</span> <span class="p">[]</span> <span class="p">:</span> <span class="p">{};</span>
+        <span class="nx">targetObj</span><span class="p">[</span><span class="nx">keys</span><span class="p">]</span> <span class="o">=</span> <span class="nx">source</span><span class="p">[</span><span class="nx">keys</span><span class="p">].</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Array</span> <span class="p">?</span> <span class="p">[]</span> <span class="p">:</span> <span class="p">{};</span>
         <span class="nx">targetObj</span><span class="p">[</span><span class="nx">keys</span><span class="p">]</span> <span class="o">=</span> <span class="nx">deepCopy</span><span class="p">(</span><span class="nx">source</span><span class="p">[</span><span class="nx">keys</span><span class="p">]);</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="nx">targetObj</span><span class="p">[</span><span class="nx">keys</span><span class="p">]</span> <span class="o">=</span> <span class="nx">source</span><span class="p">[</span><span class="nx">keys</span><span class="p">];</span>
@@ -330,14 +326,13 @@ Reference value stored in the variable location is a pointer to a location in me
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">targetObj</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="深拷贝实现">深拷贝实现</h3>
 
 <p>可用 JSON 对象中的 parse() 和 stringify() 实现深拷贝，不足之处从以下例子可见，源对象的方法在拷贝的过程中丢失了，这是因为 JSON 语法不支持函数，详见<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">链接3</a>。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 利用 JSON 序列化实现一个深拷贝</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 利用 JSON 序列化实现一个深拷贝</span>
 <span class="kd">function</span> <span class="nx">deepCopy</span><span class="p">(</span><span class="nx">source</span><span class="p">){</span>
   <span class="k">return</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">source</span><span class="p">));</span>
 <span class="p">}</span>
@@ -353,8 +348,7 @@ Reference value stored in the variable location is a pointer to a location in me
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">o2</span> <span class="o">=</span> <span class="nx">deepCopy</span><span class="p">(</span><span class="nx">o1</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">o2</span><span class="p">);</span> <span class="c1">// {"arr":[1,2],"obj":{"name":"Tate"}}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>也可用 $.extend(true, {}, obj) 实现深拷贝，<a href="https://github.com/jquery/jquery/blob/1472290917f17af05e98007136096784f9051fab/src/core.js#L121">源码可见</a></p>

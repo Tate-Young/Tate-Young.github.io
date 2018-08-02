@@ -5,7 +5,7 @@ comments: True
 flag: HTTP
 background: orange
 category: 前端
-title: Cookie
+title: Cookie & Session
 date:   2018-03-02 10:10:00 GMT+0800 (CST)
 background-image: http://upload-images.jianshu.io/upload_images/1234352-474c42b13e2d470d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240
 tags:

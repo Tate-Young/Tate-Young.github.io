@@ -293,7 +293,7 @@ img { float: right }
 
 <p>和重排一样，也会出现<strong>重绘(repaint)</strong>，分为全局绘制和增量绘制。重绘一般针对于修改背景色、边框等，不会造成几何信息变化。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 重排必然导致重绘</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 重排必然导致重绘</span>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'body'</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">'color'</span><span class="p">,</span> <span class="s1">'orange'</span><span class="p">);</span> <span class="c1">// repaint</span>
 <span class="nx">$</span><span class="p">(</span><span class="s1">'body'</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">'margin'</span><span class="p">,</span> <span class="s1">'10px'</span><span class="p">);</span> <span class="c1">// reflow, repaint</span>
 
@@ -309,8 +309,7 @@ img { float: right }
 
 <span class="c1">// new DOM element - reflow, repaint</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="s1">'Tate'</span><span class="p">));</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>WebKit 有用于执行增量布局的计时器，满足触发条件后才会对渲染树进行遍历，并对 dirty 渲染器进行布局。并不是没修改一次就遍历一次。一般情况下，全局布局是同步执行，调整窗口大小或改变了页面默认的字体等都会造成立即重排。</p>

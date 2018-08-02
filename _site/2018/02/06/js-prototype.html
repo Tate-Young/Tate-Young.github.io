@@ -179,7 +179,7 @@
 
 <p>每一个构造函数都有一个 <strong>prototype</strong> 属性，该属性是一个指针，指向其原型对象，原型对象里有个 <strong>constructor</strong> 指针，指向构造函数本身。使用原型对象的好处是可以让所有对象实例共享它所包含的引用类型值的属性和方法。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Dog</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Dog</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">eat</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -193,12 +193,11 @@
 <span class="kd">var</span> <span class="nx">dog1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="s1">'小君家的二猫'</span><span class="p">,</span> <span class="s1">'粉色'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">dog2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="s1">'小君家的猫猫猫'</span><span class="p">,</span> <span class="s1">'黑色'</span><span class="p">);</span>
 
-<span class="nx">Dog</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">Dog</span><span class="p">;</span> <span class="c1">// true</span>
+<span class="nx">Dog</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nx">Dog</span><span class="p">;</span> <span class="c1">// true</span>
 
 <span class="nx">dog1</span><span class="p">.</span><span class="nx">eat</span> <span class="o">===</span> <span class="nx">dog2</span><span class="p">.</span><span class="nx">eat</span><span class="p">;</span> <span class="c1">// false 实例无法共享此方法</span>
 <span class="nx">dog1</span><span class="p">.</span><span class="nx">bark</span> <span class="o">===</span> <span class="nx">dog2</span><span class="p">.</span><span class="nx">bark</span><span class="p">;</span> <span class="c1">// true 实例共享通过原型继承的此方法</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><img src="https://i.loli.net/2018/02/26/5a935bee61ea5.png" alt="prototype.png" /></p>
 
@@ -206,15 +205,14 @@
 
 <p>每个对象都有一个私有属性 <strong>[[prototype]]</strong>，即 <strong>(__proto__)</strong> 指针，指向其构造函数的原型对象。而原型对象也有内部 <strong>proto</strong> 指针，同样指向其构造函数的原型对象，如此形成 <strong>原型链</strong>。原型链的末端是 null。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// p ---&gt; Person.prototype ---&gt; Object.prototype ---&gt; null</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// p ---&gt; Person.prototype ---&gt; Object.prototype ---&gt; null</span>
 <span class="kd">function</span> <span class="nx">Person</span><span class="p">(){};</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
 
 <span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="kc">null</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="object相关方法">Object相关方法</h2>
 
@@ -222,7 +220,7 @@
 
 <p>返回指定对象的原型，即内部 [[Prototype]] 属性的值。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 对于除 null 和 undefined 的基本类型，也有私有属性 [[prototype]]。</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 对于除 null 和 undefined 的基本类型，也有私有属性 [[prototype]]。</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">===</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">({})</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
@@ -234,34 +232,31 @@
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="o">===</span> <span class="kc">null</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="objectsetprototypeof">Object.setPrototypeOf</h3>
 
 <p>设置一个指定的对象的原型，即内部 [[Prototype]] 属性到另一个对象或 null。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 以下两种写法等价</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 以下两种写法等价</span>
 <span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 
 <span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="objectcreate">Object.create</h3>
 
 <p>使用指定的原型对象及其属性去创建一个新的对象。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 本质上新建了一个临时性的构造函数，并且将其原型指针指向 obj</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 本质上新建了一个临时性的构造函数，并且将其原型指针指向 obj</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span>
   <span class="kd">function</span> <span class="nx">F</span><span class="p">()</span> <span class="p">{}</span>
   <span class="nx">F</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
   <span class="k">return</span> <span class="k">new</span> <span class="nx">F</span><span class="p">();</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">};</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">};</span>
 <span class="c1">// a ---&gt; Object.prototype ---&gt; null</span>
 
 <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
@@ -270,12 +265,11 @@
 
 <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
 <span class="c1">// c ---&gt; b ---&gt; a ---&gt; Object.prototype ---&gt; null</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Object.create 和 new 操作符的比较，new 操作符实际操作可参考之前<a href="http://localhost:4000/2018/01/30/js-this.html#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%9C%AC%E8%B4%A8"> this 指针</a>一文。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span>
 <span class="p">}</span>
 <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
@@ -287,24 +281,22 @@
 <span class="nx">p1</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// 'Tate'</span>
 <span class="nx">p2</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// 'Snow'</span>
 <span class="nx">p3</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// 'Person' 函数名</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="isprototypeof">isPrototypeOf</h3>
 
 <p>属于对象实例的一个方法，用来判断一个对象是否是另一个对象的原型。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 引用上述例子</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 引用上述例子</span>
 <span class="nx">Obj</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">o1</span><span class="p">);</span> <span class="c1">// true</span>
 <span class="nx">Obj</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">o2</span><span class="p">);</span> <span class="c1">// true</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="继承">继承</h2>
 
 <h3 id="原型链">原型链</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 每个实例都共享原型上的引用类型值的属性，一旦修改后，原型相应属性也会修改</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 每个实例都共享原型上的引用类型值的属性，一旦修改后，原型相应属性也会修改</span>
 <span class="c1">// 没有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数，</span>
 <span class="kd">function</span> <span class="nx">SuperType</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
@@ -316,7 +308,7 @@
 <span class="p">}</span>
 <span class="kd">function</span> <span class="nx">SubType</span><span class="p">()</span> <span class="p">{}</span>
 <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperType</span><span class="p">();</span>
-<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">SubType</span><span class="p">;</span> <span class="c1">// SubType 原型被改写，需要将 constructor 恢复默认值</span>
+<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">SubType</span><span class="p">;</span> <span class="c1">// SubType 原型被改写，需要将 constructor 恢复默认值</span>
 
 <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SubType</span><span class="p">();</span>
@@ -329,8 +321,7 @@
 
 <span class="nx">a</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
 <span class="nx">b</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span> <span class="c1">// 18 基础类型的修改不会影响原型响应属性</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p>注意每个实例都共享原型上的 <em>引用类型值</em> 的属性，一旦修改后，原型相应属性也会修改。</p>
@@ -338,7 +329,7 @@
 
 <h3 id="借用构造函数">借用构造函数</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 可以在子类型构造函数中向超类型构造函数传递参数</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 可以在子类型构造函数中向超类型构造函数传递参数</span>
 <span class="c1">// 在超类型原型中定义的属性和方法，无法在子类型中访问</span>
 <span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
@@ -358,12 +349,11 @@
 <span class="nx">b</span><span class="p">.</span><span class="nx">arr</span><span class="p">;</span> <span class="c1">// [1, 2, 3] 实例属性不共享，互不影响</span>
 
 <span class="nx">a</span><span class="p">.</span><span class="nx">sayName</span><span class="p">();</span> <span class="c1">// TypeError: a.sayName is not a function</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="组合继承">组合继承</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 结合上述两种继承的优点</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 结合上述两种继承的优点</span>
 <span class="c1">// 在继承方法时，SubType.prototype 会继承 name 和 arr 属性，在继承属性时又会创建实例属性 name 和 arr</span>
 <span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
@@ -378,7 +368,7 @@
 <span class="p">}</span>
 <span class="c1">// 继承方法</span>
 <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperType</span><span class="p">();</span>
-<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">SubType</span><span class="p">;</span>
+<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">SubType</span><span class="p">;</span>
 
 <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayAge</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
@@ -395,12 +385,11 @@
 
 <span class="nx">a</span><span class="p">.</span><span class="nx">sayAge</span><span class="p">();</span> <span class="c1">// 18</span>
 <span class="nx">b</span><span class="p">.</span><span class="nx">sayAge</span><span class="p">();</span> <span class="c1">// 16</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="原型式继承">原型式继承</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 通过 Object.create 可以实现原型式继承，思路是借助原型可以基于已有的对象创建新对象。</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 通过 Object.create 可以实现原型式继承，思路是借助原型可以基于已有的对象创建新对象。</span>
 <span class="c1">// 同原型链继承一样，引用类型值属性始终都会被所有实例共享</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
@@ -415,12 +404,11 @@
 
 <span class="nx">p1</span><span class="p">.</span><span class="nx">interests</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">'coding'</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p2</span><span class="p">.</span><span class="nx">interests</span><span class="p">);</span> <span class="c1">// ['travel', 'badminton', 'coding']</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="寄生式继承">寄生式继承</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 原理和原型式继承差不多，但是可以增强对象</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 原理和原型式继承差不多，但是可以增强对象</span>
 <span class="kd">function</span> <span class="nx">createAnother</span><span class="p">(</span><span class="nx">original</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">clone</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">original</span><span class="p">);</span> <span class="c1">// 基于orginal创建一个新对象</span>
   <span class="nx">clone</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="c1">// 增强对象，添加属性和方法</span>
@@ -435,12 +423,11 @@
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">anotherPerson</span> <span class="o">=</span> <span class="nx">createAnother</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
 <span class="nx">anotherPerson</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span> <span class="c1">// 'hi'</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="寄生组合式继承">寄生组合式继承</h3>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 将组合式继承进行优化</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 将组合式继承进行优化</span>
 <span class="kd">function</span> <span class="nx">SuperType</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
@@ -454,19 +441,18 @@
 <span class="p">}</span>
 <span class="c1">// 继承方法</span>
 <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
-<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">SubType</span><span class="p">;</span>
+<span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">SubType</span><span class="p">;</span>
 
 <span class="c1">// 等价于</span>
 <span class="nx">SubType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">SuperType</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="class-继承">class 继承</h3>
 
 <p>class 本质是构造函数，class 之间可以通过 <strong>extends</strong> 关键字实现继承。ES5 借用构造函数的继承，实际是先创造子类的实例对象 this，然后再将父类的方法添加到 this 上面(Parent.apply(this))。ES6 的继承机制完全不同，实际是先创造父类的实例对象 this(所以必须先调用 super 方法)，然后再用子类的构造函数修改 this。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Point</span> <span class="p">{</span>
-  <span class="nx">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Point</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
   <span class="p">}</span>
@@ -480,15 +466,15 @@
   <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">// super 关键字表示父类的构造函数，用来新建父类的 this 对象，子类没有自己的 this 对象，必须继承于父类</span>
-<span class="kr">class</span> <span class="nx">ColorPoint</span> <span class="kr">extends</span> <span class="nx">Point</span> <span class="p">{</span>
-  <span class="nx">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nx">ColorPoint</span> <span class="kd">extends</span> <span class="nx">Point</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// this.color = color; // ReferenceError</span>
-    <span class="kr">super</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span> <span class="c1">// 调用父类的 constructor(x, y)</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span> <span class="c1">// 调用父类的 constructor(x, y)</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="nx">toString</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="kr">super</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// 调用父类的 toString()</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="k">super</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// 调用父类的 toString()</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -499,33 +485,30 @@
 <span class="c1">// 原型链 point--&gt;ColorPoint.prototype--&gt;Point.prototype--&gt;Object.prototype--&gt;null</span>
 <span class="nx">ColorPoint</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Point</span><span class="p">;</span> <span class="c1">// true</span>
 <span class="nx">ColorPoint</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span> <span class="c1">// true</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="class-原型">class 原型</h4>
 
 <p>class 继承同时存在两条继承链，即</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">A</span> <span class="p">{}</span>
-<span class="kr">class</span> <span class="nx">B</span> <span class="kr">extends</span> <span class="nx">A</span> <span class="p">{}</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">A</span> <span class="p">{}</span>
+<span class="kd">class</span> <span class="nx">B</span> <span class="kd">extends</span> <span class="nx">A</span> <span class="p">{}</span>
 
 <span class="nx">B</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">A</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true</span>
 <span class="nx">B</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">A</span> <span class="c1">// true</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>等同于如下模式实现：</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">A</span> <span class="p">{}</span>
-<span class="kr">class</span> <span class="nx">B</span> <span class="p">{}</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">A</span> <span class="p">{}</span>
+<span class="kd">class</span> <span class="nx">B</span> <span class="p">{}</span>
 
 <span class="c1">// B 的实例继承 A 的实例</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">B</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
 
 <span class="c1">// B 的实例继承 A 的 static 静态属性</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">setPrototypeOf</span><span class="p">(</span><span class="nx">B</span><span class="p">,</span> <span class="nx">A</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="参考链接">参考链接</h2>
 

@@ -379,42 +379,39 @@
 
 <h4 id="对象的形状">对象的形状</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">Person</span> <span class="p">{</span>
-  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
-  <span class="nl">age</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">age</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">let</span> <span class="nx">semlinker</span><span class="err">:</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+<span class="kd">let</span> <span class="nx">semlinker</span><span class="p">:</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">name</span><span class="p">:</span> <span class="s1">'semlinker'</span><span class="p">,</span>
   <span class="na">age</span><span class="p">:</span> <span class="o">**</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="可选只读属性">可选|只读属性</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">Person</span> <span class="p">{</span>
-  <span class="k">readonly</span> <span class="nx">name</span><span class="err">:</span> <span class="kr">string</span><span class="p">;</span>
-  <span class="nx">age</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">readonly</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nx">age</span><span class="p">?:</span> <span class="nx">number</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="函数类型">函数类型</h4>
 
 <p>接口能够描述 JavaScript 中对象拥有的各种各样的外形。 除了描述带有属性的普通对象外，接口也可以描述函数类型。</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">SearchFunc</span> <span class="p">{</span>
-  <span class="p">(</span><span class="nx">source</span><span class="err">:</span> <span class="kr">string</span><span class="p">,</span> <span class="nx">subString</span><span class="err">:</span> <span class="kr">string</span><span class="p">)</span><span class="err">:</span> <span class="kr">boolean</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">SearchFunc</span> <span class="p">{</span>
+  <span class="p">(</span><span class="nx">source</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">subString</span><span class="p">:</span> <span class="nx">string</span><span class="p">):</span> <span class="kr">boolean</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">let</span> <span class="nx">mySearch</span><span class="err">:</span> <span class="nx">SearchFunc</span><span class="p">;</span>
-<span class="nx">mySearch</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">source</span><span class="err">:</span> <span class="kr">string</span><span class="p">,</span> <span class="nx">subString</span><span class="err">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">let</span> <span class="nx">mySearch</span><span class="p">:</span> <span class="nx">SearchFunc</span><span class="p">;</span>
+<span class="nx">mySearch</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">source</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">subString</span><span class="p">:</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">subString</span><span class="p">);</span>
   <span class="k">return</span> <span class="nx">result</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>详细的内容可以参考 - <a href="https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/Interfaces.html">typescript-handbook-interface</a></p>
 
@@ -424,43 +421,40 @@
 
 <h4 id="泛型接口">泛型接口</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">GenericIdentityFn</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">GenericIdentityFn</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="p">{</span>
   <span class="p">(</span><span class="na">arg</span><span class="p">:</span> <span class="nx">T</span><span class="p">):</span> <span class="nx">T</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="泛型类">泛型类</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">GenericNumber</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">GenericNumber</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="p">{</span>
   <span class="na">zeroValue</span><span class="p">:</span> <span class="nx">T</span><span class="p">;</span>
   <span class="nl">add</span><span class="p">:</span> <span class="p">(</span><span class="na">x</span><span class="p">:</span> <span class="nx">T</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="nx">T</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">T</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">let</span> <span class="nx">myGenericNumber</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GenericNumber</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">myGenericNumber</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GenericNumber</span><span class="o">&lt;</span><span class="nx">number</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="nx">myGenericNumber</span><span class="p">.</span><span class="nx">zeroValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nx">myGenericNumber</span><span class="p">.</span><span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span> <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="实际应用">实际应用</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="c1">// Hero接口定义</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Hero接口定义</span>
 <span class="kr">interface</span> <span class="nx">Hero</span> <span class="p">{</span>
-  <span class="nl">id</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
-  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nl">id</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nx">getHeroes</span><span class="p">()</span><span class="err">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Hero</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">Observable</span><span class="p">.</span><span class="nx">of</span><span class="p">([</span>
+<span class="nx">getHeroes</span><span class="p">():</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Hero</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">Observable</span><span class="p">.</span><span class="k">of</span><span class="p">([</span>
     <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Windstorm'</span> <span class="p">},</span>
     <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Bombasto'</span> <span class="p">},</span>
     <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Magneta'</span> <span class="p">},</span>
     <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Tornado'</span> <span class="p">}</span>
   <span class="p">]);</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>上面 <code class="highlighter-rouge">getHeroes(): Observable&lt;Hero[]&gt;</code> 表示调用 <code class="highlighter-rouge">getHeroes()</code> 方法后返回的是一个 Observable 对象，<code class="highlighter-rouge">&lt;Hero[]&gt;</code> 用于表示该 Observable 对象的观察者，将会收到的数据类型。示例中表示将会返回 <code class="highlighter-rouge">&lt;Hero[]&gt;</code> 英雄列表。</p>
 
@@ -468,7 +462,7 @@
 
 <p>枚举用来定义一些有名字的数字常量。枚举通过 <code class="highlighter-rouge">enum</code> 关键字来定义。</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="c1">// angular2/packages/http/src/enums.ts 片段</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// angular2/packages/http/src/enums.ts 片段</span>
 <span class="k">export</span> <span class="kr">enum</span> <span class="nx">RequestMethod</span> <span class="p">{</span>
   <span class="nx">Get</span><span class="p">,</span> <span class="c1">// 0</span>
   <span class="nx">Post</span><span class="p">,</span> <span class="c1">// 1</span>
@@ -478,12 +472,11 @@
   <span class="nx">Head</span><span class="p">,</span> <span class="c1">// 5</span>
   <span class="nx">Patch</span> <span class="c1">// 6</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>编译后的 ES 5 代码</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">RequestMethod</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">RequestMethod</span><span class="p">;</span>
 <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">RequestMethod</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Get"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Get"</span><span class="p">;</span>
   <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Post"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Post"</span><span class="p">;</span>
@@ -493,8 +486,7 @@
   <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Head"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Head"</span><span class="p">;</span>
   <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Patch"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Patch"</span><span class="p">;</span>
 <span class="p">})(</span><span class="nx">RequestMethod</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">RequestMethod</span> <span class="o">||</span> <span class="p">(</span><span class="nx">exports</span><span class="p">.</span><span class="nx">RequestMethod</span> <span class="o">=</span> <span class="p">{}));</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="为什么-es6-或-typescript-中的-class-不会自动提升">为什么 ES6 或 TypeScript 中的 Class 不会自动提升？</h3>
 
@@ -504,28 +496,26 @@
 
 <p>AppComponent.ts</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
-  <span class="k">static</span> <span class="kd">type</span><span class="err">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="s1">'component'</span><span class="p">;</span>
-  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="kr">static</span> <span class="nx">type</span><span class="p">:</span> <span class="nx">string</span> <span class="o">=</span> <span class="s1">'component'</span><span class="p">;</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
 
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'AppComponent'</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>TS 编译成 ES5 的代码：</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">AppComponent</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">AppComponent</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="kd">function</span> <span class="nx">AppComponent</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'AppComponent'</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">AppComponent</span><span class="p">;</span>
 <span class="p">}());</span>
-<span class="nx">AppComponent</span><span class="p">.</span><span class="kd">type</span> <span class="o">=</span> <span class="s1">'component'</span><span class="p">;</span>
-</code></pre>
-</div>
+<span class="nx">AppComponent</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">'component'</span><span class="p">;</span>
+</code></pre></div></div>
 
 <p>通过转换后的代码，我们可以知道类中的静态属性是作为 AppComponent 构造函数的一个属性，而成员属性是属于 AppComponent 实例。</p>
 
@@ -713,15 +703,14 @@ let sum = add(3, 4);
 
 <p>在 Angular 中 constructor 一般用于依赖注入或执行简单的数据初始化操作，ngOnInit 钩子主要用于执行组件的其它初始化操作或获取组件输入的属性值。</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">export</span> <span class="kr">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
-  <span class="nl">name</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
 
-  <span class="kd">constructor</span><span class="p">(</span><span class="k">public</span> <span class="nx">elementRef</span><span class="err">:</span> <span class="nx">ElementRef</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 使用构造注入的方式注入依赖对象</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="kr">public</span> <span class="nx">elementRef</span><span class="p">:</span> <span class="nx">ElementRef</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 使用构造注入的方式注入依赖对象</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Semlinker'</span><span class="p">;</span> <span class="c1">// 执行初始化操作</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008685752">Angular 2 constructor &amp; ngOnInit</a></p>
 
@@ -747,44 +736,41 @@ let sum = add(3, 4);
 
 <p>Angular 通过引入 forwardRef 让我们可以在使用构造注入时，使用尚未定义的依赖对象类型。下面我们先看一下如果没有使用 forwardRef ，在开发中可能会遇到的问题：</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="err">@</span><span class="nx">Injectable</span><span class="p">()</span>
-<span class="kr">class</span> <span class="nx">Socket</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">buffer</span><span class="err">:</span> <span class="nx">Buffer</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nx">Socket</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">buffer</span><span class="p">:</span> <span class="nx">Buffer</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">);</span> <span class="c1">// undefined</span>
 
-<span class="err">@</span><span class="nx">Injectable</span><span class="p">()</span>
-<span class="kr">class</span> <span class="nx">Buffer</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">(</span><span class="err">@</span><span class="nx">Inject</span><span class="p">(</span><span class="nx">BUFFER_SIZE</span><span class="p">)</span> <span class="k">private</span> <span class="nx">size</span><span class="err">:</span> <span class="nb">Number</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nx">Buffer</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(@</span><span class="nd">Inject</span><span class="p">(</span><span class="nx">BUFFER_SIZE</span><span class="p">)</span> <span class="kr">private</span> <span class="nx">size</span><span class="p">:</span> <span class="nb">Number</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Buffer</span><span class="p">);</span> <span class="c1">// [Function: Buffer]</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>若运行上面的例子，将会抛出以下异常:</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="nb">Error</span><span class="err">:</span> <span class="nx">Cannot</span> <span class="nx">resolve</span> <span class="nx">all</span> <span class="nx">parameters</span> <span class="k">for</span> <span class="nx">Socket</span><span class="p">(</span><span class="kc">undefined</span><span class="p">).</span>
-<span class="nx">Make</span> <span class="nx">sure</span> <span class="nx">they</span> <span class="nx">all</span> <span class="nx">have</span> <span class="nx">valid</span> <span class="kd">type</span> <span class="nx">or</span> <span class="nx">annotations</span>
-</code></pre>
-</div>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Error</span><span class="p">:</span> <span class="nx">Cannot</span> <span class="nx">resolve</span> <span class="nx">all</span> <span class="nx">parameters</span> <span class="k">for</span> <span class="nx">Socket</span><span class="p">(</span><span class="kc">undefined</span><span class="p">).</span>
+<span class="nx">Make</span> <span class="nx">sure</span> <span class="nx">they</span> <span class="nx">all</span> <span class="nx">have</span> <span class="nx">valid</span> <span class="nx">type</span> <span class="nx">or</span> <span class="nx">annotations</span>
+</code></pre></div></div>
 
 <p>那么要解决上面的问题，最简单的处理方式是交换类定义的顺序。除此之外，我们还可以使用 Angular  提供的 forward reference 特性来解决问题，具体如下：</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">forwardRef</span> <span class="p">}</span> <span class="k">from</span><span class="s1">'@angular2/core'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">forwardRef</span> <span class="p">}</span> <span class="k">from</span><span class="s1">'@angular2/core'</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">Injectable</span><span class="p">()</span>
-<span class="kr">class</span> <span class="nx">Socket</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">(</span><span class="err">@</span><span class="nx">Inject</span><span class="p">(</span><span class="nx">forwardRef</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">Buffer</span><span class="p">))</span> 
-    <span class="k">private</span> <span class="nx">buffer</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nx">Socket</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(@</span><span class="nd">Inject</span><span class="p">(</span><span class="nx">forwardRef</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">Buffer</span><span class="p">))</span> 
+    <span class="kr">private</span> <span class="nx">buffer</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kr">class</span> <span class="nx">Buffer</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">(</span><span class="err">@</span><span class="nx">Inject</span><span class="p">(</span><span class="nx">BUFFER_SIZE</span><span class="p">)</span> <span class="k">private</span> <span class="nx">size</span><span class="err">:</span> <span class="nb">Number</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="kd">class</span> <span class="nx">Buffer</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(@</span><span class="nd">Inject</span><span class="p">(</span><span class="nx">BUFFER_SIZE</span><span class="p">)</span> <span class="kr">private</span> <span class="nx">size</span><span class="p">:</span> <span class="nb">Number</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008626276">Angular 2 Forward Reference</a></p>
 
@@ -800,34 +786,33 @@ let sum = add(3, 4);
 
 <h4 id="provider-接口">Provider 接口</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">export</span> <span class="kr">interface</span> <span class="nx">ClassProvider</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kr">interface</span> <span class="nx">ClassProvider</span> <span class="p">{</span>
   <span class="c1">// 用于设置与依赖对象关联的Token值，Token值可能是Type、InjectionToken、OpaqueToken的实例或字符串</span>
-  <span class="nl">provide</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span> 
-  <span class="nl">useClass</span><span class="p">:</span> <span class="nx">Type</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span> 
+  <span class="nl">useClass</span><span class="p">:</span> <span class="nx">Type</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
   <span class="c1">// 用于标识是否multiple providers，若是multiple类型，则返回与Token关联的依赖对象列表</span>
   <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span> 
 <span class="p">}</span>
   
 <span class="k">export</span> <span class="kr">interface</span> <span class="nx">ValueProvider</span> <span class="p">{</span>
-  <span class="nl">provide</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
-  <span class="nl">useValue</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
+  <span class="nl">useValue</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
   <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span>
 <span class="p">}</span>
   
 <span class="k">export</span> <span class="kr">interface</span> <span class="nx">ExistingProvider</span> <span class="p">{</span>
-  <span class="nl">provide</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
-  <span class="nl">useExisting</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
+  <span class="nl">useExisting</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
   <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span>
 <span class="p">}</span>
   
 <span class="k">export</span> <span class="kr">interface</span> <span class="nx">FactoryProvider</span> <span class="p">{</span>
-  <span class="nl">provide</span><span class="p">:</span> <span class="kr">any</span><span class="p">;</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
   <span class="nl">useFactory</span><span class="p">:</span> <span class="nb">Function</span><span class="p">;</span>
-  <span class="nx">deps</span><span class="p">?:</span> <span class="kr">any</span><span class="p">[];</span> <span class="c1">// 用于设置工厂函数的依赖对象</span>
+  <span class="nx">deps</span><span class="p">?:</span> <span class="nx">any</span><span class="p">[];</span> <span class="c1">// 用于设置工厂函数的依赖对象</span>
   <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="angular-中配置-provider-有哪几种方式">Angular 中配置 Provider 有哪几种方式？</h3>
 
@@ -842,37 +827,33 @@ let sum = add(3, 4);
 
 <h4 id="useclass">useClass</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="nx">ApiService</span><span class="p">,</span> <span class="nx">useClass</span><span class="err">:</span> <span class="nx">ApiService</span> <span class="p">}</span> <span class="c1">// 可使用简洁的语法，即直接使用ApiService</span>
-</code></pre>
-</div>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="nx">ApiService</span><span class="p">,</span> <span class="nx">useClass</span><span class="p">:</span> <span class="nx">ApiService</span> <span class="p">}</span> <span class="c1">// 可使用简洁的语法，即直接使用ApiService</span>
+</code></pre></div></div>
 
 <h4 id="usevalue">useValue</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="s1">'API_URL'</span><span class="p">,</span> <span class="nx">useValue</span><span class="err">:</span> <span class="s1">'http://my.api.com/v1'</span> <span class="p">}</span>
-</code></pre>
-</div>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="s1">'API_URL'</span><span class="p">,</span> <span class="nx">useValue</span><span class="p">:</span> <span class="s1">'http://my.api.com/v1'</span> <span class="p">}</span>
+</code></pre></div></div>
 
 <h4 id="useexisting">useExisting</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="s1">'ApiServiceAlias'</span><span class="p">,</span> <span class="nx">useExisting</span><span class="err">:</span> <span class="nx">ApiService</span> <span class="p">}</span>
-</code></pre>
-</div>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="s1">'ApiServiceAlias'</span><span class="p">,</span> <span class="nx">useExisting</span><span class="p">:</span> <span class="nx">ApiService</span> <span class="p">}</span>
+</code></pre></div></div>
 
 <h4 id="usefactory">useFactory</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">export</span> <span class="kd">function</span> <span class="nx">configFactory</span><span class="p">(</span><span class="nx">config</span><span class="err">:</span> <span class="nx">AppConfig</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">function</span> <span class="nx">configFactory</span><span class="p">(</span><span class="nx">config</span><span class="p">:</span> <span class="nx">AppConfig</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">config</span><span class="p">.</span><span class="nx">load</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="nx">APP_INITIALIZER</span><span class="p">,</span> <span class="nx">useFactory</span><span class="err">:</span> <span class="nx">configFactory</span><span class="p">,</span> <span class="nx">deps</span><span class="err">:</span> <span class="p">[</span><span class="nx">AppConfig</span><span class="p">],</span> <span class="nx">multi</span><span class="err">:</span> <span class="kc">true</span> <span class="p">}</span>
-</code></pre>
-</div>
+<span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="nx">APP_INITIALIZER</span><span class="p">,</span> <span class="nx">useFactory</span><span class="p">:</span> <span class="nx">configFactory</span><span class="p">,</span> <span class="nx">deps</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppConfig</span><span class="p">],</span> <span class="nx">multi</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+</code></pre></div></div>
 
 <h3 id="为什么-useclass-可以使用简洁的语法">为什么 useClass 可以使用简洁的语法？</h3>
 
 <p>当 DI 解析 Providers 时，都会对提供的每个 provider 进行规范化处理，即转换成标准的形式。具体如下：</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">_normalizeProviders</span><span class="p">(</span><span class="nx">providers</span><span class="err">:</span> <span class="nx">Provider</span><span class="p">[],</span> <span class="nx">res</span><span class="err">:</span> <span class="nx">Provider</span><span class="p">[])</span><span class="err">:</span> <span class="nx">Provider</span><span class="p">[]</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">_normalizeProviders</span><span class="p">(</span><span class="nx">providers</span><span class="p">:</span> <span class="nx">Provider</span><span class="p">[],</span> <span class="nx">res</span><span class="p">:</span> <span class="nx">Provider</span><span class="p">[]):</span> <span class="nx">Provider</span><span class="p">[]</span> <span class="p">{</span>
   <span class="nx">providers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">b</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">b</span> <span class="k">instanceof</span> <span class="nx">Type</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 支持简洁的语法，转换为标准格式</span>
       <span class="nx">res</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="na">provide</span><span class="p">:</span> <span class="nx">b</span><span class="p">,</span> <span class="na">useClass</span><span class="p">:</span> <span class="nx">b</span><span class="p">});</span>
@@ -881,24 +862,22 @@ let sum = add(3, 4);
   <span class="p">});</span>
   <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="angular-中-multi-provider-有什么作用">Angular 中 multi Provider 有什么作用？</h3>
 
 <p>首先我们先来分析一下，若没有设置 multi: true 属性时，使用同一个 token 注册 provider 时，会出现什么问题？</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Engine</span> <span class="p">{</span> <span class="p">}</span>
-<span class="kr">class</span> <span class="nx">TurboEngine</span> <span class="p">{</span> <span class="p">}</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Engine</span> <span class="p">{</span> <span class="p">}</span>
+<span class="kd">class</span> <span class="nx">TurboEngine</span> <span class="p">{</span> <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">injector</span> <span class="o">=</span> <span class="nx">ReflectiveInjector</span><span class="p">.</span><span class="nx">resolveAndCreate</span><span class="p">([</span>
   <span class="nx">provide</span><span class="p">(</span><span class="nx">Engine</span><span class="p">,</span> <span class="p">{</span><span class="na">useClass</span><span class="p">:</span> <span class="nx">Engine</span><span class="p">}),</span>
   <span class="nx">provide</span><span class="p">(</span><span class="nx">Engine</span><span class="p">,</span> <span class="p">{</span><span class="na">useClass</span><span class="p">:</span> <span class="nx">TurboEngine</span><span class="p">})</span>
 <span class="p">]);</span>
 
-<span class="kd">var</span> <span class="nx">engine</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">Engine</span><span class="p">);</span> <span class="c1">// engine instanceof TurboEngine == true</span>
-</code></pre>
-</div>
+<span class="kd">var</span> <span class="nx">engine</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">Engine</span><span class="p">);</span> <span class="c1">// engine instanceof TurboEngine == true</span>
+</code></pre></div></div>
 
 <p>这说明如果使用同一个 token 注册 provider，后面注册的 provider 将会覆盖前面已注册的 provider。此外，Angular 2 使用 multi provider 的这种机制，为我们提供可插拔的钩子(pluggable hooks) 。另外需要注意的是，multi provider是不能和普通的 provider 混用。</p>
 
@@ -922,19 +901,17 @@ let sum = add(3, 4);
 
 <p>宿主元素的概念同时适用于指令和组件。对于指令来说，这个概念是相当简单的。应用指令的元素，就是宿主元素。假设我们已声明了一个 HighlightDirective 指令 (selector: ‘[exeHighlight]’)：</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">exeHighlight</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">exeHighlight</span><span class="nt">&gt;</span>
    <span class="nt">&lt;span&gt;</span>高亮的文本<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/p&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>上面 html 代码中，<code class="highlighter-rouge">p</code> 元素就是宿主元素。如果该指令应用于自定义组件中如：</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;exe-counter</span> <span class="na">exeHighlight</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;exe-counter</span> <span class="na">exeHighlight</span><span class="nt">&gt;</span>
     <span class="nt">&lt;span&gt;</span>高亮的文本<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/exe-counter&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>此时 <code class="highlighter-rouge">exe-counter</code> 自定义元素，就是宿主元素。</p>
 
@@ -988,11 +965,10 @@ let sum = add(3, 4);
 
 <h3 id="使用-hidden-属性控制元素可见性有什么问题">使用 <code class="highlighter-rouge">[hidden]</code> 属性控制元素可见性有什么问题？</h3>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="err">[</span><span class="na">hidden</span><span class="err">]="!</span><span class="na">showGreeting</span><span class="err">"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="err">[</span><span class="na">hidden</span><span class="err">]="!</span><span class="na">showGreeting</span><span class="err">"</span><span class="nt">&gt;</span>
   Hello, there!
 <span class="nt">&lt;/div&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>当在对应的 DOM 元素上设置 <code class="highlighter-rouge">display: flex</code> 属性时，尽管<code class="highlighter-rouge">[hidden]</code> 对应的表达式为 <code class="highlighter-rouge">true</code>，但元素却能正常显示。对于这种特殊情况，则推荐使用 <code class="highlighter-rouge">*ngIf</code>。</p>
 
@@ -1050,22 +1026,21 @@ let sum = add(3, 4);
 
 <p>@Component 中 <code class="highlighter-rouge">@</code> 是语法糖，用于表示装饰器。</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
-<span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
   <span class="na">selector</span><span class="p">:</span> <span class="s1">'exe-app'</span><span class="p">,</span>
-  <span class="na">template</span><span class="p">:</span> <span class="err">`</span>
-   <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">Angular</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
-</span>  <span class="err">`</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+   &lt;h1&gt;Hello Angular&lt;/h1&gt;
+  `</span><span class="p">,</span>
 <span class="p">})</span>
-<span class="k">export</span> <span class="kr">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>编译后 ES 5 代码：</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">__decorate</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">__decorate</span><span class="p">)</span> <span class="o">||</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">decorators</span><span class="p">,</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">desc</span><span class="p">)</span> <span class="p">{};</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">__decorate</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">__decorate</span><span class="p">)</span> <span class="o">||</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">decorators</span><span class="p">,</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">desc</span><span class="p">)</span> <span class="p">{};</span>
 <span class="nx">define</span><span class="p">([</span><span class="s2">"require"</span><span class="p">,</span> <span class="s2">"exports"</span><span class="p">,</span> <span class="s2">"@angular/core"</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">require</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">core_1</span><span class="p">)</span> <span class="p">{</span>
   <span class="s2">"use strict"</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">AppComponent</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -1075,13 +1050,12 @@ let sum = add(3, 4);
   <span class="nx">AppComponent</span> <span class="o">=</span> <span class="nx">__decorate</span><span class="p">([</span>
     <span class="nx">core_1</span><span class="p">.</span><span class="nx">Component</span><span class="p">({</span>
       <span class="na">selector</span><span class="p">:</span> <span class="s1">'exe-app'</span><span class="p">,</span>
-      <span class="na">template</span><span class="p">:</span> <span class="s2">"\n   &lt;h1&gt;Hello Angular&lt;/h1&gt;\n  "</span><span class="p">,</span>
+      <span class="na">template</span><span class="p">:</span> <span class="s2">"</span><span class="err">\</span><span class="s2">n   &lt;h1&gt;Hello Angular&lt;/h1&gt;</span><span class="err">\</span><span class="s2">n  "</span><span class="p">,</span>
     <span class="p">})</span>
   <span class="p">],</span> <span class="nx">AppComponent</span><span class="p">);</span>
   <span class="nx">exports</span><span class="p">.</span><span class="nx">AppComponent</span> <span class="o">=</span> <span class="nx">AppComponent</span><span class="p">;</span>
 <span class="p">});</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>@Component 中 @ 符号的作用是为了告诉 TypeScript 编译器，@ 后面的是装饰器函数或装饰器工厂，需要特殊处理。假设在 @Component({…}) 中去掉 @ 符号，那么变成了普通的函数调用，这样马上就会报错，因为我们并没有定义 Component 函数。通过观察转换后的代码，我们发现 @Component({…}) 被转换成 core_1.Component ，它就是从 <code class="highlighter-rouge">@angular/core</code> 导入的装饰器函数。</p>
 
@@ -1122,9 +1096,8 @@ let sum = add(3, 4);
   <li>@Input 属于属性装饰器，通过它我们可以一起定义属性的访问描述符 (public、private、protected)：</li>
 </ul>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="err">@</span><span class="nx">Input</span><span class="p">()</span> <span class="k">public</span> <span class="nx">attr</span><span class="err">:</span> <span class="kr">string</span><span class="p">;</span>
-</code></pre>
-</div>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Input</span><span class="p">()</span> <span class="kr">public</span> <span class="nx">attr</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+</code></pre></div></div>
 
 <h3 id="使用input-与-output-有什么注意事项">使用@Input 与 @Output 有什么注意事项？</h3>
 
@@ -1290,9 +1263,8 @@ let sum = add(3, 4);
 
 <p>模块可以重新导出其它模块，这会导致重新导出它们导出的所有类。Angular 的 BrowserModule 就重新导出了一组模块，例如：</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="nx">exports</span><span class="err">:</span> <span class="p">[</span><span class="nx">CommonModule</span><span class="p">,</span> <span class="nx">ApplicationModule</span><span class="p">]</span>
-</code></pre>
-</div>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">exports</span><span class="p">:</span> <span class="p">[</span><span class="nx">CommonModule</span><span class="p">,</span> <span class="nx">ApplicationModule</span><span class="p">]</span>
+</code></pre></div></div>
 
 <blockquote>
   <p>不要费心去导出纯服务类。纯服务类的模块不会导出任何可供其它模块使用的可声明类。例如，不用重新导出 <code class="highlighter-rouge">HttpModule</code>，因为它没有导出任何东西。它唯一的用途就是把 Http 相关的服务注册到应用中。</p>
@@ -1414,14 +1386,13 @@ let sum = add(3, 4);
 
 <p>某些 Angular 模块 (例如 <code class="highlighter-rouge">BrowserModule</code>) 就实现了构造函数守卫功能。</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="kd">constructor</span> <span class="p">(</span><span class="err">@</span><span class="nx">Optional</span><span class="p">()</span> <span class="err">@</span><span class="nx">SkipSelf</span><span class="p">()</span> <span class="nx">parentModule</span><span class="err">:</span> <span class="nx">CoreModule</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">constructor</span> <span class="p">(@</span><span class="nd">Optional</span><span class="p">()</span> <span class="p">@</span><span class="nd">SkipSelf</span><span class="p">()</span> <span class="nx">parentModule</span><span class="p">:</span> <span class="nx">CoreModule</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">parentModule</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span>
       <span class="s1">'CoreModule is already loaded. Import it in the AppModule only'</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="什么是入口组件">什么是入口组件？</h3>
 
@@ -1512,29 +1483,27 @@ let sum = add(3, 4);
 
 <h4 id="1导入-formsmodule-模块">1.导入 FormsModule 模块</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">NgModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">NgModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/platform-browser'</span><span class="p">;</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">FormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/forms'</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">NgModule</span><span class="p">({</span>
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
   <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">BrowserModule</span><span class="p">,</span> <span class="nx">FormsModule</span><span class="p">],</span> <span class="c1">// we add FormsModule here</span>
   <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">],</span>
   <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
 <span class="p">})</span>
-<span class="k">export</span> <span class="kr">class</span> <span class="nx">AppModule</span> <span class="p">{}</span>
-</code></pre>
-</div>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span> <span class="p">{}</span>
+</code></pre></div></div>
 
 <h4 id="2实际应用">2.实际应用</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">novalidate</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">input</span> <span class="kd">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"name"</span> <span class="nx">ngModel</span> <span class="nx">required</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">input</span> <span class="kd">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"street"</span> <span class="nx">ngModel</span> <span class="nx">minlength</span><span class="o">=</span><span class="s2">"3"</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">input</span> <span class="kd">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"city"</span> <span class="nx">ngModel</span> <span class="nx">maxlength</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">input</span> <span class="kd">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"zip"</span> <span class="nx">ngModel</span> <span class="nx">pattern</span><span class="o">=</span><span class="s2">"[A-Za-z]{5}"</span><span class="o">&gt;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">novalidate</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"name"</span> <span class="nx">ngModel</span> <span class="nx">required</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"street"</span> <span class="nx">ngModel</span> <span class="nx">minlength</span><span class="o">=</span><span class="s2">"3"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"city"</span> <span class="nx">ngModel</span> <span class="nx">maxlength</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"zip"</span> <span class="nx">ngModel</span> <span class="nx">pattern</span><span class="o">=</span><span class="s2">"[A-Za-z]{5}"</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000009037539">Angular 4.x Template-Driven Forms</a></p>
 
@@ -1542,28 +1511,27 @@ let sum = add(3, 4);
 
 <h4 id="1导入-reactiveformsmodule-模块">1.导入 ReactiveFormsModule 模块</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ReactiveFormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/forms'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ReactiveFormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/forms'</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">NgModule</span><span class="p">({</span>
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
   <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">BrowserModule</span><span class="p">,</span> <span class="nx">ReactiveFormsModule</span><span class="p">],</span>
   <span class="p">...</span>
 <span class="p">})</span>
-<span class="k">export</span> <span class="kr">class</span> <span class="nx">AppModule</span> <span class="p">{}</span>
-</code></pre>
-</div>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span> <span class="p">{}</span>
+</code></pre></div></div>
 
 <h4 id="2实际应用-1">2.实际应用</h4>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="err">@</span><span class="nx">Component</span><span class="p">({</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
   <span class="na">selector</span><span class="p">:</span> <span class="s1">'exe-app'</span><span class="p">,</span>
-  <span class="na">template</span><span class="p">:</span> <span class="err">`</span>
-	<span class="o">&lt;</span><span class="nx">form</span> <span class="nx">novalidate</span> <span class="p">[</span><span class="nx">formGroup</span><span class="p">]</span><span class="o">=</span><span class="s2">"form"</span><span class="o">&gt;</span>
-  		<span class="p">...</span>
-	<span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
-</span>  <span class="err">`</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+	&lt;form novalidate [formGroup]="form"&gt;
+  		...
+	&lt;/form&gt;
+  `</span>
 <span class="p">})</span>
-<span class="kr">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">fb</span><span class="err">:</span> <span class="nx">FormBuilder</span><span class="p">)</span> <span class="p">{}</span>
+<span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">fb</span><span class="p">:</span> <span class="nx">FormBuilder</span><span class="p">)</span> <span class="p">{}</span>
   <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">form</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">fb</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
       <span class="na">name</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">],</span>
@@ -1573,8 +1541,7 @@ let sum = add(3, 4);
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000009041192">Angular 4.x Reactive Forms</a></p>
 
@@ -1584,15 +1551,13 @@ let sum = add(3, 4);
 
 <p>novalidate</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">novalidate</span><span class="nt">&gt;&lt;/form&gt;</span>
-</code></pre>
-</div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">novalidate</span><span class="nt">&gt;&lt;/form&gt;</span>
+</code></pre></div></div>
 
 <p>ngNativeValidate</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">ngNativeValidate</span><span class="nt">&gt;&lt;/form&gt;</span>
-</code></pre>
-</div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">ngNativeValidate</span><span class="nt">&gt;&lt;/form&gt;</span>
+</code></pre></div></div>
 
 <h3 id="表单控件的状态除了-touched-外还包含其它几种状态">表单控件的状态除了 <code class="highlighter-rouge">touched</code> 外，还包含其它几种状态？</h3>
 
@@ -1618,7 +1583,7 @@ let sum = add(3, 4);
 
 <p>ngModelGroup 指令是 Angular 提供的另一特殊指令，可以对表单输入内容进行分组，方便我们在语义上区分不同性质的输入。例如联系人的信息包括姓名及住址，现在需对姓名和住址进行精细化信息收集，姓名可精细化成姓和名字，地址可精细化成城市、区、街等。此时就可以将姓名及住址进行分组收集，具体如下:</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="err">#</span><span class="na">concatForm =</span><span class="err"> </span><span class="s">"ngForm"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="err">#</span><span class="na">concatForm =</span><span class="err"> </span><span class="s">"ngForm"</span><span class="nt">&gt;</span>
 	<span class="nt">&lt;fieldset</span> <span class="na">ngModelGroup=</span><span class="s">"nameGroup"</span> <span class="err">#</span><span class="na">nameGroup=</span><span class="s">"ngModelGroup"</span><span class="nt">&gt;</span>
 		<span class="nt">&lt;label&gt;</span>姓:<span class="nt">&lt;/label&gt;</span>
 		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"firstname"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">firstname</span><span class="err">"</span> 
@@ -1635,24 +1600,22 @@ let sum = add(3, 4);
 		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"city"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">city</span><span class="err">"</span> <span class="na">required</span><span class="nt">&gt;</span>
     <span class="nt">&lt;/fieldset&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>上述例子分别对联系人的姓名和住址进行分组， ngModelGroup 将姓和名字的表单内容进行包裹组成姓名分组，将城市、区和街道的表单内容进行包裹组成住址分组。此时concatForm.value值为:</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
   <span class="nl">nameGroup</span><span class="p">:</span> <span class="p">{</span>
 	<span class="nl">firstname</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span>
-	<span class="nl">lastname</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span>
+	<span class="nx">lastname</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span>
   <span class="p">}</span><span class="err">，</span>
-  <span class="nl">addressGroup</span><span class="p">:</span> <span class="p">{</span> 
+  <span class="nx">addressGroup</span><span class="p">:</span> <span class="p">{</span> 
     <span class="nl">street</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span> 
-    <span class="nx">zip</span><span class="err">:</span> <span class="s1">''</span><span class="err">，</span> 
-    <span class="nx">city</span><span class="err">:</span> <span class="s1">''</span>
+    <span class="nx">zip</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span> 
+    <span class="nx">city</span><span class="p">:</span> <span class="s1">''</span>
   <span class="p">}</span> 
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="angular-表单中-patchvalue-与-setvalue-方法有什么区别">Angular 表单中 patchValue 与 setValue 方法有什么区别？</h3>
 
@@ -1719,16 +1682,15 @@ let sum = add(3, 4);
 
 <h3 id="changedetectionstrategy-变化检测策略总共有几种">ChangeDetectionStrategy 变化检测策略总共有几种？</h3>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">export</span> <span class="kr">declare</span> <span class="kr">enum</span> <span class="nx">ChangeDetectionStrategy</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="nx">declare</span> <span class="kr">enum</span> <span class="nx">ChangeDetectionStrategy</span> <span class="p">{</span>
   <span class="nx">OnPush</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 变化检测器的状态值是 CheckOnce</span>
   <span class="nx">Default</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 组件默认值 - 变化检测器的状态值是 CheckAlways，即始终执行变化检测</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="变化检测器的状态有哪几种">变化检测器的状态有哪几种？</h3>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">export</span> <span class="kr">declare</span> <span class="kr">enum</span> <span class="nx">ChangeDetectorStatus</span> <span class="p">{</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="nx">declare</span> <span class="kr">enum</span> <span class="nx">ChangeDetectorStatus</span> <span class="p">{</span>
   <span class="nx">CheckOnce</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">// 表示在执行detectChanges之后，变化检测器的状态将会变成Checked</span>
   <span class="nx">Checked</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// 表示变化检测将被跳过，直到变化检测器的状态恢复成CheckOnce</span>
   <span class="nx">CheckAlways</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="c1">// 表示在执行detectChanges之后，变化检测器的状态始终为CheckAlways</span>
@@ -1736,8 +1698,7 @@ let sum = add(3, 4);
   <span class="nx">Errored</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="c1">// 表示在执行变化检测时出现异常</span>
   <span class="nx">Destroyed</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="c1">// 表示变化检测器已被销毁</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="pipe">Pipe</h2>
 
@@ -1794,25 +1755,23 @@ let sum = add(3, 4);
 
 <p>RepeatPipe 定义</p>
 
-<div class="language-typescript highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Pipe</span><span class="p">,</span> <span class="nx">PipeTransform</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Pipe</span><span class="p">,</span> <span class="nx">PipeTransform</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">Pipe</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="s1">'repeat'</span><span class="p">})</span>
-<span class="k">export</span> <span class="kr">class</span> <span class="nx">RepeatPipe</span> <span class="k">implements</span> <span class="nx">PipeTransform</span> <span class="p">{</span>
-  <span class="nx">transform</span><span class="p">(</span><span class="nx">value</span><span class="err">:</span> <span class="kr">any</span><span class="p">,</span> <span class="nx">times</span><span class="err">:</span> <span class="kr">number</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">@</span><span class="nd">Pipe</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="s1">'repeat'</span><span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">RepeatPipe</span> <span class="kr">implements</span> <span class="nx">PipeTransform</span> <span class="p">{</span>
+  <span class="nx">transform</span><span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="nx">any</span><span class="p">,</span> <span class="nx">times</span><span class="p">:</span> <span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="nx">times</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>RepeatPipe 使用</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
   <span class="nt">&lt;p</span> <span class="na">ngNonBindable</span><span class="nt">&gt;</span>lo<span class="nt">&lt;/p&gt;</span>
   <span class="nt">&lt;p&gt;</span>lo<span class="nt">&lt;/p&gt;</span> <span class="c">&lt;!-- Output: lololo --&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>详细的内容可以参考 - <a href="https://segmentfault.com/a/1190000008646187">Angular 2 Pipe</a></p>
 

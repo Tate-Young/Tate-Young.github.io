@@ -623,7 +623,29 @@
   </tbody>
 </table>
 
-<p>查看 JSFiddle 示例:</p>
+<p>举个颜色图标点亮的示例:</p>
+
+<style>
+.test-div:hover .test-sspai {
+  filter: none;
+}
+.test-sspai {
+  height: 22px;
+  filter: contrast(0) brightness(130%);
+  transition: 0.5s;
+}
+</style>
+
+<div class="test-div" style="cursor:pointer">
+  <img class="test-sspai" src="https://pasteapp.me/images/logos/sspai.png" />
+</div>
+
+<pre><code class="language-CSS">img {
+  filter: contrast(0) brightness(130%);
+}
+</code></pre>
+
+<p>各种效果比较可查看 JSFiddle 示例:</p>
 
 <script async="" src="//jsfiddle.net/Tate_Young/r88t8kcg/3/embed/html,css,result/"></script>
 

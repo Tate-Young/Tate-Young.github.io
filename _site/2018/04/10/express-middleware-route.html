@@ -448,6 +448,19 @@ req.cookies.name // 'tate'
 req.signedCookies.user // 'tate'
 </code></pre>
 
+<h3 id="reqip">req.ip</h3>
+
+<p>获取主机 ip 地址，有些情况带有前缀”::ffff:”，可使用正则 <code>req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0]</code>进行处理:</p>
+
+<pre><code class="language-JS">// node 获取 ip
+var ip =
+  req.headers['true-client-ip'] ||
+  req.headers['x-forwarded-for'] ||
+  req.connection.remoteAddress ||
+  req.socket.remoteAddress ||
+  (req.connection.socket ? req.connection.socket.remoteAddress : null); // =&gt; "127.0.0.1"
+</code></pre>
+
 <h2 id="response">Response</h2>
 
 <table>
@@ -497,6 +510,10 @@ req.signedCookies.user // 'tate'
     <tr>
       <td style="text-align: left"><strong>res.type()</strong></td>
       <td style="text-align: left">设置 Content-Type 的 MIME 类型</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>res.set()</strong></td>
+      <td style="text-align: left">设置 HTTP header，res.header() 的别名</td>
     </tr>
   </tbody>
 </table>
@@ -605,9 +622,17 @@ app.use(function (req, res) {
 })
 </code></pre>
 
+<h3 id="resset">res.set()</h3>
+
+<p><strong>res.set()</strong> 是 <strong>res.header()</strong> 的别名，用来设置请求头信息:</p>
+
+<pre><code class="language-JS">res.set('Content-Type', 'text/plain');
+res.set('Cache-Control', 'no-cache, max-age=0, no-store, must-revalidate')
+</code></pre>
+
 <h2 id="中间件">中间件</h2>
 
-<p><strong><a href="http://www.expressjs.com.cn/guide/using-middleware.html">中间件(Middleware)</a></strong> 是一个函数，它可以访问请求对象(request object (req)), 响应对象(response object (res))和 web 应用中处于请求-响应循环流程中的中间件，一般被命名为 next 的变量。如果当前中间件没有终结请求-响应循环，则必须调用 next() 方法将控制权交给下一个中间件，否则请求就会挂起。</p>
+<p><strong><a href="http://www.expressjs.com.cn/guide/using-middleware.html">中间件(Middleware)</a></strong> 是一个函数，它可以访问 <strong>请求对象(req)</strong>, <strong>响应对象(res)</strong> 和 web 应用中处于请求/响应循环流程中的中间件，下一个中间件函数通常由名为 <strong>next</strong> 的变量来表示。。如果当前中间件没有终结请求/响应循环，则必须调用 next() 方法将控制权交给下一个中间件，否则请求就会挂起。中间件装入顺序很重要：首先装入的中间件函数也首先被执行。</p>
 
 <pre><code class="language-JS">// 基本的中间件结构
 function myFunMiddleware(req, res, next) {
@@ -616,6 +641,12 @@ function myFunMiddleware(req, res, next) {
   next();
 }
 </code></pre>
+
+<p><img src="https://i.loli.net/2018/08/02/5b626eaba4573.png" alt="express-middleware.png" /></p>
+
+<blockquote>
+  <p>next() 函数不是 Node.js 或 Express API 的一部分，而是传递给中间件函数的第三自变量。next() 函数可以命名为任何名称，但是按约定，始终命名为 “next”。</p>
+</blockquote>
 
 <p>Express 应用可使用如下几种中间件：</p>
 
@@ -801,6 +832,7 @@ app.use('/birds', birds);
 
 <ol>
   <li><a href="http://www.expressjs.com.cn/4x/api.html">Express 4.x API 中文手册</a></li>
+  <li><a href="http://expressjs.com/zh-cn/guide/writing-middleware.html">Express - 编写中间件以用于 Express 应用程序</a></li>
   <li><a href="https://www.cnblogs.com/mq0036/p/5243312.html">nodejs 的 express 使用介绍</a></li>
   <li><a href="http://blog.jobbole.com/41325/">深入理解 Express.js</a></li>
 </ol>

@@ -237,6 +237,20 @@ req.cookies.name // 'tate'
 req.signedCookies.user // 'tate'
 ```
 
+### req.ip
+
+获取主机 ip 地址，有些情况带有前缀"::ffff:"，可使用正则 <code>req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0]</code>进行处理:
+
+```JS
+// node 获取 ip
+var ip =
+  req.headers['true-client-ip'] ||
+  req.headers['x-forwarded-for'] ||
+  req.connection.remoteAddress ||
+  req.socket.remoteAddress ||
+  (req.connection.socket ? req.connection.socket.remoteAddress : null); // => "127.0.0.1"
+```
+
 ## Response
 
 | res 属性或方法 | 描述 |
@@ -251,6 +265,7 @@ req.signedCookies.user // 'tate'
 | **res.render()** | 渲染一个视图，然后将渲染得到的 HTML 文档发送给客户端 |
 | **res.status()** | 设置响应对象的 HTTP status |
 | **res.type()** | 设置 Content-Type 的 MIME 类型 |
+| **res.set()** | 设置 HTTP header，res.header() 的别名 |
 
 ### res.locals
 
@@ -324,9 +339,18 @@ app.use(function (req, res) {
 })
 ```
 
+### res.set()
+
+**res.set()** 是 **res.header()** 的别名，用来设置请求头信息:
+
+```JS
+res.set('Content-Type', 'text/plain');
+res.set('Cache-Control', 'no-cache, max-age=0, no-store, must-revalidate')
+```
+
 ## 中间件
 
-**[中间件(Middleware)](http://www.expressjs.com.cn/guide/using-middleware.html)** 是一个函数，它可以访问请求对象(request object (req)), 响应对象(response object (res))和 web 应用中处于请求-响应循环流程中的中间件，一般被命名为 next 的变量。如果当前中间件没有终结请求-响应循环，则必须调用 next() 方法将控制权交给下一个中间件，否则请求就会挂起。
+**[中间件(Middleware)](http://www.expressjs.com.cn/guide/using-middleware.html)** 是一个函数，它可以访问 **请求对象(req)**, **响应对象(res)** 和 web 应用中处于请求/响应循环流程中的中间件，下一个中间件函数通常由名为 **next** 的变量来表示。。如果当前中间件没有终结请求/响应循环，则必须调用 next() 方法将控制权交给下一个中间件，否则请求就会挂起。中间件装入顺序很重要：首先装入的中间件函数也首先被执行。
 
 ```JS
 // 基本的中间件结构
@@ -336,6 +360,10 @@ function myFunMiddleware(req, res, next) {
   next();
 }
 ```
+
+![express-middleware.png](https://i.loli.net/2018/08/02/5b626eaba4573.png)
+
+> next() 函数不是 Node.js 或 Express API 的一部分，而是传递给中间件函数的第三自变量。next() 函数可以命名为任何名称，但是按约定，始终命名为 "next"。
 
 Express 应用可使用如下几种中间件：
 
@@ -528,5 +556,6 @@ app.use('/birds', birds);
 ## 参考链接
 
 1. [Express 4.x API 中文手册](http://www.expressjs.com.cn/4x/api.html)
-2. [nodejs 的 express 使用介绍](https://www.cnblogs.com/mq0036/p/5243312.html)
-3. [深入理解 Express.js](http://blog.jobbole.com/41325/)
+2. [Express - 编写中间件以用于 Express 应用程序](http://expressjs.com/zh-cn/guide/writing-middleware.html)
+3. [nodejs 的 express 使用介绍](https://www.cnblogs.com/mq0036/p/5243312.html)
+4. [深入理解 Express.js](http://blog.jobbole.com/41325/)

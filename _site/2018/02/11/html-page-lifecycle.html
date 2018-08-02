@@ -191,10 +191,9 @@
 
 <p><a href="http://localhost:4000/2018/02/11/html-render-blocking.html">上一节加载阻塞</a>已解释过，CSS的加载或阻塞 DOM 解析的行为都可以延迟 DOMContentLoaded 事件的执行。此时 async 和 defer 的脚本可能还没有执行。图片及其他资源文件可能还在下载中。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 通过事件监听可以捕获</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 通过事件监听可以捕获</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"DOMContentLoaded"</span><span class="p">,</span> <span class="nx">readyFn</span><span class="p">);</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="windowonload">window.onload</h2>
 
@@ -208,12 +207,11 @@
 
 <p>window 对象上的 <strong>onbeforeunload</strong> 会在用户即将离开页面或者关闭窗口时触发。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// 通常用于离开页面时候的提示</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 通常用于离开页面时候的提示</span>
 <span class="nb">window</span><span class="p">.</span><span class="nx">onbeforeunload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="s2">"There are unsaved changes. Leave now?"</span><span class="p">;</span>
 <span class="p">};</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="readystate">readyState</h2>
 
@@ -248,37 +246,35 @@
 
 <p>打印如下:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="mi">1</span><span class="err">:</span> <span class="nx">initial</span> <span class="nx">readyState</span><span class="err">:</span><span class="nx">loading</span>
-<span class="mi">2</span><span class="err">:</span> <span class="nx">readyState</span><span class="err">:</span><span class="nx">interactive</span>
-<span class="mi">3</span><span class="err">:</span> <span class="nx">DOMContentLoaded</span>
-<span class="mi">4</span><span class="err">:</span> <span class="nx">iframe</span> <span class="nx">onload</span>
-<span class="mi">5</span><span class="err">:</span> <span class="nx">img</span> <span class="nx">onload</span>
-<span class="mi">6</span><span class="err">:</span> <span class="nx">readyState</span><span class="err">:</span><span class="nx">complete</span>
-<span class="mi">7</span><span class="err">:</span> <span class="nb">window</span> <span class="nx">onload</span>
-</code></pre>
-</div>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="p">:</span> <span class="nx">initial</span> <span class="nx">readyState</span><span class="p">:</span><span class="nx">loading</span>
+<span class="mi">2</span><span class="p">:</span> <span class="nx">readyState</span><span class="p">:</span><span class="nx">interactive</span>
+<span class="mi">3</span><span class="p">:</span> <span class="nx">DOMContentLoaded</span>
+<span class="mi">4</span><span class="p">:</span> <span class="nx">iframe</span> <span class="nx">onload</span>
+<span class="mi">5</span><span class="p">:</span> <span class="nx">img</span> <span class="nx">onload</span>
+<span class="mi">6</span><span class="p">:</span> <span class="nx">readyState</span><span class="p">:</span><span class="nx">complete</span>
+<span class="mi">7</span><span class="p">:</span> <span class="nb">window</span> <span class="nx">onload</span>
+</code></pre></div></div>
 
 <h2 id="ready">$.ready</h2>
 
 <p>实现大概思路:</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">ready</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">ready</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'DOMContentLoaded'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">'DOMContentLoaded'</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">'DOMContentLoaded'</span><span class="p">,</span> <span class="kr">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
       <span class="nx">callback</span><span class="p">();</span>
     <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
   <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 兼容 ie</span>
     <span class="nb">document</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="s1">'onreadytstatechange'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="s2">"complete"</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nb">document</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">(</span><span class="s2">"onreadystatechange"</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">);</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">(</span><span class="s2">"onreadystatechange"</span><span class="p">,</span> <span class="kr">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">);</span>
         <span class="nx">callback</span><span class="p">();</span>
       <span class="p">}</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="参考链接">参考链接</h2>
 

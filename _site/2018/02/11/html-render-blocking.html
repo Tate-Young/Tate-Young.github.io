@@ -195,22 +195,20 @@
 
 <p>当注释掉 CSS 外链时，打印顺序为</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
 <span class="c1">// 页面出现 h1 标签内容，即渲染完成</span>
 <span class="nx">second</span> <span class="nx">print</span>
 <span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">,</span> <span class="nx">h1</span><span class="p">]</span> <span class="c1">// 异步</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>当加载 CSS 样式文件时，此时通过 Chrome Network 调试工具勾选 “Disabled cache”，再设置 “Throtting” 来模拟缓慢网络下的加载过程。打印顺序为</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
 <span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">,</span> <span class="nx">h1</span><span class="p">]</span>
 <span class="c1">// ---------------加载 CSS 文件中，延迟---------------</span>
 <span class="c1">// 页面出现 h1 标签内容，即渲染完成</span>
 <span class="nx">second</span> <span class="nx">print</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>因此可看出</p>
 
@@ -253,14 +251,13 @@
 
 <p>打印顺序为</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
 <span class="nx">first</span> <span class="nx">print</span> <span class="nx">NodeList</span><span class="err"> </span><span class="p">[</span><span class="nx">h1</span><span class="p">]</span>
 <span class="c1">// 页面出现 'Tate'</span>
 <span class="c1">// ---------------加载和执行 JS 文件中，延迟---------------</span>
 <span class="c1">// 页面出现 'Snow'</span>
 <span class="nx">second</span> <span class="nx">print</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>因此可看出</p>
 

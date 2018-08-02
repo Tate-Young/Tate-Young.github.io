@@ -692,7 +692,13 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
 
 <h3 id="compile-编译">compile 编译</h3>
 
-<p><strong>compile</strong> 编译可以分成 <strong>parse</strong>、<strong>optimize</strong> 与 <strong>generate</strong> 三个阶段，最终需要得到 <strong>render function</strong>。这部分请<a href="https://juejin.im/book/5a36661851882538e2259c0f/section/5a3bb1745188254b8b355428">参考掘金小册</a></p>
+<p><strong>compile</strong> 编译可以分成 <strong>parse</strong>、<strong>optimize</strong> 与 <strong>generate</strong> 三个阶段，最终需要得到 <strong>render function</strong>。这部分请<a href="https://juejin.im/book/5a36661851882538e2259c0f/section/5a3bb1745188254b8b355428">参考掘金小册</a>:</p>
+
+<ul>
+  <li><strong>parse</strong> - 会用正则等方式将 template 模板中进行字符串解析，得到指令、class、style 等数据，形成 <a href="https://zh.wikipedia.org/wiki/%E6%8A%BD%E8%B1%A1%E8%AA%9E%E6%B3%95%E6%A8%B9">AST 抽象语法树</a></li>
+  <li><strong>optimize</strong> - 为静态的节点做上一些「标记」，在 patch 的时候可以直接跳过这些被标记的节点的比对，从而达到「优化」的目的</li>
+  <li><strong>generate</strong> - 会将 AST 转化成 render funtion 字符串</li>
+</ul>
 
 <h3 id="render-function">render function</h3>
 

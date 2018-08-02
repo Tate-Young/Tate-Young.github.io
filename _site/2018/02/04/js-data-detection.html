@@ -176,10 +176,10 @@
 <p><strong>typeof</strong> 是一个一元运算，运算数可以是任意类型。它返回值是一个字符串，代表其数据类型，
 包括以下 7 种：string、number、boolean、symbol、object、undefined、function 。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="k">typeof</span> <span class="s1">'Tate'</span><span class="p">;</span> <span class="c1">// string</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typeof</span> <span class="s1">'Tate'</span><span class="p">;</span> <span class="c1">// string</span>
 <span class="k">typeof</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// number</span>
 <span class="k">typeof</span> <span class="kc">true</span><span class="p">;</span> <span class="c1">// boolean</span>
-<span class="k">typeof</span> <span class="nx">Symbol</span><span class="p">();</span> <span class="c1">// symbol</span>
+<span class="k">typeof</span> <span class="nb">Symbol</span><span class="p">();</span> <span class="c1">// symbol</span>
 <span class="k">typeof</span> <span class="kc">NaN</span><span class="p">;</span> <span class="c1">// number</span>
 <span class="k">typeof</span> <span class="kc">undefined</span><span class="p">;</span> <span class="c1">// undefined</span>
 <span class="k">typeof</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// object 出乎意外!!</span>
@@ -187,12 +187,11 @@
 <span class="k">typeof</span> <span class="p">{};</span> <span class="c1">// object</span>
 <span class="k">typeof</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="c1">// object</span>
 <span class="k">typeof</span> <span class="kd">function</span><span class="p">(){};</span> <span class="c1">// function</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>所以 typeof 一般只用作检测除 null 以外的基本类型或方法。<strong>isNaN()</strong> 一般用来判断是否为 NaN((Not-A-Number))，会将判断对象先包装成数字类型。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// isNaN() 实际转化后判断是否为非数字</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// isNaN() 实际转化后判断是否为非数字</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">);</span> <span class="c1">// true</span>
 <span class="nb">isNaN</span><span class="p">({});</span> <span class="c1">// true</span>
 <span class="nb">isNaN</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]);</span> <span class="c1">// true</span>
@@ -202,23 +201,21 @@
 <span class="nb">isNaN</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span> <span class="c1">// false 空字符串可被转换为0</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span> <span class="c1">// false 可被转换为毫秒数</span>
 <span class="nb">isNaN</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span> <span class="c1">// false 可被转换为new Number(null)即0</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>ES6 提供 Number.isNaN() 来增强判断，参数类型只要不是数值，则一律返回 false。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">);</span> <span class="c1">// true</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">);</span> <span class="c1">// true</span>
 <span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">({});</span> <span class="c1">// false</span>
 <span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span> <span class="c1">// false</span>
 <span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">'12'</span><span class="p">);</span> <span class="c1">// false 可被转换为12</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="instanceof">instanceof</h2>
 
 <p><strong>instanceof</strong> 通过原型判断前者是否是后者的实例。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// a instanceof b &lt;==&gt; a.__proto__ === b.prototype</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// a instanceof b &lt;==&gt; a.__proto__ === b.prototype</span>
 <span class="p">[]</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">;</span> <span class="c1">// true</span>
 <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="k">instanceof</span> <span class="nb">Date</span><span class="p">;</span> <span class="c1">// true</span>
 
@@ -232,18 +229,16 @@
 <span class="p">[]</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">;</span> <span class="c1">// true</span>
 <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">;</span> <span class="c1">// true</span>
 <span class="k">new</span> <span class="nx">Person</span><span class="p">()</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">;</span> <span class="c1">// true</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>instanceof 操作符的问题在于，它假定只有一个全局执行环境。如果网页中包含多个框架，那实际上就存在两个以上不同的全局执行环境。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">iframe</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'iframe'</span><span class="p">);</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">iframe</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'iframe'</span><span class="p">);</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">iframe</span><span class="p">);</span>
 <span class="nx">anotherArray</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nb">Array</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">anotherArray</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// [1,2]</span>
 <span class="nx">arr</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">;</span> <span class="c1">// false</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>针对数组的这个问题，ES5 提供了 Array.isArray() 方法。</p>
 
@@ -251,39 +246,37 @@
 
 <p>对象的 <strong>constructor</strong> 属性总是返回它的的构造函数。constructor 属性定义在 prototype 对象上面，可以被所有实例对象继承。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="c1">// Array.prototype.constructor 指向 Array 构造函数本身</span>
-<span class="p">[].</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="c1">// true</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Array.prototype.constructor 指向 Array 构造函数本身</span>
+<span class="p">[].</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="c1">// true</span>
 
-<span class="p">[].</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">;</span>
-<span class="s1">'Tate'</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">String</span><span class="p">;</span>
-<span class="kc">true</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Boolean</span><span class="p">;</span>
-<span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Date</span><span class="p">;</span>
-<span class="k">new</span> <span class="nb">Function</span><span class="p">().</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
+<span class="p">[].</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">;</span>
+<span class="s1">'Tate'</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">String</span><span class="p">;</span>
+<span class="kc">true</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Boolean</span><span class="p">;</span>
+<span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Date</span><span class="p">;</span>
+<span class="k">new</span> <span class="nb">Function</span><span class="p">().</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
 
-<span class="nb">Array</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
-<span class="nb">Object</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
-<span class="nb">String</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
+<span class="nb">Array</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
+<span class="nb">Object</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
+<span class="nb">String</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">Person</span><span class="p">(){};</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
-<span class="nx">p</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">;</span> <span class="c1">// true</span>
-</code></pre>
-</div>
+<span class="nx">p</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">;</span> <span class="c1">// true</span>
+</code></pre></div></div>
 
 <p>然而当重写 prototype 后，原有的 constructor 引用会丢失</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(){};</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">(){};</span>
 <span class="c1">// Person.prototype.sayHello = function(){ alert('hello'); } // 不会影响constructor指向</span>
 <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">// 重写 prototype</span>
     <span class="na">sayHello</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){}</span>
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
-<span class="nx">p</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">;</span> <span class="c1">// false</span>
-<span class="nx">p</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">;</span> <span class="c1">// true</span>
-<span class="nx">p</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span><span class="p">;</span> <span class="c1">// true</span>
-</code></pre>
-</div>
+<span class="nx">p</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">;</span> <span class="c1">// false</span>
+<span class="nx">p</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">;</span> <span class="c1">// true</span>
+<span class="nx">p</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span><span class="p">;</span> <span class="c1">// true</span>
+</code></pre></div></div>
 
 <h2 id="tostring">toString()</h2>
 
@@ -291,7 +284,7 @@
 
 <p>对于 Object 对象，直接调用 toString()  就能返回 [object Object] 。而对于其他对象，则需要通过 call / apply 来调用才能返回正确的类型信息。</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'Tate'</span><span class="p">);</span> <span class="c1">// [object String]</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="s1">'Tate'</span><span class="p">);</span> <span class="c1">// [object String]</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// [object Number]</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">;</span> <span class="c1">// [object Boolean]</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span> <span class="c1">// [object Undefined]</span>
@@ -302,14 +295,13 @@
 <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span> <span class="c1">// [object Date]</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span> <span class="c1">// [object HTMLDocument]</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">window</span><span class="p">);</span> <span class="c1">// [object Window]</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="type">$.type()</h2>
 
 <p><strong>$.type()</strong> 是 jQuery 封装的函数，用于确定JavaScript内置对象的类型，并返回小写形式的类型名称</p>
 
-<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="s2">"tate"</span><span class="p">)</span> <span class="o">===</span> <span class="s2">"string"</span><span class="p">;</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="s2">"tate"</span><span class="p">)</span> <span class="o">===</span> <span class="s2">"string"</span><span class="p">;</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">===</span> <span class="s2">"number"</span><span class="p">;</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="o">===</span> <span class="s2">"boolean"</span><span class="p">;</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="kc">undefined</span><span class="p">)</span> <span class="o">===</span> <span class="s2">"undefined"</span><span class="p">;</span>
@@ -320,8 +312,7 @@
 <span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="sr">/tate/</span><span class="p">)</span> <span class="o">===</span> <span class="s2">"regexp"</span><span class="p">;</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="o">===</span> <span class="s1">'object'</span><span class="p">;</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="nb">window</span><span class="p">)</span> <span class="o">===</span> <span class="s1">'object'</span><span class="p">;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="参考链接">参考链接</h2>
 
