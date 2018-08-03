@@ -1,0 +1,788 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='React 简介 - Tate & Snow' name='title' />
+    <meta content='React 简介 - Tate & Snow' name='og:title' />
+    <title>React 简介 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>React 简介 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React 简介 - Tate & Snow">
+<meta name="twitter:keywords" content="React 简介 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 简介 - Tate & Snow">
+<meta name="og:keywords" content="React 简介 - Tate & Snow|React 简介安装可以使用 npm 快速构建 React 开发环境，5.20+ 也可以使用包启动器 npx。create-react-app 自动创建的项目基于 Webpack + ES6。# npmnpm install -g c..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="React 简介安装可以使用 npm 快速构建 React 开发环境，5.20+ 也可以使用包启动器 npx。create-react-app 自动创建的项目基于 Webpack + ES6。# npmnpm install -g c..." property='og:description'
+/>
+<meta name="description" content="nothing is more practicla than a good theory" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2018/08/03/react-profile.html' property='og:url' />
+<meta content="http://localhost:4000/2018/08/03/react-profile.html|React 简介安装可以使用 npm 快速构建 React 开发环境，5.20+ 也可以使用包启动器 npx。create-react-app 自动创建的项目基于 Webpack + ES6。# npmnpm install -g c..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    React 简介</h1>
+                <div class="post-data">
+                    <time datetime="2018-08-03 18:17:00" itemprop="datePublished">发布时间：2018-08-03 18:17:00</time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#React" title="访问React" data-hover="React">
+                        React
+                        <span>(1)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                React 简介</h1>
+            <div class="post-data">
+                <time datetime="2018-08-03 18:17:00" itemprop="datePublished">2018-08-03 18:17:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#React" title="访问React" data-hover="React">
+                    React
+                    <span>(1)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="react-简介">React 简介</h1>
+
+<h2 id="安装">安装</h2>
+
+<p>可以使用 npm 快速构建 React 开发环境，5.20+ 也可以使用包启动器 <a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b">npx</a>。<strong>create-react-app</strong> 自动创建的项目基于 Webpack + ES6。</p>
+
+<pre><code class="language-SHELL"># npm
+npm install -g create-react-app
+create-react-app my-app
+
+# npx
+npx create-react-app my-app
+</code></pre>
+
+<h2 id="jsx">JSX</h2>
+
+<p><strong>JSX</strong> 是一种 JavaScript 的语法扩展，在 JSX 当中的表达式要包含在大括号里，之后通过 <strong>ReactDOM.render()</strong> 渲染到页面。为了将组件是和模板紧密关联，可以把 HTML 模板直接嵌入到 JS 代码里面，但是 JS 不支持这种包含 HTML 的语法，所以需要通过工具将 JSX 编译输出成 JS 代码才能使用。</p>
+
+<pre><code class="language-JSX">// 如果 JSX 标签是闭合式的，那么你需要在结尾处用 /&gt;, 就好像 XML/HTML 一样：
+const myDivElement = &lt;div className="foo" /&gt;;
+const element = &lt;img src={user.avatarUrl} /&gt;;
+</code></pre>
+
+<blockquote>
+  <p>HTML 里的 class 在 JSX 里要写成 <strong>className</strong>，因为 class 在 JS 里是保留关键字。同理某些属性比如 for 要写成 <strong>htmlFor</strong>。</p>
+</blockquote>
+
+<p>本质上来讲，JSX 只是为 <strong>React.createElement(component, props, …children)</strong> 方法提供的语法糖，可<a href="https://babeljs.io/repl/#?babili=false&amp;evaluate=true&amp;lineWrap=false&amp;presets=es2015%2Creact%2Cstage-0&amp;code=function%20hello()%20%7B%0A%20%20return%20%3Cdiv%3EHello%20world!%3C%2Fdiv%3E%3B%0A%7D">查看 babel 在线转换示例</a>:</p>
+
+<pre><code class="language-JSX">&lt;MyButton color="blue" shadowSize={2}&gt;
+  Click Me
+&lt;/MyButton&gt;
+
+// 编译为
+React.createElement(
+  MyButton,
+  {color: 'blue', shadowSize: 2},
+  'Click Me'
+)
+</code></pre>
+
+<p>如果你已经有了个 props 对象，并且想在 JSX 中传递它，你可以使用 … 作为扩展操作符来传递整个属性对象。下面两个组件是等效的:</p>
+
+<pre><code class="language-JSX">function App1() {
+  return &lt;Greeting firstName="Ben" lastName="Hector" /&gt;;
+}
+
+// 等价于
+function App2() {
+  const props = {firstName: 'Ben', lastName: 'Hector'};
+  return &lt;Greeting {...props} /&gt;;
+}
+</code></pre>
+
+<p>再看个完整的栗子 🌰:</p>
+
+<pre><code class="language-JSX">function formatName(user) {
+  return user.firstName + ' ' + user.lastName;
+}
+
+const user = {
+  firstName: 'Harper',
+  lastName: 'Perez'
+};
+
+// 在一个组件的子元素位置使用注释要用 { } 包起来
+const element = (
+  {/* formatName */}
+  &lt;h1&gt;
+    Hello, {formatName(user)}!
+  &lt;/h1&gt;
+);
+
+// React DOM 在渲染之前默认会 过滤 所有传入的值。它可以确保你的应用不会被注入攻击。所有的内容在渲染之前都被转换成了字符串。这样可以有效地防止 XSS(跨站脚本) 攻击。
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+</code></pre>
+
+<h2 id="组件">组件</h2>
+
+<h3 id="props-输入属性">props 输入属性</h3>
+
+<p>组件从概念上看就像是函数，它可以接收任意的输入值(称之为 “props”)，并返回一个需要在页面上展示的 React 元素。</p>
+
+<pre><code class="language-JSX">// 组件名采用大驼峰写法
+function Welcome(props) {
+  return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+
+// 等价于
+class Welcome extends React.Component {
+  render() {
+    return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+  }
+}
+
+// React 元素也可以是用户自定义的组件
+const element = &lt;Welcome name="Sara" /&gt;;
+</code></pre>
+
+<p>类组件应始终使用 props 调用基础构造函数:</p>
+
+<pre><code class="language-JSX">class Header extends Component {
+  constructor(props) {
+    super(props);
+    // This binding is necessary to make `this` work in the callback
+    this.sayName = this.sayName.bind(this)
+  }
+  sayName() {
+    alert('tate')
+  }
+  render() {
+    return (
+      &lt;header className = "App-header"&gt;
+        &lt;img src={this.props.avatar} className="App-logo" alt="logo" onClick={this.sayName}/&gt;&gt;
+        &lt;h1 className="App-title"&gt;Welcome to React&lt;/h1&gt;
+      &lt;/header&gt;
+    )
+  }
+}
+</code></pre>
+
+<h4 id="prop-types">prop-types</h4>
+
+<p>更多关于类型检查<a href="https://doc.react-china.org/docs/typechecking-with-proptypes.html">可以看 <strong>prop-types</strong></a>:</p>
+
+<pre><code class="language-JSX">import PropTypes from 'prop-types';
+
+class Greeting extends React.Component {
+  render() {
+    return (
+      &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;
+    );
+  }
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string,
+  // 一个指定元素类型的数组
+  optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
+  // 限制它为列举类型之一的对象
+  optionalUnion: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.instanceOf(Message)
+  ]),
+};
+
+// 可以通过配置 defaultProps 为 props 定义默认值，类型检查发生在 defaultProps 赋值之后，所以类型检查也会应用在 defaultProps 上面
+Greeting.defaultProps = {
+  name: 'Stranger'
+};
+</code></pre>
+
+<blockquote>
+  <p>无论是使用函数或是类来声明一个组件，它决不能修改它自己的 <strong>props</strong>。若应用的界面是随时间动态变化的，此时需要用到另一个属性 <strong>state</strong>。</p>
+</blockquote>
+
+<h3 id="state-局部状态">state 局部状态</h3>
+
+<p>举个官方栗子，时钟要不停刷新时间显示:</p>
+
+<pre><code class="language-JSX">class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(() =&gt; this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    // 使用 this.setState() 来更新组件局部状态
+    // this.state.date = new Date() 无法触发更新
+    this.setState({date: new Date()});
+  }
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;It is {this.state.date.toLocaleTimeString()}.&lt;/h1&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+ReactDOM.render(
+  &lt;Clock /&gt;,
+  document.getElementById('root')
+);
+</code></pre>
+
+<h3 id="生命周期">生命周期</h3>
+
+<p>组件的生命周期可分成三个状态:</p>
+
+<ul>
+  <li><strong>Mounting</strong> - 已插入真实 DOM</li>
+  <li><strong>Updating</strong> - 正在被重新渲染</li>
+  <li><strong>Unmounting</strong> - 已移出真实 DOM</li>
+</ul>
+
+<p>生命周期的方法有，可<a href="http://www.runoob.com/try/try.php?filename=try_react_life_cycle2">查看此处示例</a>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">生命周期方法</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>componentWillMount</strong></td>
+      <td style="text-align: left">在渲染前调用,在客户端也在服务端</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>componentDidMount</strong></td>
+      <td style="text-align: left">在第一次渲染后调用，只在客户端。之后组件已经生成了对应的 DOM 结构，可以通过 this.getDOMNode() 来进行访问</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>componentWillReceiveProps</strong></td>
+      <td style="text-align: left">在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化 render 时不会被调用</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>shouldComponentUpdate</strong></td>
+      <td style="text-align: left">返回一个布尔值。在组件接收到新的 props 或者 state 时被调用。在初始化时或者使用 forceUpdate 时不被调用。可以在你确认不需要更新组件时使用。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>componentWillUpdate</strong></td>
+      <td style="text-align: left">在组件接收到新的 props 或者 state 但还没有 render 时被调用。在初始化时不会被调用</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>componentDidUpdate</strong></td>
+      <td style="text-align: left">在组件完成更新后立即调用。在初始化时不会被调用</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>componentWillUnmount</strong></td>
+      <td style="text-align: left">在组件从 DOM 中移除的时候立刻被调用</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="表单">表单</h2>
+
+<h3 id="受控组件">受控组件</h3>
+
+<p>在HTML当中，像 &lt;input&gt;,&lt;textarea&gt;, 和 &lt;select&gt;这类表单元素会维持自身状态，并根据用户输入进行更新。但在 React 中，可变的状态通常保存在组件的状态属性中，并且只能用 setState() 方法进行更新。其值由 React 控制的输入表单元素称为 <strong>“受控组件”</strong>。</p>
+
+<pre><code class="language-JSX">class Reservation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isGoing: true,
+      numberOfGuests: 2
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  render() {
+    return (
+      &lt;form&gt;
+        &lt;label&gt;
+          Is going:
+          &lt;input
+            name="isGoing"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} /&gt;
+        &lt;/label&gt;
+        &lt;br /&gt;
+        &lt;label&gt;
+          Number of guests:
+          &lt;input
+            name="numberOfGuests"
+            type="number"
+            value={this.state.numberOfGuests}
+            onChange={this.handleInputChange} /&gt;
+        &lt;/label&gt;
+      &lt;/form&gt;
+    );
+  }
+}
+</code></pre>
+
+<h3 id="非受控组件">非受控组件</h3>
+
+<p>在大多数情况下，我们推荐使用受控组件来实现表单。 在受控组件中，表单数据由 React 组件处理。如果让表单数据由 DOM 处理时，替代方案为使用非受控组件，可以使用 <a href="https://doc.react-china.org/docs/refs-and-the-dom.html"><strong>ref</strong></a> 从 DOM 获取表单值。</p>
+
+<pre><code class="language-JSX">class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.input.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      // 默认值为 defaultValue 属性
+      &lt;form onSubmit={this.handleSubmit}&gt;
+        &lt;label&gt;
+          Name:
+          &lt;input type="text" defaultValue="Bob" ref={(input) =&gt; this.input = input} /&gt;
+        &lt;/label&gt;
+        &lt;input type="submit" value="Submit" /&gt;
+      &lt;/form&gt;
+    );
+  }
+}
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://doc.react-china.org/docs/hello-world.html">React 官网</a></li>
+  <li><a href="http://www.runoob.com/react/react-tutorial.html">React - 菜鸟教程</a></li>
+  <li><a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b">Introducing npx: an npm package runner</a> By Kat Marchán</li>
+  <li><a href="https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/">Controlled and uncontrolled form inputs in React don’t have to be complicated</a> By Gosha Arinich</li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/08/03/react-profile.html';
+        this.page.identifier = '/2018/08/03/react-profile';
+        this.page.title = 'React 简介';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-08-03 18:17:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
