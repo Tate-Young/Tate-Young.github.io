@@ -6,7 +6,7 @@ flag: React
 background: green
 category: 前端
 title:  React 简介
-date:   2018-08-03 18:17:00 GMT+0800 (CST)
+date:   2018-08-06 20:47:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
 tags:
 - React
@@ -637,9 +637,7 @@ const Home = React.createClass({
 
 ### history 属性
 
-React Router 是建立在 **history** 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。
-
-常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。
+React Router 是建立在 **history** 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。
 
 * **browserHistory** - 使用了 HTML5 的 history API 来记录路由历史，如 example.com/some/path。需要服务器进行配置，具体[可参考这里](http://react-guide.github.io/react-router-cn/docs/guides/basics/Histories.html)
 * **hashHistory** - 路由将通过 URL 的 hash 部分（#）切换，URL 的形式类似 example.com/#/some/path
