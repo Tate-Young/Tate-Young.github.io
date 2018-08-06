@@ -38,6 +38,23 @@ const element = <img src={user.avatarUrl} />;
 
 > HTML 里的 class 在 JSX 里要写成 **className**，因为 class 在 JS 里是保留关键字。同理某些属性比如 for 要写成 **htmlFor**。
 
+与 JS 的混合写法:
+
+```JSX
+function Item(props) {
+  return <li>{props.message}</li>;
+}
+
+function TodoList() {
+  const todos = ['finish doc', 'submit pr', 'nag dan to review'];
+  return (
+    <ul> // 数组元素中使用的 key 在其兄弟之间应该是独一无二的，如 id
+      {todos.map((message) => <Item key={message} message={message} />)}
+    </ul>
+  );
+}
+```
+
 本质上来讲，JSX 只是为 **React.createElement(component, props, ...children)** 方法提供的语法糖，可[查看 babel 在线转换示例](https://babeljs.io/repl/#?babili=false&evaluate=true&lineWrap=false&presets=es2015%2Creact%2Cstage-0&code=function%20hello()%20%7B%0A%20%20return%20%3Cdiv%3EHello%20world!%3C%2Fdiv%3E%3B%0A%7D):
 
 ```JSX
@@ -320,9 +337,322 @@ class NameForm extends React.Component {
 }
 ```
 
+## Component & createClass()
+
+React.createClass 和 extends React.Component 两种语法的区别可以[查看这篇文章](https://toddmotto.com/react-create-class-versus-component/)，主要在于：
+
+* propType 和 getDefaultProps
+* 状态 state
+* this 指针 - 前者的 this 指针自动绑定到 React 类的实例上
+* Mixins - class 可以用 [react-mixin 库](https://github.com/brigand/react-mixin)
+
+```JSX
+import React from 'react';
+
+const Contacts = React.createClass({  
+  propTypes: {
+    name: React.PropTypes.string
+  },
+  getDefaultProps() {
+    return {
+    };
+  },
+  // 设置 state 状态属性
+  getInitialState() {
+    return {
+      isLoading: false
+    }
+  }
+  handleClick() {
+    console.log(this); // React Component instance
+  },
+  render() {
+    return (
+      <div onClick={this.handleClick}></div>
+    );
+  }
+});
+
+export default Contacts;  
+```
+
+```JS
+import React, { Component } from 'react';
+
+class Contacts extends Component {  
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this) // 绑定 this 指针
+    this.state = { // define this.state in constructor
+      isLoading: false
+    }
+  }
+  handleClick() {
+    console.log(this); // React Component instance
+  },
+  render() {
+    return (
+      <div onClick={this.handleClick}></div>
+    );
+  }
+}
+
+Contacts.propTypes = {};
+Contacts.defaultProps = {};
+
+export default Contacts;  
+```
+
+另外 Mixins 的用法可以查看以下示例:
+
+```JSX
+import React from 'react';
+
+var SomeMixin = {
+  doSomething() { }
+};
+const Contacts = React.createClass({
+  mixins: [SomeMixin],
+  handleClick() {
+    this.doSomething(); // use mixin
+  },
+  render() {
+    return (
+      <div onClick={this.handleClick}></div>
+    );
+  }
+});
+
+export default Contacts;
+```
+
+> React.createClass() 已弃用，推荐用 extends React.Component
+
+## React Router
+
+**React Router** 是一个基于 React 之上的强大路由库，它可以让你向应用中快速地添加视图和数据流，同时保持页面与 URL 间的同步。可以[查看官方 demo](https://github.com/reactjs/react-router-tutorial/tree/master/lessons)。路由算法会根据定义的顺序自顶向下匹配路由。
+
+```JSX
+import React from 'react'
+import { render } from 'react-dom'
+import { Router, Route, hashHistory } from 'react-router'
+import App from './modules/App' // 传入各个组件
+import About from './modules/About'
+import Repos from './modules/Repos'
+
+// 参数 history，它的值 hashHistory 表示，路由的切换由 URL 的 hash 变化决定，如 http://www.example.com/#/
+// exact 控制匹配到 / 路径时不会再继续向下匹配
+render((
+  <Router history={hashHistory}>
+    <Route exact path="/" component={App}/>
+    <Route path="/repos" component={Repos}/>
+    <Route path="/about" component={About}/>
+  </Router>
+), document.getElementById('app'))
+```
+
+> 本篇针对的是 React Router 3.X 版本，4 以上版本请[查看中文文档](http://reacttraining.cn/web/example/basic)。
+
+### path 通配符
+
+通配符规则如下:
+
+| :paramName | 匹配 URL 的一个部分，直到遇到下一个 /、?、# 为止。这个路径参数可以通过 <code>this.props.params.paramName</code> 取出。
+| () | 表示 URL 的这个部分是可选的。
+| * | 匹配任意字符，直到模式里面的下一个字符为止。匹配方式是非贪婪模式。
+| ** | 匹配任意字符，直到下一个 /、?、# 为止。匹配方式是贪婪模式。
+
+```HTML
+<Route path="/hello/:name">         // 匹配 /hello/tate 和 /hello/snow
+<Route path="/hello(/:name)">       // 匹配 /hello, /hello/tate 和 /hello/snow
+<Route path="/files/*.*">           // 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg
+```
+
+### 嵌套路由 Route & IndexRoute
+
+```HTML
+<!-- 参数 userName 和 repoName 可以在当前组件通过 this.props.params 来访问 -->
+<Router history={hashHistory}>
+  <Route path="/" component={App}>
+    <Route path="/repos" component={Repos}>
+      <Route path="/repos/:userName/:repoName" component={Repo}/>
+    </Route>
+    <Route path="/about" component={About}/>
+  </Route>
+</Router>
+```
+
+上面代码中，用户访问 /repos 时，会先加载 App 组件，然后在它的内部再加载 Repos 组件。App 组件中通过 <code>this.props.children</code> 访问子组件:
+
+```JSX
+export default React.createClass({
+  render() {
+    return (
+      <div>
+        <ul role="nav">
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/repos">Repos</Link></li>
+        </ul>
+        {this.props.children}
+      </div>
+    )
+  }
+})
+```
+
+想象一下当 URL 为 / 时，我们想渲染一个在 App 中的组件。不过在此时，App 的 render 中的 <code>this.props.children</code> 还是 undefined。这种情况我们可以使用 **IndexRoute** 来设置一个默认页面:
+
+```HTML
+<Router history={hashHistory}>
+  <Route path="/" component={App}>
+    <IndexRoute component={Home}/>
+    <Route path="/repos" component={Repos}>
+      <Route path="/repos/:userName/:repoName" component={Repo}/>
+    </Route>
+    <Route path="/about" component={About}/>
+  </Route>
+</Router>
+```
+
+### 路由跳转 Link & IndexLink
+
+路由跳转有两种形式，一个是组件内，另一个组件外。先看第一种:
+
+```HTML
+<ul role="nav">
+  <li><Link to="/about">About</Link></li>
+  <li><Link to="/repos">Repos</Link></li>
+</ul>
+
+<!-- <Link> 可以知道哪个 route 的链接是激活状态的，并可以自动为该链接添加 activeClassName 或 activeStyle -->
+<Link to="/about" activeClassName="active">About</Link>
+<Link to="/about" activeStyle={ {color: 'red'} }>About</Link>
+```
+
+在组件外进行路由跳转:
+
+```JSX
+import { browserHistory } from 'react-router';
+
+browserHistory.push('/some/path');
+```
+
+另外如果链接到根路由 /，不要使用 Link 组件，而要使用 **IndexLink** 组件，不然它会一直处于激活状态，因为所有的 URL 的开头都是 / :
+
+```HTML
+<Link to="/">Home</Link>
+
+<!-- 改为 -->
+<IndexLink to="/">Home</IndexLink>
+<!-- 或者 IndexLink 就是对 Link 组件的 onlyActiveOnIndex 属性的包装 -->
+<Link to="/" activeClassName="active" onlyActiveOnIndex={true}>
+  Home
+</Link>
+```
+
+### 路由重定向 Redirect & IndexRedirect
+
+**Redirect** 组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由:
+
+```HTML
+<Router>
+  <Route path="/" component={App}>
+    <IndexRoute component={Dashboard} />
+    <Route path="about" component={About} />
+    <Route path="inbox" component={Inbox}>
+      <Route path="/messages/:id" component={Message} />
+
+      {/* 跳转 /inbox/messages/:id 到 /messages/:id */}
+      <Redirect from="messages/:id" to="/messages/:id" />
+    </Route>
+  </Route>
+</Router>
+```
+
+**IndexRedirect** 组件用于访问根路由的时候，将用户重定向到某个子组件:
+
+```HTML
+<Route path="/" component={App}>
+  ＜IndexRedirect to="/welcome" />
+  <Route path="welcome" component={Welcome} />
+  <Route path="about" component={About} />
+</Route>
+```
+
+### 路由钩子
+
+#### onEnter & onLeave
+
+Route 可以定义 **onEnter** 和 **onLeave** 两个 hook ，这些 hook 会在页面跳转确认时触发一次。例如权限验证或者在路由跳转前将一些数据持久化保存起来。
+
+```HTML
+<!-- onEnter 实现 Redirect -->
+<Route path="inbox" component={Inbox}>
+  <Route
+    path="messages/:id"
+    onEnter={
+      ({params}, replace) => replace(`/messages/${params.id}`)
+    }
+  />
+</Route>
+```
+
+```JSX
+// 权限验证
+const requireAuth = (nextState, replace) => {
+  if (!auth.isAdmin()) {
+    // Redirect to Home page if not an Admin
+    replace({ pathname: '/' })
+  }
+}
+export const AdminRoutes = () => {
+  return (
+    <Route path="/admin" component={Admin} onEnter={requireAuth} />
+  )
+}
+```
+
+#### routerWillLeave
+
+React Router 提供一个 **routerWillLeave** 生命周期钩子，这使得 React 组件可以拦截正在发生的跳转，或在离开 route 前提示用户。routerWillLeave 返回值有以下两种：
+
+* return false 取消此次跳转
+* return 返回提示信息，在离开 route 前提示用户进行确认。
+
+```JSX
+import { Lifecycle } from 'react-router'
+
+const Home = React.createClass({
+
+  // 假设 Home 是一个 route 组件，它可能会使用 Lifecycle mixin 去获得一个 routerWillLeave 方法。
+  mixins: [ Lifecycle ],
+
+  routerWillLeave(nextLocation) {
+    if (!this.state.isSaved)
+      return 'Your work is not saved! Are you sure you want to leave?'
+  },
+  // ...
+})
+```
+
+### history 属性
+
+React Router 是建立在 **history** 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。
+
+常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。
+
+* **browserHistory** - 使用了 HTML5 的 history API 来记录路由历史，如 example.com/some/path。需要服务器进行配置，具体[可参考这里](http://react-guide.github.io/react-router-cn/docs/guides/basics/Histories.html)
+* **hashHistory** - 路由将通过 URL 的 hash 部分（#）切换，URL 的形式类似 example.com/#/some/path
+* **createMemoryHistory** - 不会在地址栏被操作或读取，需要手动创建。主要运用于服务器渲染
+
 ## 参考链接
 
 1. [React 官网](https://doc.react-china.org/docs/hello-world.html)
 2. [React - 菜鸟教程](http://www.runoob.com/react/react-tutorial.html)
 3. [Introducing npx: an npm package runner](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) By Kat Marchán
 4. [Controlled and uncontrolled form inputs in React don't have to be complicated](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) By Gosha Arinich
+5. [React.createClass versus extends React.Component](https://toddmotto.com/react-create-class-versus-component/) By Todd Motto
+6. [Convert React.createClass to ES6 Class](https://daveceddia.com/convert-createclass-to-es6-class/) By Dave Ceddia
+7. [gitbook - react-router](http://react-guide.github.io/react-router-cn/docs/Introduction.html)
+8. [React Router 使用教程](http://www.ruanyifeng.com/blog/2016/05/react_router.html) By 阮一峰
+9. [React Router 中文文档](http://reacttraining.cn/web/example/basic)

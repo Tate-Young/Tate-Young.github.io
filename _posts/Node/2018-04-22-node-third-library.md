@@ -534,6 +534,17 @@ Tate & Snow
 This is the footer
 ```
 
+还可以设置默认 layout 模板:
+
+```JS
+app.set('layout', 'layouts/layout');
+
+// 通过 layout 属性使用指定的模板进行渲染
+app.get('/', function(req, res) {
+  res.render('the-view', { layout: 'specific-layout' });
+);
+```
+
 ### cookie-parser
 
 解析 HTTP 请求中的 cookie。

@@ -196,6 +196,22 @@ const element = &lt;img src={user.avatarUrl} /&gt;;
   <p>HTML 里的 class 在 JSX 里要写成 <strong>className</strong>，因为 class 在 JS 里是保留关键字。同理某些属性比如 for 要写成 <strong>htmlFor</strong>。</p>
 </blockquote>
 
+<p>与 JS 的混合写法:</p>
+
+<pre><code class="language-JSX">function Item(props) {
+  return &lt;li&gt;{props.message}&lt;/li&gt;;
+}
+
+function TodoList() {
+  const todos = ['finish doc', 'submit pr', 'nag dan to review'];
+  return (
+    &lt;ul&gt; // 数组元素中使用的 key 在其兄弟之间应该是独一无二的，如 id
+      {todos.map((message) =&gt; &lt;Item key={message} message={message} /&gt;)}
+    &lt;/ul&gt;
+  );
+}
+</code></pre>
+
 <p>本质上来讲，JSX 只是为 <strong>React.createElement(component, props, …children)</strong> 方法提供的语法糖，可<a href="https://babeljs.io/repl/#?babili=false&amp;evaluate=true&amp;lineWrap=false&amp;presets=es2015%2Creact%2Cstage-0&amp;code=function%20hello()%20%7B%0A%20%20return%20%3Cdiv%3EHello%20world!%3C%2Fdiv%3E%3B%0A%7D">查看 babel 在线转换示例</a>:</p>
 
 <pre><code class="language-JSX">&lt;MyButton color="blue" shadowSize={2}&gt;
@@ -502,6 +518,324 @@ ReactDOM.render(
 }
 </code></pre>
 
+<h2 id="component--createclass">Component &amp; createClass()</h2>
+
+<p>React.createClass 和 extends React.Component 两种语法的区别可以<a href="https://toddmotto.com/react-create-class-versus-component/">查看这篇文章</a>，主要在于：</p>
+
+<ul>
+  <li>propType 和 getDefaultProps</li>
+  <li>状态 state</li>
+  <li>this 指针 - 前者的 this 指针自动绑定到 React 类的实例上</li>
+  <li>Mixins - class 可以用 <a href="https://github.com/brigand/react-mixin">react-mixin 库</a></li>
+</ul>
+
+<pre><code class="language-JSX">import React from 'react';
+
+const Contacts = React.createClass({  
+  propTypes: {
+    name: React.PropTypes.string
+  },
+  getDefaultProps() {
+    return {
+    };
+  },
+  // 设置 state 状态属性
+  getInitialState() {
+    return {
+      isLoading: false
+    }
+  }
+  handleClick() {
+    console.log(this); // React Component instance
+  },
+  render() {
+    return (
+      &lt;div onClick={this.handleClick}&gt;&lt;/div&gt;
+    );
+  }
+});
+
+export default Contacts;  
+</code></pre>
+
+<pre><code class="language-JS">import React, { Component } from 'react';
+
+class Contacts extends Component {  
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this) // 绑定 this 指针
+    this.state = { // define this.state in constructor
+      isLoading: false
+    }
+  }
+  handleClick() {
+    console.log(this); // React Component instance
+  },
+  render() {
+    return (
+      &lt;div onClick={this.handleClick}&gt;&lt;/div&gt;
+    );
+  }
+}
+
+Contacts.propTypes = {};
+Contacts.defaultProps = {};
+
+export default Contacts;  
+</code></pre>
+
+<p>另外 Mixins 的用法可以查看以下示例:</p>
+
+<pre><code class="language-JSX">import React from 'react';
+
+var SomeMixin = {
+  doSomething() { }
+};
+const Contacts = React.createClass({
+  mixins: [SomeMixin],
+  handleClick() {
+    this.doSomething(); // use mixin
+  },
+  render() {
+    return (
+      &lt;div onClick={this.handleClick}&gt;&lt;/div&gt;
+    );
+  }
+});
+
+export default Contacts;
+</code></pre>
+
+<blockquote>
+  <p>React.createClass() 已弃用，推荐用 extends React.Component</p>
+</blockquote>
+
+<h2 id="react-router">React Router</h2>
+
+<p><strong>React Router</strong> 是一个基于 React 之上的强大路由库，它可以让你向应用中快速地添加视图和数据流，同时保持页面与 URL 间的同步。可以<a href="https://github.com/reactjs/react-router-tutorial/tree/master/lessons">查看官方 demo</a>。路由算法会根据定义的顺序自顶向下匹配路由。</p>
+
+<pre><code class="language-JSX">import React from 'react'
+import { render } from 'react-dom'
+import { Router, Route, hashHistory } from 'react-router'
+import App from './modules/App' // 传入各个组件
+import About from './modules/About'
+import Repos from './modules/Repos'
+
+// 参数 history，它的值 hashHistory 表示，路由的切换由 URL 的 hash 变化决定，如 http://www.example.com/#/
+// exact 控制匹配到 / 路径时不会再继续向下匹配
+render((
+  &lt;Router history={hashHistory}&gt;
+    &lt;Route exact path="/" component={App}/&gt;
+    &lt;Route path="/repos" component={Repos}/&gt;
+    &lt;Route path="/about" component={About}/&gt;
+  &lt;/Router&gt;
+), document.getElementById('app'))
+</code></pre>
+
+<blockquote>
+  <p>本篇针对的是 React Router 3.X 版本，4 以上版本请<a href="http://reacttraining.cn/web/example/basic">查看中文文档</a>。</p>
+</blockquote>
+
+<h3 id="path-通配符">path 通配符</h3>
+
+<p>通配符规则如下:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>:paramName</td>
+      <td>匹配 URL 的一个部分，直到遇到下一个 /、?、# 为止。这个路径参数可以通过 <code>this.props.params.paramName</code> 取出。</td>
+    </tr>
+    <tr>
+      <td>()</td>
+      <td>表示 URL 的这个部分是可选的。</td>
+    </tr>
+    <tr>
+      <td>*</td>
+      <td>匹配任意字符，直到模式里面的下一个字符为止。匹配方式是非贪婪模式。</td>
+    </tr>
+    <tr>
+      <td>**</td>
+      <td>匹配任意字符，直到下一个 /、?、# 为止。匹配方式是贪婪模式。</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-HTML">&lt;Route path="/hello/:name"&gt;         // 匹配 /hello/tate 和 /hello/snow
+&lt;Route path="/hello(/:name)"&gt;       // 匹配 /hello, /hello/tate 和 /hello/snow
+&lt;Route path="/files/*.*"&gt;           // 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg
+</code></pre>
+
+<h3 id="嵌套路由-route--indexroute">嵌套路由 Route &amp; IndexRoute</h3>
+
+<pre><code class="language-HTML">&lt;!-- 参数 userName 和 repoName 可以在当前组件通过 this.props.params 来访问 --&gt;
+&lt;Router history={hashHistory}&gt;
+  &lt;Route path="/" component={App}&gt;
+    &lt;Route path="/repos" component={Repos}&gt;
+      &lt;Route path="/repos/:userName/:repoName" component={Repo}/&gt;
+    &lt;/Route&gt;
+    &lt;Route path="/about" component={About}/&gt;
+  &lt;/Route&gt;
+&lt;/Router&gt;
+</code></pre>
+
+<p>上面代码中，用户访问 /repos 时，会先加载 App 组件，然后在它的内部再加载 Repos 组件。App 组件中通过 <code>this.props.children</code> 访问子组件:</p>
+
+<pre><code class="language-JSX">export default React.createClass({
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;ul role="nav"&gt;
+          &lt;li&gt;&lt;Link to="/about"&gt;About&lt;/Link&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;Link to="/repos"&gt;Repos&lt;/Link&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        {this.props.children}
+      &lt;/div&gt;
+    )
+  }
+})
+</code></pre>
+
+<p>想象一下当 URL 为 / 时，我们想渲染一个在 App 中的组件。不过在此时，App 的 render 中的 <code>this.props.children</code> 还是 undefined。这种情况我们可以使用 <strong>IndexRoute</strong> 来设置一个默认页面:</p>
+
+<pre><code class="language-HTML">&lt;Router history={hashHistory}&gt;
+  &lt;Route path="/" component={App}&gt;
+    &lt;IndexRoute component={Home}/&gt;
+    &lt;Route path="/repos" component={Repos}&gt;
+      &lt;Route path="/repos/:userName/:repoName" component={Repo}/&gt;
+    &lt;/Route&gt;
+    &lt;Route path="/about" component={About}/&gt;
+  &lt;/Route&gt;
+&lt;/Router&gt;
+</code></pre>
+
+<h3 id="路由跳转-link--indexlink">路由跳转 Link &amp; IndexLink</h3>
+
+<p>路由跳转有两种形式，一个是组件内，另一个组件外。先看第一种:</p>
+
+<pre><code class="language-HTML">&lt;ul role="nav"&gt;
+  &lt;li&gt;&lt;Link to="/about"&gt;About&lt;/Link&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;Link to="/repos"&gt;Repos&lt;/Link&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- &lt;Link&gt; 可以知道哪个 route 的链接是激活状态的，并可以自动为该链接添加 activeClassName 或 activeStyle --&gt;
+&lt;Link to="/about" activeClassName="active"&gt;About&lt;/Link&gt;
+&lt;Link to="/about" activeStyle={ {color: 'red'} }&gt;About&lt;/Link&gt;
+</code></pre>
+
+<p>在组件外进行路由跳转:</p>
+
+<pre><code class="language-JSX">import { browserHistory } from 'react-router';
+
+browserHistory.push('/some/path');
+</code></pre>
+
+<p>另外如果链接到根路由 /，不要使用 Link 组件，而要使用 <strong>IndexLink</strong> 组件，不然它会一直处于激活状态，因为所有的 URL 的开头都是 / :</p>
+
+<pre><code class="language-HTML">&lt;Link to="/"&gt;Home&lt;/Link&gt;
+
+&lt;!-- 改为 --&gt;
+&lt;IndexLink to="/"&gt;Home&lt;/IndexLink&gt;
+&lt;!-- 或者 IndexLink 就是对 Link 组件的 onlyActiveOnIndex 属性的包装 --&gt;
+&lt;Link to="/" activeClassName="active" onlyActiveOnIndex={true}&gt;
+  Home
+&lt;/Link&gt;
+</code></pre>
+
+<h3 id="路由重定向-redirect--indexredirect">路由重定向 Redirect &amp; IndexRedirect</h3>
+
+<p><strong>Redirect</strong> 组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由:</p>
+
+<pre><code class="language-HTML">&lt;Router&gt;
+  &lt;Route path="/" component={App}&gt;
+    &lt;IndexRoute component={Dashboard} /&gt;
+    &lt;Route path="about" component={About} /&gt;
+    &lt;Route path="inbox" component={Inbox}&gt;
+      &lt;Route path="/messages/:id" component={Message} /&gt;
+
+      {/* 跳转 /inbox/messages/:id 到 /messages/:id */}
+      &lt;Redirect from="messages/:id" to="/messages/:id" /&gt;
+    &lt;/Route&gt;
+  &lt;/Route&gt;
+&lt;/Router&gt;
+</code></pre>
+
+<p><strong>IndexRedirect</strong> 组件用于访问根路由的时候，将用户重定向到某个子组件:</p>
+
+<pre><code class="language-HTML">&lt;Route path="/" component={App}&gt;
+  ＜IndexRedirect to="/welcome" /&gt;
+  &lt;Route path="welcome" component={Welcome} /&gt;
+  &lt;Route path="about" component={About} /&gt;
+&lt;/Route&gt;
+</code></pre>
+
+<h3 id="路由钩子">路由钩子</h3>
+
+<h4 id="onenter--onleave">onEnter &amp; onLeave</h4>
+
+<p>Route 可以定义 <strong>onEnter</strong> 和 <strong>onLeave</strong> 两个 hook ，这些 hook 会在页面跳转确认时触发一次。例如权限验证或者在路由跳转前将一些数据持久化保存起来。</p>
+
+<pre><code class="language-HTML">&lt;!-- onEnter 实现 Redirect --&gt;
+&lt;Route path="inbox" component={Inbox}&gt;
+  &lt;Route
+    path="messages/:id"
+    onEnter={
+      ({params}, replace) =&gt; replace(`/messages/${params.id}`)
+    }
+  /&gt;
+&lt;/Route&gt;
+</code></pre>
+
+<pre><code class="language-JSX">// 权限验证
+const requireAuth = (nextState, replace) =&gt; {
+  if (!auth.isAdmin()) {
+    // Redirect to Home page if not an Admin
+    replace({ pathname: '/' })
+  }
+}
+export const AdminRoutes = () =&gt; {
+  return (
+    &lt;Route path="/admin" component={Admin} onEnter={requireAuth} /&gt;
+  )
+}
+</code></pre>
+
+<h4 id="routerwillleave">routerWillLeave</h4>
+
+<p>React Router 提供一个 <strong>routerWillLeave</strong> 生命周期钩子，这使得 React 组件可以拦截正在发生的跳转，或在离开 route 前提示用户。routerWillLeave 返回值有以下两种：</p>
+
+<ul>
+  <li>return false 取消此次跳转</li>
+  <li>return 返回提示信息，在离开 route 前提示用户进行确认。</li>
+</ul>
+
+<pre><code class="language-JSX">import { Lifecycle } from 'react-router'
+
+const Home = React.createClass({
+
+  // 假设 Home 是一个 route 组件，它可能会使用 Lifecycle mixin 去获得一个 routerWillLeave 方法。
+  mixins: [ Lifecycle ],
+
+  routerWillLeave(nextLocation) {
+    if (!this.state.isSaved)
+      return 'Your work is not saved! Are you sure you want to leave?'
+  },
+  // ...
+})
+</code></pre>
+
+<h3 id="history-属性">history 属性</h3>
+
+<p>React Router 是建立在 <strong>history</strong> 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。</p>
+
+<p>常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。</p>
+
+<ul>
+  <li><strong>browserHistory</strong> - 使用了 HTML5 的 history API 来记录路由历史，如 example.com/some/path。需要服务器进行配置，具体<a href="http://react-guide.github.io/react-router-cn/docs/guides/basics/Histories.html">可参考这里</a></li>
+  <li><strong>hashHistory</strong> - 路由将通过 URL 的 hash 部分（#）切换，URL 的形式类似 example.com/#/some/path</li>
+  <li><strong>createMemoryHistory</strong> - 不会在地址栏被操作或读取，需要手动创建。主要运用于服务器渲染</li>
+</ul>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
@@ -509,6 +843,11 @@ ReactDOM.render(
   <li><a href="http://www.runoob.com/react/react-tutorial.html">React - 菜鸟教程</a></li>
   <li><a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b">Introducing npx: an npm package runner</a> By Kat Marchán</li>
   <li><a href="https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/">Controlled and uncontrolled form inputs in React don’t have to be complicated</a> By Gosha Arinich</li>
+  <li><a href="https://toddmotto.com/react-create-class-versus-component/">React.createClass versus extends React.Component</a> By Todd Motto</li>
+  <li><a href="https://daveceddia.com/convert-createclass-to-es6-class/">Convert React.createClass to ES6 Class</a> By Dave Ceddia</li>
+  <li><a href="http://react-guide.github.io/react-router-cn/docs/Introduction.html">gitbook - react-router</a></li>
+  <li><a href="http://www.ruanyifeng.com/blog/2016/05/react_router.html">React Router 使用教程</a> By 阮一峰</li>
+  <li><a href="http://reacttraining.cn/web/example/basic">React Router 中文文档</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
