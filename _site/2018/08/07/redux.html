@@ -1,0 +1,726 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='Redux - Tate & Snow' name='title' />
+    <meta content='Redux - Tate & Snow' name='og:title' />
+    <title>Redux - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Redux - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redux - Tate & Snow">
+<meta name="twitter:keywords" content="Redux - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redux - Tate & Snow">
+<meta name="og:keywords" content="Redux - Tate & Snow|ReduxRedux &amp; FluxRedux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux 里的 store，Redux 里..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="ReduxRedux &amp; FluxRedux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux 里的 store，Redux 里..." property='og:description'
+/>
+<meta name="description" content="nothing is more practicla than a good theory" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2018/08/07/redux.html' property='og:url' />
+<meta content="http://localhost:4000/2018/08/07/redux.html|ReduxRedux &amp; FluxRedux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux 里的 store，Redux 里..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Redux</h1>
+                <div class="post-data">
+                    <time datetime="2018-08-07 18:15:00" itemprop="datePublished">发布时间：2018-08-07 18:15:00</time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#React" title="访问React" data-hover="React">
+                        React
+                        <span>(2)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Redux</h1>
+            <div class="post-data">
+                <time datetime="2018-08-07 18:15:00" itemprop="datePublished">2018-08-07 18:15:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#React" title="访问React" data-hover="React">
+                    React
+                    <span>(2)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="redux">Redux</h1>
+
+<h2 id="redux--flux">Redux &amp; Flux</h2>
+
+<p>Redux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux 里的 <strong>store</strong>，Redux 里的 <strong>reducer</strong>)。两者都不允许程序直接修改数据，而是用一个叫作 “<strong>action</strong>” 的普通对象来对更改进行描述。而不同于 Flux ，Redux 并没有 <strong>dispatcher</strong> 的概念。原因是它依赖纯函数来替代事件处理器。纯函数构建简单，也不需额外的实体来管理它们。Flux 常常被表述为 <code>(state, action) =&gt; state</code>。从这个意义上说，Redux 无疑是 Flux 架构的实现，且得益于纯函数而更为简单。</p>
+
+<blockquote>
+  <p>Redux 和 React 之间没有关系。Redux 支持 React、Angular、Ember、jQuery 甚至纯 JavaScript。尽管如此，Redux 还是和 React 和 Deku 这类库搭配起来用最好，因为这类库允许你以 state 函数的形式来描述界面，Redux 通过 action 的形式来发起 state 变化。</p>
+</blockquote>
+
+<h2 id="概念">概念</h2>
+
+<h3 id="action">Action</h3>
+
+<p><strong>Action</strong> 是把数据从应用传到 store 的有效载荷。它是 store 数据的唯一来源。一般通过 <code>store.dispatch()</code> 将 action 传到 store。一般约定 action 是一个拥有 <strong>type</strong> 属性的对象。然后按 type 决定如何处理 action。当然，action 依旧可以拥有其他属性，你可以任意存放想要的数据:</p>
+
+<pre><code class="language-JS">// action 示例
+{ type: 'ADD_TODO', text: 'Go to swimming pool' }
+{ type: 'TOGGLE_TODO', index: 1 }
+{ type: 'SET_VISIBILITY_FILTER', filter: 'SHOW_ALL' }
+</code></pre>
+
+<p>action 可以通过 <strong>action creator</strong> 创建:</p>
+
+<pre><code class="language-JS">// action creator 就是函数而已...
+function addTodo (text) {
+  return {
+    type: 'ADD_TODO',
+    text
+  }
+}
+</code></pre>
+
+<h3 id="reducer">Reducer</h3>
+
+<p><strong>Reducers</strong> 函数是 action 的订阅者，指定了应用状态的变化如何响应 actions 并发送到 store 的，记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 <strong>state</strong>。在 Redux 应用中，所有的 state 都被保存在一个单一对象中，一个 state 对应一个 view，如下:</p>
+
+<pre><code class="language-JS">// state
+{
+  visibilityFilter: 'SHOW_ALL',
+  todos: [
+    {
+      text: 'Consider using Redux',
+      completed: true,
+    },
+    {
+      text: 'Keep all state in a single tree',
+      completed: false
+    }
+  ]
+}
+</code></pre>
+
+<p>现在我们已经确定了 state 对象的结构，就可以开始开发 reducer。reducer 就是一个纯函数，接收旧的 state 和 action，返回新的 state : <code>(previousState, action) =&gt; newState</code>。需要谨记 reducer 是<a href="https://zh.wikipedia.org/wiki/%E7%BA%AF%E5%87%BD%E6%95%B0">纯函数</a>，不要执行有副作用的操作，如 API 请求和路由跳转。</p>
+
+<pre><code class="language-JS">export default (state = 0, action) =&gt; { // 首次执行时，state 为 undefined，需要定义初始值
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1
+    case 'DECREMENT':
+      return state - 1
+    default:
+      return state // 默认返回传入的旧 state
+  }
+}
+
+// 不能修改 state
+function reducer(state, action) {
+  return Object.assign({}, state, { thingToChange });
+  // 或者
+  return { ...state, ...newState };
+}
+</code></pre>
+
+<p>一个 reducer 可以处理很多的 action，但维护将变得艰难。多个 reducer 的合并可以使用 <strong>combineReducers()</strong>:</p>
+
+<pre><code class="language-JS">// 在这种多个 reducer 的模式下，我们可以让每个 reducer 只处理整个应用的部分 state 。
+var userReducer = function (state = {}, action) {
+  console.log('userReducer was called with state', state, 'and action', action)
+
+  switch (action.type) {
+    case 'SET_NAME':
+      return {
+        ...state,
+        name: action.name
+      }
+    // etc.
+    default:
+      return state;
+  }
+}
+var itemsReducer = function (state = [], action) {
+  console.log('itemsReducer was called with state', state, 'and action', action)
+
+  switch (action.type) {
+    case 'ADD_ITEM':
+      return [
+        ...state,
+        action.item
+      ]
+    // etc.
+    default:
+      return state;
+  }
+}
+</code></pre>
+
+<pre><code class="language-JS">import { createStore, combineReducers } from 'redux'
+
+var reducer = combineReducers({
+    user: userReducer,
+    items: itemsReducer
+})
+var store_0 = createStore(reducer)
+
+// 创建并发送一个 action
+var setNameActionCreator = function (name) {
+  return {
+    type: 'SET_NAME',
+    name: name
+  }
+}
+
+store_0.dispatch(setNameActionCreator('bob'))
+// 输出：
+// userReducer was called with state {} and action { type: 'SET_NAME', name: 'bob' }
+// itemsReducer was called with state [] and action { type: 'SET_NAME', name: 'bob' }
+console.log('store_0 state after action SET_NAME:', store_0.getState())
+// 输出：
+// store_0 state after action SET_NAME: { user: { name: 'bob' }, items: [] }
+</code></pre>
+
+<h3 id="store">Store</h3>
+
+<p>上面示例我们学会了使用 action 来描述”发生了什么”，和使用 reducers 来根据 action 更新 state 的用法。<strong>Store</strong> 就是把它们联系到一起的对象。 Redux 应用只有一个单一的 store。有以下职责：</p>
+
+<ul>
+  <li>维持应用的 state；</li>
+  <li>提供 getState() 方法获取 state；</li>
+  <li>提供 dispatch(action) 方法更新 state；</li>
+  <li>通过 subscribe(listener) 注册监听器，一旦 state 发生变化，就自动执行这个函数;</li>
+  <li>通过 subscribe(listener) 返回的函数注销监听器</li>
+</ul>
+
+<p>可以根据已有的 reducer 来创建 store:</p>
+
+<pre><code class="language-JS">// 整个流程可总结为: 用户发出 Action，Reducer 函数算出新的 State，View 重新渲染
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import Counter from './components/Counter'
+import counter from './reducers'
+
+const store = createStore(counter) // counter 属于 reducer
+const rootEl = document.getElementById('root')
+
+const render = () =&gt; ReactDOM.render(
+  &lt;Counter
+    value={store.getState()}
+    onIncrement={() =&gt; store.dispatch({ type: 'INCREMENT' })}
+    onDecrement={() =&gt; store.dispatch({ type: 'DECREMENT' })}
+  /&gt;,
+  rootEl
+)
+
+render()
+store.subscribe(render) // 监听并修改视图
+</code></pre>
+
+<h3 id="异步-action--中间件">异步 Action &amp; 中间件</h3>
+
+<h4 id="applymiddlewares">applyMiddlewares()</h4>
+
+<p><strong>applyMiddlewares</strong> 方法将所有中间件组成一个数组，依次执行。比如执行日志中间件:</p>
+
+<pre><code class="language-JS">import { applyMiddleware, createStore } from 'redux';
+import createLogger from 'redux-logger';
+const logger = createLogger();
+
+const store = createStore(
+  reducer,
+  applyMiddleware(logger)
+);
+</code></pre>
+
+<h4 id="异步-redux-thunk">异步 redux-thunk</h4>
+
+<p>同步操作只要发出一种 Action 即可，异步操作的差别是它要发出三种 Action。</p>
+
+<ul>
+  <li>一种通知 reducer 请求开始的 Action</li>
+  <li>一种通知 reducer 请求成功的 Action</li>
+  <li>一种通知 reducer 请求失败的 Action</li>
+</ul>
+
+<p>Action 的设置无非两种情况:</p>
+
+<pre><code class="language-JS">// 同一种 type，但不同 status
+{ type: 'FETCH_POSTS' }
+{ type: 'FETCH_POSTS', status: 'error', error: 'Oops' }
+{ type: 'FETCH_POSTS', status: 'success', response: { ... } }
+
+// 或者不同 type
+{ type: 'FETCH_POSTS_REQUEST' }
+{ type: 'FETCH_POSTS_FAILURE', error: 'Oops' }
+{ type: 'FETCH_POSTS_SUCCESS', response: { ... } }
+</code></pre>
+
+<p>异步操作的 state 也要进行改造，反映不同的操作状态:</p>
+
+<pre><code class="language-JS">let state = {
+  // ...
+  isFetching: true, // 表示是否在抓取数据
+  didInvalidate: true, // 表示数据是否过时
+  lastUpdated: 'xxxxxxx' // 表示上一次更新时间
+};
+</code></pre>
+
+<p>整个流程思路即:</p>
+
+<p>1、操作开始时，送出一个 action，触发 state 更新为”正在操作”状态，view 重新渲染
+2、操作结束后，再送出一个 action，触发 state 更新为”操作结束”状态，view 再一次重新渲染</p>
+
+<p>接下来通过中间件 <strong>redux-thunk</strong> 进行异步 action 的创建，具体可查看下节异步示例:</p>
+
+<pre><code class="language-JS">// 虽然内部操作不同，你可以像其它 action 创建函数 一样使用它：store.dispatch(fetchPosts('reactjs'))
+// store.dispatch 方法正常情况下，参数只能是对象，不能是函数，就要使用中间件 redux-thunk
+export function fetchPosts(subreddit) {
+
+  // Thunk middleware 知道如何处理函数。
+  // 这里把 dispatch 方法通过参数的形式传给函数，以此来让它自己也能 dispatch action。
+
+  return function (dispatch) {
+
+    // 首次 dispatch：更新应用的 state 来通知 API 请求发起了。
+
+    dispatch(requestPosts(subreddit))
+
+    // thunk middleware 调用的函数可以有返回值，它会被当作 dispatch 方法的返回值传递。
+    // 这个案例中，我们返回一个等待处理的 promise。这并不是 redux middleware 所必须的，但这对于我们而言很方便。
+
+    return fetch(`http://www.subreddit.com/r/${subreddit}.json`)
+      .then(
+        response =&gt; response.json(),
+        // 不要使用 catch，因为会捕获在 dispatch 和渲染中出现的任何错误，导致 'Unexpected batch number' 错误。
+         error =&gt; console.log('An error occurred.', error)
+      )
+      .then(json =&gt;
+        // 可以多次 dispatch！这里，使用 API 请求结果来更新应用的 state。
+
+        dispatch(receivePosts(subreddit, json))
+      )
+  }
+}
+</code></pre>
+
+<h2 id="示例">示例</h2>
+
+<p>运行 Counter 示例:</p>
+
+<iframe src="https://codesandbox.io/embed/github/reactjs/redux/tree/master/examples/counter" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<p>运行 Todo 示例:</p>
+
+<iframe src="https://codesandbox.io/embed/github/reactjs/redux/tree/master/examples/todos-with-undo" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<p>运行 checkout 示例:</p>
+
+<iframe src="https://codesandbox.io/embed/github/reactjs/redux/tree/master/examples/shopping-cart" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<p>更多示例<a href="http://cn.redux.js.org/docs/introduction/Examples.html">请参考这里</a>。</p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="http://cn.redux.js.org/">Redux 中文文档</a></li>
+  <li><a href="https://github.com/react-guide/redux-tutorial-cn#redux-tutorial">react-guide/redux-tutorial-cn</a></li>
+  <li><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html">Redux 入门教程</a> By 阮一峰</li>
+</ol>
+ 
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/08/07/redux.html';
+        this.page.identifier = '/2018/08/07/redux';
+        this.page.title = 'Redux';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-08-07 18:15:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>

@@ -13,6 +13,13 @@ tags:
 ---
 # {{ page.title }}
 
+React 是一个 View 层的框架，用来渲染视图，它主要做几件事情:
+
+* 组件化
+* 利用 props 形成单向的数据流
+* 根据 state 的变化来更新 view
+* 利用虚拟 DOM 来提升渲染性能
+
 ## 安装
 
 可以使用 npm 快速构建 React 开发环境，5.20+ 也可以使用包启动器 [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)。**create-react-app** 自动创建的项目基于 Webpack + ES6。
