@@ -181,6 +181,8 @@
 
 <h2 id="概念">概念</h2>
 
+<p><img src="https://i.loli.net/2018/08/08/5b6a46915b789.png" alt="redux-pattern-diagram.png" /></p>
+
 <h3 id="action">Action</h3>
 
 <p><strong>Action</strong> 是把数据从应用传到 store 的有效载荷。它是 store 数据的唯一来源。一般通过 <code>store.dispatch()</code> 将 action 传到 store。一般约定 action 是一个拥有 <strong>type</strong> 属性的对象。然后按 type 决定如何处理 action。当然，action 依旧可以拥有其他属性，你可以任意存放想要的数据:</p>
