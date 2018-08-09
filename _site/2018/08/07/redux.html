@@ -427,17 +427,136 @@ export function fetchPosts(subreddit) {
 }
 </code></pre>
 
+<h2 id="react-redux">React-Redux</h2>
+
+<p>我们当然可以直接在 React 中使用 Redux：在最外层容器组件中初始化 store，然后将 state 上的属性作为 props 层层传递下去，最佳的方式是使用 <strong>React-Redux</strong> 提供的 <strong>Provider</strong> 和 <strong>connect</strong> 方法。React-Redux 将所有组件分成两大类：UI 组件（presentational component）和容器组件（container component）。UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。</p>
+
+<h3 id="provider">Provider</h3>
+
+<p>connect 方法生成容器组件以后，需要让容器组件拿到 state 对象，才能生成 UI 组件的参数。最关键的作用就是在 context 中放入 Redux 的 store，方便子组件获取:</p>
+
+<pre><code class="language-JSX">import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import todoApp from './reducers'
+import App from './components/App'
+
+let store = createStore(todoApp);
+
+render(
+  // 使用的时候容器组件会被包裹在 Provider 组件下面，这样这些组件就可以获得 Provider 挂在 context 上的 state 了
+  // Provider 内的任何一个组件（比如这里的 App），如果需要使用 state 中的数据，就必须是「被 connect 过的」组件——使用 connect 方法对「你编写的组件（MyApp）」进行包装后的产物
+  &lt;Provider store={store}&gt;
+    &lt;App /&gt;
+  &lt;/Provider&gt;,
+  document.getElementById('root')
+)
+</code></pre>
+
+<p><strong>context</strong> 属于 React 的一个重要属性。被隐式地传递给后代组件(类似于全局变量的作用，所有组件都可以访问):</p>
+
+<ul>
+  <li>React.withContext ：会执行一个指定的上下文信息的回调函数，任何在这个回调函数里面渲染的组件都有这个 context 的访问权限。</li>
+  <li>getChildContext ：和 React.withContext 一样的作用，指定的传递给子组件的属性。不过与 React.withContext 写法不同，且要先通过 childContextTypes 来指定类型，不然会产生错误。</li>
+  <li>childContextTypes ：声明传递给子组件的属性的数据类型。</li>
+  <li>contextTypes ：任何想访问 context 里面的属性的组件都必须显式地指定一个 contextTypes 的属性。如果没有指定该属性，那么组件通过 this.context 访问属性将会出错。</li>
+</ul>
+
+<p>Provider 就是使用了 getChildContext 将 store 绑到 context 上使子元素都可以访问到。通过 context 传递属性的方式要优于通过 props 逐层传递属性的方式。这样可以减少组件之间的直接依赖关系。</p>
+
+<h3 id="connect">connect</h3>
+
+<p><strong>connect</strong> 负责与 React 的展示组件进行交互，更新。容器组件在使用的时候会被包裹在 Provider 组件下面，这样这些组件就可以获得 Provider 挂在 context 上的 state。connect 作为高阶函数包裹这些容器组件就可以接收到 state，并且可以:</p>
+
+<p>1、将指定 state 和 action 作为 props 绑定到组件上方便调用</p>
+
+<p>2、帮助组件订阅监听 state 的变化</p>
+
+<pre><code class="language-JSX">import { connect } from 'react-redux'
+
+class MyComp extends Component {
+  // ...
+}
+const Comp = connect(...args)(MyComp);
+</code></pre>
+
+<pre><code class="language-JSX">// 可以接收四个参数，后两个参数一般省略，不做分析
+connect([mapStateToProps], [mapDispatchToProps], [mergeProps],[options])
+</code></pre>
+
+<h4 id="mapstatetoprops">mapStateToProps()</h4>
+
+<p><strong>mapStateToProps</strong> 将 store 中的数据作为 props 绑定到组件上。接收的第一个参数是我们需要从 Redux 中提取的状态，第二个可选参数是组件本身的 props。不必将 Redux 中所有的 state 数据都传进组件，可以结合 ownProps 进行筛选，传入需要的最少属性。</p>
+
+<pre><code class="language-JSX">const mapStateToProps = (state, ownProps) =&gt; {
+  // state 是 {userList: [{id: 0, name: '王二'}]}
+  return {
+    user: _.find(state.userList, {id: ownProps.userId})
+  }
+}
+
+class MyComp extends Component {
+  static PropTypes = {
+    userId: PropTypes.string.isRequired,
+    user: PropTypes.object
+  };
+  
+  render(){
+    return &lt;div&gt;用户名：{this.props.user.name}&lt;/div&gt;
+  }
+}
+
+const Comp = connect(mapStateToProps)(MyComp);
+</code></pre>
+
+<p>当 state 变化，或者 ownProps 变化的时候，mapStateToProps 都会被调用，计算出一个新的 stateProps。</p>
+
+<h4 id="mapdispatchtoprops">mapDispatchToProps()</h4>
+
+<p><strong>mapDispatchToProps</strong> 将 action 作为 props 绑定到组件上:</p>
+
+<pre><code class="language-JSX">//将 state.count 绑定到 props 的 count
+const mapStateToProps = (state) =&gt; {
+  return {
+    count: state.count
+  }
+};
+
+const mapDispatchToProps = (dispatch, ownProps) =&gt; {
+  // 由于 mapDispatchToProps 方法返回了具有 increase 属性和 decrease 属性的对象，这两个属性也会成为 MyComp 的 props
+  return {
+    increase: (...args) =&gt; dispatch(actions.increase(...args)),
+    decrease: (...args) =&gt; dispatch(actions.decrease(...args))
+  }
+}
+
+class MyComp extends Component {
+  render(){
+    // //从组件的 props 属性中导入两个方法和一个变量 count
+    const {count, increase, decrease} = this.props;
+
+    return (&lt;div&gt;
+      &lt;div&gt;计数：{count}次&lt;/div&gt;
+      &lt;button onClick={increase}&gt;增加&lt;/button&gt;
+      &lt;button onClick={decrease}&gt;减少&lt;/button&gt;
+    &lt;/div&gt;)
+  }
+}
+
+const Comp = connect(mapStateToProps， mapDispatchToProps)(MyComp);
+</code></pre>
+
 <h2 id="示例">示例</h2>
 
-<p>运行 Counter 示例:</p>
+<p>Redux 运行 Counter 示例，在实际的项目中，推荐使用 React 和更高效的 React-Redux 绑定，<a href="https://github.com/lipeishang/react-redux-connect-demo">参考 demo</a>:</p>
 
 <iframe src="https://codesandbox.io/embed/github/reactjs/redux/tree/master/examples/counter" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-<p>运行 Todo 示例:</p>
+<p>React-Redux 运行 TodoList 示例:</p>
 
 <iframe src="https://codesandbox.io/embed/github/reactjs/redux/tree/master/examples/todos-with-undo" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-<p>运行 checkout 示例:</p>
+<p>异步 运行 checkout 示例:</p>
 
 <iframe src="https://codesandbox.io/embed/github/reactjs/redux/tree/master/examples/shopping-cart" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
@@ -449,6 +568,9 @@ export function fetchPosts(subreddit) {
   <li><a href="http://cn.redux.js.org/">Redux 中文文档</a></li>
   <li><a href="https://github.com/react-guide/redux-tutorial-cn#redux-tutorial">react-guide/redux-tutorial-cn</a></li>
   <li><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html">Redux 入门教程</a> By 阮一峰</li>
+  <li><a href="https://cisy.me/react-redux/">react-redux 详解</a> By Cisy</li>
+  <li><a href="http://taobaofed.org/blog/2016/08/18/react-redux-connect/">React 实践心得：react-redux 之 connect 方法详解</a> By 叶斋</li>
+  <li><a href="http://www.alloyteam.com/2016/03/10532/"></a></li>
 </ol>
  
 <div id="disqus_thread"></div>

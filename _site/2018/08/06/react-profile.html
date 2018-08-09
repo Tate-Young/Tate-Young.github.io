@@ -325,6 +325,14 @@ const element = &lt;Welcome name="Sara" /&gt;;
 <pre><code class="language-JSX">import PropTypes from 'prop-types';
 
 class Greeting extends React.Component {
+  // 如果 babel 使用了 transform-class-properties，也可以写静态属性
+  static propTypes = {
+    name: PropTypes.string.isRequired
+  }
+  static defaultProps = {
+    name: 'stranger'
+  }
+
   render() {
     return (
       &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;
@@ -332,8 +340,12 @@ class Greeting extends React.Component {
   }
 }
 
+// 常规写法
 Greeting.propTypes = {
   name: PropTypes.string,
+  optionalBool: PropTypes.bool,
+  // 链式写法
+  requiredFunc: PropTypes.func.isRequired,
   // 一个指定元素类型的数组
   optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
   // 限制它为列举类型之一的对象
@@ -342,11 +354,24 @@ Greeting.propTypes = {
     PropTypes.object,
     PropTypes.instanceOf(Message)
   ]),
+  // 一个指定属性及其类型的对象
+  optionalObjectWithShape: PropTypes.shape({
+    color: PropTypes.string,
+    fontSize: PropTypes.number
+  }),
+  // 自定义 validator
+  customProp: function(props, propName, componentName) {
+  if (!/matchme/.test(props[propName])) {
+    return new Error(
+      'Invalid prop `' + propName + '` supplied to' + ' `' + componentName + '`. Validation failed.'
+    );
+  }
+},
 };
 
 // 可以通过配置 defaultProps 为 props 定义默认值，类型检查发生在 defaultProps 赋值之后，所以类型检查也会应用在 defaultProps 上面
 Greeting.defaultProps = {
-  name: 'Stranger'
+  name: 'Tate'
 };
 </code></pre>
 
