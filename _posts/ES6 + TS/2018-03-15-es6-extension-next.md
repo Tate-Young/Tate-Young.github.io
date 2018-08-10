@@ -125,6 +125,13 @@ let foo = bar => bar;
 [1, 2, 3].map(x => {return x ** 2}); // 与上面等价，一般用于多条执行语句
 ```
 
+```JS
+// 返回一个对象
+const increment = _ => ({
+  type: 'INCREMENT'
+})
+```
+
 除了 this，以下三个变量在箭头函数之中也是不存在的，指向外层函数的对应变量：arguments、super、new.target。
 
 ```JS

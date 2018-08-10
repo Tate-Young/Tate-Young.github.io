@@ -295,6 +295,12 @@ let foo = bar =&gt; bar;
 [1, 2, 3].map(x =&gt; {return x ** 2}); // 与上面等价，一般用于多条执行语句
 </code></pre>
 
+<pre><code class="language-JS">// 返回一个对象
+const increment = _ =&gt; ({
+  type: 'INCREMENT'
+})
+</code></pre>
+
 <p>除了 this，以下三个变量在箭头函数之中也是不存在的，指向外层函数的对应变量：arguments、super、new.target。</p>
 
 <pre><code class="language-JS">var foo = bar =&gt; {console.log(arguments)}

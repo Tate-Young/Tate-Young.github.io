@@ -238,7 +238,7 @@ function addTodo (text) {
 }
 
 // 不能修改 state
-function reducer(state, action) {
+function reducer (state, action) {
   return Object.assign({}, state, { thingToChange });
   // 或者
   return { ...state, ...newState };
@@ -515,20 +515,16 @@ const Comp = connect(mapStateToProps)(MyComp);
 
 <p><strong>mapDispatchToProps</strong> 将 action 作为 props 绑定到组件上:</p>
 
-<pre><code class="language-JSX">//将 state.count 绑定到 props 的 count
-const mapStateToProps = (state) =&gt; {
-  return {
-    count: state.count
-  }
-};
+<pre><code class="language-JSX">//将 state.counter 绑定到 props 的 count
+const mapStateToProps = state =&gt; ({
+  count: state.counter
+});
 
-const mapDispatchToProps = (dispatch, ownProps) =&gt; {
+const mapDispatchToProps = (dispatch, ownProps) =&gt; ({
   // 由于 mapDispatchToProps 方法返回了具有 increase 属性和 decrease 属性的对象，这两个属性也会成为 MyComp 的 props
-  return {
-    increase: (...args) =&gt; dispatch(actions.increase(...args)),
-    decrease: (...args) =&gt; dispatch(actions.decrease(...args))
-  }
-}
+  increase: (...args) =&gt; dispatch(actions.increase(...args)),
+  decrease: (...args) =&gt; dispatch(actions.decrease(...args))
+})
 
 class MyComp extends Component {
   render(){
@@ -544,6 +540,15 @@ class MyComp extends Component {
 }
 
 const Comp = connect(mapStateToProps， mapDispatchToProps)(MyComp);
+</code></pre>
+
+<p>上面的 state 对象的 key 为 counter，取决于这里的设置:</p>
+
+<pre><code class="language-JSX">import counter from './crement'
+import { combineReducers } from 'redux';
+export default combineReducers({
+  counter, // 通过 state.counter 访问
+})
 </code></pre>
 
 <h2 id="示例">示例</h2>
@@ -570,7 +575,7 @@ const Comp = connect(mapStateToProps， mapDispatchToProps)(MyComp);
   <li><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html">Redux 入门教程</a> By 阮一峰</li>
   <li><a href="https://cisy.me/react-redux/">react-redux 详解</a> By Cisy</li>
   <li><a href="http://taobaofed.org/blog/2016/08/18/react-redux-connect/">React 实践心得：react-redux 之 connect 方法详解</a> By 叶斋</li>
-  <li><a href="http://www.alloyteam.com/2016/03/10532/"></a></li>
+  <li><a href="http://www.alloyteam.com/2016/03/10532/">探索 react-redux 的小秘密</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
