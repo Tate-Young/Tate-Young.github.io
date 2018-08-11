@@ -3,18 +3,18 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='Redux - Tate & Snow' name='title' />
-    <meta content='Redux - Tate & Snow' name='og:title' />
-    <title>Redux - Tate & Snow</title>
+    <meta content='Redux & Redux-Saga - Tate & Snow' name='title' />
+    <meta content='Redux & Redux-Saga - Tate & Snow' name='og:title' />
+    <title>Redux & Redux-Saga - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Redux - Tate & Snow</title>
+<title>Redux & Redux-Saga - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redux - Tate & Snow">
-<meta name="twitter:keywords" content="Redux - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="Redux & Redux-Saga - Tate & Snow">
+<meta name="twitter:keywords" content="Redux & Redux-Saga - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redux - Tate & Snow">
-<meta name="og:keywords" content="Redux - Tate & Snow|ReduxRedux &amp; FluxRedux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux 里的 store，Redux 里..."
+<meta property="og:title" content="Redux & Redux-Saga - Tate & Snow">
+<meta name="og:keywords" content="Redux & Redux-Saga - Tate & Snow|Redux &amp; Redux-SagaRedux &amp; FluxRedux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="ReduxRedux &amp; FluxRedux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux 里的 store，Redux 里..." property='og:description'
+<meta name="keywords" content="Redux &amp; Redux-SagaRedux &amp; FluxRedux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/08/07/redux.html' property='og:url' />
-<meta content="http://localhost:4000/2018/08/07/redux.html|ReduxRedux &amp; FluxRedux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux 里的 store，Redux 里..." property='og:description'
+<meta content="http://localhost:4000/2018/08/07/redux.html|Redux &amp; Redux-SagaRedux &amp; FluxRedux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -134,7 +134,7 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    Redux</h1>
+                    Redux & Redux-Saga</h1>
                 <div class="post-data">
                     <time datetime="2018-08-07 18:15:00" itemprop="datePublished">发布时间：2018-08-07 18:15:00</time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -147,6 +147,12 @@
                         <span>(2)</span>
                         
                     </a>
+                    
+                    <a href="/tags#Redux" title="访问Redux" data-hover="Redux">
+                        Redux
+                        <span>(1)</span>
+                        
+                    </a>
                        
                 </div>
             </div>
@@ -155,7 +161,7 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                Redux</h1>
+                Redux & Redux-Saga</h1>
             <div class="post-data">
                 <time datetime="2018-08-07 18:15:00" itemprop="datePublished">2018-08-07 18:15:00</time>
             </div>
@@ -167,9 +173,14 @@
                     React
                     <span>(2)</span>
                     </a>
+                
+                <a href="/tags#Redux" title="访问Redux" data-hover="Redux">
+                    Redux
+                    <span>(1)</span>
+                    </a>
                    
             </p>
-            <h1 id="redux">Redux</h1>
+            <h1 id="redux--redux-saga">Redux &amp; Redux-Saga</h1>
 
 <h2 id="redux--flux">Redux &amp; Flux</h2>
 
@@ -356,7 +367,7 @@ const store = createStore(
 );
 </code></pre>
 
-<h4 id="异步-redux-thunk">异步 redux-thunk</h4>
+<h4 id="异步-redux-thunk">异步 Redux-Thunk</h4>
 
 <p>同步操作只要发出一种 Action 即可，异步操作的差别是它要发出三种 Action。</p>
 
@@ -426,6 +437,10 @@ export function fetchPosts(subreddit) {
   }
 }
 </code></pre>
+
+<blockquote>
+  <p>异步建议使用 <strong>redux-saga</strong> 来处理数据的读取。不同于 redux-thunk，你不会再遇到回调地狱了，你可以很容易地测试异步流程并保持你的 action 是干净的。</p>
+</blockquote>
 
 <h2 id="react-redux">React-Redux</h2>
 
@@ -551,6 +566,80 @@ export default combineReducers({
 })
 </code></pre>
 
+<h2 id="redux-saga">Redux-Saga</h2>
+
+<p><strong>redux-saga</strong> 是一个用于管理应用程序 <strong>Side Effect</strong>(副作用，例如异步获取数据，访问浏览器缓存等)的库，它的目标是让副作用管理更容易，执行更高效，测试更简单，在处理故障时更容易。redux-saga 使用了 ES6 的 <strong>Generator</strong> 功能，让异步的流程更易于读取，写入和测试。可以想像为，一个 saga 就像是应用程序中一个单独的线程，它独自负责处理副作用。 redux-saga 是一个 redux 中间件，意味着这个线程可以通过正常的 redux action 从主应用程序启动，暂停和取消，它能访问完整的 redux state，也可以 dispatch redux action。</p>
+
+<pre><code class="language-JS">// 创建一个 saga 中间件并连接至 Redux Store
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import { helloSaga } from './sagas'
+
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleware)
+)
+
+// 启动 Generators，参数必须是 Generator function
+sagaMiddleware.run(helloSaga)
+</code></pre>
+
+<p>副作用的几个方法介绍:</p>
+
+<pre><code class="language-JS">mport { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import Api from '...'
+
+// worker Saga : 将在 USER_FETCH_REQUESTED action 被 dispatch 时调用
+function* fetchUser(action) {
+   try {
+      const user = yield call(Api.fetchUser, action.payload.userId);
+      yield put({type: "USER_FETCH_SUCCEEDED", user: user});
+   } catch (e) {
+      yield put({type: "USER_FETCH_FAILED", message: e.message});
+   }
+}
+
+/*
+  在每个 `USER_FETCH_REQUESTED` action 被 dispatch 时调用 fetchUser 允许并发（译注：即同时处理多个相同的 action）
+*/
+function* mySaga() {
+  yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
+}
+
+/*
+  也可以使用 takeLatest。不允许并发，dispatch 一个 `USER_FETCH_REQUESTED` action 时，如果在这之前已经有一个 `USER_FETCH_REQUESTED` action 在处理中，那么处理中的 action 会被取消，只会执行当前的
+*/
+function* mySaga() {
+  yield takeLatest("USER_FETCH_REQUESTED", fetchUser);
+}
+
+export default mySaga;
+</code></pre>
+
+<p>举个多个 Generator 的栗子，此时可以采用 all 方法一起启动:</p>
+
+<pre><code class="language-JS">import { delay } from 'redux-saga'
+import { put, takeEvery, all } from 'redux-saga/effects'
+
+function* incrementAsync() {
+  yield delay(1000) // 延迟 1s
+  yield put({ type: 'INCREMENT' }) // 触发 action
+}
+
+function* watchIncrementAsync() { // 在每个 INCREMENT_ASYNC action spawn 一个新的 incrementAsync 任务
+  yield takeEvery('INCREMENT_ASYNC', incrementAsync)
+}
+
+// notice how we now only export the rootSaga single entry point to start all Sagas at once
+export default function* rootSaga() {
+  yield all([
+    helloSaga(),
+    watchIncrementAsync()
+  ])
+}
+</code></pre>
+
 <h2 id="示例">示例</h2>
 
 <p>Redux 运行 Counter 示例，在实际的项目中，推荐使用 React 和更高效的 React-Redux 绑定，<a href="https://github.com/lipeishang/react-redux-connect-demo">参考 demo</a>:</p>
@@ -561,9 +650,9 @@ export default combineReducers({
 
 <iframe src="https://codesandbox.io/embed/github/reactjs/redux/tree/master/examples/todos-with-undo" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-<p>异步 运行 checkout 示例:</p>
+<p>Redux-thunk 运行 异步请求 示例:</p>
 
-<iframe src="https://codesandbox.io/embed/github/reactjs/redux/tree/master/examples/shopping-cart" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe src="https://codesandbox.io/embed/github/reactjs/redux/tree/master/examples/async" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 <p>更多示例<a href="http://cn.redux.js.org/docs/introduction/Examples.html">请参考这里</a>。</p>
 
@@ -576,6 +665,7 @@ export default combineReducers({
   <li><a href="https://cisy.me/react-redux/">react-redux 详解</a> By Cisy</li>
   <li><a href="http://taobaofed.org/blog/2016/08/18/react-redux-connect/">React 实践心得：react-redux 之 connect 方法详解</a> By 叶斋</li>
   <li><a href="http://www.alloyteam.com/2016/03/10532/">探索 react-redux 的小秘密</a></li>
+  <li><a href="https://redux-saga-in-chinese.js.org/">Redux-Saga 中文文档</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
@@ -588,7 +678,7 @@ export default combineReducers({
     var disqus_config = function () {
         this.page.url = 'https://tate-young.github.io/2018/08/07/redux.html';
         this.page.identifier = '/2018/08/07/redux';
-        this.page.title = 'Redux';
+        this.page.title = 'Redux & Redux-Saga';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW

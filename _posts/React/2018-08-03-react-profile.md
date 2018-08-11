@@ -58,6 +58,11 @@ function TodoList() {
     <ul> // 数组元素中使用的 key 在其兄弟之间应该是独一无二的，如 id
       {todos.map((message) => <Item key={message} message={message} />)}
     </ul>
+    {!isFetching && // isFetching 为 false 时才显示 button
+      <button onClick={this.handleRefreshClick}>
+        Refresh
+      </button>
+    }
   );
 }
 ```
