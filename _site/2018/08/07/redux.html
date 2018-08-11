@@ -570,6 +570,8 @@ export default combineReducers({
 
 <p><strong>redux-saga</strong> 是一个用于管理应用程序 <strong>Side Effect</strong>(副作用，例如异步获取数据，访问浏览器缓存等)的库，它的目标是让副作用管理更容易，执行更高效，测试更简单，在处理故障时更容易。redux-saga 使用了 ES6 的 <strong>Generator</strong> 功能，让异步的流程更易于读取，写入和测试。可以想像为，一个 saga 就像是应用程序中一个单独的线程，它独自负责处理副作用。 redux-saga 是一个 redux 中间件，意味着这个线程可以通过正常的 redux action 从主应用程序启动，暂停和取消，它能访问完整的 redux state，也可以 dispatch redux action。</p>
 
+<h3 id="createsagamiddleware">createSagaMiddleware()</h3>
+
 <pre><code class="language-JS">// 创建一个 saga 中间件并连接至 Redux Store
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
@@ -585,39 +587,177 @@ const store = createStore(
 sagaMiddleware.run(helloSaga)
 </code></pre>
 
-<p>副作用的几个方法介绍:</p>
+<h3 id="saga-辅助函数">Saga 辅助函数</h3>
 
-<pre><code class="language-JS">mport { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+<p>redux-saga 提供了一些辅助函数，包装了一些内部方法，用来在一些特定的 action 被发起到 Store 时派生任务，常用的两个辅助函数为:</p>
+
+<ul>
+  <li><strong>takeEvery</strong> - 是一个使用 take 和 fork 构建的高级 API。每次指定 action 被发起时，来启动一个新的 saga 任务</li>
+  <li><strong>takeLatest</strong> - 同上，但会自动取消之前所有已经启动但仍在执行中的 saga 任务。</li>
+</ul>
+
+<pre><code class="language-JS">import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import Api from '...'
 
-// worker Saga : 将在 USER_FETCH_REQUESTED action 被 dispatch 时调用
+// 创建异步任务，将在 USER_FETCH_REQUESTED action 被 dispatch 时调用
 function* fetchUser(action) {
-   try {
-      const user = yield call(Api.fetchUser, action.payload.userId);
-      yield put({type: "USER_FETCH_SUCCEEDED", user: user});
-   } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
-   }
+  try {
+    const user = yield call(Api.fetchUser, action.payload.userId); // call 属于声明式调用，创建一个纯文本对象描述函数调用
+    yield put({type: "USER_FETCH_SUCCEEDED", user: user}); // put 用于创建 dispatch Effect
+  } catch (e) {
+    yield put({type: "USER_FETCH_FAILED", message: e.message});
+  }
 }
 
-/*
-  在每个 `USER_FETCH_REQUESTED` action 被 dispatch 时调用 fetchUser 允许并发（译注：即同时处理多个相同的 action）
-*/
-function* mySaga() {
-  yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
+function* watchFetchData() {
+  yield* takeEvery("FETCH_REQUESTED", fetchData)
 }
 
-/*
-  也可以使用 takeLatest。不允许并发，dispatch 一个 `USER_FETCH_REQUESTED` action 时，如果在这之前已经有一个 `USER_FETCH_REQUESTED` action 在处理中，那么处理中的 action 会被取消，只会执行当前的
-*/
+// 上面 generator 函数等价于
+function* watchFetchData() {
+  while (true) {
+    yield take('FETCH_REQUESTED');
+    yield fork(fetchData);
+  }
+}
+
 function* mySaga() {
   yield takeLatest("USER_FETCH_REQUESTED", fetchUser);
 }
-
-export default mySaga;
 </code></pre>
 
-<p>举个多个 Generator 的栗子，此时可以采用 all 方法一起启动:</p>
+<h3 id="effect-创建器">Effect 创建器</h3>
+
+<p>redux-saga 库提供了很多创建 effect 的函数，常用的有以下这些，更多<a href="https://redux-saga-in-chinese.js.org/docs/api/">参考这里</a>:</p>
+
+<ul>
+  <li><strong>put</strong>(action)</li>
+  <li><strong>call</strong>(fn, …args)</li>
+  <li><strong>fork</strong>(fn, …args)</li>
+  <li><strong>cancel</strong>(…tasks)</li>
+  <li><strong>take</strong>(pattern) - 监听未来的 action</li>
+  <li><strong>select</strong>(selector, …args)</li>
+</ul>
+
+<p>1、<strong>put</strong></p>
+
+<p>创建一个 Effect 描述信息，用来命令 middleware 向 Store 发起一个 action。 这个 effect 是非阻塞型的，并且所有向下游抛出的错误（例如在 reducer 中），都不会冒泡回到 saga 当中:</p>
+
+<pre><code class="language-JS">yield put({type: "USER_FETCH_SUCCEEDED", user: user});
+</code></pre>
+
+<p>2、<strong>call</strong></p>
+
+<p>创建一个 Effect 描述信息，用来命令 middleware 以参数 args 调用函数 fn，fn 即可以是一个 普通 函数，也可以是一个 Generator 函数。call 函数也是<strong>阻塞</strong> effect:</p>
+
+<pre><code class="language-JS">const user = yield call(Api.fetchUser, action.payload.userId);
+</code></pre>
+
+<p>类似于 <code>Promise.all</code> 同时执行多个任务:</p>
+
+<pre><code class="language-JS">import { call } from 'redux-saga/effects'
+
+// effects 将会同步执行。generator 会被阻塞直到所有的 effects 都执行完毕，或者当一个 effect 被拒绝
+const [users, repos] = yield [
+  call(fetch, '/users'),
+  call(fetch, '/repos')
+]
+</code></pre>
+
+<p>3、<strong>fork</strong></p>
+
+<p>fork 类似于 call，可以用来调用普通函数和 Generator 函数。不过，fork 的调用是<strong>非阻塞</strong>的，Generator 不会在等待 fn 返回结果的时候被 middleware 暂停；相反，它在 fn 被调用时便会立即恢复执行:</p>
+
+<pre><code class="language-JS">export default function* rootSaga() {
+  // 下面的四个 Generator 函数会一次执行，不会阻塞执行
+  yield fork(addItemFlow)
+  yield fork(removeItemFlow)
+  yield fork(toggleItemFlow)
+  yield fork(modifyItemFLOW)
+}
+</code></pre>
+
+<p>4、<strong>cancel</strong></p>
+
+<p>创建一个 Effect 描述信息，一旦任务被 fork，可以用来中止任务执行:</p>
+
+<pre><code class="language-JS">function* main() {
+  while ( yield take(START_BACKGROUND_SYNC) ) {
+    // 启动后台任务
+    const bgSyncTask = yield fork(bgSync)
+
+    // 等待用户的停止操作
+    yield take(STOP_BACKGROUND_SYNC)
+    // 用户点击了停止，取消后台任务，这会导致被 fork 的 bgSync 任务跳进它的 finally 区块
+    yield cancel(bgSyncTask)
+  }
+}
+</code></pre>
+
+<p>在上面的示例中，取消 bgSyncTask 将会导致 Generator 跳进 finally 区块。可使用 <code>yield cancelled()</code> 来检查 Generator 是否已经被取消:</p>
+
+<pre><code class="language-JS">function* saga() {
+  try {
+    // ...
+  } finally {
+    if (yield cancelled()) {
+      // 只应在取消时执行的逻辑
+    }
+    // 应在所有情况下都执行的逻辑（例如关闭一个 channel）
+  }
+}
+</code></pre>
+
+<p>5、<strong>take</strong></p>
+
+<p>它创建了一个命令对象，告诉 middleware 等待一个特定的 action， Generator 会暂停，直到一个与 pattern 匹配的 action 被发起，才会继续执行下面的语句，也就是说，take 是一个阻塞的 effect。</p>
+
+<pre><code class="language-JS">function* loginFlow() {
+  while (true) {
+    yield take('LOGIN')
+    // ... perform the login logic
+    yield take('LOGOUT')
+    // ... perform the logout logic
+  }
+}
+</code></pre>
+
+<p>6、<strong>select</strong></p>
+
+<p>创建一个 Effect，用来命令 middleware 在当前 Store 的 state 上调用指定的选择器，如果调用 select 的参数为空(即 yield select())，那么 effect 会取得完整的 state(与调用 <code>store.getState()</code> 的结果相同):</p>
+
+<pre><code class="language-JS">export function* toggleItemFlow() {
+  // 通过 select effect 来获取 全局 state上的 `getTodoList` 中的 list
+  let tempList = yield select(state =&gt; state.getTodoList.list)
+}
+</code></pre>
+
+<h3 id="effect-组合器">Effect 组合器</h3>
+
+<p>Effect 组合器包含两种方法:</p>
+
+<ul>
+  <li><strong>race</strong> - 传入的是 effect 的数组，进行”竞赛”</li>
+  <li><strong>all</strong> - 创建一个 Effect 描述信息，用来命令 middleware 并行地运行多个 Effect，并等待它们全部完成</li>
+</ul>
+
+<p>1、<strong>race</strong></p>
+
+<pre><code class="language-JS">import { take, call, race } from `redux-saga/effects`
+import fetchUsers from './path/to/fetchUsers'
+
+// 如果 call(fetchUsers) 先 resolve（或 reject），那么 response 将是 fetchUsers 的结果，并且 cancel 将是 undefined，反之同理
+function* fetchUsersSaga {
+  const [response, cancel] = yield race([
+    call(fetchUsers),
+    take(CANCEL_FETCH)
+  ])
+}
+</code></pre>
+
+<p>2、<strong>all</strong></p>
+
+<p>举个多个 Generator 的栗子，此时可以采用 all 组合器方法一起启动:</p>
 
 <pre><code class="language-JS">import { delay } from 'redux-saga'
 import { put, takeEvery, all } from 'redux-saga/effects'
@@ -666,6 +806,7 @@ export default function* rootSaga() {
   <li><a href="http://taobaofed.org/blog/2016/08/18/react-redux-connect/">React 实践心得：react-redux 之 connect 方法详解</a> By 叶斋</li>
   <li><a href="http://www.alloyteam.com/2016/03/10532/">探索 react-redux 的小秘密</a></li>
   <li><a href="https://redux-saga-in-chinese.js.org/">Redux-Saga 中文文档</a></li>
+  <li><a href="https://www.jianshu.com/p/7cac18e8d870">redux-saga 框架使用详解及 Demo 教程</a> By 光强_上海</li>
 </ol>
  
 <div id="disqus_thread"></div>
