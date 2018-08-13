@@ -649,6 +649,48 @@ export default Contacts;
   <p>React.createClass() 已弃用，推荐用 extends React.Component</p>
 </blockquote>
 
+<h2 id="react-hot-loader">React-hot-loader</h2>
+
+<p><a href="https://gaearon.github.io/react-hot-loader/"><strong>React-hot-loader</strong></a> 可以在不刷新浏览器的情况下进行热更新，有两种使用方式:</p>
+
+<pre><code class="language-JSX">// 根组件 Counter.js
+import { hot } from 'react-hot-loader';
+
+class Counter extends Component {...}
+
+export default hot(module)(Counter)
+</code></pre>
+
+<p>第二种方式在入口文件使用 <strong>AppContainer</strong>:</p>
+
+<pre><code class="language-JSX">// index.js
+import { AppContainer } from 'react-hot-loader';
+import Counter from './container'
+
+const myRender = Component =&gt; {
+  render(
+    &lt;Provider store={store}&gt;
+      &lt;AppContainer&gt;
+        &lt;Component /&gt;
+      &lt;/AppContainer&gt;
+    &lt;/Provider&gt;,
+    rootEl
+  );
+}
+
+myRender(Counter)
+if (module.hot) module.hot.accept('./container', () =&gt; myRender(Counter));
+</code></pre>
+
+<p>针对 react-router 4.x 以上，可能会出现热更新失效的问题，可以采用以下方法解决:</p>
+
+<pre><code class="language-JSX">import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+const App = () =&gt; ( // 根 Router
+  &lt;Router key={process.env.NODE_ENV === 'development' ? Math.random() : ''} /&gt;
+);
+</code></pre>
+
 <h2 id="react-router">React Router</h2>
 
 <p><strong>React Router</strong> 是一个基于 React 之上的强大路由库，它可以让你向应用中快速地添加视图和数据流，同时保持页面与 URL 间的同步。可以<a href="https://github.com/reactjs/react-router-tutorial/tree/master/lessons">查看官方 demo</a>。路由算法会根据定义的顺序自顶向下匹配路由。</p>
@@ -885,6 +927,7 @@ const Home = React.createClass({
   <li><a href="http://react-guide.github.io/react-router-cn/docs/Introduction.html">gitbook - react-router</a></li>
   <li><a href="http://www.ruanyifeng.com/blog/2016/05/react_router.html">React Router 使用教程</a> By 阮一峰</li>
   <li><a href="http://reacttraining.cn/web/example/basic">React Router 中文文档</a></li>
+  <li><a href="https://medium.com/@giang.nguyen.dev/hot-loader-with-react-loadable-c8f70c8ce1a6">Hot loader with react-loadable</a> By Go to the profile of Giang Nguyen</li>
 </ol>
  
 <div id="disqus_thread"></div>

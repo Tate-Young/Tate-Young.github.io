@@ -465,6 +465,51 @@ export default Contacts;
 
 > React.createClass() 已弃用，推荐用 extends React.Component
 
+## React-hot-loader
+
+[**React-hot-loader**](https://gaearon.github.io/react-hot-loader/) 可以在不刷新浏览器的情况下进行热更新，有两种使用方式:
+
+```JSX
+// 根组件 Counter.js
+import { hot } from 'react-hot-loader';
+
+class Counter extends Component {...}
+
+export default hot(module)(Counter)
+```
+
+第二种方式在入口文件使用 **AppContainer**:
+
+```JSX
+// index.js
+import { AppContainer } from 'react-hot-loader';
+import Counter from './container'
+
+const myRender = Component => {
+  render(
+    <Provider store={store}>
+      <AppContainer>
+        <Component />
+      </AppContainer>
+    </Provider>,
+    rootEl
+  );
+}
+
+myRender(Counter)
+if (module.hot) module.hot.accept('./container', () => myRender(Counter));
+```
+
+针对 react-router 4.x 以上，可能会出现热更新失效的问题，可以采用以下方法解决:
+
+```JSX
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+const App = () => ( // 根 Router
+  <Router key={process.env.NODE_ENV === 'development' ? Math.random() : ''} />
+);
+```
+
 ## React Router
 
 **React Router** 是一个基于 React 之上的强大路由库，它可以让你向应用中快速地添加视图和数据流，同时保持页面与 URL 间的同步。可以[查看官方 demo](https://github.com/reactjs/react-router-tutorial/tree/master/lessons)。路由算法会根据定义的顺序自顶向下匹配路由。
@@ -691,3 +736,4 @@ React Router 是建立在 **history** 之上的。 简而言之，一个 history
 7. [gitbook - react-router](http://react-guide.github.io/react-router-cn/docs/Introduction.html)
 8. [React Router 使用教程](http://www.ruanyifeng.com/blog/2016/05/react_router.html) By 阮一峰
 9. [React Router 中文文档](http://reacttraining.cn/web/example/basic)
+10. [Hot loader with react-loadable](https://medium.com/@giang.nguyen.dev/hot-loader-with-react-loadable-c8f70c8ce1a6) By Go to the profile of Giang Nguyen
