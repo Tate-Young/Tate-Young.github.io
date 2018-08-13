@@ -351,6 +351,11 @@ render()
 store.subscribe(render) // 监听并修改视图
 </code></pre>
 
+<p>当需要把多个 store 增强器依次执行的时候，可以使用 <a href="https://www.kancloud.cn/allanyu/redux-in-chinese/82435"><strong>compose</strong></a> 方法，从右到左把接收到的函数合成后的最终函数。compose 做的只是让你不使用深度右括号的情况下来写深度嵌套的函数:</p>
+
+<pre><code class="language-JS">const store = compose()(createStore)(counter)
+</code></pre>
+
 <h3 id="异步-action--中间件">异步 Action &amp; 中间件</h3>
 
 <h4 id="applymiddlewares">applyMiddlewares()</h4>
@@ -738,7 +743,7 @@ const [users, repos] = yield [
 
 <ul>
   <li><strong>race</strong> - 传入的是 effect 的数组，进行”竞赛”</li>
-  <li><strong>all</strong> - 创建一个 Effect 描述信息，用来命令 middleware 并行地运行多个 Effect，并等待它们全部完成</li>
+  <li><strong>all</strong> - 并行地运行多个 Effect，并等待它们全部完成</li>
 </ul>
 
 <p>1、<strong>race</strong></p>
