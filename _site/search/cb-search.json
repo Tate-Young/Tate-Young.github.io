@@ -3,8 +3,16 @@
 	"data" : [
 	 
 	{
+		"title" : "Material-UI - ",
+		"url" : "/2018/08/07/react-material-ui.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Redux & Redux-Saga - ",
-		"url" : "/2018/08/07/redux.html"
+		"url" : "/2018/08/07/react-redux.html"
 	}
 	
 	,
