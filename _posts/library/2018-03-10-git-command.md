@@ -211,7 +211,7 @@ git revert bb0aa8b
 revert 撤销一个合并提交时，如果除了 commit id 而不加任何其他参数，git 将会提示错误:
 
 ```TEXT
-error: Commit g is a merge but no -m option was given.
+error: Commit xx is a merge but no -m option was given.
 ```
 
 原因是在你合并两个分支并试图撤销时，Git 并不知道你到底需要保留哪一个分支上所做的修改。从 Git 的角度来看，master 分支和 dev 在地位上是完全平等的。因此需要通过 **m** 或 **mainline** 参数来指定「主线」，m 参数的值可以是 1 或者 2，对应着 parent 在 merge commit 信息中的顺序:
