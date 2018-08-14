@@ -686,7 +686,7 @@ if (module.hot) module.hot.accept('./container', () =&gt; myRender(Counter));
 
 <pre><code class="language-JSX">import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-const App = () =&gt; ( // 根 Router
+const App = () =&gt; ( // 根 Router，在 key 值上加一个随机数
   &lt;Router key={process.env.NODE_ENV === 'development' ? Math.random() : ''} /&gt;
 );
 </code></pre>

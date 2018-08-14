@@ -505,7 +505,7 @@ if (module.hot) module.hot.accept('./container', () => myRender(Counter));
 ```JSX
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-const App = () => ( // 根 Router
+const App = () => ( // 根 Router，在 key 值上加一个随机数
   <Router key={process.env.NODE_ENV === 'development' ? Math.random() : ''} />
 );
 ```

@@ -81,12 +81,18 @@ export default (state = 0, action) => { // 首次执行时，state 为 undefined
       return state // 默认返回传入的旧 state
   }
 }
+```
 
+**切记不能修改 state**，否则会报错。此时应当采用拷贝或者直接使用 immutable 库:
+
+```JSX
 // 不能修改 state
 function reducer (state, action) {
   return Object.assign({}, state, { thingToChange });
   // 或者
   return { ...state, ...newState };
+  // 或者 immutable
+  return state.set('thingToChange', action.counter)
 }
 ```
 
@@ -631,6 +637,86 @@ export default function* rootSaga() {
 }
 ```
 
+## reduxsauce
+
+[**reduxsauce**](https://github.com/infinitered/reduxsauce) 就是一个 "调味剂"，虽然不是必需品。但有它可以让代码更 "美味"。大家已经看到上面的 reducer 常规写法就是包含篇幅巨大的 switch 语法，看起来比较混乱。先看看它提供的几个 API:
+
+* **createReducer** - 让 reducers 更易于阅读和测试
+* **createTypes** - 从字符串中定义你的类型对象
+* **createActions** - 同时创建 Action Types 和 Action Creators
+* **resettableReducer** - 允许重置 reducers
+
+1、初始化:
+
+```JSX
+const INITIAL_STATE = { name: null, age: null }
+
+// 如果使用 immutable
+import { fromJS } from 'immutable'
+const INITIAL_STATE = fromJS({ name: null, age: null })
+```
+
+2、运行
+
+```JSX
+const sayHello = (state = INITIAL_STATE, action) => {
+  const { age, name } = action
+  return { ...state, age, name }
+}
+```
+
+3、触发
+
+在 redux 中，reducers 会被 action 触发，通过 <code>action.type</code> 上的 switch 所驱动。现在只需要一个简单的对象，将所有 actions 映射到 reducer 函数上:
+
+```JSX
+import Types from './actionTypes'
+import { Types as ReduxSauceTypes } from 'reduxsauce'
+
+const HANDLERS = {
+  [Types.SAY_HELLO]: sayHello,
+  [Types.SAY_GOODBYE]: sayGoodbye,
+  [ReduxSauceTypes.DEFAULT]: defaultHandler, // default handler
+}
+```
+
+4、注入
+
+```JSX
+// Injecting Into The Global State Tree
+export default createReducer(INITIAL_STATE, HANDLERS)
+```
+
+完整的示例如下:
+
+```JSX
+// sampleReducer.js
+import { createReducer, Types as ReduxSauceTypes } from 'reduxsauce'
+import Types from './actionTypes'
+
+// the initial state of this reducer
+export const INITIAL_STATE = { error: false, goodies: null }
+
+// the eagle has landed
+export const success = (state = INITIAL_STATE, action) => {
+  return { ...state, error: false, goodies: action.goodies }
+}
+
+// uh oh
+export const failure = (state = INITIAL_STATE, action) => {
+  return { ...state, error: true, goodies: null }
+}
+
+// map our action types to our reducer functions
+export const HANDLERS = {
+  [Types.GOODS_SUCCESS]: success,
+  [Types.GOODS_FAILURE]: failure,
+  [ReduxSauceTypes.DEFAULT]: (state = INITIAL_STATE) => state,
+}
+
+export default createReducer(INITIAL_STATE, HANDLERS)
+```
+
 ## 示例
 
 Redux 运行 Counter 示例，在实际的项目中，推荐使用 React 和更高效的 React-Redux 绑定，[参考 demo](https://github.com/lipeishang/react-redux-connect-demo):
@@ -657,3 +743,4 @@ Redux-thunk 运行 异步请求 示例:
 6. [探索 react-redux 的小秘密](http://www.alloyteam.com/2016/03/10532/)
 7. [Redux-Saga 中文文档](https://redux-saga-in-chinese.js.org/)
 8. [redux-saga 框架使用详解及 Demo 教程](https://www.jianshu.com/p/7cac18e8d870) By 光强_上海
+9. [Github - reduxsauce](https://github.com/infinitered/reduxsauce)

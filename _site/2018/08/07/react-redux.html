@@ -247,12 +247,17 @@ function addTodo (text) {
       return state // 默认返回传入的旧 state
   }
 }
+</code></pre>
 
-// 不能修改 state
+<p><strong>切记不能修改 state</strong>，否则会报错。此时应当采用拷贝或者直接使用 immutable 库:</p>
+
+<pre><code class="language-JSX">// 不能修改 state
 function reducer (state, action) {
   return Object.assign({}, state, { thingToChange });
   // 或者
   return { ...state, ...newState };
+  // 或者 immutable
+  return state.set('thingToChange', action.counter)
 }
 </code></pre>
 
@@ -785,6 +790,83 @@ export default function* rootSaga() {
 }
 </code></pre>
 
+<h2 id="reduxsauce">reduxsauce</h2>
+
+<p><a href="https://github.com/infinitered/reduxsauce"><strong>reduxsauce</strong></a> 就是一个 “调味剂”，虽然不是必需品。但有它可以让代码更 “美味”。大家已经看到上面的 reducer 常规写法就是包含篇幅巨大的 switch 语法，看起来比较混乱。先看看它提供的几个 API:</p>
+
+<ul>
+  <li><strong>createReducer</strong> - 让 reducers 更易于阅读和测试</li>
+  <li><strong>createTypes</strong> - 从字符串中定义你的类型对象</li>
+  <li><strong>createActions</strong> - 同时创建 Action Types 和 Action Creators</li>
+  <li><strong>resettableReducer</strong> - 允许重置 reducers</li>
+</ul>
+
+<p>1、初始化:</p>
+
+<pre><code class="language-JSX">const INITIAL_STATE = { name: null, age: null }
+
+// 如果使用 immutable
+import { fromJS } from 'immutable'
+const INITIAL_STATE = fromJS({ name: null, age: null })
+</code></pre>
+
+<p>2、运行</p>
+
+<pre><code class="language-JSX">const sayHello = (state = INITIAL_STATE, action) =&gt; {
+  const { age, name } = action
+  return { ...state, age, name }
+}
+</code></pre>
+
+<p>3、触发</p>
+
+<p>在 redux 中，reducers 会被 action 触发，通过 <code>action.type</code> 上的 switch 所驱动。现在只需要一个简单的对象，将所有 actions 映射到 reducer 函数上:</p>
+
+<pre><code class="language-JSX">import Types from './actionTypes'
+import { Types as ReduxSauceTypes } from 'reduxsauce'
+
+const HANDLERS = {
+  [Types.SAY_HELLO]: sayHello,
+  [Types.SAY_GOODBYE]: sayGoodbye,
+  [ReduxSauceTypes.DEFAULT]: defaultHandler, // default handler
+}
+</code></pre>
+
+<p>4、注入</p>
+
+<pre><code class="language-JSX">// Injecting Into The Global State Tree
+export default createReducer(INITIAL_STATE, HANDLERS)
+</code></pre>
+
+<p>完整的示例如下:</p>
+
+<pre><code class="language-JSX">// sampleReducer.js
+import { createReducer, Types as ReduxSauceTypes } from 'reduxsauce'
+import Types from './actionTypes'
+
+// the initial state of this reducer
+export const INITIAL_STATE = { error: false, goodies: null }
+
+// the eagle has landed
+export const success = (state = INITIAL_STATE, action) =&gt; {
+  return { ...state, error: false, goodies: action.goodies }
+}
+
+// uh oh
+export const failure = (state = INITIAL_STATE, action) =&gt; {
+  return { ...state, error: true, goodies: null }
+}
+
+// map our action types to our reducer functions
+export const HANDLERS = {
+  [Types.GOODS_SUCCESS]: success,
+  [Types.GOODS_FAILURE]: failure,
+  [ReduxSauceTypes.DEFAULT]: (state = INITIAL_STATE) =&gt; state,
+}
+
+export default createReducer(INITIAL_STATE, HANDLERS)
+</code></pre>
+
 <h2 id="示例">示例</h2>
 
 <p>Redux 运行 Counter 示例，在实际的项目中，推荐使用 React 和更高效的 React-Redux 绑定，<a href="https://github.com/lipeishang/react-redux-connect-demo">参考 demo</a>:</p>
@@ -812,6 +894,7 @@ export default function* rootSaga() {
   <li><a href="http://www.alloyteam.com/2016/03/10532/">探索 react-redux 的小秘密</a></li>
   <li><a href="https://redux-saga-in-chinese.js.org/">Redux-Saga 中文文档</a></li>
   <li><a href="https://www.jianshu.com/p/7cac18e8d870">redux-saga 框架使用详解及 Demo 教程</a> By 光强_上海</li>
+  <li><a href="https://github.com/infinitered/reduxsauce">Github - reduxsauce</a></li>
 </ol>
  
 <div id="disqus_thread"></div>
