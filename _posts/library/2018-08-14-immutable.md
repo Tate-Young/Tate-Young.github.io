@@ -148,6 +148,43 @@ const Map5 = Map1.mergeWith((oldData,newData,key) => {
 // Map {a:6, b:2, c:{e:4, f:5}}
 ```
 
+### Cursor
+
+由于 Immutable 数据一般嵌套非常深，为了便于访问深层数据，**Cursor** 提供了可以直接访问这个深层数据的引用。
+
+```JS
+import { fromJS } from 'immutable';
+import Cursor from 'immutable/contrib/cursor';
+
+let data = fromJS({ a: { b: { c: 1 } } });
+// 让 cursor 指向 { c: 1 }
+let cursor = Cursor.from(data, ['a', 'b'], newData => {
+  // 当 cursor 或其子 cursor 执行 update 时调用
+  console.log(newData);
+});
+
+cursor.get('c'); // 1
+cursor = cursor.update('c', x => x + 1);
+cursor.get('c'); // 2
+```
+
+### withMutations
+
+**withMutations** 主要用来提升性能，将需要多次创建的 Imutable 合并成一次:
+
+```JS
+const { List } = require('immutable')
+
+const list1 = List([1, 2, 3]);
+var list2 = list1.withMutations(function (list) {
+    // 经过优化，会合并中间装填，仅仅会生成最后一次 Imutable
+    list.push(4).push(5).push(6);
+});
+// 每一个 push 会生成一个新的 Imutable
+var list3 = list1.push(4).push(5).push(6);
+console.log(list2.equals(list3))
+```
+
 ## Redux 中实践
 
 使整个 Redux state tree 成为 Immutable.JS 对象，因为对于使用 Redux 的应用程序来说，你的整个 state tree 应该是 Immutable.JS 对象，根本不需要使用普通的 JavaScript 对象。
@@ -170,7 +207,7 @@ const newState = state.setIn(['prop1'], fromJS(newObj))
 
 ### toJS()
 
-使用[**高阶组件(HOC)**](https://doc.react-china.org/docs/higher-order-components.html)来转换从 [**Smart**](https://jaketrent.com/post/smart-dumb-components-react/) 组件的 Immutable.JS props 到 **Dumb** 组件的 JavaScript props，它只需从 Smart 组件中获取 Immutable.JS props，然后使用 toJS() 将它们转换为普通 JavaScript props，然后传递给你的 Dumb 组件:
+使用[**高阶组件(HOC)**](https://doc.react-china.org/docs/higher-order-components.html)来转换从 [**Smart**](https://jaketrent.com/post/smart-dumb-components-react/) 组件的 Immutable.JS props 到 **Dumb** 组件的 JavaScript props，它只需从 Smart 组件中获取 Immutable.JS props，然后使用 toJS() 将它们转换为普通 JavaScript props，然后传递给你的 Dumb 组件，还[可以参考这里](https://www.developmentsindigital.com/posts/2018-03-13-using-immutable-with-redux/):
 
 ```JS
 import React from 'react'
@@ -243,3 +280,5 @@ const editComponent = (state = INITIAL_STATE, action) => state.set('activeData',
 1. [Immutable 官方文档](https://facebook.github.io/immutable-js/)
 2. [Immutable 详解及 React 中实践](https://github.com/camsong/blog/issues/3) By CamSong
 3. [Smart and Dumb Components in React](https://jaketrent.com/post/smart-dumb-components-react/)
+4. [Using immutable with Redux](https://www.developmentsindigital.com/posts/2018-03-13-using-immutable-with-redux/)
+5. [Imutable 使用 withMutations 提升性能](https://blog.csdn.net/ISaiSai/article/details/77878863) By isaisai
