@@ -203,6 +203,23 @@ git revert HEAD
 # 撤销最近 一 个提交，回滚到倒数第 二 个提交
 git revert HEAD^
 gut revert HEAD~1
+
+# 还是推荐使用 commit id
+git revert bb0aa8b
+```
+
+revert 撤销一个合并提交时，如果除了 commit id 而不加任何其他参数，git 将会提示错误:
+
+```TEXT
+error: Commit g is a merge but no -m option was given.
+```
+
+原因是在你合并两个分支并试图撤销时，Git 并不知道你到底需要保留哪一个分支上所做的修改。从 Git 的角度来看，master 分支和 dev 在地位上是完全平等的。因此需要通过 **m** 或 **mainline** 参数来指定「主线」，m 参数的值可以是 1 或者 2，对应着 parent 在 merge commit 信息中的顺序:
+
+```SHELL
+# 从特性分支合并到 master(主线为 1)
+# bb0aa8b 为合并提交的 commit id
+git revert -m 1 bb0aa8b
 ```
 
 ### checkout
@@ -431,3 +448,4 @@ git diff --stat # 仅仅比较统计信息
 5. [atlassian - Resetting, Checking Out & Reverting](https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting)
 6. [易百教程 - Git](https://www.yiibai.com/git/git_pull.html) By 初生不惑
 7. [Github - git-recipes](https://github.com/geeeeeeeeek/git-recipes/wiki) By geeeeeeeeek
+8. [Git 撤销合并](http://blog.psjay.com/posts/git-revert-merge-commit/) By PSJay

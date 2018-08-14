@@ -50,7 +50,20 @@ tags:
 * 给 div 上加 <code>onclick='void(0);'</code>
 * 将 div 换成其他可点击元素 a、button 等
 
+## 小技巧
+
+### ID 生成器
+
+```JS
+var ID = function () {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first 9 characters after the decimal.
+  return '_' + Math.random().toString(36).substr(2, 9);
+};
+```
+
 > 未完待续
 
 1. [Charles 从入门到精通](https://blog.devtang.com/2015/11/14/charles-introduction/) By 唐巧
 2. [iOS Safari 点击事件失效](https://blog.zfanw.com/ios-safari-click-not-working/) By 陈三
+3. [ID - a unique ID/name generator for JavaScript](https://gist.github.com/gordonbrander/2230317) By gordonbrander

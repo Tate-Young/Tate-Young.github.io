@@ -39,7 +39,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## JSS
 
-[**JSS**](https://github.com/cssinjs/jss) 就是 "CSS In JS"，引用官方的介绍:
+[**JSS**](https://github.com/cssinjs/jss) 实现了 "CSS In JS"，引用官方的介绍:
 
 > JSS is a more powerful abstraction over CSS. It uses JavaScript as a language to describe styles in a declarative and maintainable way. It is a high performance JS to CSS compiler which works at runtime and server-side. This core library is low level and framework agnostic. It is about 6KB (minified and gzipped) and is extensible via plugins API.
 
