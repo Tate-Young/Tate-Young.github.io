@@ -883,6 +883,88 @@ export default createReducer(INITIAL_STATE, HANDLERS)
 
 <p>更多示例<a href="http://cn.redux.js.org/docs/introduction/Examples.html">请参考这里</a>。</p>
 
+<h2 id="ducks-文件结构">Ducks 文件结构</h2>
+
+<p>依照<a href="https://redux.js.org/faq/codestructure">官方组织代码的文章</a>，大致可分为三种文件结构:</p>
+
+<ul>
+  <li><strong>Rails 风格</strong></li>
+  <li><strong>应用领域风格(Domain)</strong></li>
+  <li><strong>鸭子(Ducks)</strong></li>
+</ul>
+
+<p>1、 <strong>Rails风格</strong></p>
+
+<p>又可以称为”依照类型(by type)”的集中组织方式。用 actions、constants、reducers、containers、components 等目录区分，文档名可以依功能或应用命名区分，这大概是最常见的一种:</p>
+
+<pre><code class="language-TEXT">actions/
+    CommandActions.js
+    UserActions.js
+components/
+    Header.js
+    Sidebar.js
+    Command.js
+    User.js
+    UserProfile.js
+    UserAvatar.js
+containers/
+    App.js
+    Command.js
+    User.js
+reducers/
+    index.js
+    command.js
+    user.js
+routes.js
+index.js
+rootReducer.js
+</code></pre>
+
+<p>2、<strong>应用领域风格(Domain)</strong></p>
+
+<p>又可以称为”依照功能(by feature)”的集中组织方式。先以功能或应用领域不同的目录区分，目录里有各自的 reducer、action 等等文档，可以用文档命名再作类型区分:</p>
+
+<pre><code class="language-TEXT">app/
+    Header.js
+    Sidebar.js
+    App.js
+    rootReducer.js
+    routes.js
+product/
+    Product.js
+    ProductContainer.js
+    ProductActions.js
+    ProductList.js
+    ProductItem.js
+    ProductImage.js
+    productReducer.js
+user/
+    User.js
+    UserContainer.js
+    UserActions.js
+    UserProfile.js
+    UserAvatar.js
+    userReducer.js
+</code></pre>
+
+<p>3、<strong>鸭子(Ducks)</strong></p>
+
+<p>鸭子是一种模组化 Redux 的代码组识方法，它是把 reducers、constants、action types 与 actions 打包成模组来用。鸭子可以减少很多目录与文档结构:</p>
+
+<pre><code class="language-TEXT">|_ containers
+|_ constants
+|_ reducers
+|_ actions
+</code></pre>
+
+<p>改用鸭子后就会变成只有两个目录，也就是说把constants, reducers, actions都合并为模组就是:</p>
+
+<pre><code class="language-TEXT">|_ containers
+|_ modules
+</code></pre>
+
+<p>鸭子有一些优点，也有一些明显的缺点。它在小型应用中是很理想的作法，你不用为了要加一个功能，至少需要开三、四个代码文档。它仍然有自订的空间，<a href="https://hackernoon.com/my-journey-toward-a-maintainable-project-structure-for-react-redux-b05dfd999b5">详细请参考这篇文章</a>。</p>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
@@ -895,6 +977,8 @@ export default createReducer(INITIAL_STATE, HANDLERS)
   <li><a href="https://redux-saga-in-chinese.js.org/">Redux-Saga 中文文档</a></li>
   <li><a href="https://www.jianshu.com/p/7cac18e8d870">redux-saga 框架使用详解及 Demo 教程</a> By 光强_上海</li>
   <li><a href="https://github.com/infinitered/reduxsauce">Github - reduxsauce</a></li>
+  <li><a href="https://segmentfault.com/q/1010000008187210">关于 redux 项目结构问题</a> By eyesofkids</li>
+  <li><a href="https://hackernoon.com/my-journey-toward-a-maintainable-project-structure-for-react-redux-b05dfd999b5">My journey toward a maintainable project structure for React/Redux</a> By Matteo Mazzarolo</li>
 </ol>
  
 <div id="disqus_thread"></div>

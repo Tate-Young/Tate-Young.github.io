@@ -733,6 +733,90 @@ Redux-thunk 运行 异步请求 示例:
 
 更多示例[请参考这里](http://cn.redux.js.org/docs/introduction/Examples.html)。
 
+## Ducks 文件结构
+
+依照[官方组织代码的文章](https://redux.js.org/faq/codestructure)，大致可分为三种文件结构:
+
+* **Rails 风格**
+* **应用领域风格(Domain)**
+* **鸭子(Ducks)**
+
+1、 **Rails风格**
+
+又可以称为"依照类型(by type)"的集中组织方式。用 actions、constants、reducers、containers、components 等目录区分，文档名可以依功能或应用命名区分，这大概是最常见的一种:
+
+```TEXT
+actions/
+    CommandActions.js
+    UserActions.js
+components/
+    Header.js
+    Sidebar.js
+    Command.js
+    User.js
+    UserProfile.js
+    UserAvatar.js
+containers/
+    App.js
+    Command.js
+    User.js
+reducers/
+    index.js
+    command.js
+    user.js
+routes.js
+index.js
+rootReducer.js
+```
+
+2、**应用领域风格(Domain)**
+
+又可以称为"依照功能(by feature)"的集中组织方式。先以功能或应用领域不同的目录区分，目录里有各自的 reducer、action 等等文档，可以用文档命名再作类型区分:
+
+```TEXT
+app/
+    Header.js
+    Sidebar.js
+    App.js
+    rootReducer.js
+    routes.js
+product/
+    Product.js
+    ProductContainer.js
+    ProductActions.js
+    ProductList.js
+    ProductItem.js
+    ProductImage.js
+    productReducer.js
+user/
+    User.js
+    UserContainer.js
+    UserActions.js
+    UserProfile.js
+    UserAvatar.js
+    userReducer.js
+```
+
+3、**鸭子(Ducks)**
+
+鸭子是一种模组化 Redux 的代码组识方法，它是把 reducers、constants、action types 与 actions 打包成模组来用。鸭子可以减少很多目录与文档结构:
+
+```TEXT
+|_ containers
+|_ constants
+|_ reducers
+|_ actions
+```
+
+改用鸭子后就会变成只有两个目录，也就是说把constants, reducers, actions都合并为模组就是:
+
+```TEXT
+|_ containers
+|_ modules
+```
+
+鸭子有一些优点，也有一些明显的缺点。它在小型应用中是很理想的作法，你不用为了要加一个功能，至少需要开三、四个代码文档。它仍然有自订的空间，[详细请参考这篇文章](https://hackernoon.com/my-journey-toward-a-maintainable-project-structure-for-react-redux-b05dfd999b5)。
+
 ## 参考链接
 
 1. [Redux 中文文档](http://cn.redux.js.org/)
@@ -744,3 +828,5 @@ Redux-thunk 运行 异步请求 示例:
 7. [Redux-Saga 中文文档](https://redux-saga-in-chinese.js.org/)
 8. [redux-saga 框架使用详解及 Demo 教程](https://www.jianshu.com/p/7cac18e8d870) By 光强_上海
 9. [Github - reduxsauce](https://github.com/infinitered/reduxsauce)
+10. [关于 redux 项目结构问题](https://segmentfault.com/q/1010000008187210) By eyesofkids
+11. [My journey toward a maintainable project structure for React/Redux](https://hackernoon.com/my-journey-toward-a-maintainable-project-structure-for-react-redux-b05dfd999b5) By Matteo Mazzarolo
