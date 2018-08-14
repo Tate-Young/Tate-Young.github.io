@@ -199,6 +199,8 @@ function CenteredGrid(props) {
 | fullWidth | bool | false | If true, the dialog stretches to maxWidth. |
 | **open** | bool | | If true, the Dialog is open. |
 | **onClose** | func | | Callback fired when the component requests to be closed. |
+| **disableBackdropClick** | bool | false | If true, clicking the backdrop will not fire the onClose callback. |
+| disableEscapeKeyDown | bool | false | If true, hitting escape will not fire the onClose callback. |
 | onEnter | func | | Callback fired before the dialog enters. |
 | scroll | enum: 'body'、'paper' | 'paper' | Determine the container for scrolling the dialog. |
 | TransitionComponent | union: string、func、object | Fade | Transition component. |

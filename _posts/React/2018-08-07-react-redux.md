@@ -717,6 +717,62 @@ export const HANDLERS = {
 export default createReducer(INITIAL_STATE, HANDLERS)
 ```
 
+## redux-logger
+
+[**redux-logger**](https://github.com/evgenyrodionov/redux-logger) 可以用来打印日志，可配置的属性有:
+
+```JS
+{
+  predicate, // if specified this function will be called before each action is processed with this middleware.
+  collapsed, // takes a Boolean or optionally a Function that receives `getState` function for accessing current store state and `action` object as parameters. Returns `true` if the log group should be collapsed, `false` otherwise.
+  duration = false: Boolean, // print the duration of each action?
+  timestamp = true: Boolean, // print the timestamp with each action?
+
+  level = 'log': 'log' | 'console' | 'warn' | 'error' | 'info', // console's level
+  colors: ColorsObject, // colors for title, prev state, action and next state: https://github.com/evgenyrodionov/redux-logger/blob/master/src/defaults.js#L12-L18
+  titleFormatter, // Format the title used when logging actions.
+
+  stateTransformer, // Transform state before print. Eg. convert Immutable object to plain JSON.
+  actionTransformer, // Transform action before print. Eg. convert Immutable object to plain JSON.
+  errorTransformer, // Transform error before print. Eg. convert Immutable object to plain JSON.
+
+  logger = console: LoggerObject, // implementation of the `console` API.
+  logErrors = true: Boolean, // should the logger catch, log, and re-throw errors?
+
+  diff = false: Boolean, // (alpha) show diff between states?
+  diffPredicate // (alpha) filter function for showing states diff, similar to `predicate`
+}
+```
+
+```JSX
+import { compose, createStore, applyMiddleware } from 'redux'
+import rootReducer from './reducers'
+
+const middlewares = []
+
+if (process.env.NODE_ENV === 'development') {
+  const { createLogger } = require('redux-logger')
+  middlewares.push(createLogger({
+    stateTransformer: (state) => {
+      if (state.toJS) return state.toJS()
+      const entries = Object.entries(state)
+      return entries.reduce((obj, entry) => {
+        entry[1].toJS ? (obj[entry[0]] = entry[1].toJS()) : (obj[entry[0]] = entry[1]) // eslint-disable-line
+        return obj
+      }, {})
+    },
+  }))
+}
+
+const store = compose(
+  applyMiddleware(...middlewares),
+)(createStore)(rootReducer)
+
+export default store
+```
+
+![redux-logger](https://camo.githubusercontent.com/73b5dc54ec615f18746e8472e02d130f79a3cf9f/687474703a2f2f692e696d6775722e636f6d2f43674175486c452e706e67)
+
 ## 示例
 
 Redux 运行 Counter 示例，在实际的项目中，推荐使用 React 和更高效的 React-Redux 绑定，[参考 demo](https://github.com/lipeishang/react-redux-connect-demo):
