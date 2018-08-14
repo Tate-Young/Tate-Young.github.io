@@ -219,6 +219,8 @@
 
 <h2 id="immutablejs">Immutable.js</h2>
 
+<h3 id="数据类型">数据类型</h3>
+
 <p>Imutable.js 中常用的数据类型有:</p>
 
 <ul>
@@ -236,6 +238,8 @@ var map2 = map1.set('a', 2);
 map1.get('a'); // 1
 map2.get('a'); // 2
 </code></pre>
+
+<h3 id="常用-api">常用 API</h3>
 
 <p><a href="https://facebook.github.io/immutable-js/docs/#/">常用的 API</a> 有:</p>
 
@@ -306,21 +310,21 @@ is(map1, map2) // true
 
 <p>合并的方法还有其他几个，区别如下:</p>
 
-<pre><code class="language-JS">const Map1 = Immutable.fromJS({a:111, b:222, c:{d:333, e:444}});
- const Map2 = Immutable.fromJS({a:111, b:222, c:{e:444, f:555}});
+<pre><code class="language-JS">const Map1 = Immutable.fromJS({a:1, b:2, c:{d:3, e:4}})
+const Map2 = Immutable.fromJS({a:1, b:2, c:{e:4, f:5}})
 
- const Map3 = Map1.merge(Map2);
-  // Map {a:111, b:222, c:{e:444, f:555}}
- const Map4 = Map1.mergeDeep(Map2);
-  // Map {a:111, b:222, c:{d:333, e:444, f:555}}
- const Map5 = Map1.mergeWith((oldData,newData,key)=&gt;{
-      if(key === 'a'){
-        return 666;
-      }else{
-        return newData
-      }
-    }, Map2);
-  // Map {a:666, b:222, c:{e:444, f:555}}
+const Map3 = Map1.merge(Map2)
+// Map {a:1, b:2, c:{e:4, f:5}}
+const Map4 = Map1.mergeDeep(Map2)
+// Map {a:1, b:2, c:{d:3, e:4, f:5}}
+const Map5 = Map1.mergeWith((oldData,newData,key) =&gt; {
+  if (key === 'a') {
+    return 6
+  } else {
+    return newData
+  }
+}, Map2);
+// Map {a:6, b:2, c:{e:4, f:5}}
 </code></pre>
 
 <h2 id="redux-中实践">Redux 中实践</h2>
@@ -329,8 +333,8 @@ is(map1, map2) // true
 
 <ul>
   <li>使用 Immutable.JS 的 fromJS() 函数创建树。</li>
-  <li>使用 combineReducers 函数的 Immutable.JS 的感知版本，比如 redux-immutable 中的版本，因为 Redux 本身会将 state tree 变成一个普通的 JavaScript 对象。</li>
-  <li>当使用 Immutable.JS 的 update，merge 或 set 方法将一个 JavaScript 对象添加到一个 Immutable.JS 的 Map 或者 List 中时，要确保被添加的对象事先使用了 fromJS() 转为一个 Immutable 的对象。</li>
+  <li>使用 combineReducers 函数的 Immutable.JS 的感知版本，比如 <strong>redux-immutable</strong> 中的版本，因为 Redux 本身会将 state tree 变成一个普通的 JavaScript 对象。</li>
+  <li>当使用 Immutable.JS 的 update、merge 或 set 方法将一个 JavaScript 对象添加到一个 Immutable.JS 的 Map 或者 List 中时，要确保被添加的对象事先使用了 fromJS() 转为一个 Immutable 的对象。</li>
 </ul>
 
 <pre><code class="language-JS">// 避免
@@ -343,6 +347,8 @@ const newObj = { key: value }
 const newState = state.setIn(['prop1'], fromJS(newObj))
 // newObj 现在是 Immutable.JS 的 Map 类型。
 </code></pre>
+
+<h3 id="tojs">toJS()</h3>
 
 <p>使用<a href="https://doc.react-china.org/docs/higher-order-components.html"><strong>高阶组件(HOC)</strong></a>来转换从 <a href="https://jaketrent.com/post/smart-dumb-components-react/"><strong>Smart</strong></a> 组件的 Immutable.JS props 到 <strong>Dumb</strong> 组件的 JavaScript props，它只需从 Smart 组件中获取 Immutable.JS props，然后使用 toJS() 将它们转换为普通 JavaScript props，然后传递给你的 Dumb 组件:</p>
 
@@ -388,6 +394,27 @@ export default connect(mapStateToProps)(toJS(DumbComponent))
 <blockquote>
   <p>更多<a href="https://cn.redux.js.org/docs/recipes/UsingImmutableJS.html">可以参考这里</a> 👈</p>
 </blockquote>
+
+<h3 id="redux-immutable">redux-immutable</h3>
+
+<p><a href="https://github.com/gajus/redux-immutable"><strong>redux-immutable</strong></a> 通过使用 Redux 中 <strong>combineReducers</strong> 一样的方法来合并 reducers，并将 store 转化为 Immutable 对象。</p>
+
+<pre><code class="language-JSX">// import { combineReducers } from 'redux'; // 旧的方法
+import { combineReducers } from 'redux-immutable'; // 新的方法
+import laptopReducer from '../laptop/duck/reducers'
+
+export default combineReducers({
+  laptop: laptopReducer,
+})
+</code></pre>
+
+<p>在 reducer 中操作 state:</p>
+
+<pre><code class="language-JSX">// ../laptop/duck/reducers
+// Immutable State
+// reduxsauce 的写法
+const editComponent = (state = INITIAL_STATE, action) =&gt; state.set('activeData', action.component)
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
