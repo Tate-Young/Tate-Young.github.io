@@ -417,6 +417,15 @@ git log (branchname)
 git log origin/branchname
 ```
 
+查看某个文件的提交历史:
+
+```SHELL
+git log filename
+
+# 查看具体修改
+git show commit_id
+```
+
 ### diff
 
 **diff** 一般用来比较文件差异，下面是常见的一些用法:
