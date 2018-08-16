@@ -323,7 +323,7 @@ const element = &lt;Welcome name="Sara" /&gt;;
 }
 </code></pre>
 
-<h4 id="prop-types">prop-types</h4>
+<h3 id="prop-types">prop-types</h3>
 
 <p>更多关于类型检查<a href="https://doc.react-china.org/docs/typechecking-with-proptypes.html">可以看 <strong>prop-types</strong></a>:</p>
 
@@ -384,54 +384,62 @@ Greeting.defaultProps = {
   <p>无论是使用函数或是类来声明一个组件，它决不能修改它自己的 <strong>props</strong>。若应用的界面是随时间动态变化的，此时需要用到另一个属性 <strong>state</strong>。</p>
 </blockquote>
 
-<h3 id="state-局部状态">state 局部状态</h3>
+<h3 id="state-状态">State 状态</h3>
 
-<p>举个官方栗子，时钟要不停刷新时间显示:</p>
+<p><a href="https://juejin.im/entry/59522bdb6fb9a06b9a516113">本节内容参考这里</a> 👈</p>
 
-<pre><code class="language-JSX">class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
+<p>State 必须能代表一个组件 UI 呈现的完整且最小状态集，即组件的任何 UI 改变，都可以从 State 的变化中反映出来。与 Props 的区别主要是 State 是可变的，而后者对于使用它的组件来说，是只读的，要想修改 Props，只能通过该组件的父组件修改。</p>
 
-  componentDidMount() {
-    this.timerID = setInterval(() =&gt; this.tick(), 1000);
-  }
+<pre><code class="language-JSX">this.setState({name: 'Tate'})
 
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
+// 错误的写法
+this.state.title = 'Tate'
+</code></pre>
 
-  tick() {
-    // 使用 this.setState() 来更新组件局部状态
-    // this.state.date = new Date() 无法触发更新
-    this.setState({date: new Date()});
-  }
+<p>State 的更新是异步的，调用 setState，组件的 state 并不会立即改变，setState 只是把要修改的状态放入一个队列中，React 会优化真正的执行时机，并且 React 会出于性能原因，可能会将多次 setState 的状态修改合并成一次状态修改，因此可能出现一些问题。</p>
 
-  render() {
-    return (
-      &lt;div&gt;
-        &lt;h1&gt;It is {this.state.date.toLocaleTimeString()}.&lt;/h1&gt;
-      &lt;/div&gt;
-    );
-  }
+<p>举个例子，对于一个电商类应用，在我们的购物车中，当我们点击一次购买数量按钮，购买的数量就会加1，如果我们连续点击了两次按钮，就会连续调用两次 <code>this.setState({quantity: this.state.quantity + 1})<code>，在 React 合并多次修改为一次的情况下，相当于等价执行了如下代码:</code></code></p>
+
+<pre><code class="language-JSX">// 后面的操作覆盖掉了前面的操作，最终购买的数量只增加了 1 个
+Object.assign(
+  previousState,
+  {quantity: this.state.quantity + 1},
+  {quantity: this.state.quantity + 1},
+)
+</code></pre>
+
+<p>因此需要额外参数的帮助:</p>
+
+<pre><code class="language-JSX">this.setState((preState, props) =&gt; {
+  counter: preState.quantity + 1
+})
+</code></pre>
+
+<p>State 的更新是一个<strong>浅合并(Shallow Merge)</strong>的过程。修改组件状态时，只需要传入发生改变的 State，而不是组件完整的 State:</p>
+
+<pre><code class="language-JSX">this.state = {
+  title : 'React',
+  content : 'React is an wonderful JS library!'
 }
 
-ReactDOM.render(
-  &lt;Clock /&gt;,
-  document.getElementById('root')
-);
+// 修改，React 会合并新的 title 到原来的组件状态中，同时保留原有的状态 content
+this.setState({title: 'Reactjs'});
+</code></pre>
+
+<p>React 官方建议把 State 当作是 immutable 不可变对象，一方面是如果直接修改 this.state，组件并不会重新 render；另一方面 State 中包含的所有状态都应该是不可变对象。当 State 中的某个状态发生变化，我们应该重新创建这个状态对象，而不是直接修改原来的状态。对于状态类型是数组或者对象，可以采取下面这些方法:</p>
+
+<pre><code class="language-JSX">var books = this.state.books
+this.setState({
+  books: books.concat(['React Guide']);
+})
+
+// 或者
+this.setState(preState =&gt; ({
+  books: [...preState.books, 'React Guide'];
+}))
 </code></pre>
 
 <h3 id="生命周期">生命周期</h3>
-
-<p>组件的生命周期可分成三个状态:</p>
-
-<ul>
-  <li><strong>Mounting</strong> - 已插入真实 DOM</li>
-  <li><strong>Updating</strong> - 正在被重新渲染</li>
-  <li><strong>Unmounting</strong> - 已移出真实 DOM</li>
-</ul>
 
 <p>生命周期的方法有，可<a href="http://www.runoob.com/try/try.php?filename=try_react_life_cycle2">查看此处示例</a>:</p>
 
@@ -444,24 +452,32 @@ ReactDOM.render(
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left"><strong>componentWillMount</strong></td>
-      <td style="text-align: left">在渲染前调用,在客户端也在服务端</td>
+      <td style="text-align: left">componentWillMount</td>
+      <td style="text-align: left">(Deprecated)在渲染前调用,在客户端也在服务端</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>componentDidMount</strong></td>
       <td style="text-align: left">在第一次渲染后调用，只在客户端。之后组件已经生成了对应的 DOM 结构，可以通过 this.getDOMNode() 来进行访问</td>
     </tr>
     <tr>
-      <td style="text-align: left"><strong>componentWillReceiveProps</strong></td>
-      <td style="text-align: left">在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化 render 时不会被调用</td>
+      <td style="text-align: left">componentWillReceiveProps</td>
+      <td style="text-align: left">(Deprecated)在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化 render 时不会被调用</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>static getDerivedStateFromProps</strong></td>
+      <td style="text-align: left">替代 componentWillReceiveProps。组件实例化后和接受新属性时将会调用。它应该返回一个对象来更新状态，或者返回 null 来表明新属性不需要更新任何状态</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>getSnapshotBeforeUpdate</strong></td>
+      <td style="text-align: left">在最新的渲染输出提交给 DOM 前将会立即调用。它让你的组件能在当前的值可能要改变前获得它们</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>shouldComponentUpdate</strong></td>
       <td style="text-align: left">返回一个布尔值。在组件接收到新的 props 或者 state 时被调用。在初始化时或者使用 forceUpdate 时不被调用。可以在你确认不需要更新组件时使用。</td>
     </tr>
     <tr>
-      <td style="text-align: left"><strong>componentWillUpdate</strong></td>
-      <td style="text-align: left">在组件接收到新的 props 或者 state 但还没有 render 时被调用。在初始化时不会被调用</td>
+      <td style="text-align: left">componentWillUpdate</td>
+      <td style="text-align: left">(Deprecated)在组件接收到新的 props 或者 state 但还没有 render 时被调用。在初始化时不会被调用</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>componentDidUpdate</strong></td>
@@ -474,180 +490,96 @@ ReactDOM.render(
   </tbody>
 </table>
 
-<h2 id="表单">表单</h2>
+<pre><code class="language-JSX">class Example extends React.Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // 这一生命周期方法是静态的，它在组件实例化或接收到新的 props 时被触发
+    // 若它的返回值是对象，则将被用于更新 state ；若是 null ，则不触发 state 的更新
 
-<h3 id="受控组件">受控组件</h3>
-
-<p>在HTML当中，像 &lt;input&gt;,&lt;textarea&gt;, 和 &lt;select&gt;这类表单元素会维持自身状态，并根据用户输入进行更新。但在 React 中，可变的状态通常保存在组件的状态属性中，并且只能用 setState() 方法进行更新。其值由 React 控制的输入表单元素称为 <strong>“受控组件”</strong>。</p>
-
-<pre><code class="language-JSX">class Reservation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isGoing: true,
-      numberOfGuests: 2
-    };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
-
-  render() {
-    return (
-      &lt;form&gt;
-        &lt;label&gt;
-          Is going:
-          &lt;input
-            name="isGoing"
-            type="checkbox"
-            checked={this.state.isGoing}
-            onChange={this.handleInputChange} /&gt;
-        &lt;/label&gt;
-        &lt;br /&gt;
-        &lt;label&gt;
-          Number of guests:
-          &lt;input
-            name="numberOfGuests"
-            type="number"
-            value={this.state.numberOfGuests}
-            onChange={this.handleInputChange} /&gt;
-        &lt;/label&gt;
-      &lt;/form&gt;
-    );
-  }
-}
-</code></pre>
-
-<h3 id="非受控组件">非受控组件</h3>
-
-<p>在大多数情况下，我们推荐使用受控组件来实现表单。 在受控组件中，表单数据由 React 组件处理。如果让表单数据由 DOM 处理时，替代方案为使用非受控组件，可以使用 <a href="https://doc.react-china.org/docs/refs-and-the-dom.html"><strong>ref</strong></a> 从 DOM 获取表单值。</p>
-
-<pre><code class="language-JSX">class NameForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.input.value);
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      // 默认值为 defaultValue 属性
-      &lt;form onSubmit={this.handleSubmit}&gt;
-        &lt;label&gt;
-          Name:
-          &lt;input type="text" defaultValue="Bob" ref={(input) =&gt; this.input = input} /&gt;
-        &lt;/label&gt;
-        &lt;input type="submit" value="Submit" /&gt;
-      &lt;/form&gt;
-    );
-  }
-}
-</code></pre>
-
-<h2 id="component--createclass">Component &amp; createClass()</h2>
-
-<p>React.createClass 和 extends React.Component 两种语法的区别可以<a href="https://toddmotto.com/react-create-class-versus-component/">查看这篇文章</a>，主要在于：</p>
-
-<ul>
-  <li>propType 和 getDefaultProps</li>
-  <li>状态 state</li>
-  <li>this 指针 - 前者的 this 指针自动绑定到 React 类的实例上</li>
-  <li>Mixins - class 可以用 <a href="https://github.com/brigand/react-mixin">react-mixin 库</a></li>
-</ul>
-
-<pre><code class="language-JSX">import React from 'react';
-
-const Contacts = React.createClass({  
-  propTypes: {
-    name: React.PropTypes.string
-  },
-  getDefaultProps() {
-    return {
-    };
-  },
-  // 设置 state 状态属性
-  getInitialState() {
-    return {
-      isLoading: false
+    // 配合 `componentDidUpdate` 使用，这一方法可以取代 `componentWillReceiveProps`
+    if (nextProps.currentRow !== prevState.lastRow) {
+      return {
+        isScrollingDown: nextProps.currentRow &gt; prevState.lastRow,
+        lastRow: nextProps.currentRow,
+      };
     }
+    // 默认不改动 state
+    return null;
   }
-  handleClick() {
-    console.log(this); // React Component instance
-  },
-  render() {
-    return (
-      &lt;div onClick={this.handleClick}&gt;&lt;/div&gt;
-    );
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // 该方法在实际改动（比如 DOM 更新）发生前的“瞬间”被调用，返回值将作为 `componentDidUpdate` 的第三个参数
+
+    // 配合 `componentDidUpdate` 使用，这一方法可以取代 `componentWillUpdate`
   }
-});
 
-export default Contacts;  
-</code></pre>
-
-<pre><code class="language-JS">import React, { Component } from 'react';
-
-class Contacts extends Component {  
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this) // 绑定 this 指针
-    this.state = { // define this.state in constructor
-      isLoading: false
-    }
-  }
-  handleClick() {
-    console.log(this); // React Component instance
-  },
-  render() {
-    return (
-      &lt;div onClick={this.handleClick}&gt;&lt;/div&gt;
-    );
+  componentDidUpdate(props, state, snaptshot) {
+    // 新增的参数 snapshot 即是之前调用 getSnapshotBeforeUpdate 的返回值
   }
 }
-
-Contacts.propTypes = {};
-Contacts.defaultProps = {};
-
-export default Contacts;  
 </code></pre>
 
-<p>另外 Mixins 的用法可以查看以下示例:</p>
+<h2 id="refs">Refs</h2>
 
-<pre><code class="language-JSX">import React from 'react';
+<p>在典型的 React 数据流中, 属性(props)是父组件与子组件交互的唯一方式。要修改子组件，你需要使用新的 props 重新渲染它。但是，某些情况下你需要在典型数据流外强制修改子组件。要修改的子组件可以是 React 组件的实例，也可以是 DOM 元素。对于这两种情况，React 提供了 <strong>Refs</strong>。</p>
 
-var SomeMixin = {
-  doSomething() { }
-};
-const Contacts = React.createClass({
-  mixins: [SomeMixin],
-  handleClick() {
-    this.doSomething(); // use mixin
-  },
-  render() {
-    return (
-      &lt;div onClick={this.handleClick}&gt;&lt;/div&gt;
-    );
+<p>1、创建 Refs</p>
+
+<p>使用的时候需要通过 <code>React.createRef()</code> 创建 refs，然后通过 ref 属性来获得 React 元素:</p>
+
+<pre><code class="language-JSX">class MyComponent extends React.Component {
+  constructor(props) {
+    super(props)
+    this.myRef = React.createRef()
   }
-});
-
-export default Contacts;
+  render() {
+    return &lt;div ref={this.myRef} /&gt;
+  }
+}
 </code></pre>
 
 <blockquote>
-  <p>React.createClass() 已弃用，推荐用 extends React.Component</p>
+  <p>注意不能在函数式组件上使用 ref 属性，因为他们没有实例，除非将其转换为 class 组件。</p>
 </blockquote>
+
+<p>2、访问 Refs</p>
+
+<p>当一个 ref 属性被传递给一个 render 函数中的元素时，可以使用 ref 中的 <strong>current</strong> 属性对节点的引用进行访问:</p>
+
+<pre><code class="language-JSX">const node = this.myRef.current
+</code></pre>
+
+<p>查看完整示例:</p>
+
+<pre><code class="language-JSX">class CustomTextInput extends React.Component {
+  constructor(props) {
+    super(props);
+    // 创建 ref 存储 textInput DOM 元素
+    this.textInput = React.createRef();
+    this.focusTextInput = this.focusTextInput.bind(this);
+  }
+
+  focusTextInput() {
+    // 直接使用原生 API 使 text 输入框获得焦点。注意：通过 "current" 取得 DOM 节点
+    this.textInput.current.focus();
+  }
+
+  render() {
+    // 告诉 React 我们想把 &lt;input&gt; ref 关联到构造器里创建的 `textInput` 上
+    return (
+      &lt;div&gt;
+        &lt;input
+          type="text"
+          ref={this.textInput}} /&gt;
+        &lt;input
+          type="button"
+          value="Focus the text input"
+          onClick={this.focusTextInput}
+        /&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre>
 
 <h2 id="react-hot-loader">React-hot-loader</h2>
 
@@ -928,6 +860,8 @@ const Home = React.createClass({
   <li><a href="http://www.ruanyifeng.com/blog/2016/05/react_router.html">React Router 使用教程</a> By 阮一峰</li>
   <li><a href="http://reacttraining.cn/web/example/basic">React Router 中文文档</a></li>
   <li><a href="https://medium.com/@giang.nguyen.dev/hot-loader-with-react-loadable-c8f70c8ce1a6">Hot loader with react-loadable</a> By Go to the profile of Giang Nguyen</li>
+  <li><a href="https://juejin.im/post/5abf4a09f265da237719899d">讲讲今后 React 异步渲染带来的生命周期变化</a> By Enix</li>
+  <li><a href="https://juejin.im/entry/59522bdb6fb9a06b9a516113">深入理解 React 组件状态(State)</a></li>
 </ol>
  
 <div id="disqus_thread"></div>

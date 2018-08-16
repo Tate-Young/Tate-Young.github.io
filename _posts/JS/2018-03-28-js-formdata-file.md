@@ -313,3 +313,4 @@ document.body.appendChild(a);
 
 1. [HTML5 File API — 让前端操作文件变的可能](http://www.cnblogs.com/zichi/p/html5-file-api.html) By 韩子迟
 2. [通过 File API 使用 JavaScript 读取文件](https://www.html5rocks.com/zh/tutorials/file/dndfiles/) By Eric Bidelman
+3. [MDN - Using files from web applications](https://developer.mozilla.org/zh-CN/docs/Web/API/File/Using_files_from_web_applications)
