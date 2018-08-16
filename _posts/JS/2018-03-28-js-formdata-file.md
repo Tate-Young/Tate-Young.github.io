@@ -309,6 +309,82 @@ a.textContent = 'Download Me';
 document.body.appendChild(a);
 ```
 
+### 展示图片的过程
+
+[可以参考 MDN 这篇文章](https://developer.mozilla.org/zh-CN/docs/Web/API/File/Using_files_from_web_applications) 👈
+
+首先是选择文件:
+
+1、**通过 click 方法使用隐藏的 file input 元素**
+
+```HTML
+<!-- 隐藏 file input 元素 -->
+<input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+<a href="#" id="fileSelect">Select some files</a>
+```
+
+```JS
+var fileSelect = document.getElementById("fileSelect"),
+  fileElem = document.getElementById("fileElem");
+
+fileSelect.addEventListener("click", function (e) {
+  if (fileElem) {
+    fileElem.click();
+  }
+  e.preventDefault(); // 避免导航到 "#"
+}, false);
+```
+
+2、**使用 label 元素来触发一个隐藏的 file input 元素**
+
+```HTML
+<!-- 隐藏 file input 元素，此时不需要额外添加 click 事件，比上面方法好用 😁 -->
+<input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+<label for="fileElem">Select some files</label>
+```
+
+3、**使用拖放 dnd(drag and drop) 来选择文件**
+
+然后显示用户选择的图片的缩略图:
+
+1、**使用 FileReader**
+
+```JS
+function handleFiles(files) {
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i];
+    var imageType = /^image\//;
+
+    if (!imageType.test(file.type)) {
+      continue;
+    }
+
+    var img = document.createElement("img");
+    img.classList.add("obj");
+    img.file = file;
+    preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+
+    var reader = new FileReader();
+    reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+    reader.readAsDataURL(file);
+  }
+}
+```
+
+2、**使用对象 URL**
+
+需要用到的方法如下，这个对象 URL 是一个标识 File 对象的 blob 字符串。每次你调用 <code>URL.createObjectURL()</code>，就会产生一个唯一的对象 URL:
+
+```JS
+// 直接挂到 img 元素的 src 属性上即可
+var objectURL = window.URL.createObjectURL(fileObj);
+
+// 生成的 blob 字符串
+// blob:http://localhost:3000/51f4b8ce-4f5d-4807-b21e-de69ef40da69
+```
+
+每个创建了的对象 URL 必须要释放。当文档关闭时，它们会自动被释放。如果你的网页要动态使用它们，你需要显式调用 <code>window.URL.revokeObjectURL()</code>来释放它们。
+
 ## 参考链接
 
 1. [HTML5 File API — 让前端操作文件变的可能](http://www.cnblogs.com/zichi/p/html5-file-api.html) By 韩子迟
