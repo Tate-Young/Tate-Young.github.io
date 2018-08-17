@@ -444,26 +444,6 @@ var file = document.getElementById('fileItem').files[0];
 dragFile.init();
 </code></pre>
 
-<h3 id="番外篇-download">番外篇 download</h3>
-
-<p>这里介绍一个 <strong>download</strong> 下载属性<a href="https://caniuse.com/#search=download">(caniuse)</a>:</p>
-
-<p><a href="http://localhost:4000/search/demo.txt" download="真兄弟">我系渣渣辉，链接在此，是兄弟就来点我！ ( ⊙ o ⊙ )</a></p>
-
-<pre><code class="language-HTML">&lt;a href="http://localhost:4000/search/demo.txt" download="demo"&gt;&gt;点击下载&lt;/a&gt;
-</code></pre>
-
-<p>还可以调用 URL 对象的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL">createObjectURL</a> 方法，传入一个 File 对象或者 Blob 对象，静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的 URL:</p>
-
-<pre><code class="language-JS">var blob = new Blob(['Tate &amp; Snow']);
-var a = document.createElement('a');
-a.href = window.URL.createObjectURL(blob); // 用到全局 URL 对象的 createObjectURL 方法
-a.download = 'download.txt'; // 定义下载的文件名
-a.textContent = 'Download Me';
-
-document.body.appendChild(a);
-</code></pre>
-
 <h3 id="展示图片的过程">展示图片的过程</h3>
 
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/File/Using_files_from_web_applications">可以参考 MDN 这篇文章</a> 👈</p>
@@ -534,6 +514,26 @@ var objectURL = window.URL.createObjectURL(fileObj);
 </code></pre>
 
 <p>每个创建了的对象 URL 必须要释放。当文档关闭时，它们会自动被释放。如果你的网页要动态使用它们，你需要显式调用 <code>window.URL.revokeObjectURL()</code>来释放它们。</p>
+
+<h3 id="番外篇-download">番外篇 download</h3>
+
+<p>这里介绍一个 <strong>download</strong> 下载属性<a href="https://caniuse.com/#search=download">(caniuse)</a>:</p>
+
+<p><a href="http://localhost:4000/search/demo.txt" download="真兄弟">我系渣渣辉，链接在此，是兄弟就来点我！ ( ⊙ o ⊙ )</a></p>
+
+<pre><code class="language-HTML">&lt;a href="http://localhost:4000/search/demo.txt" download="demo"&gt;&gt;点击下载&lt;/a&gt;
+</code></pre>
+
+<p>还可以调用 URL 对象的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL">createObjectURL</a> 方法，传入一个 File 对象或者 Blob 对象，静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的 URL:</p>
+
+<pre><code class="language-JS">var blob = new Blob(['Tate &amp; Snow']);
+var a = document.createElement('a');
+a.href = window.URL.createObjectURL(blob); // 用到全局 URL 对象的 createObjectURL 方法
+a.download = 'download.txt'; // 定义下载的文件名
+a.textContent = 'Download Me';
+
+document.body.appendChild(a);
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 

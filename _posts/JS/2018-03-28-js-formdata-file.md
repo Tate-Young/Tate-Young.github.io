@@ -287,28 +287,6 @@ var dragFile = {
 dragFile.init();
 ```
 
-### 番外篇 download
-
-这里介绍一个 **download** 下载属性[(caniuse)](https://caniuse.com/#search=download):
-
-<a href="{{ site.url }}/search/demo.txt" download="真兄弟">我系渣渣辉，链接在此，是兄弟就来点我！ ( ⊙ o ⊙ )</a>
-
-```HTML
-<a href="{{ site.url }}/search/demo.txt" download="demo">>点击下载</a>
-```
-
-还可以调用 URL 对象的 [createObjectURL](https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL) 方法，传入一个 File 对象或者 Blob 对象，静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的 URL:
-
-```JS
-var blob = new Blob(['Tate & Snow']);
-var a = document.createElement('a');
-a.href = window.URL.createObjectURL(blob); // 用到全局 URL 对象的 createObjectURL 方法
-a.download = 'download.txt'; // 定义下载的文件名
-a.textContent = 'Download Me';
-
-document.body.appendChild(a);
-```
-
 ### 展示图片的过程
 
 [可以参考 MDN 这篇文章](https://developer.mozilla.org/zh-CN/docs/Web/API/File/Using_files_from_web_applications) 👈
@@ -384,6 +362,28 @@ var objectURL = window.URL.createObjectURL(fileObj);
 ```
 
 每个创建了的对象 URL 必须要释放。当文档关闭时，它们会自动被释放。如果你的网页要动态使用它们，你需要显式调用 <code>window.URL.revokeObjectURL()</code>来释放它们。
+
+### 番外篇 download
+
+这里介绍一个 **download** 下载属性[(caniuse)](https://caniuse.com/#search=download):
+
+<a href="{{ site.url }}/search/demo.txt" download="真兄弟">我系渣渣辉，链接在此，是兄弟就来点我！ ( ⊙ o ⊙ )</a>
+
+```HTML
+<a href="{{ site.url }}/search/demo.txt" download="demo">>点击下载</a>
+```
+
+还可以调用 URL 对象的 [createObjectURL](https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL) 方法，传入一个 File 对象或者 Blob 对象，静态方法会创建一个 DOMString，其中包含一个表示参数中给出的对象的 URL:
+
+```JS
+var blob = new Blob(['Tate & Snow']);
+var a = document.createElement('a');
+a.href = window.URL.createObjectURL(blob); // 用到全局 URL 对象的 createObjectURL 方法
+a.download = 'download.txt'; // 定义下载的文件名
+a.textContent = 'Download Me';
+
+document.body.appendChild(a);
+```
 
 ## 参考链接
 
