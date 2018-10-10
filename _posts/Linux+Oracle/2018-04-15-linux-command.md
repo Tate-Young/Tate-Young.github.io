@@ -20,6 +20,8 @@ tags:
 | **yum** | 包管理工具 | <code>yum search/install/remove ...</code> |
 | **grep** | 文本搜索 | <code>grep '^tate' filename</code> |
 | **ps** | 查看进程 | <code>ps -ef</code> |
+| **lsof** | 列出当前系统打开文件的工具 | <code>lsof -i:4000</code> |
+| **kill** | 终止进程 | <code>kill -9</code> |
 | **find** | 指定目录下查找文件 | <code>find . -name '*.txt'</code> |
 | **tr** | 对字符进行替换、压缩和删除 | <code>echo "HELLO" | tr 'A-Z' 'a-z'</code> |
 | **pwd** | 以绝对路径的方式显示用户当前工作目录 | <code>pwd</code> |
@@ -94,6 +96,35 @@ ps -ef | grep vim
 ```SHELL
 # kill [PID] 删除指定进程
 kill 64513
+```
+
+## lsof
+
+**lsof**(list open files) 列出当前系统打开文件的工具,通过 **-i** 参数可以列出符合条件的进程:
+
+```SHELL
+lsof -i:4000
+# COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+# ruby    56525 tate    9u  IPv4 0x28babd01c639a281      0t0  TCP localhost:terabase (LISTEN)
+```
+
+## kill
+
+**kill** 根据进程 PID 进行终止，该命令是通过向进程发送指定的信号来结束相应进程的，通过 <code>kill -l</code> 可以列出所有的信号。只有第 9 种信号(SIGKILL)才可以无条件终止进程，其他信号进程都有权利忽略。下面是常用的信号:
+
+| 信号 | 信号对应数值 | 描述 |
+|:--------------|:---------|:---------|
+| HUP | 1 | 终端断线 |
+| INT | 2 | 中断(同 Ctrl + C) |
+| QUIT | 3 | 退出(同 Ctrl + \) |
+| TERM | 15 | 终止 |
+| KILL | 9 | 强制终止 |
+| CONT | 18 | 继续(与 STOP 相反， fg/bg 命令) |
+| STOP | 19 | 暂停(同 Ctrl + Z) |
+
+```SHELL
+# 强制终止指定进程
+kill -9 56525
 ```
 
 ## find

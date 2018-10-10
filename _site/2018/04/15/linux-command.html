@@ -198,6 +198,16 @@
       <td style="text-align: left"><code>ps -ef</code></td>
     </tr>
     <tr>
+      <td style="text-align: left"><strong>lsof</strong></td>
+      <td style="text-align: left">列出当前系统打开文件的工具</td>
+      <td style="text-align: left"><code>lsof -i:4000</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>kill</strong></td>
+      <td style="text-align: left">终止进程</td>
+      <td style="text-align: left"><code>kill -9</code></td>
+    </tr>
+    <tr>
       <td style="text-align: left"><strong>find</strong></td>
       <td style="text-align: left">指定目录下查找文件</td>
       <td style="text-align: left"><code>find . -name '*.txt'</code></td>
@@ -329,6 +339,70 @@
 
 <pre><code class="language-SHELL"># kill [PID] 删除指定进程
 kill 64513
+</code></pre>
+
+<h2 id="lsof">lsof</h2>
+
+<p><strong>lsof</strong>(list open files) 列出当前系统打开文件的工具,通过 <strong>-i</strong> 参数可以列出符合条件的进程:</p>
+
+<pre><code class="language-SHELL">lsof -i:4000
+# COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+# ruby    56525 tate    9u  IPv4 0x28babd01c639a281      0t0  TCP localhost:terabase (LISTEN)
+</code></pre>
+
+<h2 id="kill">kill</h2>
+
+<p><strong>kill</strong> 根据进程 PID 进行终止，该命令是通过向进程发送指定的信号来结束相应进程的，通过 <code>kill -l</code> 可以列出所有的信号。只有第 9 种信号(SIGKILL)才可以无条件终止进程，其他信号进程都有权利忽略。下面是常用的信号:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">信号</th>
+      <th style="text-align: left">信号对应数值</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">HUP</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">终端断线</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">INT</td>
+      <td style="text-align: left">2</td>
+      <td style="text-align: left">中断(同 Ctrl + C)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">QUIT</td>
+      <td style="text-align: left">3</td>
+      <td style="text-align: left">退出(同 Ctrl + )</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TERM</td>
+      <td style="text-align: left">15</td>
+      <td style="text-align: left">终止</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">KILL</td>
+      <td style="text-align: left">9</td>
+      <td style="text-align: left">强制终止</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">CONT</td>
+      <td style="text-align: left">18</td>
+      <td style="text-align: left">继续(与 STOP 相反， fg/bg 命令)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">STOP</td>
+      <td style="text-align: left">19</td>
+      <td style="text-align: left">暂停(同 Ctrl + Z)</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-SHELL"># 强制终止指定进程
+kill -9 56525
 </code></pre>
 
 <h2 id="find">find</h2>
