@@ -13,7 +13,9 @@ tags:
 ---
 # {{ page.title }}
 
-## Charles 抓包
+## 抓包
+
+### Charles
 
 [Charles](https://www.charlesproxy.com/) 主要的功能包括:
 
@@ -25,13 +27,44 @@ tags:
 
 在做移动开发时，常常需要截取网络封包来分析，更多使用方法可[参考这里](https://blog.devtang.com/2015/11/14/charles-introduction/):
 
-1、在 Charles 设置代理，默认为 8888
+1、在 Charles 设置代理，端口默认为 8888
 
 [![charles-proxy.png](https://i.loli.net/2018/07/20/5b5141425a210.png)](https://i.loli.net/2018/07/20/5b5141425a210.png)
 
 2、在 移动端 设置代理，服务器地址即是本机的 ip 地址，端口号即在步骤 1 中设置的 Charles 代理端口号
 
 [![charles-iphone-proxy.jpg](https://i.loli.net/2018/07/20/5b5141421339c.jpg)](https://i.loli.net/2018/07/20/5b5141421339c.jpg)
+
+### mitmproxy
+
+1、安装和设置代理
+
+```SHELL
+brew install mitmproxy
+```
+
+2、启动服务，端口默认为 8080
+
+```SHELL
+mitmproxy -p 8888
+```
+
+3、在 移动端 设置代理，同上
+
+4、在 移动端 安装 CA 证书(https 抓包)，直接在浏览器输入地址 <code>mitm.it</code> 并安装即可
+
+![debugger-mitmproxy.jpg](https://i.loli.net/2018/11/16/5bedb616ee92d.jpg)
+
+常用的快捷键操作:
+
+| 快捷键           | 描述      |
+| ------------ | ------- |
+| q | 返回 |
+| z | 清空 |
+| f | 过滤 filter |
+| i | 拦截 intercept |
+| r | 重新请求 |
+| esc | 退出编辑 |
 
 ## safari
 

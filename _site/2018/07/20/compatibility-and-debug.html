@@ -14,7 +14,7 @@
 <meta name="twitter:keywords" content="记各种调试和兼容问题 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="记各种调试和兼容问题 - Tate & Snow">
-<meta name="og:keywords" content="记各种调试和兼容问题 - Tate & Snow|记各种调试和兼容问题Charles 抓包Charles 主要的功能包括:  截取 Http 和 Https 网络封包  支持重发网络请求，方便后端调试  支持修改网络请求参数  支持网络请求的截获并动态修改 Edit  支持模拟慢速网..."
+<meta name="og:keywords" content="记各种调试和兼容问题 - Tate & Snow|记各种调试和兼容问题抓包CharlesCharles 主要的功能包括:  截取 Http 和 Https 网络封包  支持重发网络请求，方便后端调试  支持修改网络请求参数  支持网络请求的截获并动态修改 Edit  支持模拟慢速网络..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -23,13 +23,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="记各种调试和兼容问题Charles 抓包Charles 主要的功能包括:  截取 Http 和 Https 网络封包  支持重发网络请求，方便后端调试  支持修改网络请求参数  支持网络请求的截获并动态修改 Edit  支持模拟慢速网..." property='og:description'
+<meta name="keywords" content="记各种调试和兼容问题抓包CharlesCharles 主要的功能包括:  截取 Http 和 Https 网络封包  支持重发网络请求，方便后端调试  支持修改网络请求参数  支持网络请求的截获并动态修改 Edit  支持模拟慢速网络..." property='og:description'
 />
 <meta name="description" content="nothing is more practicla than a good theory" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/07/20/compatibility-and-debug.html' property='og:url' />
-<meta content="http://localhost:4000/2018/07/20/compatibility-and-debug.html|记各种调试和兼容问题Charles 抓包Charles 主要的功能包括:  截取 Http 和 Https 网络封包  支持重发网络请求，方便后端调试  支持修改网络请求参数  支持网络请求的截获并动态修改 Edit  支持模拟慢速网..." property='og:description'
+<meta content="http://localhost:4000/2018/07/20/compatibility-and-debug.html|记各种调试和兼容问题抓包CharlesCharles 主要的功能包括:  截取 Http 和 Https 网络封包  支持重发网络请求，方便后端调试  支持修改网络请求参数  支持网络请求的截获并动态修改 Edit  支持模拟慢速网络..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -171,7 +171,9 @@
             </p>
             <h1 id="记各种调试和兼容问题">记各种调试和兼容问题</h1>
 
-<h2 id="charles-抓包">Charles 抓包</h2>
+<h2 id="抓包">抓包</h2>
+
+<h3 id="charles">Charles</h3>
 
 <p><a href="https://www.charlesproxy.com/">Charles</a> 主要的功能包括:</p>
 
@@ -185,13 +187,68 @@
 
 <p>在做移动开发时，常常需要截取网络封包来分析，更多使用方法可<a href="https://blog.devtang.com/2015/11/14/charles-introduction/">参考这里</a>:</p>
 
-<p>1、在 Charles 设置代理，默认为 8888</p>
+<p>1、在 Charles 设置代理，端口默认为 8888</p>
 
 <p><a href="https://i.loli.net/2018/07/20/5b5141425a210.png"><img src="https://i.loli.net/2018/07/20/5b5141425a210.png" alt="charles-proxy.png" /></a></p>
 
 <p>2、在 移动端 设置代理，服务器地址即是本机的 ip 地址，端口号即在步骤 1 中设置的 Charles 代理端口号</p>
 
 <p><a href="https://i.loli.net/2018/07/20/5b5141421339c.jpg"><img src="https://i.loli.net/2018/07/20/5b5141421339c.jpg" alt="charles-iphone-proxy.jpg" /></a></p>
+
+<h3 id="mitmproxy">mitmproxy</h3>
+
+<p>1、安装和设置代理</p>
+
+<pre><code class="language-SHELL">brew install mitmproxy
+</code></pre>
+
+<p>2、启动服务，端口默认为 8080</p>
+
+<pre><code class="language-SHELL">mitmproxy -p 8888
+</code></pre>
+
+<p>3、在 移动端 设置代理，同上</p>
+
+<p>4、在 移动端 安装 CA 证书(https 抓包)，直接在浏览器输入地址 <code>mitm.it</code> 并安装即可</p>
+
+<p><img src="https://i.loli.net/2018/11/16/5bedb616ee92d.jpg" alt="debugger-mitmproxy.jpg" /></p>
+
+<p>常用的快捷键操作:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>快捷键</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>q</td>
+      <td>返回</td>
+    </tr>
+    <tr>
+      <td>z</td>
+      <td>清空</td>
+    </tr>
+    <tr>
+      <td>f</td>
+      <td>过滤 filter</td>
+    </tr>
+    <tr>
+      <td>i</td>
+      <td>拦截 intercept</td>
+    </tr>
+    <tr>
+      <td>r</td>
+      <td>重新请求</td>
+    </tr>
+    <tr>
+      <td>esc</td>
+      <td>退出编辑</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="safari">safari</h2>
 
