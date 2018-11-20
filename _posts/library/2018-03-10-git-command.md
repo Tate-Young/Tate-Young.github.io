@@ -367,6 +367,15 @@ git show v1.0.0
 # ...
 ```
 
+推送 tag 到远端的方法:
+
+```SHELL
+# 单个标签
+git push origin <tagname>
+# 多个标签
+git push (origin) --tags
+```
+
 ### log
 
 **log** 一般用于查看提交历史，具体可以[参考官方文档](https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2)，更多详细用法可[参考这里](https://github.com/geeeeeeeeek/git-recipes/wiki/5.3-Git-log-%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95)。常用的几个参数如下:
