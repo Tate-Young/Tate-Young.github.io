@@ -146,29 +146,6 @@ class Welcome extends React.Component {
 const element = <Welcome name="Sara" />;
 ```
 
-类组件应始终使用 props 调用基础构造函数:
-
-```JSX
-class Header extends Component {
-  constructor(props) {
-    super(props);
-    // This binding is necessary to make `this` work in the callback
-    this.sayName = this.sayName.bind(this)
-  }
-  sayName() {
-    alert('tate')
-  }
-  render() {
-    return (
-      <header className = "App-header">
-        <img src={this.props.avatar} className="App-logo" alt="logo" onClick={this.sayName}/>>
-        <h1 className="App-title">Welcome to React</h1>
-      </header>
-    )
-  }
-}
-```
-
 ### prop-types
 
 更多关于类型检查[可以看 **prop-types**](https://doc.react-china.org/docs/typechecking-with-proptypes.html):
@@ -289,6 +266,102 @@ this.setState(preState => ({
 }))
 ```
 
+### children
+
+在包含开始和结束标签的 JSX 表达式中，标记之间的内容作为特殊的参数传递：<code>props.children</code>:
+
+```JSX
+// Calls the children callback numTimes to produce a repeated component
+function Repeat(props) {
+  let items = [];
+  for (let i = 0; i < props.numTimes; i++) {
+    items.push(props.children(i));
+  }
+  return <div>{items}</div>;
+}
+
+function ListOfTenThings() {
+  return (
+    <Repeat numTimes={10}>
+      {(index) => <div key={index}>This is item {index} in the list</div>}
+    </Repeat>
+  );
+}
+```
+
+### 事件处理
+
+```JSX
+// 类的方法默认是不会绑定 this 的。如果你忘记绑定 this.sayName 并把它传入 onClick，当你调用这个函数的时候 this 的值会是 undefined
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    // This binding is necessary to make `this` work in the callback
+    this.sayName = this.sayName.bind(this)
+  }
+  sayName() {
+    alert('tate')
+  }
+  render() {
+    return (
+      <header className = "App-header">
+        <img src={this.props.avatar} className="App-logo" alt="logo" onClick={this.sayName}/>>
+        <h1 className="App-title">Welcome to React</h1>
+      </header>
+    )
+  }
+}
+```
+
+或者采用以下方式(推荐):
+
+```JSX
+class LoggingButton extends React.Component {
+  // This syntax ensures `this` is bound within handleClick.
+  // Warning: this is *experimental* syntax.
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me
+      </button>
+    );
+  }
+}
+```
+
+上面这个语法在 Create React App 中默认开启，如果没有使用属性初始化器语法，则写法为:
+
+```JSX
+// 每次 LoggingButton 渲染的时候都会创建一个不同的回调函数。在大多数情况下，这没有问题。
+// 然而如果这个回调函数作为一个属性值传入低阶组件，这些组件可能会进行额外的重新渲染
+class LoggingButton extends React.Component {
+  handleClick() {
+    console.log('this is:', this);
+  }
+
+  render() {
+    // This syntax ensures `this` is bound within handleClick
+    return (
+      <button onClick={(e) => this.handleClick(e)}>
+        Click me
+      </button>
+    );
+  }
+}
+```
+
+向事件处理程序传递参数:
+
+```JSX
+<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
+// 通过 bind 的方式，事件对象以及更多的参数将会被隐式的进行传递
+<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
+```
+
 ### 生命周期
 
 生命周期的方法有，可[查看此处示例](http://www.runoob.com/try/try.php?filename=try_react_life_cycle2):
@@ -332,6 +405,20 @@ class Example extends React.Component {
     // 新增的参数 snapshot 即是之前调用 getSnapshotBeforeUpdate 的返回值
   }
 }
+```
+
+### 注意点
+
+1、JavaScript 中的一些 “falsy” 值(比如数字0)，它们依然会被渲染。例如，下面的代码不会像你预期的那样运行，因为当 props.message 为空数组时，它会打印 0:
+
+```JSX
+<div>
+  {props.messages.length &&
+    <MessageList messages={props.messages} />
+  }
+</div>
+
+// 必须确保 && 前面的表达式始终为布尔值
 ```
 
 ## Refs
