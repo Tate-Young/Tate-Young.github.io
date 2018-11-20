@@ -419,6 +419,12 @@ class Example extends React.Component {
 </div>
 
 // 必须确保 && 前面的表达式始终为布尔值
+// 或强制转为 bool 类型也可以，!!props.messages.length
+<div>
+  {props.messages.length > 0 &&
+    <MessageList messages={props.messages} />
+  }
+</div>
 ```
 
 ## Refs
