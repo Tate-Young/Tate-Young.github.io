@@ -597,8 +597,7 @@ class LoggingButton extends React.Component {
   }
 &lt;/div&gt;
 
-// 必须确保 &amp;&amp; 前面的表达式始终为布尔值
-// 或强制转为 bool 类型也可以，!!props.messages.length
+// 必须确保 &amp;&amp; 前面的表达式始终为布尔值或强制转为 bool 类型也可以，!!props.messages.length
 &lt;div&gt;
   {props.messages.length &gt; 0 &amp;&amp;
     &lt;MessageList messages={props.messages} /&gt;

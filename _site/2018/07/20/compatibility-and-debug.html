@@ -195,6 +195,22 @@
 
 <p><a href="https://i.loli.net/2018/07/20/5b5141421339c.jpg"><img src="https://i.loli.net/2018/07/20/5b5141421339c.jpg" alt="charles-iphone-proxy.jpg" /></a></p>
 
+<p>若针对 https 抓包:</p>
+
+<p>1、首先在<code>Help --&gt; SSL Proxying --&gt; Install Charles Root Certificate</code>安装根证书;</p>
+
+<p>2、在钥匙串中选择始终信任:</p>
+
+<p><img src="https://i.loli.net/2018/11/23/5bf7700990d1e.png" alt="debugger-charles-ssl.png" /></p>
+
+<p>3、其次点击<code>Help --&gt; SSL Proxying --&gt; Install Charles Root Certificate ... or Remote Browser</code>，按照提示在手机等设备安装证书，网址 <code>chls.pro/ssl</code>，切记安装完后，ios 一般要在 <code>设置 --&gt; 通用 --&gt; 关于本机 --&gt; 证书信任设置</code> 里设置证书启用完全信任:</p>
+
+<p><img src="https://i.loli.net/2018/11/23/5bf770e96b33b.png" alt="debugger-charles-ssl-device.png" /></p>
+
+<p>4、点击<code>Proxy --&gt; SSL Proxying Settings</code>进行 SSL 代理设置，https 端口设置 443:</p>
+
+<p><img src="https://i.loli.net/2018/11/23/5bf7740529688.png" alt="debugger-charles-ssl-settings.png" /></p>
+
 <h3 id="mitmproxy">mitmproxy</h3>
 
 <p>1、安装和设置代理</p>
@@ -209,7 +225,7 @@
 
 <p>3、在 移动端 设置代理，同上</p>
 
-<p>4、在 移动端 安装 CA 证书(https 抓包)，直接在浏览器输入地址 <code>mitm.it</code> 并安装即可</p>
+<p>4、在 移动端 安装 CA 证书(https 抓包)，直接在浏览器输入地址 <code>mitm.it</code> 并安装对应证书即可</p>
 
 <p><img src="https://i.loli.net/2018/11/16/5bedb616ee92d.jpg" alt="debugger-mitmproxy.jpg" /></p>
 
@@ -250,6 +266,22 @@
   </tbody>
 </table>
 
+<h2 id="手机网页调试">手机网页调试</h2>
+
+<h3 id="ios">IOS</h3>
+
+<p>1、直接打开<code>设置 --&gt; safari 浏览器 --&gt; 高级 --&gt; Web 检查器/Javascript</code>;</p>
+
+<p>2、将手机连接至电脑，在 safari 开发者模式下调试就 OK 了。</p>
+
+<h3 id="android">android</h3>
+
+<p>1、一般是打开<code>设置 --&gt; 开发者选项 --&gt; USB 调试</code>;</p>
+
+<p>2、在 chrome 浏览器输入 <code>chrome://inspect/#devices</code> 打开 inspect 调试器，上面会显示所连接的设备上的页面，点击 inspect 就可以调试啦。</p>
+
+<p><img src="https://i.loli.net/2018/11/22/5bf616017176c.png" alt="debugger-inspect.png" /></p>
+
 <h2 id="safari">safari</h2>
 
 <h3 id="事件监听点击失效">事件监听点击失效</h3>
@@ -287,6 +319,7 @@
   <li><a href="https://blog.devtang.com/2015/11/14/charles-introduction/">Charles 从入门到精通</a> By 唐巧</li>
   <li><a href="https://blog.zfanw.com/ios-safari-click-not-working/">iOS Safari 点击事件失效</a> By 陈三</li>
   <li><a href="https://gist.github.com/gordonbrander/2230317">ID - a unique ID/name generator for JavaScript</a> By gordonbrander</li>
+  <li><a href="https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/">Charles</a></li>
 </ol>
  
 <div id="disqus_thread"></div>

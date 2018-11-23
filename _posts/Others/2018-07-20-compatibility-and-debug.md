@@ -35,6 +35,22 @@ tags:
 
 [![charles-iphone-proxy.jpg](https://i.loli.net/2018/07/20/5b5141421339c.jpg)](https://i.loli.net/2018/07/20/5b5141421339c.jpg)
 
+若针对 https 抓包:
+
+1、首先在<code>Help --> SSL Proxying --> Install Charles Root Certificate</code>安装根证书;
+
+2、在钥匙串中选择始终信任:
+
+![debugger-charles-ssl.png](https://i.loli.net/2018/11/23/5bf7700990d1e.png)
+
+3、其次点击<code>Help --> SSL Proxying --> Install Charles Root Certificate ... or Remote Browser</code>，按照提示在手机等设备安装证书，网址 <code>chls.pro/ssl</code>，切记安装完后，ios 一般要在 <code>设置 --> 通用 --> 关于本机 --> 证书信任设置</code> 里设置证书启用完全信任:
+
+![debugger-charles-ssl-device.png](https://i.loli.net/2018/11/23/5bf770e96b33b.png)
+
+4、点击<code>Proxy --> SSL Proxying Settings</code>进行 SSL 代理设置，https 端口设置 443:
+
+![debugger-charles-ssl-settings.png](https://i.loli.net/2018/11/23/5bf7740529688.png)
+
 ### mitmproxy
 
 1、安装和设置代理
@@ -51,7 +67,7 @@ mitmproxy -p 8888
 
 3、在 移动端 设置代理，同上
 
-4、在 移动端 安装 CA 证书(https 抓包)，直接在浏览器输入地址 <code>mitm.it</code> 并安装即可
+4、在 移动端 安装 CA 证书(https 抓包)，直接在浏览器输入地址 <code>mitm.it</code> 并安装对应证书即可
 
 ![debugger-mitmproxy.jpg](https://i.loli.net/2018/11/16/5bedb616ee92d.jpg)
 
@@ -65,6 +81,22 @@ mitmproxy -p 8888
 | i | 拦截 intercept |
 | r | 重新请求 |
 | esc | 退出编辑 |
+
+## 手机网页调试
+
+### IOS
+
+1、直接打开<code>设置 --> safari 浏览器 --> 高级 --> Web 检查器/Javascript</code>;
+
+2、将手机连接至电脑，在 safari 开发者模式下调试就 OK 了。
+
+### android
+
+1、一般是打开<code>设置 --> 开发者选项 --> USB 调试</code>;
+
+2、在 chrome 浏览器输入 <code>chrome://inspect/#devices</code> 打开 inspect 调试器，上面会显示所连接的设备上的页面，点击 inspect 就可以调试啦。
+
+![debugger-inspect.png](https://i.loli.net/2018/11/22/5bf616017176c.png)
 
 ## safari
 
@@ -100,3 +132,4 @@ var ID = function () {
 1. [Charles 从入门到精通](https://blog.devtang.com/2015/11/14/charles-introduction/) By 唐巧
 2. [iOS Safari 点击事件失效](https://blog.zfanw.com/ios-safari-click-not-working/) By 陈三
 3. [ID - a unique ID/name generator for JavaScript](https://gist.github.com/gordonbrander/2230317) By gordonbrander
+4. [Charles](https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/)
