@@ -304,7 +304,7 @@ class Header extends Component {
   }
   render() {
     return (
-      <header className = "App-header">
+      <header className="App-header">
         <img src={this.props.avatar} className="App-logo" alt="logo" onClick={this.sayName}/>>
         <h1 className="App-title">Welcome to React</h1>
       </header>
@@ -535,220 +535,143 @@ const App = () => ( // 根 Router，在 key 值上加一个随机数
 );
 ```
 
-## React Router
+## React-loadable
 
-**React Router** 是一个基于 React 之上的强大路由库，它可以让你向应用中快速地添加视图和数据流，同时保持页面与 URL 间的同步。可以[查看官方 demo](https://github.com/reactjs/react-router-tutorial/tree/master/lessons)。路由算法会根据定义的顺序自顶向下匹配路由。
-
-```JSX
-import React from 'react'
-import { render } from 'react-dom'
-import { Router, Route, hashHistory } from 'react-router'
-import App from './modules/App' // 传入各个组件
-import About from './modules/About'
-import Repos from './modules/Repos'
-
-// 参数 history，它的值 hashHistory 表示，路由的切换由 URL 的 hash 变化决定，如 http://www.example.com/#/
-// exact 控制匹配到 / 路径时不会再继续向下匹配
-render((
-  <Router history={hashHistory}>
-    <Route exact path="/" component={App}/>
-    <Route path="/repos" component={Repos}/>
-    <Route path="/about" component={About}/>
-  </Router>
-), document.getElementById('app'))
-```
-
-> 本篇针对的是 React Router 3.X 版本，4 以上版本请[查看中文文档](http://reacttraining.cn/web/example/basic)。
-
-### path 通配符
-
-通配符规则如下:
-
-| :paramName | 匹配 URL 的一个部分，直到遇到下一个 /、?、# 为止。这个路径参数可以通过 <code>this.props.params.paramName</code> 取出。
-| () | 表示 URL 的这个部分是可选的。
-| * | 匹配任意字符，直到模式里面的下一个字符为止。匹配方式是非贪婪模式。
-| ** | 匹配任意字符，直到下一个 /、?、# 为止。匹配方式是贪婪模式。
-
-```HTML
-<Route path="/hello/:name">         // 匹配 /hello/tate 和 /hello/snow
-<Route path="/hello(/:name)">       // 匹配 /hello, /hello/tate 和 /hello/snow
-<Route path="/files/*.*">           // 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg
-```
-
-### 嵌套路由 Route & IndexRoute
-
-```HTML
-<!-- 参数 userName 和 repoName 可以在当前组件通过 this.props.params 来访问 -->
-<Router history={hashHistory}>
-  <Route path="/" component={App}>
-    <Route path="/repos" component={Repos}>
-      <Route path="/repos/:userName/:repoName" component={Repo}/>
-    </Route>
-    <Route path="/about" component={About}/>
-  </Route>
-</Router>
-```
-
-上面代码中，用户访问 /repos 时，会先加载 App 组件，然后在它的内部再加载 Repos 组件。App 组件中通过 <code>this.props.children</code> 访问子组件:
+A higher order component for loading components with dynamic imports，能实现懒加载的功能:
 
 ```JSX
-export default React.createClass({
-  render() {
-    return (
-      <div>
-        <ul role="nav">
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/repos">Repos</Link></li>
-        </ul>
-        {this.props.children}
-      </div>
-    )
-  }
-})
-```
+import Loadable from 'react-loadable'
+import Loading from './Loading'
 
-想象一下当 URL 为 / 时，我们想渲染一个在 App 中的组件。不过在此时，App 的 render 中的 <code>this.props.children</code> 还是 undefined。这种情况我们可以使用 **IndexRoute** 来设置一个默认页面:
-
-```HTML
-<Router history={hashHistory}>
-  <Route path="/" component={App}>
-    <IndexRoute component={Home}/>
-    <Route path="/repos" component={Repos}>
-      <Route path="/repos/:userName/:repoName" component={Repo}/>
-    </Route>
-    <Route path="/about" component={About}/>
-  </Route>
-</Router>
-```
-
-### 路由跳转 Link & IndexLink
-
-路由跳转有两种形式，一个是组件内，另一个组件外。先看第一种:
-
-```HTML
-<ul role="nav">
-  <li><Link to="/about">About</Link></li>
-  <li><Link to="/repos">Repos</Link></li>
-</ul>
-
-<!-- <Link> 可以知道哪个 route 的链接是激活状态的，并可以自动为该链接添加 activeClassName 或 activeStyle -->
-<Link to="/about" activeClassName="active">About</Link>
-<Link to="/about" activeStyle={ {color: 'red'} }>About</Link>
-```
-
-在组件外进行路由跳转:
-
-```JSX
-import { browserHistory } from 'react-router';
-
-browserHistory.push('/some/path');
-```
-
-另外如果链接到根路由 /，不要使用 Link 组件，而要使用 **IndexLink** 组件，不然它会一直处于激活状态，因为所有的 URL 的开头都是 / :
-
-```HTML
-<Link to="/">Home</Link>
-
-<!-- 改为 -->
-<IndexLink to="/">Home</IndexLink>
-<!-- 或者 IndexLink 就是对 Link 组件的 onlyActiveOnIndex 属性的包装 -->
-<Link to="/" activeClassName="active" onlyActiveOnIndex={true}>
-  Home
-</Link>
-```
-
-### 路由重定向 Redirect & IndexRedirect
-
-**Redirect** 组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由:
-
-```HTML
-<Router>
-  <Route path="/" component={App}>
-    <IndexRoute component={Dashboard} />
-    <Route path="about" component={About} />
-    <Route path="inbox" component={Inbox}>
-      <Route path="/messages/:id" component={Message} />
-
-      {/* 跳转 /inbox/messages/:id 到 /messages/:id */}
-      <Redirect from="messages/:id" to="/messages/:id" />
-    </Route>
-  </Route>
-</Router>
-```
-
-**IndexRedirect** 组件用于访问根路由的时候，将用户重定向到某个子组件:
-
-```HTML
-<Route path="/" component={App}>
-  ＜IndexRedirect to="/welcome" />
-  <Route path="welcome" component={Welcome} />
-  <Route path="about" component={About} />
-</Route>
-```
-
-### 路由钩子
-
-#### onEnter & onLeave
-
-Route 可以定义 **onEnter** 和 **onLeave** 两个 hook ，这些 hook 会在页面跳转确认时触发一次。例如权限验证或者在路由跳转前将一些数据持久化保存起来。
-
-```HTML
-<!-- onEnter 实现 Redirect -->
-<Route path="inbox" component={Inbox}>
-  <Route
-    path="messages/:id"
-    onEnter={
-      ({params}, replace) => replace(`/messages/${params.id}`)
-    }
-  />
-</Route>
-```
-
-```JSX
-// 权限验证
-const requireAuth = (nextState, replace) => {
-  if (!auth.isAdmin()) {
-    // Redirect to Home page if not an Admin
-    replace({ pathname: '/' })
-  }
+const components = {
+  ListComponent: Loadable({
+    loader: () => import('../list/ListComponent'),
+    loading: Loading,
+  }),
+  LayoutComponent: Loadable({
+    loader: () => import('../layout/LayoutComponent'),
+    loading: Loading,
+  }),
 }
-export const AdminRoutes = () => {
+
+export default components
+```
+
+## React Router 4.x
+
+### Router 组件
+
+React Router 中有三种类型的组件，包括 **Routers**、**Router Matching**、和 **Navigtaion**:
+
+```JS
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+```
+
+#### Routers
+
+包含 **\<BrowserRouter\>** 和 **\<HashRouter\>**，这两种 router 会为你创建专门的 history 对象。一般来说，如果数据是通过动态请求获取的，则使用 BrowserRouter。
+
+#### Router Matching
+
+匹配路由的组件有两种: **\<Route\>** 和 **\<Switch\>**。匹配路由的原理是比较 \<Route\> 中的 **path** 属性和当前地址的 **pathname**。若匹配，则 \<Route\> 中 **components** 属性所指定的组件就会被渲染出来。当 \<Route\> 不指定 path 属性的话则始终被渲染。
+
+```JSX
+import { Route, Switch } from "react-router-dom";
+// when location = { pathname: '/about' }
+<Route path='/about' component={About}/> // renders <About/>
+<Route path='/contact' component={Contact}/> // renders null
+<Route component={Always}/> // renders <Always/>
+```
+
+\<Route\> 的 **exact** 表示为 true 时则严格匹配:
+
+| path | location.pathname | exact | matches? |
+| ------------ | ------ | ------- | ------- |
+| /one | /one/two |true | no |
+| /one | /one/two |false | yes |
+
+\<Switch\> 可以把这些 \<Route\> 整合到一起，遍历然后渲染第一个匹配当前地址的 \<Route\>:
+
+```JSX
+<Switch>
+  <Route exact path="/" component={Home} />
+  <Route path="/about" component={About} />
+  <Route path="/contact" component={Contact} />
+  {/* when none of the above match, <NoMatch> will be rendered */}
+  <Route component={NoMatch} />
+</Switch>
+```
+
+#### Route Render Props
+
+\<Route\> 有三种组件渲染的参数:
+
+* **component** - 用来渲染一个已存在的组件
+* **render** - 传递一个函数。传递局部变量到需要渲染的组件
+* **children**
+
+```JSX
+const Home = () => <div>Home</div>;
+
+const App = () => {
+  const someVariable = true;
+
   return (
-    <Route path="/admin" component={Admin} onEnter={requireAuth} />
-  )
-}
+    <Switch>
+      {/* these are good */}
+      <Route exact path="/" component={Home} />
+      <Route
+        path="/about"
+        render={props => <About {...props} extra={someVariable} />}
+      />
+    </Switch>
+  );
+};
 ```
 
-#### routerWillLeave
+#### Navigation
 
-React Router 提供一个 **routerWillLeave** 生命周期钩子，这使得 React 组件可以拦截正在发生的跳转，或在离开 route 前提示用户。routerWillLeave 返回值有以下两种：
+React Router 提供了以下三种组件用于在应用中创建链接:
 
-* return false 取消此次跳转
-* return 返回提示信息，在离开 route 前提示用户进行确认。
+*  **\<Link\>** - 会渲染成 HTML 中的 a 标签
+*  **\<NavLink\>** - 是一种特殊类型的 \<Link\> 组件。当其 to 属性中指定的位置与当前位置匹配时，组件样式将会设置成 "active" 样式
+*  **\<Redirect\>** - 强制跳转到 to 属性上指定的位置
 
 ```JSX
-import { Lifecycle } from 'react-router'
+<Link to='/'>Home</Link>
+// <a href='/'>Home</a>
 
-const Home = React.createClass({
+// location = { pathname: '/react' }
+<NavLink to='/react' activeClassName='hurray'>React</NavLink>
+// <a href='/react' className='hurray'>React</a>
 
-  // 假设 Home 是一个 route 组件，它可能会使用 Lifecycle mixin 去获得一个 routerWillLeave 方法。
-  mixins: [ Lifecycle ],
-
-  routerWillLeave(nextLocation) {
-    if (!this.state.isSaved)
-      return 'Your work is not saved! Are you sure you want to leave?'
-  },
-  // ...
-})
+<Redirect to="/login" />
 ```
 
-### history 属性
+### WithRouters
 
-React Router 是建立在 **history** 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。
+可通过 **withRouter** 高阶组件来获取 history 对象的属性和 \<Route\>'s 中的 match， withRouter 会将已更新的 **match**, **location**, 和 **history** 属性传递到被包裹的组件当中，无论它在哪儿渲染.
 
-* **browserHistory** - 使用了 HTML5 的 history API 来记录路由历史，如 example.com/some/path。需要服务器进行配置，具体[可参考这里](http://react-guide.github.io/react-router-cn/docs/guides/basics/Histories.html)
-* **hashHistory** - 路由将通过 URL 的 hash 部分（#）切换，URL 的形式类似 example.com/#/some/path
-* **createMemoryHistory** - 不会在地址栏被操作或读取，需要手动创建。主要运用于服务器渲染
+```JSX
+import { withRouter } from "react-router";
+...
+<Route
+  path="/order/:direction(asc|desc)"
+  component={ComponentWithRegex}
+/>
+
+function ComponentWithRegex({ match }) {
+  const { params: { direction } } = match
+  return (
+    <div>
+      <h3>Only asc/desc are allowed: {direction}</h3>
+    </div>
+  );
+}
+
+...
+const ShowTheLocationWithRouter = withRouter(ShowTheLocation);
+```
 
 ## 参考链接
 
@@ -760,7 +683,7 @@ React Router 是建立在 **history** 之上的。 简而言之，一个 history
 6. [Convert React.createClass to ES6 Class](https://daveceddia.com/convert-createclass-to-es6-class/) By Dave Ceddia
 7. [gitbook - react-router](http://react-guide.github.io/react-router-cn/docs/Introduction.html)
 8. [React Router 使用教程](http://www.ruanyifeng.com/blog/2016/05/react_router.html) By 阮一峰
-9. [React Router 中文文档](http://reacttraining.cn/web/example/basic)
+9. [React Router 官方文档](https://reacttraining.com/react-router/web/guides/quick-start)
 10. [Hot loader with react-loadable](https://medium.com/@giang.nguyen.dev/hot-loader-with-react-loadable-c8f70c8ce1a6) By Go to the profile of Giang Nguyen
 11. [讲讲今后 React 异步渲染带来的生命周期变化](https://juejin.im/post/5abf4a09f265da237719899d) By Enix
 12. [深入理解 React 组件状态(State)](https://juejin.im/entry/59522bdb6fb9a06b9a516113)
