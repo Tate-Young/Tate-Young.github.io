@@ -218,7 +218,7 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-};
+}
 </code></pre>
 
 <pre><code class="language-JSX">// 样式通过对象的形式访问
@@ -243,6 +243,53 @@ function ButtonAppBar(props) {
 
 // 2. We inject the styles.
 export default withStyles(styles)(ButtonAppBar);
+</code></pre>
+
+<h3 id="几种样式的写法">几种样式的写法</h3>
+
+<p>1、’&amp;’</p>
+
+<pre><code class="language-JSX">// &amp; 类似 less 的写法
+const styles = theme =&gt; ({
+  page: {
+    border: `solid 1px ${theme.palette.grey.A100}`,
+    height: theme.spacing.unit * 2.5,
+    borderRadius: theme.spacing.unit * 0.5,
+    width: theme.spacing.unit * 6,
+    '&amp;&gt;input': {
+      textAlign: 'center',
+      fontSize: theme.spacing.unit * 1.5,
+    },
+  },
+})
+</code></pre>
+
+<p>2、classNames</p>
+
+<p>当有多个样式组合时，可以采用这个库 <a href="https://github.com/JedWatson/classnames">classnames</a>:</p>
+
+<pre><code class="language-JSX">import classNames from 'classnames'
+
+...
+&lt;Paper
+  elevation={0}
+  className={classNames(
+    classes.paperPadding,
+    classes.paperBorder,
+    'recommend-con', // 也可以直接写类名
+  )}
+&gt;
+</code></pre>
+
+<p>包含各种判断时:</p>
+
+<pre><code class="language-JSX">&lt;Paper
+  className={classNames(isParent
+    ? classes.samplePaper
+    : classes.samplePaperDisabled, {
+    [classes.paperShadow]: prop.style.type === style.type,
+  })}
+&gt;
 </code></pre>
 
 <h2 id="theme-主题">Theme 主题</h2>
@@ -387,6 +434,40 @@ function MyApp() {
     &lt;/div&gt;
   )
 }
+</code></pre>
+
+<blockquote>
+  <p>注意上述的属性，要与 CSS API 区分开。使用它可以覆盖组件内的一些样式</p>
+</blockquote>
+
+<h3 id="css-api">CSS API</h3>
+
+<p>举个 <a href="https://material-ui.com/api/dialog/">Dialog 组件 CSS API</a> 的示例:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>paper</td>
+      <td>Styles applied to the <code>Paper</code> component.</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JSX">&lt;Dialog
+  disableBackdropClick
+  open={open}
+  onClose={this.handleClose}
+  maxWidth={false}
+  classes={ { // 注意这里的写法
+    paper: classes.dialogPaper, // 可以覆盖 Dialog 内的 paper 组件样式
+  } }
+&gt;
 </code></pre>
 
 <h2 id="常用组件">常用组件</h2>

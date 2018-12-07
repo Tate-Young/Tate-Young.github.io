@@ -58,7 +58,7 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-};
+}
 ```
 
 ```JSX
@@ -84,6 +84,56 @@ function ButtonAppBar(props) {
 
 // 2. We inject the styles.
 export default withStyles(styles)(ButtonAppBar);
+```
+
+### 几种样式的写法
+
+1、'&'
+
+```JSX
+// & 类似 less 的写法
+const styles = theme => ({
+  page: {
+    border: `solid 1px ${theme.palette.grey.A100}`,
+    height: theme.spacing.unit * 2.5,
+    borderRadius: theme.spacing.unit * 0.5,
+    width: theme.spacing.unit * 6,
+    '&>input': {
+      textAlign: 'center',
+      fontSize: theme.spacing.unit * 1.5,
+    },
+  },
+})
+```
+
+2、classNames
+
+当有多个样式组合时，可以采用这个库 [classnames](https://github.com/JedWatson/classnames):
+
+```JSX
+import classNames from 'classnames'
+
+...
+<Paper
+  elevation={0}
+  className={classNames(
+    classes.paperPadding,
+    classes.paperBorder,
+    'recommend-con', // 也可以直接写类名
+  )}
+>
+```
+
+包含各种判断时:
+
+```JSX
+<Paper
+  className={classNames(isParent
+    ? classes.samplePaper
+    : classes.samplePaperDisabled, {
+    [classes.paperShadow]: prop.style.type === style.type,
+  })}
+>
 ```
 
 ## Theme 主题
@@ -174,6 +224,28 @@ function CenteredGrid(props) {
     </div>
   )
 }
+```
+
+> 注意上述的属性，要与 CSS API 区分开。使用它可以覆盖组件内的一些样式
+
+### CSS API
+
+举个 [Dialog 组件 CSS API](https://material-ui.com/api/dialog/) 的示例:
+
+| 名称           | 描述      |
+| ------------ | ------ |
+| paper | Styles applied to the <code>Paper</code> component. |
+
+```JSX
+<Dialog
+  disableBackdropClick
+  open={open}
+  onClose={this.handleClose}
+  maxWidth={false}
+  classes={ { // 注意这里的写法
+    paper: classes.dialogPaper, // 可以覆盖 Dialog 内的 paper 组件样式
+  } }
+>
 ```
 
 ## 常用组件
