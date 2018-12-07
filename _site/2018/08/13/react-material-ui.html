@@ -245,26 +245,65 @@ function ButtonAppBar(props) {
 export default withStyles(styles)(ButtonAppBar);
 </code></pre>
 
-<h3 id="几种样式的写法">几种样式的写法</h3>
+<h3 id="jss-nested">jss-nested</h3>
 
-<p>1、’&amp;’</p>
+<p>通过 <a href="https://github.com/cssinjs/jss-nested">jss-nested</a> 可以支持类似 less 中嵌套的写法:</p>
 
-<pre><code class="language-JSX">// &amp; 类似 less 的写法
-const styles = theme =&gt; ({
-  page: {
-    border: `solid 1px ${theme.palette.grey.A100}`,
-    height: theme.spacing.unit * 2.5,
-    borderRadius: theme.spacing.unit * 0.5,
-    width: theme.spacing.unit * 6,
-    '&amp;&gt;input': {
-      textAlign: 'center',
-      fontSize: theme.spacing.unit * 1.5,
+<pre><code class="language-JSX">// Use &amp; to reference selector of the parent rule.
+const styles = {
+  container: {
+    padding: 20,
+    '&amp;:hover': {
+      background: 'blue'
     },
-  },
-})
+    // Add a global .clear class to the container.
+    '&amp;.clear': {
+      clear: 'both'
+    },
+    // Reference a global .button scoped to the container.
+    '&amp; .button': {
+      background: 'red'
+    },
+    // Use multiple container refs in one selector
+    '&amp;.selected, &amp;.active': {
+      border: '1px solid red'
+    }
+  }
+}
 </code></pre>
 
-<p>2、classNames</p>
+<pre><code class="language-JSX">// Use $ruleName to reference a local rule within the same style sheet.
+const styles = {
+  container: {
+    // Reference the local rule "button".
+    '&amp; $button': {
+      padding: '10px'
+    },
+    // Multiple local refs in one rule.
+    '&amp;:hover $button, &amp;:active $button': {
+      color: 'red',
+    },
+    '&amp;:focus $button': {
+      color: 'blue'
+    }
+  },
+  button: {
+    color: 'grey'
+  }
+}
+</code></pre>
+
+<pre><code class="language-JSX">const styles = {
+  button: {
+    color: 'red',
+    '@media (min-width: 1024px)': {
+      width: 200
+    }
+  }
+}
+</code></pre>
+
+<h3 id="classnames">classnames</h3>
 
 <p>当有多个样式组合时，可以采用这个库 <a href="https://github.com/JedWatson/classnames">classnames</a>:</p>
 
@@ -314,6 +353,53 @@ const styles = theme =&gt; ({
 <blockquote>
   <p>如果需要自定义主题，需要使用 <strong>MuiThemeProvider</strong> 组件来注入到应用中，<a href="https://material-ui.com/customization/themes/">具体查看这里</a> 👈</p>
 </blockquote>
+
+<h3 id="overrides">overrides</h3>
+
+<p>When the configuration variables aren’t powerful enough, you can take advantage of the <strong>overrides</strong> key of the theme to potentially change every single style injected by Material-UI into the DOM. That’s a really powerful feature.</p>
+
+<pre><code class="language-JSX">const theme = createMuiTheme({
+  overrides: {
+    // Name of the component / style sheet
+    MuiButton: {
+      // Name of the rule
+      root: {
+        // Some CSS
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        borderRadius: 3,
+        border: 0,
+        color: 'white',
+        height: 48,
+        padding: '0 30px',
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      },
+    },
+  },
+});
+
+function OverridesCss() {
+  return (
+    &lt;MuiThemeProvider theme={theme}&gt;
+      &lt;Button&gt;Overrides CSS&lt;/Button&gt;
+    &lt;/MuiThemeProvider&gt;
+  );
+}
+</code></pre>
+
+<h3 id="props">props</h3>
+
+<p>You can also apply properties on all the instances of a component type. We expose a <strong>props</strong> key in the theme for this use case.</p>
+
+<pre><code class="language-JSX">const theme = createMuiTheme({
+  props: {
+    // Name of the component
+    MuiButtonBase: {
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 💣!
+    },
+  },
+});
+</code></pre>
 
 <h2 id="样式与布局">样式与布局</h2>
 
