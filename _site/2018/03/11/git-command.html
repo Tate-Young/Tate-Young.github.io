@@ -567,7 +567,21 @@ git merge branch1
 <p><strong>cherry-pick</strong> 可以选择某一个分支中的一个或几个 commit 来进行操作，rebase 实质上就是线性的自动的 cherry-pick 操作:</p>
 
 <pre><code class="language-SHELL">git checkout master
-git cherry-pick 2c33a
+# 多个提交用空格隔开
+git cherry-pick 2c33a a1953
+# 指定范围内的多个提交用 .. 隔开，注意是左开右闭，可理解为 (start_commit, end_commit]
+git cherry-pick 2c33a..a1953
+# 同上，通过符号 ^ 可实现左右闭合，可理解为 [start_commit, end_commit]
+git cherry-pick 2c33a^..a1953
+# 只挑选该分支最顶端的一次提交
+git cherry-pick branchname
+</code></pre>
+
+<p>另外对于 cherry-pick 处理多个提交时，遇到冲突的操作控制命令有以下三个:</p>
+
+<pre><code class="language-SHELL">git cherry-pick --continue  // 继续下个操作
+git cherry-pick --quit // 退出，不会影响冲突之前所处理的提交
+git cherry-pick --abort // 停止本次操作，回到解放前
 </code></pre>
 
 <p><img src="https://marklodato.github.io/visual-git-guide/cherry-pick.svg" alt="cherry-pick" /></p>
@@ -757,6 +771,7 @@ git diff --stat # 仅仅比较统计信息
   <li><a href="https://www.yiibai.com/git/git_pull.html">易百教程 - Git</a> By 初生不惑</li>
   <li><a href="https://github.com/geeeeeeeeek/git-recipes/wiki">Github - git-recipes</a> By geeeeeeeeek</li>
   <li><a href="http://blog.psjay.com/posts/git-revert-merge-commit/">Git 撤销合并</a> By PSJay</li>
+  <li><a href="https://drprincess.github.io/2018/03/05/Git-%E7%94%A8%20cherry-pick%20%E6%8C%91%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%B0%8F%E6%A8%B1%E6%A1%83/">Git-用 cherry-pick 挑好看的小樱桃</a> By DRPrincess</li>
 </ol>
  
 <div id="disqus_thread"></div>

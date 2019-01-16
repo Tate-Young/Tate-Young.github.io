@@ -308,7 +308,22 @@ rebase 的黄金法则是绝不要在公共的分支上使用。倘若在 master
 
 ```SHELL
 git checkout master
-git cherry-pick 2c33a
+# 多个提交用空格隔开
+git cherry-pick 2c33a a1953
+# 指定范围内的多个提交用 .. 隔开，注意是左开右闭，可理解为 (start_commit, end_commit]
+git cherry-pick 2c33a..a1953
+# 同上，通过符号 ^ 可实现左右闭合，可理解为 [start_commit, end_commit]
+git cherry-pick 2c33a^..a1953
+# 只挑选该分支最顶端的一次提交
+git cherry-pick branchname
+```
+
+另外对于 cherry-pick 处理多个提交时，遇到冲突的操作控制命令有以下三个:
+
+```SHELL
+git cherry-pick --continue  // 继续下个操作
+git cherry-pick --quit // 退出，不会影响冲突之前所处理的提交
+git cherry-pick --abort // 停止本次操作，回到解放前
 ```
 
 ![cherry-pick](https://marklodato.github.io/visual-git-guide/cherry-pick.svg)
@@ -467,3 +482,4 @@ git diff --stat # 仅仅比较统计信息
 6. [易百教程 - Git](https://www.yiibai.com/git/git_pull.html) By 初生不惑
 7. [Github - git-recipes](https://github.com/geeeeeeeeek/git-recipes/wiki) By geeeeeeeeek
 8. [Git 撤销合并](http://blog.psjay.com/posts/git-revert-merge-commit/) By PSJay
+9. [Git-用 cherry-pick 挑好看的小樱桃](https://drprincess.github.io/2018/03/05/Git-%E7%94%A8%20cherry-pick%20%E6%8C%91%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%B0%8F%E6%A8%B1%E6%A1%83/) By DRPrincess
