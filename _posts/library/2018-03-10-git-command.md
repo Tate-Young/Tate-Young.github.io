@@ -248,6 +248,8 @@ git revert -m 1 bb0aa8b
   <source src="http://liaoxuefeng.gitee.io/git-resources/master-and-dev-ff.mp4" type="video/mp4"></source>
 </video>
 
+> 当使用 <code>git checkout branchname</code> 切换分支时，本地无此分支且远端存在同名分支的话，等价于"从远端拉取到本地并切换至该分支"，[详情戳这里](https://git-scm.com/docs/git-checkout) 👈
+
 ### merge
 
 上述视频例子的**合并(merge)**属于**快速合并(Fast forward)**，如果 master 和 feature 都有提文件，此时通过合并 feature 分支则不会产生快速合并。若有同样的文件被提交，则可能会出现**冲突(conflict)**，Git用 <code><<<<<<<，=======，>>>>>>></code> 标记出不同分支的内容，解决完冲突并提交后分支如下:

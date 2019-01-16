@@ -508,6 +508,10 @@ git revert -m 1 bb0aa8b
   <source src="http://liaoxuefeng.gitee.io/git-resources/master-and-dev-ff.mp4" type="video/mp4" />&lt;/source&gt;
 </video>
 
+<blockquote>
+  <p>当使用 <code>git checkout branchname</code> 切换分支时，本地无此分支且远端存在同名分支的话，等价于”从远端拉取到本地并切换至该分支”，<a href="https://git-scm.com/docs/git-checkout">详情戳这里</a> 👈</p>
+</blockquote>
+
 <h3 id="merge">merge</h3>
 
 <p>上述视频例子的<strong>合并(merge)</strong>属于<strong>快速合并(Fast forward)</strong>，如果 master 和 feature 都有提文件，此时通过合并 feature 分支则不会产生快速合并。若有同样的文件被提交，则可能会出现<strong>冲突(conflict)</strong>，Git用 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 标记出不同分支的内容，解决完冲突并提交后分支如下:</p>
