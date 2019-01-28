@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种代码规范实践
 date:   2019-01-25 20:41:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: https://i.loli.net/2019/01/28/5c4ea7dbcf6f9.png
 tags:
 - Other
 ---
@@ -42,6 +42,27 @@ function getFullName({ firstName, lastName }) {
 
 ```SHELL
 npm install --save-dev eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint babel-eslint
+```
+
+在 `webpack` 中配置 `eslint-loader` 解析 `.eslintrc` 文件:
+
+```JSON
+// First, run the linter.
+// It's important to do this before Babel processes the JS.
+{
+  test: /\.(js|jsx|mjs)$/,
+  enforce: 'pre',
+  use: [
+    {
+      options: {
+        formatter: eslintFormatter,
+        eslintPath: require.resolve('eslint'),
+      },
+      loader: require.resolve('eslint-loader'),
+    },
+  ],
+  include: paths.appSrc,
+},
 ```
 
 然后配置 `eslintrc` 文件，或者直接在 `package.json` 文件里的 `eslintConfig` 字段指定配置，ESLint 会查找和自动读取它们。具体字段解析可以直接[参考这里](http://eslint.cn/docs/user-guide/configuring):
@@ -100,43 +121,56 @@ brand = brand_role[0]
 
 # 跳过检测的两种方式，不推荐直接用 eslint-disable-line，而是后面跟上对应的一个或多个规则，用逗号隔开
 // eslint-disable-next-line prefer-destructuring
-brand = brand_role[0] // eslint-disable-line prefer-destructuring
+brand = brand_role[0] // eslint-disable-line prefer-destructuring, max-len
 
 # 如何想针对整个文件跳过检测规则的话，可以在顶部输入
 /* eslint-disable */
 ```
 
+添加 git 钩子，防止提交有报错的代码:
+
+```JSON
+"scripts":{
+  "lint": "eslint --ext .js,.jsx src/",
+}
+"husky": {
+  "hooks": {
+    "pre-commit": "npm run lint"
+  }  
+}
+```
+
 ## EditorConfig
 
-[**EditorConfig**](https://editorconfig.org/) 也是多人开发常用的一种规范制定工具，举个官网的配置示例:
+[**EditorConfig**](https://editorconfig.org/) 也是多人开发常用的一种规范制定工具，配置文件为 `.editorconfig`, 配置规则为:
+
+| 通配符 | 说明 |
+|:--------------|:---------|
+| * | 匹配除 `/` 之外的任意字符串 |
+| ** | 匹配任意字符串 |
+| ? | 匹配任意单个字符 |
+| [name] | 匹配 `name` 字符 |
+| [!name] | 匹配非 `name字` 符 |
+| {s1,s3,s3} | 匹配任意给定的字符串 |
+
+举个[配置示例](https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties):
 
 ```SHELL
-# top-most EditorConfig file
+# 当打开文件时，该插件会在当前目录及所有父级目录搜索 .editorconfig 配置文件，
+# 当搜索到根目录或者检测到 root = true 时，会停止接下来的搜索，然后由外到内读取配置
 root = true
 
-# Unix-style newlines with a newline ending every file
 [*]
-end_of_line = lf
-insert_final_newline = true
-
-# Matches multiple files with brace expansion notation
-# Set default charset
-[*.{js,py}]
 charset = utf-8
-
-# 4 space indentation
-[*.py]
-indent_style = space
+end_of_line = lf # 定义换行符，支持 lf、cr 和 crlf
+indent_style = space # tab 为 hard-tabs，space 为 soft-tabs
 indent_size = 2
+insert_final_newline = true # 使文件以一个空白行结尾
+trim_trailing_whitespace = true # 除去换行行首的任意空白字符
 
-# Tab indentation (no size specified)
-[Makefile]
-indent_style = tab
-
-# Indentation override for all JS under lib directory
-[lib/**.js]
-indent_style = space
-indent_size = 2
+[*.md]
+max_line_length = off # 行最大字符数，超过则自动换行
+trim_trailing_whitespace = false
 
 # Matches the exact files either package.json or .travis.yml
 [{package.json,.travis.yml}]
