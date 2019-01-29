@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Nginx 简介 - ",
+		"url" : "/2019/01/29/nginx.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "记各种代码规范实践 - ",
 		"url" : "/2019/01/25/coding-standards.html"
 	}
