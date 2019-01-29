@@ -220,7 +220,7 @@ function getFullName({ firstName, lastName }) {
 },
 </code></pre>
 
-<p>然后配置 <code class="highlighter-rouge">eslintrc</code> 文件，或者直接在 <code class="highlighter-rouge">package.json</code> 文件里的 <code class="highlighter-rouge">eslintConfig</code> 字段指定配置，ESLint 会查找和自动读取它们。具体字段解析可以直接<a href="http://eslint.cn/docs/user-guide/configuring">参考这里</a>:</p>
+<p>然后配置 <code class="highlighter-rouge">.eslintrc</code> 文件，或者直接在 <code class="highlighter-rouge">package.json</code> 文件里的 <code class="highlighter-rouge">eslintConfig</code> 字段指定配置，ESLint 会查找和自动读取它们。具体字段解析可以直接<a href="http://eslint.cn/docs/user-guide/configuring">参考这里</a>:</p>
 
 <pre><code class="language-JSON">module.exports = {
   root: true, // 默认情况下，ESLint 会在所有父级目录里寻找配置文件，一直到根目录。"root": true，它就会停止在父级目录中寻找

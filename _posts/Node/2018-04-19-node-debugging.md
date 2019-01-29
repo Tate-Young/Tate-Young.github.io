@@ -162,6 +162,8 @@ nodemon index.js
 nodemon
 ```
 
+## pm2
+
 两种在生产环境部署 node 服务的方式:
 
 * **[forever](https://github.com/foreverjs/forever)**
@@ -178,10 +180,39 @@ nodemon
 | JSON configuration |  | ✔ |
 
 ```SHELL
+# 启动一个 node 程序
 pm2 start index.js
-pm2 stop index.js
+# 启动并取别名
+pm2 start index.js --name application1
+# 在文件改变的时候会重新启动程序
+pm2 start index.js --watch
 
-# 查看监控界面
+# 中止进程，指定进程 id 或名称，
+pm2 stop 0
+
+# 删除进程，all 则删除所有
+pm2 delete 0
+
+# 查看详情
+pm2 describe 0
+
+# 查看进程的资源消耗情况
+pm2 monit
+
+# 重启进程，也可用 restart
+# Use reload instead of restart for 0-seconds downtime reloads
+# restart 是先 kill 然后重启，而 reload 反之，故不会停机
+pm2 reload 0
+
+# 查看日志
+pm2 logs 0
+
+# 集群 cluster 启动
+# -i 表示 number-instances 实例数量
+# max 表示 PM2将自动检测可用CPU的数量 可以自己指定数量
+pm2 start start.js -i max
+
+# 查看监控界面，可简写为 pm2 l
 pm2 list
 ```
 
@@ -192,3 +223,4 @@ pm2 list
 1. [Visual Studio Code - Debugging](https://code.visualstudio.com/Docs/editor/debugging)
 2. [Visual Studio Code 前端调试不完全指南](http://jerryzou.com/posts/vscode-debug-guide/) By Jerry
 3. [Running Nodejs applications in production forever vs supervisord vs pm2](https://mrvautin.com/running-nodejs-applications-in-production-forever-vs-supervisord-vs-pm2/) By mrvautin
+4. [PM2 官方文档](https://pm2.io/doc/en/runtime/quick-start/?utm_source=pm2&utm_medium=website&utm_campaign=rebranding)

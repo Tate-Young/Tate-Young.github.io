@@ -65,7 +65,7 @@ npm install --save-dev eslint-config-airbnb eslint-plugin-import eslint-plugin-r
 },
 ```
 
-然后配置 `eslintrc` 文件，或者直接在 `package.json` 文件里的 `eslintConfig` 字段指定配置，ESLint 会查找和自动读取它们。具体字段解析可以直接[参考这里](http://eslint.cn/docs/user-guide/configuring):
+然后配置 `.eslintrc` 文件，或者直接在 `package.json` 文件里的 `eslintConfig` 字段指定配置，ESLint 会查找和自动读取它们。具体字段解析可以直接[参考这里](http://eslint.cn/docs/user-guide/configuring):
 
 ```JSON
 module.exports = {
