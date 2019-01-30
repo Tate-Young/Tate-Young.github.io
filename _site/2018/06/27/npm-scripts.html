@@ -303,14 +303,14 @@ npm config set init.license "MIT"
 "cover:cleanup": "rimraf coverage &amp;&amp; rimraf .nyc_output"
 </code></pre>
 
-<p>设置环境变量时可以采用 <a href="https://www.npmjs.com/package/cross-env">cross-env</a>:</p>
+<p>设置环境变量时可以采用 <a href="https://www.npmjs.com/package/cross-env"><strong>cross-env</strong></a>:</p>
 
 <pre><code class="language-JSON">"test": "NODE_ENV=test mocha tests/",
 // 跨平台转换
 "test": "cross-env NODE_ENV=test mocha tests/",
 </code></pre>
 
-<p>但是 cross-env 并不能解决大型项目中自定义环境变量的持久化问题，这里再推荐一个 <a href="https://github.com/toddbluhm/env-cmd"><code class="highlighter-rouge">env-cmd</code></a>，其缺点是不支持在命令行中自定义环境变量:</p>
+<p>但是 cross-env 并不能解决大型项目中自定义环境变量的持久化问题，这里再推荐一个 <a href="https://github.com/toddbluhm/env-cmd"><strong>env-cmd</strong></a>，其缺点是不支持在命令行中自定义环境变量:</p>
 
 <pre><code class="language-TEXT"># 文件 ./test/.env
 ENV1=THANKS

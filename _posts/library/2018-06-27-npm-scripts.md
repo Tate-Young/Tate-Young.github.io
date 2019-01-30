@@ -157,7 +157,7 @@ npm run env | grep npm_package | sort
 "cover:cleanup": "rimraf coverage && rimraf .nyc_output"
 ```
 
-设置环境变量时可以采用 [cross-env](https://www.npmjs.com/package/cross-env):
+设置环境变量时可以采用 [**cross-env**](https://www.npmjs.com/package/cross-env):
 
 ```JSON
 "test": "NODE_ENV=test mocha tests/",
@@ -165,7 +165,7 @@ npm run env | grep npm_package | sort
 "test": "cross-env NODE_ENV=test mocha tests/",
 ```
 
-但是 cross-env 并不能解决大型项目中自定义环境变量的持久化问题，这里再推荐一个 [`env-cmd`](https://github.com/toddbluhm/env-cmd)，其缺点是不支持在命令行中自定义环境变量:
+但是 cross-env 并不能解决大型项目中自定义环境变量的持久化问题，这里再推荐一个 [**env-cmd**](https://github.com/toddbluhm/env-cmd)，其缺点是不支持在命令行中自定义环境变量:
 
 ```TEXT
 # 文件 ./test/.env
