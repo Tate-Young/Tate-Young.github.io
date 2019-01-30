@@ -179,7 +179,7 @@
 
 <h2 id="模块">模块</h2>
 
-<p>Nginx 将各功能模块组织成一条链，当有请求到达的时候，请求依次经过这条链上的部分或者全部模块，进行处理。每个模块实现特定的功能。例如，实现对请求解压缩的模块，实现 SSI 的模块，实现与上游服务器进行通讯的模块，实现与 FastCGI 服务进行通讯的模块。</p>
+<p>Nginx 将各功能模块组织成一条链，当有请求到达的时候，请求依次经过这条链上的部分或者全部模块，进行处理。每个模块实现特定的功能。例如，实现对请求解压缩的模块，实现 SSI 的模块，实现与上游服务器进行通讯的模块，实现与 <a href="https://zh.wikipedia.org/wiki/FastCGI">FastCGI</a> 服务进行通讯的模块。</p>
 
 <p>Nginx 的模块根据其功能基本上可以分为以下几种类型(摘自<a href="http://wiki.jikexueyuan.com/project/nginx/model-architecture.html">极客学院</a>):</p>
 
@@ -214,7 +214,7 @@
   </tbody>
 </table>
 
-<h2 id="配置">配置</h2>
+<h2 id="配置指令">配置指令</h2>
 
 <p>Nginx 的配置系统由一个主配置文件和其他一些辅助的配置文件构成。这些配置文件均是纯文本文件，全部位于 Nginx 安装目录下的 <code class="highlighter-rouge">conf</code> 目录下。<code class="highlighter-rouge">nginx.conf</code> 中的配置信息，根据其逻辑上的意义，对它们进行了分类，称之为配置指令上下文。不同的作用域含有一个或者多个配置项。当前 Nginx 支持的几个指令上下文:</p>
 
@@ -249,14 +249,56 @@
   </tbody>
 </table>
 
-<p>举个配置的例子(摘自掘进):</p>
+<p>举个配置的例子(<a href="https://juejin.im/post/5b01336af265da0b8a67e5c9">摘自掘进</a>):</p>
 
 <pre><code class="language-TEXT">// nginx.conf, 每次修改都要重启才能生效
-worker_processes 1; // 工作进程数，和 CPU 核数相同
+user  www www; // 指定 Nginx 工作进程运行的用户及用户组
+
+worker_processes auto; // 工作进程数，和 CPU 核数相同
+
+// 全局错误日志输出位置。日志级别有 debug、info、notice、warn、error、crit。debug 日志输出最详细
+error_log  /data/wwwlogs/nginx_error.log  crit;
+
+// 存储 Nginx 进程 id 的文件路径
+pid /usr/local/nginx/logs/nginx.pid;
+
+// 指定 Nginx 进程最多打开的文件描述符
+worker_rlimit_nofile 51200;
+
 events {
+  // 使用的 I/O 模型，可选项有：select、epoll、kqueue、poll、rtsig、/dev/poll。Linux 下首选 epoll，FreeBSD 下首选 kqueue
+  use epoll;
   worker_connections 1024; // 每个进程允许的最大连接数
 }
 http {
+  charset utf-8;
+  include mime.types; // 包含其他配置文件，方便模块化配置，利于管理
+  default_type application/octet-stream; // 文件类型未定义时，默认使用二进制流的格式
+  client_header_buffer_size 32k; // 客户端请求头 buffer size 大小
+  large_client_header_buffers 4 32k; // 客户端请求中较大的消息头的缓存数量和大小
+  client_max_body_size 50m; // 客户端请求中 http body 的大小
+  sendfile on; // 设置为 on 表示启动高效传输文件的模式
+  tcp_nopush on; // sendfile 设置为 on 时才生效，用于防止网络阻塞
+  keepalive_timeout 60; // 客户端保持活动连接的时间，超时则关闭连接
+  // FastCGI 致力于减少网页服务器与 CGI 程序之间交互的开销，从而使服务器可以同时处理更多的网页请求
+  fastcgi_connect_timeout 300;
+  fastcgi_send_timeout 300;
+  fastcgi_read_timeout 300;
+  fastcgi_buffer_size 64k;
+  fastcgi_buffers 4 64k;
+  fastcgi_busy_buffers_size 128k;
+  fastcgi_temp_file_write_size 256k;
+  // gzip 压缩
+  gzip on;
+  gzip_min_length  1k; // 数据大于这个值时才启用 gzip 压缩，数据大小通过读取 Content-Length 来获取
+  gzip_buffers     4 16k;
+  gzip_http_version 1.1;
+  gzip_comp_level 2; // 压缩比，取值 1-9.1 是压缩比最低，速度快。9 压缩比最高，速度慢，耗 cpu 资源
+  // 需要采用 gzip 压缩的文件类型
+  gzip_types text/plain application/javascript application/x-javascript text/javascript text/css application/xml application/xml+rss;
+  gzip_vary on; // 是否让前端的缓存服务器缓存压缩后的 gzip 文件
+  gzip_proxied   expired no-cache no-store private auth;
+  gzip_disable   "MSIE [1-6]\.";
   upstream firstdemo { // upstream name {} 负载均衡
     ip_hash; // 记录首次访问的信息，之后再访问都是该服务器
     server 39.106.145.33;
@@ -264,7 +306,7 @@ http {
   }
   server { // 反向代理
     listen 8080;
-    server_name  m1.shein.com; // 访问的域名
+    server_name  m1.shein.com; // 访问的域名，多个域名用空格分隔
     location / {
       proxy_pass http://firstdemo; // 项目的开发机地址
       proxy_set_header Host $host;
@@ -275,9 +317,71 @@ http {
       proxy_read_timeout 600;
       proxy_send_timeout 600;
     }
+    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$ { // HTTP 缓存
+        expires 30d;
+    }
+    location /nginx_status {} // 设置 Nginx 统计功能
+      stub_status on; // 启用
+      access_log   off;
+      allow 192.168.1.0/24; // 允许访问统计页面的 ip 范围
+    }
   }
 }
-include vhost/*.conf; // 引入其他的配置文件
+// 包含 vhost 目录下所有 .conf 后缀的配置文件。通常包含的文件的内容是 server 块
+include vhost/*.conf;
+</code></pre>
+
+<p>负载均衡的配置通常有两种方式:</p>
+
+<p>1、<strong>加权轮询</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">配置项</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">down</td>
+      <td style="text-align: left">不参与到负载均衡中，一般用户排查故障时使用</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">weight</td>
+      <td style="text-align: left">轮询的权重，值越大，分配到的概率越大</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">backup</td>
+      <td style="text-align: left">备份集齐，其他服务器都不可用时才使用该服务器</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">max_fails</td>
+      <td style="text-align: left">允许请求失败的次数，默认值为 1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">fail_timeout</td>
+      <td style="text-align: left">max_fails 次失败之后，暂停服务的时间</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-TEXT">upstream backend {
+  server backend1.example.com       weight=5;
+  server backend2.example.com       weight=4;
+  server 127.0.0.1:8080             max_fails=3  fail_timeout=30s;
+  server backup1.example.com        backup;
+  server down.example.com           down;
+}
+</code></pre>
+
+<p>2、<strong>ip_hash</strong> - 根据 ip 算出 hash 值分配到不同服务器上，固定的 ip 会分配到固定的机器上。这种策略解决了网站 session 共享问题</p>
+
+<pre><code class="language-TEXT">upstream backend {
+  ip_hash;
+  server backend1.example.com;
+  server backend2.example.com;
+}
 </code></pre>
 
 <h2 id="常用命令">常用命令</h2>
@@ -294,12 +398,72 @@ include vhost/*.conf; // 引入其他的配置文件
 nginx -c /usr/local/nginx/conf/nginx.conf -s reload
 </code></pre>
 
+<h2 id="缓存">缓存</h2>
+
+<p><img src="https://i.loli.net/2019/01/30/5c511211064c7.png" alt="1634762da55df68a.png" /></p>
+
+<p>Nginx 缓存，可以在一定程度上，减少源服务器的处理请求压力。因为静态文件中，很多都是不经常更新的。Nginx 使用 <code class="highlighter-rouge">proxy_cache</code> 将用户的请求缓存到本地一个目录。下一个相同请求可以直接调取缓存文件，就不用去请求服务器了。以下示例<a href="https://github.com/wall-wxk/blog/issues/3">摘自 wall-wxk 博客</a>:</p>
+
+<pre><code class="language-TEXT">http{
+  // http 层设置
+  proxy_connect_timeout 10; // 服务器连接的超时时间
+  proxy_read_timeout 180; // 连接成功后,等候后端服务器响应时间
+  proxy_send_timeout 5; // 后端服务器数据回传时间
+  proxy_buffer_size 16k; // 缓冲区的大小
+  proxy_buffers 4 32k; // 每个连接设置缓冲区的数量为 number，每块缓冲区的大小为 size
+  proxy_busy_buffers_size 96k; // 开启缓冲响应的功能以后，在没有读到全部响应的情况下，写缓冲到达一定大小时，Nginx 一定会向客户端发送响应，直到缓冲小于此值。
+  proxy_temp_file_write_size 96k; // 设置 Nginx 每次写数据到临时文件的大小限制
+  proxy_temp_path /tmp/temp_dir; // 从后端服务器接收的临时文件的存放路径
+  // 设置缓存的路径和其他参数。被缓存的数据如果在 inactive 参数（当前为 1 天）指定的时间内未被访问，就会被从缓存中移除
+  proxy_cache_path /tmp/cache levels=1:2 keys_zone=cache_one:100m inactive=1d max_size=10g;
+
+
+  server {
+    listen       80 default_server;
+    server_name  localhost;
+    root /mnt/blog/;
+
+    location / {
+
+    }
+
+    #要缓存文件的后缀，可以在以下设置。
+    location ~ .*\.(gif|jpg|png|css|js)(.*) {
+      proxy_pass http://ip地址:90; // Nginx 缓存里拿不到资源，向该地址转发请求，拿到新的资源，并进行缓存
+      proxy_redirect off; // 设置后端服务器 Location 响应头和 Refresh 响应头的替换文本
+      proxy_set_header Host $host; // 允许重新定义或者添加发往后端服务器的请求头
+      proxy_cache cache_one; // 指定用于页面缓存的共享内存，对应 http 层设置的 keys_zone
+      proxy_cache_valid 200 302 24h; // 为不同的响应状态码设置不同的缓存时间
+      proxy_cache_valid 301 30d;
+      proxy_cache_valid any 5m;
+      expires 90d; // 缓存时间
+      // 如果缓存有效的话，那么静态资源返回的报头，一定会带上这个信息
+      add_header wall "hey!guys!give me a star."; // 添加响应头
+    }
+  }
+
+  // 无 Nginx 缓存的 blog 端口
+  server {
+    listen  90;
+    server_name localhost;
+    root /mnt/blog/;
+
+    location / {
+
+    }
+  }
+}
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="http://nginx.org/en/docs/">Nginx 官方文档</a></li>
   <li><a href="http://wiki.jikexueyuan.com/project/nginx/">Nginx 入门指南 - 极客学院</a></li>
   <li><a href="https://juejin.im/post/5b01336af265da0b8a67e5c9">谁说前端不需要懂-Nginx反向代理与负载均衡</a> By chenhongdong</li>
+  <li><a href="https://github.com/wall-wxk/blog/issues/3">使用 nginx 缓存服务器上的静态文件</a> By wall-wxk</li>
+  <li><a href="http://blog.51cto.com/xsboke/1918681">nginx 系列：nginx 反向缓存代理详解</a> By 小生博客</li>
+  <li><a href="https://blog.csdn.net/u010837612/article/details/79571077">Nginx 配置文件详解</a> By 君君要上天</li>
 </ol>
  
 <div id="disqus_thread"></div>
