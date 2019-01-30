@@ -165,6 +165,80 @@ npm run env | grep npm_package | sort
 "test": "cross-env NODE_ENV=test mocha tests/",
 ```
 
+但是 cross-env 并不能解决大型项目中自定义环境变量的持久化问题，这里再推荐一个 [`env-cmd`](https://github.com/toddbluhm/env-cmd)，其缺点是不支持在命令行中自定义环境变量:
+
+```TEXT
+# 文件 ./test/.env
+ENV1=THANKS
+ENV2=FOR ALL
+ENV3=THE FISH
+```
+
+```JSON
+{
+  "scripts": {
+    "test": "env-cmd ./test/.env mocha -R spec"
+  }
+}
+```
+
+```SHELL
+# 命令行
+./node_modules/.bin/env-cmd ./test/.env node index.js
+```
+
+对于更复杂的环境，我们在配置文件 `.env-cmdrc` 中定义环境变量:
+
+```JSON
+{
+  "dev": {
+    "ENV1": "Thanks",
+    "ENV2": "For All"
+  },
+  "test": {
+    "ENV1": "No Thanks",
+    "ENV3": "!"
+  },
+  "prod": {
+    "ENV1": "The Fish"
+  }
+}
+```
+
+```JSON
+{
+  "scripts": {
+    "test": "env-cmd dev mocha -R spec"
+  }
+}
+```
+
+```SHELL
+# 命令行同时传输多个配置
+./node_modules/.bin/env-cmd test,production node index.js
+```
+
+### 版本号
+
+这里对版本号做一些解释，主要格式为 `major.minor.patch` ，即`主版本号.次版本号.修补版本号`，语义化规范可以[参考这里](https://semver.org/lang/zh-CN/):
+
+* 波浪符号(**~**) - 会更新到当前 minor version(中间数字)中最新的版本，例如更新 ~1.10.0，这个库会去匹配更新到 1.10.x 的最新版本
+* 插入符号(**^**) - 会更新到当前 major version(首位数字)中最新的版本，例如更新 ^1.10.0，这个库会去匹配更新到 1.x.x 的最新版本
+* 不带符号 - 匹配具体版本号
+
+| 序号 | 描述 |
+|:--------------|:---------|
+| **major** | 进行不向下兼容的修改时，递增主版本号 |
+| **minor** | 保持向下兼容,新增特性时，递增次版本号 |
+| **patch** | 保持向下兼容,修复问题但不影响特性时，递增修订号 |
+
+```JSON
+"dependencies": {
+  "@babel/runtime": "7.0.0-beta.42",
+  "@material-ui/core": "^3.1.1",
+}
+```
+
 ## scripty
 
 当脚本命令比较多的时候，可以通过[scripty](https://github.com/testdouble/scripty)可以从将 scripts 剥离到单独文件中管理，还是看最初的栗子:
@@ -251,3 +325,4 @@ yarn global add yarn
 4. [yarn 官网](https://yarnpkg.com/zh-Hans/docs)
 5. [Npm vs Yarn 之备忘详单](https://jeffjade.com/2017/12/30/135-npm-vs-yarn-detial-memo/) By 晚晴幽草轩轩主
 6. [npm5 新版功能特性解析及与 yarn 评测对比](https://cloud.tencent.com/developer/article/1020507) By 马铖
+7. [Package.json 中库的版本号详解](https://github.com/ragingDream/blog/issues/32) By ragingDream

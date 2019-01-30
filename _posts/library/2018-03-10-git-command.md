@@ -358,11 +358,12 @@ git stash apply stash@{1}
 
 ### tag
 
-**tag** 一般用于发布某个版本时，在版本库中打上标签便于后续查看，类似分支，都是指向某次 commit 的指针，但分支可移动，而标签不可动。
+**tag** 一般用于发布某个版本时，在版本库中打上标签便于后续查看，类似分支，都是指向某次 commit 的指针，但分支可移动，而标签不可动，可以[参考语义化规范](https://semver.org/lang/zh-CN/)。
 
 ```SHELL
 # 创建一个标签
 git tag v1.0.0
+git tag -a v1.0.0 -m "附注信息"
 
 # 根据 commit id 创建一个标签
 git tag v1.0.0 b9ffdcd
