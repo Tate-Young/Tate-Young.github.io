@@ -5,6 +5,8 @@
 <head>
     <meta content='数组 map filter reduce - Tate & Snow' name='title' />
     <meta content='数组 map filter reduce - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
     <title>数组 map filter reduce - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -362,7 +364,23 @@ var nameList = names.split(re);
   <li><a href="https://atendesigngroup.com/blog/array-map-filter-and-reduce-js">Array Map, Filter and Reduce in JS</a> By John Ferris</li>
 </ol>
  
-<div id="disqus_thread"></div>
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: true  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
 <script>
     /**
      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -387,7 +405,8 @@ var nameList = names.split(re);
 </script>
 <noscript>Please enable JavaScript to view the
     <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-</noscript>
+</noscript> -->
+
 
             <!-- <p class="post-info">
 			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-07-27 11:15:00</p> -->
