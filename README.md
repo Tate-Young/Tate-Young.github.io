@@ -17,6 +17,8 @@ redirect_from:
 
 > disqus 目前只能科学上网才能看到哦 😯，Jekyll 模板来源于 liberxue[已开源](https://github.com/Liberxue/liberxue.github.io)，十分感谢，大家可以去 fork 点个赞 👍。
 
+> 【补充】现在 disqus 换成了 [gitalk](https://github.com/gitalk/gitalk)，快去试试效果吧 😝哈哈哈~嗝~
+
 ## 定个小目标
 
 最近面了个X公司，感觉好多知识都很陌生，没有去钻研或者深究，甚至有的都没听说过 😭，因此有了这个小计划，一定要养成做笔记的习惯，虽然一直用印象笔记，但是都没有细心整理。
