@@ -6,7 +6,7 @@ flag: Other
 background: green
 category: 前端
 title: TDD 测试驱动开发
-date:   2019-01-31 11:01:00 GMT+0800 (CST)
+date:   2019-01-31 16:23:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/01/31/5c5296c40ec9c.png
 tags:
 - Other
@@ -97,7 +97,7 @@ test('adds 1 + 2 to equal 3', () => {
 });
 ```
 
-在 package。json 里添加如下命令:
+在 `package.json` 里添加如下命令:
 
 ```JSON
 {

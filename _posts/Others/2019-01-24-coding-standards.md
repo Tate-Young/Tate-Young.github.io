@@ -178,6 +178,71 @@ indent_style = space
 indent_size = 2
 ```
 
+## commitlint
+
+**[commitlint](https://github.com/marionebl/commitlint)** 主要用来检测 Git 提交信息是否符合 **[conventional commit format](https://www.conventionalcommits.org/en/v1.0.0-beta.3/)** 规范。常用的书写格式如下:
+
+```TEXT
+# scope is optional
+type(scope?): subject
+
+// 栗子
+chore: run tests on travis ci
+feat(blog): add comment section
+```
+
+安装方式:
+
+```SHELL
+# Install commitlint cli and conventional config
+npm install --save-dev @commitlint/{config-conventional,cli}
+# For Windows:
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
+
+# Configure commitlint to use conventional config
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+```
+
+然后在 `package.json` 中添加 **husky** 的 `commit-msg` 钩子(注意前提是安装了 husky 库):
+
+```JSON
+{
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }  
+  }
+}
+```
+
+scope 可以用其他扩展(如 [commitlint-config-conventional (based on the the Angular convention)](https://github.com/marionebl/commitlint/tree/master/%40commitlint/config-conventional#type-enum))或者自定义。自定义的话需要用到配置文件 `commitlint.config.js`:
+
+```JS
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    'type-enum': [
+      2,
+      'always',
+      [
+        'feat', // 新特性
+        'fix', // 修复 bug
+        'docs', // 文档
+        'typo', // 修改简单的文字或变量名
+        'style', // 样式
+        'refactor', // 重构
+        'test', // 测试
+        'chore', // 构建过程或辅助工具的变动
+        'revert', // 回滚
+        'dev', // 笼统的新需求修改
+      ],
+    ],
+  },
+}
+```
+
+![commitlint](https://camo.githubusercontent.com/7a550a88bab7c9b897e97f3b138696727db47db0/68747470733a2f2f63646e2e7261776769742e636f6d2f6d6172696f6e65626c2f636f6d6d69746c696e742f333539343339373931396336313838636533316363666339346130313133643632356435353531362f646f63732f6173736574732f636f6d6d69746c696e742e737667)
+
 ## 参考链接
 
 1. [ESLint 官方文档](http://eslint.cn/docs/user-guide/configuring)

@@ -354,6 +354,67 @@ indent_style = space
 indent_size = 2
 </code></pre>
 
+<h2 id="commitlint">commitlint</h2>
+
+<p><strong><a href="https://github.com/marionebl/commitlint">commitlint</a></strong> 主要用来检测 Git 提交信息是否符合 <strong><a href="https://www.conventionalcommits.org/en/v1.0.0-beta.3/">conventional commit format</a></strong> 规范。常用的书写格式如下:</p>
+
+<pre><code class="language-TEXT"># scope is optional
+type(scope?): subject
+
+// 栗子
+chore: run tests on travis ci
+feat(blog): add comment section
+</code></pre>
+
+<p>安装方式:</p>
+
+<pre><code class="language-SHELL"># Install commitlint cli and conventional config
+npm install --save-dev @commitlint/{config-conventional,cli}
+# For Windows:
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
+
+# Configure commitlint to use conventional config
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" &gt; commitlint.config.js
+</code></pre>
+
+<p>然后在 <code class="highlighter-rouge">package.json</code> 中添加 <strong>husky</strong> 的 <code class="highlighter-rouge">commit-msg</code> 钩子(注意前提是安装了 husky 库):</p>
+
+<pre><code class="language-JSON">{
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }  
+  }
+}
+</code></pre>
+
+<p>scope 可以用其他扩展(如 <a href="https://github.com/marionebl/commitlint/tree/master/%40commitlint/config-conventional#type-enum">commitlint-config-conventional (based on the the Angular convention)</a>)或者自定义。自定义的话需要用到配置文件 <code class="highlighter-rouge">commitlint.config.js</code>:</p>
+
+<pre><code class="language-JS">module.exports = {
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    'type-enum': [
+      2,
+      'always',
+      [
+        'feat', // 新特性
+        'fix', // 修复 bug
+        'docs', // 文档
+        'typo', // 修改简单的文字或变量名
+        'style', // 样式
+        'refactor', // 重构
+        'test', // 测试
+        'chore', // 构建过程或辅助工具的变动
+        'revert', // 回滚
+        'dev', // 笼统的新需求修改
+      ],
+    ],
+  },
+}
+</code></pre>
+
+<p><img src="https://camo.githubusercontent.com/7a550a88bab7c9b897e97f3b138696727db47db0/68747470733a2f2f63646e2e7261776769742e636f6d2f6d6172696f6e65626c2f636f6d6d69746c696e742f333539343339373931396336313838636533316363666339346130313133643632356435353531362f646f63732f6173736574732f636f6d6d69746c696e742e737667" alt="commitlint" /></p>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
