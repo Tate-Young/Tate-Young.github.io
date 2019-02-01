@@ -417,12 +417,36 @@ echo "module.exports = {extends: ['@commitlint/config-conventional']}" &gt; comm
 
 <p><img src="https://camo.githubusercontent.com/7a550a88bab7c9b897e97f3b138696727db47db0/68747470733a2f2f63646e2e7261776769742e636f6d2f6d6172696f6e65626c2f636f6d6d69746c696e742f333539343339373931396336313838636533316363666339346130313133643632356435353531362f646f63732f6173736574732f636f6d6d69746c696e742e737667" alt="commitlint" /></p>
 
+<h2 id="markdownlint">markdownlint</h2>
+
+<p><strong><a href="https://github.com/DavidAnson/markdownlint">markdownlint</a></strong> 是一个针对 markdown 语法的规范，举个栗子:</p>
+
+<ul>
+  <li>MD001 - heading-increment/header-increment - Heading levels should only increment by one level at a time</li>
+  <li>MD002 - first-heading-h1/first-header-h1 - First heading should be a top level heading</li>
+  <li>MD003 - heading-style/header-style - Heading style</li>
+</ul>
+
+<p>如果用不到哪个规范，也可以单独禁用掉，多个用空格隔开:</p>
+
+<ul>
+  <li>禁用所有规范: <code class="highlighter-rouge">&lt;!-- markdownlint-disable --&gt;</code></li>
+  <li>启用所有规范: <code class="highlighter-rouge">&lt;!-- markdownlint-enable --&gt;</code></li>
+  <li>禁用单个或多个规范: <code class="highlighter-rouge">&lt;!-- markdownlint-disable MD001 MD002 --&gt;</code></li>
+  <li>启用单个或多个规范: <code class="highlighter-rouge">&lt;!-- markdownlint-enable MD001 MD002 --&gt;</code></li>
+</ul>
+
+<pre><code class="language-HTML">&lt;!-- markdownlint-disable MD037 --&gt;
+deliberate space * in * emphasis
+&lt;!-- markdownlint-enable MD037 --&gt;
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="http://eslint.cn/docs/user-guide/configuring">ESLint 官方文档</a></li>
   <li><a href="http://techblog.sishuxuefu.com/atricle.html?5b2603c4ee920a003b731514">全局配置 ESLint 之 React</a> By 杨俊宁</li>
-  <li><a href="https://editorconfig.org/">EditorConfig</a></li>
+  <li><a href="https://editorconfig.org/">EditorConfig 官方文档</a></li>
 </ol>
  
 <div id="gitalk-container"></div>

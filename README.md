@@ -15,7 +15,7 @@ redirect_from:
 
 ![bilibili.gif](https://i.loli.net/2018/02/25/5a922e9961a07.gif)
 
-> disqus 目前只能科学上网才能看到哦 😯，Jekyll 模板来源于 liberxue[已开源](https://github.com/Liberxue/liberxue.github.io)，十分感谢，大家可以去 fork 点个赞 👍。
+> disqus 目前只能科学上网才能看到哦 😯，Jekyll 模板来源于 liberxue[(已开源)](https://github.com/Liberxue/liberxue.github.io)，十分感谢，大家可以去 fork 点个赞 👍。
 
 > 【补充】现在 disqus 换成了 [gitalk](https://github.com/gitalk/gitalk)，快去试试效果吧 😝哈哈哈~嗝~
 

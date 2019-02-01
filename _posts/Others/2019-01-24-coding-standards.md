@@ -243,8 +243,29 @@ module.exports = {
 
 ![commitlint](https://camo.githubusercontent.com/7a550a88bab7c9b897e97f3b138696727db47db0/68747470733a2f2f63646e2e7261776769742e636f6d2f6d6172696f6e65626c2f636f6d6d69746c696e742f333539343339373931396336313838636533316363666339346130313133643632356435353531362f646f63732f6173736574732f636f6d6d69746c696e742e737667)
 
+## markdownlint
+
+**[markdownlint](https://github.com/DavidAnson/markdownlint)** 是一个针对 markdown 语法的规范，举个栗子:
+
+* MD001 - heading-increment/header-increment - Heading levels should only increment by one level at a time
+* MD002 - first-heading-h1/first-header-h1 - First heading should be a top level heading
+* MD003 - heading-style/header-style - Heading style
+
+如果用不到哪个规范，也可以单独禁用掉，多个用空格隔开:
+
+* 禁用所有规范: `<!-- markdownlint-disable -->`
+* 启用所有规范: `<!-- markdownlint-enable -->`
+* 禁用单个或多个规范: `<!-- markdownlint-disable MD001 MD002 -->`
+* 启用单个或多个规范: `<!-- markdownlint-enable MD001 MD002 -->`
+
+```HTML
+<!-- markdownlint-disable MD037 -->
+deliberate space * in * emphasis
+<!-- markdownlint-enable MD037 -->
+```
+
 ## 参考链接
 
 1. [ESLint 官方文档](http://eslint.cn/docs/user-guide/configuring)
 2. [全局配置 ESLint 之 React](http://techblog.sishuxuefu.com/atricle.html?5b2603c4ee920a003b731514) By 杨俊宁
-3. [EditorConfig](https://editorconfig.org/)
+3. [EditorConfig 官方文档](https://editorconfig.org/)
