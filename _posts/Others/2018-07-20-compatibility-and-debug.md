@@ -127,6 +127,23 @@ var ID = function () {
 };
 ```
 
+### 跳出 for 循环
+
+* **break** - 终止循环
+* **continue** - 跳出本次循环，继续下次循环
+
+```JS
+for (var n = 0; n < 5; n += 1) {
+  if (n === 2) {
+    // break
+    continue
+  }
+  // break output --> 0, 1
+  // continue output --> 0, 1, 3, 4
+  console.log(n)
+}
+```
+
 > 未完待续
 
 1. [Charles 从入门到精通](https://blog.devtang.com/2015/11/14/charles-introduction/) By 唐巧

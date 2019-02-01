@@ -314,6 +314,24 @@
 };
 </code></pre>
 
+<h3 id="跳出-for-循环">跳出 for 循环</h3>
+
+<ul>
+  <li><strong>break</strong> - 终止循环</li>
+  <li><strong>continue</strong> - 跳出本次循环，继续下次循环</li>
+</ul>
+
+<pre><code class="language-JS">for (var n = 0; n &lt; 5; n += 1) {
+  if (n === 2) {
+    // break
+    continue
+  }
+  // break output --&gt; 0, 1
+  // continue output --&gt; 0, 1, 3, 4
+  console.log(n)
+}
+</code></pre>
+
 <blockquote>
   <p>未完待续</p>
 </blockquote>
