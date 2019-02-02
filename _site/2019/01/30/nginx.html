@@ -393,6 +393,63 @@ include vhost/*.conf;
 }
 </code></pre>
 
+<h3 id="http-缓存">HTTP 缓存</h3>
+
+<p><img src="https://i.loli.net/2019/01/30/5c511211064c7.png" alt="1634762da55df68a.png" /></p>
+
+<p>Nginx 缓存，可以在一定程度上，减少源服务器的处理请求压力。因为静态文件中，很多都是不经常更新的。Nginx 使用 <code class="highlighter-rouge">proxy_cache</code> 将用户的请求缓存到本地一个目录。下一个相同请求可以直接调取缓存文件，就不用去请求服务器了。以下示例<a href="https://github.com/wall-wxk/blog/issues/3">摘自 wall-wxk 博客</a>:</p>
+
+<pre><code class="language-TEXT">http{
+  // http 层设置
+  proxy_connect_timeout 10; // 服务器连接的超时时间
+  proxy_read_timeout 180; // 连接成功后,等候后端服务器响应时间
+  proxy_send_timeout 5; // 后端服务器数据回传时间
+  proxy_buffer_size 16k; // 缓冲区的大小
+  proxy_buffers 4 32k; // 每个连接设置缓冲区的数量为 number，每块缓冲区的大小为 size
+  proxy_busy_buffers_size 96k; // 开启缓冲响应的功能以后，在没有读到全部响应的情况下，写缓冲到达一定大小时，Nginx 一定会向客户端发送响应，直到缓冲小于此值。
+  proxy_temp_file_write_size 96k; // 设置 Nginx 每次写数据到临时文件的大小限制
+  proxy_temp_path /tmp/temp_dir; // 从后端服务器接收的临时文件的存放路径
+  // 设置缓存的路径和其他参数。被缓存的数据如果在 inactive 参数（当前为 1 天）指定的时间内未被访问，就会被从缓存中移除
+  proxy_cache_path /tmp/cache levels=1:2 keys_zone=cache_one:100m inactive=1d max_size=10g;
+
+
+  server {
+    listen       80 default_server;
+    server_name  localhost;
+    root /mnt/blog/;
+
+    location / {
+
+    }
+
+    #要缓存文件的后缀，可以在以下设置。
+    location ~ .*\.(gif|jpg|png|css|js)(.*) {
+      proxy_pass http://ip地址:90; // Nginx 缓存里拿不到资源，向该地址转发请求，拿到新的资源，并进行缓存
+      proxy_redirect off; // 设置后端服务器 Location 响应头和 Refresh 响应头的替换文本
+      proxy_set_header Host $host; // 允许重新定义或者添加发往后端服务器的请求头
+      proxy_cache cache_one; // 指定用于页面缓存的共享内存，对应 http 层设置的 keys_zone
+      proxy_cache_valid 200 302 24h; // 为不同的响应状态码设置不同的缓存时间
+      proxy_cache_valid 301 30d;
+      proxy_cache_valid any 5m;
+      expires 90d; // 缓存时间
+      // 如果缓存有效的话，那么静态资源返回的报头，一定会带上这个信息
+      add_header wall "hey!guys!give me a star."; // 添加响应头
+    }
+  }
+
+  // 无 Nginx 缓存的 blog 端口
+  server {
+    listen  90;
+    server_name localhost;
+    root /mnt/blog/;
+
+    location / {
+
+    }
+  }
+}
+</code></pre>
+
 <h3 id="proxy_pass">proxy_pass</h3>
 
 <p>目前有两个模块都拥有 <strong><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass">proxy_pass</a></strong> 指令:</p>
@@ -456,63 +513,6 @@ include vhost/*.conf;
 <pre><code class="language-SHELL">nginx -s reload
 # 使用 -c 的参数指定 nginx.conf 文件的位置
 nginx -c /usr/local/nginx/conf/nginx.conf -s reload
-</code></pre>
-
-<h2 id="缓存">缓存</h2>
-
-<p><img src="https://i.loli.net/2019/01/30/5c511211064c7.png" alt="1634762da55df68a.png" /></p>
-
-<p>Nginx 缓存，可以在一定程度上，减少源服务器的处理请求压力。因为静态文件中，很多都是不经常更新的。Nginx 使用 <code class="highlighter-rouge">proxy_cache</code> 将用户的请求缓存到本地一个目录。下一个相同请求可以直接调取缓存文件，就不用去请求服务器了。以下示例<a href="https://github.com/wall-wxk/blog/issues/3">摘自 wall-wxk 博客</a>:</p>
-
-<pre><code class="language-TEXT">http{
-  // http 层设置
-  proxy_connect_timeout 10; // 服务器连接的超时时间
-  proxy_read_timeout 180; // 连接成功后,等候后端服务器响应时间
-  proxy_send_timeout 5; // 后端服务器数据回传时间
-  proxy_buffer_size 16k; // 缓冲区的大小
-  proxy_buffers 4 32k; // 每个连接设置缓冲区的数量为 number，每块缓冲区的大小为 size
-  proxy_busy_buffers_size 96k; // 开启缓冲响应的功能以后，在没有读到全部响应的情况下，写缓冲到达一定大小时，Nginx 一定会向客户端发送响应，直到缓冲小于此值。
-  proxy_temp_file_write_size 96k; // 设置 Nginx 每次写数据到临时文件的大小限制
-  proxy_temp_path /tmp/temp_dir; // 从后端服务器接收的临时文件的存放路径
-  // 设置缓存的路径和其他参数。被缓存的数据如果在 inactive 参数（当前为 1 天）指定的时间内未被访问，就会被从缓存中移除
-  proxy_cache_path /tmp/cache levels=1:2 keys_zone=cache_one:100m inactive=1d max_size=10g;
-
-
-  server {
-    listen       80 default_server;
-    server_name  localhost;
-    root /mnt/blog/;
-
-    location / {
-
-    }
-
-    #要缓存文件的后缀，可以在以下设置。
-    location ~ .*\.(gif|jpg|png|css|js)(.*) {
-      proxy_pass http://ip地址:90; // Nginx 缓存里拿不到资源，向该地址转发请求，拿到新的资源，并进行缓存
-      proxy_redirect off; // 设置后端服务器 Location 响应头和 Refresh 响应头的替换文本
-      proxy_set_header Host $host; // 允许重新定义或者添加发往后端服务器的请求头
-      proxy_cache cache_one; // 指定用于页面缓存的共享内存，对应 http 层设置的 keys_zone
-      proxy_cache_valid 200 302 24h; // 为不同的响应状态码设置不同的缓存时间
-      proxy_cache_valid 301 30d;
-      proxy_cache_valid any 5m;
-      expires 90d; // 缓存时间
-      // 如果缓存有效的话，那么静态资源返回的报头，一定会带上这个信息
-      add_header wall "hey!guys!give me a star."; // 添加响应头
-    }
-  }
-
-  // 无 Nginx 缓存的 blog 端口
-  server {
-    listen  90;
-    server_name localhost;
-    root /mnt/blog/;
-
-    location / {
-
-    }
-  }
-}
 </code></pre>
 
 <h2 id="参考链接">参考链接</h2>
