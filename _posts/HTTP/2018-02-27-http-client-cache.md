@@ -7,7 +7,7 @@ background: orange
 category: 前端
 title: HTTP 缓存
 date:   2018-02-27 17:03:00 GMT+0800 (CST)
-background-image: http://7tszky.com1.z0.glb.clouddn.com/FozLFZKB5y67NUSXLhioLseHJYbE
+background-image: http://imweb-io-1251594266.file.myqcloud.com/FozLFZKB5y67NUSXLhioLseHJYbE
 tags:
 - http
 ---
@@ -88,7 +88,7 @@ Cache-Control: max-age=5, must-revalidate
 Last-Modified: Tue, 27 Feb 2018 13:14:00 GMT
 ```
 
-![last-modified](http://7tszky.com1.z0.glb.clouddn.com/FozLFZKB5y67NUSXLhioLseHJYbE)
+![last-modified](http://imweb-io-1251594266.file.myqcloud.com/FozLFZKB5y67NUSXLhioLseHJYbE)
 
 #### If-Modified-Since
 
@@ -153,7 +153,7 @@ Last-Modified: Fri, 15 Jul 2016 04:11:51 GMT
 
 * **第一种情况**: 输入 URL
 
-![输入 URL](http://7tszky.com1.z0.glb.clouddn.com/FjNVji6ipMDCWCoe2jXfzgqFbF8k)
+![输入 URL](http://imweb-io-1251594266.file.myqcloud.com/FjNVji6ipMDCWCoe2jXfzgqFbF8k)
 
 * **第二种情况**: F5 刷新
 
@@ -167,7 +167,7 @@ If-Modified-Since: Fri, 15 Jul 2016 04:11:51 GMT
 
 服务器则返回 304 状态和响应头。
 
-![F5 刷新](http://7tszky.com1.z0.glb.clouddn.com/FoGcVs6BvMvNLNM7KSvwEuHBaqDt)
+![F5 刷新](http://imweb-io-1251594266.file.myqcloud.com/FoGcVs6BvMvNLNM7KSvwEuHBaqDt)
 
 * **第三种情况**: Ctrl + F5 刷新
 
@@ -178,7 +178,7 @@ Cache-Control: no-cache
 Pragma: no-cache
 ```
 
-![Ctrl + F5](http://7tszky.com1.z0.glb.clouddn.com/FonZrh_J5auduA4JaqZKW9hZqXrG)
+![Ctrl + F5](http://imweb-io-1251594266.file.myqcloud.com/FonZrh_J5auduA4JaqZKW9hZqXrG)
 
 ## 参考链接
 
