@@ -252,6 +252,8 @@
   </tbody>
 </table>
 
+<h3 id="反向代理">反向代理</h3>
+
 <p>举个配置的例子(<a href="https://juejin.im/post/5b01336af265da0b8a67e5c9">摘自掘进</a>):</p>
 
 <pre><code class="language-TEXT">// nginx.conf, 每次修改都要重启才能生效
@@ -336,6 +338,8 @@ http {
 include vhost/*.conf;
 </code></pre>
 
+<h3 id="负载均衡">负载均衡</h3>
+
 <p>负载均衡的配置通常有两种方式:</p>
 
 <p>1、<strong>加权轮询</strong></p>
@@ -386,6 +390,57 @@ include vhost/*.conf;
   ip_hash;
   server backend1.example.com;
   server backend2.example.com;
+}
+</code></pre>
+
+<h3 id="proxy_pass">proxy_pass</h3>
+
+<p>目前有两个模块都拥有 <strong><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass">proxy_pass</a></strong> 指令:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">ngx_stream_proxy_module</code> - 只能在 server 段使用, 只需要提供域名或 ip 地址和端口。可以理解为端口转发，可以是 tcp 或 udp 端口</li>
+  <li><code class="highlighter-rouge">ngx_http_proxy_module</code> - 需要在 location 段、location 中的 if 段、limit_except 段中使用，处理需要提供域名或 ip 地址和端口外，还需要提供协议(http 或 https)，还有一个可选的 uri 可以配置</li>
+</ul>
+
+<pre><code class="language-TEXT">server {
+  listen 53 udp;
+  proxy_responses 1;
+  proxy_timeout 20s;
+  proxy_pass dns.example.com:53;
+}
+</code></pre>
+
+<pre><code class="language-TEXT">server {
+  listen      80;
+  server_name www.test.com;
+
+  # 正常代理，不修改后端 url 的
+  location /some/path/ {
+    # 如果跨域资源也部署在同一台机器上，我们甚至可以 proxy 到 127.0.0.1
+    proxy_pass http://127.0.0.1:1234;
+  }
+
+  # 修改后端 url 地址的代理（本例后端地址中，最后带了一个斜线)
+  location /testb {
+    proxy_pass http://www.other.com:8801/;
+  }
+
+  # 使用 if in location
+  location /google {
+    if ( $geoip_country_code ~ (RU|CN) ) {
+      proxy_pass http://www.google.hk;
+    }
+  }
+
+  location /tate/ {
+    # 没有匹配 limit_except 的，代理到 unix:/tmp/backend.socket:/uri/
+    proxy_pass http://unix:/tmp/backend.socket:/uri/;;
+
+    # 匹配到请求方法为: PUT or DELETE, 代理到 9080
+    limit_except PUT DELETE {
+      proxy_pass http://127.0.0.1:9080;
+    }
+  }
 }
 </code></pre>
 
@@ -465,10 +520,11 @@ nginx -c /usr/local/nginx/conf/nginx.conf -s reload
 <ol>
   <li><a href="http://nginx.org/en/docs/">Nginx 官方文档</a></li>
   <li><a href="http://wiki.jikexueyuan.com/project/nginx/">Nginx 入门指南 - 极客学院</a></li>
-  <li><a href="https://juejin.im/post/5b01336af265da0b8a67e5c9">谁说前端不需要懂-Nginx反向代理与负载均衡</a> By chenhongdong</li>
-  <li><a href="https://github.com/wall-wxk/blog/issues/3">使用 nginx 缓存服务器上的静态文件</a> By wall-wxk</li>
-  <li><a href="http://blog.51cto.com/xsboke/1918681">nginx 系列：nginx 反向缓存代理详解</a> By 小生博客</li>
+  <li><a href="https://juejin.im/post/5b01336af265da0b8a67e5c9">谁说前端不需要懂 - Nginx 反向代理与负载均衡</a> By chenhongdong</li>
+  <li><a href="https://github.com/wall-wxk/blog/issues/3">使用 Nginx 缓存服务器上的静态文件</a> By wall-wxk</li>
+  <li><a href="http://blog.51cto.com/xsboke/1918681">Nginx 系列：Nginx 反向缓存代理详解</a> By 小生博客</li>
   <li><a href="https://blog.csdn.net/u010837612/article/details/79571077">Nginx 配置文件详解</a> By 君君要上天</li>
+  <li><a href="https://my.oschina.net/foreverich/blog/1512304">Nginx 之 proxy_pass 指令完全拆解</a> By 永福</li>
 </ol>
  
 <div id="gitalk-container"></div>
