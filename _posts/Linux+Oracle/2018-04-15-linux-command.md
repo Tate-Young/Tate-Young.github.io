@@ -208,7 +208,7 @@ echo $difference seconds.
 
 ## mount
 
-**mount** 用来挂载资源以供访问，常用的方式为:
+**mount** 用来挂载资源以供访问，卸载则为 **unmount**，常用的方式为:
 
 ```SHELL
 mount -t 类型 -o 挂接方式 源路径 目标路径
@@ -217,7 +217,13 @@ mount -t 类型 -o 挂接方式 源路径 目标路径
 一般情况下要是访问 Windows 文件共享，则类型采用 **cifs**，详情[查看此篇博客](https://blog.csdn.net/q1059081877q/article/details/48251893)，目标路径一定要在挂载前创建，否则报错:
 
 ```SHELL
+# 挂载
 mount -t cifs -o username=591550,password=Bestsfer20175 //10.88.1.8/test $reportletMnt
+
+# 卸载
+umount /dev/hda5
+# –l 参数并不是马上卸载，而是在该目录空闲后再卸载，可以解决 device busy 的问题，当然你也可以查询到进程并 kill 掉
+umount -l /mnt/hda5
 ```
 
 ## alias

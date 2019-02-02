@@ -1,0 +1,544 @@
+login as: root
+root@10.88.5.107's password:
+Last login: Fri Apr 10 09:06:28 2015 from air-it-591550.sf.com
+[root@OrcStudy ~]# yum search cat /proc/version
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+=============================== N/S Matched: cat ===============================
+apache-tomcat-apis.noarch : Tomcat Servlet and JSP APIs
+ca-certificates.noarch : The Mozilla CA root certificate bundle
+jakarta-commons-dbcp-tomcat5.noarch : DBCP dependency for Tomcat5
+jakarta-commons-pool-tomcat5.i686 : Pool dependency for Tomcat5
+kde-i18n-Catalan.noarch : Catalan(ca) language support for KDE3
+kde-l10n-Catalan.noarch : Catalan language support for KDE
+notification-daemon.i686 : Desktop Notification Daemon
+sblim-indication_helper.i686 : Toolkit for CMPI indication providers
+startup-notification.i686 : Library for tracking application startup
+startup-notification-devel.i686 : Development portions of startup-notification
+tomcat6-jsp-2.1-api.noarch : Apache Tomcat JSP API implementation classes
+tomcat6-lib.noarch : Libraries needed to run the Tomcat Web container
+tomcat6-servlet-2.5-api.noarch : Apache Tomcat Servlet API implementation
+                               : classes
+tomcatjss.noarch : JSSE implementation using JSS for Tomcat
+ElectricFence.i686 : A debugger which detects memory allocation violations
+ImageMagick.i686 : An X application for displaying and manipulating images
+NetworkManager.i686 : Network connection manager and user applications
+NetworkManager-glib.i686 : Libraries for adding NetworkManager support to
+                         : applications that use glib.
+NetworkManager-gnome.i686 : GNOME applications for use with NetworkManager
+SDL-devel.i686 : Files needed to develop Simple DirectMedia Layer applications
+abrt-addon-python.i686 : abrt's addon for catching and analyzing Python
+                       : exceptions
+authconfig.i686 : Command line tool for setting up authentication from network
+                : services
+authconfig-gtk.i686 : Graphical tool for setting up authentication from network
+                    : services
+babel.noarch : Tools for internationalizing Python applications
+bluez-libs.i686 : Libraries for use in Bluetooth applications
+brasero.i686 : Gnome CD/DVD burning application
+bzip2-libs.i686 : Libraries for applications using bzip2
+celt051.i686 : An audio codec for use in low-delay speech and audio
+             : communication
+certmonger.i686 : Certificate status monitor and PKI enrollment client
+cheese.i686 : Application for taking pictures and movies from a webcam
+cracklib-python.i686 : Python bindings for applications which use cracklib
+crypto-utils.i686 : SSL certificate and key management utilities
+cyrus-sasl-devel.i686 : Files needed for developing applications with Cyrus SASL
+cyrus-sasl-gssapi.i686 : GSSAPI authentication support for Cyrus SASL
+cyrus-sasl-lib.i686 : Shared libraries needed by applications which use Cyrus
+                    : SASL
+cyrus-sasl-md5.i686 : CRAM-MD5 and DIGEST-MD5 authentication support for Cyrus
+                    : SASL
+cyrus-sasl-plain.i686 : PLAIN and LOGIN authentication support for Cyrus SASL
+emacs-gnuplot.i686 : Emacs bindings for the gnuplot main application
+environment-modules.i686 : Provides dynamic modification of a user's environment
+expat-devel.i686 : Libraries and header files to develop applications using
+                 : expat
+file-libs.i686 : Libraries for applications using libmagic
+fipscheck.i686 : A library for integrity verification of FIPS validated modules
+fprintd-pam.i686 : PAM module for fingerprint authentication
+geronimo-specs.noarch : Geronimo J2EE server J2EE specifications
+gnome-applets.i686 : Small applications for the GNOME panel
+gnome-disk-utility.i686 : Disk management application
+gnome-packagekit.i686 : Session applications to manage packages
+gnome-settings-daemon.i686 : The daemon sharing settings from GNOME to GTK+/KDE
+                           : applications
+gnome-vfs2-devel.i686 : Libraries and include files for developing GNOME VFS
+                      : applications
+gnote.i686 : Note-taking application
+gnupg2.i686 : Utility for secure communication and data storage
+guile.i686 : A GNU implementation of Scheme for application extensibility
+hunspell-ca.noarch : Catalan hunspell dictionaries
+hwdata.noarch : Hardware identification and configuration data
+ibacm.i686 : InfiniBand Communication Manager Assistant
+ipa-client.i686 : IPA authentication for use on clients
+ipa-pki-ca-theme.noarch : Certificate System - Certificate Authority User
+                        : Interface
+ipa-pki-common-theme.noarch : Certificate System - PKI Common Framework User
+                            : Interface
+ipa-server.i686 : The IPA authentication server
+jakarta-commons-daemon.i686 : Defines API to support an alternative invocation
+                            : mechanism
+jline.noarch : Java library for reading and editing user input in console
+             : applications
+k3b.i686 : CD/DVD burning application
+kdegraphics.i686 : K Desktop Environment - Graphics Applications
+kdelibs-devel.i686 : Header files for compiling KDE 4 applications
+kdelibs3-devel.i686 : Header files and documentation for compiling KDE 3
+                    : applications.
+kdemultimedia.i686 : KDE Multimedia applications
+kdenetwork.i686 : KDE Network Applications
+kdepim.i686 : PIM (Personal Information Manager) applications
+kdewebdev.i686 : Web development applications
+krb5-auth-dialog.i686 : Kerberos 5 authentication dialog
+ksig.i686 : A graphical application to manage multiple email signatures
+lftp.i686 : A sophisticated file transfer program
+libcgroup-devel.i686 : Development libraries to develop applications that
+                     : utilize control groups
+libcurl-devel.i686 : Files needed for building applications with libcurl
+libevent.i686 : Abstract asynchronous event notification library
+libexif-devel.i686 : Files needed for libexif application development
+libglade2-devel.i686 : The files needed for libglade application development
+libgsf-devel.i686 : Support files necessary to compile applications with libgsf
+libgssglue.i686 : Generic Security Services Application Programming Interface
+                : Library
+libgudev1.i686 : Libraries for adding libudev support to applications that use
+               : glib
+libgudev1-devel.i686 : Header files for adding libudev support to applications
+                     : that use glib
+libieee1284-devel.i686 : Files for developing applications that use libieee1284
+libnih.i686 : Lightweight application development library
+libnotify.i686 : Desktop notification library
+libtasn1-devel.i686 : Files for development of applications which will use
+                    : libtasn1
+libxml2-devel.i686 : Libraries, includes, etc. to develop XML and HTML
+                   : applications
+lrzsz.i686 : The lrz and lsz modem communications programs
+mailcap.noarch : Helper application and MIME type associations for file types
+mlocate.i686 : An utility for finding files by name
+mod_auth_kerb.i686 : Kerberos authentication module for HTTP
+mod_auth_mysql.i686 : Basic authentication for the Apache web server using a
+                    : MySQL database
+mod_auth_pgsql.i686 : Basic authentication for the Apache HTTP Server using a
+                    : PostgreSQL database
+mod_revocator.i686 : CRL retrieval module for the Apache HTTP server
+mod_wsgi.i686 : A WSGI interface for Python web applications in Apache
+mysql-devel.i686 : Files for development of MySQL applications
+numactl-devel.i686 : Development package for building Applications that use numa
+oddjob.i686 : A D-Bus service which runs odd jobs on behalf of client
+            : applications
+opencryptoki.i686 : Implementation of the PKCS#11 (Cryptoki) specification v2.11
+openslp.i686 : Open implementation of Service Location Protocol V2
+openssh-clients.i686 : An open source SSH client applications
+openssl-devel.i686 : Files for development of applications which will use
+                   : OpenSSL
+pam.i686 : An extensible library which provides authentication for applications
+pam-devel.i686 : Files needed for developing PAM-aware applications and modules
+               : for PAM
+pam_krb5.i686 : A Pluggable Authentication Module for Kerberos 5
+papi.i686 : Performance Application Programming Interface
+pcsc-lite.i686 : PC/SC Lite smart card framework and applications
+perl-Authen-SASL.noarch : SASL Authentication framework for Perl
+perl-CGI-Session.noarch : Persistent session data in CGI applications
+perl-ExtUtils-Embed.i686 : Utilities for embedding Perl in C/C++ applications
+php-gd.i686 : A module for PHP applications for using the gd graphics library
+php-ldap.i686 : A module for PHP applications that use LDAP
+php-mysql.i686 : A module for PHP applications that use MySQL databases
+php-odbc.i686 : A module for PHP applications that use ODBC databases
+php-pdo.i686 : A database access abstraction module for PHP applications
+php-pear.noarch : PHP Extension and Application Repository framework
+php-soap.i686 : A module for PHP applications that use the SOAP protocol
+php-xml.i686 : A module for PHP applications which use XML
+php-xmlrpc.i686 : A module for PHP applications which use the XML-RPC protocol
+pki-ca.noarch : Certificate System - Certificate Authority
+pki-common.noarch : Certificate System - PKI Common Framework
+pki-java-tools.noarch : Certificate System - PKI Java-Based Tools
+pki-native-tools.i686 : Certificate System - Native Tools
+pki-selinux.noarch : Certificate System - PKI Selinux Policies
+pki-setup.noarch : Certificate System - PKI Instance Creation & Removal Scripts
+pki-silent.noarch : Certificate System - Silent Installer
+pki-util.noarch : Certificate System - PKI Utility Framework
+policycoreutils-newrole.i686 : The newrole application for RBAC/MLS
+python-babel.noarch : Library for internationalizing Python applications
+python-paste-deploy.noarch : Load, configure, and compose WSGI applications and
+                           : servers
+python-repoze-what.noarch : Authorization for WSGI applications
+python-repoze-what-pylons.noarch : A plugin providing utilities for Pylons
+                                 : applications using repoze.what
+python-repoze-who.noarch : An identification and authentication framework for
+                         : WSGI
+python-repoze-who-testutil.noarch : Test utilities for repoze.who-powered
+                                  : applications
+python-rhsm.noarch : A Python library to communicate with a Red Hat Unified
+                   : Entitlement Platform
+python-twisted.noarch : Event-based framework for internet applications
+python-weberror.noarch : Web Error handling and exception catching middleware
+python-webtest.noarch : Helper to test WSGI applications
+qpid-cpp-client.i686 : Libraries for Qpid C++ client applications
+redland.i686 : RDF Application Framework
+rhythmbox.i686 : Music Management Application
+rsyslog-gssapi.i686 : GSSAPI authentication and encryption support for rsyslog
+seahorse.i686 : A GNOME application for managing encryption keys
+sgml-common.noarch : Common SGML catalog and DTD files
+spice-glib.i686 : A GObject for communicating with Spice servers
+subscription-manager-migration.i686 : Migration scripts for moving to
+                                    : certificate based subscriptions
+tomcat6.noarch : Apache Servlet/JSP Engine, RI for Servlet 2.5/JSP 2.1 API
+tomcat6-el-2.1-api.noarch : Expression Language v1.0 API
+unique.i686 : Single instance support for applications
+usbmuxd.i686 : Daemon for communicating with Apple's iPod Touch and iPhone
+which.i686 : Displays where a particular program in your path is located
+xml-common.noarch : Common XML catalog and DTD files
+xorg-x11-apps.i686 : X.Org X11 applications
+xulrunner.i686 : XUL Runtime for Gecko Applications
+
+  Name and summary matches mostly, use "search all" for everything.
+Warning: No matches found for: /proc/version
+[root@OrcStudy ~]# cat /proc/version
+Linux version 2.6.32-279.el6.i686 (mockbuild@x86-010.build.bos.redhat.com) (gcc version 4.4.6 20120305 (Red Hat 4.4.6-4) (GCC) ) #1 SMP Wed Jun 13 18:23:32 EDT 2012
+[root@OrcStudy ~]# clear
+[root@OrcStudy ~]# cat /proc/version
+Linux version 2.6.32-279.el6.i686 (mockbuild@x86-010.build.bos.redhat.com) (gcc version 4.4.6 20120305 (Red Hat 4.4.6-4) (GCC) ) #1 SMP Wed Jun 13 18:23:32 EDT 2012
+[root@OrcStudy ~]# cd /sbin/
+[root@OrcStudy sbin]# ls
+accton           grub-install       matchpathcon         restart
+addpart          grub-md5-crypt     mdadm                restorecon
+agetty           grub-terminfo      mdmon                rfkill
+alsactl          halt               microcode_ctl        rmmod
+arp              hdparm             mii-diag             rngd
+arping           hwclock            mii-tool             route
+audispd          ifcfg              mingetty             rpcbind
+auditctl         ifconfig           mkdosfs              rpc.statd
+auditd           ifdown             mkdumprd             rsyslogd
+aureport         ifenslave          mke2fs               rtmon
+ausearch         ifrename           mkfs                 runlevel
+autrace          ifup               mkfs.cramfs          runuser
+badblocks        init               mkfs.ext2            scsi_id
+biosdevname      initctl            mkfs.ext3            securetty
+blkid            insmod             mkfs.ext4            service
+blockdev         insmod.static      mkfs.ext4dev         setfiles
+busybox          install-info       mkfs.msdos           setpci
+cbq              installkernel      mkfs.vfat            setregdomain
+cfdisk           ip                 mkhomedir_helper     setsysfont
+chkconfig        ip6tables          mkinitrd             sfdisk
+clock            ip6tables-multi    mkswap               sgpio
+consoletype      ip6tables-restore  modinfo              shutdown
+crda             ip6tables-save     modprobe             slattach
+cryptsetup       ipmaddr            mount.cifs           sln
+ctrlaltdel       iptables           mount.fuse           start
+debugfs          iptables-multi     mount.nfs            start_udev
+delpart          iptables-restore   mount.nfs4           status
+depmod           iptables-save      mount.tmpfs          stop
+dhclient         iptunnel           mount.vmhgfs         sulogin
+dhclient-script  iw                 nameif               sushell
+dm_dso_reg_tool  iwconfig           netreport            swapoff
+dmeventd         iwevent            new-kernel-pkg       swapon
+dmevent_tool     iwgetid            nologin              switch_root
+dmraid           iwlist             pam_console_apply    sysctl
+dmraid.static    iwpriv             pam_tally2           tc
+dmsetup          iwspy              pam_timestamp_check  telinit
+dosfsck          kdump              parted               tune2fs
+dosfslabel       kexec              partprobe            udevadm
+dracut           killall5           partx                udevd
+dumpe2fs         kpartx             pccardctl            umount.hal
+e2fsck           ldconfig           pidof                umount.nfs
+e2image          load_policy        pivot_root           umount.nfs4
+e2label          logsave            plipconfig           umount.udisks
+e2undo           losetup            plymouthd            unix_chkpwd
+ether-wake       lsinitrd           portrelease          unix_update
+ethtool          lsmod              portreserve          vconfig
+faillock         lspci              poweroff             vgcfgbackup
+fdisk            lspcmcia           ppp-watch            vgcfgrestore
+findfs           lvchange           pvchange             vgchange
+fixfiles         lvconvert          pvck                 vgck
+fsadm            lvcreate           pvcreate             vgconvert
+fsck             lvdisplay          pvdisplay            vgcreate
+fsck.cramfs      lvextend           pvmove               vgdisplay
+fsck.ext2        lvm                pvremove             vgexport
+fsck.ext3        lvmchange          pvresize             vgextend
+fsck.ext4        lvmconf            pvs                  vgimport
+fsck.ext4dev     lvmdiskscan        pvscan               vgimportclone
+fsck.msdos       lvmdump            quotacheck           vgmerge
+fsck.vfat        lvmetad            quotaoff             vgmknodes
+fsfreeze         lvmsadc            quotaon              vgreduce
+fstab-decode     lvmsar             rdisc                vgremove
+fstrim           lvreduce           readahead            vgrename
+fuser            lvremove           readahead-collector  vgs
+genhostid        lvrename           reboot               vgscan
+getkey           lvresize           regdbdump            vgsplit
+grub             lvs                reload               weak-modules
+grubby           lvscan             request-key          wipefs
+grub-crypt       MAKEDEV            resize2fs
+[root@OrcStudy sbin]# cd /
+[root@OrcStudy /]# ls
+bin   dev  home  lost+found  misc  net  oracle  root  selinux  sys  usr
+boot  etc  lib   media       mnt   opt  proc    sbin  srv      tmp  var
+[root@OrcStudy /]# cd bin/
+[root@OrcStudy bin]# ls
+alsaunmute            env           mkdir            sh
+arch                  ex            mknod            sleep
+awk                   false         mktemp           sort
+basename              fgrep         more             stty
+bash                  find          mount            su
+cat                   findmnt       mountpoint       sync
+chgrp                 fusermount    mv               tar
+chmod                 gawk          nano             taskset
+chown                 gettext       netstat          tcsh
+cp                    grep          nice             touch
+cpio                  gtar          nisdomainname    tracepath
+csh                   gunzip        ping             tracepath6
+cut                   gzip          ping6            traceroute
+dash                  hostname      plymouth         traceroute6
+date                  ipcalc        ps               true
+dbus-cleanup-sockets  iptables-xml  pwd              ulockmgr_server
+dbus-daemon           kbd_mode      raw              umount
+dbus-monitor          keyctl        readlink         uname
+dbus-send             kill          red              unicode_start
+dbus-uuidgen          ksh           redhat_lsb_init  unicode_stop
+dd                    ksh93         rm               unlink
+df                    link          rmdir            usleep
+dmesg                 ln            rnano            vi
+dnsdomainname         loadkeys      rpm              view
+domainname            login         rvi              ypdomainname
+dumpkeys              ls            rview            zcat
+echo                  lsblk         sed
+ed                    mail          setfont
+egrep                 mailx         setserial
+[root@OrcStudy bin]# lsb_release -all
+lsb_release: invalid option -- 'l'
+lsb_release: invalid option -- 'l'
+[root@OrcStudy bin]# lsb_release -a
+LSB Version:    :core-4.0-ia32:core-4.0-noarch:graphics-4.0-ia32:graphics-4.0-noarch:printing-4.0-ia32:printing-4.0-noarch
+Distributor ID: RedHatEnterpriseServer
+Description:    Red Hat Enterprise Linux Server release 6.3 (Santiago)
+Release:        6.3
+Codename:       Santiago
+[root@OrcStudy bin]# clear
+[root@OrcStudy bin]# cd /proc/version
+-bash: cd: /proc/version: Not a directory
+[root@OrcStudy bin]# clear
+[root@OrcStudy bin]# cat /proc/version
+Linux version 2.6.32-279.el6.i686 (mockbuild@x86-010.build.bos.redhat.com) (gcc version 4.4.6 20120305 (Red Hat 4.4.6-4) (GCC) ) #1 SMP Wed Jun 13 18:23:32 EDT 2012
+[root@OrcStudy bin]# lsb_release -a
+LSB Version:    :core-4.0-ia32:core-4.0-noarch:graphics-4.0-ia32:graphics-4.0-noarch:printing-4.0-ia32:printing-4.0-noarch
+Distributor ID: RedHatEnterpriseServer
+Description:    Red Hat Enterprise Linux Server release 6.3 (Santiago)
+Release:        6.3
+Codename:       Santiago
+[root@OrcStudy bin]# yum search binutils
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+============================ N/S Matched: binutils =============================
+binutils.i686 : A GNU collection of binary utilities
+binutils-devel.i686 : BFD and opcodes static libraries and header files
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum search compat-libcap
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+========================== N/S Matched: compat-libcap ==========================
+compat-libcap1.i686 : Library for getting and setting POSIX.1e capabilities
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum search compat-libstdc
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+========================= N/S Matched: compat-libstdc ==========================
+compat-libstdc++-296.i686 : Compatibility 2.96-RH standard C++ libraries
+compat-libstdc++-33.i686 : Compatibility standard C++ libraries
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum search gcc
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+=============================== N/S Matched: gcc ===============================
+compat-libgcc-296.i686 : Compatibility 2.96-RH libgcc library
+gcc-c++.i686 : C++ support for GCC
+gcc-gnat.i686 : Ada 95 support for GCC
+gcc-java.i686 : Java support for GCC
+gcc-objc.i686 : Objective-C support for GCC
+gcc-objc++.i686 : Objective-C++ support for GCC
+libgcc.i686 : GCC version 4.4 shared support library
+compat-gcc-34.i686 : Compatibility GNU Compiler Collection
+compat-gcc-34-c++.i686 : C++ support for compatibility compiler
+compat-gcc-34-g77.i686 : Fortran 77 support for compatibility compiler
+gcc.i686 : Various compilers (C, C++, Objective-C, Java, ...)
+gcc-gfortran.i686 : Fortran support
+libgcj.i686 : Java runtime library for gcc
+libgcj-devel.i686 : Libraries for Java development using GCC
+libgcj-src.i686 : Java library sources from GCC4 preview
+libgomp.i686 : GCC OpenMP v3.0 shared support library
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum search glibc
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+============================== N/S Matched: glibc ==============================
+glibc-common.i686 : Common binaries and locale data for glibc
+compat-glibc.i686 : Compatibility C library
+compat-glibc-headers.i686 : Header files for development using standard C
+                          : libraries.
+glibc.i686 : The GNU libc libraries
+glibc-devel.i686 : Object files for development using standard C libraries.
+glibc-headers.i686 : Header files for development using standard C libraries.
+glibc-utils.i686 : Development utilities from GNU C library
+kernel-headers.i686 : Header files for the Linux kernel for use by glibc
+latrace.i686 : LD_AUDIT feature frontend for glibc 2.4+
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum search ksh
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+=============================== N/S Matched: ksh ===============================
+ksh.i686 : The Original ATT Korn Shell
+mksh.i686 : MirBSD enhanced version of the Korn Shell
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum search libstdc
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+============================= N/S Matched: libstdc =============================
+compat-libstdc++-296.i686 : Compatibility 2.96-RH standard C++ libraries
+compat-libstdc++-33.i686 : Compatibility standard C++ libraries
+libstdc++.i686 : GNU Standard C++ Library
+libstdc++-devel.i686 : Header files and libraries for C++ development
+libstdc++-docs.i686 : Documentation for the GNU standard C++ library
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum search libaio
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+============================= N/S Matched: libaio ==============================
+libaio.i686 : Linux-native asynchronous I/O access library
+libaio-devel.i686 : Development files for Linux-native asynchronous I/O access
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum search make
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+============================== N/S Matched: make ===============================
+automake.noarch : A GNU tool for automatically creating Makefiles
+cmake.i686 : Cross-platform make system
+imake.i686 : imake source code configuration and build system
+perl-ExtUtils-MakeMaker.i686 : Create a module Makefile
+perl-Locale-Maketext-Simple.i686 : Simple interface to Locale::Maketext::Lexicon
+MAKEDEV.i686 : A program used for creating device files in /dev
+cups-pk-helper.i686 : A helper that makes system-config-printer use PolicyKit
+libvncserver.i686 : Library to make writing a vnc server easy
+make.i686 : A GNU tool which simplifies the build process for users
+makebootfat.i686 : Utility for creation bootable FAT disk
+python-slip-gtk.noarch : Code to make auto-wrapping gtk labels
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum search sysstat
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file:///mnt/RHEL63CD/repodata/repomd.xml
+Trying other mirror.
+============================= N/S Matched: sysstat =============================
+sysstat.i686 : The sar and iostat system monitoring commands
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum install binutils.i686 compat-libcap1.i686 gcc.i686 gcc-tdc++-devel.i686 libaio.i686 libaio-devel.i686 make.i686 sysstat.i686
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file://
+Trying other mirror.
+Setting up Install Process
+Package binutils-2.20.51.0.2-5.34.el6.i686 already installed and latest version
+Package compat-libcap1-1.10-1.i686 already installed and latest version
+Package gcc-4.4.6-4.el6.i686 already installed and latest version
+Package gcc-c++-4.4.6-4.el6.i686 already installed and latest version
+Package glibc-2.12-1.80.el6.i686 already installed and latest version
+Package glibc-devel-2.12-1.80.el6.i686 already installed and latest version
+Package ksh-20100621-16.el6.i686 already installed and latest version
+Package libgcc-4.4.6-4.el6.i686 already installed and latest version
+Package libstdc++-4.4.6-4.el6.i686 already installed and latest version
+Package libstdc++-devel-4.4.6-4.el6.i686 already installed and latest version
+Package libaio-0.3.107-10.el6.i686 already installed and latest version
+Package libaio-devel-0.3.107-10.el6.i686 already installed and latest version
+Package 1:make-3.81-20.el6.i686 already installed and latest version
+Package sysstat-9.0.4-20.el6.i686 already installed and latest version
+Nothing to do
+[root@OrcStudy bin]# yum search unixODBC
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file://
+Trying other mirror.
+=================================================================== N/S Matched:
+unixODBC-devel.i686 : Development files for programs which will use the unixODBC
+unixODBC.i686 : A complete ODBC driver manager for Linux
+
+  Name and summary matches only, use "search all" for everything.
+[root@OrcStudy bin]# yum install unixODBC.i686 unixODBC-devel.i686
+Loaded plugins: product-id, refresh-packagekit, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+file:///mnt/RHEL63CD/repodata/repomd.xml: [Errno 14] Could not open/read file://
+Trying other mirror.
+Setting up Install Process
+Package unixODBC-2.2.14-11.el6.i686 already installed and latest version
+Package unixODBC-devel-2.2.14-11.el6.i686 already installed and latest version
+Nothing to do
+[root@OrcStudy bin]# groupadd oinstall
+groupadd: group 'oinstall' already exists
+[root@OrcStudy bin]# groupadd dba
+groupadd: group 'dba' already exists
+[root@OrcStudy bin]# groupadd oper
+[root@OrcStudy bin]# useradd -g oinstall -G dba oracle
+useradd: user 'oracle' already exists
+[root@OrcStudy bin]# passwd oracle
+Changing password for user oracle.
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[root@OrcStudy bin]# vim /etc/sysctl.conf
+[root@OrcStudy bin]# vim /etc/security/limits.conf
+You have new mail in /var/spool/mail/root
+[root@OrcStudy bin]# mkdir -p /u01/app/oracle
+[root@OrcStudy bin]# chown -R oracle:oinstall /u01/app/oracle
+[root@OrcStudy bin]# chmod -R 755 /u01/app/oracle
+[root@OrcStudy bin]# mkdir -p /u01/app/oracle/product/11.0.2.0/db_1
+[root@OrcStudy bin]# su
+[root@OrcStudy bin]# su - oracle
+[oracle@OrcStudy ~]$ vim .bash_profile
+[oracle@OrcStudy ~]$ cd /
+[oracle@OrcStudy /]$ ls
+bin  boot  dev  etc  home  lib  lost+found  media  misc  mnt  net  opt  oracle
+[oracle@OrcStudy /]$ vim .bash_profile
+[oracle@OrcStudy /]$ cd ~
+[oracle@OrcStudy ~]$ vim .bash_profile
+[oracle@OrcStudy ~]$
