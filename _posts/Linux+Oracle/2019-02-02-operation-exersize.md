@@ -2,14 +2,14 @@
 layout: blog
 back: true
 comments: True
-flag: Operation
+flag: Ops
 background: gray
 category: 后端
 title: 记一些运维实践
 date:   2019-02-02 17:54:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
 tags:
-- Operation
+- Ops
 ---
 # {{ page.title }}
 
@@ -94,6 +94,12 @@ Oracle 具体安装步骤可以[参照文档](/style/files/Oracle11gInstallation
 Docker 守护进程可以直接与主操作系统进行通信，为各个 Docker 容器分配资源；它还可以将容器与主操作系统隔离，并将各个容器互相隔离。虚拟机启动需要数分钟，而 Docker 容器可以在数毫秒内启动。由于没有臃肿的从操作系统，Docker 可以节省大量的磁盘空间以及其他系统资源。
 
 但并不是说虚拟机就被取代了，因为两者有不同的使用场景。虚拟机更擅长于彻底隔离整个运行环境。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而 Docker 通常用于隔离不同的应用，例如前端，后端以及数据库。
+
+## AWS 云对象存储
+
+随着业务的发展，需要管理急剧增加并且孤立的大量数据，这些数据来自很多被任意数量的应用程序和业务流程使用的来源。现在，很多公司都面临着碎片化存储产品带来的挑战。这些产品不仅增加了业务应用程序的复杂性，还减缓了其创新速度。对象存储能够提供可以大规模扩展并且经济高效的存储来以原生格式存储任何类型的数据，从而打破这些限制。
+
+**AWS(Amazon Web Services)** 是 Amazon 公司旗下云计算服务平台，为全世界范围内的客户提供云解决方案。面向用户提供包括弹性计算、存储、数据库、应用程序在内的一整套云计算服务，帮助企业降低 IT 投入成本和维护成本。同类型的还可以了解下 [Azure](https://zh.wikipedia.org/wiki/Microsoft_Azure)、阿里云、腾讯云等。
 
 ## 参考链接
 
