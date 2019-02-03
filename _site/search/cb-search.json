@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "SSH 上传下载 - ",
+		"url" : "/2019/02/03/linux-ssh-rz-sz.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "记一些运维实践 - ",
 		"url" : "/2019/02/02/ops-exersize.html"
 	}
