@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Oh My ZSH! - ",
+		"url" : "/2019/02/03/linux-zsh.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "SSH 上传下载 - ",
 		"url" : "/2019/02/03/linux-ssh-rz-sz.html"
 	}
