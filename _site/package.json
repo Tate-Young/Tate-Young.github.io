@@ -26,8 +26,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "post-commit": "say -v Mei-Jia '提交完毕'",
-      "pre-push": "say -v Mei-Jia '推送完毕'"
+      "post-commit": "say -v Mei-Jia '提交完毕'"
     }
   }
 }
