@@ -1,0 +1,964 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='SQL 语法 - Tate & Snow' name='title' />
+    <meta content='SQL 语法 - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>SQL 语法 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>SQL 语法 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL 语法 - Tate & Snow">
+<meta name="twitter:keywords" content="SQL 语法 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL 语法 - Tate & Snow">
+<meta name="og:keywords" content="SQL 语法 - Tate & Snow|SQL 语法什么是 SQLSQL 是一种结构化查询语言，用来管理关系型数据库。可以把 SQL 分为两个部分:  数据操作语言(DML) - 查询和更新指令          SELECT - 从数据库表中获取数据      UPDAT..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="SQL 语法什么是 SQLSQL 是一种结构化查询语言，用来管理关系型数据库。可以把 SQL 分为两个部分:  数据操作语言(DML) - 查询和更新指令          SELECT - 从数据库表中获取数据      UPDAT..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2019/02/14/oracle-sql.html' property='og:url' />
+<meta content="http://localhost:4000/2019/02/14/oracle-sql.html|SQL 语法什么是 SQLSQL 是一种结构化查询语言，用来管理关系型数据库。可以把 SQL 分为两个部分:  数据操作语言(DML) - 查询和更新指令          SELECT - 从数据库表中获取数据      UPDAT..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script>
+ 
+
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    SQL 语法</h1>
+                <div class="post-data">
+                    <time datetime="2019-02-14 13:27:00" itemprop="datePublished">发布时间：2019-02-14 13:27:00</time>
+                    <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#Oracle" title="访问Oracle" data-hover="Oracle">
+                        Oracle
+                        <span>(1)</span>
+                        
+                    </a>
+                    
+                    <a href="/tags#sql" title="访问sql" data-hover="sql">
+                        sql
+                        <span>(1)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                SQL 语法</h1>
+            <div class="post-data">
+                <time datetime="2019-02-14 13:27:00" itemprop="datePublished">2019-02-14 13:27:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#Oracle" title="访问Oracle" data-hover="Oracle">
+                    Oracle
+                    <span>(1)</span>
+                    </a>
+                
+                <a href="/tags#sql" title="访问sql" data-hover="sql">
+                    sql
+                    <span>(1)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="sql-语法">SQL 语法</h1>
+
+<h2 id="什么是-sql">什么是 SQL</h2>
+
+<p><strong>SQL</strong> 是一种结构化查询语言，用来管理<a href="https://zh.wikipedia.org/wiki/關聯式資料庫管理系統"><strong>关系型数据库</strong></a>。可以把 SQL 分为两个部分:</p>
+
+<ul>
+  <li><strong>数据操作语言(DML)</strong> - 查询和更新指令
+    <ul>
+      <li><strong>SELECT</strong> - 从数据库表中获取数据</li>
+      <li><strong>UPDATE</strong> - 更新数据库表中的数据</li>
+      <li><strong>DELETE</strong> - 从数据库表中删除数据</li>
+      <li><strong>INSERT INTO</strong> - 向数据库表中插入数据</li>
+    </ul>
+  </li>
+  <li><strong>数据定义语言(DDL)</strong> - 创建或删除表格
+    <ul>
+      <li><strong>CREATE TABLE</strong> - 创建新表</li>
+      <li><strong>ALTER TABLE</strong> - 变更(改变)数据库表</li>
+      <li><strong>DROP TABLE</strong> - 删除表</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>上面只是列出我常用的，以前接触的比较多，主要是因为做数据可视化，用的是报表工具<a href="http://www.finereport.com">帆软(FineReport)</a>，都是直连数据库的，可惜之前写的都没有保存下来 😭。</p>
+</blockquote>
+
+<h2 id="sql-基本语法">SQL 基本语法</h2>
+
+<p>基本语法就直接参照 <a href="http://www.w3school.com.cn/sql/index.asp">w3school 的教程</a>了，给出一个大家都熟悉的栗子 🌰:</p>
+
+<pre><code class="language-SQL">-- 对大小写不敏感
+SELECT LastName,FirstName AS aliasName FROM Persons
+</code></pre>
+
+<h3 id="distinct">distinct</h3>
+
+<p><strong>distinct</strong> 可以过滤掉重复的值:</p>
+
+<pre><code class="language-SQL">-- 只会列出不同值的 Company 字段
+SELECT DISTINCT Company FROM Orders
+</code></pre>
+
+<h3 id="where">where</h3>
+
+<p><strong>where</strong> 可以在查询时增加条件，操作符如下:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">操作符</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">=</td>
+      <td style="text-align: left">等于</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&lt;&gt;</td>
+      <td style="text-align: left">不等于</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&gt;</td>
+      <td style="text-align: left">大于</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&lt;</td>
+      <td style="text-align: left">小于</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&gt;=</td>
+      <td style="text-align: left">大于等于</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">&lt;=</td>
+      <td style="text-align: left">小于等于</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">BETWEEN</td>
+      <td style="text-align: left">在某个范围内</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">LIKE</td>
+      <td style="text-align: left">搜索某种模式</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">IN</td>
+      <td style="text-align: left">规定多个值</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-SQL">SELECT 列名称 FROM 表名称 WHERE 列 运算符 值
+
+SELECT * FROM Persons WHERE City='Shenzhen'
+-- 表的列可以存放 NULL 值
+SELECT LastName,FirstName,Address FROM Persons WHERE Address IS NOT NULL
+-- rownum 这里表示表的行数
+SELECT * FROM Persons WHERE ROWNUM &lt;= 5
+</code></pre>
+
+<p><strong>like</strong> 可以与一些通配符搭配使用，通配符如下:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">通配符</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>%</strong></td>
+      <td style="text-align: left">替代一个或多个字符</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>_</strong></td>
+      <td style="text-align: left">仅替代一个字符</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[charlist]</td>
+      <td style="text-align: left">字符列中的任何单一字符</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">[^charlist] 或者 [!charlist]</td>
+      <td style="text-align: left">不在字符列中的任何单一字符</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-SQL">-- 列出以 N 开头的城市名称
+SELECT * FROM Persons WHERE City LIKE 'N%'
+-- 列出以 A 或 L 或 N 开头的城市名称
+SELECT * FROM Persons WHERE City LIKE '[ALN]%'
+-- 列出名字的第一个字符之后是 "eorge" 的人
+SELECT * FROM Persons WHERE FirstName LIKE '_eorge'
+</code></pre>
+
+<p><strong>in</strong> 可以规定多个值:</p>
+
+<pre><code class="language-SQL">SELECT * FROM Person WHERE LastName IN ('Adams','Carter')
+</code></pre>
+
+<p><strong>AND</strong> 和 <strong>OR</strong> 可在 WHERE 子语句中把两个或多个条件结合起来:</p>
+
+<pre><code class="language-SQL">SELECT * FROM Persons WHERE (FirstName='Thomas' OR FirstName='William') AND LastName='Carter'
+</code></pre>
+
+<h3 id="order-by">Order By</h3>
+
+<p><strong>Order By</strong> 可以根据指定的列对结果集进行排序。默认为升序，即 <strong>ASC</strong>，也可以使用 <strong>DESC</strong> 关键字降序:</p>
+
+<pre><code class="language-SQL">-- 依次按照 Company、OrderNumber 排序
+SELECT Company, OrderNumber FROM Orders ORDER BY Company, OrderNumber
+-- 分别使用升序及降序
+SELECT Company, OrderNumber FROM Orders ORDER BY Company DESC, OrderNumber ASC
+</code></pre>
+
+<p>还可以结合 <strong>nlssort</strong> 函数进行对拼音或笔划等的排序:</p>
+
+<pre><code class="language-SQL">SELECT * FROM TEAM ORDER BY NLSSORT(排序字段名,'NLS_SORT = SCHINESE_PINYIN_M') -- 拼音
+SELECT * FROM TEAM ORDER BY NLSSORT(排序字段名,'NLS_SORT = SCHINESE_STROKE_M') -- 笔划
+SELECT * FROM TEAM ORDER BY NLSSORT(排序字段名,'NLS_SORT = SCHINESE_RADICAL_M') -- 部首
+</code></pre>
+
+<p>还可以按照序号自定义排序:</p>
+
+<pre><code class="language-SQL">-- TODO: 未完待续
+</code></pre>
+
+<h3 id="union">union</h3>
+
+<p><strong>union</strong> 可以合并两个或多个 SELECT 语句的结果集:</p>
+
+<pre><code class="language-SQL">-- UNION 命令会过滤相同的值
+SELECT E_Name FROM Employees_China
+UNION
+SELECT E_Name FROM Employees_USA
+</code></pre>
+
+<h3 id="join">join</h3>
+
+<p><strong>join</strong> 可以进行联表查询，数据库中的表可通过键将彼此联系起来。<strong>主键(Primary Key)</strong>是一个列，在这个列中的每一行的值都是唯一的。在表中，每个主键的值都是唯一的。</p>
+
+<ul>
+  <li><strong>INNER JOIN</strong> - 内连接，同 <strong>JOIN</strong> 在表中存在至少一个匹配时，则返回行。</li>
+  <li><strong>LEFT JOIN</strong> - 即使右表中没有匹配，也从左表返回所有的行</li>
+  <li><strong>RIGHT JOIN</strong> - 即使左表中没有匹配，也从右表返回所有的行</li>
+  <li><strong>FULL JOIN</strong> - 只要其中一个表中存在匹配，就返回行</li>
+</ul>
+
+<pre><code class="language-SQL">SELECT p.LastName, p.FirstName, o.OrderNo FROM Persons AS p, Orders AS o WHERE p.Id_P = o.Id_P
+
+SELECT * FROM Persons,Orders WHERE Persons.Id_P = Orders.Id_P
+-- 等价于
+SELECT * FROM Persons INNER JOIN Orders ON Persons.Id_P = Orders.Id_P
+</code></pre>
+
+<pre><code class="language-SQL">-- LEFT JOIN 关键字会从左表(Persons)那里返回所有的行，即使在右表(Orders)中没有匹配的行。RIGHT JOIN 反之。FULL JOIN 则都返回
+SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo FROM Persons LEFT JOIN Orders ON Persons.Id_P = Orders.Id_P
+</code></pre>
+
+<h3 id="case-when">case when</h3>
+
+<p><strong>case when</strong> 可以进行条件的选择，并给出对应的值:</p>
+
+<pre><code class="language-SQL">CASE sex
+WHEN '1' THEN '男'
+WHEN '2' THEN '女'
+ELSE '其他' END
+
+-- 等价于
+CASE
+WHEN sex = '1' THEN '男'
+WHEN sex = '2' THEN '女'
+ELSE '其他' END
+</code></pre>
+
+<pre><code class="language-SQL">SELECT u.id,u.name,u.sex,
+  (CASE u.sex
+    WHEN 1 THEN '男'
+    WHEN 2 THEN '女'
+    ELSE '人妖'
+    END
+   ) 性别
+FROM users u;
+</code></pre>
+
+<h3 id="update-等更新指令">update 等更新指令</h3>
+
+<p>1、<strong>update</strong> 可以更新数据库表中的数据:</p>
+
+<pre><code class="language-SQL">UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+
+UPDATE Person SET FirstName = 'Fred' WHERE LastName = 'Wilson'
+</code></pre>
+
+<p>2、<strong>delete</strong> 可以从数据库表中删除某行数据或者整个表数据:</p>
+
+<pre><code class="language-SQL">DELETE FROM 表名称 WHERE 列名称 = 值
+DELETE 表名称 -- 删除整张表数据
+
+DELETE FROM Person WHERE LastName = 'Wilson'
+</code></pre>
+
+<p>这里介绍一下与 <strong>truncate</strong> 的区别，使用 truncate 语句是删除表中的所有记录，但只支持 table 而不支持视图:</p>
+
+<pre><code class="language-SQL">TRUNCATE [TABLE] 表名称
+</code></pre>
+
+<p>由于 delete 语句删除记录时候，记录是逐条删除的，而 truncate 语句删除数据时不产生回退信息。所以如果需要删除大量数据的时候使用 delete 则占用较多的系统资源，而如果使用 truncate 则会快的多。</p>
+
+<p>3、<strong>insert into</strong> 可以向数据库表中插入数据:</p>
+
+<pre><code class="language-SQL">INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
+
+INSERT INTO Persons (LastName, Address) VALUES ('Wilson', 'Champs-Elysees')
+</code></pre>
+
+<h2 id="sql-函数">SQL 函数</h2>
+
+<p>SQL 拥有很多可用于计数和计算的内建函数，以下列出一些常用的:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">模块</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">AVG(column)</td>
+      <td style="text-align: left">返回某列的平均值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">COUNT(column)</td>
+      <td style="text-align: left">返回某列的行数(不包括 NULL 值)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">COUNT(*)</td>
+      <td style="text-align: left">返回被选行数</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MAX(column)</td>
+      <td style="text-align: left">返回某列的最高值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MIN(column)</td>
+      <td style="text-align: left">返回某列的最低值</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SUM(column)</td>
+      <td style="text-align: left">返回某列的总和</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-SQL">SELECT Customer FROM Orders WHERE OrderPrice &gt; (SELECT AVG(OrderPrice) FROM Orders)
+
+SELECT COUNT(DISTINCT column_name) AS names FROM table_name
+</code></pre>
+
+<h3 id="group-by">Group By</h3>
+
+<p><strong>GROUP BY</strong> 语句用于结合合计函数(如 SUM)，根据一个或多个列对结果集进行分组:</p>
+
+<pre><code class="language-SQL">SELECT Customer,SUM(OrderPrice) FROM Orders GROUP BY Customer
+</code></pre>
+
+<p>该语句后面还可以接 <strong>ROLLUP</strong> 或 <strong>CUBE</strong>、<strong>GROUPING SETS</strong> 等辅助函数，这里只简单介绍下 ROLLUP，可以检索出更多的分组聚合信息，以下栗子摘自这里:</p>
+
+<pre><code class="language-SHELL">SELECT dep,pos,AVG(sal) FROM employee GROUP BY dep,pos;
++------+------+-----------+
+| dep | pos | avg(sal) |
++------+------+-----------+
+| 01 | 01 | 1500.0000 |
+| 01 | 02 | 1950.0000 |
+| 02 | 01 | 1500.0000 |
+| 02 | 02 | 2450.0000 |
+| 03 | 01 | 2500.0000 |
+| 03 | 02 | 2550.0000 |
++------+------+-----------+
+6 rows in set (0.02 sec)
+</code></pre>
+
+<pre><code class="language-SHELL">SELECT dep,pos,AVG(sal) FROM employee GROUP BY rollup(dep,pos);
++------+------+-----------+
+| dep | pos | avg(sal) |
++------+------+-----------+
+| 01 | 01 | 1500.0000 |
+| 01 | 02 | 1950.0000 |
+| 01 | NULL | 1725.0000 |
+| 02 | 01 | 1500.0000 |
+| 02 | 02 | 2450.0000 |
+| 02 | NULL | 2133.3333 |
+| 03 | 01 | 2500.0000 |
+| 03 | 02 | 2550.0000 |
+| 03 | NULL | 2533.3333 |
+| NULL | NULL | 2090.0000 |
++------+------+-----------+
+10 rows in set (0.00 sec)
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">模块</th>
+      <th style="text-align: left">描述</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>ROLLUP</strong></td>
+      <td style="text-align: left">GROUP BY ROLLUP(A,B,C)</td>
+      <td>首先对(A,B,C)进行分组，然后对(A,B)进行分组，然后是(A)进行分组， 最后对全表进行分组操作</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>CUBE</strong></td>
+      <td style="text-align: left">GROUP BY CUBE(A,B,C)</td>
+      <td>首先对(A,B,C)进行分组，然后依次对(A,B)、(A,C)、(A)、(B,C)、(B)、(C)进行分组，最后对全表进行分组操作</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>GROUPING SETS</strong></td>
+      <td style="text-align: left">GROUP BY GROUPING SETS(A,B,C)</td>
+      <td>依次对(C)、(B)、(A)进行分组</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="having">Having</h3>
+
+<p>在 SQL 中增加 <strong>HAVING</strong> 子句原因是，WHERE 关键字无法与合计函数一起使用:</p>
+
+<pre><code class="language-SQL">-- 查找订单总金额少于 2000 的客户
+SELECT Customer,SUM(OrderPrice) FROM Orders GROUP BY Customer HAVING SUM(OrderPrice) &lt; 2000
+</code></pre>
+
+<h3 id="decode">decode</h3>
+
+<p><strong>decode</strong> 函数与一系列嵌套的 <code class="highlighter-rouge">IF-THEN-ELSE</code> 语句相似，有以下两种用法:</p>
+
+<pre><code class="language-SQL">decode(条件,值1,返回值1,值2,返回值2,...值n,返回值n,缺省值)
+-- 当字段或字段的运算的值等于值1时，该函数返回值2，否则返回值3
+decode(字段或字段的运算，值1，值2，值3)
+</code></pre>
+
+<p>以上第二种用法和函数 <strong>nvl</strong> 有点类似:</p>
+
+<ul>
+  <li>NVL(E1, E2) - 如果 E1 为 NULL，则函数返回 E2</li>
+  <li>NVL2(E1, E2, E3) - 如果 E1 为 NULL，则函数返回 E3，否则返回 E2</li>
+</ul>
+
+<h3 id="greatest">greatest</h3>
+
+<p><strong>greatest</strong> 可以用来求多列的最大值，反之 <strong>least</strong> 可以求最小值:</p>
+
+<pre><code class="language-SQL">SELECT chinese, math, english, GREATEST(chinese, math, english) As max, LEAST(chinese, math, english) As min FROM score
+</code></pre>
+
+<h3 id="to_char">to_char</h3>
+
+<p><strong>to_char</strong> 主要有以下两种用途:</p>
+
+<ul>
+  <li>to_char(date,’格式’) - 日期转换</li>
+  <li>to_char(number,’格式’) - 数字转换</li>
+</ul>
+
+<pre><code class="language-SQL">SELECT TO_CHAR(sysdate,'yyyy-MM-dd HH24:mi:ss') FROM dual
+-- 获取今年的年份
+SELECT to_char(sysdate,'yyyy') AS thisYear FROM dual
+
+-- 返回 2,333
+SELECT to_char(2333,'9,999') FROM dual
+</code></pre>
+
+<h3 id="to_date">to_date</h3>
+
+<p><strong>to_date</strong> 可以用来做日期转换:</p>
+
+<pre><code class="language-SQL">SELECT TO_DATE('2019-02-14 13:14:52','yyyy-MM-dd HH24:mi:ss') FROM dual;
+</code></pre>
+
+<h3 id="trunc">trunc</h3>
+
+<p><strong>trunc</strong> 函数主要有以下两种用途:</p>
+
+<ul>
+  <li>trunc(date[, fmt]) - 为指定元素而截去的日期值</li>
+  <li>trunc(number,num_digits) - 返回处理后的数值, Num_digits 用于指定取整精度的数字，默认值为 0</li>
+</ul>
+
+<pre><code class="language-SQL">-- 今天是 2019-02-04
+SELECT trunc(sysdate) FROM dual
+-- 返回当月第一天 2019-02-01
+SELECT trunc(sysdate, 'mm') FROM dual
+</code></pre>
+
+<pre><code class="language-SQL">SELECT trunc(123.458) FROM dual --123
+SELECT trunc(123.458,-1) FROM dual --120
+SELECT trunc(123.458,1) FROM dual --123.4
+</code></pre>
+
+<h3 id="add_months">add_months</h3>
+
+<p><strong>add_months(time,months)</strong> 函数可以得到某一时间之前或之后 n 个月的时间，符号 “-“ 表示之前的时间:</p>
+
+<pre><code class="language-SQL">-- 该查询的结果是当前时间半年前的时间
+-- dual 表示 Oracle 提供的最小的工作表，只有一行一列，具有某些特殊功用
+SELECT ADD_MONTHS(sysdate,-6) FROM dual
+</code></pre>
+
+<h3 id="compute">compute</h3>
+
+<p><strong>compute</strong> 子句能够观察”查询结果”的数据细节或统计各列数据，返回结果由 select 列表和 compute 统计结果组成。</p>
+
+<pre><code class="language-SHELL">SELECT * FROM A WHERE 数量&gt;8 COMPUTE max(数量),min(数量),avg(数量)
++------+------+-----------+
+| 类别 | 数量 |
++------+------+-----------+
+| a | 11 | test1 |
+| a | 11 | test2 |
+| b | 11 | test3 |
+| c | 9 | test4 |
+| c | 9 | test5 |
+| b | 10 | test6 |
++------+------+-----------+
+| max | min | avg |
+| 11 | 9 | 10 |
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="http://www.w3school.com.cn/sql/index.asp">SQL 基础教程 - w3school</a></li>
+  <li><a href="https://blog.csdn.net/suyishuai/article/details/22042333">Oracle group by高级用法对比效果(ROLLUP、GROUPING SETS、CUBE)</a> By suyishuai</li>
+  <li><a href="https://blog.csdn.net/id19870510/article/details/6254358">使用 GROUP BY WITH ROLLUP 改善统计性能</a> By -droidcoffee-</li>
+  <li><a href="http://www.cnblogs.com/rainman/archive/2013/05/01/3053703.html">SQL 中 Group By 的使用</a> By Rain Man</li>
+  <li><a href="https://www.cnblogs.com/dekevin/archive/2012/07/22/2604049.html">sql 中 drop、truncate 和 delete 的区别</a> By dekevin</li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2019/02/14/oracle-sql.html';
+        this.page.identifier = '/2019/02/14/oracle-sql';
+        this.page.title = 'SQL 语法';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-02-14 13:27:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
