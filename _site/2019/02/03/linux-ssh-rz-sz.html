@@ -181,7 +181,7 @@
 <pre><code class="language-SHELL"># 只需要指定用户名和主机名参数即可. 主机名可以是 IP 地址或者域名
 ssh user@hostname
 
-# SSH 默认连接到目标主机的 22 端口上,但是由于各种原因你可能需要连接到其他端口
+# SSH 默认连接到目标主机的 22 端口上，但是由于各种原因你可能需要连接到其他端口
 ssh -p 10022 user@hostname
 </code></pre>
 
@@ -189,7 +189,7 @@ ssh -p 10022 user@hostname
 
 <p>利用 SSH 管理远程 Linux 服务器时，经常需要与本地交互文件。当然，我们可以利用 FTP 方式，比如通过 <strong>Filezilla</strong> 客户端软件，或者直接通过 mount 命令去挂载。不过直接使用 SSH 软件(<strong>SecureCRT</strong><strong>、Xshell</strong>)自带的上传和下载功能无疑使最方便快捷的。通常 SSH 软件支持的文件传输协议主要有 <strong>ASCII</strong>、<strong>Xmodem</strong>、<a href="https://baike.baidu.com/item/ZModem协议"><strong>Zmodem</strong></a> 等。</p>
 
-<h3 id="rzsz">rz/sz</h3>
+<h3 id="rz--sz">rz / sz</h3>
 
 <p><strong>rz(接收)</strong>、<strong>sz(发送)</strong> 是 Linux/Unix 同 Windows 进行 ZModem 文件传输的命令行工具。首先需要在服务器端安装 <strong>lszrz</strong> 包。其次，windows 端需要支持 ZModem 的 telnet/ssh 客户端，比如 SecureCRT、Xshell 等，<strong>PuTTY</strong> 暂时不支持。</p>
 
@@ -225,7 +225,7 @@ sz filename
 
 <h4 id="putty">PuTTY</h4>
 
-<p>虽然 <a href="https://www.putty.org"><strong>PuTTY</strong></a> 不支持 Zmodem 协议进行传输文件，但由于用的比较多， 这里还是介绍一下，毕竟免费且”短小精悍”。</p>
+<p>虽然 <a href="https://www.putty.org"><strong>PuTTY</strong></a>[‘pʌti] 不支持 Zmodem 协议进行传输文件，但由于用的比较多， 这里还是介绍一下，毕竟免费且”短小精悍”。</p>
 
 <p><img src="https://docs.aws.amazon.com/zh_cn/AWSEC2/latest/UserGuide/images/putty-session-config.png" alt="PuTTY" /></p>
 
