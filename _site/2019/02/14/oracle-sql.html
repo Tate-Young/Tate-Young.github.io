@@ -139,7 +139,7 @@
                 <h1 class="post-title" itemprop="name headline">
                     SQL 语法</h1>
                 <div class="post-data">
-                    <time datetime="2019-02-14 13:27:00" itemprop="datePublished">发布时间：2019-02-14 13:27:00</time>
+                    <time datetime="2019-02-14 22:19:00" itemprop="datePublished">发布时间：2019-02-14 22:19:00</time>
                     <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
@@ -166,7 +166,7 @@
             <h1 class="post-title" itemprop="name headline">
                 SQL 语法</h1>
             <div class="post-data">
-                <time datetime="2019-02-14 13:27:00" itemprop="datePublished">2019-02-14 13:27:00</time>
+                <time datetime="2019-02-14 22:19:00" itemprop="datePublished">2019-02-14 22:19:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -213,7 +213,7 @@
 
 <h2 id="sql-基本语法">SQL 基本语法</h2>
 
-<p>基本语法就直接参照 <a href="http://www.w3school.com.cn/sql/index.asp">w3school 的教程</a>了，给出一个大家都熟悉的栗子 🌰:</p>
+<p>以下基于 Oracle 数据库介绍基本语法，可直接参照 <a href="http://www.w3school.com.cn/sql/index.asp">w3school 的教程</a>了，给出一个大家都熟悉的栗子 🌰:</p>
 
 <pre><code class="language-SQL">-- 对大小写不敏感
 SELECT LastName,FirstName AS aliasName FROM Persons
@@ -351,9 +351,9 @@ SELECT * FROM TEAM ORDER BY NLSSORT(排序字段名,'NLS_SORT = SCHINESE_STROKE_
 SELECT * FROM TEAM ORDER BY NLSSORT(排序字段名,'NLS_SORT = SCHINESE_RADICAL_M') -- 部首
 </code></pre>
 
-<p>还可以按照序号自定义排序:</p>
+<p>还可以配合 <strong>decode</strong> 函数按照序号自定义排序:</p>
 
-<pre><code class="language-SQL">-- TODO: 未完待续
+<pre><code class="language-SQL">SELECT * FROM table_name ORDER BY DECODE(条件,值1,返回值1,值2,返回值2,...值n,返回值n);
 </code></pre>
 
 <h3 id="union">union</h3>
@@ -364,6 +364,16 @@ SELECT * FROM TEAM ORDER BY NLSSORT(排序字段名,'NLS_SORT = SCHINESE_RADICAL
 SELECT E_Name FROM Employees_China
 UNION
 SELECT E_Name FROM Employees_USA
+</code></pre>
+
+<h3 id="exists">exists</h3>
+
+<p><strong>exists</strong> 可以进行联表查询，用于检查子查询返回行的存在性。在这种情况下相对于 IN(没有走索引)，使用 EXISTS(或 NOT EXISTS)通常将提高查询的效率。</p>
+
+<pre><code class="language-SQL">-- 低效
+SELECT * FROM emp WHERE sal &gt; 1000 AND deptno IN (SELECT deptno FROM dept WHERE loc = 'DALLAS')
+-- 高效
+SELECT * FROM emp WHERE sal &gt; 1000 AND EXISTS (SELECT 1 FROM dept WHERE deptno = emp.deptno AND loc = 'DALLAS')
 </code></pre>
 
 <h3 id="join">join</h3>
@@ -413,6 +423,10 @@ ELSE '其他' END
    ) 性别
 FROM users u;
 </code></pre>
+
+<h3 id="连接符-">连接符 ||</h3>
+
+<p><strong>||</strong> 表示拼接，如 <code class="highlighter-rouge">'a'||'b'</code> 等价于 <code class="highlighter-rouge">'ab'</code>，当然不同数据库中的字符串连接符可能也不同，比如 SQL Server 中的 “+”。而 <a href="http://www.runoob.com/mysql/mysql-tutorial.html">MySQL</a> 则用的 concat 函数。</p>
 
 <h3 id="update-等更新指令">update 等更新指令</h3>
 
@@ -599,17 +613,115 @@ decode(字段或字段的运算，值1，值2，值3)
 
 <pre><code class="language-SQL">SELECT TO_CHAR(sysdate,'yyyy-MM-dd HH24:mi:ss') FROM dual
 -- 获取今年的年份
-SELECT to_char(sysdate,'yyyy') AS thisYear FROM dual
+SELECT TO_CHAR(sysdate,'yyyy') FROM dual
+-- 获取当前的月份 01-12
+SELECT TO_CHAR(sysdate,'MM') FROM dual
+-- 如上，如果获取的月份不需要前面留 0，则可以使用 FM 修饰符(填充模式)。 1-12
+SELECT TO_CHAR(sysdate,'FMMM') FROM dual
+
 
 -- 返回 2,333
-SELECT to_char(2333,'9,999') FROM dual
+SELECT TO_CHAR(2333,'9,999') FROM dual
 </code></pre>
 
-<h3 id="to_date">to_date</h3>
+<h3 id="to_date-日期转换">to_date 日期转换</h3>
 
-<p><strong>to_date</strong> 可以用来做日期转换:</p>
+<p><strong>to_date</strong> 可以用来做日期转换，常用的一些格式如下:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">格式</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">yy</td>
+      <td style="text-align: left">两位年</td>
+      <td style="text-align: left">显示值 19</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">yyy</td>
+      <td style="text-align: left">三位年</td>
+      <td style="text-align: left">显示值 019</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">yyyy</td>
+      <td style="text-align: left">四位年</td>
+      <td style="text-align: left">显示值 2019</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mm</td>
+      <td style="text-align: left">两位月</td>
+      <td style="text-align: left">显示值 02</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">mon</td>
+      <td style="text-align: left">字符集表示(简)</td>
+      <td style="text-align: left">显示值 02月，英文版为 Feb</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">month</td>
+      <td style="text-align: left">字符集表示</td>
+      <td style="text-align: left">显示值 02月，英文版为 Febrary</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dd</td>
+      <td style="text-align: left">当月第几天</td>
+      <td style="text-align: left">显示值 02</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ddd</td>
+      <td style="text-align: left">当年第几天</td>
+      <td style="text-align: left">显示值 250</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">dy</td>
+      <td style="text-align: left">当周第几天(简)</td>
+      <td style="text-align: left">显示值 星期五，英文版为 Fri</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">day</td>
+      <td style="text-align: left">当周第几天</td>
+      <td style="text-align: left">显示值 星期五，英文版为 Friday</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">hh</td>
+      <td style="text-align: left">12 小时制</td>
+      <td style="text-align: left">显示值 01</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">hh24</td>
+      <td style="text-align: left">24 小时制</td>
+      <td style="text-align: left">显示值 13</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Q</td>
+      <td style="text-align: left">季度</td>
+      <td style="text-align: left">显示值 4</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">W</td>
+      <td style="text-align: left">当月第几周</td>
+      <td style="text-align: left">显示值 1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">WW</td>
+      <td style="text-align: left">当年第几周</td>
+      <td style="text-align: left">显示值 20</td>
+    </tr>
+  </tbody>
+</table>
 
 <pre><code class="language-SQL">SELECT TO_DATE('2019-02-14 13:14:52','yyyy-MM-dd HH24:mi:ss') FROM dual;
+</code></pre>
+
+<p>另外提一个日期时分秒为 0 时的简写:</p>
+
+<pre><code class="language-SQL">SELECT * FROM t2001 WHERE flight_date = TO_DATE('2010-10-01','yyyy-MM-dd')
+SELECT * FROM t2001 WHERE flight_date = date'2010-10-01'
 </code></pre>
 
 <h3 id="trunc">trunc</h3>
@@ -617,7 +729,7 @@ SELECT to_char(2333,'9,999') FROM dual
 <p><strong>trunc</strong> 函数主要有以下两种用途:</p>
 
 <ul>
-  <li>trunc(date[, fmt]) - 为指定元素而截去的日期值</li>
+  <li>trunc(date[, fmt]) - 截断日期</li>
   <li>trunc(number,num_digits) - 返回处理后的数值, Num_digits 用于指定取整精度的数字，默认值为 0</li>
 </ul>
 
@@ -639,6 +751,8 @@ SELECT trunc(123.458,1) FROM dual --123.4
 <pre><code class="language-SQL">-- 该查询的结果是当前时间半年前的时间
 -- dual 表示 Oracle 提供的最小的工作表，只有一行一列，具有某些特殊功用
 SELECT ADD_MONTHS(sysdate,-6) FROM dual
+-- 找出今年的天数
+SELECT ADD_MONTHS(TRUNC(sysdate,'year'), 12) - TRUNC(sysdate,'year') FROM dual
 </code></pre>
 
 <h3 id="compute">compute</h3>
@@ -664,10 +778,13 @@ SELECT ADD_MONTHS(sysdate,-6) FROM dual
 
 <ol>
   <li><a href="http://www.w3school.com.cn/sql/index.asp">SQL 基础教程 - w3school</a></li>
-  <li><a href="https://blog.csdn.net/suyishuai/article/details/22042333">Oracle group by高级用法对比效果(ROLLUP、GROUPING SETS、CUBE)</a> By suyishuai</li>
+  <li><a href="https://blog.csdn.net/suyishuai/article/details/22042333">Oracle group by 高级用法对比效果(ROLLUP、GROUPING SETS、CUBE)</a> By suyishuai</li>
   <li><a href="https://blog.csdn.net/id19870510/article/details/6254358">使用 GROUP BY WITH ROLLUP 改善统计性能</a> By -droidcoffee-</li>
   <li><a href="http://www.cnblogs.com/rainman/archive/2013/05/01/3053703.html">SQL 中 Group By 的使用</a> By Rain Man</li>
   <li><a href="https://www.cnblogs.com/dekevin/archive/2012/07/22/2604049.html">sql 中 drop、truncate 和 delete 的区别</a> By dekevin</li>
+  <li><a href="https://www.cnblogs.com/netserver/archive/2008/12/25/1362615.html">SQL 中 EXISTS 的用法</a> By Dsw</li>
+  <li><a href="https://blog.csdn.net/leshami/article/details/7406672">高效 SQL 语句必杀技</a> By Leshami</li>
+  <li><a href="https://blog.csdn.net/caomiao2006/article/details/52099450">EXISTS、IN 与  JOIN性能分析</a> By caomiao2006</li>
 </ol>
  
 <div id="gitalk-container"></div>
@@ -715,7 +832,7 @@ SELECT ADD_MONTHS(sysdate,-6) FROM dual
 
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-02-14 13:27:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-02-14 22:19:00</p> -->
         </div>
     </article>
 

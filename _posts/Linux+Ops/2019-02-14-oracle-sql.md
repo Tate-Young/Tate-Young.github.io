@@ -6,7 +6,7 @@ flag: Oracle
 background: gray
 category: 后端
 title: SQL 语法
-date:   2019-02-14 13:27:00 GMT+0800 (CST)
+date:   2019-02-14 22:19:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
 tags:
 - Oracle
@@ -32,7 +32,7 @@ tags:
 
 ## SQL 基本语法
 
-基本语法就直接参照 [w3school 的教程](http://www.w3school.com.cn/sql/index.asp)了，给出一个大家都熟悉的栗子 🌰:
+以下基于 Oracle 数据库介绍基本语法，可直接参照 [w3school 的教程](http://www.w3school.com.cn/sql/index.asp)了，给出一个大家都熟悉的栗子 🌰:
 
 ```SQL
 -- 对大小写不敏感
@@ -123,10 +123,10 @@ SELECT * FROM TEAM ORDER BY NLSSORT(排序字段名,'NLS_SORT = SCHINESE_STROKE_
 SELECT * FROM TEAM ORDER BY NLSSORT(排序字段名,'NLS_SORT = SCHINESE_RADICAL_M') -- 部首
 ```
 
-还可以按照序号自定义排序:
+还可以配合 **decode** 函数按照序号自定义排序:
 
 ```SQL
--- TODO: 未完待续
+SELECT * FROM table_name ORDER BY DECODE(条件,值1,返回值1,值2,返回值2,...值n,返回值n);
 ```
 
 ### union
@@ -138,6 +138,17 @@ SELECT * FROM TEAM ORDER BY NLSSORT(排序字段名,'NLS_SORT = SCHINESE_RADICAL
 SELECT E_Name FROM Employees_China
 UNION
 SELECT E_Name FROM Employees_USA
+```
+
+### exists
+
+**exists** 可以进行联表查询，用于检查子查询返回行的存在性。在这种情况下相对于 IN(没有走索引)，使用 EXISTS(或 NOT EXISTS)通常将提高查询的效率。
+
+```SQL
+-- 低效
+SELECT * FROM emp WHERE sal > 1000 AND deptno IN (SELECT deptno FROM dept WHERE loc = 'DALLAS')
+-- 高效
+SELECT * FROM emp WHERE sal > 1000 AND EXISTS (SELECT 1 FROM dept WHERE deptno = emp.deptno AND loc = 'DALLAS')
 ```
 
 ### join
@@ -189,6 +200,10 @@ SELECT u.id,u.name,u.sex,
    ) 性别
 FROM users u;
 ```
+
+### 连接符 ||
+
+**\|\|** 表示拼接，如 `'a'||'b'` 等价于 `'ab'`，当然不同数据库中的字符串连接符可能也不同，比如 SQL Server 中的 "+"。而 [MySQL](http://www.runoob.com/mysql/mysql-tutorial.html) 则用的 concat 函数。
 
 ### update 等更新指令
 
@@ -336,25 +351,55 @@ SELECT chinese, math, english, GREATEST(chinese, math, english) As max, LEAST(ch
 ```SQL
 SELECT TO_CHAR(sysdate,'yyyy-MM-dd HH24:mi:ss') FROM dual
 -- 获取今年的年份
-SELECT to_char(sysdate,'yyyy') AS thisYear FROM dual
+SELECT TO_CHAR(sysdate,'yyyy') FROM dual
+-- 获取当前的月份 01-12
+SELECT TO_CHAR(sysdate,'MM') FROM dual
+-- 如上，如果获取的月份不需要前面留 0，则可以使用 FM 修饰符(填充模式)。 1-12
+SELECT TO_CHAR(sysdate,'FMMM') FROM dual
+
 
 -- 返回 2,333
-SELECT to_char(2333,'9,999') FROM dual
+SELECT TO_CHAR(2333,'9,999') FROM dual
 ```
 
-### to_date
+### to_date 日期转换
 
-**to_date** 可以用来做日期转换:
+**to_date** 可以用来做日期转换，常用的一些格式如下:
+
+| 格式 | 描述 | 栗子 |
+|:--------------|:---------|:---------|
+| yy | 两位年 | 显示值 19 |
+| yyy | 三位年 | 显示值 019 |
+| yyyy | 四位年 | 显示值 2019 |
+| mm | 两位月 | 显示值 02 |
+| mon | 字符集表示(简) | 显示值 02月，英文版为 Feb |
+| month | 字符集表示 | 显示值 02月，英文版为 Febrary |
+| dd | 当月第几天 | 显示值 02 |
+| ddd | 当年第几天 | 显示值 250 |
+| dy | 当周第几天(简) | 显示值 星期五，英文版为 Fri |
+| day | 当周第几天 | 显示值 星期五，英文版为 Friday |
+| hh | 12 小时制 | 显示值 01 |
+| hh24 | 24 小时制 | 显示值 13 |
+| Q | 季度 | 显示值 4 |
+| W | 当月第几周 | 显示值 1 |
+| WW | 当年第几周 | 显示值 20 |
 
 ```SQL
 SELECT TO_DATE('2019-02-14 13:14:52','yyyy-MM-dd HH24:mi:ss') FROM dual;
+```
+
+另外提一个日期时分秒为 0 时的简写:
+
+```SQL
+SELECT * FROM t2001 WHERE flight_date = TO_DATE('2010-10-01','yyyy-MM-dd')
+SELECT * FROM t2001 WHERE flight_date = date'2010-10-01'
 ```
 
 ### trunc
 
 **trunc** 函数主要有以下两种用途:
 
-* trunc(date[, fmt]) - 为指定元素而截去的日期值
+* trunc(date[, fmt]) - 截断日期
 * trunc(number,num_digits) - 返回处理后的数值, Num_digits 用于指定取整精度的数字，默认值为 0
 
 ```SQL
@@ -378,6 +423,8 @@ SELECT trunc(123.458,1) FROM dual --123.4
 -- 该查询的结果是当前时间半年前的时间
 -- dual 表示 Oracle 提供的最小的工作表，只有一行一列，具有某些特殊功用
 SELECT ADD_MONTHS(sysdate,-6) FROM dual
+-- 找出今年的天数
+SELECT ADD_MONTHS(TRUNC(sysdate,'year'), 12) - TRUNC(sysdate,'year') FROM dual
 ```
 
 ### compute
@@ -403,7 +450,10 @@ SELECT * FROM A WHERE 数量>8 COMPUTE max(数量),min(数量),avg(数量)
 ## 参考链接
 
 1. [SQL 基础教程 - w3school](http://www.w3school.com.cn/sql/index.asp)
-2. [Oracle group by高级用法对比效果(ROLLUP、GROUPING SETS、CUBE)](https://blog.csdn.net/suyishuai/article/details/22042333) By suyishuai
+2. [Oracle group by 高级用法对比效果(ROLLUP、GROUPING SETS、CUBE)](https://blog.csdn.net/suyishuai/article/details/22042333) By suyishuai
 3. [使用 GROUP BY WITH ROLLUP 改善统计性能](https://blog.csdn.net/id19870510/article/details/6254358) By -droidcoffee-
 4. [SQL 中 Group By 的使用](http://www.cnblogs.com/rainman/archive/2013/05/01/3053703.html) By Rain Man
 5. [sql 中 drop、truncate 和 delete 的区别](https://www.cnblogs.com/dekevin/archive/2012/07/22/2604049.html) By dekevin
+6. [SQL 中 EXISTS 的用法](https://www.cnblogs.com/netserver/archive/2008/12/25/1362615.html) By Dsw
+7. [高效 SQL 语句必杀技](https://blog.csdn.net/leshami/article/details/7406672) By Leshami
+8. [EXISTS、IN 与  JOIN性能分析](https://blog.csdn.net/caomiao2006/article/details/52099450) By caomiao2006
