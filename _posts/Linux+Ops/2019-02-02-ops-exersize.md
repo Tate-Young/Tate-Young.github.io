@@ -101,8 +101,19 @@ Docker 守护进程可以直接与主操作系统进行通信，为各个 Docker
 
 **AWS(Amazon Web Services)** 是 Amazon 公司旗下云计算服务平台，为全世界范围内的客户提供云解决方案。面向用户提供包括弹性计算、存储、数据库、应用程序在内的一整套云计算服务，帮助企业降低 IT 投入成本和维护成本。同类型的还可以了解下 [Azure](https://zh.wikipedia.org/wiki/Microsoft_Azure)、阿里云、腾讯云等。
 
+## 端口映射和 DMZ 主机
+
+**端口映射**是 [**网络地址转换(NAT)**](https://zh.wikipedia.org/wiki/网络地址转换) 的一种，就是将外网主机的 IP 地址的一个端口映射到内网中一台机器，提供相应的服务。当用户访问该 IP 的这个端口时，服务器自动将请求映射到对应局域网内部的机器上。端口映射有动态和静态之分。
+
+内网的一台电脑要上因特网或者给因特网启动服务，就需要端口映射。例如要映射一台 IP 地址为 192.168.111.10 的 WEB 服务器，只需把服务器的 IP 地址和提供 web 服务的 TCP 端口 80 填入到路由器的端口映射表中即可。
+
+**DMZ(demilitarized zone)** ，即"隔离区"或"非军事化区"。它是为了解决安装防火墙后外部网络不能访问内部网络服务器的问题，而设立的一个非安全系统与安全系统之间的缓冲区，这个缓冲区位于企业内部网络和外部网络之间的小网络区域内，在这个小网络区域内可以放置一些必须公开的服务器设施，如企业 Web 服务器、FTP 服务器和论坛等。另一方面，通过这样一个 DMZ 区域，更加有效地保护了内部网络，因为这种网络部署，比起一般的防火墙方案，对攻击者来说又多了一道关卡。 DMZ 主机就是一个开放所有端口的虚拟服务器。
+
+> 端口映射只是映射指定的端口，DMZ 相当于映射所有的端口，并且直接把主机暴露在网关中，比端口映射方便但是不安全。且当设置了 DMZ 主机后，所有端口的映射都将指向 DMZ 主机，指向其他电脑的端口映射将无效。
+
 ## 参考链接
 
 1. [zabbix 从听说到学会](https://www.jianshu.com/p/49ef09f6d8db) By JokerW
 2. [Zabbix 3.0 从入门到精通(zabbix 使用详解)](https://www.cnblogs.com/clsn/p/7885990.html) By 惨绿少年
 3. [Comparing Virtual Machines vs Docker Containers](https://nickjanetakis.com/blog/comparing-virtual-machines-vs-docker-containers) By Nick Janetakis
+4. [端口映射和 dmz](https://blog.csdn.net/shaochat/article/details/40583937) By 吾心安处方是家
