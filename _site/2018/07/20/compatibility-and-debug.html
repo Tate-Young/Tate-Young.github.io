@@ -285,7 +285,117 @@
 
 <p><img src="https://i.loli.net/2018/11/22/5bf616017176c.png" alt="debugger-inspect.png" /></p>
 
-<h2 id="safari">safari</h2>
+<h2 id="chrome-小技巧">Chrome 小技巧</h2>
+
+<p>此篇开发者小技巧基本转载自<a href="https://www.w3cplus.com/tools/dev-tips.html">这篇博客</a> 👈</p>
+
+<h3 id="console-面板">Console 面板</h3>
+
+<p>1、Console - 修改页面元素及内容</p>
+
+<p>获取元素节点后右键选择 <code class="highlighter-rouge">Edit as HTML</code> 或者 <code class="highlighter-rouge">Edit Text</code>。修改后的内容会实时反映在页面和 Elements 面板上:</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/console-edit-html.gif" alt="chrome tip 1" /></p>
+
+<blockquote>
+  <p>指令 <code class="highlighter-rouge">console</code> 也有超多的用法，具体可以<a href="http://localhost:4000/2018/03/13/js-console.html">参考以前的博客</a> 👈</p>
+</blockquote>
+
+<h3 id="sources-面板">Sources 面板</h3>
+
+<p>1、Sources - 通过 <code class="highlighter-rouge">:</code> 跳转到指定行和字符</p>
+
+<p>使用 <code class="highlighter-rouge">cmd + O</code> 快捷键打开搜索框，输入 <code class="highlighter-rouge">?</code> 会提示支持的一些符号语法，比如 <code class="highlighter-rouge">:</code> 可以跳转到指定行和字符，如 <code class="highlighter-rouge">:5:9</code> 则表示跳转到文件的第五行第九个字符:</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/go-to-column.gif" alt="chrome tip 1" /></p>
+
+<p>2、Sources - 光标位置跳转</p>
+
+<p>使用 <code class="highlighter-rouge">alt + -</code> 和 <code class="highlighter-rouge">alt + =</code> 可以在上一个和下一个鼠标位置之间跳转，类似 vscode 设置的 <code class="highlighter-rouge">Go Back</code> 和 <code class="highlighter-rouge">Go Foward</code>:</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/editing-locations.gif" alt="chrome tip 2" /></p>
+
+<p>3、Sources - 条件断点</p>
+
+<p>为 JS 代码设置条件断点，该断点只在条件满足时触发:</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/conditional-breakpoint.gif" alt="chrome tip 3" /></p>
+
+<h3 id="elements-面板">Elements 面板</h3>
+
+<p>1、Elements - 搜索</p>
+
+<p>使用 <code class="highlighter-rouge">cmd + F</code> 打开搜索框，除了常规字符串还可以使用选择器来选择 HTML 元素，如 <code class="highlighter-rouge">#root &gt; div</code>:</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/dom-search-by-selector.gif" alt="chrome tip 1" /></p>
+
+<p>2、Elements - 转换和复制图片的 base64 编码</p>
+
+<p>在预览图片上右键选择 <code class="highlighter-rouge">copy image as Data URI</code>，可以将图片转换为 base64 编码:</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/copy-as-data-uri.gif" alt="chrome tip 2" /></p>
+
+<p>3、Elements - 数值调整快捷键</p>
+
+<p>这个用得还是比较多的，有四种方式可以调整:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">up / down</code> - 增加或减少 1 单位</li>
+  <li><code class="highlighter-rouge">shift + up / down</code> - 增加或减少 10 单位</li>
+  <li><code class="highlighter-rouge">alt + up / down</code> - 增加或减少 0.1 单位</li>
+</ul>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/is-running.gif" alt="chrome tip 3" /></p>
+
+<p>4、Elements - 使用 <code class="highlighter-rouge">animation 检查器</code>可以检查运行中的 CSS 动画属性</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/animation-inspector.gif" alt="chrome tip 4" /></p>
+
+<h3 id="network-面板">Network 面板</h3>
+
+<p>1、Network - 查看正在运行的网络请求</p>
+
+<p>在 filter 输入框输入 <code class="highlighter-rouge">is:running</code> 指令可以查看正在进行中的网络请求:</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/is-running.gif" alt="chrome tip 1" /></p>
+
+<p>2、Network - 手动阻塞网络请求</p>
+
+<p>右键选择 <code class="highlighter-rouge">Block request URL</code> 则可以手动阻塞 URL 的加载，用于测试资源获取失败的页面效果，取消则再次选择点击 <code class="highlighter-rouge">Unblock xxx</code>:</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/block-requests.gif" alt="chrome tip 2" /></p>
+
+<p>3、Network - 跨页面加载保存请求</p>
+
+<p>要跨页面加载保存请求，则需要勾选 <code class="highlighter-rouge">Preserve log</code> 复选框。 在停用之前，DevTools 会保存所有请求:</p>
+
+<p><img src="https://developers.google.com/web/tools/chrome-devtools/network/imgs/preserve-log.svg" alt="chrome tip 3" /></p>
+
+<p>4、Network - 模拟离线和慢速网络连接</p>
+
+<p>勾选 <code class="highlighter-rouge">Offline</code> 复选框以模拟完全离线的网络体验；在 <code class="highlighter-rouge">Network Throttling</code> 菜单中模拟 2G、3G 和其他连接速度，也可以自定义:</p>
+
+<p><img src="https://developers.google.com/web/tools/chrome-devtools/network/imgs/network-panel-throttling-menu.svg" alt="chrome tip 4" /></p>
+
+<h3 id="其他">其他</h3>
+
+<p>1、通过 <code class="highlighter-rouge">cmd + [</code> 或 <code class="highlighter-rouge">cmd + ]</code> 循环切换开发者工具的各个面板</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/cycle-panel-shortcut.gif" alt="chrome tip 1" /></p>
+
+<p>2、修改开发者工具的样式</p>
+
+<p>将开发者工具从浏览器独立出来之后，使用 <code class="highlighter-rouge">cmd + alt + i</code> 将创建另一个开发者工具，可以用于修改第一个开发者工具的样式:</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/inspect-the-inspector.gif" alt="chrome tip 2" /></p>
+
+<p>3、可视化资源依赖关系</p>
+
+<p>通过按住 <code class="highlighter-rouge">shift</code> 可查看可视化资源依赖关系：绿色资源为初始化资源，红色资源由绿色资源引入:</p>
+
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/network-dependency.gif" alt="chrome tip 3" /></p>
+
+<h2 id="safari">Safari</h2>
 
 <h3 id="事件监听点击失效">事件监听点击失效</h3>
 
@@ -332,15 +442,13 @@
 }
 </code></pre>
 
-<blockquote>
-  <p>未完待续</p>
-</blockquote>
-
 <ol>
+  <li><a href="https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/">Charles - 官网</a></li>
   <li><a href="https://blog.devtang.com/2015/11/14/charles-introduction/">Charles 从入门到精通</a> By 唐巧</li>
   <li><a href="https://blog.zfanw.com/ios-safari-click-not-working/">iOS Safari 点击事件失效</a> By 陈三</li>
   <li><a href="https://gist.github.com/gordonbrander/2230317">ID - a unique ID/name generator for JavaScript</a> By gordonbrander</li>
-  <li><a href="https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/">Charles</a></li>
+  <li><a href="https://www.w3cplus.com/tools/dev-tips.html">Chrome 35 个开发者工具的小技巧</a> By 南北</li>
+  <li><a href="https://developers.google.com/web/tools/chrome-devtools/network-performance/reference#timing-explanation">网络分析参考 network performance - Google</a> By Kayce Basques</li>
 </ol>
  
 <div id="gitalk-container"></div>

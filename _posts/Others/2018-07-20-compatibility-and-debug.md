@@ -98,7 +98,113 @@ mitmproxy -p 8888
 
 ![debugger-inspect.png](https://i.loli.net/2018/11/22/5bf616017176c.png)
 
-## safari
+## Chrome 小技巧
+
+此篇开发者小技巧基本转载自[这篇博客](https://www.w3cplus.com/tools/dev-tips.html) 👈
+
+### Console 面板
+
+1、Console - 修改页面元素及内容
+
+获取元素节点后右键选择 `Edit as HTML` 或者 `Edit Text`。修改后的内容会实时反映在页面和 Elements 面板上:
+
+![chrome tip 1](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/console-edit-html.gif)
+
+> 指令 `console` 也有超多的用法，具体可以[参考以前的博客]( {{site.url}}/2018/03/13/js-console.html ) 👈
+
+### Sources 面板
+
+1、Sources - 通过 `:` 跳转到指定行和字符
+
+使用 `cmd + O` 快捷键打开搜索框，输入 `?` 会提示支持的一些符号语法，比如 `:` 可以跳转到指定行和字符，如 `:5:9` 则表示跳转到文件的第五行第九个字符:
+
+![chrome tip 1](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/go-to-column.gif)
+
+2、Sources - 光标位置跳转
+
+使用 `alt + -` 和 `alt + =` 可以在上一个和下一个鼠标位置之间跳转，类似 vscode 设置的 `Go Back` 和 `Go Foward`:
+
+![chrome tip 2](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/editing-locations.gif)
+
+3、Sources - 条件断点
+
+为 JS 代码设置条件断点，该断点只在条件满足时触发:
+
+![chrome tip 3](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/conditional-breakpoint.gif)
+
+### Elements 面板
+
+1、Elements - 搜索
+
+使用 `cmd + F` 打开搜索框，除了常规字符串还可以使用选择器来选择 HTML 元素，如 `#root > div`:
+
+![chrome tip 1](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/dom-search-by-selector.gif)
+
+2、Elements - 转换和复制图片的 base64 编码
+
+在预览图片上右键选择 `copy image as Data URI`，可以将图片转换为 base64 编码:
+
+![chrome tip 2](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/copy-as-data-uri.gif)
+
+3、Elements - 数值调整快捷键
+
+这个用得还是比较多的，有四种方式可以调整:
+
+* `up / down` - 增加或减少 1 单位
+* `shift + up / down` - 增加或减少 10 单位
+* `alt + up / down` - 增加或减少 0.1 单位
+
+![chrome tip 3](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/is-running.gif)
+
+4、Elements - 使用 `animation 检查器`可以检查运行中的 CSS 动画属性
+
+![chrome tip 4](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/animation-inspector.gif)
+
+### Network 面板
+
+1、Network - 查看正在运行的网络请求
+
+在 filter 输入框输入 `is:running` 指令可以查看正在进行中的网络请求:
+
+![chrome tip 1](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/is-running.gif)
+
+2、Network - 手动阻塞网络请求
+
+右键选择 `Block request URL` 则可以手动阻塞 URL 的加载，用于测试资源获取失败的页面效果，取消则再次选择点击 `Unblock xxx`:
+
+![chrome tip 2](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/block-requests.gif)
+
+3、Network - 跨页面加载保存请求
+
+要跨页面加载保存请求，则需要勾选 `Preserve log` 复选框。 在停用之前，DevTools 会保存所有请求:
+
+![chrome tip 3](https://developers.google.com/web/tools/chrome-devtools/network/imgs/preserve-log.svg)
+
+4、Network - 模拟离线和慢速网络连接
+
+勾选 `Offline` 复选框以模拟完全离线的网络体验；在 `Network Throttling` 菜单中模拟 2G、3G 和其他连接速度，也可以自定义:
+
+![chrome tip 4](https://developers.google.com/web/tools/chrome-devtools/network/imgs/network-panel-throttling-menu.svg)
+
+### 其他
+
+1、通过 `cmd + [` 或 `cmd + ]` 循环切换开发者工具的各个面板
+
+![chrome tip 1](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/cycle-panel-shortcut.gif)
+
+2、修改开发者工具的样式
+
+将开发者工具从浏览器独立出来之后，使用 `cmd + alt + i` 将创建另一个开发者工具，可以用于修改第一个开发者工具的样式:
+
+![chrome tip 2](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/inspect-the-inspector.gif)
+
+3、可视化资源依赖关系
+
+通过按住 `shift` 可查看可视化资源依赖关系：绿色资源为初始化资源，红色资源由绿色资源引入:
+
+![chrome tip 3](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/network-dependency.gif)
+
+## Safari
 
 ### 事件监听点击失效
 
@@ -144,9 +250,9 @@ for (var n = 0; n < 5; n += 1) {
 }
 ```
 
-> 未完待续
-
-1. [Charles 从入门到精通](https://blog.devtang.com/2015/11/14/charles-introduction/) By 唐巧
-2. [iOS Safari 点击事件失效](https://blog.zfanw.com/ios-safari-click-not-working/) By 陈三
-3. [ID - a unique ID/name generator for JavaScript](https://gist.github.com/gordonbrander/2230317) By gordonbrander
-4. [Charles](https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/)
+1. [Charles - 官网](https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/)
+2. [Charles 从入门到精通](https://blog.devtang.com/2015/11/14/charles-introduction/) By 唐巧
+3. [iOS Safari 点击事件失效](https://blog.zfanw.com/ios-safari-click-not-working/) By 陈三
+4. [ID - a unique ID/name generator for JavaScript](https://gist.github.com/gordonbrander/2230317) By gordonbrander
+5. [Chrome 35 个开发者工具的小技巧](https://www.w3cplus.com/tools/dev-tips.html) By 南北
+6. [网络分析参考 network performance - Google](https://developers.google.com/web/tools/chrome-devtools/network-performance/reference#timing-explanation) By Kayce Basques
