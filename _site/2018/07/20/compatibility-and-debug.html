@@ -442,6 +442,76 @@
 }
 </code></pre>
 
+<h3 id="sort-对非-ascii-字符排序">sort 对非 ASCII 字符排序</h3>
+
+<p>一般 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort"><strong>sort</strong></a> 默认是按照字符串 Unicode 码点升序排列:</p>
+
+<pre><code class="language-JS">const arr = ['c', 'a', 'b']
+arr.sort() // ['a', 'b', 'c']
+
+const numbers = [1, 30, 4, 21, 100000]
+numbers.sort() // [1, 100000, 21, 30, 4]
+</code></pre>
+
+<p>为了解决上面的数字排序问题，可以添加比较函数作为 sort 方法的参数:</p>
+
+<pre><code class="language-JS">// 常规写法
+function compare(a, b) {
+  if (a &lt; b ) {
+    return -1
+  }
+  if (a &gt; b ) {
+    return 1
+  }
+  // a must be equal to b
+  return 0
+}
+
+// better 更简洁
+function compare(a, b) {
+  return +(a &gt; b) || +(a === b) - 1
+}
+
+numbers.sort(compare)
+</code></pre>
+
+<p>要比较数字而非字符串，比较函数可以简单的以 a 减 b，如下的函数将会将数组升序排列:</p>
+
+<pre><code class="language-JS">function compareNumbers(a, b) {
+  return a - b
+}
+
+// 或者
+numbers.sort((a, b) =&gt; a - b)
+</code></pre>
+
+<p>对非 ASCII 字符排序，可以使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare"><strong>localeCompare</strong></a> 函数排序到正确的顺序，localeCompare 方法返回一个数字来指示一个参考字符串是否在排序顺序前面或之后或与给定字符串相同:</p>
+
+<pre><code class="language-JS">const arr = ['呲', '啊', '博']
+arr.sort((a, b) =&gt; a.localeCompare(b)) // ["啊", "博", "呲"]
+</code></pre>
+
+<p><code class="highlighter-rouge">compareFunction</code> 可能需要对元素做多次映射以实现排序，尤其当 compareFunction 较为复杂，且元素较多的时候，某些 compareFunction 可能会导致很高的负载。使用 map 辅助排序将会是一个好主意。基本思想是首先将数组中的每个元素比较的实际值取出来，排序后再将数组恢复:</p>
+
+<pre><code class="language-JS">// 需要被排序的数组
+var list = ['Delta', 'alpha', 'CHARLIE', 'bravo']
+
+// 对需要排序的数字和位置的临时存储
+var mapped = list.map(function(el, i) {
+  return { index: i, value: el.toLowerCase() };
+})
+
+// 按照多个值排序数组
+mapped.sort(function(a, b) {
+  return +(a.value &gt; b.value) || +(a.value === b.value) - 1;
+})
+
+// 根据索引得到排序的结果
+var result = mapped.map(function(el){
+  return list[el.index];
+})
+</code></pre>
+
 <ol>
   <li><a href="https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/">Charles - 官网</a></li>
   <li><a href="https://blog.devtang.com/2015/11/14/charles-introduction/">Charles 从入门到精通</a> By 唐巧</li>
