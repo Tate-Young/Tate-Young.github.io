@@ -229,8 +229,8 @@ mitmproxy -p 8888
 var ID = function () {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters after the decimal.
-  return '_' + Math.random().toString(36).substr(2, 9);
-};
+  return '_' + Math.random().toString(36).substr(2, 9)
+}
 ```
 
 ### 跳出 for 循环
@@ -311,17 +311,17 @@ var list = ['Delta', 'alpha', 'CHARLIE', 'bravo']
 
 // 对需要排序的数字和位置的临时存储
 var mapped = list.map(function(el, i) {
-  return { index: i, value: el.toLowerCase() };
+  return { index: i, value: el.toLowerCase() }
 })
 
 // 按照多个值排序数组
 mapped.sort(function(a, b) {
-  return +(a.value > b.value) || +(a.value === b.value) - 1;
+  return +(a.value > b.value) || +(a.value === b.value) - 1
 })
 
 // 根据索引得到排序的结果
 var result = mapped.map(function(el){
-  return list[el.index];
+  return list[el.index]
 })
 ```
 
