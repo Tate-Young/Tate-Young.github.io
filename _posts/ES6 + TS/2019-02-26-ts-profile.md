@@ -11,7 +11,7 @@ background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
 ---
-# {{ page.title }})
+# {{ page.title }}
 
 ## 什么是 TypeScript
 
@@ -283,7 +283,7 @@ square.sideLength = 10
 square.penWidth = 5.0
 ```
 
-接口也可以继承类，它会继承类的成员但不包括其实现。这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现(implement):
+接口也可以继承类，它会继承类的成员但不包括其实现。这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现:
 
 ```JS
 class Control {
@@ -309,6 +309,219 @@ class Image implements SelectableControl {
   select() { }
 }
 ```
+
+## 泛型 Generics
+
+### 类型变量
+
+**泛型**支持多种类型的数据，增强了组件的可复用性。我们需要一种方法使返回值的类型与传入参数的类型是相同的:
+
+```JS
+// 类型变量 T 帮助我们捕获用户传入的类型，之后我们再次使用了 T 当做返回值类型
+// 此时函数 identity 即叫做泛型，类型变量 T 代表的是任意类型
+function identity<T>(arg: T): T {
+  console.log(arg.length)  // Error: T doesn't have .length
+  return arg
+}
+```
+
+```JS
+// 如果我们传入数字数组，将返回一个数字数组
+function loggingIdentity<T>(arg: T[]): T[] {
+  console.log(arg.length) // Array has a .length, so no more error
+  return arg
+}
+// or
+function loggingIdentity<T>(arg: Array<T>): Array<T> {
+  console.log(arg.length)  // Array has a .length, so no more error
+  return arg
+}
+```
+
+当然我们也可以使用不同的泛型参数名，只要在数量上和使用方式上能对应上就可以:
+
+```JS
+let myIdentity: <U>(arg: U) => U = identity
+
+// 还可以使用带有调用签名的对象字面量来定义泛型函数
+let myIdentity: {<T>(arg: T): T} = identity
+```
+
+我们定义了泛型函数后，可以通过两种方法来使用，推荐使用第二种，因为类型推论可帮助我们保持代码精简和高可读性:
+
+```JS
+// 第一种是，传入所有的参数，包含类型参数
+let output = identity<string>('myString')  // type of output will be 'string'
+
+// 第二种方法更普遍。利用了类型推论 -- 即编译器会根据传入的参数自动地帮助我们确定 T 的类型
+let output = identity('myString')  // type of output will be 'string'
+```
+
+### 泛型接口
+
+通过泛型还可以创建**泛型接口**:
+
+```JS
+interface GenericIdentityFn {
+  <T>(arg: T): T
+}
+
+function identity<T>(arg: T): T {
+  return arg
+}
+
+let myIdentity: GenericIdentityFn = identity
+```
+
+同样我们也可以把泛型参数当作整个接口的一个参数。 这样我们就能清楚的知道使用的具体是哪个泛型类型(比如 `Dictionary<string>` 而不只是 `Dictionary`)。 这样接口里的其它成员也能知道这个参数的类型了:
+
+```JS
+interface GenericIdentityFn<T> {
+  (arg: T): T
+}
+
+function identity<T>(arg: T): T {
+  return arg
+}
+
+let myIdentity: GenericIdentityFn<number> = identity
+```
+
+### 泛型类
+
+泛型类指的是实例部分的类型，类的静态属性不能使用这个泛型类型:
+
+```JS
+class GenericNumber<T> {
+  zeroValue: T
+  add: (x: T, y: T) => T
+}
+
+let myGenericNumber = new GenericNumber<number>()
+myGenericNumber.zeroValue = 0
+myGenericNumber.add = function(x, y) { return x + y }
+```
+
+没有什么去限制它只能使用number类型。 也可以使用字符串或其它更复杂的类型:
+
+```JS
+let stringNumeric = new GenericNumber<string>()
+stringNumeric.zeroValue = ''
+stringNumeric.add = function(x, y) { return x + y }
+
+console.log(stringNumeric.add(stringNumeric.zeroValue, 'test'))
+```
+
+### 泛型约束
+
+回到第一个栗子，由于参数可以是任意类型，所以 length 属性不一定存在，为了约束，我们通过 **extends** 关键字可以这样写:
+
+```JS
+// 创建一个包含 .length 属性的接口
+interface Lengthwise {
+  length: number
+}
+
+// 它不再是适用于任意类型
+function loggingIdentity<T extends Lengthwise>(arg: T): T {
+  console.log(arg.length)  // Now we know it has a .length property, so no more error
+  return arg
+}
+
+loggingIdentity(3)  // Error, number doesn't have a .length property
+```
+
+在泛型里使用类类型，使用原型属性推断并约束构造函数与类实例的关系:
+
+```JS
+class BeeKeeper {
+  hasMask: boolean
+}
+
+class ZooKeeper {
+  nametag: string
+}
+
+class Animal {
+  numLegs: number
+}
+
+class Bee extends Animal {
+  keeper: BeeKeeper
+}
+
+class Lion extends Animal {
+  keeper: ZooKeeper
+}
+
+function createInstance<A extends Animal>(c: new () => A): A {
+  return new c()
+}
+
+createInstance(Lion).keeper.nametag  // typechecks!
+createInstance(Bee).keeper.hasMask   // typechecks!
+```
+
+## 命名空间
+
+"内部模块"现在称做"**命名空间(namespace)**"，"外部模块"则简称为"**模块(module)**"，不应该对模块使用命名空间，使用命名空间是为了提供逻辑分组和避免命名冲突:
+
+```JS
+// Validation.ts
+namespace Validation {
+  export interface StringValidator {
+    isAcceptable(s: string): boolean
+  }
+}
+```
+
+```JS
+// 三斜线指令，用于声明文件间的依赖
+/// <reference path="Validation.ts" />
+// 尽管是不同的文件，它们仍是同一个命名空间
+namespace Validation {
+  const lettersRegexp = /^[A-Za-z]+$/
+  export class LettersOnlyValidator implements StringValidator {
+    isAcceptable(s: string) {
+      return lettersRegexp.test(s)
+    }
+  }
+}
+```
+
+```JS
+/// <reference path="Validation.ts" />
+/// <reference path="LettersOnlyValidator.ts" />
+
+let strings = ["Hello", "98052", "101"]
+
+// Validators to use
+let validators: { [s: string]: Validation.StringValidator } = {}
+validators["Letters only"] = new Validation.LettersOnlyValidator()
+
+// Show whether each string passed each validator
+for (let s of strings) {
+  for (let name in validators) {
+    console.log(`"${ s }" - ${ validators[name].isAcceptable(s) ? "matches" : "does not match" } ${ name }`)
+  }
+}
+```
+
+还可以为命名空间取别名，格式为 `import q = x.y.z`:
+
+```JS
+namespace Shapes {
+  export namespace Polygons {
+    export class Triangle { }
+    export class Square { }
+  }
+}
+
+import polygons = Shapes.Polygons // 取别名
+let sq = new polygons.Square() // Same as "new Shapes.Polygons.Square()"
+```
+
+## 声明文件 d.ts
 
 ## 参考链接
 

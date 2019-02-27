@@ -16,7 +16,7 @@
 <meta name="twitter:keywords" content="TypeScript 简介 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="TypeScript 简介 - Tate & Snow">
-<meta name="og:keywords" content="TypeScript 简介 - Tate & Snow|TypeScript 简介)什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。Angular 就是基于 TypeS..."
+<meta name="og:keywords" content="TypeScript 简介 - Tate & Snow|TypeScript 简介什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。Angular 就是基于 TypeSc..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -25,13 +25,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="TypeScript 简介)什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。Angular 就是基于 TypeS..." property='og:description'
+<meta name="keywords" content="TypeScript 简介什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。Angular 就是基于 TypeSc..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2019/02/26/ts-profile.html' property='og:url' />
-<meta content="http://localhost:4000/2019/02/26/ts-profile.html|TypeScript 简介)什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。Angular 就是基于 TypeS..." property='og:description'
+<meta content="http://localhost:4000/2019/02/26/ts-profile.html|TypeScript 简介什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。Angular 就是基于 TypeSc..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -172,7 +172,7 @@
                     </a>
                    
             </p>
-            <h1 id="typescript-简介">TypeScript 简介)</h1>
+            <h1 id="typescript-简介">TypeScript 简介</h1>
 
 <h2 id="什么是-typescript">什么是 TypeScript</h2>
 
@@ -428,7 +428,7 @@ square.sideLength = 10
 square.penWidth = 5.0
 </code></pre>
 
-<p>接口也可以继承类，它会继承类的成员但不包括其实现。这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现(implement):</p>
+<p>接口也可以继承类，它会继承类的成员但不包括其实现。这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现:</p>
 
 <pre><code class="language-JS">class Control {
   private state: any
@@ -453,6 +453,205 @@ class Image implements SelectableControl {
   select() { }
 }
 </code></pre>
+
+<h2 id="泛型-generics">泛型 Generics</h2>
+
+<h3 id="类型变量">类型变量</h3>
+
+<p><strong>泛型</strong>支持多种类型的数据，增强了组件的可复用性。我们需要一种方法使返回值的类型与传入参数的类型是相同的:</p>
+
+<pre><code class="language-JS">// 类型变量 T 帮助我们捕获用户传入的类型，之后我们再次使用了 T 当做返回值类型
+// 此时函数 identity 即叫做泛型，类型变量 T 代表的是任意类型
+function identity&lt;T&gt;(arg: T): T {
+  console.log(arg.length)  // Error: T doesn't have .length
+  return arg
+}
+</code></pre>
+
+<pre><code class="language-JS">// 如果我们传入数字数组，将返回一个数字数组
+function loggingIdentity&lt;T&gt;(arg: T[]): T[] {
+  console.log(arg.length) // Array has a .length, so no more error
+  return arg
+}
+// or
+function loggingIdentity&lt;T&gt;(arg: Array&lt;T&gt;): Array&lt;T&gt; {
+  console.log(arg.length)  // Array has a .length, so no more error
+  return arg
+}
+</code></pre>
+
+<p>当然我们也可以使用不同的泛型参数名，只要在数量上和使用方式上能对应上就可以:</p>
+
+<pre><code class="language-JS">let myIdentity: &lt;U&gt;(arg: U) =&gt; U = identity
+
+// 还可以使用带有调用签名的对象字面量来定义泛型函数
+let myIdentity: {&lt;T&gt;(arg: T): T} = identity
+</code></pre>
+
+<p>我们定义了泛型函数后，可以通过两种方法来使用，推荐使用第二种，因为类型推论可帮助我们保持代码精简和高可读性:</p>
+
+<pre><code class="language-JS">// 第一种是，传入所有的参数，包含类型参数
+let output = identity&lt;string&gt;('myString')  // type of output will be 'string'
+
+// 第二种方法更普遍。利用了类型推论 -- 即编译器会根据传入的参数自动地帮助我们确定 T 的类型
+let output = identity('myString')  // type of output will be 'string'
+</code></pre>
+
+<h3 id="泛型接口">泛型接口</h3>
+
+<p>通过泛型还可以创建<strong>泛型接口</strong>:</p>
+
+<pre><code class="language-JS">interface GenericIdentityFn {
+  &lt;T&gt;(arg: T): T
+}
+
+function identity&lt;T&gt;(arg: T): T {
+  return arg
+}
+
+let myIdentity: GenericIdentityFn = identity
+</code></pre>
+
+<p>同样我们也可以把泛型参数当作整个接口的一个参数。 这样我们就能清楚的知道使用的具体是哪个泛型类型(比如 <code class="highlighter-rouge">Dictionary&lt;string&gt;</code> 而不只是 <code class="highlighter-rouge">Dictionary</code>)。 这样接口里的其它成员也能知道这个参数的类型了:</p>
+
+<pre><code class="language-JS">interface GenericIdentityFn&lt;T&gt; {
+  (arg: T): T
+}
+
+function identity&lt;T&gt;(arg: T): T {
+  return arg
+}
+
+let myIdentity: GenericIdentityFn&lt;number&gt; = identity
+</code></pre>
+
+<h3 id="泛型类">泛型类</h3>
+
+<p>泛型类指的是实例部分的类型，类的静态属性不能使用这个泛型类型:</p>
+
+<pre><code class="language-JS">class GenericNumber&lt;T&gt; {
+  zeroValue: T
+  add: (x: T, y: T) =&gt; T
+}
+
+let myGenericNumber = new GenericNumber&lt;number&gt;()
+myGenericNumber.zeroValue = 0
+myGenericNumber.add = function(x, y) { return x + y }
+</code></pre>
+
+<p>没有什么去限制它只能使用number类型。 也可以使用字符串或其它更复杂的类型:</p>
+
+<pre><code class="language-JS">let stringNumeric = new GenericNumber&lt;string&gt;()
+stringNumeric.zeroValue = ''
+stringNumeric.add = function(x, y) { return x + y }
+
+console.log(stringNumeric.add(stringNumeric.zeroValue, 'test'))
+</code></pre>
+
+<h3 id="泛型约束">泛型约束</h3>
+
+<p>回到第一个栗子，由于参数可以是任意类型，所以 length 属性不一定存在，为了约束，我们通过 <strong>extends</strong> 关键字可以这样写:</p>
+
+<pre><code class="language-JS">// 创建一个包含 .length 属性的接口
+interface Lengthwise {
+  length: number
+}
+
+// 它不再是适用于任意类型
+function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T {
+  console.log(arg.length)  // Now we know it has a .length property, so no more error
+  return arg
+}
+
+loggingIdentity(3)  // Error, number doesn't have a .length property
+</code></pre>
+
+<p>在泛型里使用类类型，使用原型属性推断并约束构造函数与类实例的关系:</p>
+
+<pre><code class="language-JS">class BeeKeeper {
+  hasMask: boolean
+}
+
+class ZooKeeper {
+  nametag: string
+}
+
+class Animal {
+  numLegs: number
+}
+
+class Bee extends Animal {
+  keeper: BeeKeeper
+}
+
+class Lion extends Animal {
+  keeper: ZooKeeper
+}
+
+function createInstance&lt;A extends Animal&gt;(c: new () =&gt; A): A {
+  return new c()
+}
+
+createInstance(Lion).keeper.nametag  // typechecks!
+createInstance(Bee).keeper.hasMask   // typechecks!
+</code></pre>
+
+<h2 id="命名空间">命名空间</h2>
+
+<p>“内部模块”现在称做”<strong>命名空间(namespace)</strong>“，”外部模块”则简称为”<strong>模块(module)</strong>“，不应该对模块使用命名空间，使用命名空间是为了提供逻辑分组和避免命名冲突:</p>
+
+<pre><code class="language-JS">// Validation.ts
+namespace Validation {
+  export interface StringValidator {
+    isAcceptable(s: string): boolean
+  }
+}
+</code></pre>
+
+<pre><code class="language-JS">// 三斜线指令，用于声明文件间的依赖
+/// &lt;reference path="Validation.ts" /&gt;
+// 尽管是不同的文件，它们仍是同一个命名空间
+namespace Validation {
+  const lettersRegexp = /^[A-Za-z]+$/
+  export class LettersOnlyValidator implements StringValidator {
+    isAcceptable(s: string) {
+      return lettersRegexp.test(s)
+    }
+  }
+}
+</code></pre>
+
+<pre><code class="language-JS">/// &lt;reference path="Validation.ts" /&gt;
+/// &lt;reference path="LettersOnlyValidator.ts" /&gt;
+
+let strings = ["Hello", "98052", "101"]
+
+// Validators to use
+let validators: { [s: string]: Validation.StringValidator } = {}
+validators["Letters only"] = new Validation.LettersOnlyValidator()
+
+// Show whether each string passed each validator
+for (let s of strings) {
+  for (let name in validators) {
+    console.log(`"${ s }" - ${ validators[name].isAcceptable(s) ? "matches" : "does not match" } ${ name }`)
+  }
+}
+</code></pre>
+
+<p>还可以为命名空间取别名，格式为 <code class="highlighter-rouge">import q = x.y.z</code>:</p>
+
+<pre><code class="language-JS">namespace Shapes {
+  export namespace Polygons {
+    export class Triangle { }
+    export class Square { }
+  }
+}
+
+import polygons = Shapes.Polygons // 取别名
+let sq = new polygons.Square() // Same as "new Shapes.Polygons.Square()"
+</code></pre>
+
+<h2 id="声明文件-dts">声明文件 d.ts</h2>
 
 <h2 id="参考链接">参考链接</h2>
 
