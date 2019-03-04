@@ -16,7 +16,7 @@
 <meta name="twitter:keywords" content="React 简介 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="React 简介 - Tate & Snow">
-<meta name="og:keywords" content="React 简介 - Tate & Snow|React 简介React 是一个 View 层的框架，用来渲染视图，它主要做几件事情:  组件化  利用 props 形成单向的数据流  根据 state 的变化来更新 view  利用虚拟 DOM 来提升渲染性能安装可以使用 np..."
+<meta name="og:keywords" content="React 简介 - Tate & Snow|React 简介React 是一个 View 层的框架，用来渲染视图，它主要做几件事情:  组件化  利用 props 形成单向的数据流  根据 state 的变化来更新 view  利用虚拟 DOM 来提升渲染性能  React 将..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -25,13 +25,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="React 简介React 是一个 View 层的框架，用来渲染视图，它主要做几件事情:  组件化  利用 props 形成单向的数据流  根据 state 的变化来更新 view  利用虚拟 DOM 来提升渲染性能安装可以使用 np..." property='og:description'
+<meta name="keywords" content="React 简介React 是一个 View 层的框架，用来渲染视图，它主要做几件事情:  组件化  利用 props 形成单向的数据流  根据 state 的变化来更新 view  利用虚拟 DOM 来提升渲染性能  React 将..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/08/06/react-profile.html' property='og:url' />
-<meta content="http://localhost:4000/2018/08/06/react-profile.html|React 简介React 是一个 View 层的框架，用来渲染视图，它主要做几件事情:  组件化  利用 props 形成单向的数据流  根据 state 的变化来更新 view  利用虚拟 DOM 来提升渲染性能安装可以使用 np..." property='og:description'
+<meta content="http://localhost:4000/2018/08/06/react-profile.html|React 简介React 是一个 View 层的框架，用来渲染视图，它主要做几件事情:  组件化  利用 props 形成单向的数据流  根据 state 的变化来更新 view  利用虚拟 DOM 来提升渲染性能  React 将..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -182,6 +182,10 @@
   <li>根据 state 的变化来更新 view</li>
   <li>利用虚拟 DOM 来提升渲染性能</li>
 </ul>
+
+<blockquote>
+  <p>React 将 DOM 抽象为 <strong>虚拟 DOM</strong>, 然后通过新旧虚拟 DOM 这两个对象的差异(<strong>Diff</strong> 算法)，将变化的部分重新渲染</p>
+</blockquote>
 
 <h2 id="安装">安装</h2>
 
@@ -883,6 +887,7 @@ const ShowTheLocationWithRouter = withRouter(ShowTheLocation);
   <li><a href="https://medium.com/@giang.nguyen.dev/hot-loader-with-react-loadable-c8f70c8ce1a6">Hot loader with react-loadable</a> By Go to the profile of Giang Nguyen</li>
   <li><a href="https://juejin.im/post/5abf4a09f265da237719899d">讲讲今后 React 异步渲染带来的生命周期变化</a> By Enix</li>
   <li><a href="https://juejin.im/entry/59522bdb6fb9a06b9a516113">深入理解 React 组件状态(State)</a></li>
+  <li><a href="https://juejin.im/post/5a3200fe51882554bd5111a0">React 虚拟 Dom 和 diff 算法</a> By Y__</li>
 </ol>
  
 <div id="gitalk-container"></div>

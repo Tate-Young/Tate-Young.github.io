@@ -20,6 +20,8 @@ React 是一个 View 层的框架，用来渲染视图，它主要做几件事�
 * 根据 state 的变化来更新 view
 * 利用虚拟 DOM 来提升渲染性能
 
+> React 将 DOM 抽象为 **虚拟 DOM**, 然后通过新旧虚拟 DOM 这两个对象的差异(**Diff** 算法)，将变化的部分重新渲染
+
 ## 安装
 
 可以使用 npm 快速构建 React 开发环境，5.20+ 也可以使用包启动器 [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)。**create-react-app** 自动创建的项目基于 Webpack + ES6。
@@ -687,3 +689,4 @@ const ShowTheLocationWithRouter = withRouter(ShowTheLocation);
 10. [Hot loader with react-loadable](https://medium.com/@giang.nguyen.dev/hot-loader-with-react-loadable-c8f70c8ce1a6) By Go to the profile of Giang Nguyen
 11. [讲讲今后 React 异步渲染带来的生命周期变化](https://juejin.im/post/5abf4a09f265da237719899d) By Enix
 12. [深入理解 React 组件状态(State)](https://juejin.im/entry/59522bdb6fb9a06b9a516113)
+13. [React 虚拟 Dom 和 diff 算法](https://juejin.im/post/5a3200fe51882554bd5111a0) By Y__

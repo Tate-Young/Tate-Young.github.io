@@ -404,6 +404,32 @@ x[Symbol.replace] = (...s) => console.log(s);
 'Hello'.replace(x, 'World'); // ["Hello", "World"]
 ```
 
+## 解构赋值
+
+ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为**解构(Destructuring)**，实上，只要某种数据结构具有 Iterator 接口，都可以采用数组形式的解构赋值:
+
+```JS
+const [a, b, c] = [1, 2, 3]
+// a = 1
+// b = 2
+// c = 3
+```
+
+解构赋值允许指定默认值:
+
+```JS
+const [foo = true] = [];
+foo // true
+
+const [x, y = 'b'] = ['a']; // x='a', y='b'
+const [x, y = 'b'] = ['a', undefined]; // x='a', y='b'
+
+// 嵌套的写法
+const { match: { params: { client } } } = this.props
+```
+
+> 注意如果解构的值为 null，默认值就不会生效
+
 ## 参考链接
 
 1. [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/string) By 阮一峰
