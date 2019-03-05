@@ -16,7 +16,7 @@
 <meta name="twitter:keywords" content="TypeScript 简介 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="TypeScript 简介 - Tate & Snow">
-<meta name="og:keywords" content="TypeScript 简介 - Tate & Snow|TypeScript 简介什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。Angular 就是基于 TypeSc..."
+<meta name="og:keywords" content="TypeScript 简介 - Tate & Snow|TypeScript 简介什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。基础类型TypeScript 支持与 ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -25,13 +25,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="TypeScript 简介什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。Angular 就是基于 TypeSc..." property='og:description'
+<meta name="keywords" content="TypeScript 简介什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。基础类型TypeScript 支持与 ..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2019/02/26/ts-profile.html' property='og:url' />
-<meta content="http://localhost:4000/2019/02/26/ts-profile.html|TypeScript 简介什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。Angular 就是基于 TypeSc..." property='og:description'
+<meta content="http://localhost:4000/2019/02/26/ts-profile.html|TypeScript 简介什么是 TypeScriptTypeScript 是由微软开发的开源的编程语言。它是 JavaScript 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。基础类型TypeScript 支持与 ..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <script>
@@ -176,7 +176,7 @@
 
 <h2 id="什么是-typescript">什么是 TypeScript</h2>
 
-<p><strong>TypeScript</strong> 是由微软开发的开源的编程语言。它是 <strong>JavaScript</strong> 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。<strong>Angular</strong> 就是基于 TypeScript 写的。</p>
+<p><strong>TypeScript</strong> 是由微软开发的开源的编程语言。它是 <strong>JavaScript</strong> 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。</p>
 
 <h2 id="基础类型">基础类型</h2>
 
@@ -251,6 +251,38 @@ function error(message: string): never {
 }
 </code></pre>
 
+<h3 id="类型别名">类型别名</h3>
+
+<p><strong>类型别名</strong>可以通过 <strong>type</strong> 关键字给一个类型起个新名字，常用于联合类型:</p>
+
+<pre><code class="language-JS">type Name = string
+type NameResolver = () =&gt; string
+type NameOrResolver = Name | NameResolver
+function getName(n: NameOrResolver): Name {
+  if (typeof n === 'string') {
+    return n
+  }
+  return n()
+}
+</code></pre>
+
+<p><strong>联合类型</strong>举个栗子:</p>
+
+<pre><code class="language-JS">// 注意我们没有让 b 成为可选的，因为签名的返回值类型不同
+/* WRONG */
+interface Moment {
+  utcOffset(): number
+  utcOffset(b: number): Moment
+  utcOffset(b: string): Moment
+}
+
+/* OK */
+interface Moment {
+  utcOffset(): number
+  utcOffset(b: number|string): Moment
+}
+</code></pre>
+
 <h3 id="类型断言">类型断言</h3>
 
 <p>有时候你会遇到这样的情况，你会比 TypeScript 更了解某个值的详细信息。 通常这会发生在你清楚地知道一个实体具有比它现有类型更确切的类型。类型断言有两种形式:</p>
@@ -286,7 +318,7 @@ printLabel(myObj)
 interface LabelledValue {
   label: string
   size?: number // 可选属性
-  gender？: 'man' | 'woman'
+  gender?: 'man' | 'woman'
 }
 
 function printLabel(labelledObj: LabelledValue) {
@@ -609,7 +641,7 @@ namespace Validation {
 </code></pre>
 
 <pre><code class="language-JS">// 三斜线指令，用于声明文件间的依赖
-/// &lt;reference path="Validation.ts" /&gt;
+/// &lt;reference path='Validation.ts' /&gt;
 // 尽管是不同的文件，它们仍是同一个命名空间
 namespace Validation {
   const lettersRegexp = /^[A-Za-z]+$/
@@ -621,19 +653,19 @@ namespace Validation {
 }
 </code></pre>
 
-<pre><code class="language-JS">/// &lt;reference path="Validation.ts" /&gt;
-/// &lt;reference path="LettersOnlyValidator.ts" /&gt;
+<pre><code class="language-JS">/// &lt;reference path='Validation.ts' /&gt;
+/// &lt;reference path='LettersOnlyValidator.ts' /&gt;
 
-let strings = ["Hello", "98052", "101"]
+let strings = ['Hello', '98052', '101']
 
 // Validators to use
 let validators: { [s: string]: Validation.StringValidator } = {}
-validators["Letters only"] = new Validation.LettersOnlyValidator()
+validators['Letters only'] = new Validation.LettersOnlyValidator()
 
 // Show whether each string passed each validator
 for (let s of strings) {
   for (let name in validators) {
-    console.log(`"${ s }" - ${ validators[name].isAcceptable(s) ? "matches" : "does not match" } ${ name }`)
+    console.log(`'${ s }' - ${ validators[name].isAcceptable(s) ? 'matches' : 'does not match' } ${ name }`)
   }
 }
 </code></pre>
@@ -648,15 +680,82 @@ for (let s of strings) {
 }
 
 import polygons = Shapes.Polygons // 取别名
-let sq = new polygons.Square() // Same as "new Shapes.Polygons.Square()"
+let sq = new polygons.Square() // Same as 'new Shapes.Polygons.Square()'
 </code></pre>
 
 <h2 id="声明文件-dts">声明文件 d.ts</h2>
+
+<p>TypeScript 相比 JavaScript 增加了类型声明，并要求开发者做到先声明后使用。这就导致在调用很多原生接口或者使用第三方模块的时候，因为变量未声明而导致编译器的类型检查失败:</p>
+
+<pre><code class="language-JS">// 比如在浏览器中以 script 标签引入 jQuery 并使用全局变量 $
+// index.ts
+$('selector') // ts error: can not find name '$'
+</code></pre>
+
+<p>故需要为 $ 提供全局的类申明:</p>
+
+<pre><code class="language-JS">// index.d.ts
+declare const $: any
+</code></pre>
+
+<p>社区为普遍使用的模块提供了类型定义，通过 <code class="highlighter-rouge">npm install @types/[module-name]</code> 即可安装，而不需要自己手动声明。上面栗子的写法是针对变量的，对于其他写法如下，更多示例可以<a href="https://www.tslang.cn/docs/handbook/declaration-files/by-example.html">参考官网</a>:</p>
+
+<pre><code class="language-JS">// ---- 函数 ----
+greet('hello, world')
+
+declare function greet(greeting: string): void
+</code></pre>
+
+<pre><code class="language-JS">// ---- 带属性的对象 使用 declare namespace 描述用点表示法访问的类型或值 ----
+const result = myLib.makeGreeting('hello, world')
+const count = myLib.numberOfGreetings
+
+declare namespace myLib {
+  function makeGreeting(s: string): string
+  const numberOfGreetings: number
+}
+</code></pre>
+
+<pre><code class="language-JS">// ---- 可重用类型(类型别名) ----
+// 可以提供一个 string，一个返回 string 的函数或一个 Greeter 实例
+function getGreeting() {
+  return 'howdy'
+}
+class MyGreeter extends Greeter { }
+
+greet('hello')
+greet(getGreeting)
+greet(new MyGreeter())
+
+// 可以使用类型别名来定义类型的短名
+type GreetingLike = string | (() =&gt; string) | MyGreeter
+declare function greet(g: GreetingLike): void
+</code></pre>
+
+<pre><code class="language-JS">// ---- 类 ----
+const myGreeter = new Greeter('hello, world')
+myGreeter.greeting = 'howdy'
+myGreeter.showGreeting()
+
+class SpecialGreeter extends Greeter {
+  constructor() {
+    super('Very special greetings')
+  }
+}
+
+declare class Greeter {
+  constructor(greeting: string)
+
+  greeting: string
+  showGreeting(): void
+}
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://www.tslang.cn/docs/home.html">TypeScript 中文文档</a></li>
+  <li><a href="https://www.zhihu.com/question/52068257">TypeScript 中的 .d.ts 文件有什么作用，这种文件的内如如何编写？ - 知乎</a></li>
 </ol>
  
 <div id="gitalk-container"></div>

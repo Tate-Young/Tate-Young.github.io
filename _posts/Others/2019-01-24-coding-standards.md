@@ -142,7 +142,7 @@ brand = brand_role[0] // eslint-disable-line prefer-destructuring, max-len
 
 ## EditorConfig
 
-[**EditorConfig**](https://editorconfig.org/) 也是多人开发常用的一种规范制定工具，配置文件为 `.editorconfig`, 配置规则为:
+[**EditorConfig**](https://editorconfig.org/) 是一套用于统一代码格式的解决方案。EditorConfig 包含一个用于定义代码格式的文件和一些编辑器插件，这些插件可以让编辑器读取配置文件并依此格式化代码。其配置文件为 `.editorconfig`, 配置规则为:
 
 | 通配符 | 说明 |
 |:--------------|:---------|

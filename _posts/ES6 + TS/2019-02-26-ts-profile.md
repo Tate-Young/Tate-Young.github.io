@@ -15,7 +15,7 @@ tags:
 
 ## 什么是 TypeScript
 
-**TypeScript** 是由微软开发的开源的编程语言。它是 **JavaScript** 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。**Angular** 就是基于 TypeScript 写的。
+**TypeScript** 是由微软开发的开源的编程语言。它是 **JavaScript** 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。
 
 ## 基础类型
 
@@ -97,6 +97,40 @@ function error(message: string): never {
 }
 ```
 
+### 类型别名
+
+**类型别名**可以通过 **type** 关键字给一个类型起个新名字，常用于联合类型:
+
+```JS
+type Name = string
+type NameResolver = () => string
+type NameOrResolver = Name | NameResolver
+function getName(n: NameOrResolver): Name {
+  if (typeof n === 'string') {
+    return n
+  }
+  return n()
+}
+```
+
+**联合类型**举个栗子:
+
+```JS
+// 注意我们没有让 b 成为可选的，因为签名的返回值类型不同
+/* WRONG */
+interface Moment {
+  utcOffset(): number
+  utcOffset(b: number): Moment
+  utcOffset(b: string): Moment
+}
+
+/* OK */
+interface Moment {
+  utcOffset(): number
+  utcOffset(b: number|string): Moment
+}
+```
+
 ### 类型断言
 
 有时候你会遇到这样的情况，你会比 TypeScript 更了解某个值的详细信息。 通常这会发生在你清楚地知道一个实体具有比它现有类型更确切的类型。类型断言有两种形式:
@@ -133,7 +167,7 @@ printLabel(myObj)
 interface LabelledValue {
   label: string
   size?: number // 可选属性
-  gender？: 'man' | 'woman'
+  gender?: 'man' | 'woman'
 }
 
 function printLabel(labelledObj: LabelledValue) {
@@ -477,7 +511,7 @@ namespace Validation {
 
 ```JS
 // 三斜线指令，用于声明文件间的依赖
-/// <reference path="Validation.ts" />
+/// <reference path='Validation.ts' />
 // 尽管是不同的文件，它们仍是同一个命名空间
 namespace Validation {
   const lettersRegexp = /^[A-Za-z]+$/
@@ -490,19 +524,19 @@ namespace Validation {
 ```
 
 ```JS
-/// <reference path="Validation.ts" />
-/// <reference path="LettersOnlyValidator.ts" />
+/// <reference path='Validation.ts' />
+/// <reference path='LettersOnlyValidator.ts' />
 
-let strings = ["Hello", "98052", "101"]
+let strings = ['Hello', '98052', '101']
 
 // Validators to use
 let validators: { [s: string]: Validation.StringValidator } = {}
-validators["Letters only"] = new Validation.LettersOnlyValidator()
+validators['Letters only'] = new Validation.LettersOnlyValidator()
 
 // Show whether each string passed each validator
 for (let s of strings) {
   for (let name in validators) {
-    console.log(`"${ s }" - ${ validators[name].isAcceptable(s) ? "matches" : "does not match" } ${ name }`)
+    console.log(`'${ s }' - ${ validators[name].isAcceptable(s) ? 'matches' : 'does not match' } ${ name }`)
   }
 }
 ```
@@ -518,11 +552,84 @@ namespace Shapes {
 }
 
 import polygons = Shapes.Polygons // 取别名
-let sq = new polygons.Square() // Same as "new Shapes.Polygons.Square()"
+let sq = new polygons.Square() // Same as 'new Shapes.Polygons.Square()'
 ```
 
 ## 声明文件 d.ts
 
+TypeScript 相比 JavaScript 增加了类型声明，并要求开发者做到先声明后使用。这就导致在调用很多原生接口或者使用第三方模块的时候，因为变量未声明而导致编译器的类型检查失败:
+
+```JS
+// 比如在浏览器中以 script 标签引入 jQuery 并使用全局变量 $
+// index.ts
+$('selector') // ts error: can not find name '$'
+```
+
+故需要为 $ 提供全局的类申明:
+
+```JS
+// index.d.ts
+declare const $: any
+```
+
+社区为普遍使用的模块提供了类型定义，通过 `npm install @types/[module-name]` 即可安装，而不需要自己手动声明。上面栗子的写法是针对变量的，对于其他写法如下，更多示例可以[参考官网](https://www.tslang.cn/docs/handbook/declaration-files/by-example.html):
+
+```JS
+// ---- 函数 ----
+greet('hello, world')
+
+declare function greet(greeting: string): void
+```
+
+```JS
+// ---- 带属性的对象 使用 declare namespace 描述用点表示法访问的类型或值 ----
+const result = myLib.makeGreeting('hello, world')
+const count = myLib.numberOfGreetings
+
+declare namespace myLib {
+  function makeGreeting(s: string): string
+  const numberOfGreetings: number
+}
+```
+
+```JS
+// ---- 可重用类型(类型别名) ----
+// 可以提供一个 string，一个返回 string 的函数或一个 Greeter 实例
+function getGreeting() {
+  return 'howdy'
+}
+class MyGreeter extends Greeter { }
+
+greet('hello')
+greet(getGreeting)
+greet(new MyGreeter())
+
+// 可以使用类型别名来定义类型的短名
+type GreetingLike = string | (() => string) | MyGreeter
+declare function greet(g: GreetingLike): void
+```
+
+```JS
+// ---- 类 ----
+const myGreeter = new Greeter('hello, world')
+myGreeter.greeting = 'howdy'
+myGreeter.showGreeting()
+
+class SpecialGreeter extends Greeter {
+  constructor() {
+    super('Very special greetings')
+  }
+}
+
+declare class Greeter {
+  constructor(greeting: string)
+
+  greeting: string
+  showGreeting(): void
+}
+```
+
 ## 参考链接
 
 1. [TypeScript 中文文档](https://www.tslang.cn/docs/home.html)
+2. [TypeScript 中的 .d.ts 文件有什么作用，这种文件的内如如何编写？ - 知乎](https://www.zhihu.com/question/52068257)
