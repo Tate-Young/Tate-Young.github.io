@@ -293,6 +293,8 @@ export function fetchPosts(subreddit) {
 
 我们当然可以直接在 React 中使用 Redux：在最外层容器组件中初始化 store，然后将 state 上的属性作为 props 层层传递下去，最佳的方式是使用 **React-Redux** 提供的 **Provider** 和 **connect** 方法。React-Redux 将所有组件分成两大类：UI 组件（presentational component）和容器组件（container component）。UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
 
+![react-redux.png](https://i.loli.net/2019/03/06/5c7f46749d223.png)
+
 ### Provider
 
 connect 方法生成容器组件以后，需要让容器组件拿到 state 对象，才能生成 UI 组件的参数。最关键的作用就是在 context 中放入 Redux 的 store，方便子组件获取:
@@ -886,3 +888,4 @@ user/
 9. [Github - reduxsauce](https://github.com/infinitered/reduxsauce)
 10. [关于 redux 项目结构问题](https://segmentfault.com/q/1010000008187210) By eyesofkids
 11. [My journey toward a maintainable project structure for React/Redux](https://hackernoon.com/my-journey-toward-a-maintainable-project-structure-for-react-redux-b05dfd999b5) By Matteo Mazzarolo
+12. [Redux 关系图解](https://segmentfault.com/a/1190000011473973) By Yawenina
