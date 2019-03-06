@@ -158,7 +158,7 @@ console.log('store_0 state after action SET_NAME:', store_0.getState())
 
 ### Store
 
-上面示例我们学会了使用 action 来描述"发生了什么"，和使用 reducers 来根据 action 更新 state 的用法。**Store** 就是把它们联系到一起的对象。 Redux 应用只有一个单一的 store。有以下职责：
+store 由 `createStore(reducer， defaultState)` 这个方法生成，在整个应用中是唯一的，功能如下:
 
 * 维持应用的 state；
 * 提供 getState() 方法获取 state；
@@ -166,7 +166,7 @@ console.log('store_0 state after action SET_NAME:', store_0.getState())
 * 通过 subscribe(listener) 注册监听器，一旦 state 发生变化，就自动执行这个函数;
 * 通过 subscribe(listener) 返回的函数注销监听器
 
-可以根据已有的 reducer 来创建 store:
+![store](https://user-gold-cdn.xitu.io/2018/6/23/1642cd9d8d014496?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 ```JS
 // 整个流程可总结为: 用户发出 Action，Reducer 函数算出新的 State，View 重新渲染
@@ -197,6 +197,10 @@ store.subscribe(render) // 监听并修改视图
 ```JS
 const store = compose()(createStore)(counter)
 ```
+
+对上述 action、reducer 和 store 三者关系的一个整理:
+
+![action-reducer-store](https://user-gold-cdn.xitu.io/2018/6/24/1642fe4239346286?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 ### 异步 Action & 中间件
 
@@ -889,3 +893,4 @@ user/
 10. [关于 redux 项目结构问题](https://segmentfault.com/q/1010000008187210) By eyesofkids
 11. [My journey toward a maintainable project structure for React/Redux](https://hackernoon.com/my-journey-toward-a-maintainable-project-structure-for-react-redux-b05dfd999b5) By Matteo Mazzarolo
 12. [Redux 关系图解](https://segmentfault.com/a/1190000011473973) By Yawenina
+13. [对 React、Redux、React-Redux 详细剖析](https://juejin.im/post/5b2e3b9451882574934c3c8d) By 段亦心
