@@ -5,11 +5,11 @@ url:              https://tate-young.github.io # 域名
 signoff:          "Tate" # Your name
 facebook_appid:   #Tate
 google_analytics: UA-101222464-1
-share:            true 
+share:            true
 # 分页
 paginate: 15
 paginate_path: "blog:num"
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 links:
   - name:         首页
     url:          /
