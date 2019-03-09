@@ -305,11 +305,96 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
+<h2 id="sentry">Sentry</h2>
+
+<p><a href="https://sentry.io/welcome/"><strong>Sentry</strong></a> 是一个可实时捕捉错误并汇集日志的平台。以下的示例参照 React 项目:</p>
+
+<p>1、首先在 Sentry 官网创建一个 React 项目，此时会获取该项目下的 <strong>DSN</strong>，它由以下几部分组成:</p>
+
+<ul>
+  <li>协议</li>
+  <li>验证 SDK 的公钥和密钥</li>
+  <li>目标 Sentry 服务器</li>
+  <li>验证用户绑定的项目 id</li>
+</ul>
+
+<pre><code class="language-TEXT">&lt;!--  格式：'{PROTOCOL}://{PUBLIC_KEY}:{SECRET_KEY}@{HOST}/{PATH}{PROJECT_ID}' --&gt;
+https://f0adb1c13dd0407fa806a1a9015daccb@sentry.io/1411582
+</code></pre>
+
+<p><img src="https://i.loli.net/2019/03/09/5c83ad3d084fc.png" alt="sentry-dsn.png" /></p>
+
+<p>2、在客户端安装 <strong>raven-js</strong>(Official Sentry SDKs for JavaScript):</p>
+
+<pre><code class="language-JS">// yarn add raven-js
+
+import createSagaMiddleware from 'redux-saga'
+import Raven from 'raven-js'
+import createRavenMiddleware from 'raven-for-redux'
+
+const sagaMiddleware = createSagaMiddleware({
+  onError(error) {
+    // Capturing Errors / Exceptions
+    Raven.captureException(error)
+  },
+})
+const middlewares = [sagaMiddleware]
+// 必须配置 Raven.js 使用 Sentry DSN
+if (process.env.NODE_ENV === 'production') {
+  const RAVEN_DSN = 'https://f0adb1c13dd0407fa806a1a9015daccb@sentry.io/1411582'
+  Raven.config(RAVEN_DSN).install()
+
+  middlewares.push(createRavenMiddleware(Raven))
+}
+</code></pre>
+
+<blockquote>
+  <p>config 也支持其他一些参数的自定义，<a href="https://docs.sentry.io/clients/javascript/config/">详细请看这里</a> 👈</p>
+</blockquote>
+
+<p>raven-js 是旧的 SDK，目前新的为 <code class="highlighter-rouge">@sentry/browser</code>(Sentry’s browser JavaScript SDK))，使用方式如下:</p>
+
+<pre><code class="language-JS">// yarn add @sentry/browser
+
+import { init, captureMessage } from '@sentry/browser'
+
+// init 也支持多种 options
+init({
+  dsn: '__DSN__',
+  beforeSend(event) {
+    // Modify the event here
+    if (event.user) {
+      // Don't send user's email address
+      delete event.user.email;
+    }
+    return event;
+  }
+  // ...
+})
+// Capturing Messages
+captureMessage('Hello, world!')
+</code></pre>
+
+<p>3、在 React 组件中可以通过 <code class="highlighter-rouge">componentDidCatch</code> 捕获 error:</p>
+
+<pre><code class="language-JS">// 这个生命周期被调用是在某个后代组件已经抛出一个错误之后
+// error 是被抛出的错误
+// info 是一个对象，带有一个 componentStack 键
+componentDidCatch(error, errorInfo) {
+  Raven.captureException(error, { extra: errorInfo });
+}
+</code></pre>
+
+<blockquote>
+  <p>JS 运行期间，如果发生错误且错误没有被 <code class="highlighter-rouge">try catch</code> 等捕捉，就会冒泡到 window，触发 <code class="highlighter-rouge">onError</code> 事件。当然资源加载失败，比如 <code class="highlighter-rouge">img</code>、<code class="highlighter-rouge">script</code> 只会执行该元素 <code class="highlighter-rouge">onerror</code>，而不会冒泡到 <code class="highlighter-rouge">window.onerror</code></p>
+</blockquote>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Error">MDN - Error</a></li>
   <li><a href="http://javascript.ruanyifeng.com/grammar/error.html#toc11">错误处理机制</a> By 阮一峰</li>
+  <li><a href="https://www.jianshu.com/p/66e00077fac3">sentry 使用实践</a> By max_wwwwww</li>
 </ol>
  
 <div id="gitalk-container"></div>
