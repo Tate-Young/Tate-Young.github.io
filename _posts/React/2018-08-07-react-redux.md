@@ -751,6 +751,7 @@ export default createReducer(INITIAL_STATE, HANDLERS)
 ```
 
 ```JSX
+// store.js
 import { compose, createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
 
@@ -778,6 +779,49 @@ export default store
 ```
 
 ![redux-logger](https://camo.githubusercontent.com/73b5dc54ec615f18746e8472e02d130f79a3cf9f/687474703a2f2f692e696d6775722e636f6d2f43674175486c452e706e67)
+
+## Redux DevTools Extension
+
+[**Redux DevTools Extension**](https://github.com/zalmoxisus/redux-devtools-extension) 是用来调试 redux 应用的插件，可以监测到 state 的变化并提供可视化的功能，以谷歌为例[安装插件](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd):
+
+![Redux DevTools Extension](https://user-images.githubusercontent.com/7957859/48663602-3aac4900-ea9b-11e8-921f-97059cbb599c.png)
+
+在项目中针对最基本的 store:
+
+```JSX
+/* eslint-disable no-underscore-dangle */
+const store = createStore(
+  reducer, /* preloadedState, */
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+/* eslint-enable */
+```
+
+如果有用到中间件的话，修改如下:
+
+```JSX
+ import { createStore, applyMiddleware, compose } from 'redux'
+
++ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
++ const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
+- const store = createStore(reducer, /* preloadedState, */ compose(
+    applyMiddleware(...middleware)
+  ))
+```
+
+上述方法在项目中无需安装第三方库，当然也可以通过安装 `redux-devtools-extension` 来实现:
+
+```JSX
+// yarn add -D redux-devtools-extension
+
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension'
+
+const store = createStore(reducer, composeWithDevTools(
+  applyMiddleware(...middleware),
+  // other store enhancers if any
+))
+```
 
 ## 示例
 

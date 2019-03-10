@@ -294,6 +294,26 @@ brand = brand_role[0] // eslint-disable-line prefer-destructuring, max-len
 }
 </code></pre>
 
+<h2 id="tslint">TSLint</h2>
+
+<p><strong>TSLint</strong> 是 TypeScript 代码风格检查器，它能够在可读性、可维护性、代码正确性等方面为开发者提供帮助。其配置可<a href="https://palantir.github.io/tslint/usage/configuration/">参考官方文档</a>，配置文件 <code class="highlighter-rouge">tslint.json</code> 参考:</p>
+
+<pre><code class="language-JSON">{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js"
+    ]
+  }
+}
+</code></pre>
+
+<blockquote>
+  <p>to be continued</p>
+</blockquote>
+
 <h2 id="editorconfig">EditorConfig</h2>
 
 <p><a href="https://editorconfig.org/"><strong>EditorConfig</strong></a> 是一套用于统一代码格式的解决方案。EditorConfig 包含一个用于定义代码格式的文件和一些编辑器插件，这些插件可以让编辑器读取配置文件并依此格式化代码。其配置文件为 <code class="highlighter-rouge">.editorconfig</code>, 配置规则为:</p>

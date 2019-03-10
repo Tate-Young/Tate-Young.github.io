@@ -902,7 +902,8 @@ export default createReducer(INITIAL_STATE, HANDLERS)
 }
 </code></pre>
 
-<pre><code class="language-JSX">import { compose, createStore, applyMiddleware } from 'redux'
+<pre><code class="language-JSX">// store.js
+import { compose, createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
 
 const middlewares = []
@@ -929,6 +930,46 @@ export default store
 </code></pre>
 
 <p><img src="https://camo.githubusercontent.com/73b5dc54ec615f18746e8472e02d130f79a3cf9f/687474703a2f2f692e696d6775722e636f6d2f43674175486c452e706e67" alt="redux-logger" /></p>
+
+<h2 id="redux-devtools-extension">Redux DevTools Extension</h2>
+
+<p><a href="https://github.com/zalmoxisus/redux-devtools-extension"><strong>Redux DevTools Extension</strong></a> 是用来调试 redux 应用的插件，可以监测到 state 的变化并提供可视化的功能，以谷歌为例<a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd">安装插件</a>:</p>
+
+<p><img src="https://user-images.githubusercontent.com/7957859/48663602-3aac4900-ea9b-11e8-921f-97059cbb599c.png" alt="Redux DevTools Extension" /></p>
+
+<p>在项目中针对最基本的 store:</p>
+
+<pre><code class="language-JSX">/* eslint-disable no-underscore-dangle */
+const store = createStore(
+  reducer, /* preloadedState, */
+  window.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+/* eslint-enable */
+</code></pre>
+
+<p>如果有用到中间件的话，修改如下:</p>
+
+<pre><code class="language-JSX"> import { createStore, applyMiddleware, compose } from 'redux'
+
++ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
++ const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
+- const store = createStore(reducer, /* preloadedState, */ compose(
+    applyMiddleware(...middleware)
+  ))
+</code></pre>
+
+<p>上述方法在项目中无需安装第三方库，当然也可以通过安装 <code class="highlighter-rouge">redux-devtools-extension</code> 来实现:</p>
+
+<pre><code class="language-JSX">// yarn add -D redux-devtools-extension
+
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension'
+
+const store = createStore(reducer, composeWithDevTools(
+  applyMiddleware(...middleware),
+  // other store enhancers if any
+))
+</code></pre>
 
 <h2 id="示例">示例</h2>
 
