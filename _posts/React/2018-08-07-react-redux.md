@@ -166,7 +166,7 @@ store 由 `createStore(reducer， defaultState)` 这个方法生成，在整个�
 * 通过 subscribe(listener) 注册监听器，一旦 state 发生变化，就自动执行这个函数;
 * 通过 subscribe(listener) 返回的函数注销监听器
 
-![store](https://user-gold-cdn.xitu.io/2018/6/23/1642cd9d8d014496?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![react-redux-store.png](https://i.loli.net/2019/03/11/5c85ca3492c67.png)
 
 ```JS
 // 整个流程可总结为: 用户发出 Action，Reducer 函数算出新的 State，View 重新渲染
@@ -200,7 +200,7 @@ const store = compose()(createStore)(counter)
 
 对上述 action、reducer 和 store 三者关系的一个整理:
 
-![action-reducer-store](https://user-gold-cdn.xitu.io/2018/6/24/1642fe4239346286?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![react-redux-action.png](https://i.loli.net/2019/03/11/5c85ca3485b3a.png)
 
 ### 异步 Action & 中间件
 
