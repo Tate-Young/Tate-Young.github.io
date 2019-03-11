@@ -389,12 +389,25 @@ componentDidCatch(error, errorInfo) {
   <p>JS 运行期间，如果发生错误且错误没有被 <code class="highlighter-rouge">try catch</code> 等捕捉，就会冒泡到 window，触发 <code class="highlighter-rouge">onError</code> 事件。当然资源加载失败，比如 <code class="highlighter-rouge">img</code>、<code class="highlighter-rouge">script</code> 只会执行该元素 <code class="highlighter-rouge">onerror</code>，而不会冒泡到 <code class="highlighter-rouge">window.onerror</code></p>
 </blockquote>
 
+<p>让我们来看个栗子:</p>
+
+<pre><code class="language-JS">Raven.captureMessage('sentry test from activity')
+</code></pre>
+
+<p><img src="https://i.loli.net/2019/03/11/5c860432ec4bd.png" alt="sentry-capture-message.png" /></p>
+
+<p>同时默认绑定的邮箱也会收到通知:</p>
+
+<p><img src="https://i.loli.net/2019/03/11/5c8608a500b04.png" alt="sentry-email.png" /></p>
+
+<p>一般情况下，在下方的 JS 调用堆栈中，对应的是压缩后 JS 文件位置，和我们源代码无法对应上，无法直接的帮助我们排查和定位问题。这时我们需要上传对应文件的 <code class="highlighter-rouge">sourcemaps</code>。具体方法可以<a href="https://www.cnblogs.com/xakoy/p/9636393.html">参考这篇博客</a>。</p>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Error">MDN - Error</a></li>
   <li><a href="http://javascript.ruanyifeng.com/grammar/error.html#toc11">错误处理机制</a> By 阮一峰</li>
-  <li><a href="https://www.jianshu.com/p/66e00077fac3">sentry 使用实践</a> By max_wwwwww</li>
+  <li><a href="https://www.cnblogs.com/xakoy/p/9636393.html">前端异常日志监控 - 使用 Sentry</a> By xakoy</li>
 </ol>
  
 <div id="gitalk-container"></div>
