@@ -323,11 +323,19 @@ esac
 | command > file | 将输出重定向到 file |
 | command < file | 将输入重定向到 file |
 | command >> file | 将输出以追加的方式重定向到 file |
+| n >& m | 将输出文件 m 和 n 合并 |
+| n <& m | 将输入文件 m 和 n 合并 |
 
 举个栗子，此时打开目标文件则会看到内容被替换为 "hello tate":
 
 ```SHELL
 echo "hello tate" > test.txt
+```
+
+有个特殊的文件介绍下 `/dev/null`，写入到它的内容都会被丢弃，且无法读取。将命令的输出重定向到它，会起到"静止输出"的效果:
+
+```SHELL
+cd /data/www/h5 >& /dev/null
 ```
 
 ## 文件包含

@@ -685,12 +685,25 @@ esac
       <td style="text-align: left">command » file</td>
       <td style="text-align: left">将输出以追加的方式重定向到 file</td>
     </tr>
+    <tr>
+      <td style="text-align: left">n &gt;&amp; m</td>
+      <td style="text-align: left">将输出文件 m 和 n 合并</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">n &lt;&amp; m</td>
+      <td style="text-align: left">将输入文件 m 和 n 合并</td>
+    </tr>
   </tbody>
 </table>
 
 <p>举个栗子，此时打开目标文件则会看到内容被替换为 “hello tate”:</p>
 
 <pre><code class="language-SHELL">echo "hello tate" &gt; test.txt
+</code></pre>
+
+<p>有个特殊的文件介绍下 <code class="highlighter-rouge">/dev/null</code>，写入到它的内容都会被丢弃，且无法读取。将命令的输出重定向到它，会起到”静止输出”的效果:</p>
+
+<pre><code class="language-SHELL">cd /data/www/h5 &gt;&amp; /dev/null
 </code></pre>
 
 <h2 id="文件包含">文件包含</h2>
