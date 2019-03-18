@@ -356,6 +356,12 @@ git branch
 
 # 查看远端分支
 git branch -r
+
+# 查看分支最新一次提交
+git branch -v
+#  iss53   93b412c fix javascript issue
+#* master  7a98805 Merge branch 'iss53'
+#  testing 782fd34 add scott to the author list in the readmes
 </code></pre>
 
 <pre><code class="language-SHELL"># 强制删除本地分支
@@ -443,8 +449,8 @@ git push origin --delete master
 <p><strong>reset</strong> 命令主要有两个用途:</p>
 
 <ul>
-  <li>git reset HEAD - 文件从暂存区回退到工作区(<em>unstage</em>)，后接 filename 可指定文件</li>
-  <li>git reset HEAD^ - 版本回退，会重写当前分支的历史，^^ 表示回退 2 个版本，也可写作 ~2，以此类推
+  <li><code class="highlighter-rouge">git reset HEAD</code> - 文件从暂存区回退到工作区(<em>unstage</em>)，后接 filename 可指定文件</li>
+  <li><code class="highlighter-rouge">git reset HEAD^</code> - 版本回退，会重写当前分支的历史，^^ 表示回退 2 个版本，也可写作 ~2，以此类推
     <ul>
       <li><strong>soft</strong> 参数 - 保留所有本地修改，仅移动 HEAD 头指针</li>
       <li><strong>mixed</strong> 默认参数 - 保留工作区修改并重置缓存区，移动 HEAD 头指针和保留 Working Copy，但重置 Index</li>
@@ -527,6 +533,11 @@ git revert -m 1 bb0aa8b
   <source src="http://liaoxuefeng.gitee.io/git-resources/master-and-dev-ff.mp4" type="video/mp4" />&lt;/source&gt;
 </video>
 
+<p>如上，checkout 来放弃工作区文件时，并不会对为忽略的未追踪文件生效，因此可以用 <code class="highlighter-rouge">clean</code> 命令来清除，具体可<a href="https://git-scm.com/book/zh/v2/Git-工具-储藏与清理#r_git_stashing">查看这里</a>:</p>
+
+<pre><code class="language-SHELL">git clean
+</code></pre>
+
 <blockquote>
   <p>当使用 <code>git checkout branchname</code> 切换分支时，本地无此分支且远端存在同名分支的话，等价于”从远端拉取到本地并切换至该分支”，<a href="https://git-scm.com/docs/git-checkout">详情戳这里</a> 👈</p>
 </blockquote>
@@ -551,9 +562,9 @@ git merge --no-ff -m "merge with no-ff" feature
 
 <h3 id="rebase">rebase</h3>
 
-<p><strong>rebase</strong> 和 merge 都可以进行合并，rebase 会对 commit 序列重新设置基础点，不会产生和 merge 一样的分叉，保持整个项目的清洁。</p>
+<p><a href="https://git-scm.com/book/zh/v2/Git-分支-变基"><strong>rebase(变基)</strong></a> 和 merge 都可以进行合并，rebase 会对 commit 序列重新设置基础点，不会产生和 merge 一样的分叉，保持整个项目的清洁。</p>
 
-<p>假设现处于 branch1 分支，需将 branch1 分支合并到 master</p>
+<p>假设现处于 branch1 分支，需将 branch1 分支合并到 master:</p>
 
 <ul>
   <li><strong>merge 的实现流程</strong></li>
@@ -573,6 +584,8 @@ git merge branch1
 <pre><code class="language-SHELL"># 在需要合并的分支上进行 rebase
 # rebase 在当前分支上重演另一个分支的历史，提交历史是线性的
 git rebase master
+# 当然也可以不用切分支直接执行，basebranch 在这里即 master 分支
+git rebase [basebranch] [topicbranch]
 
 # rebase 后需要到主分支上进行 Fast forward 模式的 merge
 git checkout master
@@ -584,6 +597,10 @@ git merge branch1
 <p>rebase 的黄金法则是绝不要在公共的分支上使用。倘若在 master 分支使用了 rebase，会出现以下情况，如果这两个 commit 之前已经在中央仓库存在，这就会导致没法 push 了:</p>
 
 <p><img src="https://i.loli.net/2018/03/11/5aa49b6796eb8.gif" alt="git-rebase-error.gif" /></p>
+
+<blockquote>
+  <p>总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利</p>
+</blockquote>
 
 <h3 id="cherry-pick">cherry-pick</h3>
 
@@ -608,6 +625,10 @@ git cherry-pick --abort // 停止本次操作，回到解放前
 </code></pre>
 
 <p><img src="https://marklodato.github.io/visual-git-guide/cherry-pick.svg" alt="cherry-pick" /></p>
+
+<blockquote>
+  <p>注意，当处理多个提交时，期间有一个若有冲突，解决完后必须执行 <code class="highlighter-rouge">--continue</code> 才能自动处理下一个提交。</p>
+</blockquote>
 
 <h3 id="stash">stash</h3>
 
