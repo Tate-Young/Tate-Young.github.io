@@ -7,6 +7,7 @@ background: green
 category: 前端
 title: Git 命令
 date:   2018-03-11 12:03:00 GMT+0800 (CST)
+update: 2019-03-18 16:29:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/03/11/5aa49b6c003a8.gif
 
 tags:
@@ -52,8 +53,8 @@ tags:
 
 **config** 命令也可设置别名:
 
-* git config - 仅针对当前仓库起作用，配置文件位于 <code>.git/config</code> 文件中
-* git config --global - 针对当前用户起作用，配置文件位于 <code>.gitconfig</code> 文件中
+* `git config` - 仅针对当前仓库起作用，配置文件位于 <code>.git/config</code> 文件中
+* `git config --global` - 针对当前用户起作用，配置文件位于 <code>.gitconfig</code> 文件中
 
 ```SHELL
 # git unstage
@@ -148,6 +149,17 @@ git branch --set-upstream master origin/branchname
 
 # 当前分支自动与唯一一个追踪分支进行合并
 git pull
+```
+
+有时候拉取代码都要输入账号密码进行验证，比较麻烦，因此有几种方法可以设置缓存:
+
+```SHELL
+# 默认，15 分钟
+git config --global credential.helper cache
+# 自定义，1 小时
+git config credential.helper 'cache --timeout=3600'
+# 永久
+git config --global credential.helper store
 ```
 
 ### push
