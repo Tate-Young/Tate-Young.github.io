@@ -7,6 +7,7 @@ background: gray
 category: 后端
 title:  Linux 文件属性及操作
 date:   2018-04-14 14:48:00 GMT+0800 (CST)
+update: 2019-03-19 20:30:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
 tags:
 - Linux
@@ -23,7 +24,7 @@ tags:
 
 2、Linux 远程登录
 
-Linux 系统中是通过 **[ssh(secure shell)](https://zh.wikipedia.org/wiki/Secure_Shell)** 加密的网络传输协议服务实现的远程登录功能，默认 ssh 服务端口号为 22。
+Linux 系统中是通过 **[ssh(secure shell)](https://zh.wikipedia.org/wiki/Secure_Shell)** 加密的网络传输协议服务实现的远程登录功能，默认 ssh 服务端口号为 22，具体可以[参考这篇博客]( {{site.url}}/2019/02/03/linux-ssh-rz-sz.html ) 👈
 
 * Window 系统上 Linux 远程登录客户端有 SecureCRT、Putty、SSH Secure Shell 等。
 
