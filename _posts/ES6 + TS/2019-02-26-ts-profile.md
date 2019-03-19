@@ -7,6 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 简介
 date:   2019-02-26 17:54:00 GMT+0800 (CST)
+update: 2019-03-05 21:56:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
