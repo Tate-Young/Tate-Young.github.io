@@ -7,6 +7,7 @@ background: gray
 category: 后端
 title:  Node 侦错
 date:   2018-04-19 21:48:00 GMT+0800 (CST)
+update: 2019-03-19 12:04:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
 tags:
 - Node
@@ -183,7 +184,7 @@ nodemon
 # 启动一个 node 程序
 pm2 start index.js
 # 启动并取别名
-pm2 start index.js --name application1
+pm2 start app_h5/bin/www --name application1
 # 在文件改变的时候会重新启动程序
 pm2 start index.js --watch
 
@@ -209,14 +210,16 @@ pm2 logs 0
 
 # 集群 cluster 启动
 # -i 表示 number-instances 实例数量
-# max 表示 PM2将自动检测可用CPU的数量 可以自己指定数量
+# max 表示 PM2 将自动检测可用 CPU 的数量 可以自己指定数量
 pm2 start start.js -i max
 
-# 查看监控界面，可简写为 pm2 l
-pm2 list
+# 查看监控界面，即 pm2 list
+pm2 l
 ```
 
 ![pm2](https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2-list.png)
+
+关于 `pm2 save` 的用法: pm2 save takes a snapshot of your currently running Node applications. You can then restore these applications using `pm2 resurrect`. This is useful because it means you don't have to manually restart each application when you restart pm2 (such as a machine reboot). Instead, you can just have a script that calls pm2 resurrect and it'll start up all the Node apps.
 
 ## 参考链接
 
