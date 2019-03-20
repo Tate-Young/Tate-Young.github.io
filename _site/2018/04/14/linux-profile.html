@@ -587,7 +587,7 @@ echo $0
 <p>对于用户而言，<strong>登录 shell</strong> 和 <strong>非登陆 shell</strong> 的主要区别在于启动 shell 时所执行的 startup 文件不同，前者执行 <code class="highlighter-rouge">~/.bash_profile</code>，后者执行 <code class="highlighter-rouge">~/.bashrc</code>。</p>
 
 <blockquote>
-  <p>上述讨论的都是针对 bash，如果使用的是 zsh，则只会执行对应的 <code class="highlighter-rouge">/etc/zshrc</code> 和 <code class="highlighter-rouge">~/.zshrc</code> 或者 <code class="highlighter-rouge">~./zprofile</code>。</p>
+  <p>上述讨论的都是针对 bash，如果使用的是 zsh，则只会执行对应的 <code class="highlighter-rouge">/etc/zshrc</code> 和 <code class="highlighter-rouge">~/.zshrc</code> 或者 <code class="highlighter-rouge">/etc/zprofile</code>。</p>
 </blockquote>
 
 <p>这里额外扯一下，涉及到用 <code class="highlighter-rouge">alias</code> 设置别名的话，最好单独建一个文件进行管理，比如新建 <code class="highlighter-rouge">.bash_aliases</code>，然后写上别名，之后在 <code class="highlighter-rouge">~/.bash_profile</code> 里添加:</p>

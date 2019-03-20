@@ -327,7 +327,7 @@ echo $0
 
 对于用户而言，**登录 shell** 和 **非登陆 shell** 的主要区别在于启动 shell 时所执行的 startup 文件不同，前者执行 `~/.bash_profile`，后者执行 `~/.bashrc`。
 
-> 上述讨论的都是针对 bash，如果使用的是 zsh，则只会执行对应的 `/etc/zshrc` 和 `~/.zshrc` 或者 `~./zprofile`。
+> 上述讨论的都是针对 bash，如果使用的是 zsh，则只会执行对应的 `/etc/zshrc` 和 `~/.zshrc` 或者 `/etc/zprofile`。
 
 这里额外扯一下，涉及到用 `alias` 设置别名的话，最好单独建一个文件进行管理，比如新建 `.bash_aliases`，然后写上别名，之后在 `~/.bash_profile` 里添加:
 

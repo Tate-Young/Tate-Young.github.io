@@ -1,0 +1,930 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='MobX 简介 - Tate & Snow' name='title' />
+    <meta content='MobX 简介 - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>MobX 简介 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>MobX 简介 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MobX 简介 - Tate & Snow">
+<meta name="twitter:keywords" content="MobX 简介 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="MobX 简介 - Tate & Snow">
+<meta name="og:keywords" content="MobX 简介 - Tate & Snow|MobX 简介什么是 MobXMobX 可提供简单、可扩展的状态管理。React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而 MobX 提供机制来存储和更新应用状态供 Reac..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="MobX 简介什么是 MobXMobX 可提供简单、可扩展的状态管理。React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而 MobX 提供机制来存储和更新应用状态供 Reac..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2019/03/20/react-mobx.html' property='og:url' />
+<meta content="http://localhost:4000/2019/03/20/react-mobx.html|MobX 简介什么是 MobXMobX 可提供简单、可扩展的状态管理。React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而 MobX 提供机制来存储和更新应用状态供 Reac..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<!-- <script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script> -->
+ 
+
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    MobX 简介</h1>
+                <div class="post-data">
+                    <time datetime="2019-03-20 18:54:00" itemprop="datePublished">
+                      发布时间：2019-03-20 18:54:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#React" title="访问React" data-hover="React">
+                        React
+                        <span>(3)</span>
+                        
+                    </a>
+                    
+                    <a href="/tags#Mobx" title="访问Mobx" data-hover="Mobx">
+                        Mobx
+                        <span>(1)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                MobX 简介</h1>
+            <div class="post-data">
+                <time datetime="2019-03-20 18:54:00" itemprop="datePublished">2019-03-20 18:54:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#React" title="访问React" data-hover="React">
+                    React
+                    <span>(3)</span>
+                    </a>
+                
+                <a href="/tags#Mobx" title="访问Mobx" data-hover="Mobx">
+                    Mobx
+                    <span>(1)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="mobx-简介">MobX 简介</h1>
+
+<h2 id="什么是-mobx">什么是 MobX</h2>
+
+<p><a href="https://cn.mobx.js.org"><strong>MobX</strong></a> 可提供简单、可扩展的状态管理。React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而 MobX 提供机制来存储和更新应用状态供 React 使用。</p>
+
+<h2 id="响应式">响应式</h2>
+
+<p><img src="https://cn.mobx.js.org/flow.png" alt="MobX" /></p>
+
+<blockquote>
+  <p>核心: 通过 action 触发 state 的变化，进而触发 state 的<strong>衍生(Derivations)对象</strong>(computed value &amp; Reactions)。</p>
+</blockquote>
+
+<p>使用 MobX 和 <a href="https://github.com/mobxjs/mobx-react"><strong>MobX-React</strong></a> 将一个应用变成响应式的可归纳为以下三个步骤:</p>
+
+<p>1、<strong>定义状态并使其可观察</strong></p>
+
+<p>通常支持转换成 observable 的类型有三个，分别是 <code class="highlighter-rouge">Object、Array、Map</code>，对于原始类型，可以使用 <code class="highlighter-rouge">Obserable.box</code> 包装:</p>
+
+<pre><code class="language-JS">import { observable } from 'mobx'
+
+// 转成 observable 对象，通过 toJS 方法可转成普通的 JavaScript 对象
+var appState = observable({
+  timer: 0
+})
+
+// 原始类型
+const cityName = observable.box('vanilla')
+</code></pre>
+
+<p>2、<strong>创建视图以响应状态的变化</strong></p>
+
+<pre><code class="language-JS">import { observer } from 'mobx-react'
+
+@observer
+class TimerView extends React.Component {
+  render() {
+    return (
+      &lt;button onClick={this.onReset.bind(this)}&gt;
+        Seconds passed: {this.props.appState.timer}
+      &lt;/button&gt;
+    )
+  }
+
+  onReset() {
+    this.props.appState.resetTimer()
+  }
+}
+
+ReactDOM.render(&lt;TimerView appState={appState} /&gt;, document.body)
+</code></pre>
+
+<p>3、<strong>更改状态</strong></p>
+
+<p><strong>Action</strong> 动作是任一一段可以改变状态的代码，如用户事件、后端数据推送、预定事件等。在 MobX 中可以显式地定义动作，它可以帮你把代码组织的更清晰。 注意 MobX 和 Redux 不同，它并不强制所有 state 的改变必须通过 action 来改变，如果是在严格模式下使用 MobX 的话，则会强制:</p>
+
+<pre><code class="language-JS">import { action, configure } from 'mobx'
+
+// 强制使用 action 来修改状态
+configure({enforceActions: true})
+
+appState.resetTimer = action(function reset() {
+  appState.timer = 0
+})
+
+setInterval(action(function tick() {
+  appState.timer += 1
+}), 1000)
+</code></pre>
+
+<p>action 包装/装饰器只会对当前运行的函数作出反应，而不会对当前运行函数所调用的函数（不包含在当前函数之内）作出反应！ 这意味着如果 action 中存在 <code class="highlighter-rouge">setTimeout</code>、<code class="highlighter-rouge">promise</code> 的 <code class="highlighter-rouge">then</code> 或 <code class="highlighter-rouge">async</code> 语句，并且在回调函数中某些状态改变了，那么这些回调函数也应该包装在 action 中。创建异步 action 有几种方式<a href="#action-异步处理">可以移步这里</a> 👈</p>
+
+<blockquote>
+  <p>MobX 支持单向数据流，也就是动作改变状态，而状态的改变会更新所有受影响的视图，即 <strong>Action –&gt; State –&gt; Views</strong></p>
+</blockquote>
+
+<h2 id="observable-state-可观察树">Observable State 可观察树</h2>
+
+<p>MobX 通过使用 <code class="highlighter-rouge">@observable</code> 装饰器，为现有的数据结构(如对象，数组和类实例)添加了可观察的功能:</p>
+
+<pre><code class="language-JS">// ESNext
+import { observable } from 'mobx'
+
+class Todo {
+  id = Math.random()
+  @observable title = ''
+  @observable finished = false
+}
+</code></pre>
+
+<pre><code class="language-JS">// ES5
+import { decorate, observable } from 'mobx'
+
+class Todo {
+  id = Math.random()
+  title = ''
+  finished = false
+}
+decorate(Todo, {
+  title: observable,
+  finished: observable
+})
+</code></pre>
+
+<h2 id="computed-values-计算值">Computed Values 计算值</h2>
+
+<p>使用 MobX，你可以定义在相关数据发生变化时自动更新的值。通过 <code class="highlighter-rouge">@computed</code> 装饰器或者利用 <code class="highlighter-rouge">(extend)Observable</code> 时调用的 <code class="highlighter-rouge">getter / setter</code> 函数来进行使用:</p>
+
+<pre><code class="language-JS">// 当添加了一个新的 todo 或者某个 todo 的 finished 属性发生变化时，MobX 会确保 unfinishedTodoCount 自动更新
+class TodoList {
+  @observable todos = []
+  @action addTask(task) { /* ... */ }
+  @computed get unfinishedTodoCount() {
+    return this.todos.filter(todo =&gt; !todo.finished).length
+  }
+}
+</code></pre>
+
+<blockquote>
+  <p>如果你有一个函数应该自动运行，但不会产生一个新的值，请使用 <code class="highlighter-rouge">autorun</code>。 其余情况都应该使用 computed。autorun 通常用来执行一些有副作用，如打印日志，更新 UI 等。</p>
+</blockquote>
+
+<h2 id="reactions-反应">Reactions 反应</h2>
+
+<p><strong>Reaction</strong> 对于如何追踪 observable 赋予了更细粒度的控制，一共可接收三个参数:</p>
+
+<ul>
+  <li>函数参数 1 - 用来追踪并返回数据作为第二个函数的输入</li>
+  <li>函数参数 2 - 接收两个参数，第一个参数是由 data 函数返回的值。 第二个参数是当前的 reaction，可以用来在执行期间清理 reaction</li>
+  <li>参数3 - options，比如 delay 等，具体可<a href="https://cn.mobx.js.org/refguide/reaction.html">参考这里</a></li>
+</ul>
+
+<pre><code class="language-JS">reaction(() =&gt; data, (data, reaction) =&gt; { sideEffect }, options?)
+</code></pre>
+
+<pre><code class="language-JS">const todos = observable([
+  {
+    title: 'Make coffee',
+    done: true,
+  },
+  {
+    title: 'Find biscuit',
+    done: false
+  }
+])
+
+// reaction 的错误用法: 对 length 的变化作出反应, 而不是 title 的变化!
+const reaction1 = reaction(
+  () =&gt; todos.length,
+  length =&gt; console.log('reaction 1:', todos.map(todo =&gt; todo.title).join(', '))
+)
+
+// reaction 的正确用法: 对 length 和 title 的变化作出反应
+const reaction2 = reaction(
+  () =&gt; todos.map(todo =&gt; todo.title),
+  titles =&gt; console.log('reaction 2:', titles.join(', '))
+)
+
+// autorun 对它函数中使用的任何东西作出反应
+const autorun1 = autorun(
+  () =&gt; console.log('autorun 1:', todos.map(todo =&gt; todo.title).join(', '))
+)
+
+todos.push({ title: 'explain reactions', done: false })
+// 输出:
+// reaction 1: Make coffee, find biscuit, explain reactions
+// reaction 2: Make coffee, find biscuit, explain reactions
+// autorun 1: Make coffee, find biscuit, explain reactions
+
+todos[0].title = 'Make tea'
+// 输出:
+// reaction 2: Make tea, find biscuit, explain reactions
+// autorun 1: Make tea, find biscuit, explain reactions
+</code></pre>
+
+<p>在下面的示例中，reaction3 会对 counter 中的 count 作出反应。 当调用 reaction 时，第二个参数会作为清理函数使用。下面的示例展示了 reaction 只会调用一次:</p>
+
+<pre><code class="language-JS">const counter = observable({ count: 0 })
+
+// 只调用一次并清理掉 reaction : 对 observable 值作出反应。
+const reaction3 = reaction(
+  () =&gt; counter.count,
+  (count, reaction) =&gt; {
+    console.log('reaction 3: invoked. counter.count = ' + count)
+    reaction.dispose()
+  }
+)
+
+counter.count = 1
+// 输出: reaction 3: invoked. counter.count = 1
+
+counter.count = 2
+// 输出: (There are no logging, because of reaction disposed. But, counter continue reaction)
+
+console.log(counter.count)
+// 输出: 2
+</code></pre>
+
+<blockquote>
+  <p>粗略地讲，reaction 是 <code class="highlighter-rouge">computed(expression).observe(action(sideEffect))</code> 或 <code class="highlighter-rouge">autorun(() =&gt; action(sideEffect)(expression))</code> 的语法糖</p>
+</blockquote>
+
+<h2 id="action-异步处理">Action 异步处理</h2>
+
+<p>和 Redux 不同的是，Mobx 在异步处理上并不复杂，不需要引入额外的类似 <code class="highlighter-rouge">redux-thunk、redux-saga</code> 这样的库。唯一需要注意的是，在严格模式下，对于异步 action 里的回调，若该回调也要修改 observable 的值，那么该回调也需要绑定 action。</p>
+
+<p><strong>action.bound</strong> 可以用来自动地将动作绑定到目标对象，注意不要和箭头函数一起使用，箭头函数已经是绑定过的并且不能重新绑定:</p>
+
+<pre><code class="language-JS">class Store {
+  @observable a = 123
+
+  @action
+  changeA() {
+    this.a = 0
+    setTimeout(this.changeB, 1000)
+  }
+  @action.bound
+  changeB() {
+    this.a = 1000
+  }
+}
+var s = new Store()
+autorun(() =&gt; console.log(s.a))
+s.changeA()
+</code></pre>
+
+<p>当然也可以直接用 action 包装:</p>
+
+<pre><code class="language-JS">@action
+changeA() {
+  this.a = 0
+  setTimeout(action('changeB',() =&gt; {
+    this.a = 1000
+  }), 1000)º
+}
+</code></pre>
+
+<p>更好的办法是使用工具函数 <code class="highlighter-rouge">runInAction</code> 来简化操作，runInAction(f) 即是 action(f)() 的语法糖:</p>
+
+<pre><code class="language-JS">@action
+changeA() {
+  this.a = 0
+  setTimeout(
+    runInAction(() =&gt; {
+      this.a = 1000
+    }),
+    1000
+  )
+}
+</code></pre>
+
+<h2 id="mobx-react">MobX-React</h2>
+
+<h3 id="observer">observer</h3>
+
+<p><strong>observer</strong> 函数/装饰器可以用来将 React 组件转变成响应式组件。 它用 <code class="highlighter-rouge">mobx.autorun</code> 包装了组件的 render 函数以确保任何组件渲染中使用的数据变化时都可以强制刷新组件:</p>
+
+<pre><code class="language-JS">import { observer } from 'mobx-react'
+
+// ---- ES5 syntax ----
+var TodoView = observer(
+  React.createClass({
+    displayName: 'TodoView',
+    render() {
+      return &lt;div&gt;{this.props.todo.title}&lt;/div&gt;
+    }
+  })
+)
+
+// ---- ES6 syntax ----
+const TodoView = observer(
+  class TodoView extends React.Component {
+    render() {
+      return &lt;div&gt;{this.props.todo.title}&lt;/div&gt;
+    }
+  }
+)
+
+// ---- ESNext syntax with decorators ----
+@observer
+class TodoView extends React.Component {
+  render() {
+    return &lt;div&gt;{this.props.todo.title}&lt;/div&gt;
+  }
+}
+
+// ---- or just use a stateless component function: ----
+const TodoView = observer(({ todo }) =&gt; &lt;div&gt;{todo.title}&lt;/div&gt;)
+</code></pre>
+
+<h3 id="observer-组件">Observer 组件</h3>
+
+<p>Observer is a React component, which applies observer to an anonymous region in your component. It takes as children a single, argumentless function which should return exactly one React component. The rendering in the function will be tracked and automatically re-rendered when needed. This can come in handy when needing to pass render function to external components (for example the React Native listview), or if you dislike the observer decorator / function:</p>
+
+<pre><code class="language-JS">// 或者写成 &lt;Observer render={() =&gt; &lt;div&gt;{this.props.person.name}&lt;/div&gt;} /&gt;
+class App extends React.Component {
+  render() {
+    return (
+      &lt;div&gt;
+        {this.props.person.name}
+        &lt;Observer&gt;{() =&gt; &lt;div&gt;{this.props.person.name}&lt;/div&gt;}&lt;/Observer&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+const person = observable({ name: 'John' })
+
+React.render(&lt;App person={person} /&gt;, document.body)
+person.name = 'Mike' // will cause the Observer region to re-render
+</code></pre>
+
+<h3 id="provider--inject">provider &amp; inject</h3>
+
+<p><strong>Provider</strong> is a component that can pass stores (or other stuff) using React’s context mechanism to child components. This is useful if you have things that you don’t want to pass through multiple layers of components explicitly.</p>
+
+<p><strong>inject</strong> can be used to pick up those stores. It is a higher order component that takes a list of strings and makes those stores available to the wrapped component.</p>
+
+<pre><code class="language-JS">@inject('color')
+@observer
+class Button extends React.Component {
+  render() {
+    return &lt;button style={ { background: this.props.color } }&gt;{this.props.children}&lt;/button&gt;
+  }
+}
+
+class Message extends React.Component {
+  render() {
+    return (
+      &lt;div&gt;
+        {this.props.text} &lt;Button&gt;Delete&lt;/Button&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+class MessageList extends React.Component {
+  render() {
+    const children = this.props.messages.map(message =&gt; &lt;Message text={message.text} /&gt;)
+    return (
+      &lt;Provider color='red'&gt;
+        &lt;div&gt;{children}&lt;/div&gt;
+      &lt;/Provider&gt;
+    )
+  }
+}
+</code></pre>
+
+<p>Instead of passing a list of store names, it is also possible to create a custom mapper function and pass it to inject. The mapper function receives all stores as argument, the properties with which the components are invoked and the context, and should produce a new set of properties, that are mapped into the original:</p>
+
+<pre><code class="language-JS">mapperFunction: (allStores, props, context) =&gt; additionalProps
+</code></pre>
+
+<pre><code class="language-JS">const NameDisplayer = ({ name }) =&gt; &lt;h1&gt;{name}&lt;\/h1&gt;
+
+const UserNameDisplayer = inject(stores =&gt; ({
+  name: stores.userStore.name
+}))(NameDisplayer)
+
+const user = observable({
+  name: 'Noa'
+})
+
+const App = () =&gt; (
+  &lt;Provider userStore={user}&gt;
+    &lt;UserNameDisplayer /&gt;
+  &lt;/Provider&gt;
+)
+
+ReactDOM.render(&lt;App /&gt;, document.body)
+</code></pre>
+
+<h3 id="disposeonunmount">disposeOnUnmount</h3>
+
+<p>Function (and decorator) that makes sure a function (usually a disposer such as the ones returned by reaction, autorun, etc.) is automatically executed as part of the <strong>componentWillUnmount</strong> lifecycle event.</p>
+
+<pre><code class="language-JS">import { disposeOnUnmount } from 'mobx-react'
+
+class SomeComponent extends React.Component {
+  // decorator version
+  @disposeOnUnmount
+  someReactionDisposer = reaction(...)
+
+  // function version over properties
+  someReactionDisposer = disposeOnUnmount(this, reaction(...))
+
+  // function version inside methods
+  componentDidMount() {
+    // single function
+    disposeOnUnmount(this, reaction(...))
+
+    // or function array
+    disposeOnUnmount(this, [
+      reaction(...),
+      reaction(...)
+    ])
+  }
+}
+</code></pre>
+
+<h3 id="onerror">onError</h3>
+
+<p>If a component throws an error, this logs to the console but does not ‘crash’ the app, so it might go unnoticed. For this reason it is possible to attach a global error handler using <strong>onError</strong> to intercept any error thrown in the render of an observer component. This can be used to hook up any client side error collection system.</p>
+
+<pre><code class="language-JS">import { onError } from 'mobx-react'
+
+onError(error =&gt; {
+  console.log(error)
+})
+</code></pre>
+
+<h2 id="理解-mobx-对什么作出反应">理解 MobX 对什么作出反应</h2>
+
+<p>MobX 会对在追踪函数执行过程中读取现存的可观察属性做出反应，具体可以<a href="https://cn.mobx.js.org/best/react.html">参考官方文档这一节</a>:</p>
+
+<ul>
+  <li>读取 - 是对象属性的间接引用，可以用过 . (例如 user.name) 或者 [] (例如 user[‘name’]) 的形式完成</li>
+  <li>追踪函数 - 是 computed 表达式、observer 组件的 render() 方法和 when、reaction 和 autorun 的第一个入参函数</li>
+  <li>过程(during) - 意味着只追踪那些在函数执行时被读取的 observable 。这些值是否由追踪函数直接或间接使用并不重要</li>
+</ul>
+
+<p>额外说下新增属性的监听:</p>
+
+<pre><code class="language-JS">let ob = observable({ a: 1, b: 1 })
+autorun(() =&gt; {
+  if (ob.c) {
+    console.log('ob.c:', ob.c)
+  }
+})
+ob.c = 1 // 并未监听到
+</code></pre>
+
+<p>此时可以通过 <code class="highlighter-rouge">extendObservable(target, props)</code> 方法来为对象新增加 observable 属性:</p>
+
+<pre><code class="language-JS">let ob = observable({ a: 1, b: 2 })
+extendObservable(ob, { c: 1 }) // 输出 1
+autorun(() =&gt; console.log(ob.c))
+ob.c = 3 // 输出 3
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://mobx.js.org">MobX 官方文档</a></li>
+  <li><a href="https://mobx.js.org/getting-started.html">Ten minute introduction to MobX and React</a></li>
+  <li><a href="https://segmentfault.com/a/1190000013810512">mobx 学习总结</a> By 阿阿阿阿阿光</li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2019/03/20/react-mobx.html';
+        this.page.identifier = '/2019/03/20/react-mobx';
+        this.page.title = 'MobX 简介';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-03-20 18:54:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
