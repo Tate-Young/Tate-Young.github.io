@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Linux 常用命令
 date:   2018-04-15 14:15:00 GMT+0800 (CST)
-update: 2019-03-19 12:04:00 GMT+0800 (CST)
+update: 2019-03-20 10:31:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
 tags:
 - Linux
@@ -16,10 +16,11 @@ tags:
 
 ## 常用命令
 
+基本的文件操作和查看命令可[参考前一篇博客]( {{site.url}}/2018/04/14/linux-profile.html ) 👈
+
 | 命令 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
 | **yum** | 包管理工具 | <code>yum search/install/remove ...</code> |
-| **cp** | 复制 | <code>cp file1 file2</code> |
 | **grep** | 文本搜索 | <code>grep '^tate' filename</code> |
 | **ps** | 查看进程 | <code>ps -ef</code> |
 | **lsof** | 列出当前系统打开文件的工具 | <code>lsof -i:4000</code> |
@@ -53,37 +54,6 @@ tags:
 * **Wget** 是一个在网络上进行下载的简单而强大的自由软件，目前它支持通过 HTTP、HTTPS 以及 FTP 这三个最常见的 TCP/IP 协议下载，可以递归，支持断点
 * **cURL** 是一个利用 URL 语法在命令行下工作的文件传输工具，支持文件上传和下载，相较于 wget，它支持更多的协议，批量下载
 * **[homebrew](https://brew.sh/)** 是是一款自由及开放源代码的软件包管理系统，用以简化 macOS 系统上的软件安装过程，类似于 yum/apt-get；Windows 系统则可以使用 [**chocolatey**](https://chocolatey.org/)
-
-## cp
-
-[**cp**](http://man.linuxde.net/cp) 可以复制单个文件或者文件夹里的内容，`-r` 参数可以实现递归拷贝:
-
-```SHELL
-# 将文件 file 复制到目录 /usr/men/tmp 下，并改名为 file1
-cp file /usr/men/tmp/file1
-
-# 将目录 /usr/men 下的所有文件及其子目录复制到目录 /usr/zh 中，如果目标目录不存在则自动创建
-cp -r /usr/men /usr/zh
-
-# 交互式地将目录 /usr/men 中的以 m 打头的所有 .c 文件复制到目录 /usr/zh 中
-cp -i /usr/men m*.c /usr/zh
-```
-
-我们在 Linux 下使用 cp 命令复制文件时候，有时候会需要覆盖一些同名文件，覆盖文件的时候都会有提示：需要不停的按 Y 来确定执行覆盖。因此可以采用下列操作:
-
-```SHELL
-# 复制目录 aaa 下所有到 /bbb 目录下，这时如果 /bbb 目录下有和 aaa 同名的文件，需要按 Y 来确认并且会略过 aaa 目录下的子目录。
-cp aaa/* /bbb
-
-# 这次依然需要按 Y 来确认操作，但是没有忽略子目录。
-cp -r aaa/* /bbb
-
-# 依然需要按 Y 来确认操作，并且把 aaa 目录以及子目录和文件属性也传递到了 /bbb。
-cp -r -a aaa/* /bbb
-
-# 成功，没有提示按 Y、传递了目录属性、没有略过目录。
-\cp -r -a aaa/* /bbb
-```
 
 ## grep
 

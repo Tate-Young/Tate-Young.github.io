@@ -653,7 +653,7 @@ React Router 提供了以下三种组件用于在应用中创建链接:
 
 ### WithRouters
 
-可通过 **withRouter** 高阶组件来获取 history 对象的属性和 \<Route\>'s 中的 match， withRouter 会将已更新的 **match**, **location**, 和 **history** 属性传递到被包裹的组件当中，无论它在哪儿渲染.
+可通过 **withRouter** 高阶组件来获取 history 对象的属性和 \<Route\> 中的 match， withRouter 会将已更新的 **match**, **location**, 和 **history** 属性传递到被包裹的组件当中，无论它在哪儿渲染.
 
 ```JSX
 import { withRouter } from "react-router";

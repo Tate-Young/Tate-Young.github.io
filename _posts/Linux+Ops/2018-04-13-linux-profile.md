@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Linux 文件属性及操作
 date:   2018-04-14 14:48:00 GMT+0800 (CST)
-update: 2019-03-19 20:30:00 GMT+0800 (CST)
+update: 2019-03-20 12:03:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
 tags:
 - Linux
@@ -214,6 +214,37 @@ mkdir -p test/test1
 
 > 对于删除目录来讲，**rmdir** 仅能删除空的目录，可以使用 **rm -r** 命令来删除目录
 
+### cp
+
+[**cp**](http://man.linuxde.net/cp) 可以复制文件或目录，`-r` 参数可以实现递归拷贝:
+
+```SHELL
+# 将文件 file 复制到目录 /usr/men/tmp 下，并改名为 file1
+cp file /usr/men/tmp/file1
+
+# 将目录 /usr/men 下的所有文件及其子目录复制到目录 /usr/zh 中，如果目标目录不存在则自动创建
+cp -r /usr/men /usr/zh
+
+# 交互式地将目录 /usr/men 中的以 m 打头的所有 .c 文件复制到目录 /usr/zh 中
+cp -i /usr/men m*.c /usr/zh
+```
+
+我们在 Linux 下使用 cp 命令复制文件时候，有时候会需要覆盖一些同名文件，覆盖文件的时候都会有提示：需要不停的按 Y 来确定执行覆盖。因此可以采用下列操作:
+
+```SHELL
+# 复制目录 aaa 下所有到 /bbb 目录下，这时如果 /bbb 目录下有和 aaa 同名的文件，需要按 Y 来确认并且会略过 aaa 目录下的子目录。
+cp aaa/* /bbb
+
+# 这次依然需要按 Y 来确认操作，但是没有忽略子目录。
+cp -r aaa/* /bbb
+
+# 依然需要按 Y 来确认操作，并且把 aaa 目录以及子目录和文件属性也传递到了 /bbb。
+cp -r -a aaa/* /bbb
+
+# 成功，没有提示按 Y、传递了目录属性、没有略过目录。
+\cp -r -a aaa/* /bbb
+```
+
 ## 文件查看
 
 | 命令 | 描述 |
@@ -266,6 +297,54 @@ mkdir -p test/test1
 
 ![vim](http://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png)
 
+## .bash_profile
+
+这里介绍下 linux 中几个文件的区别:
+
+* **/etc/profile** - The systemwide initialization file, executed for login shells
+* **~/.bash_profile** - The personal initialization file, executed for login shells
+* **~/.bashrc** - The individual per-interactive-shell startup file, executed for interactive non-login shells
+
+首先 `/etc` 目录下的一般是针对所有用户生效的，而 `~` 主目录下的只针对当前用户生效。然后 `profile` 和 `rc` 的主要区别在于 shell 的两种不同属性:
+
+* 登录
+  * **登录** - 用户通过输入用户名/密码(或证书认证)后启动的 shell；或者通过带有 `-l|--login` 参数的 bash 命令启动的 shell，如 系统启动、远程登录、使用 `su -` 切换用户、通过 `bash --login` 命令启动 bash 等
+  * **非登录** - 图形界面启动终端、使用 `su` 切换用户、通过 `bash` 命令启动 bash 等
+* 交互
+  * **交互式** - 登录、输入并执行命令、登出。当登出的时候，这个 shell 就终止了
+  * **非交互式** - 执行预先设定的命令，当它读到文件的结尾，这个 shell 就终止了
+
+> A login shell is one whose first character of argument zero is a -, or one started with the --login option
+
+```SHELL
+echo $0
+# -bash 即为登录 shell
+
+bash --login
+echo $0
+# bash 也为登录 shell，但其他情况下是 非登录 shell
+```
+
+对于用户而言，**登录 shell** 和 **非登陆 shell** 的主要区别在于启动 shell 时所执行的 startup 文件不同，前者执行 `~/.bash_profile`，后者执行 `~/.bashrc`。
+
+> 上述讨论的都是针对 bash，如果使用的是 zsh，则只会执行对应的 `/etc/zshrc` 和 `~/.zshrc` 或者 `~./zprofile`。
+
+这里额外扯一下，涉及到用 `alias` 设置别名的话，最好单独建一个文件进行管理，比如新建 `.bash_aliases`，然后写上别名，之后在 `~/.bash_profile` 里添加:
+
+```SHELL
+[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+
+# or
+if ［ -f ~/.bash_aliases ］; then
+  . ~/.bash_aliases
+fi
+
+# or
+test -f ~/.bash_aliases && source ~/.bash_aliases
+```
+
 ## 参考链接
 
 1. [菜鸟 - linux 教程](http://www.runoob.com/linux/linux-intro.html)
+2. [关于 .bash_profile 和 .bashrc 区别的总结](https://blog.csdn.net/sch0120/article/details/70256318) By Charles_Shih
+3. [What is the difference between .bash_profile and .bashrc?](https://medium.com/@kingnand.90/what-is-the-difference-between-bash-profile-and-bashrc-d4c902ac7308) By King Dink

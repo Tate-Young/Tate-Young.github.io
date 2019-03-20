@@ -16,7 +16,7 @@
 <meta name="twitter:keywords" content="Linux 常用命令 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 常用命令 - Tate & Snow">
-<meta name="og:keywords" content="Linux 常用命令 - Tate & Snow|Linux 常用命令常用命令            命令      描述      栗子                  yum      包管理工具      yum search/install/remove ...      ..."
+<meta name="og:keywords" content="Linux 常用命令 - Tate & Snow|Linux 常用命令常用命令基本的文件操作和查看命令可参考前一篇博客 👈            命令      描述      栗子                  yum      包管理工具      yum search/in..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -25,13 +25,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Linux 常用命令常用命令            命令      描述      栗子                  yum      包管理工具      yum search/install/remove ...      ..." property='og:description'
+<meta name="keywords" content="Linux 常用命令常用命令基本的文件操作和查看命令可参考前一篇博客 👈            命令      描述      栗子                  yum      包管理工具      yum search/in..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/04/15/linux-command.html' property='og:url' />
-<meta content="http://localhost:4000/2018/04/15/linux-command.html|Linux 常用命令常用命令            命令      描述      栗子                  yum      包管理工具      yum search/install/remove ...      ..." property='og:description'
+<meta content="http://localhost:4000/2018/04/15/linux-command.html|Linux 常用命令常用命令基本的文件操作和查看命令可参考前一篇博客 👈            命令      描述      栗子                  yum      包管理工具      yum search/in..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <!-- <script>
@@ -143,7 +143,7 @@
                       发布时间：2018-04-15 14:15:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-03-19 12:04:00
+                        修改时间：2019-03-20 10:31:00
                       
                     </time>
                     <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
@@ -182,6 +182,8 @@
 
 <h2 id="常用命令">常用命令</h2>
 
+<p>基本的文件操作和查看命令可<a href="http://localhost:4000/2018/04/14/linux-profile.html">参考前一篇博客</a> 👈</p>
+
 <table>
   <thead>
     <tr>
@@ -195,11 +197,6 @@
       <td style="text-align: left"><strong>yum</strong></td>
       <td style="text-align: left">包管理工具</td>
       <td style="text-align: left"><code>yum search/install/remove ...</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong>cp</strong></td>
-      <td style="text-align: left">复制</td>
-      <td style="text-align: left"><code>cp file1 file2</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>grep</strong></td>
@@ -311,35 +308,6 @@
   <li><strong>cURL</strong> 是一个利用 URL 语法在命令行下工作的文件传输工具，支持文件上传和下载，相较于 wget，它支持更多的协议，批量下载</li>
   <li><strong><a href="https://brew.sh/">homebrew</a></strong> 是是一款自由及开放源代码的软件包管理系统，用以简化 macOS 系统上的软件安装过程，类似于 yum/apt-get；Windows 系统则可以使用 <a href="https://chocolatey.org/"><strong>chocolatey</strong></a></li>
 </ul>
-
-<h2 id="cp">cp</h2>
-
-<p><a href="http://man.linuxde.net/cp"><strong>cp</strong></a> 可以复制单个文件或者文件夹里的内容，<code class="highlighter-rouge">-r</code> 参数可以实现递归拷贝:</p>
-
-<pre><code class="language-SHELL"># 将文件 file 复制到目录 /usr/men/tmp 下，并改名为 file1
-cp file /usr/men/tmp/file1
-
-# 将目录 /usr/men 下的所有文件及其子目录复制到目录 /usr/zh 中，如果目标目录不存在则自动创建
-cp -r /usr/men /usr/zh
-
-# 交互式地将目录 /usr/men 中的以 m 打头的所有 .c 文件复制到目录 /usr/zh 中
-cp -i /usr/men m*.c /usr/zh
-</code></pre>
-
-<p>我们在 Linux 下使用 cp 命令复制文件时候，有时候会需要覆盖一些同名文件，覆盖文件的时候都会有提示：需要不停的按 Y 来确定执行覆盖。因此可以采用下列操作:</p>
-
-<pre><code class="language-SHELL"># 复制目录 aaa 下所有到 /bbb 目录下，这时如果 /bbb 目录下有和 aaa 同名的文件，需要按 Y 来确认并且会略过 aaa 目录下的子目录。
-cp aaa/* /bbb
-
-# 这次依然需要按 Y 来确认操作，但是没有忽略子目录。
-cp -r aaa/* /bbb
-
-# 依然需要按 Y 来确认操作，并且把 aaa 目录以及子目录和文件属性也传递到了 /bbb。
-cp -r -a aaa/* /bbb
-
-# 成功，没有提示按 Y、传递了目录属性、没有略过目录。
-\cp -r -a aaa/* /bbb
-</code></pre>
 
 <h2 id="grep">grep</h2>
 
