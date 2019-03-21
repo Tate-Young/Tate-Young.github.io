@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 简介
 date:   2019-02-26 17:54:00 GMT+0800 (CST)
-update: 2019-03-05 21:56:00 GMT+0800 (CST)
+update: 2019-03-21 16:15:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -628,6 +628,17 @@ declare class Greeter {
   greeting: string
   showGreeting(): void
 }
+```
+
+## ! - Non-null assertion operator
+
+If you know from external means that an expression is not null or undefined, you can use the non-null assertion operator `!` to coerce away those types:
+
+```JS
+// Error, some.expr may be null or undefined
+const x = some.expr.thing;
+// OK
+const y = some.expr!.thing;
 ```
 
 ## 参考链接

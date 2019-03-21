@@ -143,7 +143,7 @@
                       发布时间：2019-02-26 17:54:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-03-05 21:56:00
+                        修改时间：2019-03-21 16:15:00
                       
                     </time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -755,6 +755,16 @@ declare class Greeter {
   greeting: string
   showGreeting(): void
 }
+</code></pre>
+
+<h2 id="---non-null-assertion-operator">! - Non-null assertion operator</h2>
+
+<p>If you know from external means that an expression is not null or undefined, you can use the non-null assertion operator <code class="highlighter-rouge">!</code> to coerce away those types:</p>
+
+<pre><code class="language-JS">// Error, some.expr may be null or undefined
+const x = some.expr.thing;
+// OK
+const y = some.expr!.thing;
 </code></pre>
 
 <h2 id="参考链接">参考链接</h2>

@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  MobX 简介
 date:   2019-03-20 18:54:00 GMT+0800 (CST)
-update: 2019-03-21 12:06:00 GMT+0800 (CST)
+update: 2019-03-21 17:25:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/03/20/5c921f1c29709.png
 tags:
 - React
@@ -464,7 +464,7 @@ autorun(() => console.log(ob.c))
 ob.c = 3 // 输出 3
 ```
 
-> 如果想通过 demo 快速上手的话，这里推荐一个 [react-mobx-demo](https://github.com/Hancoson/react-mobx-demo) 👈
+> 如果想通过 demo 快速上手的话，这里有一个 [mobx-react-demo](https://github.com/Tate-Young/mobx-react-demo) 👈
 
 ## 参考链接
 
