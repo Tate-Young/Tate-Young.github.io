@@ -7,14 +7,14 @@ background: gray
 category: 后端
 title:  Node 侦错
 date:   2018-04-19 21:48:00 GMT+0800 (CST)
-update: 2019-03-19 12:04:00 GMT+0800 (CST)
+update: 2019-03-21 15:19:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
 tags:
 - Node
 ---
 # {{ page.title }}
 
-本文只针对 VS code 工具进行调试举例。需要额外插件一枚: [Debugger for Chrome](https://github.com/Microsoft/vscode-chrome-debug)，可以配合 Chrome 进行调试。
+本文只针对 vscode 工具进行调试举例。需要额外插件一枚: [Debugger for Chrome](https://github.com/Microsoft/vscode-chrome-debug)，可以配合 Chrome 进行调试。
 
 ![debug](https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png)
 
@@ -148,6 +148,12 @@ app.get('/', function(req, res) {
 ```
 
 ![breakpoints](https://code.visualstudio.com/assets/docs/editor/debugging/debug-session.png)
+
+## jsconfig.json
+
+这里额外提到下 vscode 的 **jsconfig.json** 文件，目录中存在该文件表示该目录是 JavaScript 项目的根目录。jsconfig.json 文件指定根文件和 JavaScript 语言服务提供的功能选项。具体可以参考 [vscode 官方文档](https://code.visualstudio.com/docs/languages/jsconfig)。
+
+> jsconfig.json 源于 `tsconfig.json`，是 TypeScript 的配置文件。jsconfig.json 相当于 tsconfig.json 的 `allowJs` 属性设置为 true
 
 ## nodemon / supervisor
 

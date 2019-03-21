@@ -16,7 +16,7 @@
 <meta name="twitter:keywords" content="Node 侦错 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node 侦错 - Tate & Snow">
-<meta name="og:keywords" content="Node 侦错 - Tate & Snow|Node 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性..."
+<meta name="og:keywords" content="Node 侦错 - Tate & Snow|Node 侦错本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性 ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -25,13 +25,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Node 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性..." property='og:description'
+<meta name="keywords" content="Node 侦错本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性 ..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:4000/2018/04/19/node-debugging.html' property='og:url' />
-<meta content="http://localhost:4000/2018/04/19/node-debugging.html|Node 侦错本文只针对 VS code 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性..." property='og:description'
+<meta content="http://localhost:4000/2018/04/19/node-debugging.html|Node 侦错本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性 ..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <!-- <script>
@@ -143,7 +143,7 @@
                       发布时间：2018-04-19 21:48:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-03-19 12:04:00
+                        修改时间：2019-03-21 15:19:00
                       
                     </time>
                     <a href="/tags#后端" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
@@ -180,7 +180,7 @@
             </p>
             <h1 id="node-侦错">Node 侦错</h1>
 
-<p>本文只针对 VS code 工具进行调试举例。需要额外插件一枚: <a href="https://github.com/Microsoft/vscode-chrome-debug">Debugger for Chrome</a>，可以配合 Chrome 进行调试。</p>
+<p>本文只针对 vscode 工具进行调试举例。需要额外插件一枚: <a href="https://github.com/Microsoft/vscode-chrome-debug">Debugger for Chrome</a>，可以配合 Chrome 进行调试。</p>
 
 <p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png" alt="debug" /></p>
 
@@ -317,6 +317,14 @@ nodemon --inspect index.js
 </code></pre>
 
 <p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debug-session.png" alt="breakpoints" /></p>
+
+<h2 id="jsconfigjson">jsconfig.json</h2>
+
+<p>这里额外提到下 vscode 的 <strong>jsconfig.json</strong> 文件，目录中存在该文件表示该目录是 JavaScript 项目的根目录。jsconfig.json 文件指定根文件和 JavaScript 语言服务提供的功能选项。具体可以参考 <a href="https://code.visualstudio.com/docs/languages/jsconfig">vscode 官方文档</a>。</p>
+
+<blockquote>
+  <p>jsconfig.json 源于 <code class="highlighter-rouge">tsconfig.json</code>，是 TypeScript 的配置文件。jsconfig.json 相当于 tsconfig.json 的 <code class="highlighter-rouge">allowJs</code> 属性设置为 true</p>
+</blockquote>
 
 <h2 id="nodemon--supervisor">nodemon / supervisor</h2>
 
