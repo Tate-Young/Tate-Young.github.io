@@ -17,7 +17,7 @@ tags:
 
 ## 什么是 MobX
 
-[**MobX**](https://cn.mobx.js.org) 可提供简单、可扩展的状态管理。React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而 MobX 提供机制来存储和更新应用状态供 React 使用。
+[**MobX**](https://cn.mobx.js.org)(\|'mɔbæks\|) 可提供简单、可扩展的状态管理。React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而 MobX 提供机制来存储和更新应用状态供 React 使用。
 
 ## 响应式
 
