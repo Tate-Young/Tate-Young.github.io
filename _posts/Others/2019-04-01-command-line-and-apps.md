@@ -7,6 +7,7 @@ background: green
 category: 前端
 title: 记一些命令行工具
 date:   2019-04-01 18:58:00 GMT+0800 (CST)
+update: 2019-04-01 20:58:00 GMT+0800 (CST)
 background-image: https://raw.githubusercontent.com/nvbn/thefuck/master/example.gif
 tags:
 - Other
@@ -24,8 +25,9 @@ tags:
 | fx | 查看和操作 JSON | `fx package.json` |
 | loc | 计算代码行数 | `loc` |
 | thefuck | 智能纠正和执行命令 | `fuck` |
-| fkill | 杀死进程 | `fkill` |
-| primitive | 杀死进程 | `primitve -i products.png -o products-shape.svg -n 800` |
+| fkill-cli | 杀死进程 | `fkill` |
+| primitive | 转换成艺术图片 | `primitve -i products.png -o products-shape.svg -n 800` |
+| figlet-cli | 基于 ASCII 字符组成的字符画，详见[此篇博客]({{site.url}}/2018/03/13/js-console.html#figlet) | `figlet -f 'Ghost' 'Tate'` |
 
 ### bat
 
@@ -254,8 +256,6 @@ $ fkill --help
 
 [**primitive**](https://github.com/fogleman/primitive) Recreate your photos with vector-based geometric primitives:
 
-![primitive](https://camo.githubusercontent.com/1bc275c484326bebabd07f33b4e02b1d20ea10fe/68747470733a2f2f7777772e6d69636861656c666f676c656d616e2e636f6d2f7374617469632f7072696d69746976652f6578616d706c65732f70656e63696c732e676966)
-
 | Flag | Default | Description |
 | i | n/a | input file |
 | o | n/a | output file |
@@ -280,6 +280,8 @@ primitve -i products.png -o products-shape.svg -n 800
 ```SHELL
 svgo -i products-shape.svg -o products-shape.svg
 ```
+
+![primitive](https://camo.githubusercontent.com/1bc275c484326bebabd07f33b4e02b1d20ea10fe/68747470733a2f2f7777772e6d69636861656c666f676c656d616e2e636f6d2f7374617469632f7072696d69746976652f6578616d706c65732f70656e63696c732e676966)
 
 > 推荐一个 [**explainshell**](https://explainshell.com) 页面，可以解释一些命令行
 
