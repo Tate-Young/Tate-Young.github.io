@@ -7,6 +7,7 @@ background: blue
 category: 前端
 title:  console & FIGlet
 date:   2018-03-13 15:27:00 GMT+0800 (CST)
+update: 2019-04-01 14:35:00 GMT+0800 (CST)
 background-image: https://misc.aotu.io/youing/20161122/1.png
 tags:
 - JavaScript
@@ -212,7 +213,7 @@ figlet('Hello World!!', function(err, data) {
  |_| |_|\___|_|_|\___/     \_/\_/ \___/|_|  |_|\__,_(_|_)
 ```
 
-或者通过命令行:
+或者通过命令行，可参考其 [github 项目](https://github.com/patorjk/figlet-cli) 👈:
 
 ```JS
 // 安装 figlet-cli
@@ -234,7 +235,7 @@ figlet -f 'Ghost' 'Tate'
    `--'     `--' `--'   `--'   `------'
 ```
 
-再举个字体栗子 🌰:
+再举个字体栗子 🌰，如果不知道有哪些字体的话，可以在 vscode 插件里查一下:
 
 ```JS
 figlet -f 'Dancing Font' 'Snow'
@@ -256,7 +257,7 @@ figlet -f 'Dancing Font' 'Snow'
 
 除了文字，也可以由图片转成 ASCII，可参考网页 [picascii](http://picascii.com/)。
 
-<pre style="font: 10px/5px monospace;padding: 20px 0;">                             #@@                                                  :::,
+```TEXT
                              @+@.                                              #@;+@@@@#+
                              #@@.                         .::                 ;`@@`#@:@#.@                                        `
                  #@@@;@;     @@@.      :@@@             :@@#@'@              @#:@@@:##;@@;:                :@@#           ,++  @@#:
@@ -275,12 +276,12 @@ figlet -f 'Dancing Font' 'Snow'
     @@@@@@             ;       +@``    `@#+             :@#'.   .`....                       @@@@  ++@.     :+.         ;,.
     +#@@#@
     +@;#@#
-</pre>
+```
 
 ## 参考链接
 
 1. [alloyteam - 从 console.log 说起](http://www.alloyteam.com/2013/11/console-log/) By TAT.老教授
-1. [console 对象](https://segmentfault.com/a/1190000004528137) By 从小就爱跺跺跺
-1. [FIGlet 初识](https://aotu.io/notes/2016/11/22/figlet/) By 圆姑娘她爹
-1. [ASCII Art 在线转换](http://patorjk.com/software/taag/#p=display&f=Swamp%20Land&t=dfddf)
-1. [Picture To ASCII Convert](http://picascii.com/)
+2. [console 对象](https://segmentfault.com/a/1190000004528137) By 从小就爱跺跺跺
+3. [FIGlet 初识](https://aotu.io/notes/2016/11/22/figlet/) By 圆姑娘她爹
+4. [ASCII Art 在线转换](http://patorjk.com/software/taag/#p=display&f=Swamp%20Land&t=dfddf)
+5. [Picture To ASCII Convert](http://picascii.com/)

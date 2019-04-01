@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "记一些命令行工具 - ",
+		"url" : "/2019/04/01/command-line-and-apps.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "MobX 简介 - ",
 		"url" : "/2019/03/20/react-mobx.html"
 	}

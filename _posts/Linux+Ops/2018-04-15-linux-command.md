@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Linux 常用命令
 date:   2018-04-15 14:15:00 GMT+0800 (CST)
-update: 2019-03-20 10:31:00 GMT+0800 (CST)
+update: 2019-04-01 16:45:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
 tags:
 - Linux
@@ -252,6 +252,8 @@ say -v Ting-Ting 我是中国女声
 say -v Mei-Jia 我是台湾女声
 say -v Daniel i am Daniel
 ```
+
+> TIPS: 通过快捷键 `Ctrl+R` 可以更快搜索历史命令 👈
 
 ## 参考链接
 

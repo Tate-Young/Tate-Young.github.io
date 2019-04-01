@@ -3,20 +3,20 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='记各种代码规范实践 - Tate & Snow' name='title' />
-    <meta content='记各种代码规范实践 - Tate & Snow' name='og:title' />
+    <meta content='记一些命令行工具 - Tate & Snow' name='title' />
+    <meta content='记一些命令行工具 - Tate & Snow' name='og:title' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-    <title>记各种代码规范实践 - Tate & Snow</title>
+    <title>记一些命令行工具 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>记各种代码规范实践 - Tate & Snow</title>
+<title>记一些命令行工具 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记各种代码规范实践 - Tate & Snow">
-<meta name="twitter:keywords" content="记各种代码规范实践 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="记一些命令行工具 - Tate & Snow">
+<meta name="twitter:keywords" content="记一些命令行工具 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="记各种代码规范实践 - Tate & Snow">
-<meta name="og:keywords" content="记各种代码规范实践 - Tate & Snow|记各种代码规范实践ESLint这里主要介绍 airbnb-eslint 代码规范，支持 ES6 和 React 等，举个简单的 destructuring 栗子:// badfunction getFullName(user) {  ..."
+<meta property="og:title" content="记一些命令行工具 - Tate & Snow">
+<meta name="og:keywords" content="记一些命令行工具 - Tate & Snow|记一些命令行工具命令行工具            命令      描述      栗子                  bat      类似 cat，支持代码高亮      bat &lt;filename&gt;        ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -25,13 +25,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="记各种代码规范实践ESLint这里主要介绍 airbnb-eslint 代码规范，支持 ES6 和 React 等，举个简单的 destructuring 栗子:// badfunction getFullName(user) {  ..." property='og:description'
+<meta name="keywords" content="记一些命令行工具命令行工具            命令      描述      栗子                  bat      类似 cat，支持代码高亮      bat &lt;filename&gt;        ..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2019/01/25/coding-standards.html' property='og:url' />
-<meta content="http://localhost:4000/2019/01/25/coding-standards.html|记各种代码规范实践ESLint这里主要介绍 airbnb-eslint 代码规范，支持 ES6 和 React 等，举个简单的 destructuring 栗子:// badfunction getFullName(user) {  ..." property='og:description'
+<meta content='http://localhost:4000/2019/04/01/command-line-and-apps.html' property='og:url' />
+<meta content="http://localhost:4000/2019/04/01/command-line-and-apps.html|记一些命令行工具命令行工具            命令      描述      栗子                  bat      类似 cat，支持代码高亮      bat &lt;filename&gt;        ..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <!-- <script>
@@ -137,10 +137,10 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    记各种代码规范实践</h1>
+                    记一些命令行工具</h1>
                 <div class="post-data">
-                    <time datetime="2019-01-25 20:41:00" itemprop="datePublished">
-                      发布时间：2019-01-25 20:41:00
+                    <time datetime="2019-04-01 18:53:00" itemprop="datePublished">
+                      发布时间：2019-04-01 18:53:00
                       &nbsp;&nbsp;&nbsp;
                       
                     </time>
@@ -162,9 +162,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                记各种代码规范实践</h1>
+                记一些命令行工具</h1>
             <div class="post-data">
-                <time datetime="2019-01-25 20:41:00" itemprop="datePublished">2019-01-25 20:41:00</time>
+                <time datetime="2019-04-01 18:53:00" itemprop="datePublished">2019-04-01 18:53:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -176,302 +176,461 @@
                     </a>
                    
             </p>
-            <h1 id="记各种代码规范实践">记各种代码规范实践</h1>
+            <h1 id="记一些命令行工具">记一些命令行工具</h1>
 
-<h2 id="eslint">ESLint</h2>
-
-<p>这里主要介绍 <a href="https://github.com/airbnb/javascript">airbnb-eslint</a> 代码规范，支持 ES6 和 React 等，举个简单的 destructuring 栗子:</p>
-
-<pre><code class="language-JS">// bad
-function getFullName(user) {
-  const firstName = user.firstName;
-  const lastName = user.lastName;
-
-  return `${firstName} ${lastName}`;
-}
-
-// good
-function getFullName(user) {
-  const { firstName, lastName } = user;
-  return `${firstName} ${lastName}`;
-}
-
-// best
-function getFullName({ firstName, lastName }) {
-  return `${firstName} ${lastName}`;
-}
-</code></pre>
-
-<p>针对 React 项目，安装方式:</p>
-
-<pre><code class="language-SHELL">npm install --save-dev eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint babel-eslint
-</code></pre>
-
-<p>在 <code class="highlighter-rouge">webpack</code> 中配置 <code class="highlighter-rouge">eslint-loader</code> 解析 <code class="highlighter-rouge">.eslintrc</code> 文件:</p>
-
-<pre><code class="language-JSON">// First, run the linter.
-// It's important to do this before Babel processes the JS.
-{
-  test: /\.(js|jsx|mjs)$/,
-  enforce: 'pre',
-  use: [
-    {
-      options: {
-        formatter: eslintFormatter,
-        eslintPath: require.resolve('eslint'),
-      },
-      loader: require.resolve('eslint-loader'),
-    },
-  ],
-  include: paths.appSrc,
-},
-</code></pre>
-
-<p>然后配置 <code class="highlighter-rouge">.eslintrc</code> 文件，或者直接在 <code class="highlighter-rouge">package.json</code> 文件里的 <code class="highlighter-rouge">eslintConfig</code> 字段指定配置，ESLint 会查找和自动读取它们。具体字段解析可以直接<a href="http://eslint.cn/docs/user-guide/configuring">参考这里</a>:</p>
-
-<pre><code class="language-JSON">module.exports = {
-  root: true, // 默认情况下，ESLint 会在所有父级目录里寻找配置文件，一直到根目录。"root": true，它就会停止在父级目录中寻找
-  parser: 'babel-eslint', // 默认使用 Espree 作为其解析器
-  parserOptions: { // 解析器选项
-    'ecmaVersion': 7, // ECMAScript 版本
-    'sourceType': 'module', // 设置为 "script" (默认) 或 "module"（如果你的代码是 ECMAScript 模块)
-    'ecmaFeatures': { // 使用的额外的语言特性
-      'jsx': true, // 启用 JSX
-    },
-  },
-  extends: 'airbnb', // 递归地进行扩展配置
-  plugins: [ // 使用第三方插件
-    'react',
-    'import',
-  ],
-  rules: { // 要改变一个规则设置，你必须将规则 ID 设置为下列值之一 ['off', 'warn', 'error']
-    'semi': ['error', 'never'],
-    'global-require': 'off',
-    'jsx-quotes': ["error", "prefer-single"],
-    'prefer-const': 'error', // error 当被触发的时候，程序会退出
-    'import/no-unresolved': 'off',
-    'react/jsx-one-expression-per-line': 'off',
-    'react/forbid-prop-types': 'off',
-    'no-script-url': 'off',
-    'jsx-a11y/anchor-is-valid': 'off',
-    'camelcase': 'off', // 后端传的字段都是 camelcase
-  },
-  env: {
-    browser: true, // 浏览器环境中的全局变量
-    node: true, // Node.js 全局变量和 Node.js 作用域
-    jest: true, // Jest 全局变量，测试框架
-  },
-}
-</code></pre>
-
-<p>可以通过在项目根目录创建一个 <code class="highlighter-rouge">.eslintignore</code> 文件告诉 ESLint 去忽略特定的文件和目录，采用 <code class="highlighter-rouge">glob</code> 模式:</p>
-
-<pre><code class="language-SHELL"># 除了 .eslintignore 文件中的模式，ESLint 总是忽略 /node_modules/* 和 /bower_components/* 中的文件
-scripts/*.js
-config/*.js
-public/*.js
-registerServiceWorker.js
-</code></pre>
-
-<p>推荐的跳过检测的方式除了可以直接在 rules 下进行配置规则外，还可以对区域代码进行注释:</p>
-
-<pre><code class="language-JS"># eslint 报错: Use array destructuring  prefer-destructuring
-brand = brand_role[0]
-
-# 跳过检测的两种方式，不推荐直接用 eslint-disable-line，而是后面跟上对应的一个或多个规则，用逗号隔开
-// eslint-disable-next-line prefer-destructuring
-brand = brand_role[0] // eslint-disable-line prefer-destructuring, max-len
-
-# 如何想针对整个文件跳过检测规则的话，可以在顶部输入
-/* eslint-disable */
-</code></pre>
-
-<p>添加 git 钩子，防止提交有报错的代码:</p>
-
-<pre><code class="language-JSON">"scripts":{
-  "lint": "eslint --ext .js,.jsx src/",
-}
-"husky": {
-  "hooks": {
-    "pre-commit": "npm run lint"
-  }  
-}
-</code></pre>
-
-<h2 id="tslint">TSLint</h2>
-
-<p><strong>TSLint</strong> 是 TypeScript 代码风格检查器，它能够在可读性、可维护性、代码正确性等方面为开发者提供帮助。其配置可<a href="https://palantir.github.io/tslint/usage/configuration/">参考官方文档</a>，配置文件 <code class="highlighter-rouge">tslint.json</code> 参考:</p>
-
-<pre><code class="language-JSON">{
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
-  "linterOptions": {
-    "exclude": [
-      "config/**/*.js",
-      "node_modules/**/*.ts",
-      "coverage/lcov-report/*.js"
-    ]
-  }
-}
-</code></pre>
-
-<blockquote>
-  <p>to be continued</p>
-</blockquote>
-
-<h2 id="editorconfig">EditorConfig</h2>
-
-<p><a href="https://editorconfig.org/"><strong>EditorConfig</strong></a> 是一套用于统一代码格式的解决方案。EditorConfig 包含一个用于定义代码格式的文件和一些编辑器插件，这些插件可以让编辑器读取配置文件并依此格式化代码。其配置文件为 <code class="highlighter-rouge">.editorconfig</code>, 配置规则为:</p>
+<h2 id="命令行工具">命令行工具</h2>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">通配符</th>
-      <th style="text-align: left">说明</th>
+      <th style="text-align: left">命令</th>
+      <th style="text-align: left">描述</th>
+      <th style="text-align: left">栗子</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">*</td>
-      <td style="text-align: left">匹配除 <code class="highlighter-rouge">/</code> 之外的任意字符串</td>
+      <td style="text-align: left">bat</td>
+      <td style="text-align: left">类似 cat，支持代码高亮</td>
+      <td style="text-align: left"><code class="highlighter-rouge">bat &lt;filename&gt;</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">**</td>
-      <td style="text-align: left">匹配任意字符串</td>
+      <td style="text-align: left">exa</td>
+      <td style="text-align: left">类似 ls，查看目录</td>
+      <td style="text-align: left"><code class="highlighter-rouge">exa --tree --level=1</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">?</td>
-      <td style="text-align: left">匹配任意单个字符</td>
+      <td style="text-align: left">fd</td>
+      <td style="text-align: left">类似 find，查找文件</td>
+      <td style="text-align: left"><code class="highlighter-rouge">fd app</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">[name]</td>
-      <td style="text-align: left">匹配 <code class="highlighter-rouge">name</code> 字符</td>
+      <td style="text-align: left">tldr</td>
+      <td style="text-align: left">类似 man，help 文档</td>
+      <td style="text-align: left"><code class="highlighter-rouge">tldr git</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">[!name]</td>
-      <td style="text-align: left">匹配非 <code class="highlighter-rouge">name字</code> 符</td>
+      <td style="text-align: left">fx</td>
+      <td style="text-align: left">查看和操作 JSON</td>
+      <td style="text-align: left"><code class="highlighter-rouge">fx package.json</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">{s1,s3,s3}</td>
-      <td style="text-align: left">匹配任意给定的字符串</td>
+      <td style="text-align: left">loc</td>
+      <td style="text-align: left">计算代码行数</td>
+      <td style="text-align: left"><code class="highlighter-rouge">loc</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">thefuck</td>
+      <td style="text-align: left">智能纠正和执行命令</td>
+      <td style="text-align: left"><code class="highlighter-rouge">fuck</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">fkill</td>
+      <td style="text-align: left">杀死进程</td>
+      <td style="text-align: left"><code class="highlighter-rouge">fkill</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">primitive</td>
+      <td style="text-align: left">杀死进程</td>
+      <td style="text-align: left"><code class="highlighter-rouge">primitve -i products.png -o products-shape.svg -n 800</code></td>
     </tr>
   </tbody>
 </table>
 
-<p>举个<a href="https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties">配置示例</a>:</p>
+<h3 id="bat">bat</h3>
 
-<pre><code class="language-SHELL"># 当打开文件时，该插件会在当前目录及所有父级目录搜索 .editorconfig 配置文件，
-# 当搜索到根目录或者检测到 root = true 时，会停止接下来的搜索，然后由外到内读取配置
-root = true
+<p><a href="https://github.com/sharkdp/bat"><strong>bat</strong></a> 类似于 <code class="highlighter-rouge">cat</code> 查看命令，但可以支持代码高亮:</p>
 
-[*]
-charset = utf-8
-end_of_line = lf # 定义换行符，支持 lf、cr 和 crlf
-indent_style = space # tab 为 hard-tabs，space 为 soft-tabs
-indent_size = 2
-insert_final_newline = true # 使文件以一个空白行结尾
-trim_trailing_whitespace = true # 除去换行行首的任意空白字符
+<p><img src="https://camo.githubusercontent.com/9d3d89364f2cc83ace8f29646a6236bc15ea1da0/68747470733a2f2f696d6775722e636f6d2f724773646e44652e706e67" alt="bat" /></p>
 
-[*.md]
-max_line_length = off # 行最大字符数，超过则自动换行
-trim_trailing_whitespace = false
+<h3 id="exa">exa</h3>
 
-# Matches the exact files either package.json or .travis.yml
-[{package.json,.travis.yml}]
-indent_style = space
-indent_size = 2
+<p><a href="https://the.exa.website"><strong>exa</strong></a> 比 <code class="highlighter-rouge">ls</code> 命令查看目录更优雅，还有另一个 <a href="https://github.com/Peltoche/lsd"><strong>lsd</strong></a>，这里就不介绍了:</p>
+
+<p><img src="https://raw.githubusercontent.com/ogham/exa/master/screenshots.png" alt="exa" /></p>
+
+<p>这里介绍下以树状结构展示目录:</p>
+
+<pre><code class="language-SHELL">$ exa --tree --level=1
+
+├── app
+│  ├── App.jsx
+│  ├── common
+│  ├── dataBoard
+│  ├── layout
+│  └── list
+├── config.js
+├── images
+│  ├── 404-page.png
+│  ├── home.png
+│  └── loading.png
+├── index.jsx
+├── reducers.js
+├── registerServiceWorker.js
+├── request.js
+├── sagas.js
+├── store.js
+├── utils.js
+└── versionInfo.md
 </code></pre>
 
-<h2 id="commitlint">commitlint</h2>
+<pre><code class="language-SHELL">$ exa --tree --level=1 --long
 
-<p><strong><a href="https://github.com/marionebl/commitlint">commitlint</a></strong> 主要用来检测 Git 提交信息是否符合 <strong><a href="https://www.conventionalcommits.org/en/v1.0.0-beta.3/">conventional commit format</a></strong> 规范。常用的书写格式如下:</p>
-
-<pre><code class="language-TEXT"># scope is optional
-type(scope?): subject
-
-// 栗子
-chore: run tests on travis ci
-feat(blog): add comment section
+drwxr-xr-x - tate 21 3 11:09  .
+drwxr-xr-x - tate 26 3 16:15  ├── activity-admin.dotfashion.cn
+drwxr-xr-x - tate 28 3 15:48  ├── app_h5
+drwxr-xr-x - tate 28 2 18:52  ├── design-assistant-demo
+drwxr-xr-x - tate  5 3 19:40  ├── romwe_m
+drwxr-xr-x - tate  7 3 14:41  ├── romwe_w
+drwxr-xr-x - tate  5 3 19:30  ├── shein_m
+drwxr-xr-x - tate 15 3 10:57  ├── shein_pwa
+drwxr-xr-x - tate  7 11  2018 ├── shein_sus_m
+drwxr-xr-x - tate 26 3 12:03  ├── shein_w
+drwxr-xr-x - tate  4 3 20:24  └── Tate-Young.github.io
 </code></pre>
 
-<p>安装方式:</p>
+<h3 id="fd">fd</h3>
 
-<pre><code class="language-SHELL"># Install commitlint cli and conventional config
-npm install --save-dev @commitlint/{config-conventional,cli}
-# For Windows:
-npm install --save-dev @commitlint/config-conventional @commitlint/cli
+<p><a href="https://github.com/sharkdp/fd"><strong>fd</strong></a> 可以代替 <code class="highlighter-rouge">find</code> 命令基于正则表达式查找文件或目录，查找速度更快:</p>
 
-# Configure commitlint to use conventional config
-echo "module.exports = {extends: ['@commitlint/config-conventional']}" &gt; commitlint.config.js
+<p><img src="https://github.com/sharkdp/fd/raw/master/doc/screencast.svg?sanitize=true" alt="fd" /></p>
+
+<pre><code class="language-SHELL">$ fd webpack
+
+webpack.config.js
+webpack.server.js
+webpack.ssr.js
+
+$ fd 'webp*'
+
+public/src/image/card_accept/ocean-webmoney.png
+vueBuild/webpack.config.js
+webpack.config.js
+webpack.server.js
+webpack.ssr.js
 </code></pre>
 
-<p>然后在 <code class="highlighter-rouge">package.json</code> 中添加 <strong>husky</strong> 的 <code class="highlighter-rouge">commit-msg</code> 钩子(注意前提是安装了 husky 库):</p>
+<!-- ### fzf
 
-<pre><code class="language-JSON">{
+[**fzf**](https://github.com/junegunn/fzf) 可展示当前目录下所有文件列表，可以用键盘上下键或者鼠标点出来选择。可以用 `vim` 组合 `fzf` 来查找并打开目录下的文件:
+
+```SHELL
+vim $(fzf)
+```
+
+![vim-fzf](https://img30.360buyimg.com/devfe/jfs/t25372/5/461999989/83158/3ce44a5/5b6fc7f2Nd6432499.gif)
+
+也可以使用在切换 `git` 分支的场景:
+
+![git-fzf](https://img10.360buyimg.com/devfe/jfs/t23242/262/2000817850/127859/c0955478/5b6fce70N3c3573ae.gif) -->
+
+<h3 id="tldr">tldr</h3>
+
+<p><a href="https://tldr.sh"><strong>tldr</strong></a> 是简化版的 <strong>man</strong> 命令:</p>
+
+<pre><code class="language-SHELL">$ tldr fuck
+
+Corrects your previous console command.
+
+- Set the `fuck` alias to `thefuck` tool:
+    eval "$(thefuck --alias)"
+
+- Try to match a rule for the previous command:
+    fuck
+</code></pre>
+
+<h3 id="fx">fx</h3>
+
+<p><a href="https://github.com/antonmedv/fx"><strong>fx</strong></a> 是查看 <code class="highlighter-rouge">JSON</code> 的好帮手，支持的交互操作如下:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Command</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>q or Esc or Ctrl+c</td>
+      <td>Exit</td>
+    </tr>
+    <tr>
+      <td>e/E</td>
+      <td>Expand/Collapse all</td>
+    </tr>
+    <tr>
+      <td>g/G</td>
+      <td>Goto top/bottom</td>
+    </tr>
+    <tr>
+      <td>up/down or k/j</td>
+      <td>Move cursor up/down</td>
+    </tr>
+    <tr>
+      <td>left/right or h/l</td>
+      <td>Expand/Collapse</td>
+    </tr>
+    <tr>
+      <td><strong>.</strong></td>
+      <td>Edit filter</td>
+    </tr>
+    <tr>
+      <td>/</td>
+      <td>Search</td>
+    </tr>
+    <tr>
+      <td>n</td>
+      <td>Goto next found pattern</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="https://camo.githubusercontent.com/b5df8c57792e443a18a56cd9a292b1a101ba2391/68747470733a2f2f6d6564762e696f2f6173736574732f66782e676966" alt="fx" /></p>
+
+<pre><code class="language-SHELL">$ fx package.json
+
+{
+  "name": "xxx",
+  "dependencies": {...},
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }  
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+    }
   }
 }
 </code></pre>
 
-<p>scope 可以用其他扩展(如 <a href="https://github.com/marionebl/commitlint/tree/master/%40commitlint/config-conventional#type-enum">commitlint-config-conventional (based on the the Angular convention)</a>)或者自定义。自定义的话需要用到配置文件 <code class="highlighter-rouge">commitlint.config.js</code>:</p>
+<h3 id="loc">loc</h3>
 
-<pre><code class="language-JS">module.exports = {
-  extends: ['@commitlint/config-conventional'],
-  rules: {
-    'type-enum': [
-      2,
-      'always',
-      [
-        'feat', // 新特性
-        'fix', // 修复 bug
-        'docs', // 文档
-        'typo', // 修改简单的文字或变量名
-        'style', // 样式
-        'refactor', // 重构
-        'test', // 测试
-        'chore', // 构建过程或辅助工具的变动
-        'revert', // 回滚
-        'dev', // 笼统的新需求修改
-      ],
-    ],
-  },
-}
+<p><a href="https://github.com/cgag/loc"><strong>loc</strong></a> 是用来计算代码行数的，还可以检测到所用的语言，比其他一些同类软件计算要快，比如 <code class="highlighter-rouge">cloc</code>、<code class="highlighter-rouge">tokei</code> 等。</p>
+
+<pre><code class="language-SHELL">$ loc
+--------------------------------------------------------------------------------
+ Language             Files        Lines        Blank      Comment         Code
+--------------------------------------------------------------------------------
+ Jsx                    110        16713         1054          282        15377
+ JSON                     3        14380            0            0        14380
+ JavaScript              81         6394          523         1019         4852
+ Less                     7          836           98           18          720
+ CSS                      1          543           72           14          457
+ Markdown                 2          271           33            0          238
+ HTML                     1           43            3           20           20
+--------------------------------------------------------------------------------
+ Total                  205        39180         1783         1353        36044
+--------------------------------------------------------------------------------
 </code></pre>
 
-<p><img src="https://camo.githubusercontent.com/7a550a88bab7c9b897e97f3b138696727db47db0/68747470733a2f2f63646e2e7261776769742e636f6d2f6d6172696f6e65626c2f636f6d6d69746c696e742f333539343339373931396336313838636533316363666339346130313133643632356435353531362f646f63732f6173736574732f636f6d6d69746c696e742e737667" alt="commitlint" /></p>
+<h3 id="thefuck">thefuck</h3>
 
-<h2 id="markdownlint">markdownlint</h2>
+<p><a href="https://github.com/nvbn/thefuck"><strong>thefuck</strong></a> 能够智能纠正你之前输入的命令:</p>
 
-<p><strong><a href="https://github.com/DavidAnson/markdownlint">markdownlint</a></strong> 是一个针对 markdown 语法的规范，举个栗子:</p>
+<p><img src="https://raw.githubusercontent.com/nvbn/thefuck/master/example.gif" alt="thefuck" /></p>
 
-<ul>
-  <li>MD001 - heading-increment/header-increment - Heading levels should only increment by one level at a time</li>
-  <li>MD002 - first-heading-h1/first-header-h1 - First heading should be a top level heading</li>
-  <li>MD003 - heading-style/header-style - Heading style</li>
-</ul>
+<p>举两个栗子 🌰:</p>
 
-<p>如果用不到哪个规范，也可以单独禁用掉，多个用空格隔开:</p>
+<pre><code class="language-SHELL">$ git brnch
+git: 'brnch' is not a git command. See 'git --help'.
 
-<ul>
-  <li>禁用所有规范: <code class="highlighter-rouge">&lt;!-- markdownlint-disable --&gt;</code></li>
-  <li>启用所有规范: <code class="highlighter-rouge">&lt;!-- markdownlint-enable --&gt;</code></li>
-  <li>禁用单个或多个规范: <code class="highlighter-rouge">&lt;!-- markdownlint-disable MD001 MD002 --&gt;</code></li>
-  <li>启用单个或多个规范: <code class="highlighter-rouge">&lt;!-- markdownlint-enable MD001 MD002 --&gt;</code></li>
-</ul>
+Did you mean this?
+  branch
 
-<pre><code class="language-HTML">&lt;!-- markdownlint-disable MD037 --&gt;
-deliberate space * in * emphasis
-&lt;!-- markdownlint-enable MD037 --&gt;
+$ fuck
+git branch [enter/↑/↓/ctrl+c]
+* master
 </code></pre>
+
+<pre><code class="language-SHELL">$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+  git push --set-upstream origin master
+
+$ fuck
+git push --set-upstream origin master [enter/↑/↓/ctrl+c]
+</code></pre>
+
+<h3 id="fkill-cli">fkill-cli</h3>
+
+<p><a href="https://github.com/sindresorhus/fkill-cli"><strong>fkill-cli</strong></a> 可以杀死进程，支持跨平台:</p>
+
+<pre><code class="language-SHELL"># 安装
+yga fkill-cli
+</code></pre>
+
+<pre><code class="language-SHELL">$ fkill --help
+
+  Usage
+    $ fkill [&lt;pid|name&gt; …]
+
+  Options
+    --force -f    Force kill
+    --verbose -v  Show process arguments
+    --silent -s   Silently kill and always exit with code 0
+
+  Examples
+    $ fkill 1337
+    $ fkill safari
+    $ fkill :8080
+    $ fkill 1337 safari :8080
+    $ fkill
+
+  To kill a port, prefix it with a colon. For example: :8080.
+
+  Run without arguments to use the interactive interface. The process name is case insensitive.
+</code></pre>
+
+<p><img src="https://github.com/sindresorhus/fkill-cli/raw/master/screenshot.svg?sanitize=true" alt="fkill" /></p>
+
+<h3 id="primitive">primitive</h3>
+
+<p><a href="https://github.com/fogleman/primitive"><strong>primitive</strong></a> Recreate your photos with vector-based geometric primitives:</p>
+
+<p><img src="https://camo.githubusercontent.com/1bc275c484326bebabd07f33b4e02b1d20ea10fe/68747470733a2f2f7777772e6d69636861656c666f676c656d616e2e636f6d2f7374617469632f7072696d69746976652f6578616d706c65732f70656e63696c732e676966" alt="primitive" /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Flag</td>
+      <td>Default</td>
+      <td>Description</td>
+    </tr>
+    <tr>
+      <td>i</td>
+      <td>n/a</td>
+      <td>input file</td>
+    </tr>
+    <tr>
+      <td>o</td>
+      <td>n/a</td>
+      <td>output file</td>
+    </tr>
+    <tr>
+      <td>n</td>
+      <td>n/a</td>
+      <td>number of shapes</td>
+    </tr>
+    <tr>
+      <td>m</td>
+      <td>1</td>
+      <td>mode: 0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon</td>
+    </tr>
+    <tr>
+      <td>rep</td>
+      <td>0</td>
+      <td>add N extra shapes each iteration with reduced search (mostly good for beziers)</td>
+    </tr>
+    <tr>
+      <td>nth</td>
+      <td>1</td>
+      <td>save every Nth frame (only when %d is in output path)</td>
+    </tr>
+    <tr>
+      <td>r</td>
+      <td>256</td>
+      <td>resize large input images to this size before processing</td>
+    </tr>
+    <tr>
+      <td>s</td>
+      <td>1024</td>
+      <td>output image size</td>
+    </tr>
+    <tr>
+      <td>a</td>
+      <td>128</td>
+      <td>color alpha (use 0 to let the algorithm choose alpha for each shape)</td>
+    </tr>
+    <tr>
+      <td>bg</td>
+      <td>avg</td>
+      <td>starting background color (hex)</td>
+    </tr>
+    <tr>
+      <td>j</td>
+      <td>0</td>
+      <td>number of parallel workers (default uses all cores)</td>
+    </tr>
+    <tr>
+      <td>v</td>
+      <td>off</td>
+      <td>verbose output</td>
+    </tr>
+    <tr>
+      <td>vv</td>
+      <td>off</td>
+      <td>very verbose output</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-SHELL">primitve -i products.png -o products-shape.svg -n 800
+</code></pre>
+
+<p>这里再配合另一个库 <a href="https://github.com/svg/svgo"><strong>svgo</strong></a>  进行压缩:</p>
+
+<pre><code class="language-SHELL">svgo -i products-shape.svg -o products-shape.svg
+</code></pre>
+
+<blockquote>
+  <p>推荐一个 <a href="https://explainshell.com"><strong>explainshell</strong></a> 页面，可以解释一些命令行</p>
+</blockquote>
+
+<p><img src="https://user-gold-cdn.xitu.io/2019/1/23/1687a706e7c637ef?imageView2/0/w/1280/h/960/ignore-error/1" alt="explainshell" /></p>
+
+<h2 id="软件">软件</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">软件</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="https://www.obdev.at/products/launchbar/index.html">launchbar</a></td>
+      <td style="text-align: left">类似 Afred，高效率工具</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://github.com/iina/iina">IINA</a></td>
+      <td style="text-align: left">视频播放器</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="http://paper.meiyuan.in">Pap.er</a> / <a href="https://unsplash.com">Unsplash</a></td>
+      <td style="text-align: left">高清壁纸</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://snip.qq.com">Snip</a></td>
+      <td style="text-align: left">支持滚动截屏</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://eternalstorms.at/yoink/mac/">Yoink</a></td>
+      <td style="text-align: left">文件中转</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://pasteapp.me">paste</a></td>
+      <td style="text-align: left">剪切板工具</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://www.globaldelight.com/boom/boom-ppc.php?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=Worldwide-Brand&amp;gclid=Cj0KCQjw7YblBRDFARIsAKkK-dK06kvxpwChCrYM-KzdtGKcVhG-nOYVKP2orqwFaM-9TrL08r0Go08aAjxfEALw_wcB">boom3d</a></td>
+      <td style="text-align: left">音效增强</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://software.charliemonroe.net/downie/">Downie3</a></td>
+      <td style="text-align: left">类似硕鼠，视频下载</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="http://bt.xiandan.in">magnetx</a></td>
+      <td style="text-align: left">种子下载</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://eslint.cn/docs/user-guide/configuring">ESLint 官方文档</a></li>
-  <li><a href="http://techblog.sishuxuefu.com/atricle.html?5b2603c4ee920a003b731514">全局配置 ESLint 之 React</a> By 杨俊宁</li>
-  <li><a href="https://editorconfig.org/">EditorConfig 官方文档</a></li>
+  <li><a href="https://juejin.im/post/5c3dcecef265da6163024b1c">优秀的命令行工具整理</a> By LeanCloud</li>
+  <li><a href="https://keelii.com/2018/08/12/fuzzy-finder-full-guide/">Fuzzy finder(fzf+vim) 使用全指南</a></li>
 </ol>
  
 <div id="gitalk-container"></div>
@@ -498,9 +657,9 @@ deliberate space * in * emphasis
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2019/01/25/coding-standards.html';
-        this.page.identifier = '/2019/01/25/coding-standards';
-        this.page.title = '记各种代码规范实践';
+        this.page.url = 'https://tate-young.github.io/2019/04/01/command-line-and-apps.html';
+        this.page.identifier = '/2019/04/01/command-line-and-apps';
+        this.page.title = '记一些命令行工具';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -519,7 +678,7 @@ deliberate space * in * emphasis
 
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-01-25 20:41:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-04-01 18:53:00</p> -->
         </div>
     </article>
 
