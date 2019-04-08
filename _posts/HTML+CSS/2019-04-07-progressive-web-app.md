@@ -7,6 +7,7 @@ background: purple
 category: 前端
 title:  PWA 简介
 date:   2019-04-07 23:40:00 GMT+0800 (CST)
+update: 2019-04-08 16:02:00 GMT+0800 (CST)
 background-image: https://i.udemycdn.com/course/240x135/1233648_31e5_3.jpg
 tags:
 - pwa
@@ -83,6 +84,8 @@ tags:
 
 ### 注册
 
+以下 demo 都[来自 github 这里](https://github.com/alienzhou/learning-pwa):
+
 ```JS
 // index.js
 // 注册 service worker，其脚本文件为 sw.js
@@ -140,7 +143,7 @@ self.addEventListener('install', function (e) {
 
 ![cached](https://user-gold-cdn.xitu.io/2018/4/8/162a560d2d6b1798?w=567&h=284&f=png&s=19408)
 
-![noCach](https://user-gold-cdn.xitu.io/2018/4/8/162a560d30b47136?w=567&h=284&f=png&s=13705)
+![noCache](https://user-gold-cdn.xitu.io/2018/4/8/162a560d30b47136?w=567&h=284&f=png&s=13705)
 
 1. 浏览器发起请求，请求各类静态资源
 2. Service Worker 拦截浏览器请求，并查询当前 cache
@@ -156,7 +159,6 @@ self.addEventListener('fetch', function (e) {
     caches.match(e.request).then(function (cache) {
       return cache || fetch(e.request);
     }).catch(function (err) {
-      console.log(err);
       return fetch(e.request);
     })
   );
@@ -183,7 +185,7 @@ self.addEventListener('activate', function (e) {
 
 另一方面 Web App 也会把 XHR 请求的数据缓存一份。而再次请求时，我们会优先使用本地缓存，然后向服务端请求数据，服务端返回数据后，基于该数据替换展示:
 
-![](https://user-gold-cdn.xitu.io/2018/4/8/162a560d35c15a67?w=567&h=266&f=png&s=16946)
+![fetch](https://user-gold-cdn.xitu.io/2018/4/8/162a560d35c15a67?w=567&h=266&f=png&s=16946)
 
 同时我们也可以改造下 `fetch`:
 
@@ -222,7 +224,6 @@ self.addEventListener('fetch', function (e) {
       caches.match(e.request).then(function (cache) {
         return cache || fetch(e.request);
       }).catch(function (err) {
-        console.log(err);
         return fetch(e.request);
       })
     );
@@ -230,7 +231,30 @@ self.addEventListener('fetch', function (e) {
 });
 ```
 
-## Workbox
+SW 配置好后，最后只剩下如何在 XHR 请求时有策略的使用缓存了，这一部分的改造全部集中于 `index.js`:
+
+```JS
+function getApiDataFromCache(url) {
+  // 仍然可以通过 caches 来访问缓存。为了保证渐进可用，我们需要先进行判断 'caches' in window
+  if ('caches' in window) {
+    return caches.match(url).then(function (cache) {
+      // 判断是否命中缓存
+      if (!cache) return;
+
+      return cache.json();
+    });
+  }
+
+  return Promise.resolve();
+}
+```
+
+这样处理之后，我们可以感受到两个比较大的提升:
+
+* 离线可用 - 如果我们之前访问过某些 URL，那么即使在离线的情况下，依然可以正常访问
+* 优化体验 - 提高访问速度。读取本地 cache 耗时相比于网络请求较低，在弱网情况下更明显
+
+### Workbox
 
 [**Workbox**](https://developers.google.com/web/tools/workbox/modules/workbox-sw) 可以理解为 Google 官方 PWA 框架，它解决的就是用底层 API 写 PWA 太过复杂的问题。这里说的底层 API，指的就是去监听 SW 的 `install、active、fetch` 事件做相应逻辑处理等:
 
@@ -312,6 +336,14 @@ workbox.routing.registerRoute(
 ```
 
 ![Cach Only](https://developers.google.com/web/tools/workbox/images/modules/workbox-strategies/cache-only.png)
+
+## Web Push 消息推送
+
+## Notification 提醒
+
+## Firebase
+
+[**Firebase**](https://firebase.google.com)
 
 ## LightHouse
 

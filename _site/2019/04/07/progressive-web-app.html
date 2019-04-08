@@ -143,6 +143,8 @@
                       发布时间：2019-04-07 23:40:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-04-08 16:34:00
+                      
                     </time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -274,6 +276,8 @@
 
 <h3 id="注册">注册</h3>
 
+<p>以下 demo 都<a href="https://github.com/alienzhou/learning-pwa">来自 github 这里</a>:</p>
+
 <pre><code class="language-JS">// index.js
 // 注册 service worker，其脚本文件为 sw.js
 if ('serviceWorker' in navigator) {
@@ -330,7 +334,7 @@ self.addEventListener('install', function (e) {
 
 <p><img src="https://user-gold-cdn.xitu.io/2018/4/8/162a560d2d6b1798?w=567&amp;h=284&amp;f=png&amp;s=19408" alt="cached" /></p>
 
-<p><img src="https://user-gold-cdn.xitu.io/2018/4/8/162a560d30b47136?w=567&amp;h=284&amp;f=png&amp;s=13705" alt="noCach" /></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/8/162a560d30b47136?w=567&amp;h=284&amp;f=png&amp;s=13705" alt="noCache" /></p>
 
 <ol>
   <li>浏览器发起请求，请求各类静态资源</li>
@@ -347,7 +351,6 @@ self.addEventListener('fetch', function (e) {
     caches.match(e.request).then(function (cache) {
       return cache || fetch(e.request);
     }).catch(function (err) {
-      console.log(err);
       return fetch(e.request);
     })
   );
@@ -373,7 +376,7 @@ self.addEventListener('activate', function (e) {
 
 <p>另一方面 Web App 也会把 XHR 请求的数据缓存一份。而再次请求时，我们会优先使用本地缓存，然后向服务端请求数据，服务端返回数据后，基于该数据替换展示:</p>
 
-<p><img src="https://user-gold-cdn.xitu.io/2018/4/8/162a560d35c15a67?w=567&amp;h=266&amp;f=png&amp;s=16946" alt="" /></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/4/8/162a560d35c15a67?w=567&amp;h=266&amp;f=png&amp;s=16946" alt="fetch" /></p>
 
 <p>同时我们也可以改造下 <code class="highlighter-rouge">fetch</code>:</p>
 
@@ -411,7 +414,6 @@ self.addEventListener('fetch', function (e) {
       caches.match(e.request).then(function (cache) {
         return cache || fetch(e.request);
       }).catch(function (err) {
-        console.log(err);
         return fetch(e.request);
       })
     );
@@ -419,7 +421,31 @@ self.addEventListener('fetch', function (e) {
 });
 </code></pre>
 
-<h2 id="workbox">Workbox</h2>
+<p>SW 配置好后，最后只剩下如何在 XHR 请求时有策略的使用缓存了，这一部分的改造全部集中于 <code class="highlighter-rouge">index.js</code>:</p>
+
+<pre><code class="language-JS">function getApiDataFromCache(url) {
+  // 仍然可以通过 caches 来访问缓存。为了保证渐进可用，我们需要先进行判断 'caches' in window
+  if ('caches' in window) {
+    return caches.match(url).then(function (cache) {
+      // 判断是否命中缓存
+      if (!cache) return;
+
+      return cache.json();
+    });
+  }
+
+  return Promise.resolve();
+}
+</code></pre>
+
+<p>这样处理之后，我们可以感受到两个比较大的提升:</p>
+
+<ul>
+  <li>离线可用 - 如果我们之前访问过某些 URL，那么即使在离线的情况下，依然可以正常访问</li>
+  <li>优化体验 - 提高访问速度。读取本地 cache 耗时相比于网络请求较低，在弱网情况下更明显</li>
+</ul>
+
+<h3 id="workbox">Workbox</h3>
 
 <p><a href="https://developers.google.com/web/tools/workbox/modules/workbox-sw"><strong>Workbox</strong></a> 可以理解为 Google 官方 PWA 框架，它解决的就是用底层 API 写 PWA 太过复杂的问题。这里说的底层 API，指的就是去监听 SW 的 <code class="highlighter-rouge">install、active、fetch</code> 事件做相应逻辑处理等:</p>
 
@@ -505,6 +531,14 @@ workbox.routing.registerRoute(
 </code></pre>
 
 <p><img src="https://developers.google.com/web/tools/workbox/images/modules/workbox-strategies/cache-only.png" alt="Cach Only" /></p>
+
+<h2 id="web-push-消息推送">Web Push 消息推送</h2>
+
+<h2 id="notification-提醒">Notification 提醒</h2>
+
+<h2 id="firebase">Firebase</h2>
+
+<p><a href="https://firebase.google.com"><strong>Firebase</strong></a></p>
 
 <h2 id="lighthouse">LightHouse</h2>
 
