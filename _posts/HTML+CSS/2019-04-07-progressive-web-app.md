@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  PWA 简介
 date:   2019-04-07 23:40:00 GMT+0800 (CST)
-update: 2019-04-08 16:02:00 GMT+0800 (CST)
+update: 2019-04-08 22:08:00 GMT+0800 (CST)
 background-image: https://i.udemycdn.com/course/240x135/1233648_31e5_3.jpg
 tags:
 - pwa
@@ -21,7 +21,9 @@ tags:
 
 * **App Manifest** - Web 应用程序清单，实现可安装
 * **Service Worker** - 后台运行的独立线程，实现离线使用
-* **Web Push**
+* **Web Push & Notification** - 消息推送和提醒
+
+> 此博客基本转自 alienzhou 的[2018，开始你的 PWA 学习之旅](https://alienzhou.gitbook.io/learning-pwa/2018-kai-shi-ni-de-pwa-xue-xi-zhi-lv)
 
 ## Manifest
 
@@ -74,8 +76,6 @@ tags:
 
 ## Service Worker
 
-### 代理
-
 **Service Worker** 可以简单理解为一个独立于前端页面，在后台运行的进程。它有一个非常重要的特性：你可以在 Service Worker 中监听所有客户端(Web)发出的请求，然后通过它来代理，向后端服务发起请求。通过监听用户请求信息，Service Worker 可以决定是否使用缓存来作为 Web 请求的返回。因此它是实现离线访问的核心，下图展示普通 Web App 与添加了 Service Worker 的 Web App 在网络请求上的差异:
 
 ![service worker](https://user-gold-cdn.xitu.io/2018/4/8/162a560d0bdb6ed1?w=567&h=271&f=png&s=14952)
@@ -83,8 +83,6 @@ tags:
 > Service Worker 实际运行于本机上，相当于一个客户端代理。
 
 ### 注册
-
-以下 demo 都[来自 github 这里](https://github.com/alienzhou/learning-pwa):
 
 ```JS
 // index.js
@@ -141,7 +139,11 @@ self.addEventListener('install', function (e) {
 
 缓存有了，但是如何告知浏览器使用呢，可以参考以下几个策略:
 
+* 有缓存
+
 ![cached](https://user-gold-cdn.xitu.io/2018/4/8/162a560d2d6b1798?w=567&h=284&f=png&s=19408)
+
+* 无缓存
 
 ![noCache](https://user-gold-cdn.xitu.io/2018/4/8/162a560d30b47136?w=567&h=284&f=png&s=13705)
 
@@ -339,11 +341,550 @@ workbox.routing.registerRoute(
 
 ## Web Push 消息推送
 
+下图来自 [Web Push 协议草案](https://tools.ietf.org/html/draft-ietf-webpush-protocol-12)，是 Web Push 的整个流程，该时序图表明了 Web Push 的各个步骤，我们可以将其分为**订阅(subscribe)**与**推送(push)**两部分来看:
+
+```TEXT
+    +-------+           +--------------+       +-------------+
+    |  UA   |           | Push Service |       | Application |
+    +-------+           +--------------+       |   Server    |
+        |                      |               +-------------+
+        |      Subscribe       |                      |
+        |--------------------->|                      |
+        |       Monitor        |                      |
+        |<====================>|                      |
+        |                      |                      |
+        |          Distribute Push Resource           |
+        |-------------------------------------------->|
+        |                      |                      |
+        :                      :                      :
+        |                      |     Push Message     |
+        |    Push Message      |<---------------------|
+        |<---------------------|                      |
+        |                      |                      |
+```
+
+首先是订阅:
+
+* **Ask Permission** - 这一步不再上图的流程中，这其实是浏览器中的策略。浏览器会询问用户是否允许通知，只有在用户允许后，才能进行后面的操作
+* **Subscribe** - 浏览器（客户端）需要向 Push Service 发起订阅（subscribe），订阅后会得到一个 **PushSubscription** 对象
+* **Monitor** - 订阅操作会和 Push Service 进行通信，生成相应的订阅信息，Push Service 会维护相应信息，并基于此保持与客户端的联系
+* **Distribute Push Resource** - 浏览器订阅完成后，会获取订阅的相关信息（存在于 PushSubscription 对象中），我们需要将这些信息发送到自己的服务端，在服务端进行保存
+
+然后是推送:
+
+* **Push Message 阶段一** - 我们的服务端需要推送消息时，不直接和客户端交互，而是通过 Web Push 协议，将相关信息通知 Push Service；
+* **Push Message 阶段二** - Push Service 收到消息，通过校验后，基于其维护的客户端信息，将消息推送给订阅了的客户端。最后，客户端收到消息，完成整个推送过程
+
+> **Push Service** 可以接收网络请求，校验该请求并将其推送给合适的浏览器客户端。Push Service 还有一个非常重要的功能：当用户离线时，可以帮我们保存消息队列，直到用户联网后再发送给他们。不同的浏览器厂商实现了不同的 Push Service，但都遵循 **Web Push Protocol**。
+
+### 订阅 subscribe
+
+上面可以看到整个大概流程，那么怎么具体去实施呢，首先要在客户端生成 subscription 信息，即需要使用 **PushManager** 的 **subscribe** 方法来在浏览器中进行订阅:
+
+```JS
+// index.js
+function registerServiceWorker(file) {
+  return navigator.serviceWorker.register(file);
+}
+
+// 向 SW 发起订阅
+function subscribeUserToPush(registration, publicKey) {
+  var subscribeOptions = {
+    userVisibleOnly: true, // 表明该推送是否需要显性地展示给用户，即推送时是否会有消息提醒
+    applicationServerKey: window.urlBase64ToUint8Array(publicKey) // 一个客户端的公钥，VAPID 定义了其规范
+  };
+  // 当我们注册完 Service Worker 后会得到一个 Registration 对象
+  return registration.pushManager.subscribe(subscribeOptions).then(function (pushSubscription) {
+    console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+    return pushSubscription;
+  });
+}
+
+if ('serviceWorker' in navigator && 'PushManager' in window) {
+  var publicKey = 'BOEQSjdhorIf8M0XFNlwohK3sTzO9iJwvbYU-fuXRF0tvRpPPMGO6d_gJC_pUQwBT7wD8rKutpNTFHOHN3VqJ0A';
+  // 注册service worker
+  registerServiceWorker('./sw.js').then(function (registration) {
+    console.log('Service Worker 注册成功');
+    // 开启该客户端的消息推送订阅功能
+    return subscribeUserToPush(registration, publicKey);
+  }).then(function (subscription) {
+    var body = {subscription: subscription};
+    // 为了方便之后的推送，为每个客户端简单生成一个标识
+    body.uniqueid = new Date().getTime();
+    console.log('uniqueid', body.uniqueid);
+    // 将生成的客户端订阅信息存储在自己的服务器上
+    return sendSubscriptionToServer(JSON.stringify(body));
+  }).then(function (res) {
+    console.log(res);
+  }).catch(function (err) {
+    console.log(err);
+  });
+}
+```
+
+一个 PushSubscription 可能包含以下信息，其中的 `endpoint`，Push Service 会为每个客户端随机生成一个不同的值:
+
+```JSON
+{
+  "endpoint":"https://fcm.googleapis.com/fcm/send/dFBJcJfA0ZQ:APA91bGP1bm8aLVRVEei1IxdhqLFZXPV28z1pQK6t-5nsCEpc7_JRsr3wQYAAE-d6hPbgo0qch5aLMc2sDbZBreFmkA6thkz28c3ajfXoiU4zf5ANJWM8QLZjmWJ4MF_WbbtlaP7o21u",
+  "expirationTime":null,
+  "keys":{
+      "p256dh":"BGTNJ4e5-xxxPDbVpFdvM9KYHFiMTTEwCKXFbO1TOCuV7E",
+      "auth":"WBS6llMxxxDmRhiqQ"
+  }
+}
+```
+
+> applicationServerKey 的生成规则是将 base64 的公钥字符串转为 Unit8Array，可以[参考这里](https://github.com/web-push-libs/web-push#using-vapid-key-for-applicationserverkey) 👈
+
+### Distribute Push Resource
+
+接下来需要服务端存储客户端 subscription 信息，为了存储浏览器 post 来的订阅信息，服务端需要增加一个接口 `/subscription`，同时添加中间件 `koa-body` 用于处理 body:
+
+```JS
+// index.js
+function sendSubscriptionToServer(body, url) {
+  url = url || '/subscription';
+  return new Promise(function (resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    ...
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(body);
+  });
+}
+```
+
+```JS
+// app.js
+const koaBody = require('koa-body');
+const util = require('./util');
+/**
+ * 提交 subscription 信息，并保存
+ * 这里使用了 nedb 来进行简单的存储。nedb 不需要部署安装，可以将数据存储在内存中，也可以持久化，nedb 的 api 和 mongodb 也比较类似
+ */
+router.post('/subscription', koaBody(), async ctx => {
+  let body = ctx.request.body;
+  await util.saveRecord(body);
+  ctx.response.body = {
+    status: 0
+  };
+});
+```
+
+```JS
+// utils.js
+const Datastore = require('nedb');
+const db = new Datastore();
+module.exports.saveRecord = function (obj) {
+  return new Promise((r, j) => {
+    db.findOne(obj, (err, res) => {
+      if (err) {
+        j(err);
+        return;
+      }
+      if (res) {
+        console.log('已存在');
+        r(obj);
+        return;
+      }
+      db.insert(obj, (err, item) => {
+        if (err) {
+          j(err);
+          return;
+        }
+        console.log('存储完毕');
+        r(obj);
+      });
+    });
+  });
+};
+```
+
+### Push Message
+
+接下来使用 subscription 信息推送信息，以下模拟了一个接口来推送:
+
+```JS
+// app.js
+const webpush = require('web-push');
+/**
+ * 消息推送 API，可以在管理后台进行调用
+ * 本例子中，可以直接 post 一个请求来查看效果
+ */
+router.post('/push', koaBody(), async ctx => {
+  let { uniqueid, payload } = ctx.request.body;
+  // 我们可以通过 uniqueid 来查询某条订阅信息或者全部信息
+  let list = uniqueid ? await util.find({uniqueid}) : await util.findAll();
+  let status = list.length > 0 ? 0 : -1;
+
+  for (let i = 0; i < list.length; i++) {
+    let subscription = list[i].subscription;
+    // 通过封装的 pushMessage 方法向 Push Service 发送请求
+    pushMessage(subscription, JSON.stringify(payload));
+  }
+
+  ctx.response.body = {
+    status
+  };
+});
+
+// 向 Push Service 推送信息
+function pushMessage(subscription, data = {}) {
+  // webpush.sendNotification 方法为我们封装了请求的处理细节
+  webpush.sendNotification(subscription, data, options).then(data => {
+    console.log('push service 的相应数据:', JSON.stringify(data));
+    return;
+  }).catch(err => {
+    // 判断状态码，440 和 410 表示失效
+    if (err.statusCode === 410 || err.statusCode === 404) {
+      return util.remove(subscription);
+    }
+    else {
+      console.log(subscription);
+      console.log(err);
+    }
+  })
+}
+```
+
+> Web Push 协议的请求封装、加密处理相关操作非常繁琐。因此，Web Push 为各种语言的开发者提供了一系列对应的库：[Web Push Libaray](https://github.com/web-push-libs/web-push#using-vapid-key-for-applicationserverkey) 👈
+
+通过 web-push 我们可以生成一对公钥和私钥:
+
+```SHELL
+# 安装
+npm install web-push --save
+
+# 生成 vapid keys
+web-push generate-vapid-keys
+
+================
+Public key:
+BOEQSjdhorIf8M0XFNlwohK3sTzO9iJwvbYU-fuXRF0tvRpPPMGO6d_gJC_pUQwBT7wD8rKutpNTFHOHN3VqJ0A
+Private key:
+TVe_nJlciDOn130gFyFYP8UiGxxWd3QdH6C5axXpSgM
+```
+
+然后设置 vapid key，设置完成后即可使用 `webpush.sendNotification()` 方法向 Push Service 发起请求:
+
+```JS
+// app.js
+const webpush = require('web-push');
+/**
+ * VAPID 值
+ */
+const vapidKeys = {
+  publicKey: 'BOEQSjdhorIf8M0XFNlwohK3sTzO9iJwvbYU-fuXRF0tvRpPPMGO6d_gJC_pUQwBT7wD8rKutpNTFHOHN3VqJ0A',
+  privateKey: 'TVe_nJlciDOn130gFyFYP8UiGxxWd3QdH6C5axXpSgM'
+};
+
+// 设置 web-push 的 VAPID 值
+webpush.setVapidDetails(
+  'mailto:smd.tate@gmail.com',
+  vapidKeys.publicKey,
+  vapidKeys.privateKey
+);
+```
+
+至此，我们就已经把消息发送至 Push Service 了，而 Push Service 会将我们的消息推送至浏览器。要想在浏览器中获取推送信息，只需在 Service Worker 中监听 push 的事件即可:
+
+```JS
+// sw.js
+self.addEventListener('push', function (e) {
+  var data = e.data;
+  if (e.data) {
+    data = data.json();
+    console.log('push的数据为：', data);
+    self.registration.showNotification(data.text);
+  }
+  else {
+    console.log('push没有任何数据');
+  }
+});
+```
+
+![web-push](https://user-gold-cdn.xitu.io/2018/4/13/162bc954b09d78cf?w=1277&h=774&f=gif&s=2877596)
+
+我们还可以在控制台对 SW 进行调试，同时也可以看到 cache 中所存储的一些脚本和请求信息:
+
+![console](https://user-gold-cdn.xitu.io/2018/4/29/16310a142d0c794d?w=1197&h=503&f=png&s=116464)
+
 ## Notification 提醒
+
+![Notification](https://user-gold-cdn.xitu.io/2018/5/1/1631a562ba773ddd?w=1275&h=762&f=gif&s=384884)
+
+即使当你切换到其他页签，也可以通过提醒交互来快速让用户回到你的网站，甚至当用户离开当前网站，仍然可以收到系统的提醒消息，并且可以通过消息提醒快速打开你的网站:
+
+![Notification-back](https://user-gold-cdn.xitu.io/2018/5/1/1631b52052cccb59?w=1270&h=676&f=gif&s=2317289)
+
+### requestPermission 获取授权
+
+要完成提醒，首先调用 **Notification** 对象上的静态方法 `Notification.requestPermission()` 来获取授权:
+
+```JS
+// index.js
+function askPermission() {
+  return new Promise(function (resolve, reject) {
+    var permissionResult = Notification.requestPermission(function (result) {
+      resolve(result);
+    });
+
+    if (permissionResult) {
+      permissionResult.then(resolve, reject);
+    }
+  }).then(function (permissionResult) {
+    /*
+    * permissionResult 可能值有以下几个
+    * denied：用户拒绝了通知的显示
+    * granted：用户允许了通知的显示
+    * default：因为不知道用户的选择，所以浏览器的行为与 denied 时相同
+    */
+    if (permissionResult !== 'granted') {
+      throw new Error('We weren\'t granted permission.');
+    }
+  });
+}
+
+
+registerServiceWorker('./sw.js').then(function (registration) {
+  return Promise.all([
+    registration,
+    askPermission()
+  ])
+ })
+```
+
+### showNotification 提醒内容
+
+获取用户授权后，我们就可以通过 `registration.showNotification()` 方法进行消息提醒了:
+
+```JS
+// index.js
+registerServiceWorker('./sw.js').then(function (registration) {
+  return Promise.all([
+    registration,
+    askPermission()
+  ])
+}).then(function (result) {
+  var registration = result[0];
+  /* ===== 添加提醒功能 ====== */
+  document.querySelector('#js-notification-btn').addEventListener('click', function () {
+    var title = 'PWA即学即用'; // 标题
+    var options = {
+      body: '邀请你一起学习',
+      icon: '/img/icons/book-128.png',
+      actions: [{
+        action: 'show-book',
+        title: '去看看'
+      }, {
+        action: 'contact-me',
+        title: '联系我'
+      }],
+      tag: 'pwa-starter',
+      renotify: true
+    };
+    registration.showNotification(title, options);
+  });
+  /* ======================= */
+})
+```
+
+options 支持以下字段:
+
+* body - 提醒的内容
+* icon - 提醒的图标
+* actions - 提醒可以包含一些自定义操作
+* tag - 相当于是 ID，通过该 ID 标识可以操作特定的 notification
+* renotify - 是否允许重复提醒，默认为 false。当不允许重复提醒时，同一个 tag 的 notification 只会显示一次
+
+![options](https://user-gold-cdn.xitu.io/2018/5/1/1631a6c6007ffec9?w=800&h=300&f=jpeg&s=114296)
+
+### notificationclick 事件监听
+
+为了能够响应用户对于提醒框的点击事件，我们需要在 Service Worker 中监听 **notificationclick** 事件。在该事件的回调函数中我们可以获取点击的相关信息:
+
+```JS
+// sw.js
+self.addEventListener('notificationclick', function (e) {
+  var action = e.action;
+  console.log(`action tag: ${e.notification.tag}`, `action: ${action}`);
+
+  switch (action) {
+    case 'show-book':
+      console.log('show-book');
+      break;
+    case 'contact-me':
+      console.log('contact-me');
+      break;
+    default:
+      console.log(`未处理的action: ${e.action}`);
+      action = 'default';
+      break;
+  }
+  e.notification.close();
+});
+```
+
+如果需要 Service Worker 与 client 通信，则还需要修改以下两个部分:
+
+```JS
+// sw.js
+// 在 Service Worker 中使用 Worker 的 postMessage() 方法来通知 client
+self.addEventListener('notificationclick', function (e) {
+  ...
+ e.waitUntil(
+    // 获取所有clients
+    self.clients.matchAll().then(function (clients) {
+      if (!clients || clients.length === 0) {
+        // 当不存在 client 时(比如网页已经关闭)，打开该网站
+        self.clients.openWindow && self.clients.openWindow('http://127.0.0.1:8085');
+        return;
+      }
+      // 切换到该站点的 tab
+      clients[0].focus && clients[0].focus();
+      clients.forEach(function (client) {
+        // 使用postMessage进行通信
+        client.postMessage(action);
+      });
+    })
+  );
+});
+```
+
+```JS
+// index.js
+// 在 client 中监听 message 事件，判断 data，进行不同的操作
+navigator.serviceWorker.addEventListener('message', function (e) {
+  var action = e.data;
+  console.log(`receive post-message from sw, action is '${e.data}'`);
+  switch (action) {
+    case 'show-book':
+      location.href = 'https://book.douban.com/subject/20515024/';
+      break;
+    case 'contact-me':
+      location.href = 'mailto:someone@sample.com';
+      break;
+    default:
+      document.querySelector('.panel').classList.add('show');
+      break;
+  }
+});
+```
+
+另外，Web Push 和 Notification 也可以组合使用:
+
+```JS
+// sw.js
+// 这样，即使是在用户关闭该 Web App 时，依然可以收到提醒，类似于 Native 中的消息推送与提醒
+self.addEventListener('push', function (e) {
+  var data = e.data;
+  if (e.data) {
+    data = data.json();
+    console.log('push的数据为：', data);
+    var title = 'PWA即学即用';
+    var options = {
+      body: data,
+      icon: '/img/icons/book-128.png',
+      image: '/img/icons/book-521.png',
+      actions: [{
+        action: 'show-book',
+        title: '去看看'
+      }, {
+        action: 'contact-me',
+        title: '联系我'
+      }],
+      tag: 'pwa-starter',
+      renotify: true
+    };
+    self.registration.showNotification(title, options);
+  }
+  else {
+    console.log('push 没有任何数据');
+  }
+});
+```
+
+## Background Sync 后台同步
+
+在日常生活中，我们会遇到两个常见的问题:
+
+* 普通的页面发起的请求会随着浏览器进程的结束或者 Tab 页面的关闭而终止
+* 无网环境下，没有一种机制能“维持”住该请求，以待有网情况下再进行请求
+
+而 **Background Sync** 后台同步功能可以有效解决此问题，其工作原理大致如下:
+
+1. 在 Service Worker 中监听 sync 事件
+2. 在浏览器中发起后台同步 sync（图中第一步）
+3. 会触发 Service Worker 的 sync 事件，在该监听的回调中进行操作，例如向后端发起请求（图中第二步）
+4. 可以在 Service Worker 中对服务端返回的数据进行处理
+
+![Background Sync 流程](https://user-gold-cdn.xitu.io/2018/5/13/1635905056b125a7?w=573&h=129&f=png&s=8623)
+
+接下来看看如何在实际中操作，首先在 client 触发 sync 事件:
+
+```JS
+// index.js
+// 由于后台同步功能需要在 Service Worker 注册完成后触发，因此较好的一个方式是在 navigator.serviceWorker.ready 之后绑定相关操作
+navigator.serviceWorker.ready.then(function (registration) {
+  var tag = "sample_sync";
+  document.getElementById('js-sync-btn').addEventListener('click', function () {
+    registration.sync.register(tag).then(function () {
+      console.log('后台同步已触发', tag);
+    }).catch(function (err) {
+      console.log('后台同步触发失败', err);
+    });
+  });
+});
+```
+
+其中 `registration.sync` 返回一个 `SyncManager` 对象，包含以下两个方法:
+
+* register() - Create a new sync registration and return a Promise.
+* getTags() - Return a list of developer-defined identifiers for SyncManager registration
+
+然后在 SW 中监听 sync 事件:
+
+```JS
+// sw.js
+// 需要特别注意的是，fetch 请求一定要放在 e.waitUntil() 内。因为我们要保证“后台同步”
+// 将 Promise 对象放在 e.waitUntil() 内可以确保在用户离开我们的网站后，Service Worker 会持续在后台运行，等待该请求完成
+self.addEventListener('sync', function (e) {
+  console.log(`service worker需要进行后台同步，tag: ${e.tag}`);
+  var init = {
+    method: 'GET'
+  };
+  // 根据不同的传入的 tag，可以不同处理
+  if (e.tag === 'sample_sync') {
+    var request = new Request(`sync?name=AlienZHOU`, init);
+    e.waitUntil(
+      fetch(request).then(function (response) {
+        response.json().then(console.log.bind(console));
+        return response;
+      })
+    );
+  }
+});
+```
+
+![Background Sync](https://user-gold-cdn.xitu.io/2018/5/13/163598ca174364ed?w=800&h=499&f=gif&s=2269837)
 
 ## Firebase
 
-[**Firebase**](https://firebase.google.com)
+以上项目可部署至 [**Firebase**](https://firebase.google.com)，需要先创建帐户并安装一些工具：
+
+1. 在 `https://firebase.google.com/console/` 上创建一个 Firebase 帐户
+2. 通过 npm 安装 Firebase：`npm install -g firebase-tools`
+
+创建帐户并登录后，便可随时进行部署！
+
+1. 在 `https://firebase.google.com/console/` 上创建一个新应用
+2. 如果您近期未登录 Firebase 工具，请更新您的凭据：`firebase login`
+3. 初始化您的应用，并提供您完成的应用所在的目录： `firebase init`
+4. 最后，将应用部署到 Firebase： `firebase deploy`
+5. 大功告成。 操作完成！您的应用将部署到以下网域：`https://YOUR-FIREBASE-APP.firebaseapp.com`
+
+> 深入阅读：[Firebase 托管指南](https://www.firebase.com/docs/hosting/guide/) 👈
 
 ## LightHouse
 
