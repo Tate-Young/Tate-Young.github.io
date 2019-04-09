@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种调试和兼容问题
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-02-26 15:00:00 GMT+0800 (CST)
+update: 2019-04-09 10:44:00 GMT+0800 (CST)
 background-image: /style/images/darling.jpg
 tags:
 - Other
@@ -82,6 +82,7 @@ mitmproxy -p 8888
 | i | 拦截 intercept |
 | r | 重新请求 |
 | esc | 退出编辑 |
+| fn | 按住拖动光标即可选中 |
 
 ## 手机网页调试
 
