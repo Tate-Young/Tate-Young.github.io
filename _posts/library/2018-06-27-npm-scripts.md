@@ -7,6 +7,7 @@ background: green
 category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
+update: 2019-04-09 20:01:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/06/27/5b3360100dcd3.png
 
 tags:
@@ -234,8 +235,15 @@ ENV3=THE FISH
 
 ```JSON
 "dependencies": {
-  "@babel/runtime": "7.0.0-beta.42",
-  "@material-ui/core": "^3.1.1",
+  "async": "1.2.1",
+  "chokidar": "^1.0.0",
+  "vizion": "latest", # 当前发布版本
+  "babel": "^5.x",
+  "pm2-logs": "~0.1.1",
+  "ikt": "git+http://ikt.pm2.io/ikt.git#master", # Git URL 形式的依赖
+  "punt": "*",
+  "express": ">=3.0.0",
+  "connect": "1.30.2 - 2.30.2",
 }
 ```
 
@@ -317,6 +325,28 @@ brew upgrade yarn
 yarn global add yarn
 ```
 
+那么再简单对比下 `npm install` 和 `update` 的区别，即对于已经安装的包，没有明确版本号的，前者会忽略:
+
+```TEXT
+{
+  "name":          "my-project",
+  "version":       "1.0",                             // install   update
+  "dependencies":  {                                  // ------------------
+    "already-installed-versionless-module":  "*",     // ignores   "1.0" -> "1.1"
+    "already-installed-semver-module":       "^1.4.3" // ignores   "1.4.3" -> "1.5.2"
+    "already-installed-versioned-module":    "3.4.1"  // ignores   ignores
+    "not-yet-installed-versionless-module":  "*",     // installs  installs
+    "not-yet-installed-semver-module":       "^4.2.1" // installs  installs
+    "not-yet-installed-versioned-module":    "2.7.8"  // installs  installs
+  }
+}
+```
+
+另外对于安装 `devDependecies` 中的依赖还有一些区别:
+
+* npm install 默认会安装，除非添加 `--production` 参数
+* npm update 不会默认安装，除非添加 `--dev` 参数
+
 ## 参考链接
 
 1. [掘金小册 - 用 npm script 打造超溜的前端工作流](https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1212bcf265da431c6fe677) By 王仕军
@@ -326,3 +356,4 @@ yarn global add yarn
 5. [Npm vs Yarn 之备忘详单](https://jeffjade.com/2017/12/30/135-npm-vs-yarn-detial-memo/) By 晚晴幽草轩轩主
 6. [npm5 新版功能特性解析及与 yarn 评测对比](https://cloud.tencent.com/developer/article/1020507) By 马铖
 7. [Package.json 中库的版本号详解](https://github.com/ragingDream/blog/issues/32) By ragingDream
+8. [npm install vs. update - what's the difference? - stackoverflow](https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
