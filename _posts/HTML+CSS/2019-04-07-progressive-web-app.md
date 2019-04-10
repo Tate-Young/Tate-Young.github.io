@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  PWA 简介
 date:   2019-04-07 23:40:00 GMT+0800 (CST)
-update: 2019-04-08 22:08:00 GMT+0800 (CST)
+update: 2019-04-10 11:30:00 GMT+0800 (CST)
 background-image: https://i.udemycdn.com/course/240x135/1233648_31e5_3.jpg
 tags:
 - pwa
@@ -111,9 +111,17 @@ self.addEventListener('install', function (e) {
 
 > **self** 是 Service Worker 中一个特殊的全局变量，类似于 window 对象。self 引用了当前这个 Service Worker。
 
-### 缓存静态资源
+### CacheStorage
 
-要使我们的 Web App 离线可用，就需要将所需资源缓存下来。我们需要一个资源列表，当 Service Worker 被激活时，会将该列表内的资源缓存进 cache:
+[**CacheStorage**](https://developer.mozilla.org/zh-CN/docs/Web/API/CacheStorage) 接口表示 Cache 对象的存储，暴露以下几个方法:
+
+* **CacheStorage.match()** - 检查给定的 Request 是否是 CacheStorage 对象跟踪的任何 Cache 对象的键，并返回一个 resolve 为该匹配的 Promise
+* **CacheStorage.has()** - 如果存在与 cacheName 匹配的 Cache 对象，则返回一个 resolve 为 true 的 Promise
+* **CacheStorage.open()** - 返回一个 Promise ，resolve 为匹配  cacheName 的 Cache 对象，如果不存在则创建一个新的 cache
+* **CacheStorage.delete()** - 查找匹配 cacheName 的 Cache 对象，如果找到，则删除 Cache 对象并返回一个 resolve 为 true 的 Promise 。如果没有找到 Cache 对象，则返回 false
+* **CacheStorage.keys()** - 返回一个 Promise ，它将使用一个包含与 CacheStorage 追踪的所有命名 Cache 对象对应字符串的数组来 resolve. 使用该方法迭代所有 Cache 对象的列表
+
+要使我们的 Web App 离线可用，就需要将所需资源缓存下来。我们需要一个这样的资源列表，当 Service Worker 被激活时，会将该列表内的资源缓存进 cache:
 
 ```JS
 // sw.js
@@ -208,8 +216,8 @@ self.addEventListener('fetch', function (e) {
   /**** 这里是对 XHR 数据缓存的相关操作 ****/
   if (needCache) {
       // 需要缓存
-    // 使用fetch请求数据，并将请求结果clone一份缓存到cache
-    // 此部分缓存后在browser中使用全局变量caches获取
+    // 使用 fetch 请求数据，并将请求结果 clone 一份缓存到 cache
+    // 此部分缓存后在 browser 中使用全局变量 caches 获取
     caches.open(apiCacheName).then(function (cache) {
       return fetch(e.request).then(function (response) {
         // clone 方法拷贝一份响应数据，这样我们就可以对响应缓存进行各类操作而不用担心原响应信息被修改了
