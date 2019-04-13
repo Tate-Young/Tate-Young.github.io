@@ -1,0 +1,1021 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='CSS in JS - Tate & Snow' name='title' />
+    <meta content='CSS in JS - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>CSS in JS - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>CSS in JS - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS in JS - Tate & Snow">
+<meta name="twitter:keywords" content="CSS in JS - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS in JS - Tate & Snow">
+<meta name="og:keywords" content="CSS in JS - Tate & Snow|CSS in JS什么是 CSS in JS对于以往的开发，通常是采用”关注点分离”的模式，即:  HTML - 负责网页的结构，又称语义层  CSS - 负责网页的样式，又称视觉层  JavaScript - 负责网页的逻辑和交互，..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="CSS in JS什么是 CSS in JS对于以往的开发，通常是采用”关注点分离”的模式，即:  HTML - 负责网页的结构，又称语义层  CSS - 负责网页的样式，又称视觉层  JavaScript - 负责网页的逻辑和交互，..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2019/04/13/css-in-js.html' property='og:url' />
+<meta content="http://localhost:4000/2019/04/13/css-in-js.html|CSS in JS什么是 CSS in JS对于以往的开发，通常是采用”关注点分离”的模式，即:  HTML - 负责网页的结构，又称语义层  CSS - 负责网页的样式，又称视觉层  JavaScript - 负责网页的逻辑和交互，..." property='og:description'
+/>
+<meta content="article" property="og:type" />  
+<!-- <script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-101222464-1', 'auto');
+  ga('send', 'pageview');
+</script> -->
+ 
+
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    CSS in JS</h1>
+                <div class="post-data">
+                    <time datetime="2019-04-13 19:46:00" itemprop="datePublished">
+                      发布时间：2019-04-13 19:46:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#css" title="访问css" data-hover="css">
+                        css
+                        <span>(9)</span>
+                        
+                    </a>
+                    
+                    <a href="/tags#js" title="访问js" data-hover="js">
+                        js
+                        <span>(3)</span>
+                        
+                    </a>
+                    
+                    <a href="/tags#react" title="访问react" data-hover="react">
+                        react
+                        <span>(2)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                CSS in JS</h1>
+            <div class="post-data">
+                <time datetime="2019-04-13 19:46:00" itemprop="datePublished">2019-04-13 19:46:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#css" title="访问css" data-hover="css">
+                    css
+                    <span>(9)</span>
+                    </a>
+                
+                <a href="/tags#js" title="访问js" data-hover="js">
+                    js
+                    <span>(3)</span>
+                    </a>
+                
+                <a href="/tags#react" title="访问react" data-hover="react">
+                    react
+                    <span>(2)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="css-in-js">CSS in JS</h1>
+
+<h2 id="什么是-css-in-js">什么是 CSS in JS</h2>
+
+<p>对于以往的开发，通常是采用”关注点分离”的模式，即:</p>
+
+<ul>
+  <li>HTML - 负责网页的结构，又称语义层</li>
+  <li>CSS - 负责网页的样式，又称视觉层</li>
+  <li>JavaScript - 负责网页的逻辑和交互，又称逻辑层或交互层</li>
+</ul>
+
+<p>其中 CSS 的发展相较下来是十分缓慢的，到现在仍然无法解决以下几个问题:</p>
+
+<ul>
+  <li>全局作用域 - 可以遵循 CSS 优先级</li>
+  <li>书写 - 可以采用预编译 <code class="highlighter-rouge">less</code>、<code class="highlighter-rouge">sass</code> 或者 <a href="https://postcss.org"><strong>PostCss</strong></a></li>
+  <li>命名规则 - 可以遵循 <a href="http://getbem.com/naming/"><strong>BEM</strong></a>，就是为了解决命名冲突以及更好的语义化而生的</li>
+  <li>依赖管理</li>
+</ul>
+
+<p>CSS 模块化的解决方案有很多，但主要有两类:</p>
+
+<ul>
+  <li><strong>CSS Modules</strong> - 采用 CSS，搭配 webpack 使用</li>
+  <li><strong>CSS in JS</strong> - 抛弃 CSS，通过 JS 来写样式
+    <ul>
+      <li>缺点是不能利用成熟的 CSS 预处理器，复用性差，需要编辑器支持代码补全和高亮</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="css-modules">CSS Modules</h2>
+
+<h3 id="命名规则">命名规则</h3>
+
+<p><a href="https://github.com/css-modules/css-modules"><strong>CSS Modules</strong></a> 与 webpack 可以很好地搭配使用，我们可以自定义生成样式的命名规则:</p>
+
+<pre><code class="language-JS">// webpack.config.js
+// modules 即为启用，localIdentName 是设置生成样式的命名规则
+// [name]表示标签名，[local]表示类名，[hash:base64:5] 是按照给定算法生成的序列码
+css?modules&amp;localIdentName=[name]__[local]-[hash:base64:5]
+</code></pre>
+
+<p>然后我们看以下这个栗子:</p>
+
+<pre><code class="language-CSS">/* test.css */
+.active {...}
+.disabled {...}
+</code></pre>
+
+<pre><code class="language-JS">import styles from './test.css';
+
+console.log(styles);
+/*
+ * Object {
+ *  active: 'h1--active-abc53',
+ *  disabled: 'h1--disabled-def84',
+ * }
+*/
+
+elem.outerHTML = `&lt;h1 class=${styles.active}&gt;CSS Modules&lt;/h1&gt;`
+</code></pre>
+
+<p>可以最终看到生成的 HTML 是:</p>
+
+<pre><code class="language-HTML">&lt;h1 class="h1--active-abc53"&gt; Processing... &lt;/h1&gt;
+</code></pre>
+
+<h3 id="局部和全局变量">局部和全局变量</h3>
+
+<p>CSS Modules 中可以定义局部和全局变量:</p>
+
+<ul>
+  <li><strong>:local</strong> - 做 localIdentName 规则处理</li>
+  <li><strong>:global</strong> - 样式编译后不变</li>
+</ul>
+
+<pre><code class="language-CSS">/* 下面两个等价，默认给每个 class 名外加加了一个 `:local` */
+.normal {
+  color: green;
+}
+
+:local(.normal) {
+  color: green;
+}
+
+
+
+/* 全局样式 */
+:global {
+  .link {
+    color: green;
+  }
+  .box {
+    color: yellow;
+  }
+}
+</code></pre>
+
+<h3 id="组合-compose">组合 Compose</h3>
+
+<p>对于样式复用，CSS Modules 只提供了唯一的方式来处理，即 <strong>composes</strong> 组合:</p>
+
+<pre><code class="language-CSS">.className {
+  color: green;
+  background: red;
+}
+
+/* 编译时会编译成两个 class */
+.otherClassName {
+  composes: className;
+  color: yellow;
+}
+</code></pre>
+
+<p>当然 composes 还可以组合外部样式文件:</p>
+
+<pre><code class="language-CSS">/* settings.css */
+.primary-color {
+  color: #f40;
+}
+</code></pre>
+
+<pre><code class="language-CSS">/* components/Button.css */
+.base { /* 所有通用的样式 */ }
+
+.primary {
+  composes: base;
+  composes: primary-color from './settings.css';
+  /* primary 其它样式 */
+}
+</code></pre>
+
+<h3 id="export">:export</h3>
+
+<p><strong>:export</strong> 关键字可以把 CSS 中的变量输出到 JS 中:</p>
+
+<pre><code class="language-CSS">$primary-color: #f40;
+
+:export {
+  primaryColor: $primary-color;
+}
+</code></pre>
+
+<pre><code class="language-JS">import style from 'index.scss';
+
+console.log(style.primaryColor); // #f40
+</code></pre>
+
+<blockquote>
+  <p>与 React 搭配使用的话推荐 <a href="https://github.com/gajus/react-css-modules">react-css-modules</a> 👈</p>
+</blockquote>
+
+<h2 id="web-components-规范">Web Components 规范</h2>
+
+<p>谈到组件化的话必须说到 <a href="https://developer.mozilla.org/zh-CN/docs/Web/Web_Components"><strong>Web Components</strong></a>，它通过一种标准化的非侵入的方式封装一个组件，每个组件能组织好它自身的 HTML 结构、CSS 样式、JavaScript 代码，并且不会干扰页面上的其他元素。这意味着你无需 React 或 Angular 等框架也能创建组件。不仅如此，这些组件还都可以无缝集成到这些框架中，并支持跨平台。Web Components 主要由以下四种技术组成:</p>
+
+<ul>
+  <li><strong>Custom elements(自定义元素)</strong> - 一组 JavaScript API，允许您定义 custom elements 及其行为，然后可以在您的用户界面中按照需要使用它们
+    <ul>
+      <li>Custom Elements 可以继承原生 HTMLElement 类和其子类。</li>
+      <li>通过 <code class="highlighter-rouge">customElements.define()</code> 维护自定义标签注册表。</li>
+      <li>特定生命周期函数在标签创建、添加到 DOM、属性被修改等时刻调用</li>
+    </ul>
+  </li>
+  <li><strong>Shadow DOM(影子 DOM)</strong> - 一组 JavaScript API，用于将封装的“影子” DOM 树附加到元素(与主文档 DOM 分开呈现)并控制其关联的功能。通过这种方式，您可以保持元素的功能私有，这样它们就可以被脚本化和样式化，而不用担心与文档的其他部分发生冲突</li>
+  <li><strong>HTML templates(HTML 模板)</strong> - <code class="highlighter-rouge">&lt;template&gt;</code> 和 <code class="highlighter-rouge">&lt;slot&gt;</code> 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用</li>
+  <li><strong>HTML Imports(HTML 导入)</strong> - 一旦定义了自定义组件，最简单的重用它的方法就是使其定义细节保存在一个单独的文件中，然后使用导入机制将其导入到想要实际使用它的页面中</li>
+</ul>
+
+<h3 id="custom-elements">Custom elements</h3>
+
+<p>要注册一个新元素时，需要通过 <code class="highlighter-rouge">window.customElements</code> 获取注册表实例并调用其 <code class="highlighter-rouge">define</code> 方法:</p>
+
+<pre><code class="language-JS">// &lt;my-element&gt;&lt;/my-element&gt;
+
+window.customElements.define('my-element', MyElement);
+</code></pre>
+
+<blockquote>
+  <p>为了避免未来的冲突，所有自定义标签必须加连词符 -，同时原生 HTML 标签保证绝不包含此类连词符</p>
+</blockquote>
+
+<p>现在页面上的每个 <code class="highlighter-rouge">&lt;my-element&gt;</code> 标签都与一个 MyElement 元素对应。 页面每解析一个该标签就调用一次 MyElement 的构造函数。除了标签创建时会调用构造函数，还有一系列生命周期函数会在特定时刻被调用:</p>
+
+<ul>
+  <li><strong>connectedCallback</strong> - 当元素被添加到文档中时调用。这个函数可能多次调用，比如标签移动、移除或重新添加时</li>
+  <li><strong>disconnectedCallback</strong> - 与 connectedCallback 相对应</li>
+  <li><strong>attributeChangeCallback</strong> - 元素属性更改时调用</li>
+</ul>
+
+<pre><code class="language-JS">class GreetingElement extends HTMLElement {
+  constructor() {
+    super();
+    this._name = 'Stranger';
+  }
+  connectedCallback() {
+    this.addEventListener('click', e =&gt; alert(`Hello, ${this._name}!`));
+  }
+  attributeChangedCallback(attrName, oldValue, newValue) {
+    if (attrName === 'name') {
+      if (newValue) {
+        this._name = newValue;
+      } else {
+        this._name = 'Stranger';
+      }
+    }
+  }
+  doSomething() { // 创建公共 API
+    // do something in this method
+  }
+}
+// 一旦属性的值发生变动，就将使用属性的名称、其当前值及其新值调用 attributeChangedCallback
+GreetingElement.observedAttributes = ['name'];
+customElements.define('hey-there', GreetingElement);
+</code></pre>
+
+<pre><code class="language-JS">// 从外部组件调用定义的 API
+const element = document.querySelector('my-element');
+element.doSomething();
+</code></pre>
+
+<p>如果要继承一个 HTML 原生标签，你可能会想定义一个看起来完全不同新标签。比如让 <code class="highlighter-rouge">&lt;hey-there&gt;</code> 去继承 <code class="highlighter-rouge">&lt;button&gt;</code>:</p>
+
+<pre><code class="language-JS">class GreetingElement extends HTMLButtonElement {...}
+
+// 同时要在自定义标签注册表中体现出继承一个已有标签
+customElements.define('hey-there', GreetingElement, { extends: 'button' });
+</code></pre>
+
+<p>我们应该用被继承的标签加 <strong>is</strong> 属性来表示这种继承关系，而不是直接用自定义标签:</p>
+
+<pre><code class="language-HTML">&lt;button is="hey-there" name="World"&gt;Howdy&lt;/button&gt;
+</code></pre>
+
+<h3 id="shadow-dom">Shadow DOM</h3>
+
+<p>我们写出了友好的 custom element，也为其添加了漂亮的样式。现在我们想把它用在我们的站点上，也想把代码分享出去，让更多的人用在他们的网站上。但是我们怎么避免自定义 <code class="highlighter-rouge">&lt;button&gt;</code> 标签和其他网站的 css 冲突？答案是使用<strong>Shadow DOM</strong>。</p>
+
+<p>Shadow DOM 标准提出了 <strong>shadow root(影子根)</strong> 的概念。使用 Shadow DOM 时，自定义元素的 HTML 和 CSS 会完全封装在组件内部。这意味着该元素将在文档的 DOM 树中显示为单个 HTML 标签，其内部 HTML 结构则放在一个 <strong>#shadow-root</strong> 中:</p>
+
+<pre><code class="language-JS">// attachShadow creates a shadow root.
+let shadow = div.attachShadow({ mode: 'open' });
+let inner = document.createElement('b');
+inner.appendChild(document.createTextNode('Hiding in the shadows'));
+// shadow root supports the normal appendChild method.
+shadow.appendChild(inner);
+div.querySelector('b'); // empty
+</code></pre>
+
+<blockquote>
+  <p><code class="highlighter-rouge">mode: open</code> 可以在开发工具中检查，并通过查询、配置任何公开的 CSS 属性或监听它抛出的事件来交互</p>
+</blockquote>
+
+<p>我们可以看到 <code class="highlighter-rouge">&lt;div&gt;</code> 包含 <code class="highlighter-rouge">&lt;b&gt;</code> 并且 <code class="highlighter-rouge">&lt;b&gt;</code> 标签也渲染在了页面上，但是常规的 DOM 方法却找不到它，只能内部通过 <code class="highlighter-rouge">this.shadowRoot.querySelector</code> 访问:</p>
+
+<pre><code class="language-JS">class MyElement extends HTMLElement {
+  ...
+
+  constructor() {
+    const shadowRoot = this.attachShadow({mode: 'open'});
+    // 一开始两个 template 模板都会被隐藏，只渲染容器
+    this.shadowRoot.innerHTML = `
+      &lt;template id="view1"&gt;
+        &lt;p&gt;This is view 1&lt;/p&gt;
+      &lt;/template&gt;
+
+      &lt;template id="view1"&gt;
+        &lt;p&gt;This is view 1&lt;/p&gt;
+      &lt;/template&gt;
+
+      &lt;div id="container"&gt;
+        &lt;p&gt;This is the container&lt;/p&gt;
+      &lt;/div&gt;
+    `;
+  }
+
+  connectedCallback() {
+    const content = this.shadowRoot.querySelector('#view1').content.clondeNode(true);
+    this.container = this.shadowRoot.querySelector('#container');
+    this.container.appendChild(content);
+  }
+}
+</code></pre>
+
+<p>要将 HTML 添加到影子根，你可以为其 innerHTML 属性分配 HTML 字符串或使用 <code class="highlighter-rouge">&lt;template&gt;</code> 元素:</p>
+
+<pre><code class="language-JS">const shadowRoot = this.attachShadow({mode: 'open'});
+shadowRoot.innerHTML = `&lt;p&gt;Hello world&lt;/p&gt;`;
+</code></pre>
+
+<p><strong>组合(Composition)</strong> 是将 Shadow DOM 树与用户提供的标记组合在一起的过程。这是通过插槽 <code class="highlighter-rouge">&lt;slot&gt;</code> 元素完成的，该元素本质上是 Shadow DOM 中的占位符，其中呈现用户提供的标记:</p>
+
+<pre><code class="language-HTML">&lt;!-- 带有名字的 slot --&gt;
+&lt;image-gallery&gt;
+  &lt;img src="foo.jpg" slot="image"&gt;
+  &lt;img src="b.arjpg" slot="image"&gt;
+&lt;/image-gallery&gt;
+</code></pre>
+
+<p>带有名称的 slot 告诉组件应该在其 Shadow DOM 中的什么位置呈现它们:</p>
+
+<pre><code class="language-HTML">&lt;div id="container"&gt;
+  &lt;div class="images"&gt;
+    &lt;slot name="image"&gt;&lt;/slot&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 生成 --&gt;
+&lt;div id="container"&gt;
+  &lt;div class="images"&gt;
+    &lt;slot name="image"&gt;
+      &lt;img src="foo.jpg" slot="image"&gt;
+      &lt;img src="bar.jpg" slot="image"&gt;
+    &lt;/slot&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+
+<h2 id="vue-scoped--module">Vue scoped &amp; module</h2>
+
+<p>Vue 主张为组件样式<a href="https://vue-loader-v14.vuejs.org/zh-cn/features/scoped-css.html">设置作用域</a>，对于应用来说，顶级 App 组件和布局组件中的样式可以是全局的，但是其它所有组件都应该是有作用域的。我们可以通过 <strong>scoped</strong> 特性来实现隔离作用域:</p>
+
+<pre><code class="language-HTML">&lt;!-- 使用 `scoped` 特性，这类似于 Shadow DOM 中的样式封装 --&gt;
+&lt;template&gt;
+  &lt;div class="example"&gt;hi&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style scoped&gt;
+.example {
+  color: red;
+}
+&lt;/style&gt;
+
+</code></pre>
+
+<p>由于 <strong>vue-loader</strong> 内部通过 <strong>PostCSS</strong> 处理其样式，通过它来实现以下转换:</p>
+
+<pre><code class="language-HTML">&lt;template&gt;
+  &lt;div class="example" data-v-f3f3eg9&gt;hi&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;style&gt;
+.example[data-v-f3f3eg9] {
+  color: red;
+}
+&lt;/style&gt;
+</code></pre>
+
+<p>如果你希望 scoped 样式中的一个选择器能够作用得“更深”，例如影响子组件，你可以使用 <code class="highlighter-rouge">&gt;&gt;&gt;</code> 或 <code class="highlighter-rouge">/deep/</code> 操作符来实现<strong>深度作用选择器</strong>:</p>
+
+<pre><code class="language-HTML">&lt;style scoped&gt;
+  .a &gt;&gt;&gt; .b { /* ... */ }
+&lt;/style&gt;
+</code></pre>
+
+<p>当然官方还是更推荐一些基于 class 的策略，比如上面提到的 <a href="https://vue-loader-v14.vuejs.org/zh-cn/features/css-modules.html"><strong>CSS Modules</strong></a>，它是一个用于模块化和组合 CSS 的流行系统。<strong>vue-loader</strong> 提供了与 CSS 模块的一流集成，可以作为模拟 CSS 作用域的替代方案:</p>
+
+<pre><code class="language-HTML">&lt;template&gt;
+  &lt;button :class="[$style.button, $style.buttonClose]"&gt;X&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;!-- 使用 CSS Modules --&gt;
+&lt;!-- 将为 css-loader 打开 CSS Modules 模式，生成的 CSS 对象将为组件注入一个名叫 $style 的计算属性，你可以在你的模块中使用动态 class 绑定 --&gt;
+&lt;style module&gt;
+.button {
+  border: none;
+  border-radius: 2px;
+}
+
+.buttonClose {
+  background-color: red;
+}
+&lt;/style&gt;
+
+&lt;!-- 也可以在 JS 中访问 $style 属性 --&gt;
+&lt;script&gt;
+export default {
+  created () {
+    console.log(this.$style.button)
+    // -&gt; "_1VyoJ-uZOjlOxP7jWUy19_0"
+    // an identifier generated based on filename and className.
+  }
+}
+&lt;/script&gt;
+</code></pre>
+
+<p>当然你可以定义不止一个 &lt;style&gt;，为了避免被覆盖，你可以通过设置 module 属性来为它们定义注入后计算属性的名称:</p>
+
+<pre><code class="language-HTML">&lt;style module="a"&gt;
+  /* identifiers injected as a */
+&lt;/style&gt;
+
+&lt;style module="b"&gt;
+  /* identifiers injected as b */
+&lt;/style&gt;
+</code></pre>
+
+<h2 id="angular-viewencapsulation">Angular ViewEncapsulation</h2>
+
+<p>Angular 采用了视图封装的类 <strong>ViewEncapsulation</strong>，可以有以下三种值:</p>
+
+<ul>
+  <li><strong>ViewEncapsulation.Emulated</strong> - 默认项，无 Shadow DOM，但是通过 Angular 提供的样式包装机制来封装组件，使得组件的样式不受外部影响</li>
+  <li><strong>ViewEncapsulation.Native</strong> - 使用原生的 Shadow DOM 特性</li>
+  <li><strong>ViewEncapsulation.None</strong> - 无 Shadow DOM，并且也无样式包装</li>
+</ul>
+
+<pre><code class="language-JS">import { Component, ViewEncapsulation } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.less'],
+  encapsulation: ViewEncapsulation.None,
+})
+export class AppComponent {
+  title = 'angular-demo';
+}
+</code></pre>
+
+<p>接下来我们对比下三种设置下的 HTML，首先是设置为 None:</p>
+
+<p><img src="https://i.loli.net/2019/04/13/5cb1c54c0b16a.png" alt="ViewEncapsulation-Native.png" /></p>
+
+<p>设置为 Emulated，注意看样式变成了:</p>
+
+<pre><code class="language-CSS">/* 对应 html 中的 _ngcontent-kty-c0 属性 */
+.test[_ngcontent-kty-c0] {...}
+</code></pre>
+
+<p><img src="https://i.loli.net/2019/04/13/5cb1c54c08ea9.png" alt="ViewEncapsulation-Emulated.png" /></p>
+
+<p>设置为 Native:</p>
+
+<p><img src="https://i.loli.net/2019/04/13/5cb1c54c0d6aa.png" alt="ViewEncapsulation-None.png" /></p>
+
+<h2 id="react-css-in-js">React CSS-in-JS</h2>
+
+<p>React 一直推崇组件化思想，将三种语言融合到一起，从而创建出没有外部依赖的独立可复用的组件。React 不仅仅封装了 HTML，即 <code class="highlighter-rouge">JSX</code>(具体可以<a href="http://localhost:4000/2018/08/06/react-profile.html#jsx">查看这一节</a>)，也封装了 CSS，其实就是简单定义一个样式对象:</p>
+
+<pre><code class="language-JS">const style = {
+  color: 'orange',
+  fontSize: '12px',
+}
+
+function App() {
+  return (
+    &lt;div style={style}&gt;hello&lt;/div&gt;
+  )
+}
+</code></pre>
+
+<blockquote>
+  <p>样式对象里的写法，比如 fontSize，其实就是通过 style 可以访问的<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Properties_Reference">样式属性列表</a> 👈</p>
+</blockquote>
+
+<h3 id="styled-components">styled-components</h3>
+
+<p>这种封装的 CSS 写法似乎又回到了解放前，为了加强 React 的 CSS 操作，一系列第三方库应运而生。github 有个项目也对这些库做了个整理，可以<a href="https://github.com/MicheleBertoli/css-in-js">点击这里查看</a>，其中比较火的有 <a href="https://github.com/styled-components/styled-components"><strong>styled-components</strong></a>:</p>
+
+<pre><code class="language-JSX">import React from 'react';
+import styled from 'styled-components';
+
+// Create a &lt;Title&gt; react component that renders an &lt;h1&gt; which is centered, palevioletred and sized at 1.5em
+// Returns a function that accepts a tagged template literal and turns it into a StyledComponent
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
+
+// Create a &lt;Wrapper&gt; react component that renders a &lt;section&gt; with some padding and a papayawhip background
+const Wrapper = styled.section`
+  padding: 4em;
+  background: papayawhip;
+`;
+
+const OrangeTitle = styled(Title)`
+  color: orange;
+`
+
+// Use them like any other React component – except they're styled!
+&lt;Wrapper&gt;
+  &lt;Title&gt;Hello World, this is my first styled component!&lt;/Title&gt;
+&lt;/Wrapper&gt;
+</code></pre>
+
+<p>当然，它还支持一些更复杂的写法，比如传参:</p>
+
+<pre><code class="language-JSX">const padding = '3em'
+
+const Section = styled.section`
+  color: white;
+
+  /* Pass variables as inputs */
+  padding: ${padding};
+
+  /* Adjust the background from the properties */
+  background: ${props =&gt; props.background};
+`
+
+render(
+  &lt;Section background="cornflowerblue"&gt;
+    ✨ Magic
+  &lt;/Section&gt;
+)
+</code></pre>
+
+<blockquote>
+  <p>styled-components 这种样式写法其实就是 ES6 里的<a href="http://localhost:4000/2018/03/15/es6-extension-previous.html#标签模板">标签模板(tagged template)</a>，更多的 API 也<a href="https://www.styled-components.com/docs/api">可以参考这里</a> 👈</p>
+</blockquote>
+
+<h3 id="jss">JSS</h3>
+
+<p><strong>material-ui</strong> UI 框架通过 <strong>JSS</strong> 也实现了 CSS in JS 的写法，具体<a href="http://localhost:4000/2018/08/13/react-material-ui.html#jss">可以查看这一篇</a></p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://www.infoq.cn/article/LlxdiogqZvvci57_ZgJm">你的前端框架要被 Web 组件取代了</a> By Danny Moerkerke</li>
+  <li><a href="https://juejin.im/post/5c4a972b6fb9a049a7122eb7">[译]组件化开发利器：Web Components 标准</a> By 老沙322</li>
+  <li><a href="https://segmentfault.com/a/1190000008677532">Angular 2 ViewEncapsulation</a> By Semlinker</li>
+  <li><a href="https://aotu.io/notes/2016/06/24/Shadow-DOM/">神奇的 Shadow DOM</a> By 暖暖</li>
+  <li><a href="https://imweb.io/topic/586519b1b3ce6d8e3f9f99aa">CSS Modules 使用详解</a> By 张颖</li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2019/04/13/css-in-js.html';
+        this.page.identifier = '/2019/04/13/css-in-js';
+        this.page.title = 'CSS in JS';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-04-13 19:46:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
