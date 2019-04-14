@@ -7,6 +7,7 @@ background: green
 category: 前端
 title:  Material-UI
 date:   2018-08-13 22:16:00 GMT+0800 (CST)
+update: 2019-04-14 23:31:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/13/5b7147a3e4935.png
 tags:
 - react
@@ -63,6 +64,7 @@ const styles = {
 
 ```JSX
 // 样式通过对象的形式访问
+// 2. 通过修饰器注入样式 @withStyles(styles)
 function ButtonAppBar(props) {
   const { classes } = props; // 获取 props 里的 classes 属性
   return (
@@ -84,6 +86,12 @@ function ButtonAppBar(props) {
 
 // 2. We inject the styles.
 export default withStyles(styles)(ButtonAppBar);
+```
+
+[**高阶组件(HOC)**](https://react.docschina.org/docs/higher-order-components.html)就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件:
+
+```JS
+const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
 ### jss-nested

@@ -143,6 +143,8 @@
                       发布时间：2019-04-13 19:46:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-04-14 23:14:00
+                      
                     </time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -216,7 +218,6 @@
   <li>全局作用域 - 可以遵循 CSS 优先级</li>
   <li>书写 - 可以采用预编译 <code class="highlighter-rouge">less</code>、<code class="highlighter-rouge">sass</code> 或者 <a href="https://postcss.org"><strong>PostCss</strong></a></li>
   <li>命名规则 - 可以遵循 <a href="http://getbem.com/naming/"><strong>BEM</strong></a>，就是为了解决命名冲突以及更好的语义化而生的</li>
-  <li>依赖管理</li>
 </ul>
 
 <p>CSS 模块化的解决方案有很多，但主要有两类:</p>
@@ -232,14 +233,61 @@
 
 <h2 id="css-modules">CSS Modules</h2>
 
-<h3 id="命名规则">命名规则</h3>
+<h3 id="localidentname">localIdentName</h3>
 
-<p><a href="https://github.com/css-modules/css-modules"><strong>CSS Modules</strong></a> 与 webpack 可以很好地搭配使用，我们可以自定义生成样式的命名规则:</p>
+<p><a href="https://github.com/css-modules/css-modules"><strong>CSS Modules</strong></a> 中可以定义局部和全局变量:</p>
 
-<pre><code class="language-JS">// webpack.config.js
-// modules 即为启用，localIdentName 是设置生成样式的命名规则
-// [name]表示标签名，[local]表示类名，[hash:base64:5] 是按照给定算法生成的序列码
-css?modules&amp;localIdentName=[name]__[local]-[hash:base64:5]
+<ul>
+  <li><strong>:local</strong> - 通过 localIdentName 规则处理</li>
+  <li><strong>:global</strong> - 样式编译后不变</li>
+</ul>
+
+<pre><code class="language-CSS">/* 下面两个等价，默认给每个 class 名外加加了一个 `:local` */
+.normal {
+  color: green;
+}
+
+:local(.normal) {
+  color: green;
+}
+
+/* 全局样式 */
+:global {
+  .link {
+    color: green;
+  }
+  .box {
+    color: yellow;
+  }
+}
+</code></pre>
+
+<p>CSS Modules 与 webpack 的 <code class="highlighter-rouge">css-loader</code> 可以很好地<a href="https://webpack.js.org/loaders/css-loader/#modules">搭配使用</a>:</p>
+
+<pre><code class="language-JS">// modules 设置为 true，则启用 CSS Modules
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+        options: {
+          modules: true,
+        },
+      },
+    ],
+  },
+};
+</code></pre>
+
+<p>这样的话，样式会被转换成一串哈希值，不便于我们去定位，我们可以自定义生成样式的<a href="https://github.com/webpack/loader-utils#interpolatename">命名规则</a>:</p>
+
+<pre><code class="language-JS">// modules 即为启用，localIdentName 是设置生成样式的命名规则
+// [name]表示文件名，[local]表示类名，[hash:base64:5] 是按照给定算法生成的序列码
+options: {
+  modules: true,
+  localIdentName: '[path][name]__[local]-[hash:base64:5]',
+},
 </code></pre>
 
 <p>然后我们看以下这个栗子:</p>
@@ -254,8 +302,8 @@ css?modules&amp;localIdentName=[name]__[local]-[hash:base64:5]
 console.log(styles);
 /*
  * Object {
- *  active: 'h1--active-abc53',
- *  disabled: 'h1--disabled-def84',
+ *  active: 'h1__active-abc53',
+ *  disabled: 'h1__disabled-def84',
  * }
 */
 
@@ -264,41 +312,10 @@ elem.outerHTML = `&lt;h1 class=${styles.active}&gt;CSS Modules&lt;/h1&gt;`
 
 <p>可以最终看到生成的 HTML 是:</p>
 
-<pre><code class="language-HTML">&lt;h1 class="h1--active-abc53"&gt; Processing... &lt;/h1&gt;
+<pre><code class="language-HTML">&lt;h1 class="h1__active-abc53"&gt; Processing... &lt;/h1&gt;
 </code></pre>
 
-<h3 id="局部和全局变量">局部和全局变量</h3>
-
-<p>CSS Modules 中可以定义局部和全局变量:</p>
-
-<ul>
-  <li><strong>:local</strong> - 做 localIdentName 规则处理</li>
-  <li><strong>:global</strong> - 样式编译后不变</li>
-</ul>
-
-<pre><code class="language-CSS">/* 下面两个等价，默认给每个 class 名外加加了一个 `:local` */
-.normal {
-  color: green;
-}
-
-:local(.normal) {
-  color: green;
-}
-
-
-
-/* 全局样式 */
-:global {
-  .link {
-    color: green;
-  }
-  .box {
-    color: yellow;
-  }
-}
-</code></pre>
-
-<h3 id="组合-compose">组合 Compose</h3>
+<h3 id="组合-composes">组合 Composes</h3>
 
 <p>对于样式复用，CSS Modules 只提供了唯一的方式来处理，即 <strong>composes</strong> 组合:</p>
 
@@ -379,7 +396,7 @@ window.customElements.define('my-element', MyElement);
 </code></pre>
 
 <blockquote>
-  <p>为了避免未来的冲突，所有自定义标签必须加连词符 -，同时原生 HTML 标签保证绝不包含此类连词符</p>
+  <p>为了避免未来的冲突，所有自定义标签必须加连词符 <strong>-</strong>，同时原生 HTML 标签保证绝不包含此类连词符</p>
 </blockquote>
 
 <p>现在页面上的每个 <code class="highlighter-rouge">&lt;my-element&gt;</code> 标签都与一个 MyElement 元素对应。 页面每解析一个该标签就调用一次 MyElement 的构造函数。除了标签创建时会调用构造函数，还有一系列生命周期函数会在特定时刻被调用:</p>
@@ -436,59 +453,41 @@ customElements.define('hey-there', GreetingElement, { extends: 'button' });
 
 <h3 id="shadow-dom">Shadow DOM</h3>
 
-<p>我们写出了友好的 custom element，也为其添加了漂亮的样式。现在我们想把它用在我们的站点上，也想把代码分享出去，让更多的人用在他们的网站上。但是我们怎么避免自定义 <code class="highlighter-rouge">&lt;button&gt;</code> 标签和其他网站的 css 冲突？答案是使用<strong>Shadow DOM</strong>。</p>
+<p>我们写出了友好的 custom element，也为其添加了漂亮的样式。现在我们想把它用在我们的站点上，也想把代码分享出去，让更多的人用在他们的网站上。但是我们怎么避免自定义 <code class="highlighter-rouge">&lt;button&gt;</code> 标签和其他网站的 css 冲突？答案是使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/%E5%BD%B1%E5%AD%90_DOM"><strong>Shadow DOM</strong></a>。</p>
 
 <p>Shadow DOM 标准提出了 <strong>shadow root(影子根)</strong> 的概念。使用 Shadow DOM 时，自定义元素的 HTML 和 CSS 会完全封装在组件内部。这意味着该元素将在文档的 DOM 树中显示为单个 HTML 标签，其内部 HTML 结构则放在一个 <strong>#shadow-root</strong> 中:</p>
 
-<pre><code class="language-JS">// attachShadow creates a shadow root.
-let shadow = div.attachShadow({ mode: 'open' });
-let inner = document.createElement('b');
-inner.appendChild(document.createTextNode('Hiding in the shadows'));
-// shadow root supports the normal appendChild method.
-shadow.appendChild(inner);
-div.querySelector('b'); // empty
+<pre><code class="language-HTML">&lt;div class="shadow-host"&gt;Hello, world!&lt;/div&gt;
+&lt;script&gt;
+  // 影子宿主（shadow host）
+  var shadowHost = document.querySelector('.shadow-host');
+  // 创建影子根（shadow root）
+  // createShadowRoot 方法已弃用
+  // var shadowRoot = shadowHost.createShadowRoot();
+  var shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+  // shadowHost.shadowRoot // the shadow root. 若选择 closed，则为 null
+  // shadowHost.shadowRoot.host // the el itself.
+  // 影子根作为影子树的第一个节点，其他的节点比如p节点都是它的子节点。
+  shadowRoot.innerHTML = '&lt;p class="shadow-root"&gt;Shadow DOM&lt;/p&gt;';
+&lt;/script&gt;
+</code></pre>
+
+<p>当我们通过常规选择器选择 shadow DOM 里的元素时，会发现无法获取:</p>
+
+<pre><code class="language-JS">document.querySelector('.shadow-root') // null
+
+// 若要获取的话，需要通过 shadowRoot
+var container = document.querySelector('.shadow-host')
+container.shadowRoot.querySelector('shadow-root')
 </code></pre>
 
 <blockquote>
-  <p><code class="highlighter-rouge">mode: open</code> 可以在开发工具中检查，并通过查询、配置任何公开的 CSS 属性或监听它抛出的事件来交互</p>
+  <p><code class="highlighter-rouge">mode: open</code> 可以在开发工具中检查，并通过查询、配置任何公开的 CSS 属性或监听它抛出的事件来交互，反之则是 ‘closed’</p>
 </blockquote>
 
-<p>我们可以看到 <code class="highlighter-rouge">&lt;div&gt;</code> 包含 <code class="highlighter-rouge">&lt;b&gt;</code> 并且 <code class="highlighter-rouge">&lt;b&gt;</code> 标签也渲染在了页面上，但是常规的 DOM 方法却找不到它，只能内部通过 <code class="highlighter-rouge">this.shadowRoot.querySelector</code> 访问:</p>
+<p>我们可以随便找一个视频，找到 <code class="highlighter-rouge">video</code> 标签，然后在浏览器设置里开启 <code class="highlighter-rouge">Show user agent shadow DOM</code>，我们会发现视频标签下也藏了嵌套的 shadow DOM:</p>
 
-<pre><code class="language-JS">class MyElement extends HTMLElement {
-  ...
-
-  constructor() {
-    const shadowRoot = this.attachShadow({mode: 'open'});
-    // 一开始两个 template 模板都会被隐藏，只渲染容器
-    this.shadowRoot.innerHTML = `
-      &lt;template id="view1"&gt;
-        &lt;p&gt;This is view 1&lt;/p&gt;
-      &lt;/template&gt;
-
-      &lt;template id="view1"&gt;
-        &lt;p&gt;This is view 1&lt;/p&gt;
-      &lt;/template&gt;
-
-      &lt;div id="container"&gt;
-        &lt;p&gt;This is the container&lt;/p&gt;
-      &lt;/div&gt;
-    `;
-  }
-
-  connectedCallback() {
-    const content = this.shadowRoot.querySelector('#view1').content.clondeNode(true);
-    this.container = this.shadowRoot.querySelector('#container');
-    this.container.appendChild(content);
-  }
-}
-</code></pre>
-
-<p>要将 HTML 添加到影子根，你可以为其 innerHTML 属性分配 HTML 字符串或使用 <code class="highlighter-rouge">&lt;template&gt;</code> 元素:</p>
-
-<pre><code class="language-JS">const shadowRoot = this.attachShadow({mode: 'open'});
-shadowRoot.innerHTML = `&lt;p&gt;Hello world&lt;/p&gt;`;
-</code></pre>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*h6j3PjczSAfh8jkPYRWMVQ.jpeg" alt="video" /></p>
 
 <p><strong>组合(Composition)</strong> 是将 Shadow DOM 树与用户提供的标记组合在一起的过程。这是通过插槽 <code class="highlighter-rouge">&lt;slot&gt;</code> 元素完成的，该元素本质上是 Shadow DOM 中的占位符，其中呈现用户提供的标记:</p>
 
@@ -556,7 +555,9 @@ shadowRoot.innerHTML = `&lt;p&gt;Hello world&lt;/p&gt;`;
 &lt;/style&gt;
 </code></pre>
 
-<p>当然官方还是更推荐一些基于 class 的策略，比如上面提到的 <a href="https://vue-loader-v14.vuejs.org/zh-cn/features/css-modules.html"><strong>CSS Modules</strong></a>，它是一个用于模块化和组合 CSS 的流行系统。<strong>vue-loader</strong> 提供了与 CSS 模块的一流集成，可以作为模拟 CSS 作用域的替代方案:</p>
+<p><img src="https://i.loli.net/2019/04/14/5cb20b40b206e.png" alt="vue-scoped.png" /></p>
+
+<p>当然官方还是更<a href="https://cn.vuejs.org/v2/style-guide/#为组件样式设置作用域-必要">推荐一些基于 class 的策略</a>，比如上面提到的 <a href="https://vue-loader-v14.vuejs.org/zh-cn/features/css-modules.html"><strong>CSS Modules</strong></a>，它是一个用于模块化和组合 CSS 的流行系统。<strong>vue-loader</strong> 提供了与 CSS 模块的一流集成，可以作为模拟 CSS 作用域的替代方案:</p>
 
 <pre><code class="language-HTML">&lt;template&gt;
   &lt;button :class="[$style.button, $style.buttonClose]"&gt;X&lt;/button&gt;
@@ -580,16 +581,23 @@ shadowRoot.innerHTML = `&lt;p&gt;Hello world&lt;/p&gt;`;
 export default {
   created () {
     console.log(this.$style.button)
-    // -&gt; "_1VyoJ-uZOjlOxP7jWUy19_0"
+    // -&gt; "HelloWorld_color_1DT2e"
     // an identifier generated based on filename and className.
   }
 }
 &lt;/script&gt;
 </code></pre>
 
+<p><img src="https://i.loli.net/2019/04/13/5cb1ff30c1374.png" alt="vue-css-module.png" /></p>
+
 <p>当然你可以定义不止一个 &lt;style&gt;，为了避免被覆盖，你可以通过设置 module 属性来为它们定义注入后计算属性的名称:</p>
 
-<pre><code class="language-HTML">&lt;style module="a"&gt;
+<pre><code class="language-HTML">&lt;template&gt;
+  &lt;button :class="a.button"&gt;X&lt;/button&gt;
+  &lt;button :class="b.button"&gt;X&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;style module="a"&gt;
   /* identifiers injected as a */
 &lt;/style&gt;
 
@@ -600,11 +608,11 @@ export default {
 
 <h2 id="angular-viewencapsulation">Angular ViewEncapsulation</h2>
 
-<p>Angular 采用了视图封装的类 <strong>ViewEncapsulation</strong>，可以有以下三种值:</p>
+<p>Angular 采用了视图封装的枚举类型 <strong>ViewEncapsulation</strong>，可以有以下三种值:</p>
 
 <ul>
   <li><strong>ViewEncapsulation.Emulated</strong> - 默认项，无 Shadow DOM，但是通过 Angular 提供的样式包装机制来封装组件，使得组件的样式不受外部影响</li>
-  <li><strong>ViewEncapsulation.Native</strong> - 使用原生的 Shadow DOM 特性</li>
+  <li><strong>ViewEncapsulation.Native</strong> - 使用原生的 Shadow DOM 特性。已弃用，改为 <strong>ShadowDom</strong></li>
   <li><strong>ViewEncapsulation.None</strong> - 无 Shadow DOM，并且也无样式包装</li>
 </ul>
 
@@ -715,7 +723,9 @@ render(
 
 <h3 id="jss">JSS</h3>
 
-<p><strong>material-ui</strong> UI 框架通过 <strong>JSS</strong> 也实现了 CSS in JS 的写法，具体<a href="http://localhost:4000/2018/08/13/react-material-ui.html#jss">可以查看这一篇</a></p>
+<p><strong>material-ui</strong> UI 框架通过 <strong>JSS</strong> 也实现了 CSS in JS 的写法，具体<a href="http://localhost:4000/2018/08/13/react-material-ui.html#jss">可以查看这一篇</a> 👈</p>
+
+<p>但是 Material-UI 的样式解决方案受到许多其他 CSS-in-JS 库的启发，例如上面提到的 styled-components，这些仍在<a href="https://material-ui.com/css-in-js/basics/">实验版本中</a> 👈</p>
 
 <h2 id="参考链接">参考链接</h2>
 
@@ -725,6 +735,7 @@ render(
   <li><a href="https://segmentfault.com/a/1190000008677532">Angular 2 ViewEncapsulation</a> By Semlinker</li>
   <li><a href="https://aotu.io/notes/2016/06/24/Shadow-DOM/">神奇的 Shadow DOM</a> By 暖暖</li>
   <li><a href="https://imweb.io/topic/586519b1b3ce6d8e3f9f99aa">CSS Modules 使用详解</a> By 张颖</li>
+  <li><a href="https://gist.github.com/praveenpuglia/0832da687ed5a5d7a0907046c9ef1813">praveenpuglia/shadow-dom.md - github</a></li>
 </ol>
  
 <div id="gitalk-container"></div>

@@ -143,6 +143,8 @@
                       发布时间：2018-08-13 22:16:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-04-14 23:31:00
+                      
                     </time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -229,6 +231,7 @@ const styles = {
 </code></pre>
 
 <pre><code class="language-JSX">// 样式通过对象的形式访问
+// 2. 通过修饰器注入样式 @withStyles(styles)
 function ButtonAppBar(props) {
   const { classes } = props; // 获取 props 里的 classes 属性
   return (
@@ -250,6 +253,11 @@ function ButtonAppBar(props) {
 
 // 2. We inject the styles.
 export default withStyles(styles)(ButtonAppBar);
+</code></pre>
+
+<p><a href="https://react.docschina.org/docs/higher-order-components.html"><strong>高阶组件(HOC)</strong></a>就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件:</p>
+
+<pre><code class="language-JS">const EnhancedComponent = higherOrderComponent(WrappedComponent);
 </code></pre>
 
 <h3 id="jss-nested">jss-nested</h3>
