@@ -3,20 +3,20 @@
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 
 <head>
-    <meta content='MobX 简介 - Tate & Snow' name='title' />
-    <meta content='MobX 简介 - Tate & Snow' name='og:title' />
+    <meta content='React Hooks - Tate & Snow' name='title' />
+    <meta content='React Hooks - Tate & Snow' name='og:title' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-    <title>MobX 简介 - Tate & Snow</title>
+    <title>React Hooks - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>MobX 简介 - Tate & Snow</title>
+<title>React Hooks - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MobX 简介 - Tate & Snow">
-<meta name="twitter:keywords" content="MobX 简介 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="React Hooks - Tate & Snow">
+<meta name="twitter:keywords" content="React Hooks - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="MobX 简介 - Tate & Snow">
-<meta name="og:keywords" content="MobX 简介 - Tate & Snow|MobX 简介什么是 MobXMobX(|‘mɔbæks|) 可提供简单、可扩展的状态管理。React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而 MobX 提供机制来存储和更..."
+<meta property="og:title" content="React Hooks - Tate & Snow">
+<meta name="og:keywords" content="React Hooks - Tate & Snow|React Hooks什么是 HooksHooks 是 React v16.7.0-alpha 中加入的新特性。它可以让你在 class 以外使用 state 和其他 React 特性。需要注意的是 Hooks 在 classes 中..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
 <link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -25,13 +25,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="MobX 简介什么是 MobXMobX(|‘mɔbæks|) 可提供简单、可扩展的状态管理。React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而 MobX 提供机制来存储和更..." property='og:description'
+<meta name="keywords" content="React Hooks什么是 HooksHooks 是 React v16.7.0-alpha 中加入的新特性。它可以让你在 class 以外使用 state 和其他 React 特性。需要注意的是 Hooks 在 classes 中..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2019/03/20/react-mobx.html' property='og:url' />
-<meta content="http://localhost:4000/2019/03/20/react-mobx.html|MobX 简介什么是 MobXMobX(|‘mɔbæks|) 可提供简单、可扩展的状态管理。React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而 MobX 提供机制来存储和更..." property='og:description'
+<meta content='http://localhost:4000/2019/04/16/react-hooks.html' property='og:url' />
+<meta content="http://localhost:4000/2019/04/16/react-hooks.html|React Hooks什么是 HooksHooks 是 React v16.7.0-alpha 中加入的新特性。它可以让你在 class 以外使用 state 和其他 React 特性。需要注意的是 Hooks 在 classes 中..." property='og:description'
 />
 <meta content="article" property="og:type" />  
 <!-- <script>
@@ -137,13 +137,11 @@
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    MobX 简介</h1>
+                    React Hooks</h1>
                 <div class="post-data">
-                    <time datetime="2019-03-20 18:54:00" itemprop="datePublished">
-                      发布时间：2019-03-20 18:54:00
+                    <time datetime="2019-04-16 20:33:00" itemprop="datePublished">
+                      发布时间：2019-04-16 20:33:00
                       &nbsp;&nbsp;&nbsp;
-                      
-                        修改时间：2019-03-21 17:25:00
                       
                     </time>
                     <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -170,9 +168,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                MobX 简介</h1>
+                React Hooks</h1>
             <div class="post-data">
-                <time datetime="2019-03-20 18:54:00" itemprop="datePublished">2019-03-20 18:54:00</time>
+                <time datetime="2019-04-16 20:33:00" itemprop="datePublished">2019-04-16 20:33:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -189,457 +187,378 @@
                     </a>
                    
             </p>
-            <h1 id="mobx-简介">MobX 简介</h1>
+            <h1 id="react-hooks">React Hooks</h1>
 
-<h2 id="什么是-mobx">什么是 MobX</h2>
+<h2 id="什么是-hooks">什么是 Hooks</h2>
 
-<p><a href="https://cn.mobx.js.org"><strong>MobX</strong></a>(|‘mɔbæks|) 可提供简单、可扩展的状态管理。React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而 MobX 提供机制来存储和更新应用状态供 React 使用。</p>
+<p><a href="https://react.docschina.org/docs/hooks-intro.html"><strong>Hooks</strong></a> 是 <code class="highlighter-rouge">React v16.7.0-alpha</code> 中加入的新特性。它可以让你在 class 以外使用 state 和其他 React 特性。需要注意的是 Hooks 在 classes 中是不生效的，除非你使用下面要介绍的 <strong>function components(函数组件)</strong>。那么 Hooks 解决了什么问题呢？</p>
 
-<h2 id="响应式">响应式</h2>
+<h3 id="stateful-logic">stateful logic</h3>
 
-<p><img src="https://cn.mobx.js.org/flow.png" alt="MobX" /></p>
+<p>针对这个问题，之前的方案有两种，即使用<a href="https://react.docschina.org/docs/higher-order-components.html"><strong>高阶函数(HOC)</strong></a>或<a href="https://react.docschina.org/docs/render-props.html"><strong>渲染属性(Render props)</strong></a>。</p>
 
-<blockquote>
-  <p>核心: 通过 action 触发 state 的变化，进而触发 state 的<strong>衍生(Derivations)对象</strong>(computed value &amp; Reactions)。</p>
-</blockquote>
+<h4 id="高阶函数-hoc">高阶函数 HOC</h4>
 
-<p>使用 MobX 和 <a href="https://github.com/mobxjs/mobx-react"><strong>MobX-React</strong></a> 将一个应用变成响应式的可归纳为以下三个步骤:</p>
+<p>高阶函数用来重用组件逻辑，本质就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件:</p>
 
-<p>1、<strong>定义状态并使其可观察</strong></p>
-
-<p>通常支持转换成 observable 的类型有三个，分别是 <code class="highlighter-rouge">Object、Array、Map</code>，对于原始类型，可以使用 <code class="highlighter-rouge">Obserable.box</code> 包装:</p>
-
-<pre><code class="language-JS">import { observable } from 'mobx'
-
-// 转成 observable 对象，通过 toJS 方法可转成普通的 JavaScript 对象
-var appState = observable({
-  timer: 0
-})
-
-// 原始类型
-const cityName = observable.box('vanilla')
-</code></pre>
-
-<p>2、<strong>创建视图以响应状态的变化</strong></p>
-
-<pre><code class="language-JS">import { observer } from 'mobx-react'
-
-@observer
-class TimerView extends React.Component {
-  render() {
-    return (
-      &lt;button onClick={this.onReset.bind(this)}&gt;
-        Seconds passed: {this.props.appState.timer}
-      &lt;/button&gt;
-    )
-  }
-
-  onReset() {
-    this.props.appState.resetTimer()
-  }
-}
-
-ReactDOM.render(&lt;TimerView appState={appState} /&gt;, document.body)
-</code></pre>
-
-<p>3、<strong>更改状态</strong></p>
-
-<p><strong>Action</strong> 动作是任一一段可以改变状态的代码，如用户事件、后端数据推送、预定事件等。在 MobX 中可以显式地定义动作，它可以帮你把代码组织的更清晰。 注意 MobX 和 Redux 不同，它并不强制所有 state 的改变必须通过 action 来改变，如果是在严格模式下使用 MobX 的话，则会强制:</p>
-
-<pre><code class="language-JS">import { action, configure } from 'mobx'
-
-// 强制使用 action 来修改状态
-configure({enforceActions: true})
-
-appState.resetTimer = action(function reset() {
-  appState.timer = 0
-})
-
-setInterval(action(function tick() {
-  appState.timer += 1
-}), 1000)
-</code></pre>
-
-<p>action 包装/装饰器只会对当前运行的函数作出反应，而不会对当前运行函数所调用的函数（不包含在当前函数之内）作出反应！ 这意味着如果 action 中存在 <code class="highlighter-rouge">setTimeout</code>、<code class="highlighter-rouge">promise</code> 的 <code class="highlighter-rouge">then</code> 或 <code class="highlighter-rouge">async</code> 语句，并且在回调函数中某些状态改变了，那么这些回调函数也应该包装在 action 中。创建异步 action 有几种方式<a href="#action-异步处理">可以移步这里</a> 👈</p>
-
-<blockquote>
-  <p>MobX 支持单向数据流，也就是动作改变状态，而状态的改变会更新所有受影响的视图，即 <strong>Action –&gt; State –&gt; Views</strong></p>
-</blockquote>
-
-<h2 id="observable-state-可观察树">Observable State 可观察树</h2>
-
-<p>MobX 通过使用 <code class="highlighter-rouge">@observable</code> 装饰器，为现有的数据结构(如对象，数组和类实例)添加了可观察的功能:</p>
-
-<pre><code class="language-JS">// ESNext
-import { observable } from 'mobx'
-
-class Todo {
-  id = Math.random()
-  @observable title = ''
-  @observable finished = false
-}
-</code></pre>
-
-<pre><code class="language-JS">// ES5
-import { decorate, observable } from 'mobx'
-
-class Todo {
-  id = Math.random()
-  title = ''
-  finished = false
-}
-decorate(Todo, {
-  title: observable,
-  finished: observable
-})
-</code></pre>
-
-<h2 id="computed-values-计算值">Computed Values 计算值</h2>
-
-<p>使用 MobX，你可以定义在相关数据发生变化时自动更新的值。通过 <code class="highlighter-rouge">@computed</code> 装饰器或者利用 <code class="highlighter-rouge">(extend)Observable</code> 时调用的 <code class="highlighter-rouge">getter / setter</code> 函数来进行使用:</p>
-
-<pre><code class="language-JS">// 当添加了一个新的 todo 或者某个 todo 的 finished 属性发生变化时，MobX 会确保 unfinishedTodoCount 自动更新
-class TodoList {
-  @observable todos = []
-  @action addTask(task) { /* ... */ }
-  @computed get unfinishedTodoCount() {
-    return this.todos.filter(todo =&gt; !todo.finished).length
-  }
-}
-</code></pre>
-
-<blockquote>
-  <p>如果你有一个函数应该自动运行，但不会产生一个新的值，请使用 <code class="highlighter-rouge">autorun</code>。 其余情况都应该使用 computed。autorun 通常用来执行一些有副作用，如打印日志，更新 UI 等。</p>
-</blockquote>
-
-<h2 id="reactions-反应">Reactions 反应</h2>
-
-<p><strong>Reaction</strong> 对于如何追踪 observable 赋予了更细粒度的控制，一共可接收三个参数:</p>
-
-<ul>
-  <li>函数参数 1 - 用来追踪并返回数据作为第二个函数的输入</li>
-  <li>函数参数 2 - 接收两个参数，第一个参数是由 data 函数返回的值。 第二个参数是当前的 reaction，可以用来在执行期间清理 reaction</li>
-  <li>参数3 - options，比如 delay 等，具体可<a href="https://cn.mobx.js.org/refguide/reaction.html">参考这里</a></li>
-</ul>
-
-<pre><code class="language-JS">reaction(() =&gt; data, (data, reaction) =&gt; { sideEffect }, options?)
-</code></pre>
-
-<pre><code class="language-JS">const todos = observable([
-  {
-    title: 'Make coffee',
-    done: true,
-  },
-  {
-    title: 'Find biscuit',
-    done: false
-  }
-])
-
-// reaction 的错误用法: 对 length 的变化作出反应, 而不是 title 的变化!
-const reaction1 = reaction(
-  () =&gt; todos.length,
-  length =&gt; console.log('reaction 1:', todos.map(todo =&gt; todo.title).join(', '))
-)
-
-// reaction 的正确用法: 对 length 和 title 的变化作出反应
-const reaction2 = reaction(
-  () =&gt; todos.map(todo =&gt; todo.title),
-  titles =&gt; console.log('reaction 2:', titles.join(', '))
-)
-
-// autorun 对它函数中使用的任何东西作出反应
-const autorun1 = autorun(
-  () =&gt; console.log('autorun 1:', todos.map(todo =&gt; todo.title).join(', '))
-)
-
-todos.push({ title: 'explain reactions', done: false })
-// 输出:
-// reaction 1: Make coffee, find biscuit, explain reactions
-// reaction 2: Make coffee, find biscuit, explain reactions
-// autorun 1: Make coffee, find biscuit, explain reactions
-
-todos[0].title = 'Make tea'
-// 输出:
-// reaction 2: Make tea, find biscuit, explain reactions
-// autorun 1: Make tea, find biscuit, explain reactions
-</code></pre>
-
-<p>在下面的示例中，reaction3 会对 counter 中的 count 作出反应。 当调用 reaction 时，第二个参数会作为清理函数使用。下面的示例展示了 reaction 只会调用一次:</p>
-
-<pre><code class="language-JS">const counter = observable({ count: 0 })
-
-// 只调用一次并清理掉 reaction : 对 observable 值作出反应。
-const reaction3 = reaction(
-  () =&gt; counter.count,
-  (count, reaction) =&gt; {
-    console.log('reaction 3: invoked. counter.count = ' + count)
-    reaction.dispose()
-  }
-)
-
-counter.count = 1
-// 输出: reaction 3: invoked. counter.count = 1
-
-counter.count = 2
-// 输出: (There are no logging, because of reaction disposed. But, counter continue reaction)
-
-console.log(counter.count)
-// 输出: 2
-</code></pre>
-
-<blockquote>
-  <p>粗略地讲，reaction 是 <code class="highlighter-rouge">computed(expression).observe(action(sideEffect))</code> 或 <code class="highlighter-rouge">autorun(() =&gt; action(sideEffect)(expression))</code> 的语法糖</p>
-</blockquote>
-
-<h2 id="action-异步处理">Action 异步处理</h2>
-
-<p>和 Redux 不同的是，Mobx 在异步处理上并不复杂，不需要引入额外的类似 <code class="highlighter-rouge">redux-thunk、redux-saga</code> 这样的库。唯一需要注意的是，在严格模式下，对于异步 action 里的回调，若该回调也要修改 observable 的值，那么该回调也需要绑定 action。</p>
-
-<p><strong>action.bound</strong> 可以用来自动地将动作绑定到目标对象，注意不要和箭头函数一起使用，箭头函数已经是绑定过的并且不能重新绑定:</p>
-
-<pre><code class="language-JS">class Store {
-  @observable a = 123
-
-  @action
-  changeA() {
-    this.a = 0
-    setTimeout(this.changeB, 1000)
-  }
-  @action.bound
-  changeB() {
-    this.a = 1000
-  }
-}
-var s = new Store()
-autorun(() =&gt; console.log(s.a))
-s.changeA()
-</code></pre>
-
-<p>当然也可以直接用 action 包装:</p>
-
-<pre><code class="language-JS">@action
-changeA() {
-  this.a = 0
-  setTimeout(action('changeB',() =&gt; {
-    this.a = 1000
-  }), 1000)º
-}
-</code></pre>
-
-<p>更好的办法是使用工具函数 <code class="highlighter-rouge">runInAction</code> 来简化操作，runInAction(f) 即是 action(f)() 的语法糖:</p>
-
-<pre><code class="language-JS">@action
-changeA() {
-  this.a = 0
-  setTimeout(
-    runInAction(() =&gt; {
-      this.a = 1000
-    }),
-    1000
-  )
-}
-</code></pre>
-
-<h2 id="mobx-react">MobX-React</h2>
-
-<h3 id="observer">observer</h3>
-
-<p><strong>observer</strong> 函数/装饰器可以用来将 React 组件转变成响应式组件。 它用 <code class="highlighter-rouge">mobx.autorun</code> 包装了组件的 render 函数以确保任何组件渲染中使用的数据变化时都可以强制刷新组件:</p>
-
-<pre><code class="language-JS">import { observer } from 'mobx-react'
-
-// ---- ES5 syntax ----
-var TodoView = observer(
-  React.createClass({
-    displayName: 'TodoView',
+<pre><code class="language-JSX">// Our HOC
+export default function withData(Component) {
+  return class extends React.Component {
     render() {
-      return &lt;div&gt;{this.props.todo.title}&lt;/div&gt;
-    }
-  })
-)
-
-// ---- ES6 syntax ----
-const TodoView = observer(
-  class TodoView extends React.Component {
-    render() {
-      return &lt;div&gt;{this.props.todo.title}&lt;/div&gt;
+      return &lt;Component {...this.props} myProp="some text" /&gt;;
     }
   }
-)
-
-// ---- ESNext syntax with decorators ----
-@observer
-class TodoView extends React.Component {
-  render() {
-    return &lt;div&gt;{this.props.todo.title}&lt;/div&gt;
-  }
-}
-
-// ---- or just use a stateless component function: ----
-const TodoView = observer(({ todo }) =&gt; &lt;div&gt;{todo.title}&lt;/div&gt;)
-</code></pre>
-
-<h3 id="observer-组件">Observer 组件</h3>
-
-<p>Observer is a React component, which applies observer to an anonymous region in your component. It takes as children a single, argumentless function which should return exactly one React component. The rendering in the function will be tracked and automatically re-rendered when needed. This can come in handy when needing to pass render function to external components (for example the React Native listview), or if you dislike the observer decorator / function:</p>
-
-<pre><code class="language-JS">// 或者写成 &lt;Observer render={() =&gt; &lt;div&gt;{this.props.person.name}&lt;/div&gt;} /&gt;
-class App extends React.Component {
-  render() {
-    return (
-      &lt;div&gt;
-        {this.props.person.name}
-        &lt;Observer&gt;{() =&gt; &lt;div&gt;{this.props.person.name}&lt;/div&gt;}&lt;/Observer&gt;
-      &lt;/div&gt;
-    )
-  }
-}
-
-const person = observable({ name: 'John' })
-
-React.render(&lt;App person={person} /&gt;, document.body)
-person.name = 'Mike' // will cause the Observer region to re-render
-</code></pre>
-
-<h3 id="provider--inject">provider &amp; inject</h3>
-
-<p><strong>Provider</strong> is a component that can pass stores (or other stuff) using React’s context mechanism to child components. This is useful if you have things that you don’t want to pass through multiple layers of components explicitly.</p>
-
-<p><strong>inject</strong> can be used to pick up those stores. It is a higher order component that takes a list of strings and makes those stores available to the wrapped component.</p>
-
-<pre><code class="language-JS">@inject('color')
-@observer
-class Button extends React.Component {
-  render() {
-    return &lt;button style={ { background: this.props.color } }&gt;{this.props.children}&lt;/button&gt;
-  }
-}
-
-class Message extends React.Component {
-  render() {
-    return (
-      &lt;div&gt;
-        {this.props.text} &lt;Button&gt;Delete&lt;/Button&gt;
-      &lt;/div&gt;
-    )
-  }
-}
-
-class MessageList extends React.Component {
-  render() {
-    const children = this.props.messages.map(message =&gt; &lt;Message text={message.text} /&gt;)
-    return (
-      &lt;Provider color='red'&gt;
-        &lt;div&gt;{children}&lt;/div&gt;
-      &lt;/Provider&gt;
-    )
-  }
 }
 </code></pre>
 
-<p>Instead of passing a list of store names, it is also possible to create a custom mapper function and pass it to inject. The mapper function receives all stores as argument, the properties with which the components are invoked and the context, and should produce a new set of properties, that are mapped into the original:</p>
+<pre><code class="language-JSX">// Our component that uses our HOC
+import React from "react";
+import { withData } from "./withData";
 
-<pre><code class="language-JS">mapperFunction: (allStores, props, context) =&gt; additionalProps
+export class MyComponent extends React.Component {
+  render() {
+    return &lt;div&gt;{this.props.myProp}&lt;/div&gt;
+  }
+}
+
+export default withData(MyComponent);
 </code></pre>
 
-<pre><code class="language-JS">const NameDisplayer = ({ name }) =&gt; &lt;h1&gt;{name}&lt;\/h1&gt;
+<p>让我们来看一个完整的栗子(来自<a href="https://pawelgrzybek.com/cross-cutting-functionality-in-react-using-higher-order-components-render-props-and-hooks/">这里</a>)，假设我们定义了两个组件 Content 和 Sidebar:</p>
 
-const UserNameDisplayer = inject(stores =&gt; ({
-  name: stores.userStore.name
-}))(NameDisplayer)
+<pre><code class="language-JSX">import React, { Component } from "react";
 
-const user = observable({
-  name: 'Noa'
-})
+export default class Content extends Component {
+  constructor() {
+    super();
 
-const App = () =&gt; (
-  &lt;Provider userStore={user}&gt;
-    &lt;UserNameDisplayer /&gt;
-  &lt;/Provider&gt;
-)
+    this.state = {
+      joke: "Loading…"
+    };
+  }
 
-ReactDOM.render(&lt;App /&gt;, document.body)
-</code></pre>
-
-<h3 id="disposeonunmount">disposeOnUnmount</h3>
-
-<p>Function (and decorator) that makes sure a function (usually a disposer such as the ones returned by reaction, autorun, etc.) is automatically executed as part of the <strong>componentWillUnmount</strong> lifecycle event.</p>
-
-<pre><code class="language-JS">import { disposeOnUnmount } from 'mobx-react'
-
-class SomeComponent extends React.Component {
-  // decorator version
-  @disposeOnUnmount
-  someReactionDisposer = reaction(...)
-
-  // function version over properties
-  someReactionDisposer = disposeOnUnmount(this, reaction(...))
-
-  // function version inside methods
   componentDidMount() {
-    // single function
-    disposeOnUnmount(this, reaction(...))
+    fetch("https://api.icndb.com/jokes/random")
+      .then(response =&gt; response.json())
+      .then(joke =&gt; this.setState({ joke: joke.value.joke }))
+      .catch(() =&gt; this.setState({ joke: "Error" }));
+  }
 
-    // or function array
-    disposeOnUnmount(this, [
-      reaction(...),
-      reaction(...)
-    ])
+  render() {
+    return (
+      &lt;article&gt;
+        &lt;h1&gt;Content&lt;/h1&gt;
+        &lt;p&gt;{this.state.joke}&lt;/p&gt;
+      &lt;/article&gt;
+    );
   }
 }
 </code></pre>
 
-<h3 id="onerror">onError</h3>
+<p>而 Sidebar 结构和 Content 类似，这里偷懒省略不写啦 😀，这样我们可以提取出公共部分:</p>
 
-<p>If a component throws an error, this logs to the console but does not ‘crash’ the app, so it might go unnoticed. For this reason it is possible to attach a global error handler using <strong>onError</strong> to intercept any error thrown in the render of an observer component. This can be used to hook up any client side error collection system.</p>
+<pre><code class="language-JSX">const withJoke = WrappedComponent =&gt;
+  class extends React.Component {
+    constructor() {
+      super();
 
-<pre><code class="language-JS">import { onError } from 'mobx-react'
+      this.state = {
+        joke: "Loading…"
+      };
+    }
 
-onError(error =&gt; {
-  console.log(error)
-})
+    componentDidMount() {
+      fetch("https://api.icndb.com/jokes/random")
+        .then(response =&gt; response.json())
+        .then(joke =&gt; this.setState({ joke: joke.value.joke }))
+        .catch(() =&gt; this.setState({ joke: "Error" }));
+    }
+
+    render() {
+      return &lt;WrappedComponent joke={this.state.joke} {...this.props} /&gt;;
+    }
+  };
 </code></pre>
 
-<h2 id="理解-mobx-对什么作出反应">理解 MobX 对什么作出反应</h2>
+<p>然后我们分别将之前写好的组件进行改造，并使用上面的 withJoke 高阶函数进行包裹:</p>
 
-<p>MobX 会对在追踪函数执行过程中读取现存的可观察属性做出反应，具体可以<a href="https://cn.mobx.js.org/best/react.html">参考官方文档这一节</a>:</p>
+<pre><code class="language-JSX">import React from "react";
+import withJoke from "./withJoke";
 
-<ul>
-  <li>读取 - 是对象属性的间接引用，可以用过 . (例如 user.name) 或者 [] (例如 user[‘name’]) 的形式完成</li>
-  <li>追踪函数 - 是 computed 表达式、observer 组件的 render() 方法和 when、reaction 和 autorun 的第一个入参函数</li>
-  <li>过程(during) - 意味着只追踪那些在函数执行时被读取的 observable 。这些值是否由追踪函数直接或间接使用并不重要</li>
-</ul>
+const Content = ({ joke }) =&gt; (
+  &lt;article&gt;
+    &lt;h1&gt;Content&lt;/h1&gt;
+    &lt;p&gt;{joke}&lt;/p&gt;
+  &lt;/article&gt;
+);
 
-<p>额外说下新增属性的监听:</p>
+export default withJoke(Content);
+</code></pre>
 
-<pre><code class="language-JS">let ob = observable({ a: 1, b: 1 })
-autorun(() =&gt; {
-  if (ob.c) {
-    console.log('ob.c:', ob.c)
+<pre><code class="language-JSX">import React from "react";
+import withJoke from "./withJoke";
+
+const Sidebar = ({ joke }) =&gt; (
+  &lt;article&gt;
+    &lt;h1&gt;Sidebar&lt;/h1&gt;
+    &lt;p&gt;{joke}&lt;/p&gt;
+  &lt;/article&gt;
+);
+
+export default withJoke(Sidebar);
+</code></pre>
+
+<h4 id="渲染属性-render-props">渲染属性 Render props</h4>
+
+<p>渲染属性通过 props 接收一个返回 react element 的函数，来动态决定自己要渲染的内容。相较于 HOC，它少了一些样本代码，而且更清晰，让我们再看看怎么改造上面那个栗子:</p>
+
+<pre><code class="language-JSX">import { Component } from "react";
+
+export default class Joke extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      joke: "Loading…"
+    };
   }
-})
-ob.c = 1 // 并未监听到
+
+  componentDidMount() {
+    fetch("https://api.icndb.com/jokes/random")
+      .then(response =&gt; response.json())
+      .then(joke =&gt; this.setState({ joke: joke.value.joke }))
+      .catch(() =&gt; this.setState({ joke: "Error" }));
+  }
+
+  // we are invoking a function stored in a render prop
+  // this is a good indicator that the value of the render prop should be a function
+  render() {
+    return this.props.render(this.state.joke);
+  }
+}
 </code></pre>
 
-<p>此时可以通过 <code class="highlighter-rouge">extendObservable(target, props)</code> 方法来为对象新增加 observable 属性:</p>
+<p>我们再看看怎么去使用这个组件:</p>
 
-<pre><code class="language-JS">let ob = observable({ a: 1, b: 2 })
-extendObservable(ob, { c: 1 }) // 输出 1
-autorun(() =&gt; console.log(ob.c))
-ob.c = 3 // 输出 3
+<pre><code class="language-JSX">const App = () =&gt; (
+  &lt;main&gt;
+    &lt;Joke render={joke =&gt; &lt;Content joke={joke} /&gt;} /&gt;
+    &lt;Joke render={joke =&gt; &lt;Sidebar joke={joke} /&gt;} /&gt;
+  &lt;/main&gt;
+);
+</code></pre>
+
+<p>但上述无论哪种方法，都无法摆脱<strong>嵌套地狱(Wrapper Hell)</strong>的问题，因此可以采用我们下面会介绍的自定义 Hook。</p>
+
+<h3 id="lifecycle-spaghetti">lifecycle spaghetti</h3>
+
+<p>我们在刚开始构建我们的组件时它们往往很简单，然而随着开发的进展它们会变得越来越大、越来越混乱，各种逻辑在组件中散落的到处都是。每个生命周期钩子中都包含了一堆互不相关的逻辑。比如我们常常在 <strong>componentDidMount</strong> 和 <strong>componentDidUpdate</strong> 中拉取数据，同时 compnentDidMount 方法可能又包含一些不相干的逻辑，比如设置事件监听（之后需要在 <strong>componentWillUnmount</strong> 中清除）。最终的结果是强相关的代码被分离，反而是不相关的代码被组合在了一起。这显然会导致大量错误。</p>
+
+<p>下面我们会提到怎么用 useEffect 有效去管理这些副作用。它结合了上述的三个生命周期，这样状态和相关的处理逻辑可以按照功能进行划分也同时很大程度降低了开发和维护的难度。</p>
+
+<h3 id="confusing-classes">confusing classes</h3>
+
+<p>类对于 react 来说本身就增添了学习曲线，我们仍然要考虑 this 指针的问题，同时也有其他的一些问题。而使用函数组件就可以有效的去规避这些问题。</p>
+
+<h2 id="usestate">useState</h2>
+
+<p><strong>useState</strong> 可以将 state 添加到函数组件中。而在以往，我们要使用<strong>无状态组件(stateless components)</strong>时，都会去创建一个纯函数组件，但是需要用到内部状态 state 的话，必须又要改写成类组件。我们先看一个用类编写的案例:</p>
+
+<pre><code class="language-JSX">class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;p&gt;You clicked {this.state.count} times&lt;/p&gt;
+        &lt;button onClick={() =&gt; this.setState({ count: this.state.count + 1 })}&gt;
+          Click me
+        &lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre>
+
+<p>通过使用 useState 钩子，改写为:</p>
+
+<pre><code class="language-JSX">import { useState } from 'react';
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
 </code></pre>
 
 <blockquote>
-  <p>如果想通过 demo 快速上手的话，这里有一个 <a href="https://github.com/Tate-Young/mobx-react-demo">mobx-react-demo</a> 👈</p>
+  <p>useState 方法返回一对值: 当前的 state 和用来更新它的 function，所以这里我们采用解构。</p>
+</blockquote>
+
+<h2 id="useeffect">useEffect</h2>
+
+<p>有时我们想要在 React 更新过 DOM 之后执行一些额外的操作。 比如网络请求、手动更新 DOM 、以及打印日志，这些都称为<strong>副作用(effects)</strong>。而 <strong>useEffects</strong> 可以有效的去进行管理，同样先看看类组件的写法:</p>
+
+<pre><code class="language-JSX">class FriendStatus extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isOnline: null };
+    this.handleStatusChange = this.handleStatusChange.bind(this);
+  }
+
+  componentDidMount() {
+    ChatAPI.subscribeToFriendStatus(
+      this.props.friend.id,
+      this.handleStatusChange
+    );
+  }
+
+  componentWillUnmount() {
+    ChatAPI.unsubscribeFromFriendStatus(
+      this.props.friend.id,
+      this.handleStatusChange
+    );
+  }
+
+  handleStatusChange(status) {
+    this.setState({
+      isOnline: status.isOnline
+    });
+  }
+
+  render() {
+    if (this.state.isOnline === null) {
+      return 'Loading...';
+    }
+    return this.state.isOnline ? 'Online' : 'Offline';
+  }
+}
+</code></pre>
+
+<p>通过 useEffect 改写后，我们可以看到相关的逻辑更加清晰:</p>
+
+<pre><code class="language-JSX">import { useState, useEffect } from 'react';
+
+function FriendStatus(props) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  function handleStatusChange(status) {
+    setIsOnline(status.isOnline);
+  }
+
+  useEffect(() =&gt; {
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    // React 在每次组件 unmount 的时候执行清理
+    return function cleanup() {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+
+  if (isOnline === null) {
+    return 'Loading...';
+  }
+  return isOnline ? 'Online' : 'Offline';
+}
+</code></pre>
+
+<blockquote>
+  <p>另外我们可以使用多个 useEffect 来实现关注点分离，Hook 让我们根据代码的作用将它们拆分，而不是根据生命周期。React 将会按照指定的顺序应用每个 effect。</p>
+</blockquote>
+
+<p>在有些时候，我们并不想每次渲染时候都操作副作用，所以我们可能这么写:</p>
+
+<pre><code class="language-JSX">componentDidUpdate(prevProps, prevState) {
+  if (prevState.count !== this.state.count) {
+    document.title = `You clicked ${this.state.count} times`;
+  }
+}
+</code></pre>
+
+<p>如果通过 useEffect 改写的话，我们只用传进去一个数组参数即可:</p>
+
+<pre><code class="language-JSX">useEffect(() =&gt; {
+  document.title = `You clicked ${count} times`;
+}, [count]); // Only re-run the effect if count changes
+</code></pre>
+
+<h2 id="自定义-hook">自定义 Hook</h2>
+
+<p>当我们要分享或者复用一个有状态的组件时，我们可以将状态单独提取出来，并创建一个自定义的 Hook，通常我们命名以 ‘use’ 开头，让我们再次回到最初那个示例:</p>
+
+<pre><code class="language-JSX">import { useState, useEffect } from "react";
+
+export default function useJoke() {
+  const [joke, setJoke] = useState("Loading…");
+
+  useEffect(() =&gt; {
+    fetch("https://api.icndb.com/jokes/random")
+      .then(response =&gt; response.json())
+      .then(joke =&gt; setJoke(joke.value.joke))
+      .catch(() =&gt; setJoke("Error"));
+  }, []);
+  
+  return joke;
+}
+</code></pre>
+
+<p>然后改写之前写好的 Content 和 Sidebar 组件即可，比起之前的方法，是不是就简单多了呢:</p>
+
+<pre><code class="language-JSX">import React from "react";
+import useJoke from "./useJoke";
+
+export default () =&gt; {
+  const joke = useJoke();
+
+  return (
+    &lt;article&gt;
+      &lt;h1 className="heading"&gt;Content&lt;/h1&gt;
+      &lt;p&gt;{joke}&lt;/p&gt;
+    &lt;/article&gt;
+  );
+};
+</code></pre>
+
+<pre><code class="language-JSX">import React from "react";
+import useJoke from "./useJoke";
+
+export default () =&gt; {
+  const joke = useJoke();
+
+  return (
+    &lt;aside&gt;
+      &lt;h2 className="heading"&gt;Sidebar&lt;/h2&gt;
+      &lt;p&gt;{joke}&lt;/p&gt;
+    &lt;/aside&gt;
+  );
+};
+</code></pre>
+
+<p>然我们来看看另一个完整的栗子，来自<a href="https://medium.com/frontmen/react-hooks-why-and-how-e4d2a5f0347">这里</a>:</p>
+
+<iframe src="https://codesandbox.io/embed/kw864l6l07?fontsize=14" title="List of Users with shortcuts custom effect" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<blockquote>
+  <p>React Hooks 不仅仅是这些，还有很多其他的，详情可以<a href="https://react.docschina.org/docs/hooks-reference.html">参考 API</a> 👈</p>
 </blockquote>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://mobx.js.org">MobX 官方文档</a></li>
-  <li><a href="https://mobx.js.org/getting-started.html">Ten minute introduction to MobX and React</a></li>
-  <li><a href="https://segmentfault.com/a/1190000013810512">mobx 学习总结</a> By 阿阿阿阿阿光</li>
+  <li><a href="https://medium.com/frontmen/react-hooks-why-and-how-e4d2a5f0347">React Hooks — Why and How</a> By Sebastiaan van Arkens</li>
+  <li><a href="https://pawelgrzybek.com/cross-cutting-functionality-in-react-using-higher-order-components-render-props-and-hooks/">CROSS-CUTTING FUNCTIONALITY IN REACT USING HIGHER-ORDER COMPONENTS, RENDER PROPS AND HOOKS</a></li>
 </ol>
  
 <div id="gitalk-container"></div>
@@ -666,9 +585,9 @@ ob.c = 3 // 输出 3
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2019/03/20/react-mobx.html';
-        this.page.identifier = '/2019/03/20/react-mobx';
-        this.page.title = 'MobX 简介';
+        this.page.url = 'https://tate-young.github.io/2019/04/16/react-hooks.html';
+        this.page.identifier = '/2019/04/16/react-hooks';
+        this.page.title = 'React Hooks';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -687,7 +606,7 @@ ob.c = 3 // 输出 3
 
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-03-20 18:54:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-04-16 20:33:00</p> -->
         </div>
     </article>
 

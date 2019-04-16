@@ -1,0 +1,397 @@
+---
+layout: blog
+front: true
+comments: True
+flag: mobx
+background: green
+category: 前端
+title:  React Hooks
+date:   2019-04-16 20:33:00 GMT+0800 (CST)
+background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
+tags:
+- React
+- Mobx
+---
+# {{ page.title }}
+
+## 什么是 Hooks
+
+[**Hooks**](https://react.docschina.org/docs/hooks-intro.html) 是 `React v16.7.0-alpha` 中加入的新特性。它可以让你在 class 以外使用 state 和其他 React 特性。需要注意的是 Hooks 在 classes 中是不生效的，除非你使用下面要介绍的 **function components(函数组件)**。那么 Hooks 解决了什么问题呢？
+
+### stateful logic
+
+针对这个问题，之前的方案有两种，即使用[**高阶函数(HOC)**](https://react.docschina.org/docs/higher-order-components.html)或[**渲染属性(Render props)**](https://react.docschina.org/docs/render-props.html)。
+
+#### 高阶函数 HOC
+
+高阶函数用来重用组件逻辑，本质就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件:
+
+
+```JSX
+// Our HOC
+export default function withData(Component) {
+  return class extends React.Component {
+    render() {
+      return <Component {...this.props} myProp="some text" />;
+    }
+  }
+}
+```
+
+```JSX
+// Our component that uses our HOC
+import React from "react";
+import { withData } from "./withData";
+
+export class MyComponent extends React.Component {
+  render() {
+    return <div>{this.props.myProp}</div>
+  }
+}
+
+export default withData(MyComponent);
+```
+
+让我们来看一个完整的栗子(来自[这里](https://pawelgrzybek.com/cross-cutting-functionality-in-react-using-higher-order-components-render-props-and-hooks/))，假设我们定义了两个组件 Content 和 Sidebar:
+
+```JSX
+import React, { Component } from "react";
+
+export default class Content extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      joke: "Loading…"
+    };
+  }
+
+  componentDidMount() {
+    fetch("https://api.icndb.com/jokes/random")
+      .then(response => response.json())
+      .then(joke => this.setState({ joke: joke.value.joke }))
+      .catch(() => this.setState({ joke: "Error" }));
+  }
+
+  render() {
+    return (
+      <article>
+        <h1>Content</h1>
+        <p>{this.state.joke}</p>
+      </article>
+    );
+  }
+}
+```
+
+而 Sidebar 结构和 Content 类似，这里偷懒省略不写啦 😀，这样我们可以提取出公共部分:
+
+```JSX
+const withJoke = WrappedComponent =>
+  class extends React.Component {
+    constructor() {
+      super();
+
+      this.state = {
+        joke: "Loading…"
+      };
+    }
+
+    componentDidMount() {
+      fetch("https://api.icndb.com/jokes/random")
+        .then(response => response.json())
+        .then(joke => this.setState({ joke: joke.value.joke }))
+        .catch(() => this.setState({ joke: "Error" }));
+    }
+
+    render() {
+      return <WrappedComponent joke={this.state.joke} {...this.props} />;
+    }
+  };
+```
+
+然后我们分别将之前写好的组件进行改造，并使用上面的 withJoke 高阶函数进行包裹:
+
+```JSX
+import React from "react";
+import withJoke from "./withJoke";
+
+const Content = ({ joke }) => (
+  <article>
+    <h1>Content</h1>
+    <p>{joke}</p>
+  </article>
+);
+
+export default withJoke(Content);
+```
+
+```JSX
+import React from "react";
+import withJoke from "./withJoke";
+
+const Sidebar = ({ joke }) => (
+  <article>
+    <h1>Sidebar</h1>
+    <p>{joke}</p>
+  </article>
+);
+
+export default withJoke(Sidebar);
+```
+
+#### 渲染属性 Render props
+
+渲染属性通过 props 接收一个返回 react element 的函数，来动态决定自己要渲染的内容。相较于 HOC，它少了一些样本代码，而且更清晰，让我们再看看怎么改造上面那个栗子:
+
+```JSX
+import { Component } from "react";
+
+export default class Joke extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      joke: "Loading…"
+    };
+  }
+
+  componentDidMount() {
+    fetch("https://api.icndb.com/jokes/random")
+      .then(response => response.json())
+      .then(joke => this.setState({ joke: joke.value.joke }))
+      .catch(() => this.setState({ joke: "Error" }));
+  }
+
+  // we are invoking a function stored in a render prop
+  // this is a good indicator that the value of the render prop should be a function
+  render() {
+    return this.props.render(this.state.joke);
+  }
+}
+```
+
+我们再看看怎么去使用这个组件:
+
+```JSX
+const App = () => (
+  <main>
+    <Joke render={joke => <Content joke={joke} />} />
+    <Joke render={joke => <Sidebar joke={joke} />} />
+  </main>
+);
+```
+
+但上述无论哪种方法，都无法摆脱**嵌套地狱(Wrapper Hell)**的问题，因此可以采用我们下面会介绍的自定义 Hook。
+
+### lifecycle spaghetti
+
+我们在刚开始构建我们的组件时它们往往很简单，然而随着开发的进展它们会变得越来越大、越来越混乱，各种逻辑在组件中散落的到处都是。每个生命周期钩子中都包含了一堆互不相关的逻辑。比如我们常常在 **componentDidMount** 和 **componentDidUpdate** 中拉取数据，同时 compnentDidMount 方法可能又包含一些不相干的逻辑，比如设置事件监听（之后需要在 **componentWillUnmount** 中清除）。最终的结果是强相关的代码被分离，反而是不相关的代码被组合在了一起。这显然会导致大量错误。
+
+下面我们会提到怎么用 useEffect 有效去管理这些副作用。它结合了上述的三个生命周期，这样状态和相关的处理逻辑可以按照功能进行划分也同时很大程度降低了开发和维护的难度。
+
+### confusing classes
+
+类对于 react 来说本身就增添了学习曲线，我们仍然要考虑 this 指针的问题，同时也有其他的一些问题。而使用函数组件就可以有效的去规避这些问题。
+
+## useState
+
+**useState** 可以将 state 添加到函数组件中。而在以往，我们要使用**无状态组件(stateless components)**时，都会去创建一个纯函数组件，但是需要用到内部状态 state 的话，必须又要改写成类组件。我们先看一个用类编写的案例:
+
+```JSX
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <p>You clicked {this.state.count} times</p>
+        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+          Click me
+        </button>
+      </div>
+    );
+  }
+}
+```
+
+通过使用 useState 钩子，改写为:
+
+```JSX
+import { useState } from 'react';
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+> useState 方法返回一对值: 当前的 state 和用来更新它的 function，所以这里我们采用解构。
+
+## useEffect
+
+有时我们想要在 React 更新过 DOM 之后执行一些额外的操作。 比如网络请求、手动更新 DOM 、以及打印日志，这些都称为**副作用(effects)**。而 **useEffects** 可以有效的去进行管理，同样先看看类组件的写法:
+
+```JSX
+class FriendStatus extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isOnline: null };
+    this.handleStatusChange = this.handleStatusChange.bind(this);
+  }
+
+  componentDidMount() {
+    ChatAPI.subscribeToFriendStatus(
+      this.props.friend.id,
+      this.handleStatusChange
+    );
+  }
+
+  componentWillUnmount() {
+    ChatAPI.unsubscribeFromFriendStatus(
+      this.props.friend.id,
+      this.handleStatusChange
+    );
+  }
+
+  handleStatusChange(status) {
+    this.setState({
+      isOnline: status.isOnline
+    });
+  }
+
+  render() {
+    if (this.state.isOnline === null) {
+      return 'Loading...';
+    }
+    return this.state.isOnline ? 'Online' : 'Offline';
+  }
+}
+```
+
+通过 useEffect 改写后，我们可以看到相关的逻辑更加清晰:
+
+```JSX
+import { useState, useEffect } from 'react';
+
+function FriendStatus(props) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  function handleStatusChange(status) {
+    setIsOnline(status.isOnline);
+  }
+
+  useEffect(() => {
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    // React 在每次组件 unmount 的时候执行清理
+    return function cleanup() {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+
+  if (isOnline === null) {
+    return 'Loading...';
+  }
+  return isOnline ? 'Online' : 'Offline';
+}
+```
+
+> 另外我们可以使用多个 useEffect 来实现关注点分离，Hook 让我们根据代码的作用将它们拆分，而不是根据生命周期。React 将会按照指定的顺序应用每个 effect。
+
+在有些时候，我们并不想每次渲染时候都操作副作用，所以我们可能这么写:
+
+```JSX
+componentDidUpdate(prevProps, prevState) {
+  if (prevState.count !== this.state.count) {
+    document.title = `You clicked ${this.state.count} times`;
+  }
+}
+```
+
+如果通过 useEffect 改写的话，我们只用传进去一个数组参数即可:
+
+```JSX
+useEffect(() => {
+  document.title = `You clicked ${count} times`;
+}, [count]); // Only re-run the effect if count changes
+```
+
+## 自定义 Hook
+
+当我们要分享或者复用一个有状态的组件时，我们可以将状态单独提取出来，并创建一个自定义的 Hook，通常我们命名以 'use' 开头，让我们再次回到最初那个示例:
+
+```JSX
+import { useState, useEffect } from "react";
+
+export default function useJoke() {
+  const [joke, setJoke] = useState("Loading…");
+
+  useEffect(() => {
+    fetch("https://api.icndb.com/jokes/random")
+      .then(response => response.json())
+      .then(joke => setJoke(joke.value.joke))
+      .catch(() => setJoke("Error"));
+  }, []);
+  
+  return joke;
+}
+```
+
+然后改写之前写好的 Content 和 Sidebar 组件即可，比起之前的方法，是不是就简单多了呢:
+
+```JSX
+import React from "react";
+import useJoke from "./useJoke";
+
+export default () => {
+  const joke = useJoke();
+
+  return (
+    <article>
+      <h1 className="heading">Content</h1>
+      <p>{joke}</p>
+    </article>
+  );
+};
+```
+
+```JSX
+import React from "react";
+import useJoke from "./useJoke";
+
+export default () => {
+  const joke = useJoke();
+
+  return (
+    <aside>
+      <h2 className="heading">Sidebar</h2>
+      <p>{joke}</p>
+    </aside>
+  );
+};
+```
+
+然我们来看看另一个完整的栗子，来自[这里](https://medium.com/frontmen/react-hooks-why-and-how-e4d2a5f0347):
+
+<iframe src="https://codesandbox.io/embed/kw864l6l07?fontsize=14" title="List of Users with shortcuts custom effect" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+> React Hooks 不仅仅是这些，还有很多其他的，详情可以[参考 API](https://react.docschina.org/docs/hooks-reference.html) 👈
+
+## 参考链接
+
+1. [React Hooks — Why and How](https://medium.com/frontmen/react-hooks-why-and-how-e4d2a5f0347) By Sebastiaan van Arkens
+2. [CROSS-CUTTING FUNCTIONALITY IN REACT USING HIGHER-ORDER COMPONENTS, RENDER PROPS AND HOOKS](https://pawelgrzybek.com/cross-cutting-functionality-in-react-using-higher-order-components-render-props-and-hooks/)
