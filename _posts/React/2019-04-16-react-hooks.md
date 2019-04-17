@@ -2,7 +2,7 @@
 layout: blog
 front: true
 comments: True
-flag: mobx
+flag: react
 background: green
 category: 前端
 title:  React Hooks

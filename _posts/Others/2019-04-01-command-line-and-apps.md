@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记一些命令行工具
 date:   2019-04-01 18:58:00 GMT+0800 (CST)
-update: 2019-04-01 20:58:00 GMT+0800 (CST)
+update: 2019-04-17 10:58:00 GMT+0800 (CST)
 background-image: https://raw.githubusercontent.com/nvbn/thefuck/master/example.gif
 tags:
 - Other
@@ -286,6 +286,18 @@ svgo -i products-shape.svg -o products-shape.svg
 > 推荐一个 [**explainshell**](https://explainshell.com) 页面，可以解释一些命令行
 
 ![explainshell](https://user-gold-cdn.xitu.io/2019/1/23/1687a706e7c637ef?imageView2/0/w/1280/h/960/ignore-error/1)
+
+## 命令行光标操作
+
+| 快捷键 | 描述 |
+|:--------------|:---------|
+| Ctrl + A | 跳到行首 |
+| Ctrl + E | 跳到行尾 |
+| Ctrl + U | 删除整行 |
+| Ctrl + K | 删除光标后的所有字符 |
+| Opt + 点击 | 跳到当前点击的字符位置 |
+| Opt + ←/→ | 跳到左/右的一个单词位置 |
+| Fn + Del | 删除光标后的单个字符，直接 Del 则删除光标前的单个字符 |
 
 ## 软件
 
