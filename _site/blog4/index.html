@@ -35,28 +35,23 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
-  gtag('config', 'UA-136311746-1');
+  gtag('config', GA_TRACKING_ID, { 'transport_type': 'beacon'});
 </script>
-<meta content="blog" property="og:type" />  
-<!-- <script>
-  (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-101222464-1', 'auto');
-  ga('send', 'pageview');
-</script> -->
- 
+<meta content="" property="fb:app_id" />
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
 
 </head>
 
@@ -67,7 +62,7 @@
   </div> -->
   <header id="header" class="header bg-white">
     <div class="navbar-container">
-      <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo" onclick="onclickLogo()">
         <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
       <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a> -->
       <div class="navbar-menu">
@@ -134,6 +129,36 @@
       <div class="main-content index-page clearfix ">
 	<div class="post-lists">
 		<div class="post-lists-body">
+			
+			<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-thumb  bg-blue" style="background-image:url('/style/images/darling.jpg');"></div>
+					<a href="/2018/03/28/js-touch-drag.html">
+						<div class="item-desc">
+							<p>Touch &amp; Drag 事件Touch 事件TouchEvent 是一类描述手指在触摸平面(如触摸屏、触摸板等)的状态变化的事件。TouchList 对象代表多个触点的一个列表。每个 ...</p>
+						</div>
+					</a>
+					<div class="item-slant reverse-slant  bg-blue"></div>
+					<div class="item-slant">
+						<div class="theme-title">
+							JS
+						</div>
+					</div>
+					<div class="item-label">
+						<div class="item-title">
+							<a href="/2018/03/28/js-touch-drag.html" title="访问 Touch & Drag 事件">Touch & Drag 事件</a>
+						</div>
+						<div class="item-meta clearfix">
+							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
+							<div class="item-meta-cat">
+								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
+								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-03-28">2018-03-28</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 			<div class="post-list-item">
 				<div class="post-list-item-container">
@@ -555,36 +580,6 @@
 				</div>
 			</div>
 			
-			<div class="post-list-item">
-				<div class="post-list-item-container">
-					<div class="item-thumb  bg-orange" style="background-image:url('http://www.ruanyifeng.com/blogimg/asset/2014/bg2014121103.jpg');"></div>
-					<a href="/2018/03/08/http-unicode.html">
-						<div class="item-desc">
-							<p>UnicodeASCIIASCII(American Standard Code for Information Interchange) 发音 /ˈæski/，是基于拉丁字母的一套电脑编码系统...</p>
-						</div>
-					</a>
-					<div class="item-slant reverse-slant  bg-orange"></div>
-					<div class="item-slant">
-						<div class="theme-title">
-							HTTP
-						</div>
-					</div>
-					<div class="item-label">
-						<div class="item-title">
-							<a href="/2018/03/08/http-unicode.html" title="访问 Unicode">Unicode</a>
-						</div>
-						<div class="item-meta clearfix">
-							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
-							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
-								    2018-03-08">2018-03-08</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
 		</div>
 	</div>
 	 <!-- 分页链接 -->
@@ -685,7 +680,7 @@
                         <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
                         <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
                         <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
-                        <p>总计文章：86篇</p>
+                        <p>总计文章：87篇</p>
                       <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
                     </div>
                 </div>
@@ -784,5 +779,21 @@
     })();
 </script>
 </body>
+
+<script>
+  // 统一的 gtag 点击事件
+  const gtagEventClick = (param) => {
+    gtag('event', 'click', param)
+  }
+  // 点击 logo
+  const onclickLogo = () => {
+    gtagEventClick({
+      'event_category': 'Logo',
+      'event_label': 'tate & snow',
+      'value': Date.now(),
+    });
+    setTimeout(() => window.location.href = '/?tate', 500)
+  }
+</script>
 
 </html>

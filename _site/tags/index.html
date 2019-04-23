@@ -35,28 +35,23 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
-  gtag('config', 'UA-136311746-1');
+  gtag('config', GA_TRACKING_ID, { 'transport_type': 'beacon'});
 </script>
-<meta content="blog" property="og:type" />  
-<!-- <script>
-  (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-101222464-1', 'auto');
-  ga('send', 'pageview');
-</script> -->
- 
+<meta content="" property="fb:app_id" />
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
 
 </head>
 
@@ -67,7 +62,7 @@
   </div> -->
   <header id="header" class="header bg-white">
     <div class="navbar-container">
-      <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo" onclick="onclickLogo()">
         <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
       <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a> -->
       <div class="navbar-menu">
@@ -167,7 +162,7 @@
 			</a>
 			 
 			<a href="#Mobx">Mobx
-				<span>(2)个</span>
+				<span>(1)个</span>
 			</a>
 			 
 			<a href="#NPM">NPM
@@ -214,6 +209,10 @@
 				<span>(9)个</span>
 			</a>
 			 
+			<a href="#ga">ga
+				<span>(1)个</span>
+			</a>
+			 
 			<a href="#git">git
 				<span>(2)个</span>
 			</a>
@@ -231,7 +230,7 @@
 			</a>
 			 
 			<a href="#js">js
-				<span>(3)个</span>
+				<span>(4)个</span>
 			</a>
 			 
 			<a href="#linux">linux
@@ -1018,25 +1017,7 @@
 	<div id="Mobx" class="post-lists" id="Mobx">
 		<div class="categorys-item">
 			<div class="categorys-title">
-				Mobx : 2
-			</div>
-			
-			<div class="post-list-item post-list-item-tag">
-				<div class="post-list-item-container">
-					<div class="item-label">
-						<div class="item-title">
-							<a href="http://localhost:4000/2019/04/16/react-hooks.html" data-hover="React Hooks">React Hooks</a>
-						</div>
-						<div class="item-meta clearfix">
-							<div class="item-meta-date">
-								<!-- <a href="/archives# 2019 " data-hover=" 2019-04-16 20:33:00 "> 2019-04-16 20:33:00 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-								<a class="item-meta-date-post" href="/archives# 2019 " data-hover=" 2019-04-16 "> 2019-04-16 </a>
-								<a href="/archives#
-								    2019 " data-hover="前端">前端</a>
-							</div>
-						</div>
-					</div>
-				</div>
+				Mobx : 1
 			</div>
 			
 			<div class="post-list-item post-list-item-tag">
@@ -1765,6 +1746,34 @@
 	</div>
 
 	 
+	<div id="ga" class="post-lists" id="ga">
+		<div class="categorys-item">
+			<div class="categorys-title">
+				ga : 1
+			</div>
+			
+			<div class="post-list-item post-list-item-tag">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title">
+							<a href="http://localhost:4000/2019/04/24/google-analytics.html" data-hover="Google Analytics 埋点">Google Analytics 埋点</a>
+						</div>
+						<div class="item-meta clearfix">
+							<div class="item-meta-date">
+								<!-- <a href="/archives# 2019 " data-hover=" 2019-04-24 00:08:00 "> 2019-04-24 00:08:00 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+								<a class="item-meta-date-post" href="/archives# 2019 " data-hover=" 2019-04-24 "> 2019-04-24 </a>
+								<a href="/archives#
+								    2019 " data-hover="前端">前端</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	 
 	<div id="git" class="post-lists" id="git">
 		<div class="categorys-item">
 			<div class="categorys-title">
@@ -2096,7 +2105,25 @@
 	<div id="js" class="post-lists" id="js">
 		<div class="categorys-item">
 			<div class="categorys-title">
-				js : 3
+				js : 4
+			</div>
+			
+			<div class="post-list-item post-list-item-tag">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title">
+							<a href="http://localhost:4000/2019/04/24/google-analytics.html" data-hover="Google Analytics 埋点">Google Analytics 埋点</a>
+						</div>
+						<div class="item-meta clearfix">
+							<div class="item-meta-date">
+								<!-- <a href="/archives# 2019 " data-hover=" 2019-04-24 00:08:00 "> 2019-04-24 00:08:00 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+								<a class="item-meta-date-post" href="/archives# 2019 " data-hover=" 2019-04-24 "> 2019-04-24 </a>
+								<a href="/archives#
+								    2019 " data-hover="前端">前端</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			
 			<div class="post-list-item post-list-item-tag">
@@ -2489,5 +2516,21 @@
     })();
 </script>
 </body>
+
+<script>
+  // 统一的 gtag 点击事件
+  const gtagEventClick = (param) => {
+    gtag('event', 'click', param)
+  }
+  // 点击 logo
+  const onclickLogo = () => {
+    gtagEventClick({
+      'event_category': 'Logo',
+      'event_label': 'tate & snow',
+      'value': Date.now(),
+    });
+    setTimeout(() => window.location.href = '/?tate', 500)
+  }
+</script>
 
 </html>

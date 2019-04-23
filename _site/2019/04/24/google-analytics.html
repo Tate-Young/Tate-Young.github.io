@@ -1,0 +1,1107 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='Google Analytics 埋点 - Tate & Snow' name='title' />
+    <meta content='Google Analytics 埋点 - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>Google Analytics 埋点 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Google Analytics 埋点 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google Analytics 埋点 - Tate & Snow">
+<meta name="twitter:keywords" content="Google Analytics 埋点 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Analytics 埋点 - Tate & Snow">
+<meta name="og:keywords" content="Google Analytics 埋点 - Tate & Snow|Google Analytics 埋点什么是 Google AnalyticsGoogle Analytics 是一个多平台埋点分析工具，即只要在平台上添加相关的追踪代码(tracking code)，GA 就可以监测和收集使用者在平..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="Google Analytics 埋点什么是 Google AnalyticsGoogle Analytics 是一个多平台埋点分析工具，即只要在平台上添加相关的追踪代码(tracking code)，GA 就可以监测和收集使用者在平..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2019/04/24/google-analytics.html' property='og:url' />
+<meta content="http://localhost:4000/2019/04/24/google-analytics.html|Google Analytics 埋点什么是 Google AnalyticsGoogle Analytics 是一个多平台埋点分析工具，即只要在平台上添加相关的追踪代码(tracking code)，GA 就可以监测和收集使用者在平..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+</head>
+
+<body class="" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="http://localhost:4000/">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/front">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tool">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/back">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/tags">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://localhost:4000/README">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Google Analytics 埋点</h1>
+                <div class="post-data">
+                    <time datetime="2019-04-24 00:08:00" itemprop="datePublished">
+                      发布时间：2019-04-24 00:08:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="/tags#js" title="访问js" data-hover="js">
+                        js
+                        <span>(4)</span>
+                        
+                    </a>
+                    
+                    <a href="/tags#ga" title="访问ga" data-hover="ga">
+                        ga
+                        <span>(1)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Google Analytics 埋点</h1>
+            <div class="post-data">
+                <time datetime="2019-04-24 00:08:00" itemprop="datePublished">2019-04-24 00:08:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="/tags#js" title="访问js" data-hover="js">
+                    js
+                    <span>(4)</span>
+                    </a>
+                
+                <a href="/tags#ga" title="访问ga" data-hover="ga">
+                    ga
+                    <span>(1)</span>
+                    </a>
+                   
+            </p>
+            <!-- markdownlint-disable MD024 -->
+<h1 id="google-analytics-埋点">Google Analytics 埋点</h1>
+
+<h2 id="什么是-google-analytics">什么是 Google Analytics</h2>
+
+<p><strong>Google Analytics</strong> 是一个多平台埋点分析工具，即只要在平台上添加相关的追踪代码(tracking code)，GA 就可以监测和收集使用者在平台上的各种行为资料，比如页面停留时长、访问次序、点击了哪些内部链接等等。下面只是针对 JS 来添加 SDK，这里介绍两种方式: <code class="highlighter-rouge">analytics.js</code> 和 <code class="highlighter-rouge">gtag.js</code>。</p>
+
+<h2 id="analyticsjs">analytics.js</h2>
+
+<h3 id="引入">引入</h3>
+
+<p>将 <code class="highlighter-rouge">GA_TRACKING_ID</code> 替换为接收您数据的 Google Analytics <strong>媒体资源 ID</strong>。每个网页只需要一个全局代码段。</p>
+
+<pre><code class="language-JS">&lt;!-- Google Analytics --&gt;
+&lt;script&gt;
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-XXXXX-Y', 'auto'); // 创建跟踪器对象
+ga('send', 'pageview'); // 发送当前网页的浏览数据
+&lt;/script&gt;
+&lt;!-- End Google Analytics --&gt;
+</code></pre>
+
+<p>虽然上述 JavaScript 跟踪代码段可以确保该脚本在所有浏览器中加载和异步执行，但不足之处是不能让新型浏览器预加载该脚本:</p>
+
+<pre><code class="language-JS">&lt;!-- Google Analytics --&gt;
+&lt;script&gt;
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-XXXXX-Y', 'auto');
+ga('send', 'pageview');
+&lt;/script&gt;
+&lt;script async src='https://www.google-analytics.com/analytics.js'&gt;&lt;/script&gt;
+&lt;!-- End Google Analytics --&gt;
+</code></pre>
+
+<blockquote>
+  <p>提示：如果您不知道自己的媒体资源 ID，可使用<a href="https://ga-dev-tools.appspot.com/account-explorer/?hl=zh-cn">帐号浏览器查找</a> 👈</p>
+</blockquote>
+
+<p><img src="https://i.loli.net/2019/04/23/5cbefb4f30659.png" alt="ga-tracking-id.png" /></p>
+
+<blockquote>
+  <p>另外全局变量 ga 可以修改，<a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/renaming-the-ga-object?hl=zh-cn">详情可参考这里</a> 👈</p>
+</blockquote>
+
+<h3 id="创建跟踪器">创建跟踪器</h3>
+
+<p>上面的全局 <strong>ga</strong> 函数又称为<strong>命令队列</strong>，是因为该函数不会立即执行其中的命令，而是将这些命令加入到队列中，将这些命令的执行延迟到 analytics.js 库加载完成后进行。那我们是如何收集和存储数据的呢，就是通过<strong>跟踪器对象</strong>，可以通过 <code class="highlighter-rouge">create</code> 方法来创建:</p>
+
+<pre><code class="language-JS">// 将跟踪 ID 和 Cookie 网域字段分别作为第二个和第三个参数传递给该命令：
+ga('create', 'UA-XXXXX-Y', 'auto'); // 默认跟踪器
+
+// 还可以选择传递字段对象，通过这种方式可以在创建时设置任何 analytics.js 字段
+// 以便将这些字段存储在跟踪器中并应用于所有要发送的匹配
+ga('create', 'UA-XXXXX-Y', 'auto', 'myTracker', {
+  userId: '12345'
+});
+
+// 也可使用字段对象一次指定所有字段
+ga('create', {
+  trackingId: 'UA-XXXXX-Y',
+  cookieDomain: 'auto',
+  name: 'myTracker',
+  userId: '12345'
+});
+</code></pre>
+
+<blockquote>
+  <p>一般推荐 <strong>cookieDomain</strong> 字段设置为字符串 ‘auto’<a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/cookies-user-id?hl=zh-cn">，详情可以查看这里</a> 👈</p>
+</blockquote>
+
+<p>在一些情况下，您可能想要从单个页面发送数据到多个媒体资源。这对由多名负责人分别管理各个版块的网站非常有用；每名负责人都可以查看自己的媒体资源:</p>
+
+<pre><code class="language-JS">ga('create', 'UA-XXXXX-Y', 'auto');
+ga('create', 'UA-XXXXX-Z', 'auto', 'clientTracker');
+</code></pre>
+
+<p>然后我们可以针对特定跟踪器执行命令:</p>
+
+<pre><code class="language-JS">ga('send', 'pageview');
+ga('clientTracker.send', 'pageview'); // 使用指定的跟踪器
+</code></pre>
+
+<blockquote>
+  <p>我们也可以通过 ga 对象方法获取跟踪器，<a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/accessing-trackers?hl=zh-cn">详情查看这里</a> 👈</p>
+</blockquote>
+
+<h3 id="网页跟踪">网页跟踪</h3>
+
+<p>可以通过网页跟踪来衡量网站上特定网页获得的浏览次数，使用 <strong>send</strong> 命令并将 <strong>hitType</strong> 指定为 <strong>pageview</strong> 来发送网页浏览命中。对于 pageview 命中类型，send 命令会使用以下签名:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">字段</th>
+      <th style="text-align: left">描述</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>title</strong></td>
+      <td style="text-align: left">文字</td>
+      <td>否</td>
+      <td>网页的标题（例如“首页”）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>location</strong></td>
+      <td style="text-align: left">text</td>
+      <td>否 *</td>
+      <td>所跟踪网页的网址</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>page</strong></td>
+      <td style="text-align: left">text</td>
+      <td>否 *</td>
+      <td>网址的路径部分。此值应以斜杠 (/) 字符开头</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">ga('send', 'pageview', [page], [fieldsObject]);
+</code></pre>
+
+<pre><code class="language-JS">ga('send', 'pageview', location.pathname);
+
+// or
+ga('send', {
+  hitType: 'pageview',
+  page: location.pathname
+});
+</code></pre>
+
+<h3 id="事件跟踪">事件跟踪</h3>
+
+<p>“事件”是指用户与内容进行的互动，可以独立于网页或屏幕的加载而进行衡量，可以使用 <strong>send</strong> 命令并将 <strong>hitType</strong> 指定为 <strong>event</strong> 来发送事件匹配。用于发送 event 匹配类型的 send 命令使用以下签名:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">字段</th>
+      <th style="text-align: left">描述</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>eventCategory</strong></td>
+      <td style="text-align: left">text</td>
+      <td>是</td>
+      <td>通常是用户与之互动的对象（例如 ‘Video’）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>eventAction</strong></td>
+      <td style="text-align: left">文字</td>
+      <td>是</td>
+      <td>互动类型（例如 ‘play’）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>eventLabel</strong></td>
+      <td style="text-align: left">text</td>
+      <td>否</td>
+      <td>用于对事件进行分类（例如 ‘Fall Campaign’）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>eventValue</strong></td>
+      <td style="text-align: left">整数</td>
+      <td>否</td>
+      <td>与事件相关的数值（例如 42）</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">ga('send', 'event', [eventCategory], [eventAction], [eventLabel], [eventValue], [fieldsObject]);
+</code></pre>
+
+<p>比如以下命令向 Google Analytics 发送一个事件，指明用户播放了秋季广告系列推广视频:</p>
+
+<pre><code class="language-JS">ga('send', 'event', 'Videos', 'play', 'Fall Campaign');
+
+// or
+ga('send', {
+  hitType: 'event',
+  eventCategory: 'Videos',
+  eventAction: 'play',
+  eventLabel: 'Fall Campaign'
+});
+</code></pre>
+
+<h3 id="应用屏幕跟踪">应用/屏幕跟踪</h3>
+
+<p>通过衡量屏幕浏览量，您可以了解用户浏览最多的是哪些内容，以及他们如何在不同的内容之间跳转。可以通过使用 <strong>send</strong> 命令并将 <strong>hitType</strong> 指定为 <strong>screenview</strong> 来发送屏幕匹配。对于 screenview 匹配类型，send 命令会使用以下签名:</p>
+
+<pre><code class="language-JS">ga('send', 'screenview', [fieldsObject]);
+</code></pre>
+
+<p>比如以下命令向 Google Analytics 发送了一个屏幕浏览匹配，应用名为“myAppName”，屏幕为“Home”:</p>
+
+<pre><code class="language-JS">ga('send', 'screenview', {
+  'appName': 'myAppName', // 应用名称，必填
+  'screenName': 'Home' // 屏幕名称，必填
+});
+</code></pre>
+
+<p>由于发送所有应用匹配时都必须包含 appName 字段，一般来说最好使用 <strong>set</strong> 命令设置该字:</p>
+
+<pre><code class="language-JS">ga('create', 'GA_MEASUREMENT_ID', 'auto');
+ga('set', 'appName', 'myAppName');
+
+// The `appName` field is now set, so screenview hits don't need to include it.
+ga('send', 'screenview', { screenName: 'Home' });
+</code></pre>
+
+<h3 id="用户计时">用户计时</h3>
+
+<p>可以使用 <strong>send</strong> 命令并将 <strong>hitType</strong> 指定为 <strong>timing</strong> 来发送用户计时匹配。用于发送 timing 匹配类型的 send 命令使用以下签名:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">字段</th>
+      <th style="text-align: left">描述</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>timingCategory</strong></td>
+      <td style="text-align: left">text</td>
+      <td>是</td>
+      <td>用于将所有用户计时变量归类到相应逻辑组的字符串（例如 ‘JS Dependencies’）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>timingVar</strong></td>
+      <td style="text-align: left">text</td>
+      <td>是</td>
+      <td>用于标识要记录的变量（例如 ‘load’）的字符串</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>timingValue</strong></td>
+      <td style="text-align: left">integer</td>
+      <td>是</td>
+      <td>向 Google Analytics（分析）报告的，以毫秒为单位的历时时间（例如 20）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>timingLabel</strong></td>
+      <td style="text-align: left">text</td>
+      <td>否</td>
+      <td>可用于提高报告中显示用户计时数据灵活性的字符串（例如 ‘Google CDN’）</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">ga('send', 'timing', [timingCategory], [timingVar], [timingValue], [timingLabel], [fieldsObject]);
+</code></pre>
+
+<p>比如以下命令向 Google Analytics 发送用户计时匹配，指明当前网页加载其所有外部 JavaScript 依赖关系耗时 3549 毫秒:</p>
+
+<pre><code class="language-JS">ga('send', 'timing', 'JS Dependencies', 'load', 3549);
+
+// or
+ga('send', {
+  hitType: 'timing',
+  timingCategory: 'JS Dependencies',
+  timingVar: 'load',
+  timingValue: 3549
+});
+</code></pre>
+
+<p>对于衡量时间的方法，可以采用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Performance/now"><strong>performance.now()</strong></a> 方法，该方法返回从网页最初开始加载到目前为止的时长:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Feature detects Navigation Timing API support.</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">performance</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Gets the number of milliseconds since page load</span>
+  <span class="c1">// (and rounds the result since the value must be an integer).</span>
+  <span class="kd">var</span> <span class="nx">timeSincePageLoad</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">());</span>
+
+  <span class="c1">// Sends the timing hit to Google Analytics.</span>
+  <span class="nx">ga</span><span class="p">(</span><span class="s1">'send'</span><span class="p">,</span> <span class="s1">'timing'</span><span class="p">,</span> <span class="s1">'JS Dependencies'</span><span class="p">,</span> <span class="s1">'load'</span><span class="p">,</span> <span class="nx">timeSincePageLoad</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="自定义维度和指标">自定义维度和指标</h3>
+
+<p>网络开发者可以使用自定义维度和指标来细分并衡量登录和退出的用户之间、网页作者之间、游戏中的关卡之间或页面上存在的任何其他业务数据之间的差异:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">字段</th>
+      <th style="text-align: left">描述</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>dimension</strong>[0-9]+</td>
+      <td style="text-align: left">text</td>
+      <td>否</td>
+      <td>维度索引。每个自定义维度都有关联的索引。自定义维度最多可以有 20 个（Analytics 360 帐号为 200 个）。索引后缀必须是大于 0 的正整数（如 dimension3）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>metric</strong>[0-9]+</td>
+      <td style="text-align: left">integer</td>
+      <td>否</td>
+      <td>指标索引。每个自定义指标都有关联的索引。自定义指标最多可以有 20 个（Analytics 360 帐号为 200 个）。索引后缀必须是大于 0 的正整数（如 metric5）</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>自定义维度或指标数据只能与现有的匹配一起发送。例如，要为 pageview 类型的匹配发送索引为 15 的自定义维度:</p>
+
+<pre><code class="language-JS">ga('send', 'pageview', {
+  'dimension15':  'My Custom Dimension'
+});
+
+// 在某些情况下，您可能想要将某个自定义维度或指标与指定网页上的所有匹配一起发送
+ga('set', 'dimension5', 'custom data');
+</code></pre>
+
+<h3 id="beacon">beacon</h3>
+
+<p>默认情况下，analytics.js 会选择 HTTP 方法和传输机制以优化匹配的发送。使用这种机制时有三种选项，分别为:</p>
+
+<ul>
+  <li><strong>image</strong> - 使用 Image 对象</li>
+  <li><strong>xhr</strong> - 使用 XMLHttpRequest 对象</li>
+  <li><strong>beacon</strong> -使用新的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon"><strong>navigator.sendBeacon</strong></a> 方法</li>
+</ul>
+
+<p>前两种方法都具有上一部分所描述的问题（如果遇到网页卸载的情况匹配往往无法发送）。相比之下，navigator.sendBeacon 方法则是为解决此问题而创建的全新 HTML 功能</p>
+
+<pre><code class="language-JS">ga('create', 'UA-XXXXX-Y', 'auto');
+
+// Updates the tracker to use `navigator.sendBeacon` if available.
+ga('set', 'transport', 'beacon');
+</code></pre>
+
+<p>或者我们也可以单独设置:</p>
+
+<pre><code class="language-JS">ga('send', 'event', {
+  eventCategory: 'Outbound Link',
+  eventAction: 'click',
+  eventLabel: event.target.href,
+  transport: 'beacon'
+});
+</code></pre>
+
+<h3 id="实现异步回调-hitcallback">实现异步回调 hitCallback</h3>
+
+<p>要在匹配发送完成时收到通知，您需要设置 <strong>hitCallback</strong> 字段。hitCallback 是一个函数，当匹配发送成功时该函数会立即得到调用，但存在一个严重问题：如果（无论是由于何种原因）无法加载 analytics.js 库，则 hitCallback 函数将永远无法运行。如果 hitCallback 函数无法运行，用户将永远无法提交表单。以下示例同时也处理了超时的情况:</p>
+
+<pre><code class="language-JS">// Gets a reference to the form element, assuming
+// it contains the id attribute "signup-form".
+var form = document.getElementById('signup-form');
+
+// Adds a listener for the "submit" event.
+form.addEventListener('submit', function(event) {
+
+  // Prevents the browser from submitting the form
+  // and thus unloading the current page.
+  event.preventDefault();
+
+  // Creates a timeout to call `submitForm` after one second.
+  setTimeout(submitForm, 1000);
+
+  // Keeps track of whether or not the form has been submitted.
+  // This prevents the form from being submitted twice in cases
+  // where `hitCallback` fires normally.
+  var formSubmitted = false;
+
+  function submitForm() {
+    if (!formSubmitted) {
+      formSubmitted = true;
+      form.submit();
+    }
+  }
+
+  // Sends the event to Google Analytics and
+  // resubmits the form once the hit is done.
+  ga('send', 'event', 'Signup Form', 'submit', {
+    hitCallback: submitForm
+  });
+});
+</code></pre>
+
+<p>如果您在整个网站中多处使用了上述处理模式，则创建一个辅助函数来处理超时更为方便:</p>
+
+<pre><code class="language-JS">function createFunctionWithTimeout(callback, opt_timeout) {
+  var called = false;
+  function fn() {
+    if (!called) {
+      called = true;
+      callback();
+    }
+  }
+  setTimeout(fn, opt_timeout || 1000);
+  return fn;
+}
+</code></pre>
+
+<pre><code class="language-JS">// Gets a reference to the form element, assuming
+// it contains the id attribute "signup-form".
+var form = document.getElementById('signup-form');
+
+// Adds a listener for the "submit" event.
+form.addEventListener('submit', function(event) {
+
+  // Prevents the browser from submitting the form
+  // and thus unloading the current page.
+  event.preventDefault();
+
+  // Sends the event to Google Analytics and
+  // resubmits the form once the hit is done.
+  ga('send', 'event', 'Signup Form', 'submit', {
+    hitCallback: createFunctionWithTimeout(function() {
+      form.submit();
+    })
+  });
+});
+</code></pre>
+
+<h2 id="gtag">gtag</h2>
+
+<h3 id="引入-1">引入</h3>
+
+<p>同样，我们需要安装全局追踪代码片段:</p>
+
+<pre><code class="language-JS">&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;
+&lt;script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GA_TRACKING_ID');
+&lt;/script&gt;
+</code></pre>
+
+<p>此代码段的默认操作是向 Google Analytics 发送网页浏览匹配。大多数情况下这符合用户要求，当然也可以取消:</p>
+
+<pre><code class="language-JS">gtag('config', 'GA_TRACKING_ID', { 'send_page_view': false });
+</code></pre>
+
+<p>要设置随网页的每个事件发送的值，请使用要发送的值更新媒体资源的 config，以下是设置一些永久性值的方法:</p>
+
+<pre><code class="language-JS">gtag('config', 'GA_TRACKING_ID', {
+  'currency': 'USD',
+  'country': 'US'
+});
+</code></pre>
+
+<p>如果要在一个页面上配置多个媒体资源，那么，使用 set 命令可提高效率:</p>
+
+<pre><code class="language-JS">gtag('set', {
+  'currency': 'USD',
+  'country': 'US'
+});
+gtag('config', 'GA_TRACKING_ID_1');
+gtag('config', 'GA_TRACKING_ID_2');
+</code></pre>
+
+<h3 id="网页跟踪-1">网页跟踪</h3>
+
+<p>gtag 使用 <strong>config</strong> 命令发送网页浏览，字段和 ga 类似:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">字段</th>
+      <th style="text-align: left">描述</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>page_title</strong></td>
+      <td style="text-align: left">文字</td>
+      <td>否</td>
+      <td>网页的标题（例如“首页”）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>page_location</strong></td>
+      <td style="text-align: left">text</td>
+      <td>否 *</td>
+      <td>所跟踪网页的网址</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>page_page</strong></td>
+      <td style="text-align: left">text</td>
+      <td>否 *</td>
+      <td>网址的路径部分。此值应以斜杠 (/) 字符开头</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-JS">gtag('config', 'GA_TRACKING_ID', {
+  'page_title' : 'homepage',
+  'page_path': '/home'
+});
+</code></pre>
+
+<h3 id="事件跟踪-1">事件跟踪</h3>
+
+<pre><code class="language-JS">gtag('event', &lt;action&gt;, { // &lt;action&gt; 事件报告中显示为事件操作的字符串
+  'event_category': &lt;category&gt;, // 显示为事件类别的字符串
+  'event_label': &lt;label&gt;, // 显示为事件标签的字符串
+  'value': &lt;value&gt; // 显示为事件价值的非负整数
+});
+</code></pre>
+
+<p>看个栗子和对应后台的数据:</p>
+
+<pre><code class="language-JS">gtag('event', 'click', {
+  'event_category': 'logo',
+  'event_label': 'Tate &amp; Snow',
+  'value': Date.now(),
+});
+</code></pre>
+
+<p><img src="https://i.loli.net/2019/04/23/5cbf35a1885a2.png" alt="ga-event-click.png" /></p>
+
+<h3 id="应用屏幕跟踪-1">应用/屏幕跟踪</h3>
+
+<pre><code class="language-JS">gtag('event', 'screen_view', {
+  'app_name': 'myAppName',
+  'screen_name' : 'Home'
+});
+</code></pre>
+
+<h3 id="用户计时-1">用户计时</h3>
+
+<pre><code class="language-JS">// Feature detects Navigation Timing API support.
+if (window.performance) {
+  // Gets the number of milliseconds since page load
+  // (and rounds the result since the value must be an integer).
+  var timeSincePageLoad = Math.round(performance.now());
+
+  // Sends the timing event to Google Analytics.
+  gtag('event', 'timing_complete', {
+    'name': 'load',
+    'value': timeSincePageLoad,
+    'event_category': 'JS Dependencies'
+  });
+}
+</code></pre>
+
+<h3 id="自定义维度和指标-1">自定义维度和指标</h3>
+
+<p>gtag 使用 <strong>custom_map</strong> 参数即可实现自定义维度和指标:</p>
+
+<pre><code class="language-JS">// Configures custom dimension&lt;Index&gt; to use the custom parameter
+// 'dimension_name' for 'GA_TRACKING_ID', where &lt;Index&gt; is a number
+// representing the index of the custom dimension.
+gtag('config', 'GA_TRACKING_ID', {
+  'custom_map': {'dimension&lt;Index&gt;': 'dimension_name'}
+});
+
+// Sends the custom dimension to Google Analytics.
+gtag('event', 'any_event_name', {'dimension_name': dimension_value});
+</code></pre>
+
+<p>举个栗子:</p>
+
+<pre><code class="language-JS">gtag('config', 'GA_TRACKING_ID', {
+  'custom_map': {
+    'dimension2': 'age',
+    'metric5': 'avg_page_load_time'
+  }
+});
+
+gtag('event', 'foo', {'age': 12, 'avg_page_load_time': 1});
+</code></pre>
+
+<h3 id="beacon-1">beacon</h3>
+
+<pre><code class="language-JS">gtag('config', 'GA_TRACKING_ID', { 'transport_type': 'beacon'});
+</code></pre>
+
+<h3 id="实现异步回调-event_callback">实现异步回调 event_callback</h3>
+
+<pre><code class="language-JS">// Gets a reference to the form element, assuming
+// it contains the ID attribute "signup-form".
+var form = document.getElementById('signup-form');
+
+// Adds a listener for the "submit" event.
+form.addEventListener('submit', function(event) {
+
+  // Prevents the browser from submitting the form
+  // and thus unloading the current page.
+  event.preventDefault();
+
+  // Sends the event to Google Analytics and
+  // resubmits the form once the hit is done.
+  gtag('event', 'signup_form', { 'event_callback': {
+    createFunctionWithTimeout(function() {
+      form.submit();
+    })
+  }});
+});
+</code></pre>
+
+<h2 id="measurement-protocol">Measurement Protocol</h2>
+
+<p><a href="https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide?hl=zh-cn"><strong>Measurement Protocol</strong></a>可让开发者通过 HTTP 请求直接向 Google Analytics 服务器发送原始用户互动数据。这样，开发者就可以衡量在各种环境中用户与商家互动的情况。开发者可以使用 Measurement Protocol 实现以下目标：</p>
+
+<ul>
+  <li>衡量新环境中的用户活动。</li>
+  <li>将线上和线下行为联系在一起。</li>
+  <li>同时从客户端和服务器发送数据</li>
+</ul>
+
+<h2 id="后台报表界面">后台报表界面</h2>
+
+<p><img src="https://i.loli.net/2019/04/23/5cbf35a12f7b5.png" alt="ga-admin.png" /></p>
+
+<p>这里再介绍两个术语:</p>
+
+<ul>
+  <li><strong>平均工作阶段时间长度</strong> - 每个工作阶段平均耗时，计算方式为 [最后一次互动时间 - 第一次互动时间]，其中注意的是最后一次互动时间指的操作页面的时间点，即使用户浏览一个页面，也沒有做任何互动，GA 就沒有計算工作阶段时间长度的依据，所以该次的时间长度为 0</li>
+  <li><strong>跳出率</strong> - 用户进站后没有产生第二个互动的百分比。其中注意的是，即使进入一个页面停留 N 长时间，但是没有任何互动，也会视为调出</li>
+</ul>
+
+<p><img src="https://pickydigest.com/wp-content/uploads/2018/03/google-analytics-getting-started_image6.png" alt="ga" /></p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/?hl=zh-cn">Google Analytics（分析）–&gt; 衡量 –&gt; analytics.js</a></li>
+  <li><a href="https://developers.google.com/analytics/devguides/collection/gtagjs/?hl=zh-cn">Google Analytics（分析）–&gt; 衡量 –&gt; gtag.js</a></li>
+  <li><a href="https://developers.google.com/analytics/devguides/collection/gtagjs/migration?hl=zh-cn">从 analytics.js 迁移至 gtag.js</a></li>
+  <li><a href="https://pickydigest.com/digital-marketing/google-analytics-getting-started/">[Google Analytics] 超詳細GA網站分析入門教學，看這篇就對了！</a></li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2019/04/24/google-analytics.html';
+        this.page.identifier = '/2019/04/24/google-analytics';
+        this.page.title = 'Google Analytics 埋点';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-04-24 00:08:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+          
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script src="/search/js/cb-search.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+        var postDirectoryBuild = function () {
+            var postChildren = function children(childNodes, reg) {
+                    var result = [],
+                        isReg = typeof reg === 'object',
+                        isStr = typeof reg === 'string',
+                        node, i, len;
+                    for (i = 0, len = childNodes.length; i < len; i++) {
+                        node = childNodes[i];
+                        if ((node.nodeType === 1 || node.nodeType === 9) &&
+                            (!reg ||
+                                isReg && reg.test(node.tagName.toLowerCase()) ||
+                                isStr && node.tagName.toLowerCase() === reg)) {
+                            result.push(node);
+                        }
+                    }
+                    return result;
+                },
+                createPostDirectory = function (article, directory, isDirNum) {
+                    var contentArr = [],
+                        titleId = [],
+                        levelArr, root, level,
+                        currentList, list, li, link, i, len;
+                    levelArr = (function (article, contentArr, titleId) {
+                        var titleElem = postChildren(article.childNodes, /^h\d$/),
+                            levelArr = [],
+                            lastNum = 1,
+                            lastRevNum = 1,
+                            count = 0,
+                            guid = 1,
+                            id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                            lastRevNum, num, elem;
+                        while (titleElem.length) {
+                            elem = titleElem.shift();
+                            contentArr.push(elem.innerHTML);
+                            num = +elem.tagName.match(/\d/)[0];
+                            if (num > lastNum) {
+                                levelArr.push(1);
+                                lastRevNum += 1;
+                            } else if (num === lastRevNum ||
+                                num > lastRevNum && num <= lastNum) {
+                                levelArr.push(0);
+                                lastRevNum = lastRevNum;
+                            } else if (num < lastRevNum) {
+                                levelArr.push(num - lastRevNum);
+                                lastRevNum = num;
+                            }
+                            count += levelArr[levelArr.length - 1];
+                            lastNum = num;
+                            elem.id = elem.id || (id + guid++);
+                            titleId.push(elem.id);
+                        }
+                        if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                        return levelArr;
+                    })(article, contentArr, titleId);
+                    currentList = root = document.createElement('ul');
+                    dirNum = [0];
+                    for (i = 0, len = levelArr.length; i < len; i++) {
+                        level = levelArr[i];
+                        if (level === 1) {
+                            list = document.createElement('ul');
+                            if (!currentList.lastElementChild) {
+                                currentList.appendChild(document.createElement('li'));
+                            }
+                            currentList.lastElementChild.appendChild(list);
+                            currentList = list;
+                            dirNum.push(0);
+                        } else if (level < 0) {
+                            level *= 2;
+                            while (level++) {
+                                if (level % 2) dirNum.pop();
+                                currentList = currentList.parentNode;
+                            }
+                        }
+                        dirNum[dirNum.length - 1]++;
+                        li = document.createElement('li');
+                        link = document.createElement('a');
+                        link.href = '#' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.title = '访问' + titleId[i];
+                        link.innerHTML = !isDirNum ? contentArr[i] :
+                            dirNum.join('.') + ' ' + contentArr[i];
+                        li.appendChild(link);
+                        currentList.appendChild(li);
+                    }
+                    directory.appendChild(root);
+                };
+            createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
+        };
+        postDirectoryBuild();
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>

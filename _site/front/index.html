@@ -35,28 +35,23 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
-  gtag('config', 'UA-136311746-1');
+  gtag('config', GA_TRACKING_ID, { 'transport_type': 'beacon'});
 </script>
-<meta content="blog" property="og:type" />  
-<!-- <script>
-  (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-101222464-1', 'auto');
-  ga('send', 'pageview');
-</script> -->
- 
+<meta content="" property="fb:app_id" />
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
 
 </head>
 
@@ -67,7 +62,7 @@
   </div> -->
   <header id="header" class="header bg-white">
     <div class="navbar-container">
-      <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo" onclick="onclickLogo()">
         <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
       <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a> -->
       <div class="navbar-menu">
@@ -148,7 +143,7 @@
 		</div>
 		<div class="post-lists">
 			<div class="post-lists-body">
-				
+				       
 				<div class="post-list-item">
 					<div class="post-list-item-container">
 						<div class="theme-title">
@@ -1450,5 +1445,21 @@
     })();
 </script>
 </body>
+
+<script>
+  // 统一的 gtag 点击事件
+  const gtagEventClick = (param) => {
+    gtag('event', 'click', param)
+  }
+  // 点击 logo
+  const onclickLogo = () => {
+    gtagEventClick({
+      'event_category': 'Logo',
+      'event_label': 'tate & snow',
+      'value': Date.now(),
+    });
+    setTimeout(() => window.location.href = '/?tate', 500)
+  }
+</script>
 
 </html>

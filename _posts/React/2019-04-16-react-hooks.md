@@ -10,7 +10,6 @@ date:   2019-04-16 20:33:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
 tags:
 - React
-- Mobx
 ---
 # {{ page.title }}
 

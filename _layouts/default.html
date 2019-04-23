@@ -17,7 +17,7 @@
   </div> -->
   <header id="header" class="header bg-white">
     <div class="navbar-container">
-      <a href="/?tate" title="访问 {{  site.title }}" class="navbar-logo">
+      <a href="Javascript:;" title="访问 {{  site.title }}" class="navbar-logo" onclick="onclickLogo()">
         <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="{{ site.title }}"> </a>
       <!-- <a href="/?tate" title="访问 {{  site.title }}" class="navbar-logo">{{ site.title }}</a> -->
       <div class="navbar-menu">
@@ -75,5 +75,21 @@
   </div>
   {% include foot.html %}
 </body>
+
+<script>
+  // 统一的 gtag 点击事件
+  const gtagEventClick = (param) => {
+    gtag('event', 'click', param)
+  }
+  // 点击 logo
+  const onclickLogo = () => {
+    gtagEventClick({
+      'event_category': 'Logo',
+      'event_label': 'tate & snow',
+      'value': Date.now(),
+    });
+    setTimeout(() => window.location.href = '/?tate', 500)
+  }
+</script>
 
 </html>

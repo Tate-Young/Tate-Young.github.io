@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Google Analytics 埋点 - ",
+		"url" : "/2019/04/24/google-analytics.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "React Hooks - ",
 		"url" : "/2019/04/16/react-hooks.html"
 	}
