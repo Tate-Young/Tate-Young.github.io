@@ -778,18 +778,39 @@
 </body>
 
 <script>
+  const createFunctionWithTimeout = (callback, opt_timeout) => {
+    let called = false;
+    function fn() {
+      if (!called) {
+        called = true;
+        callback();
+      }
+    }
+    setTimeout(fn, opt_timeout || 1000);
+    return fn;
+  }
   // 统一的 gtag 点击事件
-  const gtagEventClick = (param) => {
-    gtag('event', 'click', param)
+  const gtagEventClick = (param, fn, action = 'click') => {
+    let gtagParam = param
+
+    if (typeof fn === 'function') {
+      gtagParam = {...param, ...{
+        'event_callback': createFunctionWithTimeout(fn)
+      }}
+    }
+
+    gtag('event', action, gtagParam)
   }
   // 点击 logo
   const onclickLogo = () => {
     gtagEventClick({
-      'event_category': 'Logo',
+      'event_category': 'clickLogo',
       'event_label': 'tate & snow',
       'value': Date.now(),
+    }, () => {
+      console.log('event_callback')
+      window.location.href = '/?tate'
     });
-    setTimeout(() => window.location.href = '/?tate', 500)
   }
 </script>
 
