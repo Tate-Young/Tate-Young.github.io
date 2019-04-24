@@ -85,3 +85,20 @@ const onClickTag = (tag) => {
     window.location.href = `/tags#${tag}`
   });
 }
+
+// 监听博客页面侧边栏锚点
+if (directoryContainer) {
+  directoryContainer.addEventListener('click', (e) => {
+    const { target: { nodeName = '', name } = {} } = e
+    const { innerText = '' } = postTitle
+
+    if (nodeName === 'A') {
+      gtagEventClick({
+        'event_category': 'Anchor',
+        'event_label': innerText + name,
+      }, () => {
+        window.location.href = name
+      });
+    }
+  })
+}
