@@ -7,6 +7,7 @@ background: green
 category: 前端
 title:  Google Analytics 埋点
 date:   2019-04-24 00:08:00 GMT+0800 (CST)
+update: 2019-04-24 21:18:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/04/23/5cbf2ec3702de.png
 tags:
 - js
@@ -361,6 +362,7 @@ form.addEventListener('submit', function(event) {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
+  // 该代码段会配置一个 Google Analytics 媒体资源，参数为跟踪 ID
   gtag('config', 'GA_TRACKING_ID');
 </script>
 ```
@@ -389,6 +391,25 @@ gtag('set', {
 });
 gtag('config', 'GA_TRACKING_ID_1');
 gtag('config', 'GA_TRACKING_ID_2');
+```
+
+如果对不同范围内的同一参数分配了不同的值，则系统在处理事件时只会使用一个值。范围限定为 event 的参数值优先于范围限定为 config 的参数，而 config 参数优先于使用 set 的全局范围参数:
+
+```JS
+// Set global currency to Euros
+gtag('set', { 'currency': 'EUR' });
+
+// Set currency for <target_ID1> to 'USD'
+gtag('config','<target_ID1>', { 'currency': 'USD' });
+
+// Process a conversion event with currency: 'GBP'
+gtag('event','conversion', { 'currency': 'GBP', 'send_to': '<target_ID1>' });
+
+// Process a conversion event with currency: 'EUR'
+gtag('event','conversion');
+
+// Process a conversion event with currency: 'USD'
+gtag('event','conversion', { 'send_to': '<target_ID1>' });
 ```
 
 ### 网页跟踪
@@ -425,6 +446,7 @@ gtag('event', 'click', {
   'event_category': 'logo',
   'event_label': 'Tate & Snow',
   'value': Date.now(),
+  'send_to': GA_TRACKING_ID,
 });
 ```
 
@@ -540,4 +562,6 @@ form.addEventListener('submit', function(event) {
 1. [Google Analytics（分析）--> 衡量 --> analytics.js](https://developers.google.com/analytics/devguides/collection/analyticsjs/?hl=zh-cn)
 2. [Google Analytics（分析）--> 衡量 --> gtag.js](https://developers.google.com/analytics/devguides/collection/gtagjs/?hl=zh-cn)
 3. [从 analytics.js 迁移至 gtag.js](https://developers.google.com/analytics/devguides/collection/gtagjs/migration?hl=zh-cn)
-4. [[Google Analytics] 超詳細GA網站分析入門教學，看這篇就對了！](https://pickydigest.com/digital-marketing/google-analytics-getting-started/)
+4. [gtag.js API 参考](https://developers.google.com/gtagjs/reference/api?hl=zh-cn)
+5. [Google Analytics（分析）数据收集限制与配额](https://developers.google.com/analytics/devguides/collection/analyticsjs/limits-quotas)
+6. [[Google Analytics] 超詳細GA網站分析入門教學，看這篇就對了！](https://pickydigest.com/digital-marketing/google-analytics-getting-started/)

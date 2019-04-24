@@ -87,7 +87,7 @@ const onClickTag = (tag) => {
 }
 
 // 监听博客页面侧边栏锚点
-if (directoryContainer) {
+if (typeof directoryContainer !== 'undefined') {
   directoryContainer.addEventListener('click', (e) => {
     const { target: { nodeName = '', name } = {} } = e
     const { innerText = '' } = postTitle
@@ -96,6 +96,7 @@ if (directoryContainer) {
       gtagEventClick({
         'event_category': 'Anchor',
         'event_label': innerText + name,
+        'post_title': innerText,
       }, () => {
         window.location.href = name
       });

@@ -42,7 +42,17 @@
   window.GA_TRACKING_ID = 'UA-136311746-1'
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', GA_TRACKING_ID, { 'transport_type': 'beacon'});
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
 </script>
 <meta content="" property="fb:app_id" />
 <script>
@@ -94,7 +104,7 @@
                 <a href="http://localhost:4000/README">关于</a>
                 
             </div> -->
-            <div class="navbar-search" onclick="">
+            <div class="navbar-search" onclick="onClickSearch()">
                 <span class="icon-search"></span>
                 <form id="cb-search-btn" role="search">
                     <span class="search-box">
@@ -147,6 +157,8 @@
                     <time datetime="2019-04-24 00:08:00" itemprop="datePublished">
                       发布时间：2019-04-24 00:08:00
                       &nbsp;&nbsp;&nbsp;
+                      
+                        修改时间：2019-04-24 21:18:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -634,6 +646,7 @@ form.addEventListener('submit', function(event) {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
+  // 该代码段会配置一个 Google Analytics 媒体资源，参数为跟踪 ID
   gtag('config', 'GA_TRACKING_ID');
 &lt;/script&gt;
 </code></pre>
@@ -659,6 +672,24 @@ form.addEventListener('submit', function(event) {
 });
 gtag('config', 'GA_TRACKING_ID_1');
 gtag('config', 'GA_TRACKING_ID_2');
+</code></pre>
+
+<p>如果对不同范围内的同一参数分配了不同的值，则系统在处理事件时只会使用一个值。范围限定为 event 的参数值优先于范围限定为 config 的参数，而 config 参数优先于使用 set 的全局范围参数:</p>
+
+<pre><code class="language-JS">// Set global currency to Euros
+gtag('set', { 'currency': 'EUR' });
+
+// Set currency for &lt;target_ID1&gt; to 'USD'
+gtag('config','&lt;target_ID1&gt;', { 'currency': 'USD' });
+
+// Process a conversion event with currency: 'GBP'
+gtag('event','conversion', { 'currency': 'GBP', 'send_to': '&lt;target_ID1&gt;' });
+
+// Process a conversion event with currency: 'EUR'
+gtag('event','conversion');
+
+// Process a conversion event with currency: 'USD'
+gtag('event','conversion', { 'send_to': '&lt;target_ID1&gt;' });
 </code></pre>
 
 <h3 id="网页跟踪-1">网页跟踪</h3>
@@ -717,6 +748,7 @@ gtag('config', 'GA_TRACKING_ID_2');
   'event_category': 'logo',
   'event_label': 'Tate &amp; Snow',
   'value': Date.now(),
+  'send_to': GA_TRACKING_ID,
 });
 </code></pre>
 
@@ -831,6 +863,8 @@ form.addEventListener('submit', function(event) {
   <li><a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/?hl=zh-cn">Google Analytics（分析）–&gt; 衡量 –&gt; analytics.js</a></li>
   <li><a href="https://developers.google.com/analytics/devguides/collection/gtagjs/?hl=zh-cn">Google Analytics（分析）–&gt; 衡量 –&gt; gtag.js</a></li>
   <li><a href="https://developers.google.com/analytics/devguides/collection/gtagjs/migration?hl=zh-cn">从 analytics.js 迁移至 gtag.js</a></li>
+  <li><a href="https://developers.google.com/gtagjs/reference/api?hl=zh-cn">gtag.js API 参考</a></li>
+  <li><a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/limits-quotas">Google Analytics（分析）数据收集限制与配额</a></li>
   <li><a href="https://pickydigest.com/digital-marketing/google-analytics-getting-started/">[Google Analytics] 超詳細GA網站分析入門教學，看這篇就對了！</a></li>
 </ol>
  
@@ -1124,12 +1158,11 @@ form.addEventListener('submit', function(event) {
       postDirectoryBuild();
     </script>
     <script>
-      gtag('config', GA_TRACKING_ID, {
-        'page_title' : 'Blog',
-        'page_path': window.location.pathname,
-        'page_date': Date.now(),
-        'page_tag': 'tate & snow',
-      });
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
 
     </script>
     <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>

@@ -35,7 +35,17 @@
   window.GA_TRACKING_ID = 'UA-136311746-1'
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', GA_TRACKING_ID, { 'transport_type': 'beacon'});
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
 </script>
 <meta content="{{ site.facebook_appid }}" property="fb:app_id" />
 <script>

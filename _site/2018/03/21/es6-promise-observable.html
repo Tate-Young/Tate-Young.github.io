@@ -42,7 +42,17 @@
   window.GA_TRACKING_ID = 'UA-136311746-1'
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', GA_TRACKING_ID, { 'transport_type': 'beacon'});
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
 </script>
 <meta content="" property="fb:app_id" />
 <script>
@@ -94,7 +104,7 @@
                 <a href="http://localhost:4000/README">关于</a>
                 
             </div> -->
-            <div class="navbar-search" onclick="">
+            <div class="navbar-search" onclick="onClickSearch()">
                 <span class="icon-search"></span>
                 <form id="cb-search-btn" role="search">
                     <span class="search-box">
@@ -1326,12 +1336,11 @@ ngOnInit() {
       postDirectoryBuild();
     </script>
     <script>
-      gtag('config', GA_TRACKING_ID, {
-        'page_title' : 'Blog',
-        'page_path': window.location.pathname,
-        'page_date': Date.now(),
-        'page_tag': 'tate & snow',
-      });
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
 
     </script>
     <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>

@@ -27,7 +27,7 @@
                 <a href="{% unless link.external %}{{ site.url }}{% endunless %}{{ link.url }}">{{ link.name }}</a>
                 {% endfor %}
             </div> -->
-            <div class="navbar-search" onclick="">
+            <div class="navbar-search" onclick="onClickSearch()">
                 <span class="icon-search"></span>
                 <form id="cb-search-btn" role="search">
                     <span class="search-box">
@@ -235,12 +235,11 @@
       postDirectoryBuild();
     </script>
     <script>
-      gtag('config', GA_TRACKING_ID, {
-        'page_title' : 'Blog',
-        'page_path': window.location.pathname,
-        'page_date': Date.now(),
-        'page_tag': 'tate & snow',
-      });
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
 
     </script>
     <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
