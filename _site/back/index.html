@@ -62,25 +62,25 @@
   </div> -->
   <header id="header" class="header bg-white">
     <div class="navbar-container">
-      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo" onclick="onclickLogo()">
+      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo" onclick="onClickLogo()">
         <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
       <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a> -->
       <div class="navbar-menu">
         
-        <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+        <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
         
-        <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+        <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
         
-        <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+        <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
         
-        <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+        <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
         
-        <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+        <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
         
-        <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+        <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
         
       </div>
-      <div class="navbar-search" onclick="">
+      <div class="navbar-search" onclick="onClickSearch()">
         <span class="icon-search"></span>
         <form method="post" action="/404.html" role="search">
           <span class="search-box">
@@ -95,27 +95,27 @@
         <ul>
           
           <li>
-            <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+            <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
           </li>
           
           <li>
-            <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+            <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
           </li>
           
           <li>
-            <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+            <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
           </li>
           
           <li>
-            <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+            <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
           </li>
           
           <li>
-            <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+            <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
           </li>
           
           <li>
-            <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+            <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
           </li>
           
         </ul>
@@ -567,33 +567,33 @@
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
-          
+  
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
     
 </div>
@@ -602,7 +602,8 @@
 </footer> -->
 <script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
-<script src="/search/js/cb-search.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
 <!-- <script src="/search/js/canvas.js"></script> -->
 
 <script>
@@ -624,43 +625,6 @@
         s.parentNode.insertBefore(bp, s);
     })();
 </script>
+
 </body>
-
-<script>
-  const createFunctionWithTimeout = (callback, opt_timeout) => {
-    let called = false;
-    function fn() {
-      if (!called) {
-        called = true;
-        callback();
-      }
-    }
-    setTimeout(fn, opt_timeout || 1000);
-    return fn;
-  }
-  // 统一的 gtag 点击事件
-  const gtagEventClick = (param, fn, action = 'click') => {
-    let gtagParam = param
-
-    if (typeof fn === 'function') {
-      gtagParam = {...param, ...{
-        'event_callback': createFunctionWithTimeout(fn)
-      }}
-    }
-
-    gtag('event', action, gtagParam)
-  }
-  // 点击 logo
-  const onclickLogo = () => {
-    gtagEventClick({
-      'event_category': 'clickLogo',
-      'event_label': 'tate & snow',
-      'value': Date.now(),
-    }, () => {
-      console.log('event_callback')
-      window.location.href = '/?tate'
-    });
-  }
-</script>
-
 </html>

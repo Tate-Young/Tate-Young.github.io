@@ -62,25 +62,25 @@
   </div> -->
   <header id="header" class="header bg-white">
     <div class="navbar-container">
-      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo" onclick="onclickLogo()">
+      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo" onclick="onClickLogo()">
         <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
       <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a> -->
       <div class="navbar-menu">
         
-        <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+        <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
         
-        <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+        <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
         
-        <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+        <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
         
-        <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+        <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
         
-        <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+        <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
         
-        <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+        <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
         
       </div>
-      <div class="navbar-search" onclick="">
+      <div class="navbar-search" onclick="onClickSearch()">
         <span class="icon-search"></span>
         <form method="post" action="/404.html" role="search">
           <span class="search-box">
@@ -95,27 +95,27 @@
         <ul>
           
           <li>
-            <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+            <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
           </li>
           
           <li>
-            <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+            <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
           </li>
           
           <li>
-            <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+            <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
           </li>
           
           <li>
-            <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+            <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
           </li>
           
           <li>
-            <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+            <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
           </li>
           
           <li>
-            <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+            <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
           </li>
           
         </ul>
@@ -133,7 +133,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('/style/images/darling.jpg');"></div>
-					<a href="/2018/02/09/js-closure.html">
+					<a href="javascript:;" onclick="onClickCard('闭包', '/2018/02/09/js-closure.html')">
 						<div class="item-desc">
 							<p>闭包什么是闭包闭包(closure) 个人认为一定要遵循两个条件:  函数嵌套，且内层函数持有外层函数的变量  内层函数在外层函数所在作用域外被调用// 创建闭包的常见方式，就是在一个函数内部返...</p>
 						</div>
@@ -146,13 +146,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/02/09/js-closure.html" title="访问 闭包">闭包</a>
+							<a href="javascript:;" onclick="onClickCard('闭包', '/2018/02/09/js-closure.html')" title="访问 闭包">闭包</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-02-09">2018-02-09</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-02-09">2018-02-09</a>
 							</div>
 						</div>
@@ -163,7 +165,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('http://davidshariff.com/blog/wp-content/uploads/2012/06/es1.gif');"></div>
-					<a href="/2018/02/09/js-scope.html">
+					<a href="javascript:;" onclick="onClickCard('执行上下文与作用域', '/2018/02/09/js-scope.html')">
 						<div class="item-desc">
 							<p>执行上下文与作用域什么是执行上下文执行上下文可执行代码(executable code) 包含三种  全局代码(global code) - 代码首次执行的默认环境  函数代码(function...</p>
 						</div>
@@ -176,13 +178,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/02/09/js-scope.html" title="访问 执行上下文与作用域">执行上下文与作用域</a>
+							<a href="javascript:;" onclick="onClickCard('执行上下文与作用域', '/2018/02/09/js-scope.html')" title="访问 执行上下文与作用域">执行上下文与作用域</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-02-09">2018-02-09</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-02-09">2018-02-09</a>
 							</div>
 						</div>
@@ -193,7 +197,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('/style/images/darling.jpg');"></div>
-					<a href="/2018/02/08/js-hoisting.html">
+					<a href="javascript:;" onclick="onClickCard('变量提升', '/2018/02/08/js-hoisting.html')">
 						<div class="item-desc">
 							<p>变量提升什么是变量提升变量提升(Hoisting) 其实是执行上下文工作的一种表现形式。表现为在其当前作用域范围内，声明前可以使用该变量(未初始化)或者函数。变量声明var name = 'Ta...</p>
 						</div>
@@ -206,13 +210,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/02/08/js-hoisting.html" title="访问 变量提升">变量提升</a>
+							<a href="javascript:;" onclick="onClickCard('变量提升', '/2018/02/08/js-hoisting.html')" title="访问 变量提升">变量提升</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-02-08">2018-02-08</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-02-08">2018-02-08</a>
 							</div>
 						</div>
@@ -223,7 +229,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('https://i.loli.net/2018/02/26/5a935bee61ea5.png');"></div>
-					<a href="/2018/02/06/js-prototype.html">
+					<a href="javascript:;" onclick="onClickCard('原型链与继承', '/2018/02/06/js-prototype.html')">
 						<div class="item-desc">
 							<p>原型链与继承许多OO语言都支持两种继承方式：接口继承和实现继承。接口继承只承认方法签名，而实现继承则继承实际的方法。由于函数没有签名，故 JavaScript 只支持实现继承。大部分面向对象的编...</p>
 						</div>
@@ -236,13 +242,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/02/06/js-prototype.html" title="访问 原型链与继承">原型链与继承</a>
+							<a href="javascript:;" onclick="onClickCard('原型链与继承', '/2018/02/06/js-prototype.html')" title="访问 原型链与继承">原型链与继承</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-02-06">2018-02-06</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-02-06">2018-02-06</a>
 							</div>
 						</div>
@@ -253,7 +261,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('http://img.zcool.cn/community/01e70755db347c6ac7251df8aed0e0.jpg@900w_1l_2o_100sh.jpg');"></div>
-					<a href="/2018/02/06/js-error.html">
+					<a href="javascript:;" onclick="onClickCard('Error 处理机制', '/2018/02/06/js-error.html')">
 						<div class="item-desc">
 							<p>Error 处理机制Error 类型通过 Error 的构造器可以创建一个错误对象，当运行时错误产生时，Error 的实例对象会被抛出。通常 Error 实例对象有如下属性：          ...</p>
 						</div>
@@ -266,13 +274,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/02/06/js-error.html" title="访问 Error 处理机制">Error 处理机制</a>
+							<a href="javascript:;" onclick="onClickCard('Error 处理机制', '/2018/02/06/js-error.html')" title="访问 Error 处理机制">Error 处理机制</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-02-06">2018-02-06</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-02-06">2018-02-06</a>
 							</div>
 						</div>
@@ -283,7 +293,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('/style/images/darling.jpg');"></div>
-					<a href="/2018/02/05/js-tail-call-optimization.html">
+					<a href="javascript:;" onclick="onClickCard('尾调用优化', '/2018/02/05/js-tail-call-optimization.html')">
 						<div class="item-desc">
 							<p>尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等...</p>
 						</div>
@@ -296,13 +306,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/02/05/js-tail-call-optimization.html" title="访问 尾调用优化">尾调用优化</a>
+							<a href="javascript:;" onclick="onClickCard('尾调用优化', '/2018/02/05/js-tail-call-optimization.html')" title="访问 尾调用优化">尾调用优化</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-02-05">2018-02-05</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-02-05">2018-02-05</a>
 							</div>
 						</div>
@@ -313,7 +325,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('https://sfault-image.b0.upaiyun.com/360/409/3604095867-59a67ae56079d_articlex');"></div>
-					<a href="/2018/02/05/js-event-loop.html">
+					<a href="javascript:;" onclick="onClickCard('事件循环', '/2018/02/05/js-event-loop.html')">
 						<div class="item-desc">
 							<p>事件循环进程和线程进程(process) 是系统进行资源分配和调度的基本单位，任一时刻，单核CPU总是运行一个进程，其他进程处于非运行状态。线程(thread) 是系统能够进行运算调度的最小单位...</p>
 						</div>
@@ -326,13 +338,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/02/05/js-event-loop.html" title="访问 事件循环">事件循环</a>
+							<a href="javascript:;" onclick="onClickCard('事件循环', '/2018/02/05/js-event-loop.html')" title="访问 事件循环">事件循环</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-02-05">2018-02-05</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-02-05">2018-02-05</a>
 							</div>
 						</div>
@@ -343,7 +357,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('/style/images/darling.jpg');"></div>
-					<a href="/2018/02/04/js-data-detection.html">
+					<a href="javascript:;" onclick="onClickCard('数据检测', '/2018/02/04/js-data-detection.html')">
 						<div class="item-desc">
 							<p>数据检测typeoftypeof 是一个一元运算，运算数可以是任意类型。它返回值是一个字符串，代表其数据类型，包括以下 7 种：string、number、boolean、symbol、obje...</p>
 						</div>
@@ -356,13 +370,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/02/04/js-data-detection.html" title="访问 数据检测">数据检测</a>
+							<a href="javascript:;" onclick="onClickCard('数据检测', '/2018/02/04/js-data-detection.html')" title="访问 数据检测">数据检测</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-02-04">2018-02-04</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-02-04">2018-02-04</a>
 							</div>
 						</div>
@@ -373,7 +389,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('https://i.loli.net/2018/02/26/5a935bee645c0.png');"></div>
-					<a href="/2018/02/01/js-wrapper-object.html">
+					<a href="javascript:;" onclick="onClickCard('包装对象', '/2018/02/01/js-wrapper-object.html')">
 						<div class="item-desc">
 							<p>包装对象怎么理解 JS 一切都是对象对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是immutable不可变的，也没有属性和方法而言。然而如下例子var s = '...</p>
 						</div>
@@ -386,13 +402,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/02/01/js-wrapper-object.html" title="访问 包装对象">包装对象</a>
+							<a href="javascript:;" onclick="onClickCard('包装对象', '/2018/02/01/js-wrapper-object.html')" title="访问 包装对象">包装对象</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-02-01">2018-02-01</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-02-01">2018-02-01</a>
 							</div>
 						</div>
@@ -403,7 +421,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('https://user-gold-cdn.xitu.io/2017/2/9/7c13147ecfecd8a6ce7f0b5a9782dd30?imageslim');"></div>
-					<a href="/2018/01/31/js-deep-shallow-copy.html">
+					<a href="javascript:;" onclick="onClickCard('浅拷贝和深拷贝', '/2018/01/31/js-deep-shallow-copy.html')">
 						<div class="item-desc">
 							<p>浅拷贝和深拷贝什么是浅拷贝和深拷贝数据类型存储位置            数据类型      基本类型      引用类型                  举个栗子      Undefine...</p>
 						</div>
@@ -416,13 +434,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/01/31/js-deep-shallow-copy.html" title="访问 浅拷贝和深拷贝">浅拷贝和深拷贝</a>
+							<a href="javascript:;" onclick="onClickCard('浅拷贝和深拷贝', '/2018/01/31/js-deep-shallow-copy.html')" title="访问 浅拷贝和深拷贝">浅拷贝和深拷贝</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-01-31">2018-01-31</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-01-31">2018-01-31</a>
 							</div>
 						</div>
@@ -433,7 +453,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('/style/images/darling.jpg');"></div>
-					<a href="/2018/01/30/js-this.html">
+					<a href="javascript:;" onclick="onClickCard('this 指针', '/2018/01/30/js-this.html')">
 						<div class="item-desc">
 							<p>this 指针this 指针指向this 存在于执行上下文(executation context)，指向属性或方法当前所在的对象。this 指针案例// 实际执行的是 window.getNa...</p>
 						</div>
@@ -446,13 +466,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/01/30/js-this.html" title="访问 this 指针">this 指针</a>
+							<a href="javascript:;" onclick="onClickCard('this 指针', '/2018/01/30/js-this.html')" title="访问 this 指针">this 指针</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-01-30">2018-01-30</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-01-30">2018-01-30</a>
 							</div>
 						</div>
@@ -463,7 +485,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-purple" style="background-image:url('https://i.loli.net/2018/07/24/5b56b1a40824c.jpg');"></div>
-					<a href="/2018/01/29/css-priority.html">
+					<a href="javascript:;" onclick="onClickCard('CSS 选择器优先级', '/2018/01/29/css-priority.html')">
 						<div class="item-desc">
 							<p>CSS 选择器优先级什么是CSS选择器基础选择器            基础选择器      举个栗子                  标签选择器      div、span         ...</p>
 						</div>
@@ -476,13 +498,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/01/29/css-priority.html" title="访问 CSS 选择器优先级">CSS 选择器优先级</a>
+							<a href="javascript:;" onclick="onClickCard('CSS 选择器优先级', '/2018/01/29/css-priority.html')" title="访问 CSS 选择器优先级">CSS 选择器优先级</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-01-29">2018-01-29</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-01-29">2018-01-29</a>
 							</div>
 						</div>
@@ -560,6 +584,7 @@
     </ol>
 
 </div>
+
     </div>
     
   </main>
@@ -629,33 +654,33 @@
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
-          
+  
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
     
 </div>
@@ -664,7 +689,8 @@
 </footer> -->
 <script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
-<script src="/search/js/cb-search.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
 <!-- <script src="/search/js/canvas.js"></script> -->
 
 <script>
@@ -686,43 +712,6 @@
         s.parentNode.insertBefore(bp, s);
     })();
 </script>
+
 </body>
-
-<script>
-  const createFunctionWithTimeout = (callback, opt_timeout) => {
-    let called = false;
-    function fn() {
-      if (!called) {
-        called = true;
-        callback();
-      }
-    }
-    setTimeout(fn, opt_timeout || 1000);
-    return fn;
-  }
-  // 统一的 gtag 点击事件
-  const gtagEventClick = (param, fn, action = 'click') => {
-    let gtagParam = param
-
-    if (typeof fn === 'function') {
-      gtagParam = {...param, ...{
-        'event_callback': createFunctionWithTimeout(fn)
-      }}
-    }
-
-    gtag('event', action, gtagParam)
-  }
-  // 点击 logo
-  const onclickLogo = () => {
-    gtagEventClick({
-      'event_category': 'clickLogo',
-      'event_label': 'tate & snow',
-      'value': Date.now(),
-    }, () => {
-      console.log('event_callback')
-      window.location.href = '/?tate'
-    });
-  }
-</script>
-
 </html>

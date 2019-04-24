@@ -17,15 +17,15 @@
   </div> -->
   <header id="header" class="header bg-white">
     <div class="navbar-container">
-      <a href="Javascript:;" title="访问 {{  site.title }}" class="navbar-logo" onclick="onclickLogo()">
+      <a href="Javascript:;" title="访问 {{  site.title }}" class="navbar-logo" onclick="onClickLogo()">
         <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="{{ site.title }}"> </a>
       <!-- <a href="/?tate" title="访问 {{  site.title }}" class="navbar-logo">{{ site.title }}</a> -->
       <div class="navbar-menu">
         {% for link in site.links %}
-        <a href="{{ link.url }}?tate" title="访问 {{  link.name }}" data-hover="{{link.name}}">{{ link.name }}</a>
+        <a href="Javascript:;" onclick="onClickMenu('{{ link.name }}', '{{ link.url }}')" title="访问 {{ link.name }}" data-hover="{{ link.name }}">{{ link.name }}</a>
         {% endfor %}
       </div>
-      <div class="navbar-search" onclick="">
+      <div class="navbar-search" onclick="onClickSearch()">
         <span class="icon-search"></span>
         <form method="post" action="/404.html" role="search">
           <span class="search-box">
@@ -40,7 +40,7 @@
         <ul>
           {% for link in site.links %}
           <li>
-            <a href="{{ link.url }}?tate" title="访问 {{  link.name }}" data-hover="{{link.name}}">{{ link.name }}</a>
+            <a href="Javascript:;" onclick="onClickMenu('{{ link.name }}', '{{ link.url }}')" title="访问 {{  link.name }}" data-hover="{{link.name}}">{{ link.name }}</a>
           </li>
           {% endfor %}
         </ul>
@@ -75,42 +75,4 @@
   </div>
   {% include foot.html %}
 </body>
-
-<script>
-  const createFunctionWithTimeout = (callback, opt_timeout) => {
-    let called = false;
-    function fn() {
-      if (!called) {
-        called = true;
-        callback();
-      }
-    }
-    setTimeout(fn, opt_timeout || 1000);
-    return fn;
-  }
-  // 统一的 gtag 点击事件
-  const gtagEventClick = (param, fn, action = 'click') => {
-    let gtagParam = param
-
-    if (typeof fn === 'function') {
-      gtagParam = {...param, ...{
-        'event_callback': createFunctionWithTimeout(fn)
-      }}
-    }
-
-    gtag('event', action, gtagParam)
-  }
-  // 点击 logo
-  const onclickLogo = () => {
-    gtagEventClick({
-      'event_category': 'clickLogo',
-      'event_label': 'tate & snow',
-      'value': Date.now(),
-    }, () => {
-      console.log('event_callback')
-      window.location.href = '/?tate'
-    });
-  }
-</script>
-
 </html>

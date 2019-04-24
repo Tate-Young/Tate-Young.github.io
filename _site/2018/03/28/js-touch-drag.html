@@ -40,22 +40,22 @@
 <body class="" gtools_scp_screen_capture_injected="true">
     <header id="header" class="header bg-white">
         <div class="navbar-container">
-            <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo">
                 <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
             <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
             <div class="navbar-menu">
                 
-                <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+                <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
                 
-                <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+                <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
                 
-                <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+                <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
                 
-                <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+                <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
                 
-                <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+                <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
                 
-                <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+                <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
                 
             </div>
             <!-- <div class="navbar-menu">
@@ -88,27 +88,27 @@
                 <ul>
                     
                     <li>
-                        <a href="http://localhost:4000/">首页</a>
+                        <a href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:4000/')">首页</a>
                     </li>
                     
                     <li>
-                        <a href="http://localhost:4000/front">前端</a>
+                        <a href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:4000/front')">前端</a>
                     </li>
                     
                     <li>
-                        <a href="http://localhost:4000/tool">框架</a>
+                        <a href="Javascript:;" onclick="onClickMenu('框架', 'http://localhost:4000/tool')">框架</a>
                     </li>
                     
                     <li>
-                        <a href="http://localhost:4000/back">后端</a>
+                        <a href="Javascript:;" onclick="onClickMenu('后端', 'http://localhost:4000/back')">后端</a>
                     </li>
                     
                     <li>
-                        <a href="http://localhost:4000/tags">标签</a>
+                        <a href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:4000/tags')">标签</a>
                     </li>
                     
                     <li>
-                        <a href="http://localhost:4000/README">关于</a>
+                        <a href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:4000/README')">关于</a>
                     </li>
                     
                 </ul>
@@ -128,12 +128,12 @@
                       &nbsp;&nbsp;&nbsp;
                       
                     </time>
-                    <a href="/tags#前端" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
                 <div class="post-tags">
                        
-                    <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
+                    <a href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
                         JavaScript
                         <span>(19)</span>
                         
@@ -154,7 +154,7 @@
         <div id="post-content" class="post-content" itemprop="articleBody">
             <p class="post-tags">
                    
-                <a href="/tags#JavaScript" title="访问JavaScript" data-hover="JavaScript">
+                <a href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
                     JavaScript
                     <span>(19)</span>
                     </a>
@@ -513,33 +513,33 @@ function ondragend(ev) {
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
-          
+  
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
     
 </div>
@@ -548,7 +548,8 @@ function ondragend(ev) {
 </footer> -->
 <script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
-<script src="/search/js/cb-search.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
 <!-- <script src="/search/js/canvas.js"></script> -->
 
 <script>
@@ -570,6 +571,7 @@ function ondragend(ev) {
         s.parentNode.insertBefore(bp, s);
     })();
 </script>
+
     <!--liberxueconnnet-menu-->
     <div id="directory-content" class="directory-content">
         <div id="directory"></div>
@@ -666,6 +668,13 @@ function ondragend(ev) {
             createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
         };
         postDirectoryBuild();
+    </script>
+    <script>
+      gtag('config', 'UA-136311746-1', {
+        'page_title' : 'Blog',
+        'page_path': window.location.pathname,
+        'page_date': Date.now(),
+      });
     </script>
     <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
     <script>

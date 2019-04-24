@@ -62,25 +62,25 @@
   </div> -->
   <header id="header" class="header bg-white">
     <div class="navbar-container">
-      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo" onclick="onclickLogo()">
+      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo" onclick="onClickLogo()">
         <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
       <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a> -->
       <div class="navbar-menu">
         
-        <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+        <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
         
-        <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+        <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
         
-        <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+        <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
         
-        <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+        <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
         
-        <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+        <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
         
-        <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+        <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
         
       </div>
-      <div class="navbar-search" onclick="">
+      <div class="navbar-search" onclick="onClickSearch()">
         <span class="icon-search"></span>
         <form method="post" action="/404.html" role="search">
           <span class="search-box">
@@ -95,27 +95,27 @@
         <ul>
           
           <li>
-            <a href="/?tate" title="访问 首页" data-hover="首页">首页</a>
+            <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
           </li>
           
           <li>
-            <a href="/front?tate" title="访问 前端" data-hover="前端">前端</a>
+            <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
           </li>
           
           <li>
-            <a href="/tool?tate" title="访问 框架" data-hover="框架">框架</a>
+            <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
           </li>
           
           <li>
-            <a href="/back?tate" title="访问 后端" data-hover="后端">后端</a>
+            <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
           </li>
           
           <li>
-            <a href="/tags?tate" title="访问 标签" data-hover="标签">标签</a>
+            <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
           </li>
           
           <li>
-            <a href="/README?tate" title="访问 关于" data-hover="关于">关于</a>
+            <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
           </li>
           
         </ul>
@@ -133,7 +133,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('/style/images/darling.jpg');"></div>
-					<a href="/2018/08/20/snow.html">
+					<a href="javascript:;" onclick="onClickCard('陈君的作品参考', '/2018/08/20/snow.html')">
 						<div class="item-desc">
 							<p>参与运营的公众号及官网1、公众号参考:  厂家网  厂家网新零售  厂家网商城  车小喜  车小喜活动2、官网参考：  厂家网官网(http://home.cjwsc.com/)  厂家网商城(...</p>
 						</div>
@@ -146,13 +146,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/08/20/snow.html" title="访问 陈君的作品参考">陈君的作品参考</a>
+							<a href="javascript:;" onclick="onClickCard('陈君的作品参考', '/2018/08/20/snow.html')" title="访问 陈君的作品参考">陈君的作品参考</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#文案策划" title="访问 文案策划" data-hover="文案策划">文案策划</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('文案策划')" href="Javascript:;" title="访问 文案策划" data-hover="文案策划">文案策划</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-08-20">2018-08-20</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-08-20">2018-08-20</a>
 							</div>
 						</div>
@@ -163,7 +165,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/08/14/5b726b7f8d3b1.jpg');"></div>
-					<a href="/2018/08/14/immutable.html">
+					<a href="javascript:;" onclick="onClickCard('Immutable', '/2018/08/14/immutable.html')">
 						<div class="item-desc">
 							<p>Immutable什么是 Immutable本段摘自 CamSong 的 Github 上的博客JavaScript 中的对象一般是可变的(Mutable)，因为使用了引用赋值，新的对象简单的引...</p>
 						</div>
@@ -176,13 +178,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/08/14/immutable.html" title="访问 Immutable">Immutable</a>
+							<a href="javascript:;" onclick="onClickCard('Immutable', '/2018/08/14/immutable.html')" title="访问 Immutable">Immutable</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-08-14">2018-08-14</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-08-14">2018-08-14</a>
 							</div>
 						</div>
@@ -193,7 +197,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/08/13/5b7147a3e4935.png');"></div>
-					<a href="/2018/08/13/react-material-ui.html">
+					<a href="javascript:;" onclick="onClickCard('Material-UI', '/2018/08/13/react-material-ui.html')">
 						<div class="item-desc">
 							<p>Material-UI什么是 Material-UIMaterial-UI 是一组 React 组件，设计风格采用了 Google 的 Material Design。👍看个简单的栗子:impo...</p>
 						</div>
@@ -206,13 +210,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/08/13/react-material-ui.html" title="访问 Material-UI">Material-UI</a>
+							<a href="javascript:;" onclick="onClickCard('Material-UI', '/2018/08/13/react-material-ui.html')" title="访问 Material-UI">Material-UI</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-08-13">2018-08-13</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-08-13">2018-08-13</a>
 							</div>
 						</div>
@@ -223,7 +229,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/08/08/5b6a497fea578.png');"></div>
-					<a href="/2018/08/07/react-redux.html">
+					<a href="javascript:;" onclick="onClickCard('Redux & Redux-Saga', '/2018/08/07/react-redux.html')">
 						<div class="item-desc">
 							<p>Redux &amp; Redux-SagaRedux &amp; FluxRedux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的...</p>
 						</div>
@@ -236,13 +242,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/08/07/react-redux.html" title="访问 Redux & Redux-Saga">Redux & Redux-Saga</a>
+							<a href="javascript:;" onclick="onClickCard('Redux & Redux-Saga', '/2018/08/07/react-redux.html')" title="访问 Redux & Redux-Saga">Redux & Redux-Saga</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-08-07">2018-08-07</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-08-07">2018-08-07</a>
 							</div>
 						</div>
@@ -253,7 +261,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/08/03/5b63ed4d906cd.png');"></div>
-					<a href="/2018/08/06/react-profile.html">
+					<a href="javascript:;" onclick="onClickCard('React 简介', '/2018/08/06/react-profile.html')">
 						<div class="item-desc">
 							<p>React 简介React 是一个 View 层的框架，用来渲染视图，它主要做几件事情:  组件化  利用 props 形成单向的数据流  根据 state 的变化来更新 view  利用虚拟 ...</p>
 						</div>
@@ -266,13 +274,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/08/06/react-profile.html" title="访问 React 简介">React 简介</a>
+							<a href="javascript:;" onclick="onClickCard('React 简介', '/2018/08/06/react-profile.html')" title="访问 React 简介">React 简介</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-08-06">2018-08-06</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-08-06">2018-08-06</a>
 							</div>
 						</div>
@@ -283,7 +293,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-blue" style="background-image:url('/style/images/darling.jpg');"></div>
-					<a href="/2018/07/27/js-array-map-filter-reduce.html">
+					<a href="javascript:;" onclick="onClickCard('数组 map filter reduce', '/2018/07/27/js-array-map-filter-reduce.html')">
 						<div class="item-desc">
 							<p>数组 map filter reduce转换借用这篇文章的图例，很方便看出来三者的区别:map// 完整语法Array.prototype.map(callback(element[, inde...</p>
 						</div>
@@ -296,13 +306,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/07/27/js-array-map-filter-reduce.html" title="访问 数组 map filter reduce">数组 map filter reduce</a>
+							<a href="javascript:;" onclick="onClickCard('数组 map filter reduce', '/2018/07/27/js-array-map-filter-reduce.html')" title="访问 数组 map filter reduce">数组 map filter reduce</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-07-27">2018-07-27</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-07-27">2018-07-27</a>
 							</div>
 						</div>
@@ -313,7 +325,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/06/12/5b1f2d120e9e6.jpg');"></div>
-					<a href="/2018/07/20/vue-reactivity-in-depth.html">
+					<a href="javascript:;" onclick="onClickCard('Vue 深入响应式原理', '/2018/07/20/vue-reactivity-in-depth.html')">
 						<div class="item-desc">
 							<p>Vue 深入响应式原理更新检测关于 Vue 如何实现响应式，可参考官方文档，用一句话概括即: 当你把一个普通的 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对...</p>
 						</div>
@@ -326,13 +338,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/07/20/vue-reactivity-in-depth.html" title="访问 Vue 深入响应式原理">Vue 深入响应式原理</a>
+							<a href="javascript:;" onclick="onClickCard('Vue 深入响应式原理', '/2018/07/20/vue-reactivity-in-depth.html')" title="访问 Vue 深入响应式原理">Vue 深入响应式原理</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-07-20">2018-07-20</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-07-20">2018-07-20</a>
 							</div>
 						</div>
@@ -343,7 +357,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('/style/images/darling.jpg');"></div>
-					<a href="/2018/07/20/compatibility-and-debug.html">
+					<a href="javascript:;" onclick="onClickCard('记各种调试和兼容问题', '/2018/07/20/compatibility-and-debug.html')">
 						<div class="item-desc">
 							<p>记各种调试和兼容问题抓包CharlesCharles 主要的功能包括:  截取 Http 和 Https 网络封包  支持重发网络请求，方便后端调试  支持修改网络请求参数  支持网络请求的截获...</p>
 						</div>
@@ -356,13 +370,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/07/20/compatibility-and-debug.html" title="访问 记各种调试和兼容问题">记各种调试和兼容问题</a>
+							<a href="javascript:;" onclick="onClickCard('记各种调试和兼容问题', '/2018/07/20/compatibility-and-debug.html')" title="访问 记各种调试和兼容问题">记各种调试和兼容问题</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-07-20">2018-07-20</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-07-20">2018-07-20</a>
 							</div>
 						</div>
@@ -373,7 +389,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/06/27/5b3360100dcd3.png');"></div>
-					<a href="/2018/06/27/npm-scripts.html">
+					<a href="javascript:;" onclick="onClickCard('NPM Scripts', '/2018/06/27/npm-scripts.html')">
 						<div class="item-desc">
 							<p>NPM ScriptsNPM Scriptspackage.jsonpackage.json 文件定义了项目所需要的依赖模块和配置信息。可以通过npm init命令来创建 package.jso...</p>
 						</div>
@@ -386,13 +402,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/06/27/npm-scripts.html" title="访问 NPM Scripts">NPM Scripts</a>
+							<a href="javascript:;" onclick="onClickCard('NPM Scripts', '/2018/06/27/npm-scripts.html')" title="访问 NPM Scripts">NPM Scripts</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-06-27">2018-06-27</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-06-27">2018-06-27</a>
 							</div>
 						</div>
@@ -403,7 +421,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/06/12/5b1f2d120e9e6.jpg');"></div>
-					<a href="/2018/06/12/vue-profile.html">
+					<a href="javascript:;" onclick="onClickCard('Vue 简介', '/2018/06/12/vue-profile.html')">
 						<div class="item-desc">
 							<p>Vue 简介Vue 实例每个 Vue 应用都是通过创建一个新的 Vue 实例开始的，创建时都要经过一系列的初始化过程。如需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DO...</p>
 						</div>
@@ -416,13 +434,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/06/12/vue-profile.html" title="访问 Vue 简介">Vue 简介</a>
+							<a href="javascript:;" onclick="onClickCard('Vue 简介', '/2018/06/12/vue-profile.html')" title="访问 Vue 简介">Vue 简介</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-06-12">2018-06-12</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-06-12">2018-06-12</a>
 							</div>
 						</div>
@@ -433,7 +453,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/04/24/5ade80f820807.jpg');"></div>
-					<a href="/2018/06/10/ng-faq.html">
+					<a href="javascript:;" onclick="onClickCard('Angular FAQ', '/2018/06/10/ng-faq.html')">
 						<div class="item-desc">
 							<p>Angular FAQ  本文转自 semlinker，详情查看这里 👈👈目录TypeScript  面向对象编程中类的概念是什么？  面向对象编程中继承的概念是什么？  什么是接口？  什么是...</p>
 						</div>
@@ -446,13 +466,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/06/10/ng-faq.html" title="访问 Angular FAQ">Angular FAQ</a>
+							<a href="javascript:;" onclick="onClickCard('Angular FAQ', '/2018/06/10/ng-faq.html')" title="访问 Angular FAQ">Angular FAQ</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-06-10">2018-06-10</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-06-10">2018-06-10</a>
 							</div>
 						</div>
@@ -463,7 +485,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-gray" style="background-image:url('https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg');"></div>
-					<a href="/2018/06/03/node-mongoose.html">
+					<a href="javascript:;" onclick="onClickCard('Mongoose 驱动库', '/2018/06/03/node-mongoose.html')">
 						<div class="item-desc">
 							<p>Mongoose 驱动库连接 Connectionmongoose.connect('mongodb://localhost/myblog');也可以传递配置选项，具体可查看这里mongoose...</p>
 						</div>
@@ -476,13 +498,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/06/03/node-mongoose.html" title="访问 Mongoose 驱动库">Mongoose 驱动库</a>
+							<a href="javascript:;" onclick="onClickCard('Mongoose 驱动库', '/2018/06/03/node-mongoose.html')" title="访问 Mongoose 驱动库">Mongoose 驱动库</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#后端" title="访问 后端" data-hover="后端">后端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="后端">后端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-06-03">2018-06-03</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-06-03">2018-06-03</a>
 							</div>
 						</div>
@@ -493,7 +517,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/04/24/5ade80f820807.jpg');"></div>
-					<a href="/2018/04/27/ng-directive.html">
+					<a href="javascript:;" onclick="onClickCard('指令 Directive', '/2018/04/27/ng-directive.html')">
 						<div class="item-desc">
 							<p>指令 Directive一般情况下，我们通过指令(Directive)来操作 DOM 或者复用 html 模板片段，本文主要简单介绍两个框架里对于指令的使用。AngularJS 指令direct...</p>
 						</div>
@@ -506,13 +530,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/04/27/ng-directive.html" title="访问 指令 Directive">指令 Directive</a>
+							<a href="javascript:;" onclick="onClickCard('指令 Directive', '/2018/04/27/ng-directive.html')" title="访问 指令 Directive">指令 Directive</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-04-27">2018-04-27</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-04-27">2018-04-27</a>
 							</div>
 						</div>
@@ -523,7 +549,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/04/24/5ade80f820807.jpg');"></div>
-					<a href="/2018/04/26/ng-two-way-data-binding.html">
+					<a href="javascript:;" onclick="onClickCard('双向数据绑定的实现', '/2018/04/26/ng-two-way-data-binding.html')">
 						<div class="item-desc">
 							<p>双向数据绑定的实现本文主要从 AngularJS 和 Angular 两个框架来讨论这个问题。AngularJS Dirty CheckingScopeScope(作用域) 相当于 MVVM 中...</p>
 						</div>
@@ -536,13 +562,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/04/26/ng-two-way-data-binding.html" title="访问 双向数据绑定的实现">双向数据绑定的实现</a>
+							<a href="javascript:;" onclick="onClickCard('双向数据绑定的实现', '/2018/04/26/ng-two-way-data-binding.html')" title="访问 双向数据绑定的实现">双向数据绑定的实现</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-04-26">2018-04-26</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-04-26">2018-04-26</a>
 							</div>
 						</div>
@@ -553,7 +581,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-green" style="background-image:url('https://i.loli.net/2018/04/24/5ade80f820807.jpg');"></div>
-					<a href="/2018/04/24/ng-bootstrap.html">
+					<a href="javascript:;" onclick="onClickCard('AngularJS 启动过程', '/2018/04/24/ng-bootstrap.html')">
 						<div class="item-desc">
 							<p>AngularJS 启动过程AngularJS 是一个 JavaScript 框架，可以构建一个单一页面应用程序(SPAs：Single Page Applications)，ng-app 指令...</p>
 						</div>
@@ -566,13 +594,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="/2018/04/24/ng-bootstrap.html" title="访问 AngularJS 启动过程">AngularJS 启动过程</a>
+							<a href="javascript:;" onclick="onClickCard('AngularJS 启动过程', '/2018/04/24/ng-bootstrap.html')" title="访问 AngularJS 启动过程">AngularJS 启动过程</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#前端" title="访问 前端" data-hover="前端">前端</a>
-								<a href="/archives# 2018 " title="访问  2018 " data-hover="
+								<a class="item-meta-category" onclick="onClickCardCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="前端">前端</a>
+								<!-- <a href="/archives# 2018 " title="访问  2018 " data-hover="
+								    2018-04-24">2018-04-24</a> -->
+								<a href="Javascript:;" title="访问  2018 " data-hover="
 								    2018-04-24">2018-04-24</a>
 							</div>
 						</div>
@@ -652,6 +682,7 @@
     </ol>
 
 </div>
+
     </div>
     
   </main>
@@ -721,33 +752,33 @@
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
-          
+  
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
-            
+    
       
     
 </div>
@@ -756,7 +787,8 @@
 </footer> -->
 <script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
-<script src="/search/js/cb-search.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
 <!-- <script src="/search/js/canvas.js"></script> -->
 
 <script>
@@ -778,43 +810,6 @@
         s.parentNode.insertBefore(bp, s);
     })();
 </script>
+
 </body>
-
-<script>
-  const createFunctionWithTimeout = (callback, opt_timeout) => {
-    let called = false;
-    function fn() {
-      if (!called) {
-        called = true;
-        callback();
-      }
-    }
-    setTimeout(fn, opt_timeout || 1000);
-    return fn;
-  }
-  // 统一的 gtag 点击事件
-  const gtagEventClick = (param, fn, action = 'click') => {
-    let gtagParam = param
-
-    if (typeof fn === 'function') {
-      gtagParam = {...param, ...{
-        'event_callback': createFunctionWithTimeout(fn)
-      }}
-    }
-
-    gtag('event', action, gtagParam)
-  }
-  // 点击 logo
-  const onclickLogo = () => {
-    gtagEventClick({
-      'event_category': 'clickLogo',
-      'event_label': 'tate & snow',
-      'value': Date.now(),
-    }, () => {
-      console.log('event_callback')
-      window.location.href = '/?tate'
-    });
-  }
-</script>
-
 </html>

@@ -36,7 +36,7 @@
             </div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">最新文章</h3>
-  {% for post in site.posts limit:14 %}        
+  {% for post in site.posts limit:14 %}
       {% if post.book %}
  <li><a href="{{ post.url }}" title="访问 {{ post.title }}" data-hover="{{ post.title }}">{{ post.title }}</a></li>
       {% endif %}
@@ -47,7 +47,8 @@
 </footer> -->
 <script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
-<script src="/search/js/cb-search.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
 <!-- <script src="/search/js/canvas.js"></script> -->
 
 <script>

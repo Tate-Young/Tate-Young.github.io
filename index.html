@@ -1,4 +1,4 @@
---- 
+---
 ---
 
 <div class="main-content index-page clearfix ">
@@ -8,7 +8,7 @@
 			<div class="post-list-item">
 				<div class="post-list-item-container">
 					<div class="item-thumb  bg-{{posts.background }}" style="background-image:url('{{posts.background-image }}');"></div>
-					<a href="{{ posts.url }}">
+					<a href="javascript:;" onclick="onClickCard('{{ posts.title }}', '{{ posts.url }}')">
 						<div class="item-desc">
 							<p>{{ posts.content | strip_html | strip_newlines | truncate: 100 }}</p>
 						</div>
@@ -21,13 +21,15 @@
 					</div>
 					<div class="item-label">
 						<div class="item-title">
-							<a href="{{ posts.url }}" title="访问 {{ posts.title }}">{{ posts.title }}</a>
+							<a href="javascript:;" onclick="onClickCard('{{ posts.title }}', '{{ posts.url }}')" title="访问 {{ posts.title }}">{{ posts.title }}</a>
 						</div>
 						<div class="item-meta clearfix">
 							<!-- <div class="item-meta-ico bg-ico-book" style="background: url('style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div> -->
 							<div class="item-meta-cat">
-								<a class="item-meta-category" href="/tags#{{ posts.category }}" title="访问 {{ posts.category }}" data-hover="{{ posts.category }}">{{ posts.category }}</a>
-								<a href="/archives#{{ posts.date | date: " %Y "}}" title="访问 {{ posts.date | date: " %Y "}}" data-hover="{{ posts.date | date: "
+								<a class="item-meta-category" onclick="onClickCardCategory('{{ posts.category }}')" href="Javascript:;" title="访问 {{ posts.category }}" data-hover="{{ posts.category }}">{{ posts.category }}</a>
+								<!-- <a href="/archives#{{ posts.date | date: " %Y "}}" title="访问 {{ posts.date | date: " %Y "}}" data-hover="{{ posts.date | date: "
+								    %F"}}">{{ posts.date | date: "%F"}}</a> -->
+								<a href="Javascript:;" title="访问 {{ posts.date | date: " %Y "}}" data-hover="{{ posts.date | date: "
 								    %F"}}">{{ posts.date | date: "%F"}}</a>
 							</div>
 						</div>

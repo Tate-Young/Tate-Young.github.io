@@ -14,12 +14,12 @@
 <body class="" gtools_scp_screen_capture_injected="true">
     <header id="header" class="header bg-white">
         <div class="navbar-container">
-            <a href="/?tate" title="访问 {{site.title }}" class="navbar-logo">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 {{site.title }}" class="navbar-logo">
                 <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="{{ site.title }}"> </a>
             <!-- <a href="/?tate" title="访问 {{  site.title }}" class="navbar-logo">{{ site.title }}</a>   -->
             <div class="navbar-menu">
                 {% for link in site.links %}
-                <a href="{{ link.url }}?tate" title="访问 {{  link.name }}" data-hover="{{link.name}}">{{ link.name }}</a>
+                <a href="Javascript:;" onclick="onClickMenu('{{ link.name }}', '{{ link.url }}')" title="访问 {{  link.name }}" data-hover="{{link.name}}">{{ link.name }}</a>
                 {% endfor %}
             </div>
             <!-- <div class="navbar-menu">
@@ -42,7 +42,7 @@
                 <ul>
                     {% for link in site.links %}
                     <li>
-                        <a href="{% unless link.external %}{{ site.url }}{% endunless %}{{ link.url }}">{{ link.name }}</a>
+                        <a href="Javascript:;" onclick="onClickMenu('{{ link.name }}', '{% unless link.external %}{{ site.url }}{% endunless %}{{ link.url }}')">{{ link.name }}</a>
                     </li>
                     {% endfor %}
                 </ul>
@@ -64,19 +64,19 @@
                         修改时间：{{ page.update | date: "%F %H:%M:%S"}}
                       {% endif %}
                     </time>
-                    <a href="/tags#{{ page.category }}" title="访问 {{ page.category }}" data-hover="博客分类: {{ page.category }}">博客分类: {{ page.category }}</a>
+                    <a onclick="onClickCategory('{{ page.category }}')" href="Javascript:;" title="访问 {{ page.category }}" data-hover="博客分类: {{ page.category }}">博客分类: {{ page.category }}</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
                 <div class="post-tags">
                     {% unless page.tags == empty %} {% assign tags_list = page.tags %} {% if tags_list.first[0] == null %} {% for tag in tags_list
                     %}
-                    <a href="/tags#{{ tag }}" title="访问{{ tag }}" data-hover="{{ tag }}">
+                    <a href="Javascript:;" onclick="onClickTag('{{ tag }}')" title="访问{{ tag }}" data-hover="{{ tag }}">
                         {{ tag }}
                         <span>({{ site.tags[tag].size }})</span>
                         {% unless forloop.last %}{% endunless %}
                     </a>
                     {% endfor %} {% else %} {% for tag in tags_list %}
-                    <a href="/tags#{{ tag[0] }}" title="访问 {{ tag[0] }}" data-hover="{{tag[0]}}">
+                    <a href="Javascript:;" onclick="onClickTag('{{ tag[0] }}')" title="访问 {{ tag[0] }}" data-hover="{{tag[0]}}">
                         {{ tag[0] }}
                         <span>({{ tag[1].size }})</span>
                         {% unless forloop.last %}{% endunless %}
@@ -98,12 +98,12 @@
             <p class="post-tags">
                 {% unless page.tags == empty %} {% assign tags_list = page.tags %} {% if tags_list.first[0] == null %} {% for tag in tags_list
                 %}
-                <a href="/tags#{{ tag }}" title="访问{{ tag }}" data-hover="{{ tag }}">
+                <a href="Javascript:;" onclick="onClickTag('{{ tag }}')" title="访问{{ tag }}" data-hover="{{ tag }}">
                     {{ tag }}
                     <span>({{ site.tags[tag].size }})</span>
                     {% unless forloop.last %}{% endunless %}</a>
                 {% endfor %} {% else %} {% for tag in tags_list %}
-                <a href="/tags#{{ tag[0] }}" title="访问{{ tag[0] }}" data-hover="{{ tag[0] }}">
+                <a href="Javascript:;" onclick="onClickTag('{{ tag[0] }}')" title="访问{{ tag[0] }}" data-hover="{{ tag[0] }}">
                     {{ tag[0] }}
                     <span>({{ tag[1].size }})</span>
                     {% unless forloop.last %}{% endunless %}
@@ -231,6 +231,13 @@
             createPostDirectory(document.getElementById('post-content'), document.getElementById('directory'), true);
         };
         postDirectoryBuild();
+    </script>
+    <script>
+      gtag('config', 'UA-136311746-1', {
+        'page_title' : 'Blog',
+        'page_path': window.location.pathname,
+        'page_date': Date.now(),
+      });
     </script>
     <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
     <script>
