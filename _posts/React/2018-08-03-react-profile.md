@@ -691,3 +691,4 @@ const ShowTheLocationWithRouter = withRouter(ShowTheLocation);
 11. [讲讲今后 React 异步渲染带来的生命周期变化](https://juejin.im/post/5abf4a09f265da237719899d) By Enix
 12. [深入理解 React 组件状态(State)](https://juejin.im/entry/59522bdb6fb9a06b9a516113)
 13. [React 虚拟 Dom 和 diff 算法](https://juejin.im/post/5a3200fe51882554bd5111a0) By Y__
+14. [React Router 4.x 开发，这些雷区我们都帮你踩过了](http://jdc.jd.com/archives/212552) By sunyinfeng

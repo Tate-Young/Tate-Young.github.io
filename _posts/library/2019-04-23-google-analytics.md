@@ -431,6 +431,8 @@ gtag('config', 'GA_TRACKING_ID', {
 
 ### 事件跟踪
 
+如果不指定事件类别和事件标签的话，默认类别为 **general**，默认标签为 (not set):
+
 ```JS
 gtag('event', <action>, { // <action> 事件报告中显示为事件操作的字符串
   'event_category': <category>, // 显示为事件类别的字符串
@@ -538,6 +540,19 @@ form.addEventListener('submit', function(event) {
 });
 ```
 
+## Navigation.sendBeacon
+
+之前比较主流的上报方式是采用 img 标签的 src 属性发送请求，不仅简单而且能解决跨域的问题。但是当点击跳转等导致页面卸载的时候，请求经常被 canceled 掉，因此这里介绍 beacon 上报。即 [**Navigation.sendBeacon**](https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon) 方法可用于通过 HTTP 将少量数据异步传输到 Web 服务器:
+
+```JS
+var data = JSON.stringify({
+  name: 'Tate'
+});
+navigator.sendBeacon('/api', data)
+```
+
+> 请求被 canceled 的原因可以[参考这里](https://stackoverflow.com/questions/12009423/what-does-status-canceled-for-a-resource-mean-in-chrome-developer-tools) 👈
+
 ## Measurement Protocol
 
 [**Measurement Protocol**](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide?hl=zh-cn)可让开发者通过 HTTP 请求直接向 Google Analytics 服务器发送原始用户互动数据。这样，开发者就可以衡量在各种环境中用户与商家互动的情况。开发者可以使用 Measurement Protocol 实现以下目标：
@@ -565,3 +580,4 @@ form.addEventListener('submit', function(event) {
 4. [gtag.js API 参考](https://developers.google.com/gtagjs/reference/api?hl=zh-cn)
 5. [Google Analytics（分析）数据收集限制与配额](https://developers.google.com/analytics/devguides/collection/analyticsjs/limits-quotas)
 6. [[Google Analytics] 超詳細GA網站分析入門教學，看這篇就對了！](https://pickydigest.com/digital-marketing/google-analytics-getting-started/)
+7. [前端日志上报的新姿势“Beacon”](https://juejin.im/post/5bd9c120e51d45321503dfe6) By Berwin

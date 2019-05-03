@@ -735,6 +735,8 @@ gtag('event','conversion', { 'send_to': '&lt;target_ID1&gt;' });
 
 <h3 id="事件跟踪-1">事件跟踪</h3>
 
+<p>如果不指定事件类别和事件标签的话，默认类别为 <strong>general</strong>，默认标签为 (not set):</p>
+
 <pre><code class="language-JS">gtag('event', &lt;action&gt;, { // &lt;action&gt; 事件报告中显示为事件操作的字符串
   'event_category': &lt;category&gt;, // 显示为事件类别的字符串
   'event_label': &lt;label&gt;, // 显示为事件标签的字符串
@@ -834,6 +836,20 @@ form.addEventListener('submit', function(event) {
 });
 </code></pre>
 
+<h2 id="navigationsendbeacon">Navigation.sendBeacon</h2>
+
+<p>之前比较主流的上报方式是采用 img 标签的 src 属性发送请求，不仅简单而且能解决跨域的问题。但是当点击跳转等导致页面卸载的时候，请求经常被 canceled 掉，因此这里介绍 beacon 上报。即 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon"><strong>Navigation.sendBeacon</strong></a> 方法可用于通过 HTTP 将少量数据异步传输到 Web 服务器:</p>
+
+<pre><code class="language-JS">var data = JSON.stringify({
+  name: 'Tate'
+});
+navigator.sendBeacon('/api', data)
+</code></pre>
+
+<blockquote>
+  <p>请求被 canceled 的原因可以<a href="https://stackoverflow.com/questions/12009423/what-does-status-canceled-for-a-resource-mean-in-chrome-developer-tools">参考这里</a> 👈</p>
+</blockquote>
+
 <h2 id="measurement-protocol">Measurement Protocol</h2>
 
 <p><a href="https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide?hl=zh-cn"><strong>Measurement Protocol</strong></a>可让开发者通过 HTTP 请求直接向 Google Analytics 服务器发送原始用户互动数据。这样，开发者就可以衡量在各种环境中用户与商家互动的情况。开发者可以使用 Measurement Protocol 实现以下目标：</p>
@@ -866,6 +882,7 @@ form.addEventListener('submit', function(event) {
   <li><a href="https://developers.google.com/gtagjs/reference/api?hl=zh-cn">gtag.js API 参考</a></li>
   <li><a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/limits-quotas">Google Analytics（分析）数据收集限制与配额</a></li>
   <li><a href="https://pickydigest.com/digital-marketing/google-analytics-getting-started/">[Google Analytics] 超詳細GA網站分析入門教學，看這篇就對了！</a></li>
+  <li><a href="https://juejin.im/post/5bd9c120e51d45321503dfe6">前端日志上报的新姿势“Beacon”</a> By Berwin</li>
 </ol>
  
 <div id="gitalk-container"></div>
