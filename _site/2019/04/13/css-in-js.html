@@ -732,6 +732,10 @@ render(
 )
 </code></pre>
 
+<p>让我们再看看它是怎么做到隔离作用域的:</p>
+
+<p><img src="https://i.loli.net/2019/05/06/5ccfb1688cf4d.png" alt="styled-components.png" /></p>
+
 <blockquote>
   <p>styled-components 这种样式写法其实就是 ES6 里的<a href="http://localhost:4000/2018/03/15/es6-extension-previous.html#标签模板">标签模板(tagged template)</a>，更多的 API 也<a href="https://www.styled-components.com/docs/api">可以参考这里</a> 👈</p>
 </blockquote>
@@ -741,6 +745,27 @@ render(
 <p><strong>material-ui</strong> UI 框架通过 <strong>JSS</strong> 也实现了 CSS in JS 的写法，具体<a href="http://localhost:4000/2018/08/13/react-material-ui.html#jss">可以查看这一篇</a> 👈</p>
 
 <p>但是 Material-UI 的样式解决方案受到许多其他 CSS-in-JS 库的启发，例如上面提到的 styled-components，这些仍在<a href="https://material-ui.com/css-in-js/basics/">实验版本中</a> 👈</p>
+
+<p>同样，我们也看看它怎么做到隔离作用域的，比如 <code class="highlighter-rouge">CouponComponent</code> 组件，添加一个名为 <code class="highlighter-rouge">title</code> 的样式:</p>
+
+<pre><code class="language-JSX">const styles = {
+  title: {
+    height: '55px',
+    lineHeight: '60px',
+    fontSize: '18px',
+    textIndent: '1em',
+  },
+}
+...
+return {
+  ...
+  &lt;div className={classes.title} style=&gt;{titleName}&lt;/div&gt;
+}
+</code></pre>
+
+<p>我们可以从下图看到类名修改的规则为 <code class="highlighter-rouge">组件名 + 类名 + 四位随机数字</code>:</p>
+
+<p><img src="https://i.loli.net/2019/05/06/5ccfd9a2749b2.png" alt="material-ui-jss.png" /></p>
 
 <h2 id="参考链接">参考链接</h2>
 
