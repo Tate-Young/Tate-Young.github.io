@@ -969,6 +969,8 @@ textarea:-ms-input-placeholder {
 .post-list-item-container .item-desc p {
     font-size: 14px;
     margin: 0;
+    margin-top: 50px;
+    transition: all 1s;
     padding: 0;
     word-break: break-all;
     opacity: 0;
@@ -998,6 +1000,7 @@ textarea:-ms-input-placeholder {
     animation: fade-in;
     animation-duration: .5s;
     opacity: 1;
+    margin-top: 0;
 }
 
 .post-list-item-container .item-slant {
