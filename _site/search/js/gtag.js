@@ -73,14 +73,6 @@ const onClickSearch = () => {
   });
 }
 
-// 点击 Top 滚动
-const onClickTop = (title = '') => {
-  gtagEventClick({
-    'event_category': 'Top',
-    'event_label': title,
-  });
-}
-
 /**
  * gtag 博客页埋点
 */

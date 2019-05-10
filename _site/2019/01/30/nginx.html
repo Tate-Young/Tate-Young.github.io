@@ -330,7 +330,7 @@ http {
   }
   server { // 反向代理
     listen 8080;
-    server_name  m1.shein.com; // 访问的域名，多个域名用空格分隔
+    server_name  m1.domain.com; // 访问的域名，多个域名用空格分隔
     index index.html index.htm index.php; // 默认的首页文件
     root  /data/www/default; // 网站根目录
     location / {
