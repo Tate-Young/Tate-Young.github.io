@@ -158,6 +158,8 @@
                       发布时间：2018-03-22 23:11:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-05-16 17:29:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -222,6 +224,37 @@ let readfile = _fs.readfile;
 <pre><code class="language-JS">// 编译时加载
 import { stat, exists, readFile } from 'fs';
 </code></pre>
+
+<h3 id="动态加载">动态加载</h3>
+
+<p>动态加载目前属于提案，它被称为 <a href="https://github.com/tc39/proposal-dynamic-import">import() proposal for JavaScript</a>。这样我们可以按需加载:</p>
+
+<pre><code class="language-JS">if (needsToImport) {
+  import(...).then(...)
+}
+
+// 或者动态计算模块说明符
+import(`translate_${lang}.js`).then(...)
+</code></pre>
+
+<p>也可以实现懒加载:</p>
+
+<pre><code class="language-JS">timerBtn.addEventListener('click', () =&gt; {
+  import(/* webpackChunkName: "momentjs" */ 'moment')
+  .then((moment) =&gt; {
+    // 懒加载的模块拥有所有的类型，并且能够按期工作
+    // 类型检查会工作，代码引用也会工作  :100:
+    const time = moment().format()
+    console.log('TypeScript &gt;= 2.4.0 Dynamic Import Expression:')
+    console.log(time)
+  })
+  .catch(err =&gt; console.log('Failed to load moment', err))
+})
+</code></pre>
+
+<blockquote>
+  <p>使用 ts 的话，在 <code class="highlighter-rouge">tsconfig.json</code> 设置下  <code class="highlighter-rouge">"module": "esnext"</code> 即可使用。</p>
+</blockquote>
 
 <h3 id="export">export</h3>
 

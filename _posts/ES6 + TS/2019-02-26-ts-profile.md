@@ -644,4 +644,5 @@ const y = some.expr!.thing;
 ## 参考链接
 
 1. [TypeScript 中文文档](https://www.tslang.cn/docs/home.html)
-2. [TypeScript 中的 .d.ts 文件有什么作用，这种文件的内如如何编写？ - 知乎](https://www.zhihu.com/question/52068257)
+2. [深入理解 TypeScript(译)](https://jkchao.github.io/typescript-book-chinese/#why) By Basarat
+3. [TypeScript 中的 .d.ts 文件有什么作用，这种文件的内如如何编写？ - 知乎](https://www.zhihu.com/question/52068257)
