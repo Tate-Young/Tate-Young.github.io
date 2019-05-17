@@ -1,5 +1,9 @@
 # HOW TO USE AND RUN
 
+## bundle install
+
+![Bundler's Purpose and Rationale ](https://bundler.io/v1.7/rationale.html)
+
 ## 引入其他文章
 
 ```TEXT
