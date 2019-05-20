@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 简介
 date:   2019-02-26 17:54:00 GMT+0800 (CST)
-update: 2019-03-21 16:15:00 GMT+0800 (CST)
+update: 2019-05-20 16:34:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -18,9 +18,13 @@ tags:
 
 **TypeScript** 是由微软开发的开源的编程语言。它是 **JavaScript** 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。
 
-## 基础类型
+## 类型注解
 
-TypeScript 支持与 JavaScript 几乎相同的数据类型:
+### 特殊类型
+
+1、 基础类型
+
+TypeScript 支持与 JavaScript 几乎相同的数据类型，**类型注解**使用 `:TypeAnnotation` 语法:
 
 ```JS
 // 布尔值
@@ -34,7 +38,7 @@ const list: number[] = [1, 2, 3]
 const list: Array<number> = [1, 2, 3] // 第二种方式是使用数组泛型，Array<元素类型>
 ```
 
-### 元组
+2、 元组
 
 **元组**类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同:
 
@@ -47,7 +51,7 @@ x = ['hello', 10] // OK
 x = [10, 'hello'] // Error
 ```
 
-### 枚举
+3、 枚举
 
 **enum** 类型是对 JavaScript 标准数据类型的一个补充:
 
@@ -63,7 +67,41 @@ enum Color {Red = 1, Green, Blue}
 const colorName: string = Color[2] // 'Green'
 ```
 
-### Any
+> 枚举类型的值，不仅可以是数字类型，也可以是字符串类型。
+
+可以使用 enum + namespace 的声明的方式向枚举类型添加静态方法:
+
+```JS
+enum Weekday {
+  Monday,
+  Tuseday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday
+}
+
+namespace Weekday {
+  export function isBusinessDay(day: Weekday) {
+    switch (day) {
+      case Weekday.Saturday:
+      case Weekday.Sunday:
+        return false;
+      default:
+        return true;
+    }
+  }
+}
+
+const mon = Weekday.Monday;
+const sun = Weekday.Sunday;
+
+console.log(Weekday.isBusinessDay(mon)); // true
+console.log(Weekday.isBusinessDay(sun));
+```
+
+4、 Any
 
 **Any** 类型是指定那些在编程阶段还不清楚类型的变量，这些值可能来自于动态的内容:
 
@@ -74,7 +112,7 @@ notSure = false // okay, definitely a boolean
 const list: any[] = [1, true, 'free']
 ```
 
-### Void
+5、 Void
 
 当一个函数没有返回值时，其类型可以用 **void**:
 
@@ -87,7 +125,7 @@ function warnUser(): void {
 const unusable: void = undefined
 ```
 
-### Never
+6、 Never
 
 **never** 类型表示的是那些永不存在的值的类型。 比如那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型:
 
@@ -98,7 +136,59 @@ function error(message: string): never {
 }
 ```
 
-### 类型别名
+> void 指可以被赋值的类型(在 strictNullChecking 为 false 时)，但是 never 不能赋值给其他任何类型，除了 never。
+
+
+### 联合类型 |
+
+**联合类型**用于限制传入的值的类型只能是分隔的每个类型，如：`number | string | boolean` 表示一个值的类型只能是 number、string、boolean 中的一种:
+
+```JS
+interface Bird {
+  fly()
+  layEggs()
+}
+interface Fish {
+  swim()
+  layEggs()
+}
+let pet = getPet() // getPet() 的返回值类型是`Bird | Fish` 
+pet.layEggs() // 允许
+pet.swim() // 报错
+```
+
+### 类型保护 is
+
+联合类型可以让一个值可以为不同的类型，但随之带来的问题就是访问非共同方法时会报错。那么该如何区分值的具体类型，以及如何访问共有成员呢？我们可以使用后面要介绍的类型断言:
+
+```JS
+let pet = getPet()
+if ((<Fish>pet).swim) {
+  (<Fish>pet).swim()
+} else {
+  (<Bird>pet).fly()
+}
+```
+
+我们可以看到这种书写方式很麻烦。那么有没有更好的方式可以判断类型呢？答案是：使用类型保护，如写一个类型判断函数，形式为 `param is SomeType`:
+
+```JS
+function isFish(pet: Bird | Fish): pet is Fish {
+  return (<Fish>pet).swim !== undefined
+}
+```
+
+这样之后，我们改写上面的判断:
+
+```JS
+if (isFish(pet)) {
+  pet.swim()
+} else {
+  pet.fly()
+}
+```
+
+### 类型别名 type
 
 **类型别名**可以通过 **type** 关键字给一个类型起个新名字，常用于联合类型:
 
@@ -114,25 +204,7 @@ function getName(n: NameOrResolver): Name {
 }
 ```
 
-**联合类型**举个栗子:
-
-```JS
-// 注意我们没有让 b 成为可选的，因为签名的返回值类型不同
-/* WRONG */
-interface Moment {
-  utcOffset(): number
-  utcOffset(b: number): Moment
-  utcOffset(b: string): Moment
-}
-
-/* OK */
-interface Moment {
-  utcOffset(): number
-  utcOffset(b: number|string): Moment
-}
-```
-
-### 类型断言
+### 类型断言 as
 
 有时候你会遇到这样的情况，你会比 TypeScript 更了解某个值的详细信息。 通常这会发生在你清楚地知道一个实体具有比它现有类型更确切的类型。类型断言有两种形式:
 
@@ -143,8 +215,46 @@ interface Moment {
 // 尖括号语法
 const someValue: any = 'this is a string'
 const strLength: number = (<string>someValue).length
-// as 语法
+// as 语法(推荐)
 const strLength: number = (someValue as string).length
+```
+
+类型断言的一个常见用例是当你从 JavaScript 迁移到 TypeScript 时:
+
+```JS
+const foo = {};
+foo.bar = 123; // Error: 'bar' 属性不存在于 ‘{}’
+foo.bas = 'hello'; // Error: 'bas' 属性不存在于 '{}'
+```
+
+这里的代码发出了错误警告，因为 foo 的类型推断为 {}，即是具有零属性的对象。因此，你不能在它的属性上添加 bar 或 bas，你可以通过类型断言来避免此问题:
+
+```JS
+interface Foo {
+  bar: number;
+  bas: string;
+}
+
+const foo = {} as Foo;
+foo.bar = 123;
+foo.bas = 'hello';
+```
+
+让我们再看看**双重类型断言**的栗子:
+
+```JS
+function handler(event: Event) {
+  // const mouseEvent = event as MouseEvent;
+  const element = event as HTMLElement; // Error: 'Event' 和 'HTMLElement' 中的任何一个都不能赋值给另外一个
+}
+```
+
+此时如果你仍然想使用那个类型，你可以使用双重断言。首先断言成兼容所有类型的 any，编译器将不会报错:
+
+```JS
+function handler(event: Event) {
+  const element = (event as any) as HTMLElement; // ok
+}
 ```
 
 ## 接口 Interface
@@ -437,7 +547,7 @@ myGenericNumber.zeroValue = 0
 myGenericNumber.add = function(x, y) { return x + y }
 ```
 
-没有什么去限制它只能使用number类型。 也可以使用字符串或其它更复杂的类型:
+没有什么去限制它只能使用 number 类型。 也可以使用字符串或其它更复杂的类型:
 
 ```JS
 let stringNumeric = new GenericNumber<string>()
@@ -630,19 +740,10 @@ declare class Greeter {
 }
 ```
 
-## ! - Non-null assertion operator
-
-If you know from external means that an expression is not null or undefined, you can use the non-null assertion operator `!` to coerce away those types:
-
-```JS
-// Error, some.expr may be null or undefined
-const x = some.expr.thing;
-// OK
-const y = some.expr!.thing;
-```
-
 ## 参考链接
 
 1. [TypeScript 中文文档](https://www.tslang.cn/docs/home.html)
 2. [深入理解 TypeScript(译)](https://jkchao.github.io/typescript-book-chinese/#why) By Basarat
 3. [TypeScript 中的 .d.ts 文件有什么作用，这种文件的内如如何编写？ - 知乎](https://www.zhihu.com/question/52068257)
+4. [Typescript学习记录：高级类型](https://www.ruphi.cn/archives/266/) By RuphiLau
+5. [Say Goodbye to ‘../../../..’ in your TypeScript Imports](https://decembersoft.com/posts/say-goodbye-to-relative-paths-in-typescript-imports/)

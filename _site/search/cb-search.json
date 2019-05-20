@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "TypeScript 进阶 - ",
+		"url" : "/2019/05/20/ts-advanced.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Google Analytics 埋点 - ",
 		"url" : "/2019/04/24/google-analytics.html"
 	}

@@ -1,0 +1,898 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='TypeScript 进阶 - Tate & Snow' name='title' />
+    <meta content='TypeScript 进阶 - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>TypeScript 进阶 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>TypeScript 进阶 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TypeScript 进阶 - Tate & Snow">
+<meta name="twitter:keywords" content="TypeScript 进阶 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScript 进阶 - Tate & Snow">
+<meta name="og:keywords" content="TypeScript 进阶 - Tate & Snow|TypeScript 进阶tsconfig.json如果一个目录下存在一个 tsconfig.json 文件，那么它意味着这个目录是 TypeScript 项目的根目录。 tsconfig.json 文件中指定了用来编译这个项目的根文..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
+<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:4000/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="TypeScript 进阶tsconfig.json如果一个目录下存在一个 tsconfig.json 文件，那么它意味着这个目录是 TypeScript 项目的根目录。 tsconfig.json 文件中指定了用来编译这个项目的根文..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:4000/2019/05/20/ts-advanced.html' property='og:url' />
+<meta content="http://localhost:4000/2019/05/20/ts-advanced.html|TypeScript 进阶tsconfig.json如果一个目录下存在一个 tsconfig.json 文件，那么它意味着这个目录是 TypeScript 项目的根目录。 tsconfig.json 文件中指定了用来编译这个项目的根文..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
+                
+                <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
+                
+                <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:4000/">首页</a>
+                
+                <a href="http://localhost:4000/front">前端</a>
+                
+                <a href="http://localhost:4000/tool">框架</a>
+                
+                <a href="http://localhost:4000/back">后端</a>
+                
+                <a href="http://localhost:4000/tags">标签</a>
+                
+                <a href="http://localhost:4000/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:4000/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:4000/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="Javascript:;" onclick="onClickMenu('框架', 'http://localhost:4000/tool')">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a href="Javascript:;" onclick="onClickMenu('后端', 'http://localhost:4000/back')">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:4000/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:4000/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('TypeScript 进阶')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    TypeScript 进阶</h1>
+                <div class="post-data">
+                    <time datetime="2019-05-20 18:36:00" itemprop="datePublished">
+                      发布时间：2019-05-20 18:36:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a href="Javascript:;" onclick="onClickTag('TS')" title="访问TS" data-hover="TS">
+                        TS
+                        <span>(2)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                TypeScript 进阶</h1>
+            <div class="post-data">
+                <time datetime="2019-05-20 18:36:00" itemprop="datePublished">2019-05-20 18:36:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="Javascript:;" onclick="onClickTag('TS')" title="访问TS" data-hover="TS">
+                    TS
+                    <span>(2)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="typescript-进阶">TypeScript 进阶</h1>
+
+<h2 id="tsconfigjson">tsconfig.json</h2>
+
+<p>如果一个目录下存在一个 <code class="highlighter-rouge">tsconfig.json</code> 文件，那么它意味着这个目录是 TypeScript 项目的根目录。 tsconfig.json 文件中指定了用来编译这个项目的根文件和编译选项，使用 <code class="highlighter-rouge">tsc --init</code>即可自动生成该文件，更多<a href="http://www.typescriptlang.org/docs/handbook/compiler-options.html">配置查看这里</a> 👈:</p>
+
+<pre><code class="language-JSON">{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es5",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
+    "module": "esnext",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],                             /* Specify library files to be included in the compilation. */
+    "allowJs": true,                       /* Allow javascript files to be compiled. */
+    // "checkJs": true,                       /* Report errors in .js files. */
+    "jsx": "preserve",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
+    // "declaration": true,                   /* Generates corresponding '.d.ts' file. */
+    // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
+    // "sourceMap": true,                     /* Generates corresponding '.map' file. */
+    // "outFile": "./",                       /* Concatenate and emit output to single file. */
+    // "outDir": "./",                        /* Redirect output structure to the directory. */
+    // "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    // "composite": true,                     /* Enable project compilation */
+    // "incremental": true,                   /* Enable incremental compilation */
+    // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
+    "removeComments": true,                /* Do not emit comments to output. */
+    "noEmit": true,                        /* Do not emit outputs. */
+    // "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
+    // "downlevelIteration": true,            /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
+    "isolatedModules": false,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
+
+    /* Strict Type-Checking Options */
+    "strict": true,                           /* Enable all strict type-checking options. */
+    "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
+    // "strictNullChecks": true,              /* Enable strict null checks. */
+    // "strictFunctionTypes": true,           /* Enable strict checking of function types. */
+    // "strictBindCallApply": true,           /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
+    // "strictPropertyInitialization": true,  /* Enable strict checking of property initialization in classes. */
+    // "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
+    // "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
+
+    /* Additional Checks */
+    // "noUnusedLocals": true,                /* Report errors on unused locals. */
+    // "noUnusedParameters": true,            /* Report errors on unused parameters. */
+    // "noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
+    // "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    // "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
+    // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
+    // "typeRoots": [],                       /* List of folders to include type definitions from. */
+    // "types": [],                           /* Type declaration files to be included in compilation. */
+    "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+    "esModuleInterop": true,                  /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+    // "preserveSymlinks": true,              /* Do not resolve the real path of symlinks. */
+
+    /* Source Map Options */
+    // "sourceRoot": "",                      /* Specify the location where debugger should locate TypeScript files instead of source locations. */
+    // "mapRoot": "",                         /* Specify the location where debugger should locate map files instead of generated locations. */
+    // "inlineSourceMap": true,               /* Emit a single file with source maps instead of having a separate file. */
+    // "inlineSources": true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
+
+    /* Experimental Options */
+    // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
+    // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+    "baseUrl": ".",
+    "paths":{
+      "appConfig": ["./src/config"],
+    }
+  }
+}
+</code></pre>
+
+<blockquote>
+  <p>注意，<code class="highlighter-rouge">tsc</code> 的命令行选项具有优先级，会覆盖 tsconfig.json 中的同名选项</p>
+</blockquote>
+
+<p>我们还可以通过以下几种选项来决定需要编译的文件:</p>
+
+<ul>
+  <li><strong>files</strong> - 指定一个包含相对或绝对文件路径的列表</li>
+  <li><strong>include</strong> - 指定一个文件 glob 匹配模式列表，包含该列表</li>
+  <li><strong>exclude</strong> 同上，但排除该列表</li>
+</ul>
+
+<pre><code class="language-JS">{
+  "compilerOptions": {
+    "module": "system",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outFile": "../../built/local/tsc.js",
+    "sourceMap": true
+  },
+  "files": [
+    "core.ts",
+    "sys.ts"
+  ],
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
+</code></pre>
+
+<p>另外我们还可以使用 <strong>extends</strong> 继承配置:</p>
+
+<pre><code class="language-JSON">// configs/base.json
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "strictNullChecks": true
+  }
+}
+
+// tsconfig.json
+{
+  "extends": "./configs/base",
+  "files": [
+    "main.ts",
+    "supplemental.ts"
+  ]
+}
+</code></pre>
+
+<h3 id="reslovealias">reslove.alias</h3>
+
+<p>在开发时有遇到一个问题，即编译时， <a href="https://webpack.docschina.org/configuration/resolve/">webpack 解析 resolve.alias</a> 在 typescript 文件中提示找不到模块:</p>
+
+<pre><code class="language-JSON">{
+  resolve: {
+    alias: {
+      'appConfig': path.resolve(__dirname, '..', 'src/config')
+    }
+  }
+}
+</code></pre>
+
+<pre><code class="language-JS">// test.ts 提示找不到 appConfig 模块
+import { test } from 'appConfig'
+</code></pre>
+
+<p>此时需要将 <code class="highlighter-rouge">webpack.config.js</code> 中的 alias 路径同步到 tsconfig.json 中的 <strong>paths</strong>，且必须指定 <strong>baseUrl</strong>:</p>
+
+<pre><code class="language-JSON">{
+  "compilerOptions" : {
+    "baseUrl": ".",
+    "paths":{
+      "appConfig": ["./src/config"]
+    }
+  }
+}
+</code></pre>
+
+<h2 id="definitelytyped">DefinitelyTyped</h2>
+
+<p>TypeScript 经过了一系列的摸索，先后提出了 <a href="https://github.com/DefinitelyTyped/tsd">tsd(已废弃)</a>、<a href="https://github.com/typings/typings">typings(已废弃)</a>，最终在 TypeScript 2.0 的时候重新整理了类型定义，提出了 DefinitelyTyped。就是让你把<strong>类型定义文件(*.d.ts)</strong>发布到 npm 中，配合编辑器(或插件)，就能够检测到 JS 库中的静态类型。毫无疑问，<a href="https://microsoft.github.io/TypeSearch/"><strong>DefinitelyTyped</strong></a> 是 TypeScript 最大的优势之一，社区已经记录了 90% 的顶级 JavaScript 库。</p>
+
+<h3 id="typeroots">typeRoots</h3>
+
+<p>默认的，所有位于 <code class="highlighter-rouge">node_modules/@types</code> 路径下的模块都会引入到编译器。具体来说是，<code class="highlighter-rouge">./node_modules/@types</code> 、<code class="highlighter-rouge">../node_modules/@types</code>、<code class="highlighter-rouge">../../node_modules/@types</code> 等等。如果指定了 <strong>typeRoots</strong>，只有 typeRoots 下面的包才会被包含进来:</p>
+
+<pre><code class="language-JSON">// 这个配置文件会包含所有 ./typings 下面的包，而不包含 ./node_modules/@types 里面的包
+{
+  "compilerOptions": {
+    "typeRoots" : ["./typings"]
+  }
+}
+</code></pre>
+
+<p>如果不希望自动引入 typeRoots 指定路径下的所有声明模块，那可以使用 <strong>types</strong> 指定自动引入那些模块:</p>
+
+<pre><code class="language-JSON">// 只会引入 node 、 lodash 和 express 三个声明模块，其它的声明模块则不会被自动引入
+{
+  "compilerOptions": {
+    "types" : ["node", "lodash", "express"]
+  }
+}
+</code></pre>
+
+<blockquote>
+  <p>自动引入只对包含全局声明的模块有效。比如 jQuery ，我们不用手动 <code class="highlighter-rouge">import</code> 或者 <code class="highlighter-rouge">///&lt;reference/&gt;</code> 即可在任何文件中使用 $ 的类型。</p>
+</blockquote>
+
+<h3 id="types">@types</h3>
+
+<p>得力于 DefinitelyTyped，现在你可以通过 npm 来安装使用 <strong>@types</strong>，如下例所示，你可以为 jquery 添加声明文件:</p>
+
+<pre><code class="language-SHELL">npm install @types/jquery --save-dev
+</code></pre>
+
+<p>@types 支持全局和模块类型定义，默认情况下，TypeScript 会自动包含支持全局使用的任何定义。例如，对于 jquery，你应该能够在项目中开始全局使用 $。当然也可以作为模块使用:</p>
+
+<pre><code class="language-JS">import * as $ from 'jquery';
+</code></pre>
+
+<p>一般情况下我们应该避免全局泄漏。因此，你可以参考以上配置，引入有需要的类型：</p>
+
+<pre><code class="language-JSON">// 其他类型的申明文件如  @types/node，它的全局变量(例如 process)则不会泄漏到你的代码中
+{
+  "compilerOptions": {
+    "types" : ["jquery"]
+  }
+}
+</code></pre>
+
+<h2 id="libdts">lib.d.ts</h2>
+
+<p>安装 TypeScript 时，会顺带安装 <code class="highlighter-rouge">lib.d.ts</code> 等声明文件。此文件包含了 JavaScript 运行时以及 DOM 中存在各种常见的环境声明，主要是一些变量声明(如：window、document、math)和一些类似的接口声明(如：Window、Document、Math)。但我们可以通过指定 <code class="highlighter-rouge">--noLib</code> 的编译器命令行标志(或者在 tsconfig.json 中指定选项 <code class="highlighter-rouge">noLib: true</code>)从上下文中排除此文件。这个文件有什么作用呢，我们从一个简单的栗子来看:</p>
+
+<pre><code class="language-JS">// lib.d.ts 为所有 JavaScript 对象定义了 toString 方法
+const foo = 123;
+const bar = foo.toString();
+</code></pre>
+
+<p>如果没有 lib.d.ts 文件:</p>
+
+<pre><code class="language-JS">const foo = 123;
+const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
+</code></pre>
+
+<p>一些时候，你想要解耦编译目标(生成的 JavaScript 版本)和环境库支持之间的关系。例如对于 Promise，你的编译目标是 –target es5，但是你仍然想使用它，这个时候，你可以使用 lib 对它进行控制，其分类如下:</p>
+
+<ul>
+  <li><strong>JavaScript 功能</strong> - es5、es6、esnext 等</li>
+  <li><strong>运行环境</strong> - dom、dom.iterate 等</li>
+  <li><strong>ESNEXT 选项</strong> - es2015.promise、es2015.reflect 等</li>
+</ul>
+
+<pre><code class="language-JSON">// 命令行 tsc --target es5 --lib dom,es6
+{
+  "compilerOptions": {
+  "target": "es5",
+  "lib": ["es6", "dom"]
+}
+}
+</code></pre>
+
+<h2 id="高级类型">高级类型</h2>
+
+<p>在<a href="http://localhost:4000/2019/02/26/ts-profile.html">上一篇里</a>介绍了联合类型等，这里再介绍其他一些高级类型。</p>
+
+<h3 id="交叉类型-">交叉类型 &amp;</h3>
+
+<p><strong>交叉类型</strong>将多个类型合并为一个类型，相当于新类型具有这多个类型的所有特性，相当于是一种并的操作，通常在使用混入(mixin)的场合使用交叉类型，交叉类型的形式如 <code class="highlighter-rouge">T &amp; U</code>:</p>
+
+<pre><code class="language-JS">function extend&lt;T, U&gt;(first: T, second: U): T &amp; U {
+  let result = &lt;T &amp; U&gt;{}
+  for (let key in first) {
+    (&lt;any&gt;result)[key] = (&lt;any&gt;first)[key]
+  }
+  for (let key in second) {
+    if (!result.hasOwnProperty(key)) {
+      (&lt;any&gt;result)[key] = (&lt;any&gt;second)[id]
+    }
+  }
+  return result
+}
+</code></pre>
+
+<h3 id="索引类型-keyof">索引类型 keyof</h3>
+
+<p><strong>索引类型</strong>能使编译器能够检查使用了动态属性名的代码，让我们先看一个栗子:</p>
+
+<pre><code class="language-JS">function pluck&lt;T, K extends keyof T&gt;(o: T, names: K[]): T[K][] {
+  return names.map(n =&gt; o[n])
+}
+
+interface Person {
+  name: string
+  age: number
+}
+
+let p: Person = {
+  name: 'Tate',
+  age: 18
+}
+
+let res = pluck(p, ['name']) // 允许
+</code></pre>
+
+<p>这里 <strong>keyof</strong> 表示<strong>索引类型查询操作符</strong>，它能够获得任何类型T上已知的公共属性名的联合。如例子中:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">keyof T</code> 相当于 <code class="highlighter-rouge">'name' | 'age'</code>，而 <code class="highlighter-rouge">K extends keyof T</code> 表明 K 的取值限制于 <code class="highlighter-rouge">'name' | 'age'</code></li>
+  <li><code class="highlighter-rouge">T[K]</code> 则代表对象里相应 key 的元素的类型，所以在例子中，p 对象里的 name 属性，是 string 类型，所以此时 <code class="highlighter-rouge">T[K]</code> 相当于 <code class="highlighter-rouge">Person[name]</code>，即相当于类型 string，所以返回的是 <code class="highlighter-rouge">string[]</code>，所以 res 的类型为 string[]</li>
+</ol>
+
+<p>再看个栗子:</p>
+
+<pre><code class="language-JS">function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K): T[K] {
+  return obj[key]
+}
+let obj = {
+  name: 'RuphiLau',
+  age: 21,
+  male: true
+}
+let x1 = getProperty(obj, 'name') // 允许，x1 的类型为 string
+let x2 = getProperty(obj, 'age') // 允许，x2 的类型为 number
+let x3 = getProperty(obj, 'male') // 允许，x3 的类型为 boolean
+let x4 = getProperty(obj, 'hobby') // 报错：Argument of type '"hobby"' is not assignable to parameter of type '"name" | "age" | "male"'
+</code></pre>
+
+<h3 id="映射类型-in">映射类型 in</h3>
+
+<p>我们经常会将一个现有类型的属性变成可选或可读:</p>
+
+<pre><code class="language-JS">interface PersonPartial {
+    name?: string
+    age?: number
+}
+</code></pre>
+
+<p>而现在typescript为我们提供了映射类型，能够使得这种转化更加方便，在映射类型里，新类型将以相同的形式去转换旧类型里每个属性，如以上例子可以改写为:</p>
+
+<pre><code class="language-JS">// 源码
+type Readonly&lt;T&gt; = {
+  readonly [P in keyof T]: T[P]
+}
+
+type Partial&lt;T&gt; = {
+  [P in keyof T]?: T[P]
+}
+// -? 操作符，去除可选。即将传入的属性变为必选项
+type Required&lt;T&gt; = {
+  [P in keyof T]-?: T[P]
+}
+
+// 取出一个类型中的部分属性，生成另一个类型
+type Pick&lt;T, K extends keyof T&gt; = {
+  [P in K]: T[P]
+}
+
+// 获取一个函数的返回值的类型
+type ReturnType&lt;T&gt; = T extends (
+  ...args: any[]
+) =&gt; infer R
+  ? R
+  : any;
+
+type PersonReadonly = Readonly&lt;Person&gt;
+type PersonPartial = Partial&lt;Person&gt;
+</code></pre>
+
+<p>举个 pick 的栗子 🌰:</p>
+
+<pre><code class="language-JS">let defaultState = {
+  foo: 7,
+  bar: 'hello'
+};
+
+type PickedState = Pick&lt;typeof defaultState, 'foo'&gt;
+
+let partialState: PickedState = {
+  foo: 8,
+  bar: 'world'
+}
+// bar 不在类型 Pick&lt;{ foo: number; bar: string; }, "foo"&gt; 中
+</code></pre>
+
+<h2 id="其它">其它</h2>
+
+<h3 id="---non-null-assertion-operator">! - Non-null assertion operator</h3>
+
+<p>If you know from external means that an expression is not null or undefined, you can use the non-null assertion operator <code class="highlighter-rouge">!</code> to coerce away those types:</p>
+
+<pre><code class="language-JS">// Error, some.expr may be null or undefined
+const x = some.expr.thing;
+// OK
+const y = some.expr!.thing;
+</code></pre>
+
+<h3 id="箭头函数的类型注解">箭头函数的类型注解</h3>
+
+<pre><code class="language-JS">// 在一个以 number 类型为参数，以 string 类型为返回值的函数
+const simple: (foo: number) =&gt; string = foo =&gt; foo.toString();
+
+// or
+function simple(foo: number): string {
+  return foo.toString()
+}
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://jkchao.github.io/typescript-book-chinese/#why">深入理解 TypeScript(译)</a> By Basarat</li>
+  <li><a href="https://www.cnblogs.com/silin6/p/7793753.html">JavaScript 和 TypeScript 交叉口 —— 类型定义文件(*.d.ts)</a> By linkFly</li>
+  <li><a href="https://www.ruphi.cn/archives/266/">Typescript学习记录：高级类型</a> By RuphiLau</li>
+  <li><a href="https://zhuanlan.zhihu.com/p/40311981">TS 一些工具泛型的使用及其实现</a> By 乱语</li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2019/05/20/ts-advanced.html';
+        this.page.identifier = '/2019/05/20/ts-advanced';
+        this.page.title = 'TypeScript 进阶';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-05-20 18:36:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
