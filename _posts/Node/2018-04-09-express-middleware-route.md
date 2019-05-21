@@ -42,6 +42,15 @@ app.get('/', function (req, res) {
 app.listen(3000)
 ```
 
+我们可以快速去生成一个 express 项目:
+
+```SHELL
+# 安装
+npm install -g express-generator@4
+# 创建项目
+express express-demo && cd express-demo
+```
+
 ## express()
 
 **express()** 用来创建一个 Express 的程序。express() 是一个由 express 模块导出的入口(top-level)函数。

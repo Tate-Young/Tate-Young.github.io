@@ -68,7 +68,7 @@
 
 </head>
 
-<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+<body class="" gtools_scp_screen_capture_injected="true">
     <header id="header" class="header bg-white">
         <div class="navbar-container">
             <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo">
@@ -166,7 +166,7 @@
                        
                     <a href="Javascript:;" onclick="onClickTag('Node')" title="访问Node" data-hover="Node">
                         Node
-                        <span>(6)</span>
+                        <span>(7)</span>
                         
                     </a>
                        
@@ -187,7 +187,7 @@
                    
                 <a href="Javascript:;" onclick="onClickTag('Node')" title="访问Node" data-hover="Node">
                     Node
-                    <span>(6)</span>
+                    <span>(7)</span>
                     </a>
                    
             </p>
@@ -217,6 +217,14 @@ app.get('/', function (req, res) {
 });
 
 app.listen(3000)
+</code></pre>
+
+<p>我们可以快速去生成一个 express 项目:</p>
+
+<pre><code class="language-SHELL"># 安装
+npm install -g express-generator@4
+# 创建项目
+express express-demo &amp;&amp; cd express-demo
 </code></pre>
 
 <h2 id="express">express()</h2>
