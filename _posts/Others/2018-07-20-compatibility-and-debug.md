@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种调试和兼容问题
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-04-09 10:44:00 GMT+0800 (CST)
+update: 2019-05-22 17:40:00 GMT+0800 (CST)
 background-image: /style/images/darling.jpg
 tags:
 - Other
@@ -83,6 +83,8 @@ mitmproxy -p 8888
 | r | 重新请求 |
 | esc | 退出编辑 |
 | fn | 按住拖动光标即可选中 |
+
+> 如果装了 mitmproxy 证书的话还是无效，可以试试 **-k** 参数 😋
 
 ## 手机网页调试
 
