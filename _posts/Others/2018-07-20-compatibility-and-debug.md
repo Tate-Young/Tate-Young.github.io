@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种调试和兼容问题
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-05-22 17:40:00 GMT+0800 (CST)
+update: 2019-05-23 11:54:00 GMT+0800 (CST)
 background-image: /style/images/darling.jpg
 tags:
 - Other
@@ -84,7 +84,37 @@ mitmproxy -p 8888
 | esc | 退出编辑 |
 | fn | 按住拖动光标即可选中 |
 
-> 如果装了 mitmproxy 证书的话还是无效，可以试试 **-k** 参数 😋
+当然 mitmproxy 还可以直接运行 py 脚本:
+
+```Python
+# mitm.py
+from mitmproxy import ctx
+
+# 打印请求报文
+def request(flow):
+  ctx.log.warn(str(flow.request.headers))
+  print(flow.request.path) # 请求路径
+  print(flow.request.method) # 请求方法
+  print(flow.request.url) # 请求路径
+  print(flow.request.host) # 请求主机名
+
+# 打印响应体
+# def response(flow):
+#   print(flow.response.status_code) # 响应体状态码
+#   print(flow.response.text) # 响应体文本
+```
+
+之后运行以下命令，即可直接打印:
+
+```SHELL
+mitmproxy -s mitm.py
+```
+
+![mitmproxy-py.png](https://i.loli.net/2019/05/23/5ce6186fb9af064650.png)
+
+> 如果装了 mitmproxy 证书的话还是无效，可以试试 **-k** 参数，它可以强制忽略证书安全 😋
+
+> window 操作系统不支持使用 mitmproxy 命令，而是使用 mitmdump 或 mitmweb，虽然他们也支持同样的参数，但功能上还是比较弱一点(吐槽 🤮)
 
 ## 手机网页调试
 
@@ -335,3 +365,4 @@ var result = mapped.map(function(el){
 4. [ID - a unique ID/name generator for JavaScript](https://gist.github.com/gordonbrander/2230317) By gordonbrander
 5. [Chrome 35 个开发者工具的小技巧](https://www.w3cplus.com/tools/dev-tips.html) By 南北
 6. [网络分析参考 network performance - Google](https://developers.google.com/web/tools/chrome-devtools/network-performance/reference#timing-explanation) By Kayce Basques
+7. [安装 mitmproxy 以及遇到的坑和简单用法](https://segmentfault.com/a/1190000017956646) By sergiojune

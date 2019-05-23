@@ -7,6 +7,7 @@ background: orange
 category: 前端
 title: HTTPS
 date:   2018-02-26 18:45:00 GMT+0800 (CST)
+update: 2019-05-23 11:53:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/02/26/5a941e489c7af.png
 tags:
 - http
@@ -37,6 +38,14 @@ HTTPS 与 HTTP 的区别:
 | 加密 | 直接将数据给到 TCP 进行传输 | 先将数据给到 SSL/TLS 进行加密，然后再由 TCP 进行传输 |
 
 ![HTTPS](http://tenny.qiniudn.com/HTTPQUBIE2.png)
+
+## 请求报文
+
+![request](http://dl2.iteye.com/upload/attachment/0069/3451/412b4451-2738-3ebc-b1f6-a0cc13b9697b.jpg)
+
+## 响应报文
+
+![response](http://dl2.iteye.com/upload/attachment/0069/3492/bddb00b6-a3e1-3112-a4f4-4b3cb8687c70.jpg)
 
 ## 状态码
 
@@ -142,9 +151,10 @@ HTTPS 的加密方式主要有以下几种:
 ## 参考链接
 
 1. [HTTP、HTTP2.0、SPDY、HTTPS 你应该知道的一些事](http://www.alloyteam.com/2016/07/httphttp2-0spdyhttps-reading-this-is-enough/) By  TAT.tennylv
-1. [HTTPS 科普扫盲帖](https://segmentfault.com/a/1190000004523659) By 程序猿小卡_casper
-1. [HTTPS 的中那些加密算法](https://foofish.net/https-symmetric.html) By liuzhijun
-1. [HTTPS 为什么更安全，先看这些](https://foofish.net/https-story-1.html) By liuzhijun
-1. [OSI 七层模型详解 TCP/IP 协议](http://www.cnblogs.com/jeanschen/p/3762475.html) By jeans chen
-1. [TCP 三次握手原理详解](http://www.cnblogs.com/super86/p/3387457.html) By super 86
-1. [TCP vs. UDP](https://www.diffen.com/difference/TCP_vs_UDP)
+2. [HTTPS 科普扫盲帖](https://segmentfault.com/a/1190000004523659) By 程序猿小卡_casper
+3. [HTTPS 的中那些加密算法](https://foofish.net/https-symmetric.html) By liuzhijun
+4. [HTTPS 为什么更安全，先看这些](https://foofish.net/https-story-1.html) By liuzhijun
+5. [OSI 七层模型详解 TCP/IP 协议](http://www.cnblogs.com/jeanschen/p/3762475.html) By jeans chen
+6. [TCP 三次握手原理详解](http://www.cnblogs.com/super86/p/3387457.html) By super 86
+7. [TCP vs. UDP](https://www.diffen.com/difference/TCP_vs_UDP)
+8. [HTTP 请求行、请求头、请求体详解](https://blog.csdn.net/u010256388/article/details/68491509) By 咚浸暖的过去
