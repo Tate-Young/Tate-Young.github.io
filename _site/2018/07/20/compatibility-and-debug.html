@@ -356,6 +356,19 @@ def request(flow):
 
 <p><img src="https://www.w3cplus.com/sites/default/files/blogs/2016/1601/console-edit-html.gif" alt="chrome tip 1" /></p>
 
+<p>2、Console - 输入交互</p>
+
+<p>通过 <code class="highlighter-rouge">Object.defineProperty</code> 方法为全局变量 window 添加属性，并在 <code class="highlighter-rouge">getter</code> 时进行一系列操作:</p>
+
+<pre><code class="language-JS">Object.defineProperty(window, 'tate', {
+  get() {
+    return 'snow';
+  }
+})
+</code></pre>
+
+<p>这时候你在控制台输入 ‘tate’，则会打印出返回值 ‘snow’。</p>
+
 <blockquote>
   <p>指令 <code class="highlighter-rouge">console</code> 也有超多的用法，具体可以<a href="http://localhost:4000/2018/03/13/js-console.html">参考以前的博客</a> 👈</p>
 </blockquote>

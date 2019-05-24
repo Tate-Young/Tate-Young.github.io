@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种调试和兼容问题
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-05-23 11:54:00 GMT+0800 (CST)
+update: 2019-05-24 20:03:00 GMT+0800 (CST)
 background-image: /style/images/darling.jpg
 tags:
 - Other
@@ -143,6 +143,20 @@ mitmproxy -s mitm.py
 获取元素节点后右键选择 `Edit as HTML` 或者 `Edit Text`。修改后的内容会实时反映在页面和 Elements 面板上:
 
 ![chrome tip 1](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/console-edit-html.gif)
+
+2、Console - 输入交互
+
+通过 `Object.defineProperty` 方法为全局变量 window 添加属性，并在 `getter` 时进行一系列操作:
+
+```JS
+Object.defineProperty(window, 'tate', {
+  get() {
+    return 'snow';
+  }
+})
+```
+
+这时候你在控制台输入 'tate'，则会打印出返回值 'snow'。
 
 > 指令 `console` 也有超多的用法，具体可以[参考以前的博客]( {{site.url}}/2018/03/13/js-console.html ) 👈
 
