@@ -158,7 +158,7 @@
                       发布时间：2018-08-06 20:47:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-03-04 20:34:00
+                        修改时间：2019-05-24 19:41:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -632,6 +632,25 @@ class LoggingButton extends React.Component {
   }
 &lt;/div&gt;
 </code></pre>
+
+<h2 id="fragments">Fragments</h2>
+
+<p>React 中的一个常见模式是一个组件返回多个元素。<a href="https://react.docschina.org/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax"><strong>Fragments</strong></a> 允许你将子列表分组，而无需向 DOM 添加额外节点:</p>
+
+<pre><code class="language-JSX">render() {
+  return (
+    &lt;React.Fragment&gt;
+      &lt;ChildA /&gt;
+      &lt;ChildB /&gt;
+      &lt;ChildC /&gt;
+    &lt;/React.Fragment&gt;
+  );
+}
+</code></pre>
+
+<blockquote>
+  <p>Fragments 还支持短语法 <code class="highlighter-rouge">&lt;&gt;</code>，但是它需要工具编译支持，且不支持 key 或属性。</p>
+</blockquote>
 
 <h2 id="refs">Refs</h2>
 

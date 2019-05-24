@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  React 简介
 date:   2018-08-06 20:47:00 GMT+0800 (CST)
-update: 2019-03-04 20:34:00 GMT+0800 (CST)
+update: 2019-05-24 19:41:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
 tags:
 - React
@@ -428,6 +428,24 @@ class Example extends React.Component {
   }
 </div>
 ```
+
+## Fragments
+
+React 中的一个常见模式是一个组件返回多个元素。[**Fragments**](https://react.docschina.org/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax) 允许你将子列表分组，而无需向 DOM 添加额外节点:
+
+```JSX
+render() {
+  return (
+    <React.Fragment>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </React.Fragment>
+  );
+}
+```
+
+> Fragments 还支持短语法 `<>`，但是它需要工具编译支持，且不支持 key 或属性。
 
 ## Refs
 
