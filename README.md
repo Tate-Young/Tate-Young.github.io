@@ -45,7 +45,7 @@ redirect_from:
 
 ## 技能标签
 
-``JavaScript`` ``TypeScript`` ``ES6`` ``Less`` ``jQuery`` ``AngularJS`` ``Angular`` ``React`` ``Vue`` ``Gulp`` ``NPM Scripts`` ``NodeJS`` ``Linux`` ``Shell`` ``SQL`` ``PS`` ``PR`` ``AE`` ``英文六级``
+``JavaScript`` ``TypeScript`` ``ES6`` ``Less`` ``AngularJS`` ``Angular`` ``React`` ``Vue`` ``Gulp`` ``NPM Scripts`` ``NodeJS`` ``Linux`` ``Shell`` ``SQL`` ``PS`` ``PR`` ``AE`` ``英文六级``
 
 ## 好友推送
 

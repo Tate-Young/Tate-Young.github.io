@@ -4,6 +4,10 @@
 
 ![Bundler's Purpose and Rationale ](https://bundler.io/v1.7/rationale.html)
 
+## liquid 语法
+
+[语法](https://shopify.github.io/liquid/basics/introduction/)
+
 ## 引入其他文章
 
 ```TEXT
