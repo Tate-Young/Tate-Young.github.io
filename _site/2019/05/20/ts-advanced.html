@@ -158,6 +158,8 @@
                       发布时间：2019-05-20 18:36:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-05-27 15:54:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -345,9 +347,10 @@ import { test } from 'appConfig'
 
 <pre><code class="language-JSON">{
   "compilerOptions" : {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths":{
-      "appConfig": ["./src/config"]
+      "srcConfig": ["src/config"],
+      "appCommon/*": ["app/common/*"],
     }
   }
 }
@@ -508,8 +511,8 @@ let x4 = getProperty(obj, 'hobby') // 报错：Argument of type '"hobby"' is not
 <p>我们经常会将一个现有类型的属性变成可选或可读:</p>
 
 <pre><code class="language-JS">interface PersonPartial {
-    name?: string
-    age?: number
+  name?: string
+  age?: number
 }
 </code></pre>
 

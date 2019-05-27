@@ -7,6 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
+update: 2019-05-27 15:54:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -167,9 +168,10 @@ import { test } from 'appConfig'
 ```JSON
 {
   "compilerOptions" : {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths":{
-      "appConfig": ["./src/config"]
+      "srcConfig": ["src/config"],
+      "appCommon/*": ["app/common/*"],
     }
   }
 }
@@ -336,8 +338,8 @@ let x4 = getProperty(obj, 'hobby') // 报错：Argument of type '"hobby"' is not
 
 ```JS
 interface PersonPartial {
-    name?: string
-    age?: number
+  name?: string
+  age?: number
 }
 ```
 
