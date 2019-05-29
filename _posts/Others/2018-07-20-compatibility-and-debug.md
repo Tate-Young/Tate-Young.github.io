@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种调试和兼容问题
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-05-24 20:03:00 GMT+0800 (CST)
+update: 2019-05-29 10:57:00 GMT+0800 (CST)
 background-image: /style/images/darling.jpg
 tags:
 - Other
@@ -371,6 +371,31 @@ mapped.sort(function(a, b) {
 var result = mapped.map(function(el){
   return list[el.index]
 })
+```
+
+### webStore 简单封装
+
+```JS
+const webStore = {
+  storeEngine: window.localStorage,
+  set(name, value) {
+    this.storeEngine.setItem(name, JSON.stringify(value))
+    return this
+  },
+  get(name) {
+    return JSON.parse(this.storeEngine.getItem(name))
+  },
+  remove(name) {
+    Array.isArray(name) // eslint-disable-line no-unused-expressions
+      ? name.forEach(n => this.storeEngine.removeItem(n))
+      : this.storeEngine.removeItem(name)
+    return this
+  },
+  flushAll() {
+    this.storeEngine.clear()
+    return this
+  },
+}
 ```
 
 1. [Charles - 官网](https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/)

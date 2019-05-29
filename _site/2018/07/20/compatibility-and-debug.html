@@ -158,7 +158,7 @@
                       发布时间：2018-07-20 11:01:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-05-24 20:03:00
+                        修改时间：2019-05-29 10:57:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -582,6 +582,30 @@ mapped.sort(function(a, b) {
 var result = mapped.map(function(el){
   return list[el.index]
 })
+</code></pre>
+
+<h3 id="webstore-简单封装">webStore 简单封装</h3>
+
+<pre><code class="language-JS">const webStore = {
+  storeEngine: window.localStorage,
+  set(name, value) {
+    this.storeEngine.setItem(name, JSON.stringify(value))
+    return this
+  },
+  get(name) {
+    return JSON.parse(this.storeEngine.getItem(name))
+  },
+  remove(name) {
+    Array.isArray(name) // eslint-disable-line no-unused-expressions
+      ? name.forEach(n =&gt; this.storeEngine.removeItem(n))
+      : this.storeEngine.removeItem(name)
+    return this
+  },
+  flushAll() {
+    this.storeEngine.clear()
+    return this
+  },
+}
 </code></pre>
 
 <ol>
