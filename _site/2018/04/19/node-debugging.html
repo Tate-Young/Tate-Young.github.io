@@ -158,7 +158,7 @@
                       发布时间：2018-04-19 21:48:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-03-21 15:19:00
+                        修改时间：2019-06-06 11:16:00
                       
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
@@ -450,7 +450,19 @@ pm2 l
 
 <p><img src="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2-list.png" alt="pm2" /></p>
 
-<p>关于 <code class="highlighter-rouge">pm2 save</code> 的用法: pm2 save takes a snapshot of your currently running Node applications. You can then restore these applications using <code class="highlighter-rouge">pm2 resurrect</code>. This is useful because it means you don’t have to manually restart each application when you restart pm2 (such as a machine reboot). Instead, you can just have a script that calls pm2 resurrect and it’ll start up all the Node apps.</p>
+<p>更新 pm2 的方法:</p>
+
+<pre><code class="language-SHELL"># 保存当前进程状态
+pm2 save
+# 全局安装
+npm i -g pm2
+# pm2 update is necessary in order to refresh the PM2 daemon
+pm2 update
+</code></pre>
+
+<blockquote>
+  <p>关于 <code class="highlighter-rouge">pm2 save</code> 的用法: pm2 save takes a snapshot of your currently running Node applications. You can then restore these applications using <code class="highlighter-rouge">pm2 resurrect</code>. This is useful because it means you don’t have to manually restart each application when you restart pm2 (such as a machine reboot). Instead, you can just have a script that calls pm2 resurrect and it’ll start up all the Node apps.</p>
+</blockquote>
 
 <h2 id="参考链接">参考链接</h2>
 

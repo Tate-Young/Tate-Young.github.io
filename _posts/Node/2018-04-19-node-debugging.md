@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Node 侦错
 date:   2018-04-19 21:48:00 GMT+0800 (CST)
-update: 2019-03-21 15:19:00 GMT+0800 (CST)
+update: 2019-06-06 11:16:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
 tags:
 - Node
@@ -225,7 +225,18 @@ pm2 l
 
 ![pm2](https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2-list.png)
 
-关于 `pm2 save` 的用法: pm2 save takes a snapshot of your currently running Node applications. You can then restore these applications using `pm2 resurrect`. This is useful because it means you don't have to manually restart each application when you restart pm2 (such as a machine reboot). Instead, you can just have a script that calls pm2 resurrect and it'll start up all the Node apps.
+更新 pm2 的方法:
+
+```SHELL
+# 保存当前进程状态
+pm2 save
+# 全局安装
+npm i -g pm2
+# pm2 update is necessary in order to refresh the PM2 daemon
+pm2 update
+```
+
+> 关于 `pm2 save` 的用法: pm2 save takes a snapshot of your currently running Node applications. You can then restore these applications using `pm2 resurrect`. This is useful because it means you don't have to manually restart each application when you restart pm2 (such as a machine reboot). Instead, you can just have a script that calls pm2 resurrect and it'll start up all the Node apps.
 
 ## 参考链接
 
