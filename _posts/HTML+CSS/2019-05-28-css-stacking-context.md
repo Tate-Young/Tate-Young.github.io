@@ -81,7 +81,7 @@ tags:
 </body>
 ```
 
-![demo-1](https://user-gold-cdn.xitu.io/2018/8/30/165890e9dcadf485?imageView2/0/w/1280/h/960/ignore-error/1)
+![css-stacking-context-1.jpeg](https://i.loli.net/2019/06/13/5d01ea810d9fc82752.jpeg)
 
 因为 p.a、p.b、p.c 三个的父元素 div 都没有设置 z-index 属性，不会产生层叠上下文。所以 .a、.b、.c 都处于根层叠上下文中，属于同一个层叠上下文，值大的在上。再看看下一个栗子:
 
@@ -134,7 +134,7 @@ tags:
 </body>
 ```
 
-![demo-2](https://user-gold-cdn.xitu.io/2018/8/30/165890ecb78125b2?imageView2/0/w/1280/h/960/ignore-error/1)
+![css-stacking-context-2.jpeg](https://i.loli.net/2019/06/13/5d01ea8178eb763253.jpeg)
 
 我们可以看到虽然 p.c 元素的 z-index 值为 9999，远大于 p.a 和 p.b，但是由于 p.a、p.b 的父元素 .box1 产生的层叠上下文的 z-index 的值为 2，p.c 的父元素 .box2 所产生的层叠上下文的 z-index 值为 1，所以 p.c 永远在 p.a 和 p.b 下面 😱。
 
@@ -146,7 +146,7 @@ tags:
 * `inline/inline-block` 元素的层叠顺序要高于 block(块级)/float(浮动)元素
 * 单纯考虑层叠顺序，`z-index: auto` 和 `z-index: 0` 在同一层级，但这两个属性值本身是有根本区别的。**设置为 auto 不会产生层叠上下文**
 
-![stacking-rule](https://user-gold-cdn.xitu.io/2018/8/30/1658910c5cb364b6?imageView2/0/w/1280/h/960/ignore-error/1)
+![css-stacking-context-3.jpeg](https://i.loli.net/2019/06/13/5d01ea81e3c0b91362.jpeg)
 
 这就可以解释为什么定位元素会层叠在普通元素的上面，因为定位元素 z-index 会自动设置为默认的 auto，根据上面的层叠顺序表，就会覆盖普通的 inline 或 block 等元素。
 
@@ -183,7 +183,7 @@ tags:
 </body>
 ```
 
-![demo-3](https://user-gold-cdn.xitu.io/2018/8/30/165890f762484a78?imageView2/0/w/1280/h/960/ignore-error/1)
+![css-stacking-context-4.jpeg](https://i.loli.net/2019/06/13/5d01ea81dc09e84493.jpeg)
 
 显而易见，在层叠顺序规则中，`z-index < 0` 的 .child 会被普通的 block 块级元素 .parent 覆盖。如果其他不变，只改变 .box 样式:
 
@@ -193,7 +193,7 @@ tags:
 }
 ```
 
-![demo-4](https://user-gold-cdn.xitu.io/2018/8/30/165890f9438f582c?imageView2/0/w/1280/h/960/ignore-error/1)
+![css-stacking-context-5.jpeg](https://i.loli.net/2019/06/13/5d01ea824becc92872.jpeg)
 
 我们可以看到，当给父级元素 .box 设置 `display: flex` 时，.parent 就变成层叠上下文元素，根据层叠顺序规则，层叠上下文元素的`background/border` 的层叠等级小于 `z-index < 0` 的元素的层叠等级，所以 .child 在 .parent 上面。
 
