@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Linux 常用命令
 date:   2018-04-15 14:15:00 GMT+0800 (CST)
-update: 2019-04-01 16:45:00 GMT+0800 (CST)
+update: 2019-06-13 17:41:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
 tags:
 - Linux
@@ -54,6 +54,94 @@ tags:
 * **Wget** 是一个在网络上进行下载的简单而强大的自由软件，目前它支持通过 HTTP、HTTPS 以及 FTP 这三个最常见的 TCP/IP 协议下载，可以递归，支持断点
 * **cURL** 是一个利用 URL 语法在命令行下工作的文件传输工具，支持文件上传和下载，相较于 wget，它支持更多的协议，批量下载
 * **[homebrew](https://brew.sh/)** 是是一款自由及开放源代码的软件包管理系统，用以简化 macOS 系统上的软件安装过程，类似于 yum/apt-get；Windows 系统则可以使用 [**chocolatey**](https://chocolatey.org/)
+
+## cURL & HTTPie
+
+这里主要再介绍一下 [**HTTPie**](https://httpie.org)，引用官方的说法:
+
+```SHELL
+# 安装 brew install httpie
+http [flags] [METHOD] URL [ITEM [ITEM]]
+```
+
+| Item Type   | Description |
+| ------------ | ------- |
+| HTTP Headers Name:Value | Arbitrary HTTP header, e.g. X-API-Token:123. |
+| URL parameters name==value | Appends the given name/value pair as a query string parameter to the URL. The == separator is used. |
+| Data Fields field=value, field=@file.txt | Request data fields to be serialized as a JSON object (default), or to be form-encoded (--form, -f). |
+| Raw JSON fields field:=json, field:=@file.json | Useful when sending JSON and one or more fields need to be a Boolean, Number, nested Object, or an Array, e.g., meals:='["ham","spam"]' or pies:=[1,2,3] (note the quotes). |
+| Form File Fields field@/dir/file | Only available with --form, -f. For example screenshot@~/Pictures/img.png. The presence of a file field results in a multipart/form-data request. |
+
+> HTTPie is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.
+
+<style>
+  /* 更改下图片最大高度 */
+  .post-content img {
+    max-height: 900px;
+  }
+</style>
+
+![httpie](https://httpie.org/static/img/httpie2.png?v=1f6219a5a07bb6e99aa7afd98d0e67ec)
+
+简单的运用一下，如果 JSON 数据存在不是字符串则用 **:=** 符号分隔:
+
+```SHELL
+# 省略 GET
+http https://jsonplaceholder.typicode.com/posts/1
+curl https://jsonplaceholder.typicode.com/posts/1 -i
+
+# PUT
+# Custom HTTP method, HTTP headers and JSON data
+http PUT https://jsonplaceholder.typicode.com/posts/1 title=tate age:=100 X-API-Token:123
+
+# 当然也支持下载文件 -d === --download
+http -d www.example.com/my_file.zip
+
+# localhost 的简写
+http :4000
+```
+
+```SHELL
+http PUT api.example.com/person/1 \
+  name=John \
+  age:=29 married:=false hobbies:='["http", "pies"]' \  # Raw JSON
+  description=@about-john.txt \   # Embed text file
+  bookmarks:=@bookmarks.json      # Embed JSON file
+PUT /person/1 HTTP/1.1
+Accept: application/json, */*
+Content-Type: application/json
+Host: api.example.com
+
+{
+  "age": 29,
+  "hobbies": [
+    "http",
+    "pies"
+  ],
+  "description": "John is a nice guy who likes pies.",
+  "married": false,
+  "name": "John",
+  "bookmarks": {
+    "HTTPie": "http://httpie.org",
+  }
+}
+```
+
+再看看两者用法上的一些对比:
+
+```SHELL
+# cURL POST Example
+curl -d "param1=value1&param2=value2" -H "Content-Type: application/json" -X POST http://localhost:3000/data
+
+# HTTPie POST Example:
+http POST http://localhost:3000/data 'param1=value1 value2' 'param2=value3'
+
+# cURL GET Example:
+curl -i -H "Accept: application/json" -X GET http://hostname/resource
+
+# HTTPie GET Example:
+http http://hostname/resource
+```
 
 ## grep
 
@@ -261,3 +349,5 @@ say -v Daniel i am Daniel
 2. [Linux Shell 脚本攻略](http://man.linuxde.net/shell-script)
 3. [yum 与 rpm、apt 的区别：rpm 的缺陷及 yum 的优势](http://www.aboutyun.com/thread-9226-1-1.html) By pig2
 4. [Mount 挂载命令使用方法](https://blog.csdn.net/q1059081877q/article/details/48251893)
+5. [HTTPie 官方文档](https://httpie.org/doc#examples)
+6. [Why I chose HTTPie instead of cURL on the Command Line for HTTP APIs](https://extra-something.com/why-i-chose-httpie-instead-of-curl-on-the-command-line-for-http-apis/)
