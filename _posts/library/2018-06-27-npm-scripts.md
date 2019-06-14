@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
-update: 2019-04-09 20:01:00 GMT+0800 (CST)
+update: 2019-06-14 14:37:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/06/27/5b3360100dcd3.png
 
 tags:
@@ -249,7 +249,7 @@ ENV3=THE FISH
 
 ## scripty
 
-当脚本命令比较多的时候，可以通过[scripty](https://github.com/testdouble/scripty)可以从将 scripts 剥离到单独文件中管理，还是看最初的栗子:
+当脚本命令比较多的时候，可以通过 [scripty](https://github.com/testdouble/scripty) 可以从将 scripts 剥离到单独文件中管理，还是看最初的栗子:
 
 ```SHELL
 "call:tate": "echo tate",
@@ -284,7 +284,7 @@ Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
 > echo 'tate in scripty'
 ```
 
-> 当然也可以直接通过 node 来管理，将 shell 脚本改为 node 脚本并执行，[shelljs](https://www.npmjs.com/package/shelljs)可以在 node 中使用 shell 命令。
+> 当然也可以直接通过 node 来管理，将 shell 脚本改为 node 脚本并执行，[shelljs](https://www.npmjs.com/package/shelljs) 可以在 node 中使用 shell 命令。
 
 ## 构建流水线
 
@@ -347,6 +347,99 @@ yarn global add yarn
 * npm install 默认会安装，除非添加 `--production` 参数
 * npm update 不会默认安装，除非添加 `--dev` 参数
 
+## npx
+
+[**npx**](https://github.com/zkat/npx) 是 [npm@5.2.0](https://github.com/npm/npm/releases/tag/v5.2.0) 引入的一个命令，那么它是用来干嘛的呢？采用官方的说法就是:
+
+> npx is a tool intended to help round out the experience of using packages from the npm registry — the same way npm makes it super easy to install and manage dependencies hosted on the registry, npx makes it easy to use CLI tools and other executables hosted on the registry. It greatly simplifies a number of things that, until now, required a bit of ceremony to do with plain npm
+
+### 抛弃 run-script
+
+在这之前，npm 生态越来越倾向于将 devDependencies 安装包作为项目本地(project-local)依赖安装，而不是全局安装，这样就更加方便去管理像 gulp、webpack 这些工具的版本，比如 webpack 本地安装时就推荐局部安装:
+
+> 对于大多数项目，我们建议本地安装。这可以在引入突破式变更(breaking change)版本时，更容易分别升级项目。通常会通过运行一个或多个 npm scripts 以在本地 node_modules 目录中查找安装的 webpack，想要运行本地安装的 webpack，你可以通过 node_modules/.bin/webpack 来访问它的 bin 版本。[详见这里](https://webpack.docschina.org/guides/installation/) 👈
+
+辣么此前要这么做的话，有以下两种方法:
+
+1、在 run-script 中申明，并执行 `npm build`
+
+```JSON
+"scripts": {
+  "build": "webpack --config webpack.config.js"
+}
+```
+
+2、直接找到项目本地的位置并执行
+
+```SHELL
+./node_modules/.bin/webpack --config webpack.config.js
+```
+
+抛开以上两种写法而使用 npx 的话，只用输入下面命令即可:
+
+```SHELL
+npx webpack --config webpack.config.js
+```
+
+### Executing one-off commands
+
+npx 可以让你去执行 npm 包里的二进制文件而不用去全局安装他们，因此利用 npx 还可以实现 Executing one-off commands，即执行一次性命令。npx is the last thing you need to globally install: > `npm i -g npx` (this command also updates npx)。
+
+下面举个 `create-react-app` 栗子，`$ npx create-react-app my-cool-new-app` 安装了一个临时的包并运行, 没有污染全局安装而且命令简单:
+
+![create-react-app](https://cdn-images-1.medium.com/max/1600/1*OlIRsvVO5aK7ja9HmwXz_Q.gif)
+
+下列是一些比较有趣的包，可以用 npx 尝试一番 😜，更多命令可以参考 [awesome-npx](https://github.com/junosuarez/awesome-npx):
+
+```TEXT
+[~] npx cowsay Tate
+npx: 10 安装成功，用时 1.223 秒
+ _____
+< Tate >
+ -----
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+```TEXT
+[~] npx happy-birthday -u snow
+npx: 2 安装成功，用时 0.776 秒
+
+🎂
+お誕生日おめでとう、snow！
+🎉
+```
+
+npx 还支持一些其他的参数:
+
+![npx-options](https://cdn-images-1.medium.com/max/1600/1*JqCC1irC-XxXAWiThpOUiw.gif)
+
+> `$ npx -p cowsay -p lolcatjs -c 'echo "$npm_package_name@$npm_package_version" | cowsay | lolcatjs'` installs both cowsay and lolcatjs, and gives the script access to a slew of `$npm_` variables from run scripts.
+
+### 控制 node 版本
+
+node 版本的控制之前一般都采用 [**nvm**](https://github.com/nvm-sh/nvm)、[**n**](https://github.com/tj/n) 等版本管理工具，现在的话 npx 就能做到:
+
+```SHELL
+npx -p node@<version>
+```
+
+```SHELL
+[~] npx node@6 -v
+v6.17.1
+[~] npx -p node@7 -- node -v
+v7.10.1
+[~] node -v
+v11.14.0
+```
+
+下图是 n 的使用示例:
+
+![n](https://camo.githubusercontent.com/e3c6ac1ad2a69e2e969597b69d794658cb64df88/687474703a2f2f6e696d69742e696f2f696d616765732f6e2f6e2e676966)
+
 ## 参考链接
 
 1. [掘金小册 - 用 npm script 打造超溜的前端工作流](https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1212bcf265da431c6fe677) By 王仕军
@@ -357,3 +450,4 @@ yarn global add yarn
 6. [npm5 新版功能特性解析及与 yarn 评测对比](https://cloud.tencent.com/developer/article/1020507) By 马铖
 7. [Package.json 中库的版本号详解](https://github.com/ragingDream/blog/issues/32) By ragingDream
 8. [npm install vs. update - what's the difference? - stackoverflow](https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
+9. [Introducing npx: an npm package runner](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) By Kat Marchán

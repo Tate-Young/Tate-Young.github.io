@@ -158,7 +158,7 @@
                       发布时间：2018-06-27 17:57:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-04-09 20:01:00
+                        修改时间：2019-06-14 14:01:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -429,7 +429,7 @@ ENV3=THE FISH
 
 <h2 id="scripty">scripty</h2>
 
-<p>当脚本命令比较多的时候，可以通过<a href="https://github.com/testdouble/scripty">scripty</a>可以从将 scripts 剥离到单独文件中管理，还是看最初的栗子:</p>
+<p>当脚本命令比较多的时候，可以通过 <a href="https://github.com/testdouble/scripty">scripty</a> 可以从将 scripts 剥离到单独文件中管理，还是看最初的栗子:</p>
 
 <pre><code class="language-SHELL">"call:tate": "echo tate",
 "call:snow": "echo snow",
@@ -461,7 +461,7 @@ Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
 </code></pre>
 
 <blockquote>
-  <p>当然也可以直接通过 node 来管理，将 shell 脚本改为 node 脚本并执行，<a href="https://www.npmjs.com/package/shelljs">shelljs</a>可以在 node 中使用 shell 命令。</p>
+  <p>当然也可以直接通过 node 来管理，将 shell 脚本改为 node 脚本并执行，<a href="https://www.npmjs.com/package/shelljs">shelljs</a> 可以在 node 中使用 shell 命令。</p>
 </blockquote>
 
 <h2 id="构建流水线">构建流水线</h2>
@@ -565,6 +565,98 @@ yarn global add yarn
   <li>npm update 不会默认安装，除非添加 <code class="highlighter-rouge">--dev</code> 参数</li>
 </ul>
 
+<h2 id="npx">npx</h2>
+
+<p><a href="https://github.com/zkat/npx"><strong>npx</strong></a> 是 <a href="https://github.com/npm/npm/releases/tag/v5.2.0">npm@5.2.0</a> 引入的一个命令，那么它是用来干嘛的呢？采用官方的说法就是:</p>
+
+<blockquote>
+  <p>npx is a tool intended to help round out the experience of using packages from the npm registry — the same way npm makes it super easy to install and manage dependencies hosted on the registry, npx makes it easy to use CLI tools and other executables hosted on the registry. It greatly simplifies a number of things that, until now, required a bit of ceremony to do with plain npm</p>
+</blockquote>
+
+<h3 id="抛弃-run-script">抛弃 run-script</h3>
+
+<p>在这之前，npm 生态越来越倾向于将 devDependencies 安装包作为项目本地(project-local)依赖安装，而不是全局安装，这样就更加方便去管理像 gulp、webpack 这些工具的版本，比如 webpack 本地安装时就推荐局部安装:</p>
+
+<blockquote>
+  <p>对于大多数项目，我们建议本地安装。这可以在引入突破式变更(breaking change)版本时，更容易分别升级项目。通常会通过运行一个或多个 npm scripts 以在本地 node_modules 目录中查找安装的 webpack，想要运行本地安装的 webpack，你可以通过 node_modules/.bin/webpack 来访问它的 bin 版本。<a href="https://webpack.docschina.org/guides/installation/">详见这里</a> 👈</p>
+</blockquote>
+
+<p>辣么此前要这么做的话，有以下两种方法:</p>
+
+<p>1、在 run-script 中申明，并执行 <code class="highlighter-rouge">npm build</code></p>
+
+<pre><code class="language-JSON">"scripts": {
+  "build": "webpack --config webpack.config.js"
+}
+</code></pre>
+
+<p>2、直接找到项目本地的位置并执行</p>
+
+<pre><code class="language-SHELL">./node_modules/.bin/webpack --config webpack.config.js
+</code></pre>
+
+<p>抛开以上两种写法而使用 npx 的话，只用输入下面命令即可:</p>
+
+<pre><code class="language-SHELL">npx webpack --config webpack.config.js
+</code></pre>
+
+<h3 id="executing-one-off-commands">Executing one-off commands</h3>
+
+<p>npx 可以让你去执行 npm 包里的二进制文件而不用去全局安装他们，因此利用 npx 还可以实现 Executing one-off commands，即执行一次性命令。npx is the last thing you need to globally install: &gt; <code class="highlighter-rouge">npm i -g npx</code> (this command also updates npx)。</p>
+
+<p>下面举个 <code class="highlighter-rouge">create-react-app</code> 栗子，<code class="highlighter-rouge">$ npx create-react-app my-cool-new-app</code> 安装了一个临时的包并运行, 没有污染全局安装而且命令简单:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*OlIRsvVO5aK7ja9HmwXz_Q.gif" alt="create-react-app" /></p>
+
+<p>下列是一些比较有趣的包，可以用 npx 尝试一番 😜，更多命令可以参考 <a href="https://github.com/junosuarez/awesome-npx">awesome-npx</a>:</p>
+
+<pre><code class="language-TEXT">[~] npx cowsay Tate
+npx: 10 安装成功，用时 1.223 秒
+ _____
+&lt; Tate &gt;
+ -----
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+</code></pre>
+
+<pre><code class="language-TEXT">[~] npx happy-birthday -u snow
+npx: 2 安装成功，用时 0.776 秒
+
+🎂
+お誕生日おめでとう、snow！
+🎉
+</code></pre>
+
+<p>npx 还支持一些其他的参数:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*JqCC1irC-XxXAWiThpOUiw.gif" alt="npx-options" /></p>
+
+<blockquote>
+  <p><code class="highlighter-rouge">$ npx -p cowsay -p lolcatjs -c 'echo "$npm_package_name@$npm_package_version" | cowsay | lolcatjs'</code> installs both cowsay and lolcatjs, and gives the script access to a slew of <code class="highlighter-rouge">$npm_</code> variables from run scripts.</p>
+</blockquote>
+
+<h3 id="控制-node-版本">控制 node 版本</h3>
+
+<p>node 版本的控制之前一般都采用 <a href="https://github.com/nvm-sh/nvm"><strong>nvm</strong></a>、<a href="https://github.com/tj/n"><strong>n</strong></a> 等版本管理工具，现在的话 npx 就能做到:</p>
+
+<pre><code class="language-SHELL">npx -p node@&lt;version&gt;
+</code></pre>
+
+<pre><code class="language-SHELL">[~] npx node@6 -v
+v6.17.1
+[~] npx -p node@7 -- node -v
+v7.10.1
+[~] node -v
+v11.14.0
+</code></pre>
+
+<p>下图是 n 的使用示例:</p>
+
+<p><img src="https://camo.githubusercontent.com/e3c6ac1ad2a69e2e969597b69d794658cb64df88/687474703a2f2f6e696d69742e696f2f696d616765732f6e2f6e2e676966" alt="n" /></p>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
@@ -576,6 +668,7 @@ yarn global add yarn
   <li><a href="https://cloud.tencent.com/developer/article/1020507">npm5 新版功能特性解析及与 yarn 评测对比</a> By 马铖</li>
   <li><a href="https://github.com/ragingDream/blog/issues/32">Package.json 中库的版本号详解</a> By ragingDream</li>
   <li><a href="https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference">npm install vs. update - what’s the difference? - stackoverflow</a></li>
+  <li><a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b">Introducing npx: an npm package runner</a> By Kat Marchán</li>
 </ol>
  
 <div id="gitalk-container"></div>
