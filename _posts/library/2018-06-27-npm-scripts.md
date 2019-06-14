@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
-update: 2019-06-14 14:37:00 GMT+0800 (CST)
+update: 2019-06-14 20:05:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/06/27/5b3360100dcd3.png
 
 tags:
@@ -421,7 +421,7 @@ npx 还支持一些其他的参数:
 
 ### 控制 node 版本
 
-node 版本的控制之前一般都采用 [**nvm**](https://github.com/nvm-sh/nvm)、[**n**](https://github.com/tj/n) 等版本管理工具，现在的话 npx 就能做到:
+node 版本的控制之前一般都采用 [**nvm**](https://github.com/nvm-sh/nvm)、[**n**](https://github.com/tj/n) 等版本管理工具，现在的话 npx 就能做到，不过只是临时地去用指定 node 版本:
 
 ```SHELL
 npx -p node@<version>
@@ -436,7 +436,7 @@ v7.10.1
 v11.14.0
 ```
 
-下图是 n 的使用示例:
+下图是 n 的使用示例，`n <version>` 就能安装:
 
 ![n](https://camo.githubusercontent.com/e3c6ac1ad2a69e2e969597b69d794658cb64df88/687474703a2f2f6e696d69742e696f2f696d616765732f6e2f6e2e676966)
 
