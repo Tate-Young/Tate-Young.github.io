@@ -511,6 +511,50 @@ class CustomTextInput extends React.Component {
 }
 ```
 
+## React.forwardRef
+
+**React.forwardRef** 会创建一个 React 组件，能够实现 [**Refs 转发**](https://zh-hans.reactjs.org/docs/forwarding-refs.html)，即这个组件能够将其接受的 ref 属性转发到其组件树下的另一个组件中:
+
+```JSX
+// 当 React 附加了 ref 属性之后，ref.current 将直接指向 <button> DOM 元素实例。
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
+// You can now get a ref directly to the DOM button:
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+```
+
+## React.lazy / React.Suspense
+
+[**React.lazy**](https://zh-hans.reactjs.org/docs/code-splitting.html#reactlazy) 允许你定义一个动态加载的组件。这有助于缩减 bundle 的体积，并延迟加载在初次渲染时未用到的组件。React.lazy 接受一个函数，这个函数需要动态调用 import()。它必须返回一个 Promise，该 Promise 需要 resolve 一个 defalut export 的 React 组件【:
+
+```JSX
+// 注意 - 使用 React.lazy 的动态引入特性需要 JS 环境支持 Promise
+const SomeComponent = React.lazy(() => import('./SomeComponent'));
+```
+
+**React.Suspense** 可以指定加载指示器（loading indicator），以防其组件树中的某些子组件尚未具备渲染条件。目前，懒加载组件是 `<React.Suspense>` 支持的唯一用例:
+
+```JSX
+// 该组件是动态加载的
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+
+function MyComponent() {
+  return (
+    // 显示 <Spinner> 组件直至 OtherComponent 加载完成
+    <React.Suspense fallback={<Spinner />}>
+      <div>
+        <OtherComponent />
+      </div>
+    </React.Suspense>
+  );
+}
+```
+
 ## React-hot-loader
 
 [**React-hot-loader**](https://gaearon.github.io/react-hot-loader/) 可以在不刷新浏览器的情况下进行热更新，有两种使用方式:

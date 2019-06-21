@@ -343,7 +343,7 @@ useEffect(() => {
 const refContainer = useRef(initialValue)
 ```
 
-**useRef** 返回一个可变的 ref 对象，其 `.current` 属性被初始化为传入的参数（initialValue）。返回的 ref 对象在组件的整个生命周期内保持不变:
+**useRef** 返回一个可变的 ref 对象，其 `.current` 属性被初始化为传入的参数（initialValue）。返回的 ref 对象在组件的整个生命周期内保持不变，之前 Refs 的用法[可参考 React 简介]( {{site.url}}/2018/08/06/react-profile.html#refs ):
 
 ```JSX
 function TextInputWithFocusButton() {
@@ -371,7 +371,7 @@ function MeasureExample() {
     if (node !== null) {
       setHeight(node.getBoundingClientRect().height);
     }
-  }, []); // 传递了 [] 作为 useCallback 的依赖列表。这确保了 ref callback 不会在再次渲染时改变，因此 React 不会在非必要的时候调用它
+  }, []); // 传递了 [] 作为 useCallback 的依赖列表。这确保了 ref callback 不会在再次渲染时改变
 
   return (
     <>
@@ -407,6 +407,33 @@ function useClientRect() {
   return [rect, ref];
 }
 ```
+
+## useCallback / useMemo
+
+把内联回调函数及依赖项数组作为参数传入 **useCallback**，它将返回返回一个 [**memoized**](https://en.wikipedia.org/wiki/Memoization) 回调函数，该回调函数仅在某个依赖项改变时才会更新:
+
+```JSX
+const memoizedCallback = useCallback(
+  () => {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+```
+
+把“创建”函数和依赖项数组作为参数传入 **useMemo**，它仅会在某个依赖项改变时才重新计算 memoized 值。这种优化有助于避免在每次渲染时都进行高开销的计算:
+
+```JSX
+// 先编写在没有 useMemo 的情况下也可以执行的代码 —— 之后再在你的代码中添加 useMemo，以达到优化性能的目的
+// 如果没有提供依赖项数组，useMemo 在每次渲染时都会计算新的值
+// 记住，传入 useMemo 的函数会在渲染期间执行。请不要在这个函数内部执行与渲染无关的操作，诸如副作用这类的操作属于 useEffect 的适用范畴，而不是 useMemo
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
+
+> memoized(非 memorized) 是一种提高程序运行速度的优化技术。通过储存大计算量函数的返回值，当这个结果再次被需要时将其从缓存提取，而不用再次计算来节省计算时间。 
+记忆化是一种典型的时间存储平衡方案
+
+> `useCallback(fn, deps)` 相当于 `useMemo(() => fn, deps)`
 
 ## 自定义 Hook
 
