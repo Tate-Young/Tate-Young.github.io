@@ -987,7 +987,7 @@ textarea:-ms-input-placeholder {
     box-shadow: 0 15px 30px rgba(69, 81, 93, 0.3);
 }
 
-.post-list-item-container:hover .item-desc { 
+.post-list-item-container:hover .item-desc {
     background-color: rgba(0, 0, 0, .5);
     -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, .04);
     box-shadow: 0 15px 30px rgba(0, 0, 0, .07);
