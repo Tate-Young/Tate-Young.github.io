@@ -32,6 +32,7 @@ tags:
 	margin-top: 20px;
 	list-style: none;
 	width: 400px;
+  color: black;
 	padding: 10px;
 	background: #eee;
 }

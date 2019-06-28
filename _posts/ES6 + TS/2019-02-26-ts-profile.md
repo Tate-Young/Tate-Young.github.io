@@ -204,6 +204,10 @@ function getName(n: NameOrResolver): Name {
 }
 ```
 
+```JS
+export type QRCodeErrorCorrectionLevel = "low" | "medium" | "quartile" | "high" | "L" | "M" | "Q" | "H"
+```
+
 ### 类型断言 as
 
 有时候你会遇到这样的情况，你会比 TypeScript 更了解某个值的详细信息。 通常这会发生在你清楚地知道一个实体具有比它现有类型更确切的类型。类型断言有两种形式:
