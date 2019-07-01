@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种调试和兼容问题
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-05-29 10:57:00 GMT+0800 (CST)
+update: 2019-07-01 14:40:00 GMT+0800 (CST)
 background-image: /style/images/darling.jpg
 tags:
 - Other
@@ -179,6 +179,8 @@ Object.defineProperty(window, 'tate', {
 为 JS 代码设置条件断点，该断点只在条件满足时触发:
 
 ![chrome tip 3](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/conditional-breakpoint.gif)
+
+> 资源面板下搜索定位需要调试的文件 Tips: Chrome 快捷键为 `cmd+o`，safari 快捷键为 `cmd+shift+o`(可能各自设定不一样) 👈
 
 ### Elements 面板
 
