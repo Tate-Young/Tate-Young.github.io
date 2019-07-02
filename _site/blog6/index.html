@@ -75,25 +75,25 @@
   </div> -->
   <header id="header" class="header bg-white">
     <div class="navbar-container">
-      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo" onclick="onClickLogo()">
+      <a href="Javascript:;" title="访问 Tate & Snow" class="navbar-logo menu-logo" onclick="onClickLogo()">
         <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
       <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a> -->
       <div class="navbar-menu">
         
-        <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+          <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
         
-        <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+          <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
         
-        <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
+          <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
         
-        <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
+          <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
         
-        <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+          <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
         
-        <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+          <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
         
       </div>
-      <div class="navbar-search" onclick="onClickSearch()">
+      <div class="navbar-search menu-item-search" onclick="onClickSearch()">
         <span class="icon-search"></span>
         <form method="post" action="/404.html" role="search">
           <span class="search-box">
@@ -108,27 +108,27 @@
         <ul>
           
           <li>
-            <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+            <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
           </li>
           
           <li>
-            <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+            <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
           </li>
           
           <li>
-            <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
+            <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
           </li>
           
           <li>
-            <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
+            <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
           </li>
           
           <li>
-            <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+            <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
           </li>
           
           <li>
-            <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+            <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
           </li>
           
         </ul>
@@ -158,7 +158,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('Grid 布局', '/2018/02/16/css-grid.html')" title="访问 Grid 布局">Grid 布局</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -190,7 +190,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('Flex 布局', '/2018/02/12/css-flex.html')" title="访问 Flex 布局">Flex 布局</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -222,7 +222,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('页面生命周期', '/2018/02/11/html-page-lifecycle.html')" title="访问 页面生命周期">页面生命周期</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -254,7 +254,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('加载阻塞', '/2018/02/11/html-render-blocking.html')" title="访问 加载阻塞">加载阻塞</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -286,7 +286,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('页面渲染', '/2018/02/10/html-how-browsers-work.html')" title="访问 页面渲染">页面渲染</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -318,7 +318,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('闭包', '/2018/02/09/js-closure.html')" title="访问 闭包">闭包</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -350,7 +350,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('执行上下文与作用域', '/2018/02/09/js-scope.html')" title="访问 执行上下文与作用域">执行上下文与作用域</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -382,7 +382,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('变量提升', '/2018/02/08/js-hoisting.html')" title="访问 变量提升">变量提升</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -414,7 +414,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('原型链与继承', '/2018/02/06/js-prototype.html')" title="访问 原型链与继承">原型链与继承</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -446,7 +446,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('Error 处理机制', '/2018/02/06/js-error.html')" title="访问 Error 处理机制">Error 处理机制</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -478,7 +478,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('尾调用优化', '/2018/02/05/js-tail-call-optimization.html')" title="访问 尾调用优化">尾调用优化</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -510,7 +510,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('事件循环', '/2018/02/05/js-event-loop.html')" title="访问 事件循环">事件循环</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -542,7 +542,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('数据检测', '/2018/02/04/js-data-detection.html')" title="访问 数据检测">数据检测</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -574,7 +574,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('包装对象', '/2018/02/01/js-wrapper-object.html')" title="访问 包装对象">包装对象</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -606,7 +606,7 @@
 						</div>
 					</div>
 					<div class="item-label">
-						<div class="item-title">
+						<div class="item-title post-title-link">
 							<a href="javascript:;" onclick="onClickCard('浅拷贝和深拷贝', '/2018/01/31/js-deep-shallow-copy.html')" title="访问 浅拷贝和深拷贝">浅拷贝和深拷贝</a>
 						</div>
 						<div class="item-meta clearfix">
@@ -628,7 +628,7 @@
 	 <!-- 分页链接 -->
 <div class="lists-navigator clearfix">
     <ol class="page-navigator">
-        <li class="current">
+        <li class="current menu-item-home">
             <a href="/?tate" data-hover="首页">
                 <span>首页</span>
             </a>
@@ -642,65 +642,67 @@
                 
         </li>
          
-            <li>
+            <li class="menu-item-pagination">
                  
-                <a href="/?tate" data-hover="1">1</a>
+                  <a href="/?tate" data-hover="1">1</a>
                 
             </li>
-             
-            <li>
+         
+            <li class="menu-item-pagination">
                  
-                <a href="/blog2?tate" data-hover="2">2</a>
+                  <a href="/blog2?tate" data-hover="2">2</a>
                 
             </li>
-             
-            <li>
+         
+            <li class="menu-item-pagination">
                  
-                <a href="/blog3?tate" data-hover="3">3</a>
+                  <a href="/blog3?tate" data-hover="3">3</a>
                 
             </li>
-             
-            <li>
+         
+            <li class="menu-item-pagination">
                  
-                <a href="/blog4?tate" data-hover="4">4</a>
+                  <a href="/blog4?tate" data-hover="4">4</a>
                 
             </li>
-             
-            <li>
+         
+            <li class="menu-item-pagination">
                  
-                <a href="/blog5?tate" data-hover="5">5</a>
+                  <a href="/blog5?tate" data-hover="5">5</a>
                 
             </li>
+         
+          <li class="current menu-item-pagination">
              
+                  <a href="/blog6?tate" data-hover="6">6</a>
+                
+            </li>
+         
+            <li class="menu-item-pagination">
+                 
+                  <a href="/blog7?tate" data-hover="7">7</a>
+                
+            </li>
+        
         <li class="current">
-             
-                <a href="/blog6?tate" data-hover="6">6</a>
-                
-            </li>
-             
-            <li>
-                 
-                <a href="/blog7?tate" data-hover="7">7</a>
-                
-            </li>
-            
-            <li class="current">
-                
+          
             <a class="page-turning" href="/blog7?tate" data-hover="&raquo;">
-                    <span>&raquo;</span>
-                </a>
-                
-            </li>
-            <li>
-                <a href="/blog7?tate" data-hover="末页">
-                    <span>末页</span>
-                </a>
-            </li>
-            <li class="current">
-                <span>第6页 / 共7页</span>
+              <span>&raquo;</span>
+            </a>
+          
+        </li>
+        <li>
+          <a class="menu-item-last" href="/blog7?tate" data-hover="末页">
+            <span>末页</span>
+          </a>
+        </li>
+        <li class="current">
+          <span>第6页 / 共7页</span>
+        </li>
     </ol>
 
 </div>
+
 
     </div>
     

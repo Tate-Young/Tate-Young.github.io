@@ -73,22 +73,22 @@
 <body class="dark-theme" gtools_scp_screen_capture_injected="true">
     <header id="header" class="header bg-white">
         <div class="navbar-container">
-            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
                 <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
             <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
             <div class="navbar-menu">
                 
-                <a href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
                 
-                <a href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
                 
-                <a href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
                 
-                <a href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
                 
-                <a href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
                 
-                <a href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
                 
             </div>
             <!-- <div class="navbar-menu">
@@ -106,7 +106,7 @@
                 <a href="http://localhost:4000/README">关于</a>
                 
             </div> -->
-            <div class="navbar-search" onclick="onClickSearch()">
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
                 <span class="icon-search"></span>
                 <form id="cb-search-btn" role="search">
                     <span class="search-box">
@@ -121,27 +121,27 @@
                 <ul>
                     
                     <li>
-                        <a href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:4000/')">首页</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:4000/')">首页</a>
                     </li>
                     
                     <li>
-                        <a href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:4000/front')">前端</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:4000/front')">前端</a>
                     </li>
                     
                     <li>
-                        <a href="Javascript:;" onclick="onClickMenu('框架', 'http://localhost:4000/tool')">框架</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('框架', 'http://localhost:4000/tool')">框架</a>
                     </li>
                     
                     <li>
-                        <a href="Javascript:;" onclick="onClickMenu('后端', 'http://localhost:4000/back')">后端</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('后端', 'http://localhost:4000/back')">后端</a>
                     </li>
                     
                     <li>
-                        <a href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:4000/tags')">标签</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:4000/tags')">标签</a>
                     </li>
                     
                     <li>
-                        <a href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:4000/README')">关于</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:4000/README')">关于</a>
                     </li>
                     
                 </ul>
@@ -164,7 +164,7 @@
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
-                <div class="post-tags">
+                <div class="post-tags menu-item-tags">
                        
                     <a href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
                         JavaScript
@@ -365,7 +365,7 @@
   <li><a href="http://www.cnblogs.com/xiaohuochai/p/5730085.html">深入理解闭包系列第二篇——从执行环境角度看闭包</a></li>
 </ol>
  
-<div id="gitalk-container"></div>
+<div id="gitalk-container veditor"></div>
 <script>
     var gitalk = new Gitalk({
       enable: true,
@@ -643,6 +643,7 @@
                   link = document.createElement('a');
                   link.name = '#' + titleId[i];
                   link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
                   link.title = '访问' + titleId[i];
                   link.innerHTML = !isDirNum ? contentArr[i] :
                       dirNum.join('.') + ' ' + contentArr[i];

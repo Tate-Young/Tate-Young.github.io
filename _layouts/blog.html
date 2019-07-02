@@ -14,12 +14,12 @@
 <body class="dark-theme" gtools_scp_screen_capture_injected="true">
     <header id="header" class="header bg-white">
         <div class="navbar-container">
-            <a href="Javascript:;" onclick="onClickLogo()" title="访问 {{site.title }}" class="navbar-logo">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 {{site.title }}" class="navbar-logo menu-logo">
                 <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="{{ site.title }}"> </a>
             <!-- <a href="/?tate" title="访问 {{  site.title }}" class="navbar-logo">{{ site.title }}</a>   -->
             <div class="navbar-menu">
                 {% for link in site.links %}
-                <a href="Javascript:;" onclick="onClickMenu('{{ link.name }}', '{{ link.url }}')" title="访问 {{  link.name }}" data-hover="{{link.name}}">{{ link.name }}</a>
+                  <a class="{% if link.name == '关于' %} menu-item-about {% else %} menu-item-categories {% endif %}" href="Javascript:;" onclick="onClickMenu('{{ link.name }}', '{{ link.url }}')" title="访问 {{  link.name }}" data-hover="{{link.name}}">{{ link.name }}</a>
                 {% endfor %}
             </div>
             <!-- <div class="navbar-menu">
@@ -27,7 +27,7 @@
                 <a href="{% unless link.external %}{{ site.url }}{% endunless %}{{ link.url }}">{{ link.name }}</a>
                 {% endfor %}
             </div> -->
-            <div class="navbar-search" onclick="onClickSearch()">
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
                 <span class="icon-search"></span>
                 <form id="cb-search-btn" role="search">
                     <span class="search-box">
@@ -42,7 +42,7 @@
                 <ul>
                     {% for link in site.links %}
                     <li>
-                        <a href="Javascript:;" onclick="onClickMenu('{{ link.name }}', '{% unless link.external %}{{ site.url }}{% endunless %}{{ link.url }}')">{{ link.name }}</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('{{ link.name }}', '{% unless link.external %}{{ site.url }}{% endunless %}{{ link.url }}')">{{ link.name }}</a>
                     </li>
                     {% endfor %}
                 </ul>
@@ -67,7 +67,7 @@
                     <a onclick="onClickCategory('{{ page.category }}')" href="Javascript:;" title="访问 {{ page.category }}" data-hover="博客分类: {{ page.category }}">博客分类: {{ page.category }}</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
-                <div class="post-tags">
+                <div class="post-tags menu-item-tags">
                     {% unless page.tags == empty %} {% assign tags_list = page.tags %} {% if tags_list.first[0] == null %} {% for tag in tags_list
                     %}
                     <a href="Javascript:;" onclick="onClickTag('{{ tag }}')" title="访问{{ tag }}" data-hover="{{ tag }}">
@@ -222,6 +222,7 @@
                   link = document.createElement('a');
                   link.name = '#' + titleId[i];
                   link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
                   link.title = '访问' + titleId[i];
                   link.innerHTML = !isDirNum ? contentArr[i] :
                       dirNum.join('.') + ' ' + contentArr[i];

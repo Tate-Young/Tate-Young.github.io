@@ -35,7 +35,8 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 			<div id="waifu-tool">
 				<span class="fa fa-lg fa-comment"></span>
 				<span class="fa fa-lg fa-user-circle"></span>
-				<span class="fa fa-lg fa-street-view"></span>
+        <span class="fa fa-lg fa-street-view"></span>
+        <span class="fa fa-lg fa-camera-retro"></span>
 				<span class="fa fa-lg fa-times"></span>
 			</div>
 		</div>`);
@@ -87,7 +88,7 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 			showMessage("你都复制了些什么呀，转载要记得加上出处哦！", 6000, 9);
 		});
 		$(document).on("visibilitychange", function() {
-			if (!document.hidden) showMessage("哇，你终于回来了～", 6000, 9);
+			if (!document.hidden) showMessage(["哇，你终于回来了～", "好久不见呀主人 ~", "我们又见面了 O(∩_∩)O~~"], 6000, 9);
 		});
 	}
 	registerEventListener();
@@ -96,13 +97,13 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 		var SiteIndexUrl = location.port ? `${location.protocol}//${location.hostname}:${location.port}/` : `${location.protocol}//${location.hostname}/`, text; //自动获取主页
 		if (location.href == SiteIndexUrl) { //如果是主页
 			var now = new Date().getHours();
-			if (now > 23 || now <= 5) text = "你是夜猫子呀？这么晚还不睡觉，明天起的来嘛？";
-			else if (now > 5 && now <= 7) text = "早上好！一日之计在于晨，美好的一天就要开始了。";
-			else if (now > 7 && now <= 11) text = "上午好！工作顺利嘛，不要久坐，多起来走动走动哦！";
-			else if (now > 11 && now <= 14) text = "中午了，工作了一个上午，现在是午餐时间！";
-			else if (now > 14 && now <= 17) text = "午后很容易犯困呢，今天的运动目标完成了吗？";
-			else if (now > 17 && now <= 19) text = "傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红～";
-			else if (now > 19 && now <= 21) text = "晚上好，今天过得怎么样？";
+			if (now > 23 || now <= 5) text = ["你是夜猫子呀？这么晚还不睡觉，明天起的来嘛？", "你也失眠了呀，给我讲讲故事吧"];
+			else if (now > 5 && now <= 7) text = ["早上好！一日之计在于晨，美好的一天就要开始了", "早期的鸟儿有虫吃"];
+			else if (now > 7 && now <= 11) text = ["上午好！记得多起来走动走动哦！", "好想吃油条和炒粉~咕噜噜~"];
+			else if (now > 11 && now <= 14) text = ["中午了，吃个饱饱的午餐，赶紧去午休啦！", "又要到吃饭的时间了，今天吃什么好呢？"];
+			else if (now > 14 && now <= 17) text = ["午后很容易犯困呢，可要打起精神来", "泡一杯枸杞~"];
+			else if (now > 17 && now <= 19) text = ["傍晚了！好想去看看夕阳呀～", "天马上就要黑下来了，我们去哪里玩呀"];
+			else if (now > 19 && now <= 21) text = ["晚上好，今天过得怎么样？", "时间可过得真快呀~天都黑了"];
 			else if (now > 21 && now <= 23) text = ["已经这么晚了呀，早点休息吧，晚安～", "深夜时要爱护眼睛呀！"];
 			else text = "好久不见，日子过得好快呢……";
 		}
@@ -148,11 +149,11 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 		//增加 hitokoto.cn 的 API
 		if (Math.random() < 0.6 && messageArray.length > 0) showMessage(messageArray[Math.floor(Math.random() * messageArray.length)], 6000, 9);
 		else $.getJSON("https://v1.hitokoto.cn", function(result) {
-				var text = `这句一言来自 <span style="color:#eb5055;">『${result.from}』</span>，是 <span style="color:#eb5055;">${result.creator}</span> 在 hitokoto.cn 投稿的。`;
+				// var text = `这句一言来自 <span style="color:#eb5055;">『${result.from}』</span>，是 <span style="color:#eb5055;">${result.creator}</span> 在 hitokoto.cn 投稿的。`;
 			showMessage(result.hitokoto, 6000, 9);
-			setTimeout(function() {
-				showMessage(text, 4000, 9);
-			}, 6000);
+			// setTimeout(function() {
+			// 	showMessage(text, 4000, 9);
+			// }, 6000);
 		});
 	}
 
@@ -229,7 +230,7 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 			dataType: "json",
 			success: function(result) {
 				if (result.textures["id"] == 1 && (modelTexturesId == 1 || modelTexturesId == 0)) showMessage("我还没有其他衣服呢！", 4000, 10);
-				else showMessage("我的新衣服好看嘛？", 4000, 10);
+				else showMessage(["我的新衣服好看嘛？", "悄悄跟你说，我又看中了另一套衣服 ✧(≖ ◡ ≖✿)嘿嘿"], 4000, 10);
 				loadModel(modelId, result.textures["id"]);
 			}
 		});
