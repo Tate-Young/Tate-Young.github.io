@@ -82,5 +82,6 @@ $(document).ready(function () {
       }
     });
 });
+
 console.log(`%c Tate & Snow %c Welcome to our house  %c`, "background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff", "background:#41b883 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff", "background:transparent")
 console.log("\n \n'########::::'###::::'########:'########:\n... ##..::::'## ##:::... ##..:: ##.....::\n::: ##:::::'##:. ##::::: ##:::: ##:::::::\n::: ##::::'##:::. ##:::: ##:::: ######:::\n::: ##::::###########::::##:::: ##...::::\n::: ##::::##.......##::::##:::: ##::::::: \n::: ##::::##:::::::##::::##:::: ########: \n:::..:::::..:::::..:::::..:::::........::\n\n" + "%c Tate & Snow", "padding: 10px 0 40px;font: 2.6rem/1.25rem 'Fredericka the Great', cursive;color: #FFF;text-shadow: 0 1px #2b2b2b, -1px 0 #000, -1px 2px #2b2b2b, -2px 1px #000, -2px 3px #2b2b2b, -3px 2px #000, -3px 4px #2b2b2b, -4px 3px #000, -4px 5px #2b2b2b, -5px 4px #000, -5px 6px #2b2b2b, -6px 5px #000, -6px 7px #2b2b2b, -7px 6px #000, -7px 8px #2b2b2b, -8px 7px #000;");

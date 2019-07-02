@@ -1,22 +1,22 @@
-console.log(`
-  く__,.ヘヽ.        /  ,ー､ 〉
-           ＼ ', !-─‐-i  /  /´
-           ／｀ｰ'       L/／｀ヽ､
-         /   ／,   /|   ,   ,       ',
-       ｲ   / /-‐/  ｉ  L_ ﾊ ヽ!   i
-        ﾚ ﾍ 7ｲ｀ﾄ   ﾚ'ｧ-ﾄ､!ハ|   |
-          !,/7 '0'     ´0iソ|    |
-          |.从"    _     ,,,, / |./    |
-          ﾚ'| i＞.､,,__  _,.イ /   .i   |
-            ﾚ'| | / k_７_/ﾚ'ヽ,  ﾊ.  |
-              | |/i 〈|/   i  ,.ﾍ |  i  |
-             .|/ /  ｉ：    ﾍ!    ＼  |
-              kヽ>､ﾊ    _,.ﾍ､    /､!
-              !'〈//｀Ｔ´', ＼ ｀'7'ｰr'
-              ﾚ'ヽL__|___i,___,ンﾚ|ノ
-                  ﾄ-,/  |___./
-                  'ｰ'    !_,.:
-`);
+// console.log(`
+//   く__,.ヘヽ.        /  ,ー､ 〉
+//            ＼ ', !-─‐-i  /  /´
+//            ／｀ｰ'       L/／｀ヽ､
+//          /   ／,   /|   ,   ,       ',
+//        ｲ   / /-‐/  ｉ  L_ ﾊ ヽ!   i
+//         ﾚ ﾍ 7ｲ｀ﾄ   ﾚ'ｧ-ﾄ､!ハ|   |
+//           !,/7 '0'     ´0iソ|    |
+//           |.从"    _     ,,,, / |./    |
+//           ﾚ'| i＞.､,,__  _,.イ /   .i   |
+//             ﾚ'| | / k_７_/ﾚ'ヽ,  ﾊ.  |
+//               | |/i 〈|/   i  ,.ﾍ |  i  |
+//              .|/ /  ｉ：    ﾍ!    ＼  |
+//               kヽ>､ﾊ    _,.ﾍ､    /､!
+//               !'〈//｀Ｔ´', ＼ ｀'7'ｰr'
+//               ﾚ'ヽL__|___i,___,ンﾚ|ノ
+//                   ﾄ-,/  |___./
+//                   'ｰ'    !_,.:
+// `);
 
 /*
  * https://imjad.cn/archives/lab/add-dynamic-poster-girl-with-live2d-to-your-blog-02
@@ -34,14 +34,24 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 			<canvas id="live2d" width="300" height="300"></canvas>
 			<div id="waifu-tool">
 				<span class="fa fa-lg fa-comment"></span>
-				<span class="fa fa-lg fa-paper-plane"></span>
 				<span class="fa fa-lg fa-user-circle"></span>
 				<span class="fa fa-lg fa-street-view"></span>
-				<span class="fa fa-lg fa-camera-retro"></span>
-				<span class="fa fa-lg fa-info-circle"></span>
 				<span class="fa fa-lg fa-times"></span>
 			</div>
 		</div>`);
+	// $("body").append(`<div id="waifu">
+	// 		<div id="waifu-tips"></div>
+	// 		<canvas id="live2d" width="300" height="300"></canvas>
+	// 		<div id="waifu-tool">
+	// 			<span class="fa fa-lg fa-comment"></span>
+	// 			<span class="fa fa-lg fa-paper-plane"></span>
+	// 			<span class="fa fa-lg fa-user-circle"></span>
+	// 			<span class="fa fa-lg fa-street-view"></span>
+	// 			<span class="fa fa-lg fa-camera-retro"></span>
+	// 			<span class="fa fa-lg fa-info-circle"></span>
+	// 			<span class="fa fa-lg fa-times"></span>
+	// 		</div>
+	// 	</div>`);
 
 	function registerEventListener() {
 		$("#waifu-tool .fa-comment").click(showHitokoto);
@@ -62,13 +72,13 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 		});
 		$("#waifu-tool .fa-times").click(function() {
 			localStorage.setItem("waifu-display", new Date().getTime());
-			showMessage("愿你有一天能与重要的人重逢。", 2000, 11);
+			showMessage("你不要我了吗 呜呜呜~", 2000, 11);
 			$("#waifu").animate({ bottom: -500 }, 3000, function() {
 				$("#waifu").hide();
 			});
 		});
 		var re = /x/;
-		console.log(re);
+		// console.log(re);
 		re.toString = function() {
 			showMessage("哈哈，你打开了控制台，是想要看看我的秘密吗？", 6000, 9);
 			return "";
@@ -100,14 +110,14 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 			var referrer = document.createElement("a");
 			referrer.href = document.referrer;
 			var domain = referrer.hostname.split(".")[1];
-			if (location.hostname == referrer.hostname) text = `欢迎阅读<span style="color:#0099cc;">『${document.title.split(" - ")[0]}』</span>`;
-			else if (domain == "baidu") text = `Hello！来自 百度搜索 的朋友<br/>你是搜索 <span style="color:#0099cc;">${referrer.search.split("&wd=")[1].split("&")[0]}</span> 找到的我吗？`;
-			else if (domain == "so") text = `Hello！来自 360搜索 的朋友<br/>你是搜索 <span style="color:#0099cc;">${referrer.search.split("&q=")[1].split("&")[0]}</span> 找到的我吗？`;
-			else if (domain == "google") text = `Hello！来自 谷歌搜索 的朋友<br/>欢迎阅读<span style="color:#0099cc;">『${document.title.split(" - ")[0]}』</span>`;
-			else text = `Hello！来自 <span style="color:#0099cc;">${referrer.hostname}</span> 的朋友`;
+			if (location.hostname == referrer.hostname) text = `欢迎阅读<span style="color:#eb5055;">『${document.title.split(" - ")[0]}』</span>`;
+			else if (domain == "baidu") text = `Hello！来自 百度搜索 的朋友<br/>你是搜索 <span style="color:#eb5055;">${referrer.search.split("&wd=")[1].split("&")[0]}</span> 找到的我吗？`;
+			else if (domain == "so") text = `Hello！来自 360搜索 的朋友<br/>你是搜索 <span style="color:#eb5055;">${referrer.search.split("&q=")[1].split("&")[0]}</span> 找到的我吗？`;
+			else if (domain == "google") text = `Hello！来自 谷歌搜索 的朋友<br/>欢迎阅读<span style="color:#eb5055;">『${document.title.split(" - ")[0]}』</span>`;
+			else text = `Hello！来自 <span style="color:#eb5055;">${referrer.hostname}</span> 的朋友`;
 		}
 		else {
-			text = `欢迎阅读<span style="color:#0099cc;">『${document.title.split(" - ")[0]}』</span>`;
+			text = `欢迎阅读<span style="color:#eb5055;">『${document.title.split(" - ")[0]}』</span>`;
 		}
 		showMessage(text, 7000, 8);
 	}
@@ -138,7 +148,7 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 		//增加 hitokoto.cn 的 API
 		if (Math.random() < 0.6 && messageArray.length > 0) showMessage(messageArray[Math.floor(Math.random() * messageArray.length)], 6000, 9);
 		else $.getJSON("https://v1.hitokoto.cn", function(result) {
-				var text = `这句一言来自 <span style="color:#0099cc;">『${result.from}』</span>，是 <span style="color:#0099cc;">${result.creator}</span> 在 hitokoto.cn 投稿的。`;
+				var text = `这句一言来自 <span style="color:#eb5055;">『${result.from}』</span>，是 <span style="color:#eb5055;">${result.creator}</span> 在 hitokoto.cn 投稿的。`;
 			showMessage(result.hitokoto, 6000, 9);
 			setTimeout(function() {
 				showMessage(text, 4000, 9);
