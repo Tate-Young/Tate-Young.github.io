@@ -67,16 +67,16 @@
                     <a onclick="onClickCategory('{{ page.category }}')" href="Javascript:;" title="访问 {{ page.category }}" data-hover="博客分类: {{ page.category }}">博客分类: {{ page.category }}</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
-                <div class="post-tags menu-item-tags">
+                <div class="post-tags">
                     {% unless page.tags == empty %} {% assign tags_list = page.tags %} {% if tags_list.first[0] == null %} {% for tag in tags_list
                     %}
-                    <a href="Javascript:;" onclick="onClickTag('{{ tag }}')" title="访问{{ tag }}" data-hover="{{ tag }}">
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('{{ tag }}')" title="访问{{ tag }}" data-hover="{{ tag }}">
                         {{ tag }}
                         <span>({{ site.tags[tag].size }})</span>
                         {% unless forloop.last %}{% endunless %}
                     </a>
                     {% endfor %} {% else %} {% for tag in tags_list %}
-                    <a href="Javascript:;" onclick="onClickTag('{{ tag[0] }}')" title="访问 {{ tag[0] }}" data-hover="{{tag[0]}}">
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('{{ tag[0] }}')" title="访问 {{ tag[0] }}" data-hover="{{tag[0]}}">
                         {{ tag[0] }}
                         <span>({{ tag[1].size }})</span>
                         {% unless forloop.last %}{% endunless %}
