@@ -9,6 +9,7 @@
   --grey-container-color: #dcdcdc;
   --white-font: white;
   --grey-font: #aaa;
+  --red-font: #eb5055;
 }
 
 /* ==========================================================================
@@ -43,12 +44,12 @@ html {
 
 ::-moz-selection {
     color: #fff;
-    background-color: #eb5055;
+    background-color: var(--red-font);
 }
 
 ::selection {
     color: #fff;
-    background-color: #eb5055;
+    background-color: var(--red-font);
 }
 
 body {
@@ -166,15 +167,15 @@ a {
 }
 
 ol a:hover {
-    color: #eb5055;
+    color: var(--red-font);
 }
 
-/* a:active,a:focus,a:hover{color:#eb5055;outline:0;}  */
+/* a:active,a:focus,a:hover{color:var(--red-font);outline:0;}  */
 
-/* a:active,a:focus,a:hover{color:#eb5055;outline:0;} */
+/* a:active,a:focus,a:hover{color:var(--red-font);outline:0;} */
 
 a::before {
-    color: #eb5055;
+    color: var(--red-font);
     content: attr(data-hover);
     position: absolute;
     outline: 0;
@@ -468,7 +469,7 @@ textarea:-ms-input-placeholder {
 }
 
 #instantclick-bar {
-    background: #eb5055;
+    background: var(--red-font);
 }
 
 /* ==========================================================================
@@ -701,7 +702,7 @@ textarea:-ms-input-placeholder {
 .navbar-mobile-menu:hover .icon-menu.cross .middle,
 .navbar-mobile-menu:hover .icon-menu.cross:after,
 .navbar-mobile-menu:hover .icon-menu.cross:before {
-    background: #eb5055;
+    background: var(--red-font);
 }
 
 .navbar-mobile-menu:active .icon-menu.cross .middle,
@@ -794,7 +795,7 @@ textarea:-ms-input-placeholder {
 .navbar-search:hover>.icon-search,
 .navbar-search:active>.icon-search,
 .navbar-search:focus>.icon-search {
-    color: #eb5055;
+    color: var(--red-font);
 }
 
 .navbar-search form {
@@ -836,7 +837,7 @@ textarea:-ms-input-placeholder {
     height: 30px;
     padding: 0 40px 0 18px;
     color: #313131;
-    border: 1px solid #eb5055;
+    border: 1px solid var(--red-font);
     border-radius: 20px;
     outline: 0;
     background-color: #fff;
@@ -848,7 +849,7 @@ textarea:-ms-input-placeholder {
     padding: 0;
     font-size: 14px;
     line-height: 50px;
-    color: #eb5055;
+    color: var(--red-font);
     background-color: #fff;
     z-index: 9999;
     text-align: center;
@@ -1050,7 +1051,7 @@ textarea:-ms-input-placeholder {
 .post-list-item-container .item-label .item-title a:hover {
     font-size: 15px;
     word-break: break-all;
-    color: #eb5055;
+    color: var(--red-font);
     line-height: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1325,7 +1326,7 @@ textarea:-ms-input-placeholder {
     top: 0;
     left: -15px;
     content: '#';
-    color: #eb5055;
+    color: var(--red-font);
 }
 
 .post-content pre {
@@ -1364,8 +1365,8 @@ pre code::after {
 }
 
 .post-content p a:hover {
-    color: #eb5055 !important;
-    border-bottom: 1px solid #eb5055;
+    color: var(--red-font) !important;
+    border-bottom: 1px solid var(--red-font);
 }
 
 .post-content img {
@@ -1579,7 +1580,7 @@ pre code::after {
     left: -15px;
     padding: 0 30px;
     content: '#';
-    color: #eb5055;
+    color: var(--red-font);
 }
 
 .archive-page .post-list-item-container {
@@ -1606,7 +1607,7 @@ pre code::after {
 }
 
 .archive-page .post-list-item-container .item-label .item-title a:hover {
-    color: #eb5055;
+    color: var(--red-font);
 }
 
 .archive-page .post-list-item-container .item-label .item-meta .item-meta-date {
@@ -1633,7 +1634,7 @@ pre code::after {
     left: -15px;
     padding: 0 30px;
     content: '#';
-    color: #eb5055;
+    color: var(--red-font);
 }
 
 .common-page .post-list-item {
@@ -1783,7 +1784,7 @@ pre code::after {
     height: 7px;
     content: '';
     border-radius: 50%;
-    background-color: #eb5055;
+    background-color: var(--red-font);
 }
 
 #directory ul li a {
@@ -1804,7 +1805,7 @@ pre code::after {
 }
 
 #directory a:hover {
-    color: #eb5055;
+    color: var(--red-font);
 }
 
 /* ==========================================================================
@@ -1838,7 +1839,7 @@ pre code::after {
 }
 
 .lists-navigator ol li.current a {
-    color: #eb5055 !important;
+    color: var(--red-font) !important;
 }
 
 .lists-navigator ol li.current a.page-turning {
@@ -1857,7 +1858,7 @@ pre code::after {
 }
 
 #comments .lists-navigator ol li.current a {
-    color: #eb5055;
+    color: var(--red-font);
 }
 
 /* ==========================================================================
@@ -1894,7 +1895,7 @@ pre code::after {
 }
 
 #comments .response a {
-    color: #eb5055;
+    color: var(--red-font);
 }
 
 .comment-list {
@@ -1953,7 +1954,7 @@ pre code::after {
 }
 
 .comment-header .comment-by-author a {
-    color: #eb5055 !important;
+    color: var(--red-font) !important;
 }
 
 .comment-content {
@@ -1971,7 +1972,7 @@ pre code::after {
 }
 
 .comment-meta .comment-reply a {
-    color: #eb5055 !important;
+    color: var(--red-font) !important;
 }
 
 .comment-view:hover .comment-meta .comment-reply {
@@ -2017,7 +2018,7 @@ pre code::after {
 }
 
 .comment-form .form-control:focus {
-    border-color: #eb5055;
+    border-color: var(--red-font);
     outline: 0;
 }
 
@@ -2059,8 +2060,8 @@ pre code::after {
 .submit:focus,
 .submit:active,
 .submit:active:focus {
-    color: #eb5055;
-    border: 1px solid #eb5055;
+    color: var(--red-font);
+    border: 1px solid var(--red-font);
     outline-style: none;
     background-color: #fff;
 }
@@ -2236,6 +2237,10 @@ pre code::after {
   .dark-theme .icon-search,
   .dark-theme .post-title {
     color: var(--white-font);
+  }
+
+  .dark-theme strong {
+    color: var(--red-font) !important;
   }
 
   .dark-theme h1,
