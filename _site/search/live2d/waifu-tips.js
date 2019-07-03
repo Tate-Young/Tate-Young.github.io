@@ -149,11 +149,11 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 		//增加 hitokoto.cn 的 API
 		if (Math.random() < 0.6 && messageArray.length > 0) showMessage(messageArray[Math.floor(Math.random() * messageArray.length)], 6000, 9);
 		else $.getJSON("https://v1.hitokoto.cn", function(result) {
-				// var text = `这句一言来自 <span style="color:#eb5055;">『${result.from}』</span>，是 <span style="color:#eb5055;">${result.creator}</span> 在 hitokoto.cn 投稿的。`;
+				var text = `这句一言来自 <span style="color:#eb5055;">『${result.from}』</span>，是 <span style="color:#eb5055;">${result.creator}</span> 在 hitokoto.cn 投稿的。`;
 			showMessage(result.hitokoto, 6000, 9);
-			// setTimeout(function() {
-			// 	showMessage(text, 4000, 9);
-			// }, 6000);
+			setTimeout(function() {
+				showMessage(text, 4000, 9);
+			}, 6000);
 		});
 	}
 
@@ -230,7 +230,7 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 			dataType: "json",
 			success: function(result) {
 				if (result.textures["id"] == 1 && (modelTexturesId == 1 || modelTexturesId == 0)) showMessage("我还没有其他衣服呢！", 4000, 10);
-				else showMessage(["我的新衣服好看嘛？", "悄悄跟你说，我又看中了另一套衣服 ✧(≖ ◡ ≖✿)嘿嘿"], 4000, 10);
+				else showMessage("我的新衣服好看嘛？", 4000, 10);
 				loadModel(modelId, result.textures["id"]);
 			}
 		});
