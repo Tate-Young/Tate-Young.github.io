@@ -156,8 +156,8 @@
                 <h1 class="post-title" itemprop="name headline">
                     Redis 简介</h1>
                 <div class="post-data">
-                    <time datetime="2019-07-08 10:47:00" itemprop="datePublished">
-                      发布时间：2019-07-08 10:47:00
+                    <time datetime="2019-07-08 21:38:00" itemprop="datePublished">
+                      发布时间：2019-07-08 21:38:00
                       &nbsp;&nbsp;&nbsp;
                       
                     </time>
@@ -181,7 +181,7 @@
             <h1 class="post-title" itemprop="name headline">
                 Redis 简介</h1>
             <div class="post-data">
-                <time datetime="2019-07-08 10:47:00" itemprop="datePublished">2019-07-08 10:47:00</time>
+                <time datetime="2019-07-08 21:38:00" itemprop="datePublished">2019-07-08 21:38:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -441,22 +441,202 @@ OK
 
 <p>还有一个需要特别注意的地方是如果一个字符串已经设置了过期时间，然后你调用了 set 方法修改了它，它的过期时间会消失:</p>
 
-<pre><code class="language-SHELL">&gt; set codehole yoyo
+<pre><code class="language-SHELL">&gt; set tate yoyo
 OK
-&gt; expire codehole 600
+&gt; expire tate 600
 (integer) 1
-&gt; ttl codehole
+&gt; ttl tate
 (integer) 597
-&gt; set codehole yoyo
+&gt; set tate yoyo
 OK
-&gt; ttl codehole
+&gt; ttl tate
 (integer) -1
 </code></pre>
+
+<h2 id="分布式锁">分布式锁</h2>
+
+<p>场景: 比如一个操作要修改用户的状态，修改状态需要先读出用户的状态，在内存里进行修改，改完了再存回去。如果这样的操作同时进行了，就会出现并发问题，因为读取和保存状态这两个操作不是<strong>原子</strong>的，即不会被线程调度机制打断的操作。这时候就会用到 Redis 的<strong>分布式锁</strong>。</p>
+
+<p>分布式锁本质上要实现的目标就是在 Redis 里面占坑，一般是使用 <strong>setnx</strong>(set if not exists) 指令，只允许被一个客户端占坑。先来先占，用完了，再调用 del 指令释放茅坑。为了防止中间出现一些异常导出无法 del，一般会加个期限，过期后自动释放:</p>
+
+<pre><code class="language-SHELL">&gt; setnx maokeng true
+OK
+&gt; expire maokeng 5
+... do something critical ...
+&gt; del maokeng
+(integer) 1
+</code></pre>
+
+<p>但是如果在 setnx 和 expire 之间服务器进程突然挂掉了，无法调用 expire，则还是成了死锁。因此 Redis 2.8 版本中作者加入了 set 指令的扩展参数，使得 setnx 和 expire 指令可以一起执行:</p>
+
+<pre><code class="language-SHELL"># 原子指令
+&gt; set maokeng true ex 5 nx
+OK
+... do something critical ...
+&gt; del maokeng
+</code></pre>
+
+<p>伴随而来的还有一个问题，就是超时。如果在加锁和释放锁之间的逻辑执行的太长，以至于超出了锁的超时限制，就会出现问题。因为这时候第一个线程持有的锁过期了，临界区的逻辑还没有执行完，这个时候第二个线程就提前重新持有了这把锁，导致临界区代码不能得到严格的串行执行:</p>
+
+<pre><code class="language-PY"># 验证随机数是否一致
+tag = random.nextint()  # 随机数
+if redis.set(key, tag, nx=True, ex=5):
+  do_something()
+  redis.delifequals(key, tag)  # 假想的 delifequals 指令
+</code></pre>
+
+<p>匹配 value 和删除 key 不是一个原子操作，Redis 也没有提供类似于 delifequals 这样的指令。目前可以使用 <a href="https://zh.wikipedia.org/wiki/Lua"><strong>Lua 脚本</strong></a>来处理，因为 Lua 脚本可以保证连续多个指令的原子性执行，但也只是说相对更安全一些:</p>
+
+<pre><code class="language-SHELL"># delifequals
+if redis.call("get",KEYS[1]) == ARGV[1] then
+  return redis.call("del",KEYS[1])
+else
+  return 0
+end
+</code></pre>
+
+<p>另外提到一下<strong>可重入性</strong>，指线程在持有锁的情况下再次请求加锁，如果一个锁支持同一个线程的多次加锁，那么这个锁就是可重入的，这里就不展开讨论了。</p>
+
+<h2 id="延时队列">延时队列</h2>
+
+<p>首先我们了解下什么是<a href="https://github.com/jasonGeng88/blog/blob/master/201705/MQ.md"><strong>消息队列(Message Queue)</strong></a>，即 <strong>MQ</strong>。它是一种应用间的通信方式，消息发送后可以立即返回，由消息系统来确保消息的可靠传递。消息发布者只管把消息发布到 MQ 中而不用管谁来取，消息使用者只管从 MQ 中取消息而不管是谁发布的。这样发布者和使用者都不用知道对方的存在。市面上常用的有 <a href="https://www.rabbitmq.com"><strong>RabbitMQ</strong></a> 和 <a href="https://kafka.apache.org"><strong>Kafka</strong></a> 等，来给应用程序之间增加异步消息传递功能。</p>
+
+<p>Redis 的消息队列不是专业的消息队列，使用起来比较简单，它没有非常多的高级特性，没有 ack 保证，如果对消息的可靠性有着极致的追求，那么它就不适合使用。Redis 的 list(列表) 数据结构常用来作为异步消息队列使用，使用 <code class="highlighter-rouge">rpush/lpush</code> 操作入队列，使用 <code class="highlighter-rouge">lpop/rpop</code> 来出队列。</p>
+
+<p>客户端是通过队列的 pop 操作来获取消息，然后进行处理。处理完了再接着获取消息，再进行处理。如此循环往复，这便是作为队列消费者的客户端的生命周期。可是如果队列空了，客户端就会陷入 pop 的死循环，可能拉高客户端的 CPU 占用和 Redis 的 QPS，解决方案之一就是通过 sleep 指令让线程”睡一会儿”:</p>
+
+<pre><code class="language-SHELL">time.sleep(1)  # python 睡 1s
+Thread.sleep(1000)  # java 睡 1s
+</code></pre>
+
+<p>上述又会导致另一个问题，即消息的延迟增大，因此采用 <code class="highlighter-rouge">blpop/brpop</code> 替代前面的 <code class="highlighter-rouge">lpop/rpop</code>，就完美解决了上面的问题。这两个指令的前缀字符 b 代表的是 <code class="highlighter-rouge">blocking</code>，也就是<strong>阻塞读</strong>。阻塞读在队列没有数据的时候，会立即进入休眠状态，一旦数据到来，则立刻醒过来。消息的延迟几乎为零。</p>
+
+<p>那么问题又来了，如果线程一直阻塞在哪里，Redis 的客户端连接就成了闲置连接，闲置过久，服务器一般会主动断开连接，减少闲置资源占用。这个时候 <code class="highlighter-rouge">blpop/brpop</code> 会抛出异常来，所以要注意捕获异常。</p>
+
+<p>上面有一部分讲到了分布式锁的问题，但是没有提到客户端在处理请求时加锁没加成功怎么办。一般有 3 种策略来处理加锁失败：</p>
+
+<ul>
+  <li>直接抛出异常，通知用户稍后重试；</li>
+  <li>sleep 一会再重试；</li>
+  <li>将请求转移至延时队列，过一会再试；</li>
+</ul>
+
+<p><strong>延时队列</strong>可以通过 Redis 的 zset(有序列表) 来实现。我们将消息序列化成一个字符串作为 zset 的 value，这个消息的到期处理时间作为score，然后用多个线程轮询 zset 获取到期的任务进行处理，多个线程是为了保障可用性，万一挂了一个线程还有其它线程可以继续处理。因为有多个线程，所以需要考虑并发争抢任务，确保任务不能被多次执行:</p>
+
+<pre><code class="language-PY">def delay(msg):
+  msg.id = str(uuid.uuid4())  # 保证 value 值唯一
+  value = json.dumps(msg)
+  retry_ts = time.time() + 5  # 5 秒后重试
+  redis.zadd("delay-queue", retry_ts, value)
+
+
+def loop():
+  while True:
+    # 最多取 1 条
+    values = redis.zrangebyscore("delay-queue", 0, time.time(), start=0, num=1)
+    if not values:
+      time.sleep(1)  # 延时队列空的，休息 1s
+      continue
+    value = values[0]  # 拿第一条，也只有一条
+    success = redis.zrem("delay-queue", value)  # 从消息队列中移除该消息
+    if success:  # 因为有多进程并发的可能，最终只会有一个进程可以抢到消息
+      msg = json.loads(value)
+      handle_msg(msg)
+</code></pre>
+
+<p>Redis 的 zrem 方法是多线程多进程争抢任务的关键，它的返回值决定了当前实例有没有抢到任务，因为 loop 方法可能会被多个线程、多个进程调用，同一个任务可能会被多个进程线程抢到，通过 zrem 来决定唯一的属主。同时，我们要注意一定要对 handle_msg 进行异常捕获，避免因为个别任务处理问题导致循环异常退出。</p>
+
+<h2 id="hyperloglog-统计">HyperLogLog 统计</h2>
+
+<p>场景:如果要负责维护一个网站，要记录 PV 和 UV。PV 那非常好办，给每个网页一个独立的 Redis 计数器就可以了，这个计数器的 key 后缀加上当天的日期。这样来一个请求，incrby 一次，最终就可以统计出所有的 PV 数据。</p>
+
+<p>UV 因为要考虑去重，一般想法是为每一个页面一个独立的 set 集合来存储所有当天访问过此页面的用户 ID。当一个请求过来时，我们使用 sadd 将用户 ID 塞进去就可以了。通过 scard 可以取出这个集合的大小，这个数字就是这个页面的 UV 数据。但是，如果你的页面访问量非常大，比如一个爆款页面几千万的 UV，你需要一个很大的 set 集合来统计，这就非常浪费空间。因此 <strong>HyperLogLog</strong> 就派上用场了。</p>
+
+<p>Redis 提供了 HyperLogLog 数据结构就是用来解决这种统计问题的。HyperLogLog 提供不精确的去重计数方案，虽然不精确但是也不是非常不精确，标准误差是 0.81%。它提供了以下几个常用指令:</p>
+
+<ul>
+  <li><strong>pfadd</strong> - 增加计数</li>
+  <li><strong>pfcount</strong> - 获取计数</li>
+  <li><strong>pfmerge</strong> - 合并计数，用于将多个 pf 计数值累加在一起形成一个新的 pf 值</li>
+</ul>
+
+<pre><code class="language-SHELL">&gt; pfadd tate user1
+(integer) 1
+&gt; pfcount tate
+(integer) 1
+&gt; pfadd tate user2 user3 user4 user5
+(integer) 1
+&gt; pfcount tate
+(integer) 5
+</code></pre>
+
+<blockquote>
+  <p>pfadd 中的 <code class="highlighter-rouge">pf</code> 是 HyperLogLog 数据结构发明人 Philippe Flajolet 的首字母缩写。</p>
+</blockquote>
+
+<h2 id="布隆过滤器">布隆过滤器</h2>
+
+<p>场景:我们在使用新闻客户端看新闻时，它会给我们不停地推荐新的内容，它每次推荐时要去重，去掉那些已经看过的内容。问题来了，新闻客户端推荐系统如何实现推送去重的?</p>
+
+<p>如果历史记录存储在关系数据库里，去重就需要频繁地对数据库进行 exists 查询，当系统并发量很高时，数据库是很难扛住压力的。可能又想到了缓存，但是如此多的历史记录全部缓存起来，那得浪费多大存储空间呢？而且这个存储空间是随着时间线性增长。这时就需要用到<strong>布隆过滤器(Bloom Filter)</strong>了。它就是专门用来解决这种去重问题的。它在起到去重的同时，在空间上还能节省 90% 以上，只是稍微有那么点不精确，也就是有一定的误判概率。</p>
+
+<p>布隆过滤器可以理解为一个不怎么精确的 set 结构，当你使用它的 <code class="highlighter-rouge">contains</code> 方法判断某个对象是否存在时，它可能会误判：当布隆过滤器说某个值存在时，这个值可能不存在；当它说不存在时，那就肯定不存在。Redis 官方提供的布隆过滤器到了 Redis 4.0 提供了插件功能之后才正式登场。布隆过滤器作为一个插件加载到 Redis Server 中，给 Redis 提供了强大的布隆去重功能，其基本命令如下:</p>
+
+<ul>
+  <li><strong>bf.add</strong> - 添加元素</li>
+  <li><strong>bf.exists</strong> - 查询元素是否存在</li>
+  <li><strong>bf.madd</strong> - 批量添加元素</li>
+  <li><strong>bf.mexists</strong> - 批量查询元素是否存在</li>
+</ul>
+
+<pre><code class="language-SHELL">&gt; bf.add codehole user1
+(integer) 1
+&gt; bf.add codehole user2
+(integer) 1
+&gt; bf.add codehole user3
+(integer) 1
+&gt; bf.exists codehole user1
+(integer) 1
+&gt; bf.exists codehole user2
+(integer) 1
+&gt; bf.exists codehole user3
+(integer) 1
+&gt; bf.exists codehole user4
+(integer) 0
+&gt; bf.madd codehole user4 user5 user6
+1) (integer) 1
+2) (integer) 1
+3) (integer) 1
+&gt; bf.mexists codehole user4 user5 user6 user7
+1) (integer) 1
+2) (integer) 1
+3) (integer) 1
+4) (integer) 0
+</code></pre>
+
+<h2 id="漏斗限流">漏斗限流</h2>
+
+<p>场景:用户的发帖、回复、点赞等行为都要严格受控，一般要严格限定某行为在规定时间内允许的次数，超过了次数那就是非法行为。对非法行为，业务必须规定适当的惩处策略，因此除了控制流量，限流还有一个应用目的是用于控制用户行为，避免垃圾请求。</p>
+
+<p><strong>漏斗限流(funnel)</strong>是最常用的限流方法之一，顾名思义，这个算法的灵感源于漏斗（funnel）的结构。漏斗的剩余空间就代表着当前行为可以持续进行的数量，漏嘴的流水速率代表着系统允许该行为的最大频率。Redis 4.0 提供了一个限流 Redis 模块，它叫 <strong>redis-cell</strong>。该模块也使用了漏斗算法，并提供了原子的限流指令。该模块只有一条指令 <code class="highlighter-rouge">cl.throttle</code>:</p>
+
+<pre><code class="language-TEXT">&gt; cl.throttle tate:reply 15 30 60 1
+                   ▲     ▲  ▲  ▲  ▲
+                   |     |  |  |  └───── need 1 quota (可选参数，默认值也是1)
+                   |     |  └──┴─────── 30 operations / 60 seconds 这是漏水速率
+                   |     └───────────── 15 capacity 这是漏斗容量
+                   └─────────────────── key tate
+</code></pre>
+
+<blockquote>
+  <p>To be continued</p>
+</blockquote>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://juejin.im/book/5afc2e5f6fb9a07a9b362527/section/5afc2e5f51882542714ff291">Redis 深度历险：核心原理与应用实践 - 掘进小册</a> By 老钱</li>
+  <li><a href="http://zhangtielei.com/posts/blog-redlock-reasoning.html">基于 Redis 的分布式锁到底安全吗？</a></li>
 </ol>
  
 <div id="gitalk-container"></div>
@@ -504,7 +684,7 @@ OK
 
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-07-08 10:47:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-07-08 21:38:00</p> -->
         </div>
     </article>
 
