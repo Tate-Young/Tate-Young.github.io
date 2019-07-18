@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Node 侦错
 date:   2018-04-19 21:48:00 GMT+0800 (CST)
-update: 2019-06-06 11:16:00 GMT+0800 (CST)
+update: 2019-07-18 16:41:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
 tags:
 - Node
@@ -18,7 +18,9 @@ tags:
 
 ![debug](https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png)
 
-## launch.json 配置
+## Visual Studio Code
+
+### launch.json 配置
 
 **launch.json** 文件配置里的有两个重要的属性 **type** 和 **request**，取值为:
 
@@ -94,7 +96,7 @@ tags:
 }
 ```
 
-### launch
+#### launch
 
 根据 launch.json 配置选项，选择 "Launch myTest" 模式并执行，此时控制台输出:
 
@@ -107,7 +109,7 @@ listening on port 8080
 
 此时 Chrome 上打开 <code>localhost:8080</code> 即可进行断点调试，但代码有修改的话，必须重新监听。
 
-### attach
+#### attach
 
 根据 launch.json 配置选项，选择 "Attach myTest" 模式，但注意在执行 debug 之前必须让程序启动，否则会报错:
 
@@ -129,7 +131,7 @@ nodemon --inspect index.js
 
 监听之后执行 debug，终端会显示 "Debugger attached."，另外底边栏会有 <code>Auto Attach:Off</code> 状态，点击可切换为 On 状态，即当内容有修改后，会自动进行 attach 操作。
 
-## 断点
+### 断点
 
 单击编辑器侧边缘即可为所在行添加或删除断点，调试时在 BREAKPOINTS 区域中也可对断点进行操作(enable/disable/reapply)。
 
@@ -149,7 +151,22 @@ app.get('/', function(req, res) {
 
 ![breakpoints](https://code.visualstudio.com/assets/docs/editor/debugging/debug-session.png)
 
-## jsconfig.json
+### code 命令
+
+这里介绍一个**炒鸡**好用的功能，如果我们想在终端通过命令来调用 VS Code 来编辑一些文件，可以在编辑器打开命令面板（ ⇧⌘P ），然后找到 `Install ‘code' command in PATH` 进行安装，之后我们就可以使用 `code` 命令啦:
+
+```SHELL
+# 若不存在则创建
+code README.md
+
+# 还可以一次性打开多个文件
+code file1 file2 file3
+
+# 也支持打开文件目录
+code folder1 folder2
+```
+
+### jsconfig.json
 
 这里额外提到下 vscode 的 **jsconfig.json** 文件，目录中存在该文件表示该目录是 JavaScript 项目的根目录。jsconfig.json 文件指定根文件和 JavaScript 语言服务提供的功能选项。具体可以参考 [vscode 官方文档](https://code.visualstudio.com/docs/languages/jsconfig)。
 

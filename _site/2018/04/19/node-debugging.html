@@ -16,7 +16,7 @@
 <meta name="twitter:keywords" content="Node 侦错 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node 侦错 - Tate & Snow">
-<meta name="og:keywords" content="Node 侦错 - Tate & Snow|Node 侦错本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性 ..."
+<meta name="og:keywords" content="Node 侦错 - Tate & Snow|Node 侦错本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。Visual Studio Codelaunch.json 配置launch.js..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -25,13 +25,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Node 侦错本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性 ..." property='og:description'
+<meta name="keywords" content="Node 侦错本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。Visual Studio Codelaunch.json 配置launch.js..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:2333/2018/04/19/node-debugging.html' property='og:url' />
-<meta content="http://localhost:2333/2018/04/19/node-debugging.html|Node 侦错本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个重要的属性 ..." property='og:description'
+<meta content="http://localhost:2333/2018/04/19/node-debugging.html|Node 侦错本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。Visual Studio Codelaunch.json 配置launch.js..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -160,7 +160,7 @@
                       发布时间：2018-04-19 21:48:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-06-06 11:16:00
+                        修改时间：2019-07-18 16:16:00
                       
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
@@ -201,7 +201,9 @@
 
 <p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png" alt="debug" /></p>
 
-<h2 id="launchjson-配置">launch.json 配置</h2>
+<h2 id="visual-studio-code">Visual Studio Code</h2>
+
+<h3 id="launchjson-配置">launch.json 配置</h3>
 
 <p><strong>launch.json</strong> 文件配置里的有两个重要的属性 <strong>type</strong> 和 <strong>request</strong>，取值为:</p>
 
@@ -280,7 +282,7 @@
 }
 </code></pre>
 
-<h3 id="launch">launch</h3>
+<h4 id="launch">launch</h4>
 
 <p>根据 launch.json 配置选项，选择 “Launch myTest” 模式并执行，此时控制台输出:</p>
 
@@ -292,7 +294,7 @@ listening on port 8080
 
 <p>此时 Chrome 上打开 <code>localhost:8080</code> 即可进行断点调试，但代码有修改的话，必须重新监听。</p>
 
-<h3 id="attach">attach</h3>
+<h4 id="attach">attach</h4>
 
 <p>根据 launch.json 配置选项，选择 “Attach myTest” 模式，但注意在执行 debug 之前必须让程序启动，否则会报错:</p>
 
@@ -314,7 +316,7 @@ nodemon --inspect index.js
 
 <p>监听之后执行 debug，终端会显示 “Debugger attached.”，另外底边栏会有 <code>Auto Attach:Off</code> 状态，点击可切换为 On 状态，即当内容有修改后，会自动进行 attach 操作。</p>
 
-<h2 id="断点">断点</h2>
+<h3 id="断点">断点</h3>
 
 <p>单击编辑器侧边缘即可为所在行添加或删除断点，调试时在 BREAKPOINTS 区域中也可对断点进行操作(enable/disable/reapply)。</p>
 
@@ -335,7 +337,21 @@ nodemon --inspect index.js
 
 <p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debug-session.png" alt="breakpoints" /></p>
 
-<h2 id="jsconfigjson">jsconfig.json</h2>
+<h3 id="code-命令">code 命令</h3>
+
+<p>这里介绍一个<strong>炒鸡</strong>好用的功能，如果我们想在终端通过命令来调用 VS Code 来编辑一些文件，可以在编辑器打开命令面板（ ⇧⌘P ），然后找到 <code class="highlighter-rouge">Install ‘code' command in PATH</code> 进行安装，之后我们就可以使用 <code class="highlighter-rouge">code</code> 命令啦:</p>
+
+<pre><code class="language-SHELL"># 若不存在则创建
+code README.md
+
+# 还可以一次性打开多个文件
+code file1 file2 file3
+
+# 也支持打开文件目录
+code folder1 folder2
+</code></pre>
+
+<h3 id="jsconfigjson">jsconfig.json</h3>
 
 <p>这里额外提到下 vscode 的 <strong>jsconfig.json</strong> 文件，目录中存在该文件表示该目录是 JavaScript 项目的根目录。jsconfig.json 文件指定根文件和 JavaScript 语言服务提供的功能选项。具体可以参考 <a href="https://code.visualstudio.com/docs/languages/jsconfig">vscode 官方文档</a>。</p>
 
