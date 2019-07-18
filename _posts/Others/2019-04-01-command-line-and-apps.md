@@ -287,7 +287,7 @@ svgo -i products-shape.svg -o products-shape.svg
 
 > 推荐一个 [**explainshell**](https://explainshell.com) 页面，可以解释一些命令行
 
-![explainshell](https://user-gold-cdn.xitu.io/2019/1/23/1687a706e7c637ef?imageView2/0/w/1280/h/960/ignore-error/1)
+![explain-shell.png](https://i.loli.net/2019/07/18/5d304c5add82645451.png)
 
 ## 命令行光标操作
 
