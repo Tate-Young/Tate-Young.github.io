@@ -18,20 +18,20 @@
 <meta property="og:title" content="对象扩展(下) - Tate & Snow">
 <meta name="og:keywords" content="对象扩展(下) - Tate & Snow|对象扩展(下)函数扩展ES6 中函数主要扩展:            扩展      描述                  默认值      可以使用参数默认值              rest 参数      ...args  ..."
   property='og:description' />
-<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
-<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
-<link rel="canonical" href="http://localhost:4000/">
-<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
-<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
 <meta name="keywords" content="对象扩展(下)函数扩展ES6 中函数主要扩展:            扩展      描述                  默认值      可以使用参数默认值              rest 参数      ...args  ..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
-<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/03/16/es6-extension-next.html' property='og:url' />
-<meta content="http://localhost:4000/2018/03/16/es6-extension-next.html|对象扩展(下)函数扩展ES6 中函数主要扩展:            扩展      描述                  默认值      可以使用参数默认值              rest 参数      ...args  ..." property='og:description'
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2018/03/16/es6-extension-next.html' property='og:url' />
+<meta content="http://localhost:2333/2018/03/16/es6-extension-next.html|对象扩展(下)函数扩展ES6 中函数主要扩展:            扩展      描述                  默认值      可以使用参数默认值              rest 参数      ...args  ..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -93,17 +93,17 @@
             </div>
             <!-- <div class="navbar-menu">
                 
-                <a href="http://localhost:4000/">首页</a>
+                <a href="http://localhost:2333/">首页</a>
                 
-                <a href="http://localhost:4000/front">前端</a>
+                <a href="http://localhost:2333/front">前端</a>
                 
-                <a href="http://localhost:4000/tool">框架</a>
+                <a href="http://localhost:2333/tool">框架</a>
                 
-                <a href="http://localhost:4000/back">后端</a>
+                <a href="http://localhost:2333/back">后端</a>
                 
-                <a href="http://localhost:4000/tags">标签</a>
+                <a href="http://localhost:2333/tags">标签</a>
                 
-                <a href="http://localhost:4000/README">关于</a>
+                <a href="http://localhost:2333/README">关于</a>
                 
             </div> -->
             <div class="navbar-search menu-item-search" onclick="onClickSearch()">
@@ -121,27 +121,27 @@
                 <ul>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:4000/')">首页</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
                     </li>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:4000/front')">前端</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
                     </li>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('框架', 'http://localhost:4000/tool')">框架</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('框架', 'http://localhost:2333/tool')">框架</a>
                     </li>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('后端', 'http://localhost:4000/back')">后端</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('后端', 'http://localhost:2333/back')">后端</a>
                     </li>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:4000/tags')">标签</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
                     </li>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:4000/README')">关于</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
                     </li>
                     
                 </ul>
@@ -307,7 +307,7 @@ const sortNumbers = (...numbers) =&gt; numbers.sort();
 
 <h3 id="箭头函数-">箭头函数 =&gt;</h3>
 
-<p>ES6 允许使用”箭头”<strong>(=&gt;)</strong>定义函数。箭头函数里面实际上没有自己的 this 属性，而是引用外层的 this。 其指向定义时所在的对象，<a href="http://localhost:4000/2018/01/30/js-this.html">详见 this</a>。</p>
+<p>ES6 允许使用”箭头”<strong>(=&gt;)</strong>定义函数。箭头函数里面实际上没有自己的 this 属性，而是引用外层的 this。 其指向定义时所在的对象，<a href="http://localhost:2333/2018/01/30/js-this.html">详见 this</a>。</p>
 
 <pre><code class="language-JS">// ES5
 var foo = function(bar) {
@@ -412,7 +412,7 @@ Object.is(NaN, NaN) // true
 
 <h3 id="objectassign">Object.assign()</h3>
 
-<p><strong>Object.assign</strong> 方法用于对象的合并，将源对象(source)的所有 <em>可枚举</em> 属性，复制到目标对象(target)。关于其浅拷贝可以参考 <a href="http://localhost:4000/2018/01/31/js-deep-copy.html#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%B5%85%E6%8B%B7%E8%B4%9D">深浅拷贝一节</a>。</p>
+<p><strong>Object.assign</strong> 方法用于对象的合并，将源对象(source)的所有 <em>可枚举</em> 属性，复制到目标对象(target)。关于其浅拷贝可以参考 <a href="http://localhost:2333/2018/01/31/js-deep-copy.html#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%B5%85%E6%8B%B7%E8%B4%9D">深浅拷贝一节</a>。</p>
 
 <pre><code class="language-JS">const target = { a: 1, b: 1, c: {d: 4} };
 const source1 = { b: 2, c: 2 };
@@ -766,10 +766,10 @@ const { match: { params: { client } } } = this.props
             <div class="meta-item meta-copyright">
                 <div class="meta-copyright-info">
                     <a href="/" class="info-logo">
-                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
                     <div class="info-text">
                         <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
-                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
                         <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
                         <p>总计文章：篇</p>
                       <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>

@@ -61,7 +61,7 @@ ga('send', 'pageview');
 
 ### 创建跟踪器
 
-上面的全局 **ga** 函数又称为**命令队列**，是因为该函数不会立即执行其中的命令，而是将这些命令加入到队列中，将这些命令的执行延迟到 analytics.js 库加载完成后进行。那我们是如何收集和存储数据的呢，就是通过**跟踪器对象**，可以通过 `create` 方法来创建:
+上面的全局 **ga** 函数又称为**命令队列**，是因为该函数不会立即执行其中的命令，而是将这些命令加入到队列中，将这些命令的执行延迟到 analytics.js 库加载完成后进行。命令队列实际上是一个数组，我们可以打印 `ga.q` 来查看这些元素。那我们是如何收集和存储数据的呢，就是通过**跟踪器对象**，可以通过 `create` 方法来创建:
 
 ```JS
 // 将跟踪 ID 和 Cookie 网域字段分别作为第二个和第三个参数传递给该命令：
@@ -80,6 +80,9 @@ ga('create', {
   name: 'myTracker',
   userId: '12345'
 });
+
+// 查看跟踪器对象
+ga(()=> console.log(ga.getByName('myTracker')) )
 ```
 
 > 一般推荐 **cookieDomain** 字段设置为字符串 'auto'[，详情可以查看这里](https://developers.google.com/analytics/devguides/collection/analyticsjs/cookies-user-id?hl=zh-cn) 👈
@@ -568,7 +571,7 @@ navigator.sendBeacon('/api', data)
 这里再介绍两个术语:
 
 * **平均工作阶段时间长度** - 每个工作阶段平均耗时，计算方式为 [最后一次互动时间 - 第一次互动时间]，其中注意的是最后一次互动时间指的操作页面的时间点，即使用户浏览一个页面，也沒有做任何互动，GA 就沒有計算工作阶段时间长度的依据，所以该次的时间长度为 0
-* **跳出率** - 用户进站后没有产生第二个互动的百分比。其中注意的是，即使进入一个页面停留 N 长时间，但是没有任何互动，也会视为调出
+* **跳出率** - 用户进站后没有产生第二个互动的百分比。其中注意的是，即使进入一个页面停留 N 长时间，但是没有任何互动，也会视为跳出
 
 ![ga](https://pickydigest.com/wp-content/uploads/2018/03/google-analytics-getting-started_image6.png)
 

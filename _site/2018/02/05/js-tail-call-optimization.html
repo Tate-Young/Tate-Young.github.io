@@ -18,20 +18,20 @@
 <meta property="og:title" content="尾调用优化 - Tate & Snow">
 <meta name="og:keywords" content="尾调用优化 - Tate & Snow|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..."
   property='og:description' />
-<link rel="icon" type="image/png" href="http://localhost:4000/style/favicons/favicon.ico" />
-<link href="http://localhost:4000/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
-<link rel="canonical" href="http://localhost:4000/">
-<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:4000/feed.xml">
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
-<link rel="shortcut icon" href="http://localhost:4000/style/favicons/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
 <meta name="keywords" content="尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
-<link href="http://localhost:4000/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:4000/2018/02/05/js-tail-call-optimization.html' property='og:url' />
-<meta content="http://localhost:4000/2018/02/05/js-tail-call-optimization.html|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2018/02/05/js-tail-call-optimization.html' property='og:url' />
+<meta content="http://localhost:2333/2018/02/05/js-tail-call-optimization.html|尾调用优化什么是尾调用和尾递归尾调用(Tail Call) 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 尾递归。funct..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -93,17 +93,17 @@
             </div>
             <!-- <div class="navbar-menu">
                 
-                <a href="http://localhost:4000/">首页</a>
+                <a href="http://localhost:2333/">首页</a>
                 
-                <a href="http://localhost:4000/front">前端</a>
+                <a href="http://localhost:2333/front">前端</a>
                 
-                <a href="http://localhost:4000/tool">框架</a>
+                <a href="http://localhost:2333/tool">框架</a>
                 
-                <a href="http://localhost:4000/back">后端</a>
+                <a href="http://localhost:2333/back">后端</a>
                 
-                <a href="http://localhost:4000/tags">标签</a>
+                <a href="http://localhost:2333/tags">标签</a>
                 
-                <a href="http://localhost:4000/README">关于</a>
+                <a href="http://localhost:2333/README">关于</a>
                 
             </div> -->
             <div class="navbar-search menu-item-search" onclick="onClickSearch()">
@@ -121,27 +121,27 @@
                 <ul>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:4000/')">首页</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
                     </li>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:4000/front')">前端</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
                     </li>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('框架', 'http://localhost:4000/tool')">框架</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('框架', 'http://localhost:2333/tool')">框架</a>
                     </li>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('后端', 'http://localhost:4000/back')">后端</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('后端', 'http://localhost:2333/back')">后端</a>
                     </li>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:4000/tags')">标签</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
                     </li>
                     
                     <li>
-                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:4000/README')">关于</a>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
                     </li>
                     
                 </ul>
@@ -227,7 +227,7 @@
 
 <h2 id="尾调用优化-1">尾调用优化</h2>
 
-<p><a href="http://localhost:4000/2018/02/05/js-event-loop.html">上一篇事件循环</a>有介绍栈帧和调用栈。使用尾调用优化后由于不会用到外层函数栈帧里的调用位置、内部变量等信息，所以不会在调用栈上增加新的栈帧，而是更新它，如同迭代一般。既节省了内存，又避免了爆栈的可能性。</p>
+<p><a href="http://localhost:2333/2018/02/05/js-event-loop.html">上一篇事件循环</a>有介绍栈帧和调用栈。使用尾调用优化后由于不会用到外层函数栈帧里的调用位置、内部变量等信息，所以不会在调用栈上增加新的栈帧，而是更新它，如同迭代一般。既节省了内存，又避免了爆栈的可能性。</p>
 
 <blockquote>
   <p>尾调用优化是在支持 ES6 的解释器里添加的，只在ES6严格模式下生效。</p>
@@ -420,10 +420,10 @@
             <div class="meta-item meta-copyright">
                 <div class="meta-copyright-info">
                     <a href="/" class="info-logo">
-                         <img src="http://localhost:4000/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
                     <div class="info-text">
                         <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
-                        <p>Powered by <a href="http://localhost:4000/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
                         <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
                         <p>总计文章：篇</p>
                       <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
