@@ -160,6 +160,8 @@
                       发布时间：2018-03-10 23:36:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-07-19 17:49:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -315,10 +317,14 @@ doc/*.txt
 doc/**/*.txt
 </code></pre>
 
-<p>如果某个文件可以放开，直接在 .gitignore 中去除对应配置并重新追踪即可;如果某个文件在忽略前已经被追踪，直接在 .gitignore 中添加是无效的。需要去除文件缓存:</p>
+<p>如果某个文件可以放开，直接在 .gitignore 中去除对应配置并重新追踪即可;如果某个文件在忽略前已经被追踪，直接在 .gitignore 中添加是无效的。需要去除文件缓存或者物理删除再提交:</p>
 
 <pre><code class="language-SHELL">git rm -r --cached filename
 </code></pre>
+
+<h2 id="gitkeep">.gitkeep</h2>
+
+<p>一般而言，git 不会去追踪空的文件目录，如果需要追踪的话，需要在里面创建一个文件，无论这个文件是什么，内容如何，名字是什么。因此社区约定了 <strong>.gitkeep</strong> 这个文件名，其实就是一个占位符，当然我们也可以取名 .nofile、.youcanseenothing 等等。</p>
 
 <h2 id="git-hooks">Git Hooks</h2>
 
