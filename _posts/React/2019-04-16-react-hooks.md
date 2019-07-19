@@ -7,6 +7,7 @@ background: green
 category: 前端
 title:  React Hooks
 date:   2019-04-16 20:33:00 GMT+0800 (CST)
+update: 2019-07-19 17:34:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
 tags:
 - React
@@ -421,6 +422,24 @@ const memoizedCallback = useCallback(
 );
 ```
 
+**useMemo** 和 **useCallback** 都会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行；并且这两个 hooks 都返回缓存的值，useMemo 返回缓存的变量，useCallback 则返回缓存的函数。举个栗子:
+
+```JSX
+export default () => {
+  // 没有依赖，永远是同一个函数
+  const handleClick = useCallback(() => {}, []);
+
+  // 依赖 a，重新执行函数组件，a 不变的，是同一个函数
+  // a 变了，handleClick 是新的函数
+  const handleClick1 = useCallback(() => {}, [a]);
+  return (
+    <div>
+      <IfEqual onClick={handleClick} />
+    </div>
+  )
+}
+```
+
 把“创建”函数和依赖项数组作为参数传入 **useMemo**，它仅会在某个依赖项改变时才重新计算 memoized 值。这种优化有助于避免在每次渲染时都进行高开销的计算:
 
 ```JSX
@@ -434,6 +453,39 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 记忆化是一种典型的时间存储平衡方案
 
 > `useCallback(fn, deps)` 相当于 `useMemo(() => fn, deps)`
+
+下面介绍一个使用场景: 有一个父组件，其中包含子组件，子组件接收一个函数作为 props；通常而言，如果父组件更新了，子组件也会执行更新；但是大多数场景下，更新是没有必要的，我们可以借助 useMemo 来返回函数，然后把这个函数作为 props 传递给子组件；这样，子组件就能避免不必要的更新:
+
+```JSX
+import React, { useState, useMemo, useEffect } from 'react'
+function Parent() {
+  const [count, setCount] = useState(1)
+  const [val, setVal] = useState('')
+
+  // 当 count 没变时，不会产生新的函数，即不会触发数据传递
+  const callback = useMemo(() => {
+    return count
+  }, [count])
+  return <div>
+      <h4>{count}</h4>
+    <Child callback={callback}/>
+    <div>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <input value={val} onChange={event => setVal(event.target.value)}/>
+    </div>
+  </div>
+}
+
+function Child({ callback }) {
+  const [count, setCount] = useState(() => callback())
+  useEffect(() => {
+    setCount(callback())
+  }, [callback])
+  return <div>
+    {count}
+  </div>
+}
+```
 
 ## 自定义 Hook
 
@@ -500,3 +552,5 @@ export default () => {
 
 1. [React Hooks — Why and How](https://medium.com/frontmen/react-hooks-why-and-how-e4d2a5f0347) By Sebastiaan van Arkens
 2. [CROSS-CUTTING FUNCTIONALITY IN REACT USING HIGHER-ORDER COMPONENTS, RENDER PROPS AND HOOKS](https://pawelgrzybek.com/cross-cutting-functionality-in-react-using-higher-order-components-render-props-and-hooks/)
+3. [可能你的 react 函数组件从来没有优化过](https://juejin.im/post/5d26fdb8f265da1b5e731dfe) - 腾讯 IMWeb 团队
+4. [](https://zhuanlan.zhihu.com/p/66166173)

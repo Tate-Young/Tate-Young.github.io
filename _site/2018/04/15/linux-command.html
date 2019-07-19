@@ -266,9 +266,14 @@
       <td style="text-align: left"><code>mount -t cifs -o ...</code></td>
     </tr>
     <tr>
+      <td style="text-align: left"><strong>scp</strong></td>
+      <td style="text-align: left">Linux 之间复制文件和目录</td>
+      <td style="text-align: left"><code>mount -t cifs -o ...</code></td>
+    </tr>
+    <tr>
       <td style="text-align: left"><strong>alias</strong></td>
       <td style="text-align: left">设置命令的别名</td>
-      <td style="text-align: left"><code>alias ll='ls -al'</code></td>
+      <td style="text-align: left"><code>scp [可选参数] file_source file_target</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>say</strong></td>
@@ -632,6 +637,22 @@ umount /dev/hda5
 # –l 参数并不是马上卸载，而是在该目录空闲后再卸载，可以解决 device busy 的问题，当然你也可以查询到进程并 kill 掉
 umount -l /mnt/hda5
 </code></pre>
+
+<h2 id="scp">scp</h2>
+
+<p><strong>scp</strong> 命令用于在 linux 之间复制文件和目录，具体的参数说明<a href="https://www.runoob.com/linux/linux-comm-scp.html">可以参考这里</a> 👈:</p>
+
+<pre><code class="language-SHELL">scp [可选参数] file_source file_target
+</code></pre>
+
+<pre><code class="language-SHELL"># 从本地复制到远程, 如果是目录的话加 -r 参数
+scp local_file remote_username@remote_ip:remote_file
+scp /home/space/music/1.mp3 root@www.runoob.com:/home/root/others/music
+</code></pre>
+
+<blockquote>
+  <p>使用 scp 命令要确保使用的用户具有可读取远程服务器相应文件的权限，否则 scp 命令是无法起作用的</p>
+</blockquote>
 
 <h2 id="alias">alias</h2>
 

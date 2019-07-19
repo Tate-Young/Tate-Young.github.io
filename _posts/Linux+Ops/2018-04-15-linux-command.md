@@ -31,7 +31,8 @@ tags:
 | **whoami** | 查看当前有效用户名 | <code>whoami</code> |
 | **date** | 显示或设置系统时间与日期 | <code>date +"%Y-%m-%d"</code> |
 | **mount** | 挂载，umount 接触挂载 | <code>mount -t cifs -o ...</code> |
-| **alias** | 设置命令的别名 | <code>alias ll='ls -al'</code> |
+| **scp** | Linux 之间复制文件和目录 | <code>mount -t cifs -o ...</code> |
+| **alias** | 设置命令的别名 | <code>scp [可选参数] file_source file_target</code> |
 | **say** | macOS 系统中激活语音合成系统 | <code>say -v Ting-Ting hello</code> |
 
 ## yum
@@ -316,6 +317,22 @@ umount /dev/hda5
 # –l 参数并不是马上卸载，而是在该目录空闲后再卸载，可以解决 device busy 的问题，当然你也可以查询到进程并 kill 掉
 umount -l /mnt/hda5
 ```
+
+## scp
+
+**scp** 命令用于在 linux 之间复制文件和目录，具体的参数说明[可以参考这里](https://www.runoob.com/linux/linux-comm-scp.html) 👈:
+
+```SHELL
+scp [可选参数] file_source file_target
+```
+
+```SHELL
+# 从本地复制到远程, 如果是目录的话加 -r 参数
+scp local_file remote_username@remote_ip:remote_file
+scp /home/space/music/1.mp3 root@www.runoob.com:/home/root/others/music
+```
+
+> 使用 scp 命令要确保使用的用户具有可读取远程服务器相应文件的权限，否则 scp 命令是无法起作用的
 
 ## alias
 

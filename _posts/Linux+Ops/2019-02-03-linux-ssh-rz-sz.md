@@ -101,6 +101,8 @@ ssh-copy-id user@host
 
 **rz(接收)**、**sz(发送)** 是 Linux/Unix 同 Windows 进行 ZModem 文件传输的命令行工具。首先需要在服务器端安装 **lszrz** 包。其次，windows 端需要支持 ZModem 的 telnet/ssh 客户端，比如 SecureCRT、Xshell 等，**PuTTY** 暂时不支持。
 
+> linux 间传递文件的命令可以用 scp，这个在之前已经提到过了，[传送门在这里]( {{site.url}}/2018/04/15/linux-command.html#scp )
+
 ```SHELL
 # For CentOS/RHEL
 yum -y install lrzsz
