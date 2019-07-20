@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种调试和兼容问题
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-07-01 14:40:00 GMT+0800 (CST)
+update: 2019-07-20 19:14:00 GMT+0800 (CST)
 background-image: /style/images/darling.jpg
 tags:
 - Other
@@ -270,6 +270,49 @@ Object.defineProperty(window, 'tate', {
 * 在 div 上添加样式 <code>cursor: pointer</code>
 * 给 div 上加 <code>onclick='void(0);'</code>
 * 将 div 换成其他可点击元素 a、button 等
+
+## 移动端
+
+### 滚动穿透
+
+1、监听 touchmove 事件并阻止默认行为。但有个缺点: 即只适用于弹出层本身不可以滚动:
+
+```JS
+// .mask 元素是遮罩层
+$(".mask").on("touchmove",function() {
+　 event.preventDefault()
+})
+```
+
+2、在 body 中添加 `overflow: hidden` 样式阻止滚动。但也有个缺点，在移动端可能不生效，因此只能当做 pc 端解决方案:
+
+```CSS
+/* 在 body 元素动态添加和移除样式 */
+.modal-open {
+  overflow: hidden;
+}
+```
+
+3、利用以下两个工具方法:
+
+```JS
+function fixedBody(){
+  var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+  document.body.style.cssText += 'position:fixed;top:-'+scrollTop+'px;';
+}
+
+function looseBody() {
+  var body = document.body;
+  body.style.position = '';
+  var top = body.style.top;
+  document.body.scrollTop = document.documentElement.scrollTop = -parseInt(top);
+  body.style.top = '';
+}
+```
+
+更多方法和比较可以[参考这篇文章](https://github.com/pod4g/tool/wiki/移动端滚动穿透问题) 👈
+
+## 参考链接
 
 1. [Charles - 官网](https://www.charlesproxy.com/documentation/using-charles/ssl-certificates/)
 2. [Charles 从入门到精通](https://blog.devtang.com/2015/11/14/charles-introduction/) By 唐巧
