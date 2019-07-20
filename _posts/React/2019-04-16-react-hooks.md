@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  React Hooks
 date:   2019-04-16 20:33:00 GMT+0800 (CST)
-update: 2019-07-19 17:34:00 GMT+0800 (CST)
+update: 2019-07-20 18:06:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
 tags:
 - React
@@ -411,7 +411,9 @@ function useClientRect() {
 
 ## useCallback / useMemo
 
-把内联回调函数及依赖项数组作为参数传入 **useCallback**，它将返回返回一个 [**memoized**](https://en.wikipedia.org/wiki/Memoization) 回调函数，该回调函数仅在某个依赖项改变时才会更新:
+**useMemo** 和 **useCallback** 都会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行。useMemo 返回缓存的计算值，useCallback 则返回缓存的函数。这两者有什么用途呢:
+
+1、把内联回调函数及依赖项数组作为参数传入 **useCallback**，它将返回返回一个 [**memoized**](https://en.wikipedia.org/wiki/Memoization) 回调函数，该回调函数仅在某个依赖项改变时才会更新:
 
 ```JSX
 const memoizedCallback = useCallback(
@@ -422,25 +424,7 @@ const memoizedCallback = useCallback(
 );
 ```
 
-**useMemo** 和 **useCallback** 都会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行；并且这两个 hooks 都返回缓存的值，useMemo 返回缓存的变量，useCallback 则返回缓存的函数。举个栗子:
-
-```JSX
-export default () => {
-  // 没有依赖，永远是同一个函数
-  const handleClick = useCallback(() => {}, []);
-
-  // 依赖 a，重新执行函数组件，a 不变的，是同一个函数
-  // a 变了，handleClick 是新的函数
-  const handleClick1 = useCallback(() => {}, [a]);
-  return (
-    <div>
-      <IfEqual onClick={handleClick} />
-    </div>
-  )
-}
-```
-
-把“创建”函数和依赖项数组作为参数传入 **useMemo**，它仅会在某个依赖项改变时才重新计算 memoized 值。这种优化有助于避免在每次渲染时都进行高开销的计算:
+2、把“创建”函数和依赖项数组作为参数传入 **useMemo**，它仅会在某个依赖项改变时才重新计算 memoized 值。这种优化有助于避免在每次渲染时都进行高开销的计算:
 
 ```JSX
 // 先编写在没有 useMemo 的情况下也可以执行的代码 —— 之后再在你的代码中添加 useMemo，以达到优化性能的目的
@@ -485,6 +469,97 @@ function Child({ callback }) {
     {count}
   </div>
 }
+```
+
+### shouldComponentUpdate
+
+为了优化组件的性能，我们应当组织不必要的渲染。对于上面举的场景栗子，以往的解决方案则是用 `shouldComponentUpdate` 或 `PureComponent`:
+
+```JSX
+// 利用 shouldComponentUpdate 生命周期
+shouldComponentUpdate(nextProps, nextState) {
+  // 当 count 变化时，才会去渲染
+  if (this.state.count === nextState.count) {
+    return false
+  }
+  return true
+}
+```
+
+### PureComponent
+
+React v15.5 中新加了一个 **PureComponent** 类，可以让我们避免写一堆 shouldComponentUpdate 代码，用法很简单，只要把继承类从 Component 换成 PureComponent 即可:
+
+```JSX
+- class TestC extends React.Component {
++ class TestC extends React.PureComponent {
+```
+
+它的原理是当组件更新时，如果组件的 props 和 state 都没发生改变，render 方法就不会触发，省去 Virtual DOM 的生成和比对过程，达到提升性能的目的。具体就是 React 自动帮我们做了一层浅比较，**shallowEqual** 会比较 Object.keys(state | props) 的长度是否一致，每一个 key是否两者都有，并且是否是同一个引用:
+
+```JS
+if (this._compositeType === CompositeTypes.PureClass) {
+  shouldUpdate = !shallowEqual(prevProps, nextProps) || !shallowEqual(inst.state, nextState)
+}
+```
+
+> 如果 PureComponent 里有 shouldComponentUpdate 函数的话，则直接使用 shouldComponentUpdate 的结果作为是否更新的依据
+
+另外再提一下，使用纯组件时，props 和 state 不能使用同一个引用，不然即使你改变了值，而引用不变，还是不会渲染的，举个栗子:
+
+```JSX
+class App extends PureComponent {
+  state = {
+    items: [1, 2, 3]
+  }
+  handleClick = () => {
+    const { items } = this.state
+    items.pop()
+    this.setState({ items })
+  }
+  render() {
+    return (< div>
+      < ul>
+        {this.state.items.map(i => < li key={i}>{i}< /li>)}
+      < /ul>
+      < button onClick={this.handleClick}>delete< /button>
+    < /div>)
+  }
+}
+```
+
+会发现，无论怎么点 delete 按钮，li 都不会变少，因为用的是一个引用，shallowEqual 的结果为 true，所以组件压根儿就没渲染，改正如下:
+
+```JSX
+handleClick = () => {
+  const { items } = this.state
+  items.pop()
+  this.setState({ items: [].concat(items) })
+}
+```
+
+### React.memo
+
+当我们通过函数组件使用 hooks 的时候，我们没办法再去像类一样使用 PureComponent，因此 **React.memo** 油然而生，它是 React v16.6 引进来的新属性，其实就是函数组件的React.PureComponent:
+
+```JSX
+const Funcomponent = ()=> {
+  return (
+    <div>
+      Hiya!! I am a Funtional component
+    </div>
+  )
+}
+
+const MemodFuncComponent = React.memo(FunComponent)
+```
+
+React.memo 会返回一个纯化(purified)的组件 **MemoFuncComponent**，这个组件将会在 JSX 标记中渲染出来。当组件的参数 props 和状态 state 发生改变时，React 将会检查前一个状态和参数是否和下一个状态和参数是否相同，如果相同，组件将不会被渲染，如果不同，组件将会被重新渲染。它还可以接收第二个参数:
+
+```JSX
+React.memo(Funcomponent, (nextProps, prevProps) => {
+  // 类似 shouldComponentUpdate
+})
 ```
 
 ## 自定义 Hook
@@ -551,6 +626,7 @@ export default () => {
 ## 参考链接
 
 1. [React Hooks — Why and How](https://medium.com/frontmen/react-hooks-why-and-how-e4d2a5f0347) By Sebastiaan van Arkens
-2. [CROSS-CUTTING FUNCTIONALITY IN REACT USING HIGHER-ORDER COMPONENTS, RENDER PROPS AND HOOKS](https://pawelgrzybek.com/cross-cutting-functionality-in-react-using-higher-order-components-render-props-and-hooks/)
+2. [cross-cutting functionality in react using higher-order components, render props and hooks](https://pawelgrzybek.com/cross-cutting-functionality-in-react-using-higher-order-components-render-props-and-hooks/)
 3. [可能你的 react 函数组件从来没有优化过](https://juejin.im/post/5d26fdb8f265da1b5e731dfe) - 腾讯 IMWeb 团队
-4. [](https://zhuanlan.zhihu.com/p/66166173)
+4. [Improving Performance in React Functional Components using React.memo()](https://blog.bitsrc.io/improve-performance-in-react-functional-components-using-react-memo-b2e80c11e15a) By Chidume Nnamdi
+5. [React PureComponent 使用指南](https://juejin.im/entry/5934c9bc570c35005b556e1a) By yufeng
