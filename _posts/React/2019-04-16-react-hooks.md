@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  React Hooks
 date:   2019-04-16 20:33:00 GMT+0800 (CST)
-update: 2019-07-20 18:06:00 GMT+0800 (CST)
+update: 2019-07-20 18:45:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
 tags:
 - React
@@ -242,6 +242,57 @@ function Example() {
 
 > useState 方法返回一对值: 当前的 state 和用来更新它的 function，所以这里我们采用解构。
 
+### useReducer
+
+**useReducer** 其实是 useState 的另一种写法，它的使用和 redux 如出一辙，这样的话，我们对于状态的管理更加清晰，让我们看看改造后的变化:
+
+```JSX
+// useState
+function Counter({initialCount}) {
+  const [count, setCount] = useState(initialCount);
+  return (
+    <>
+      Count: {count}
+      <button onClick={() => setCount(0)}>Reset</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+      <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+    </>
+  );
+}
+```
+
+```JSX
+// useReducer
+const initialState = {count: 0};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'reset':
+      return initialState;
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+  }
+}
+
+function Counter({initialCount}) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({type: 'reset'})}>
+        Reset
+      </button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+    </>
+  );
+}
+```
+
+> useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values. It also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks
+
 ## useEffect
 
 有时我们想要在 React 更新过 DOM 之后执行一些额外的操作。 比如网络请求、手动更新 DOM 、以及打印日志，这些都称为**副作用(effects)**。而 **useEffects** 可以有效的去进行管理，同样先看看类组件的写法:
@@ -336,6 +387,27 @@ useEffect(() => {
 useEffect(() => {
   document.title = `You clicked ${count} times`;
 }, []); // 这个 effect 从不会重新执行
+```
+
+### useLayoutEffect
+
+大多数情况下，我们都可以使用 useEffect 处理副作用。但是，如果副作用要在 DOM 更新之后同步执行，就需要使用 **useLayoutEffect**。这里引用下[这篇文章](https://zhuanlan.zhihu.com/p/51356920)的示例:
+
+```JSX
+function App() {
+  const [width, setWidth] = useState(0)
+  useLayoutEffect(() => {
+    const title = document.querySelector('#title')
+    const titleWidth = title.getBoundingClientRect().width
+    if (width !== titleWidth) {
+        setWidth(titleWidth)
+    }
+  })
+  return <div>
+    <h1 id="title">hello</h1>
+    <h2>{width}</h2>
+  </div>
+}
 ```
 
 ## useRef

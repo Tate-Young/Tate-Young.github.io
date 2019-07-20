@@ -370,6 +370,7 @@ Object.setPrototypeOf(B, A);
 ## 参考链接
 
 1. [书籍 - <<JavaScript 高级程序设计>>](https://www.amazon.cn/dp/B007OQQVMY/ref=sr_1_1/458-6273007-6912964?s=books&ie=UTF8&qid=1517972181&sr=1-1&keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)
-1. [MDN - 继承与原型链](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
-1. [prototype 对象](http://javascript.ruanyifeng.com/oop/prototype.html) By 阮一峰
-1. [Class 的继承](http://es6.ruanyifeng.com/#docs/class-extends) By 阮一峰
+2. [MDN - 继承与原型链](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+3. [prototype 对象](http://javascript.ruanyifeng.com/oop/prototype.html) By 阮一峰
+4. [Class 的继承](http://es6.ruanyifeng.com/#docs/class-extends) By 阮一峰
+5. [最新：Lodash 严重安全漏洞背后你不得不知道的 JavaScript 知识](https://juejin.im/post/5d271332f265da1b934e2d48) By LucasHC
