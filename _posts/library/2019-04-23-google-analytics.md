@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Google Analytics 埋点
 date:   2019-04-24 00:08:00 GMT+0800 (CST)
-update: 2019-04-24 21:18:00 GMT+0800 (CST)
+update: 2019-07-25 17:46:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/04/23/5cbf2ec3702de.png
 tags:
 - js
@@ -555,6 +555,116 @@ navigator.sendBeacon('/api', data)
 ```
 
 > 请求被 canceled 的原因可以[参考这里](https://stackoverflow.com/questions/12009423/what-does-status-canceled-for-a-resource-mean-in-chrome-developer-tools) 👈
+
+## 增强型电子商务
+
+这节这介绍 analytics 的增强型电子商务功能，可以[参考这里](https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce?hl=zh-cn)，gtag 的[移步这里](https://developers.google.com/analytics/devguides/collection/gtagjs/enhanced-ecommerce?hl=zh-cn) 👈。
+
+**增强型电子商务功能**可让您衡量用户在其购物历程中与电子商务网站上各种产品的互动，包括产品展示、产品点击、查看产品详情、将产品添加到购物车、开始结帐流程、交易以及退款。而为缩小 analytics.js 库的体积，增强型电子商务跟踪代码不在默认库中提供，而是以一个插件模块的形式提供。在使用该模块前，必须先加载它:
+
+```JS
+// 此命令的执行时间必须是在您创建跟踪器对象之后，使用与增强型电子商务相关的任何具体功能之前
+ga('require', 'ec');
+```
+
+插件加载之后，一系列增强型电子商务跟踪专用的新命令将会添加到默认跟踪器中，您将可以开始发送电子商务数据，这里介绍一些典型:
+
+1、**衡量展示 ec:addImpression**
+
+使用 **ec:addImpression** 命令来衡量产品展示，并将产品详情添加到 `impressionFieldObject` 对象中:
+
+```JS
+// impressionFieldObject 对象必须有 name 或 id 值。其他所有值都非必需，可以不用设置。
+ga('ec:addImpression', {            // Provide product details in an impressionFieldObject.
+  'id': 'P12345',                   // Product ID (string).
+  'name': 'Android Warhol T-Shirt', // Product name (string).
+  'category': 'Apparel/T-Shirts',   // Product category (string).
+  'brand': 'Google',                // Product brand (string).
+  'variant': 'Black',               // Product variant (string).
+  'list': 'Search Results',         // Product list (string).
+  'position': 1,                    // Product position (number).
+  'dimension1': 'Member'            // Custom dimension (string).
+});
+```
+
+2、**衡量操作 ec:addProduct**
+
+使用 **ec:addProduct** 命令来衡量操作，并将产品详情添加到 `productFieldObject` 对象中，然后通过 **ec:setAction** 命令来具体说明操作类型:
+
+```JS
+// productFieldObject 对象必须有 name 或 id 值。其他所有值都非必需，可以不用设置。
+ga('ec:addProduct', {               // Provide product details in a productFieldObject.
+  'id': 'P12345',                   // Product ID (string).
+  'name': 'Android Warhol T-Shirt', // Product name (string).
+  'category': 'Apparel',            // Product category (string).
+  'brand': 'Google',                // Product brand (string).
+  'variant': 'Black',               // Product variant (string).
+  'position': 1,                    // Product position (number).
+  'dimension1': 'Member'            // Custom dimension (string).
+});
+
+ga('ec:setAction', 'click', {       // click action.
+  'list': 'Search Results'          // Product list (string).
+});
+```
+
+3、**衡量内部促销 ec:addPromo**
+
+内部促销信息的展示一般在网页加载时衡量，并使用 **ec:addPromo** 命令与初始网页浏览一起发送。例如:
+
+```JS
+ga('ec:addPromo', {               // Promo details provided in a promoFieldObject.
+  'id': 'PROMO_1234',             // Promotion ID. Required (string).
+  'name': 'Summer Sale',          // Promotion name (string).
+  'creative': 'summer_banner2',   // Creative (string).
+  'position': 'banner_slot1'      // Position  (string).
+});
+```
+
+内部促销信息的点击可以通过设置 **promo_click** 操作来衡量。例如:
+
+```JS
+// Identify the promotion that was clicked.
+ga('ec:addPromo', {
+  'id': 'PROMO_1234',
+  'name': 'Summer Sale',
+  'creative': 'summer_banner2',
+  'position': 'banner_slot1'
+});
+
+// Send the promo_click action with an event.
+ga('ec:setAction', 'promo_click');
+ga('send', 'event', 'Internal Promotions', 'click', 'Summer Sale');
+```
+
+再举个完整衡量产品展示的栗子:
+
+```JS
+ga('create', 'UA-XXXXX-Y');
+ga('require', 'ec');
+
+ga('ec:addImpression', {
+  'id': 'P12345',                   // Product details are provided in an impressionFieldObject.
+  'name': 'Android Warhol T-Shirt',
+  'category': 'Apparel/T-Shirts',
+  'brand': 'Google',
+  'variant': 'black',
+  'list': 'Search Results',
+  'position': 1                     // 'position' indicates the product position in the list.
+});
+
+ga('ec:addImpression', {
+  'id': 'P67890',
+  'name': 'YouTube Organic T-Shirt',
+  'category': 'Apparel/T-Shirts',
+  'brand': 'YouTube',
+  'variant': 'gray',
+  'list': 'Search Results',
+  'position': 2
+});
+
+ga('send', 'pageview');              // Send product impressions with initial pageview.
+```
 
 ## Measurement Protocol
 
