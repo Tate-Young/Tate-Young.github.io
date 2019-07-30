@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  React Hooks
 date:   2019-04-16 20:33:00 GMT+0800 (CST)
-update: 2019-07-20 18:45:00 GMT+0800 (CST)
+update: 2019-07-30 10:13:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
 tags:
 - React
@@ -52,92 +52,86 @@ export class MyComponent extends React.Component {
 export default withData(MyComponent);
 ```
 
-让我们来看一个完整的栗子(来自[这里](https://pawelgrzybek.com/cross-cutting-functionality-in-react-using-higher-order-components-render-props-and-hooks/))，假设我们定义了两个组件 Content 和 Sidebar:
+让我们来看一个完整的栗子(来自[这里](https://pawelgrzybek.com/cross-cutting-functionality-in-react-using-higher-order-components-render-props-and-hooks/))，假设我们定义了两个组件 Home 和 About:
 
 ```JSX
 import React, { Component } from "react";
 
-export default class Content extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      joke: "Loading…"
-    };
+export class Home extends Component {
+  state = {
+    content: "Loading…"
   }
 
   componentDidMount() {
-    fetch("https://api.icndb.com/jokes/random")
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
       .then(response => response.json())
-      .then(joke => this.setState({ joke: joke.value.joke }))
-      .catch(() => this.setState({ joke: "Error" }));
+      .then(data => this.setState({ content: data.title }))
+      .catch(() => this.setState({ content: "Error" }))
   }
 
   render() {
     return (
       <article>
         <h1>Content</h1>
-        <p>{this.state.joke}</p>
+        <p>{this.state.content}</p>
       </article>
-    );
+    )
   }
 }
 ```
 
-而 Sidebar 结构和 Content 类似，这里偷懒省略不写啦 😀，这样我们可以提取出公共部分:
+而 About 结构和 Home 类似，这里偷懒省略不写啦 😀，这样我们可以提取出公共部分:
 
 ```JSX
-const withJoke = WrappedComponent =>
-  class extends React.Component {
-    constructor() {
-      super();
+import React, { Component } from "react";
 
-      this.state = {
-        joke: "Loading…"
-      };
+export const withContent = WrappedComponent =>
+  class extends Component {
+    state = {
+      content: "Loading…"
     }
-
+  
     componentDidMount() {
-      fetch("https://api.icndb.com/jokes/random")
+      fetch("https://jsonplaceholder.typicode.com/todos/1")
         .then(response => response.json())
-        .then(joke => this.setState({ joke: joke.value.joke }))
-        .catch(() => this.setState({ joke: "Error" }));
+        .then(data => this.setState({ content: data.title }))
+        .catch(() => this.setState({ content: "Error" }))
     }
-
+  
     render() {
-      return <WrappedComponent joke={this.state.joke} {...this.props} />;
+      return <WrappedComponent content={this.state.content} {...this.props} />;
     }
   };
 ```
 
-然后我们分别将之前写好的组件进行改造，并使用上面的 withJoke 高阶函数进行包裹:
+然后我们分别将之前写好的组件进行改造，并使用上面的 withContent 高阶函数进行包裹:
 
 ```JSX
 import React from "react";
-import withJoke from "./withJoke";
+import withContent from "./withContent";
 
-const Content = ({ joke }) => (
+const Content = ({ content }) => (
   <article>
     <h1>Content</h1>
-    <p>{joke}</p>
+    <p>{content}</p>
   </article>
 );
 
-export default withJoke(Content);
+export default withContent(Content);
 ```
 
 ```JSX
 import React from "react";
-import withJoke from "./withJoke";
+import withContent from "./withContent";
 
-const Sidebar = ({ joke }) => (
+const Sidebar = ({ content }) => (
   <article>
     <h1>Sidebar</h1>
-    <p>{joke}</p>
+    <p>{content}</p>
   </article>
 );
 
-export default withJoke(Sidebar);
+export default withContent(Sidebar);
 ```
 
 #### 渲染属性 Render props
@@ -147,26 +141,20 @@ export default withJoke(Sidebar);
 ```JSX
 import { Component } from "react";
 
-export default class Joke extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      joke: "Loading…"
-    };
+export class RenderProps extends Component {
+  state = {
+    content: "Loading…"
   }
 
   componentDidMount() {
-    fetch("https://api.icndb.com/jokes/random")
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
       .then(response => response.json())
-      .then(joke => this.setState({ joke: joke.value.joke }))
-      .catch(() => this.setState({ joke: "Error" }));
+      .then(data => this.setState({ content: data.title }))
+      .catch(() => this.setState({ content: "Error" }))
   }
 
-  // we are invoking a function stored in a render prop
-  // this is a good indicator that the value of the render prop should be a function
   render() {
-    return this.props.render(this.state.joke);
+    return this.props.render(this.state.content);
   }
 }
 ```
@@ -174,12 +162,24 @@ export default class Joke extends Component {
 我们再看看怎么去使用这个组件:
 
 ```JSX
-const App = () => (
-  <main>
-    <Joke render={joke => <Content joke={joke} />} />
-    <Joke render={joke => <Sidebar joke={joke} />} />
-  </main>
-);
+// About，Home 同理
+import React, { Component } from "react";
+import { RenderProps } from "../common";
+
+const Func = ({ content }) => (
+  <article>
+    <h1>Content</h1>
+    <p>{content}</p>
+  </article>
+)
+
+export class About extends Component {
+  render() {
+    return (
+      <RenderProps render={c => <Func content={c} />} />
+    )
+  }
+}
 ```
 
 但上述无论哪种方法，都无法摆脱**嵌套地狱(Wrapper Hell)**的问题，因此可以采用我们下面会介绍的自定义 Hook。
@@ -389,6 +389,65 @@ useEffect(() => {
 }, []); // 这个 effect 从不会重新执行
 ```
 
+> useEffect Hook 可以看做 `componentDidMount`，`componentDidUpdate` 和 `componentWillUnmount` 这三个函数的组合。
+
+在使用 useEffect 的时候，我们可能会碰到这种情况，即 state 无法更新，举个栗子:
+
+```JSX
+function Clock() {
+  const [time, setTime] = React.useState(0);
+  React.useEffect(() => {
+    const timer = window.setInterval(() => {
+      setTime(time + 1);
+    }, 1000);
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, []);
+
+  return (
+    <div>Seconds: {time}</div>
+  );
+}
+```
+
+我们会看到 time 从初始化的 0 变为 1，之后就不会再改变了。原因就是只在第一次渲染时候，useEffect 接收了 time 参数并执行，此时为 0，而之后 useEffect 没有被调用，也就无法获取最新的 time 值。可[参考这里](https://stackoverflow.com/questions/53024496/state-not-updating-when-using-react-state-hook-within-setinterval) 👈
+
+当然我们也可以在 useEffect 加入第二个参数 time，即 time 变化时重新去调用。除此之外我们还有其他一些方式来修改:
+
+```JSX
+React.useEffect(() => {
+  const timer = window.setInterval(() => {
+    // setTime(time + 1);
+    setTime(prevTime => prevTime + 1); // change this line
+  }, 1000);
+  return () => {
+    window.clearInterval(timer);
+  };
+}, []);
+```
+
+或者我们可以利用下面讲到的 useRef，它不仅只针对于 DOM refs，还可以在 current 可变属性中存入任何数值:
+
+```JSX
+const [time, setTime] = useState(0);
+const timeRef = useRef()
+
+React.useEffect(() => {
+  timeRef.current = time; // 存储 time 值
+}, [time]);
+
+React.useEffect(() => {
+  const timer = window.setInterval(() => {
+    setTime(timeRef.current + 1);
+    console.log('ttt', time)
+  }, 1000);
+  return () => {
+    window.clearInterval(timer);
+  };
+}, []);
+```
+
 ### useLayoutEffect
 
 大多数情况下，我们都可以使用 useEffect 处理副作用。但是，如果副作用要在 DOM 更新之后同步执行，就需要使用 **useLayoutEffect**。这里引用下[这篇文章](https://zhuanlan.zhihu.com/p/51356920)的示例:
@@ -496,7 +555,42 @@ const memoizedCallback = useCallback(
 );
 ```
 
-2、把“创建”函数和依赖项数组作为参数传入 **useMemo**，它仅会在某个依赖项改变时才重新计算 memoized 值。这种优化有助于避免在每次渲染时都进行高开销的计算:
+举个栗子，每次修改 count，set.size 就会 +1，这说明 useCallback 依赖变量 count，count 变更时会返回新的函数；而 val变 更时，set.size 不会变，说明返回的是缓存的旧版本函数:
+
+```JSX
+import React, { useState, useCallback } from 'react';
+
+const aSet = new Set();
+const bSet = new Set();
+
+export default function Callback() {
+  const [count, setCount] = useState(1);
+  const [val, setVal] = useState('');
+
+  const callback = useCallback(() => {
+    console.log(count);
+  }, [count]);
+
+  function callback2() { // 作对比
+    console.log('callback test')
+  }
+  aSet.add(callback);
+  bSet.add(callback2);
+
+  console.log(`aSet size: ${aSet.size}, bSet size: ${bSet.size}`)
+
+  return <div>
+    <h4>{count}</h4>
+    <h4>{set.size}</h4>
+    <div>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <input value={val} onChange={event => setVal(event.target.value)}/>
+    </div>
+  </div>;
+}
+```
+
+2、把"创建"函数和依赖项数组作为参数传入 **useMemo**，它仅会在某个依赖项改变时才重新计算 memoized 值。这种优化有助于避免在每次渲染时都进行高开销的计算:
 
 ```JSX
 // 先编写在没有 useMemo 的情况下也可以执行的代码 —— 之后再在你的代码中添加 useMemo，以达到优化性能的目的
@@ -522,6 +616,7 @@ function Parent() {
   const callback = useMemo(() => {
     return count
   }, [count])
+
   return <div>
       <h4>{count}</h4>
     <Child callback={callback}/>
@@ -567,7 +662,7 @@ React v15.5 中新加了一个 **PureComponent** 类，可以让我们避免写�
 + class TestC extends React.PureComponent {
 ```
 
-它的原理是当组件更新时，如果组件的 props 和 state 都没发生改变，render 方法就不会触发，省去 Virtual DOM 的生成和比对过程，达到提升性能的目的。具体就是 React 自动帮我们做了一层浅比较，**shallowEqual** 会比较 Object.keys(state | props) 的长度是否一致，每一个 key是否两者都有，并且是否是同一个引用:
+它的原理是当组件更新时，如果组件的 props 和 state 都没发生改变，render 方法就不会触发，省去 Virtual DOM 的生成和比对过程，达到提升性能的目的。具体就是 React 自动帮我们做了一层浅比较，**shallowEqual** 会比较 Object.keys(state \| props) 的长度是否一致，每一个 key是否两者都有，并且是否是同一个引用:
 
 ```JS
 if (this._compositeType === CompositeTypes.PureClass) {
@@ -612,7 +707,7 @@ handleClick = () => {
 
 ### React.memo
 
-当我们通过函数组件使用 hooks 的时候，我们没办法再去像类一样使用 PureComponent，因此 **React.memo** 油然而生，它是 React v16.6 引进来的新属性，其实就是函数组件的React.PureComponent:
+当我们通过函数组件使用 hooks 的时候，我们没办法再去像类一样使用 PureComponent，因此 **React.memo** 油然而生，它是 React v16.6 引进来的新属性，其实就是函数组件的 React.PureComponent:
 
 ```JSX
 const Funcomponent = ()=> {
@@ -626,13 +721,18 @@ const Funcomponent = ()=> {
 const MemodFuncComponent = React.memo(FunComponent)
 ```
 
-React.memo 会返回一个纯化(purified)的组件 **MemoFuncComponent**，这个组件将会在 JSX 标记中渲染出来。当组件的参数 props 和状态 state 发生改变时，React 将会检查前一个状态和参数是否和下一个状态和参数是否相同，如果相同，组件将不会被渲染，如果不同，组件将会被重新渲染。它还可以接收第二个参数:
+React.memo 会返回一个纯化(purified)的组件 **MemoFuncComponent**，这个组件将会在 JSX 标记中渲染出来。当组件的参数 props 和状态 state 发生改变时，React 将会检查前一个状态和参数是否和下一个状态和参数是否相同，如果相同，组件将不会被渲染，如果不同，组件将会被重新渲染，表现上和 PureComponent 一致。它还可以接收第二个参数:
 
 ```JSX
 React.memo(Funcomponent, (nextProps, prevProps) => {
   // 类似 shouldComponentUpdate
 })
 ```
+
+综上所述，我们解决组件性能优化问题无外乎两个方面:
+
+* setState 会触发组件的重新渲染，无论值是否改变 --> 避免不必要的渲染
+* 父组件更新，子组件也会自动更新 --> 避免不必要的子组件渲染
 
 ## 自定义 Hook
 
@@ -641,52 +741,37 @@ React.memo(Funcomponent, (nextProps, prevProps) => {
 ```JSX
 import { useState, useEffect } from "react";
 
-export default function useJoke() {
-  const [joke, setJoke] = useState("Loading…");
+export function useContent() {
+  const [content, setContent] = useState("Loading…");
 
   useEffect(() => {
-    fetch("https://api.icndb.com/jokes/random")
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
       .then(response => response.json())
-      .then(joke => setJoke(joke.value.joke))
-      .catch(() => setJoke("Error"));
+      .then(data => setContent(data.title))
+      .catch(() => setContent("Error"))
   }, []);
   
-  return joke;
+  return content;
 }
 ```
 
-然后改写之前写好的 Content 和 Sidebar 组件即可，比起之前的方法，是不是就简单多了呢:
+然后改写之前写好的 Home 和 About 组件即可，比起之前的方法，是不是就简单多了呢:
 
 ```JSX
-import React from "react";
-import useJoke from "./useJoke";
+// Home，About 同理
+import React, { Component } from "react";
+import { useContent } from "../common";
 
-export default () => {
-  const joke = useJoke();
+export function Home() {
+  const content = useContent()
 
   return (
     <article>
-      <h1 className="heading">Content</h1>
-      <p>{joke}</p>
+      <h1>Content</h1>
+      <p>{content}</p>
     </article>
-  );
-};
-```
-
-```JSX
-import React from "react";
-import useJoke from "./useJoke";
-
-export default () => {
-  const joke = useJoke();
-
-  return (
-    <aside>
-      <h2 className="heading">Sidebar</h2>
-      <p>{joke}</p>
-    </aside>
-  );
-};
+  )
+}
 ```
 
 然我们来看看另一个完整的栗子，来自[这里](https://medium.com/frontmen/react-hooks-why-and-how-e4d2a5f0347):
@@ -702,3 +787,4 @@ export default () => {
 3. [可能你的 react 函数组件从来没有优化过](https://juejin.im/post/5d26fdb8f265da1b5e731dfe) - 腾讯 IMWeb 团队
 4. [Improving Performance in React Functional Components using React.memo()](https://blog.bitsrc.io/improve-performance-in-react-functional-components-using-react-memo-b2e80c11e15a) By Chidume Nnamdi
 5. [React PureComponent 使用指南](https://juejin.im/entry/5934c9bc570c35005b556e1a) By yufeng
+6. [useMemo 与 useCallback 使用指南](https://zhuanlan.zhihu.com/p/66166173) By Richard
