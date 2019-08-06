@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Vuex 简介 - ",
+		"url" : "/2019/08/06/vuex-profile.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Redis 简介 - ",
 		"url" : "/2019/07/08/redis.html"
 	}

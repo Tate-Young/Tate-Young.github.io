@@ -170,6 +170,12 @@ const getQueries = (str = '') => {
 }
 ```
 
+### 首字母 capitalize
+
+```JS
+const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1)
+```
+
 ## 参考链接
 
 1. [ID - a unique ID/name generator for JavaScript](https://gist.github.com/gordonbrander/2230317) By gordonbrander
