@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: Git 命令
 date:   2018-03-11 12:03:00 GMT+0800 (CST)
-update: 2019-03-28 11:34:00 GMT+0800 (CST)
+update: 2019-08-06 21:20:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/03/11/5aa49b6c003a8.gif
 
 tags:
@@ -304,7 +304,14 @@ git merge --no-ff -m "merge with no-ff" feature
 
 ### rebase
 
-[**rebase(变基)**](https://git-scm.com/book/zh/v2/Git-分支-变基) 和 merge 都可以进行合并，rebase 会对 commit 序列重新设置基础点，不会产生和 merge 一样的分叉，保持整个项目的清洁。
+[**rebase(变基)**](https://git-scm.com/book/zh/v2/Git-分支-变基) 一般来说有两种操作:
+
+1. 分支合并，类似 merge
+2. 合并多次提交
+
+一、分支合并
+
+rebase 和 merge 都可以进行合并，rebase 会对 commit 序列重新设置基础点，不会产生和 merge 一样的分叉，保持整个项目的清洁。
 
 假设现处于 branch1 分支，需将 branch1 分支合并到 master:
 
@@ -339,6 +346,134 @@ rebase 的黄金法则是绝不要在公共的分支上使用。倘若在 master
 ![git-rebase-error.gif](https://i.loli.net/2018/03/11/5aa49b6796eb8.gif)
 
 > 总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利
+
+另外，在 rebase 的过程中，也许会出现冲突 conflict。在这种情况，git 会停止 rebase 并会让你去解决冲突。在解决完冲突后，用 git add 命令去更新这些内容:
+
+```SHELL
+git add .
+# 无需 git commit, git 会继续应用余下的 patch 补丁文件
+git rebase --continue
+```
+
+在任何时候，我们都可以用 `--abort` 参数来终止 rebase 的行动，并且分支会回到 rebase 开始前的状态:
+
+```SHELL
+git rebase --abort
+```
+
+二、合并多次提交
+
+合并多次提交的命令有以下两种:
+
+```SHELL
+# -i 表示交互式， endpoint 省略即为最新提交
+# 注意不包含 startpoint，左开右闭
+git rebase -i  [startpoint]  [endpoint]
+
+git rebase -i HEAD~n # n 次提交
+```
+
+举个栗子，比如之前提交历史如下:
+
+```TEXT
+* 2e18a4f - (HEAD -> master) feat: third commit (3 seconds ago) <Tate>
+* b2f89a4 - feat: second commit (29 seconds ago) <Tate>
+* 3672ae7 - test: first commit (52 seconds ago) <Tate>
+```
+
+执行命令 `git rebase -i HEAD~3` 之后我们会看到以下界面:
+
+```TEXT
+pick 3672ae7 test: first commit
+pick b2f89a4 feat: second commit
+pick 2e18a4f feat: third commit
+
+# Rebase 80d0581..2e18a4f onto 80d0581 (3 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup <commit> = like "squash", but discard this commit's log message
+# x, exec <command> = run command (the rest of the line) using shell
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+# .       create a merge commit using the original merge commit's
+# .       message (or the oneline, if no original merge commit was
+# .       specified). Use -c <commit> to reword the commit message.
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+#       However, if you remove everything, the rebase will be aborted.
+#
+#
+# Note that empty commits are commented out
+```
+
+我们可以看到 git 提供了以下这些命令去编辑:
+
+* pick - 保留该 commit（p）
+* reword - 保留该 commit ，但我需要修改该 commit 的注释（r）
+* edit - 保留该 commit, 但我要停下来修改该提交(不仅仅修改注释)（e）
+* squash - 将该 commit 和前一个 commit 合并（s）
+* fixup - 将该 commit 和前一个 commit 合并，但我不要保留该提交的注释信息（f）
+* exec - 执行 shell 命令（x）
+* drop - 我要丢弃该 commit（d）
+
+根据我们的需求，我们将 commit 内容编辑如下:
+
+```TEXT
+pick 3672ae7 test: first commit
+s b2f89a4 feat: second commit
+s 2e18a4f feat: third commit
+```
+
+保存后会继续弹出默认的注释修改页面:
+
+```TEXT
+# This is a combination of 3 commits.
+# This is the 1st commit message:
+
+test: first commit
+
+# This is the commit message #2:
+
+feat: second commit
+
+# This is the commit message #3:
+
+feat: third commit
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Tue Aug 6 21:01:09 2019 +0800
+#
+# interactive rebase in progress; onto 80d0581
+# Last commands done (3 commands done):
+#    squash b2f89a4 feat: second commit
+#    squash 2e18a4f feat: third commit
+# No commands remaining.
+# You are currently rebasing branch 'master' on '80d0581'.
+#
+# Changes to be committed:
+#       modified:   src/common/HOC.js
+```
+
+我们可以自己改下提交注释为 `test: combine 3 commits`，然后再次保存即可:
+
+```TEXT
+* 9b30b34 - (HEAD -> master) test: combine 3 commits (84 seconds ago) <Tate>
+# 可以看到以下三条原记录被干掉啦
+# * 2e18a4f - (HEAD -> master) feat: third commit (3 seconds ago) <Tate>
+# * b2f89a4 - feat: second commit (29 seconds ago) <Tate>
+# * 3672ae7 - test: first commit (52 seconds ago) <Tate>
+```
 
 ### cherry-pick
 
@@ -524,3 +659,5 @@ git diff --stat # 仅仅比较统计信息
 7. [Github - git-recipes](https://github.com/geeeeeeeeek/git-recipes/wiki) By geeeeeeeeek
 8. [Git 撤销合并](http://blog.psjay.com/posts/git-revert-merge-commit/) By PSJay
 9. [Git-用 cherry-pick 挑好看的小樱桃](https://drprincess.github.io/2018/03/05/Git-%E7%94%A8%20cherry-pick%20%E6%8C%91%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%B0%8F%E6%A8%B1%E6%A1%83/) By DRPrincess
+10. [彻底搞懂 Git-Rebase](http://jartto.wang/2018/12/11/git-rebase/) By jartto
+11. [使用 git rebase 合并多次 commit](https://github.com/zuopf769/how_to_use_git/blob/master/使用git%20rebase合并多次commit.md) By zuopf769

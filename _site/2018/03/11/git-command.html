@@ -160,7 +160,7 @@
                       发布时间：2018-03-11 12:03:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-03-28 11:34:00
+                        修改时间：2019-08-06 21:20:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -586,7 +586,16 @@ git merge --no-ff -m "merge with no-ff" feature
 
 <h3 id="rebase">rebase</h3>
 
-<p><a href="https://git-scm.com/book/zh/v2/Git-分支-变基"><strong>rebase(变基)</strong></a> 和 merge 都可以进行合并，rebase 会对 commit 序列重新设置基础点，不会产生和 merge 一样的分叉，保持整个项目的清洁。</p>
+<p><a href="https://git-scm.com/book/zh/v2/Git-分支-变基"><strong>rebase(变基)</strong></a> 一般来说有两种操作:</p>
+
+<ol>
+  <li>分支合并，类似 merge</li>
+  <li>合并多次提交</li>
+</ol>
+
+<p>一、分支合并</p>
+
+<p>rebase 和 merge 都可以进行合并，rebase 会对 commit 序列重新设置基础点，不会产生和 merge 一样的分叉，保持整个项目的清洁。</p>
 
 <p>假设现处于 branch1 分支，需将 branch1 分支合并到 master:</p>
 
@@ -625,6 +634,128 @@ git merge branch1
 <blockquote>
   <p>总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利</p>
 </blockquote>
+
+<p>另外，在 rebase 的过程中，也许会出现冲突 conflict。在这种情况，git 会停止 rebase 并会让你去解决冲突。在解决完冲突后，用 git add 命令去更新这些内容:</p>
+
+<pre><code class="language-SHELL">git add .
+# 无需 git commit, git 会继续应用余下的 patch 补丁文件
+git rebase --continue
+</code></pre>
+
+<p>在任何时候，我们都可以用 <code class="highlighter-rouge">--abort</code> 参数来终止 rebase 的行动，并且分支会回到 rebase 开始前的状态:</p>
+
+<pre><code class="language-SHELL">git rebase --abort
+</code></pre>
+
+<p>二、合并多次提交</p>
+
+<p>合并多次提交的命令有以下两种:</p>
+
+<pre><code class="language-SHELL"># -i 表示交互式， endpoint 省略即为最新提交
+# 注意不包含 startpoint，左开右闭
+git rebase -i  [startpoint]  [endpoint]
+
+git rebase -i HEAD~n # n 次提交
+</code></pre>
+
+<p>举个栗子，比如之前提交历史如下:</p>
+
+<pre><code class="language-TEXT">* 2e18a4f - (HEAD -&gt; master) feat: third commit (3 seconds ago) &lt;Tate&gt;
+* b2f89a4 - feat: second commit (29 seconds ago) &lt;Tate&gt;
+* 3672ae7 - test: first commit (52 seconds ago) &lt;Tate&gt;
+</code></pre>
+
+<p>执行命令 <code class="highlighter-rouge">git rebase -i HEAD~3</code> 之后我们会看到以下界面:</p>
+
+<pre><code class="language-TEXT">pick 3672ae7 test: first commit
+pick b2f89a4 feat: second commit
+pick 2e18a4f feat: third commit
+
+# Rebase 80d0581..2e18a4f onto 80d0581 (3 commands)
+#
+# Commands:
+# p, pick &lt;commit&gt; = use commit
+# r, reword &lt;commit&gt; = use commit, but edit the commit message
+# e, edit &lt;commit&gt; = use commit, but stop for amending
+# s, squash &lt;commit&gt; = use commit, but meld into previous commit
+# f, fixup &lt;commit&gt; = like "squash", but discard this commit's log message
+# x, exec &lt;command&gt; = run command (the rest of the line) using shell
+# d, drop &lt;commit&gt; = remove commit
+# l, label &lt;label&gt; = label current HEAD with a name
+# t, reset &lt;label&gt; = reset HEAD to a label
+# m, merge [-C &lt;commit&gt; | -c &lt;commit&gt;] &lt;label&gt; [# &lt;oneline&gt;]
+# .       create a merge commit using the original merge commit's
+# .       message (or the oneline, if no original merge commit was
+# .       specified). Use -c &lt;commit&gt; to reword the commit message.
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+#       However, if you remove everything, the rebase will be aborted.
+#
+#
+# Note that empty commits are commented out
+</code></pre>
+
+<p>我们可以看到 git 提供了以下这些命令去编辑:</p>
+
+<ul>
+  <li>pick - 保留该 commit（p）</li>
+  <li>reword - 保留该 commit ，但我需要修改该 commit 的注释（r）</li>
+  <li>edit - 保留该 commit, 但我要停下来修改该提交(不仅仅修改注释)（e）</li>
+  <li>squash - 将该 commit 和前一个 commit 合并（s）</li>
+  <li>fixup - 将该 commit 和前一个 commit 合并，但我不要保留该提交的注释信息（f）</li>
+  <li>exec - 执行 shell 命令（x）</li>
+  <li>drop - 我要丢弃该 commit（d）</li>
+</ul>
+
+<p>根据我们的需求，我们将 commit 内容编辑如下:</p>
+
+<pre><code class="language-TEXT">pick 3672ae7 test: first commit
+s b2f89a4 feat: second commit
+s 2e18a4f feat: third commit
+</code></pre>
+
+<p>保存后会继续弹出默认的注释修改页面:</p>
+
+<pre><code class="language-TEXT"># This is a combination of 3 commits.
+# This is the 1st commit message:
+
+test: first commit
+
+# This is the commit message #2:
+
+feat: second commit
+
+# This is the commit message #3:
+
+feat: third commit
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Tue Aug 6 21:01:09 2019 +0800
+#
+# interactive rebase in progress; onto 80d0581
+# Last commands done (3 commands done):
+#    squash b2f89a4 feat: second commit
+#    squash 2e18a4f feat: third commit
+# No commands remaining.
+# You are currently rebasing branch 'master' on '80d0581'.
+#
+# Changes to be committed:
+#       modified:   src/common/HOC.js
+</code></pre>
+
+<p>我们可以自己改下提交注释为 <code class="highlighter-rouge">test: combine 3 commits</code>，然后再次保存即可:</p>
+
+<pre><code class="language-TEXT">* 9b30b34 - (HEAD -&gt; master) test: combine 3 commits (84 seconds ago) &lt;Tate&gt;
+# 可以看到以下三条原记录被干掉啦
+# * 2e18a4f - (HEAD -&gt; master) feat: third commit (3 seconds ago) &lt;Tate&gt;
+# * b2f89a4 - feat: second commit (29 seconds ago) &lt;Tate&gt;
+# * 3672ae7 - test: first commit (52 seconds ago) &lt;Tate&gt;
+</code></pre>
 
 <h3 id="cherry-pick">cherry-pick</h3>
 
@@ -841,6 +972,8 @@ git diff --stat # 仅仅比较统计信息
   <li><a href="https://github.com/geeeeeeeeek/git-recipes/wiki">Github - git-recipes</a> By geeeeeeeeek</li>
   <li><a href="http://blog.psjay.com/posts/git-revert-merge-commit/">Git 撤销合并</a> By PSJay</li>
   <li><a href="https://drprincess.github.io/2018/03/05/Git-%E7%94%A8%20cherry-pick%20%E6%8C%91%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%B0%8F%E6%A8%B1%E6%A1%83/">Git-用 cherry-pick 挑好看的小樱桃</a> By DRPrincess</li>
+  <li><a href="http://jartto.wang/2018/12/11/git-rebase/">彻底搞懂 Git-Rebase</a> By jartto</li>
+  <li><a href="https://github.com/zuopf769/how_to_use_git/blob/master/使用git%20rebase合并多次commit.md">使用 git rebase 合并多次 commit</a> By zuopf769</li>
 </ol>
  
 <div id="gitalk-container"></div>
