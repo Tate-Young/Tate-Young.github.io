@@ -7,6 +7,7 @@ background: green
 category: 前端
 title:  Vuex 简介
 date:   2019-08-06 16:08:00 GMT+0800 (CST)
+update: 2019-08-06 17:19:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/06/12/5b1f2d120e9e6.jpg
 tags:
 - Vue
@@ -696,6 +697,103 @@ store.registerModule('a', module, { preserveState: true })
 ```
 
 > 以上示例可以直接参考官方 [github examples](https://github.com/vuejs/vuex/tree/dev/examples) 👈
+
+## 插件 plugins
+
+Vuex 的 store 接受 **plugins** 选项，这个选项暴露出每次 mutation 的钩子。Vuex 插件就是一个函数，它接收 store 作为唯一参数:
+
+```JS
+const myPlugin = store => {
+  // 当 store 初始化后调用
+  store.subscribe((mutation, state) => {
+    // 每次 mutation 之后调用
+    // mutation 的格式为 { type, payload }
+  })
+}
+```
+
+比如内置的打印日志插件 `createLogger`:
+
+```JS
+// 在严格模式下，无论何时发生了状态变更且不是由 mutation 函数引起的，将会抛出错误。这能保证所有的状态变更都能被调试工具跟踪到
+// 严格模式会深度监测状态树来检测不合规的状态变更，请确保在发布环境下关闭严格模式，以避免性能损失
+import createLogger from 'vuex/dist/logger'
+
+const debug = process.env.NODE_ENV !== 'production'
+
+export default new Vuex.Store({
+  modules: {
+    cart
+  },
+  strict: debug,
+  plugins: debug ? [createLogger()] : []
+})
+```
+
+createLogger 还支持一些自定义属性:
+
+```JS
+const logger = createLogger({
+  collapsed: false, // 自动展开记录的 mutation
+  filter (mutation, stateBefore, stateAfter) {
+    // 若 mutation 需要被记录，就让它返回 true 即可
+    // 顺便，`mutation` 是个 { type, payload } 对象
+    return mutation.type !== "aBlacklistedMutation"
+  },
+  transformer (state) {
+    // 在开始记录之前转换状态
+    // 例如，只返回指定的子树
+    return state.subTree
+  },
+  mutationTransformer (mutation) {
+    // mutation 按照 { type, payload } 格式记录
+    // 我们可以按任意方式格式化
+    return mutation.type
+  },
+  logger: console, // 自定义 console 实现，默认为 `console`
+})
+```
+
+## 热重载
+
+对于 mutation 和模块，你需要使用 `store.hotUpdate()` 方法:
+
+```JS
+// store.js
+import Vue from 'vue'
+import Vuex from 'vuex'
+import mutations from './mutations'
+import moduleA from './modules/a'
+
+Vue.use(Vuex)
+
+const state = { ... }
+
+const store = new Vuex.Store({
+  state,
+  mutations,
+  modules: {
+    a: moduleA
+  }
+})
+
+if (module.hot) {
+  // 使 action 和 mutation 成为可热重载模块
+  module.hot.accept(['./mutations', './modules/a'], () => {
+    // 获取更新后的模块
+    // 因为 babel 6 的模块编译格式问题，这里需要加上 `.default`
+    const newMutations = require('./mutations').default
+    const newModuleA = require('./modules/a').default
+    // 加载新模块
+    store.hotUpdate({
+      mutations: newMutations,
+      modules: {
+        a: newModuleA
+      }
+    })
+  })
+}
+```
 
 ## 参考链接
 
