@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  记一些小技巧和代码块
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update:   2019-05-29 11:45:00 GMT+0800 (CST)
+update: 2019-08-07 16:36:00 GMT+0800 (CST)
 background-image: /style/images/darling.jpg
 tags:
 - JavaScript
@@ -120,6 +120,106 @@ var result = mapped.map(function(el){
 })
 ```
 
+### 判断元素是否位于视窗内
+
+通常有两种方法来进行判断，以下图和栗子引用自[这篇博客](https://imweb.io/topic/5c7bc84ebaf81d7952094978?utm_source=tuicool&utm_medium=referral):
+
+* [**Element.getBoundingClientRect()**](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect) - 返回元素的大小及其相对于视口的位置，包括 top、bottom、left 和 right
+* [**Intersection Observer API**](https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API) - 提供了一种异步观察目标元素与祖先元素或顶级文档 viewport 的交集中的变化的方法。目前兼容性堪忧，但是有 [w3c - IntersectionObserver Polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill) 👈
+
+#### Element.getBoundingClientRect()
+
+通过 Element.getBoundingClientRect()，我们可以拿到素的大小及其相对于视口的位置:
+
+```JS
+const target = document.querySelector('.target')
+const clientRect = target.getBoundingClientRect()
+
+console.log(clientRect)
+
+// {
+//   bottom: 556.21875,
+//   height: 393.59375,
+//   left: 333,
+//   right: 1017,
+//   top: 162.625,
+//   width: 684
+// }
+```
+
+该方法返回值是一个 **DOMRect** 对象，这个对象是由该元素的 `getClientRects()` 方法返回的一组矩形的集合，除了 width 和 height 外的属性都是相对于视口的左上角位置而言的:
+
+![getBoundingClientRect](https://mdn.mozillademos.org/files/15087/rect.png)
+
+因此我们直接可以进行以下的兼容性判断:
+
+```JS
+function isInViewPort(element) {
+  const viewWidth = window.innerWidth || document.documentElement.clientWidth
+  const viewHeight = window.innerHeight || document.documentElement.clientHeight
+  const {
+    top,
+    right,
+    bottom,
+    left,
+  } = element.getBoundingClientRect()
+
+  return (
+    top >= 0 &&
+    left >= 0 &&
+    right <= viewWidth &&
+    bottom <= viewHeight
+  );
+}
+
+console.log(isInViewPort(document.querySelector('.target'))) // true or false
+```
+
+#### Intersection Observer API
+
+Intersection Observer 即重叠观察者，从这个命名就可以看出它用于判断两个元素是否重叠。需要 **创建观察者** 和 **传入被观察者**:
+
+1、创建观察者
+
+```JS
+const options = {
+  // 表示重叠面积占被观察者的比例，从 0 - 1 取值，
+  // 1 表示完全被包含
+  threshold: 1.0,
+}
+
+const callback = (entries, observer) => { ....}
+// 传入的参数 callback 在重叠比例超过 threshold 时会被执行
+const observer = new IntersectionObserver(callback, options)
+```
+
+2、传入被观察者
+
+```JS
+const target = document.querySelector('.target')
+observer.observe(target);
+
+// 上段代码中被省略的 callback
+const callback = function(entries, observer) {
+  entries.forEach(entry => {
+    entry.time               // 触发的时间
+    entry.rootBounds         // 根元素的位置矩形，这种情况下为视窗位置
+    entry.boundingClientRect // 被观察者的位置矩形
+    entry.intersectionRect   // 重叠区域的位置矩形
+    entry.intersectionRatio  // 重叠区域占被观察者面积的比例（被观察者不是矩形时也按照矩形计算）
+    entry.target             // 被观察者 👈
+  })
+}
+```
+
+根据在线栗子，我们来对比下两者的实践和性能。首先是使用 Element.getBoundingClientRect() 进行计算实现的效果，可以看到有非常明显的卡顿，主要是因为需要对每一个元素都进行计算，判断它们是否在视窗之内。具体的代码可以[点击查看](https://codepen.io/elvinn/pen/YgWKGy):
+
+![1](https://ww1.sinaimg.cn/large/005XbUDxgy1g0pv2uwf6zg30iz0bln3w.gif)
+
+然后是使用 Intersection Observer API 进行注册回调实现的效果，可以看出来十分流畅。具体的代码可以[点击查看](https://codepen.io/elvinn/pen/jJrNyZ):
+
+![2](https://ws1.sinaimg.cn/large/005XbUDxgy1g0pv6x5m2qg30ir0bkwnf.gif)
+
 ## 代码块
 
 ### webStore 简单封装
@@ -179,3 +279,4 @@ const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1)
 ## 参考链接
 
 1. [ID - a unique ID/name generator for JavaScript](https://gist.github.com/gordonbrander/2230317) By gordonbrander
+2. [判断元素是否在视窗之内 - IMWeb](https://imweb.io/topic/5c7bc84ebaf81d7952094978?utm_source=tuicool&utm_medium=referral)
