@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: Git 命令
 date:   2018-03-11 12:03:00 GMT+0800 (CST)
-update: 2019-08-06 21:20:00 GMT+0800 (CST)
+update: 2019-08-08 11:34:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/03/11/5aa49b6c003a8.gif
 
 tags:
@@ -115,6 +115,13 @@ git branch -D branchname
 git branch -r -d origin/branchname
 # 或者
 git push origin :branchname
+```
+
+如果想要批量删除分支，可以根据查询结果进行过滤，最常用的写法如下，即删掉除 master 的所有本地分支:
+
+```SHELL
+# xargs 命令是给其他命令传递参数的一个过滤器
+git branch | grep -v 'master' | xargs git branch -D
 ```
 
 有时候缓存的原因，当你删掉远端一些分支时，别人还能查得到，这时候需要用以下命令来去除缓存:

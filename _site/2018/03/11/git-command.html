@@ -160,7 +160,7 @@
                       发布时间：2018-03-11 12:03:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-08-06 21:20:00
+                        修改时间：2019-08-08 11:34:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -388,6 +388,12 @@ git branch -D branchname
 git branch -r -d origin/branchname
 # 或者
 git push origin :branchname
+</code></pre>
+
+<p>如果想要批量删除分支，可以根据查询结果进行过滤，最常用的写法如下，即删掉除 master 的所有本地分支:</p>
+
+<pre><code class="language-SHELL"># xargs 命令是给其他命令传递参数的一个过滤器
+git branch | grep -v 'master' | xargs git branch -D
 </code></pre>
 
 <p>有时候缓存的原因，当你删掉远端一些分支时，别人还能查得到，这时候需要用以下命令来去除缓存:</p>
