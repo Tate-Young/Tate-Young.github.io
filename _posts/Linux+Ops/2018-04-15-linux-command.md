@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Linux 常用命令
 date:   2018-04-15 14:15:00 GMT+0800 (CST)
-update: 2019-06-13 17:41:00 GMT+0800 (CST)
+update: 2019-08-08 11:47:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
 tags:
 - Linux
@@ -146,7 +146,11 @@ http http://hostname/resource
 
 ## grep
 
-**[grep](http://man.linuxde.net/grep)** 命令是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来:
+**[grep](http://man.linuxde.net/grep)** 命令是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来，常用的参数如下:
+
+* **-v** - 反向查找
+* **-i** - 忽略大小写
+* **-E** - 使用正则表达式
 
 ```SHELL
 grep "match_pattern" file_name

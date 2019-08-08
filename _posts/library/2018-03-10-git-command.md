@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: Git 命令
 date:   2018-03-11 12:03:00 GMT+0800 (CST)
-update: 2019-08-08 11:34:00 GMT+0800 (CST)
+update: 2019-08-08 11:55:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/03/11/5aa49b6c003a8.gif
 
 tags:
@@ -105,6 +105,9 @@ git branch -v
 #  iss53   93b412c fix javascript issue
 #* master  7a98805 Merge branch 'iss53'
 #  testing 782fd34 add scott to the author list in the readmes
+
+# 查看哪些分支已被并入当前分支，反之为 --no-merged
+git branch --merged
 ```
 
 ```SHELL
@@ -122,6 +125,8 @@ git push origin :branchname
 ```SHELL
 # xargs 命令是给其他命令传递参数的一个过滤器
 git branch | grep -v 'master' | xargs git branch -D
+# zsh alias 只会删除合并到当前分支的其他分支
+gbda='git branch --no-color --merged | command grep -vE "^(\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d'
 ```
 
 有时候缓存的原因，当你删掉远端一些分支时，别人还能查得到，这时候需要用以下命令来去除缓存:
