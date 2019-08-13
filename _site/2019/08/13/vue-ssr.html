@@ -1,0 +1,1254 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+
+<head>
+    <meta content='Vue SSR - Tate & Snow' name='title' />
+    <meta content='Vue SSR - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>Vue SSR - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Vue SSR - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue SSR - Tate & Snow">
+<meta name="twitter:keywords" content="Vue SSR - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue SSR - Tate & Snow">
+<meta name="og:keywords" content="Vue SSR - Tate & Snow|Vue SSR服务端渲染和客户端渲染与传统 SPA (单页应用程序 (Single-Page Application)) 相比，服务器端渲染 (SSR) 的优势主要在于:  更好的SEO - 搜索引擎爬虫抓取工具可以直接查看完全渲染的..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="Vue SSR服务端渲染和客户端渲染与传统 SPA (单页应用程序 (Single-Page Application)) 相比，服务器端渲染 (SSR) 的优势主要在于:  更好的SEO - 搜索引擎爬虫抓取工具可以直接查看完全渲染的..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2019/08/13/vue-ssr.html' property='og:url' />
+<meta content="http://localhost:2333/2019/08/13/vue-ssr.html|Vue SSR服务端渲染和客户端渲染与传统 SPA (单页应用程序 (Single-Page Application)) 相比，服务器端渲染 (SSR) 的优势主要在于:  更好的SEO - 搜索引擎爬虫抓取工具可以直接查看完全渲染的..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<!-- <script async src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:2333/">首页</a>
+                
+                <a href="http://localhost:2333/front">前端</a>
+                
+                <a href="http://localhost:2333/tool">框架</a>
+                
+                <a href="http://localhost:2333/back">后端</a>
+                
+                <a href="http://localhost:2333/tags">标签</a>
+                
+                <a href="http://localhost:2333/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('框架', 'http://localhost:2333/tool')">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('后端', 'http://localhost:2333/back')">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('Vue SSR')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Vue SSR</h1>
+                <div class="post-data">
+                    <time datetime="2019-08-13 17:11:00" itemprop="datePublished">
+                      发布时间：2019-08-13 17:11:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('Vue')" title="访问Vue" data-hover="Vue">
+                        Vue
+                        <span>(4)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Vue SSR</h1>
+            <div class="post-data">
+                <time datetime="2019-08-13 17:11:00" itemprop="datePublished">2019-08-13 17:11:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="Javascript:;" onclick="onClickTag('Vue')" title="访问Vue" data-hover="Vue">
+                    Vue
+                    <span>(4)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="vue-ssr">Vue SSR</h1>
+
+<h2 id="服务端渲染和客户端渲染">服务端渲染和客户端渲染</h2>
+
+<p>与传统 <strong>SPA (单页应用程序 (Single-Page Application))</strong> 相比，<strong>服务器端渲染 (SSR)</strong> 的优势主要在于:</p>
+
+<ol>
+  <li>更好的<strong>SEO</strong> - 搜索引擎爬虫抓取工具可以直接查看完全渲染的页面</li>
+  <li>更快的<strong>内容到达时间 (time-to-content)</strong> - 特别是对于缓慢的网络情况或运行缓慢的设备。无需等待所有的 JavaScript 都完成下载并执行，才显示服务器渲染的标记，所以你的用户将会更快速地看到完整渲染的页面。</li>
+</ol>
+
+<p>而劣势在于:</p>
+
+<ol>
+  <li>开发条件所限。浏览器特定的代码，只能在某些生命周期钩子函数 (lifecycle hook) 中使用；一些外部扩展库 (external library) 可能需要特殊处理，才能在服务器渲染应用程序中运行</li>
+  <li>涉及构建设置和部署的更多要求。与可以部署在任何静态文件服务器上的完全静态单页面应用程序 (SPA) 不同，服务器渲染应用程序，需要处于 Node.js server 运行环境</li>
+  <li>更多的服务器端负载。在 Node.js 中渲染完整的应用程序，显然会比仅仅提供静态文件的 server 更加大量占用 CPU 资源</li>
+</ol>
+
+<h2 id="vue-ssr-1">Vue SSR</h2>
+
+<p>Vue 是构建客户端应用程序的框架。默认情况下，可以在浏览器中输出 Vue 组件，进行生成 DOM 和操作 DOM。然而，也可以将同一个组件渲染为服务器端的 HTML 字符串，将它们直接发送到浏览器，最后将这些静态标记”激活”为客户端上完全可交互的应用程序，即服务端渲染。我们需要注意的几个问题是:</p>
+
+<ol>
+  <li>服务器上的数据响应 - 在纯客户端应用程序 (client-only app) 中，每个用户会在他们各自的浏览器中使用新的应用程序实例。对于服务器端渲染，我们也希望如此：每个请求应该都是全新的、独立的应用程序实例，以便不会有<strong>交叉请求造成的状态污染 (cross-request state pollution)</strong></li>
+  <li>组件生命周期钩子函数 - 由于没有动态更新，所有的生命周期钩子函数中，只有 <strong>beforeCreate</strong> 和 <strong>created</strong> 会在服务器端渲染 (SSR) 过程中被调用，但不能在该生命周期中使用全局副作用的代码，例如 setInterval，SSR 期间并不会调用销毁钩子函数</li>
+  <li>访问特定平台(Platform-Specific) API - 通用代码不可接受特定平台的 API，因此如果你的代码中，直接使用了像 <code class="highlighter-rouge">window</code> 或 <code class="highlighter-rouge">document</code>，这种仅浏览器可用的全局变量，则会在 Node.js 中执行时抛出错误</li>
+</ol>
+
+<p><img src="https://cloud.githubusercontent.com/assets/499550/17607895/786a415a-5fee-11e6-9c11-45a2cfdf085c.png" alt="webpack" /></p>
+
+<p>webpack 构建步骤如上，对于客户端应用程序和服务器应用程序，我们都要使用 webpack 打包 - 服务器需要「服务器 bundle」然后用于服务器端渲染(SSR)，而「客户端 bundle」会发送给浏览器，用于混合静态标记。一个基本的项目结构可参考如下:</p>
+
+<pre><code class="language-TEXT">config
+├── setup-dev-server.js # 设置开发模式中间件，比如热重载，通过读取更新后的 bundle，然后重新创建 renderer 实例（需要 webpack.client.config.js / webpack.server.config.js）
+├── webpack.base.config.js # webpack 基础公共配置
+├── webpack.client.config.js # 客户端配置，生成 clientManifest（需要 entry-client.js）
+├── webpack.server.config.js # 服务端配置，用于生成传递给 createBundleRenderer 的 server bundle（需要 entry-server.js）
+src
+├── components
+│   ├── Foo.vue
+│   └── Bar.vue
+├── App.vue
+├── app.js # 通用 entry，暴露一个可以重复执行的工厂函数创建 vue 实例
+├── entry-client.js # 仅运行于浏览器，主要处理客户端数据预取和挂载 DOM（需要 app.js）
+└── entry-server.js # 仅运行于服务器。主要处理服务端路由匹配和数据预取（需要 app.js）
+server.js # 利用 Bundle Renderer 进行服务器端渲染（需要 server bundle / clientManifest / setup-dev-server.js）
+</code></pre>
+
+<h3 id="appjs">app.js</h3>
+
+<p>上面我们已经讨论过，我们要为每个请求创建一个新的根 Vue 实例，因此暴露一个可以重复执行的工厂函数 <code class="highlighter-rouge">createApp</code>:</p>
+
+<pre><code class="language-JS">import { sync } from 'vuex-router-sync'
+
+// Expose a factory function that creates a fresh set of store, router,
+// app instances on each call (which is called for each SSR request)
+export function createApp () {
+  // create store and router instances
+  const store = createStore()
+  const router = createRouter()
+
+  // sync the router with the vuex store.
+  // this registers `store.state.route`
+  sync(store, router)
+
+  // create the app instance.
+  // here we inject the router, store and ssr context to all child components,
+  // making them available everywhere as `this.$router` and `this.$store`.
+  const app = new Vue({
+    router,
+    store,
+    render: h =&gt; h(App)
+  })
+
+  // expose the app, the router and the store.
+  // note we are not mounting the app here, since bootstrapping will be
+  // different depending on whether we are in a browser or on the server.
+  return { app, router, store }
+}
+</code></pre>
+
+<p>在服务器端渲染(SSR)期间，我们本质上是在渲染我们应用程序的”快照”，所以如果应用程序依赖于一些异步数据，那么在开始渲染过程之前，需要先预取和解析好这些数据。另一个需要关注的问题是在客户端，在挂载 (mount) 到客户端应用程序之前，需要获取到与服务器端应用程序完全相同的数据 - 否则，客户端应用程序会因为使用与服务器端应用程序不同的状态，然后导致混合失败。因此采用官方的 <a href="http://localhost:2333/2019/08/06/vuex-profile.html">Vuex 状态管理库</a>。那么，我们在哪里放置「dispatch 数据预取 action」的代码呢？</p>
+
+<p>我们在路由组件上暴露出一个自定义静态函数 <code class="highlighter-rouge">asyncData</code>。注意，由于此函数会在组件实例化之前调用，所以它无法访问 this。需要将 store 和路由信息作为参数传递进去:</p>
+
+<pre><code class="language-JS">// Item.vue
+export default {
+  asyncData ({ store, route }) {
+    // 触发 action 后，会返回 Promise
+    return store.dispatch('fetchItem', route.params.id)
+  },
+  computed: {
+    // 从 store 的 state 对象中的获取 item。
+    item () {
+      return this.$store.state.items[this.$route.params.id]
+    }
+  }
+}
+</code></pre>
+
+<h3 id="entry-serverjs">entry-server.js</h3>
+
+<p>服务器 entry 使用 <code class="highlighter-rouge">default export</code> 导出函数，并在每次渲染中重复调用此函数。主要执行<strong>服务器端路由匹配 (server-side route matching)</strong> 和<strong>数据预取逻辑 (data pre-fetching logic)</strong>，我们可以通过路由获得与 <code class="highlighter-rouge">router.getMatchedComponents()</code> 相匹配的组件，如果组件暴露出 <code class="highlighter-rouge">asyncData</code>，我们就调用这个方法。然后我们需要将解析完成的状态，附加到渲染上下文(render context)中:</p>
+
+<pre><code class="language-JS">import { createApp } from './app'
+
+// This exported function will be called by `bundleRenderer`.
+// This is where we perform data-prefetching to determine the
+// state of our application before actually rendering it.
+// Since data fetching is async, this function is expected to
+// return a Promise that resolves to the app instance.
+export default context =&gt; {
+  return new Promise((resolve, reject) =&gt; {
+    const { app, router, store } = createApp()
+
+    // 设置服务器端 router 的位置
+    router.push(context.url)
+
+    // 等到 router 将可能的异步组件和钩子函数解析完
+    router.onReady(() =&gt; {
+      const matchedComponents = router.getMatchedComponents()
+      // 匹配不到的路由，执行 reject 函数，并返回 404
+      if (!matchedComponents.length) {
+        return reject({ code: 404 })
+      }
+
+      // 对所有匹配的路由组件调用 `asyncData()`
+      Promise.all(matchedComponents.map(Component =&gt; {
+        if (Component.asyncData) {
+          return Component.asyncData({
+            store,
+            route: router.currentRoute
+          })
+        }
+      })).then(() =&gt; {
+        // 在所有预取钩子(preFetch hook) resolve 后，
+        // 我们的 store 现在已经填充入渲染应用程序所需的状态。
+        // 当我们将状态附加到上下文，
+        // 并且 `template` 选项用于 renderer 时，
+        // 状态将自动序列化为 `window.__INITIAL_STATE__`，并注入 HTML。
+        context.state = store.state
+
+        // Promise 应该 resolve 应用程序实例，以便它可以渲染
+        resolve(app)
+      }).catch(reject)
+    }, reject)
+  })
+}
+</code></pre>
+
+<h3 id="entry-clientjs">entry-client.js</h3>
+
+<p>客户端 entry 只需创建应用程序，并且将其挂载到 DOM 中:</p>
+
+<pre><code class="language-JS">import { createApp } from './app'
+
+const { app, router } = createApp()
+
+// 需要在挂载 app 之前调用 router.onReady，因为路由器必须要提前解析路由配置中的异步组件，才能正确地调用组件中可能存在的路由钩子
+router.onReady(() =&gt; {
+  app.$mount('#app')
+})
+</code></pre>
+
+<p>客户端数据预取 (Client Data Fetching) 一般有两种不同的方式:</p>
+
+<ul>
+  <li><strong>在路由导航之前解析数据</strong> - 使用此策略，应用程序会等待视图所需数据全部解析之后，再传入数据并处理当前视图。好处在于，可以直接在数据准备就绪时，传入视图渲染完整内容，但是如果数据预取需要很长时间，用户在当前视图会感受到”明显卡顿”</li>
+  <li><strong>匹配要渲染的视图后，再获取数据</strong> - 此策略将客户端数据预取逻辑，放在视图组件的 <code class="highlighter-rouge">beforeMount</code> 函数中。当路由导航被触发时，可以立即切换视图，因此应用程序具有更快的响应速度。然而，传入视图在渲染时不会有完整的可用数据。因此，对于使用此策略的每个视图组件，都需要具有条件加载状态</li>
+</ul>
+
+<p>1、在路由导航之前解析数据</p>
+
+<pre><code class="language-JS">router.onReady(() =&gt; {
+  // 添加路由钩子函数，用于处理 asyncData.
+  // 在初始路由 resolve 后执行，
+  // 以便我们不会二次预取(double-fetch)已有的数据。
+  // 使用 `router.beforeResolve()`，以便确保所有异步组件都 resolve。
+  router.beforeResolve((to, from, next) =&gt; {
+    const matched = router.getMatchedComponents(to)
+    const prevMatched = router.getMatchedComponents(from)
+
+    // 我们只关心非预渲染的组件
+    // 所以我们对比它们，找出两个匹配列表的差异组件
+    let diffed = false
+    const activated = matched.filter((c, i) =&gt; {
+      return diffed || (diffed = (prevMatched[i] !== c))
+    })
+
+    if (!activated.length) {
+      return next()
+    }
+
+    // 这里如果有加载指示器 (loading indicator)，就触发
+
+    Promise.all(activated.map(c =&gt; {
+      if (c.asyncData) {
+        return c.asyncData({ store, route: to })
+      }
+    })).then(() =&gt; {
+
+      // 停止加载指示器(loading indicator)
+
+      next()
+    }).catch(next)
+  })
+
+  app.$mount('#app')
+})
+</code></pre>
+
+<p>2、匹配要渲染的视图后，再获取数据</p>
+
+<pre><code class="language-JS">// 全局 mixin
+Vue.mixin({
+  beforeMount () {
+    const { asyncData } = this.$options
+    if (asyncData) {
+      // 将获取数据操作分配给 promise
+      // 以便在组件中，我们可以在数据准备就绪后
+      // 通过运行 `this.dataPromise.then(...)` 来执行其他任务
+      this.dataPromise = asyncData({
+        store: this.$store,
+        route: this.$route
+      })
+    }
+  }
+})
+</code></pre>
+
+<p>这两种策略是根本上不同的用户体验决策，应该根据你创建的应用程序的实际使用场景进行挑选。但是无论你选择哪种策略，当路由组件重用（同一路由，但是 params 或 query 已更改，例如，从 user/1 到 user/2）时，也应该调用 <code class="highlighter-rouge">asyncData</code> 函数。我们也可以通过纯客户端 (client-only) 的全局 mixin 来处理这个问题:</p>
+
+<pre><code class="language-JS">Vue.mixin({
+  beforeRouteUpdate (to, from, next) {
+    const { asyncData } = this.$options
+    if (asyncData) {
+      asyncData({
+        store: this.$store,
+        route: to
+      }).then(next).catch(next)
+    } else {
+      next()
+    }
+  }
+})
+</code></pre>
+
+<h3 id="serverjs">server.js</h3>
+
+<p><strong>vue-server-renderer</strong> 提供一个名为 <code class="highlighter-rouge">createBundleRenderer</code> 的 API，通过使用 webpack 的自定义插件，<code class="highlighter-rouge">server bundle</code> 将生成为可传递到 <code class="highlighter-rouge">bundle renderer</code> 的特殊 JSON 文件。所创建的 <code class="highlighter-rouge">bundle renderer</code>，用法和普通 renderer 相同，但是 <code class="highlighter-rouge">bundle renderer</code> 提供以下优点:</p>
+
+<ol>
+  <li>内置的 <code class="highlighter-rouge">source map</code> 支持（在 webpack 配置中使用 <code class="highlighter-rouge">devtool: 'source-map'</code>）</li>
+  <li>在开发环境甚至部署过程中热重载（通过读取更新后的 bundle，然后重新创建 renderer 实例）</li>
+  <li>关键 <code class="highlighter-rouge">CSS(critical CSS)</code> 注入（在使用 *.vue 文件时）：自动内联在渲染过程中用到的组件所需的CSS</li>
+  <li>使用 <code class="highlighter-rouge">clientManifest</code> 进行资源注入：自动推断出最佳的预加载(preload)和预取(prefetch)指令，以及初始渲染所需的代码分割 chunk</li>
+</ol>
+
+<p><code class="highlighter-rouge">bundle renderer</code> 在调用 <code class="highlighter-rouge">renderToString</code> 时，它将自动执行「由 bundle 创建的应用程序实例」所导出的函数（传入上下文作为参数），然后渲染它:</p>
+
+<pre><code class="language-JS">const { createBundleRenderer } = require('vue-server-renderer')
+
+function createRenderer (bundle, options) {
+  // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
+  return createBundleRenderer(bundle, Object.assign(options, {
+    // for component caching
+    cache: LRU({
+      max: 1000,
+      maxAge: 1000 * 60 * 15
+    }),
+    // this is only needed when vue-server-renderer is npm-linked
+    basedir: resolve('./dist'),
+    // recommended for performance, default value is true
+    runInNewContext: false
+  }))
+}
+
+let renderer
+let readyPromise
+const templatePath = resolve('./src/index.template.html')
+if (isProd) {
+  // In production: create server renderer using template and built server bundle.
+  // The server bundle is generated by vue-ssr-webpack-plugin.
+  const template = fs.readFileSync(templatePath, 'utf-8')
+  const bundle = require('./dist/vue-ssr-server-bundle.json')
+  // The client manifests are optional, but it allows the renderer
+  // to automatically infer preload/prefetch links and directly add &lt;script&gt;
+  // tags for any async chunks used during render, avoiding waterfall requests.
+  const clientManifest = require('./dist/vue-ssr-client-manifest.json')
+  renderer = createRenderer(bundle, {
+    template, // （可选）页面模板
+    clientManifest // （可选）客户端构建 manifest
+  })
+} else {
+  // In development: setup the dev server with watch and hot-reload,
+  // and create a new renderer on bundle / index template update.
+  readyPromise = require('./build/setup-dev-server')(
+    app,
+    templatePath,
+    (bundle, options) =&gt; {
+      renderer = createRenderer(bundle, options)
+    }
+  )
+}
+
+function render (req, res) {
+  const s = Date.now()
+
+  res.setHeader("Content-Type", "text/html")
+  res.setHeader("Server", serverInfo)
+
+  const handleError = err =&gt; {
+    if (err.url) {
+      res.redirect(err.url)
+    } else if(err.code === 404) {
+      res.status(404).send('404 | Page Not Found')
+    } else {
+      // Render Error Page or Redirect
+      res.status(500).send('500 | Internal Server Error')
+      console.error(`error during render : ${req.url}`)
+      console.error(err.stack)
+    }
+  }
+
+  const context = {
+    title: 'Vue HN 2.0', // default title
+    url: req.url
+  }
+  renderer.renderToString(context, (err, html) =&gt; {
+    if (err) {
+      return handleError(err)
+    }
+    res.send(html)
+    if (!isProd) {
+      console.log(`whole request: ${Date.now() - s}ms`)
+    }
+  })
+}
+
+app.get('*', isProd ? render : (req, res) =&gt; {
+  readyPromise.then(() =&gt; render(req, res))
+})
+</code></pre>
+
+<blockquote>
+  <p>一般情况下需要在 <code class="highlighter-rouge">createApp</code> 中创建一个新的实例，并从根 Vue 实例注入。在使用带有 <code class="highlighter-rouge">{ runInNewContext: true }</code> 的 <code class="highlighter-rouge">bundle renderer</code> 时，可以消除此约束，但是由于需要为每个请求创建一个新的上下文并重新执行整个 bundle，因此伴随有一些显著性能开销。因此建议显示设置为 <code class="highlighter-rouge">{ runInNewContext: false }</code></p>
+</blockquote>
+
+<blockquote>
+  <p><a href="https://ssr.vuejs.org/zh/api/#template"><strong>template</strong></a> 为整个页面的 HTML 提供一个模板。此模板应包含注释 <code class="highlighter-rouge">&lt;!--vue-ssr-outlet--&gt;</code>，作为渲染应用程序内容的占位符。更多 Renderer 配置项<a href="https://ssr.vuejs.org/zh/api/#cache">可参考这里</a> 👈</p>
+</blockquote>
+
+<h3 id="store-拆分">store 拆分</h3>
+
+<p>对于各模块，我们需要注意的是，state 必须是一个函数，以便创建多个实例化该模块:</p>
+
+<pre><code class="language-JS">// store/modules/foo.js
+export default {
+  namespaced: true,
+  // 重要信息：state 必须是一个函数，因此可以创建多个实例化该模块
+  state: () =&gt; ({
+    count: 0
+  }),
+  actions: {
+    inc: ({ commit }) =&gt; commit('inc')
+  },
+  mutations: {
+    inc: state =&gt; state.count++
+  }
+}
+</code></pre>
+
+<p>我们可以在路由组件的 <code class="highlighter-rouge">asyncData</code> 钩子函数中，使用 <code class="highlighter-rouge">store.registerModule</code> 惰性注册(lazy-register)这个模块:</p>
+
+<pre><code class="language-JS">import fooStoreModule from '../store/modules/foo' // 导入模块
+
+export default {
+  asyncData ({ store }) {
+    store.registerModule('foo', fooStoreModule)
+    return store.dispatch('foo/inc')
+  },
+
+  // 重要信息：当多次访问路由时，避免在客户端重复注册模块。
+  destroyed () {
+    this.$store.unregisterModule('foo')
+  },
+
+  computed: {
+    fooCount () {
+      return this.$store.state.foo.count
+    }
+  }
+}
+</code></pre>
+
+<h3 id="客户端激活client-side-hydration">客户端激活(client-side hydration)</h3>
+
+<p>所谓<strong>客户端激活</strong>，指的是 Vue 在浏览器端接管由服务端发送的静态 HTML，使其变为由 Vue 管理的动态 DOM 的过程。在 <code class="highlighter-rouge">entry-client.js</code> 中，我们用下面这行挂载(mount)应用程序:</p>
+
+<pre><code class="language-JS">// 这里假定 App.vue template 根元素的 `id="app"`
+app.$mount('#app')
+</code></pre>
+
+<p>在开发模式下，Vue 将推断客户端生成的虚拟 DOM 树 (virtual DOM tree)，是否与从服务器渲染的 DOM 结构 (DOM structure) 匹配。如果无法匹配，它将退出混合模式，丢弃现有的 DOM 并从头开始渲染。在生产模式下，此检测会被跳过，以避免性能损耗。</p>
+
+<p>使用「SSR + 客户端混合」时，需要了解的一件事是，浏览器可能会更改的一些特殊的 HTML 结构。例如，当你在 Vue 模板中写入:</p>
+
+<pre><code class="language-HTML">&lt;table&gt;
+  &lt;tr&gt;&lt;td&gt;hi&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+<p>浏览器会在 &lt;table&gt; 内部自动注入 &lt;tbody&gt;，然而，由于 Vue 生成的虚拟 DOM (virtual DOM) 不包含 &lt;tbody&gt;，所以会导致无法匹配。为能够正确匹配，请确保在模板中写入有效的 HTML。
+如果想避免在服务端渲染，可利用 <code class="highlighter-rouge">vue-no-ssr</code> 等一些库来实现:</p>
+
+<pre><code class="language-HTML">&lt;template&gt;
+  &lt;div id="app"&gt;
+    &lt;h1&gt;My Website&lt;/h1&gt;
+    &lt;no-ssr&gt;
+      &lt;!-- this component will only be rendered on client-side --&gt;
+      &lt;comments /&gt;
+    &lt;/no-ssr&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+
+<pre><code class="language-JS">  import NoSSR from 'vue-no-ssr'
+
+  export default {
+    components: {
+      'no-ssr': NoSSR
+    }
+  }
+</code></pre>
+
+<h3 id="构建配置">构建配置</h3>
+
+<p>建议将配置分为三个文件：<code class="highlighter-rouge">base</code>, <code class="highlighter-rouge">client</code> 和 <code class="highlighter-rouge">server</code>。基本配置 (base config) 包含在两个环境共享的配置，例如，输出路径 (output path)，别名 (alias) 和 loader。服务器配置 (server config) 和客户端配置 (client config)，可以通过使用 <code class="highlighter-rouge">webpack-merge</code> 来简单地扩展基本配置。</p>
+
+<h4 id="服务器配置-server-config">服务器配置 (Server Config)</h4>
+
+<p>服务器配置，是用于生成传递给 <code class="highlighter-rouge">createBundleRenderer</code> 的 <code class="highlighter-rouge">server bundle</code>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">merge</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack-merge'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">nodeExternals</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack-node-externals'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">baseConfig</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./webpack.base.config.js'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">VueSSRServerPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'vue-server-renderer/server-plugin'</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">baseConfig</span><span class="p">,</span> <span class="p">{</span>
+  <span class="c1">// 将 entry 指向应用程序的 server entry 文件</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="s1">'/path/to/entry-server.js'</span><span class="p">,</span>
+
+  <span class="c1">// 这允许 webpack 以 Node 适用方式(Node-appropriate fashion)处理动态导入(dynamic import)，</span>
+  <span class="c1">// 并且还会在编译 Vue 组件时，</span>
+  <span class="c1">// 告知 `vue-loader` 输送面向服务器代码(server-oriented code)。</span>
+  <span class="na">target</span><span class="p">:</span> <span class="s1">'node'</span><span class="p">,</span>
+
+  <span class="c1">// 对 bundle renderer 提供 source map 支持</span>
+  <span class="na">devtool</span><span class="p">:</span> <span class="s1">'source-map'</span><span class="p">,</span>
+
+  <span class="c1">// 此处告知 server bundle 使用 Node 风格导出模块(Node-style exports)</span>
+  <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'public'</span><span class="p">,</span> <span class="s1">'dist'</span><span class="p">),</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="s1">'server-bundle.js'</span><span class="p">,</span>
+    <span class="na">libraryTarget</span><span class="p">:</span> <span class="s1">'commonjs2'</span>
+  <span class="p">},</span>
+
+  <span class="c1">// https://webpack.js.org/configuration/externals/#function</span>
+  <span class="c1">// https://github.com/liady/webpack-node-externals</span>
+  <span class="c1">// 外置化应用程序依赖模块。可以使服务器构建速度更快，并生成较小的 bundle 文件。</span>
+  <span class="na">externals</span><span class="p">:</span> <span class="nx">nodeExternals</span><span class="p">({</span>
+    <span class="c1">// do not externalize CSS files in case we need to import it from a dep</span>
+    <span class="na">whitelist</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.</span><span class="sr">css$/</span>
+  <span class="p">}),</span>
+
+  <span class="c1">// 这是将服务器的整个输出</span>
+  <span class="c1">// 构建为单个 JSON 文件的插件。</span>
+  <span class="c1">// 默认文件名为 `vue-ssr-server-bundle.json`</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">DefinePlugin</span><span class="p">({</span>
+      <span class="s1">'process.env.NODE_ENV'</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">||</span> <span class="s1">'development'</span><span class="p">),</span>
+      <span class="s1">'process.env.VUE_ENV'</span><span class="p">:</span> <span class="s1">'"server"'</span>
+    <span class="p">}),</span>
+    <span class="k">new</span> <span class="nx">VueSSRServerPlugin</span><span class="p">()</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>在生成 <code class="highlighter-rouge">vue-ssr-server-bundle.json</code> 之后，只需将文件路径传递给 <code class="highlighter-rouge">createBundleRenderer</code>:</p>
+
+<pre><code class="language-JS">onst { createBundleRenderer } = require('vue-server-renderer')
+const renderer = createBundleRenderer('/path/to/vue-ssr-server-bundle.json', {
+  // ……renderer 的其他选项
+})
+</code></pre>
+
+<h4 id="客户端配置-client-config">客户端配置 (Client Config)</h4>
+
+<p>我们还可以生成<strong>客户端构建清单 (client build manifest)</strong>。使用客户端清单 (client manifest) 和服务器 bundle(server bundle)，renderer 现在具有了服务器和客户端的构建信息，因此它可以自动推断和注入资源预加载 / 数据预取指令(preload / prefetch directive)，以及 css 链接 / script 标签到所渲染的 HTML:</p>
+
+<pre><code class="language-JS">const webpack = require('webpack')
+const merge = require('webpack-merge')
+const base = require('./webpack.base.config')
+const SWPrecachePlugin = require('sw-precache-webpack-plugin')
+// 生成一个客户端构建 manifest 对象，包含了 webpack 整个构建过程的信息，从而可以让 bundle renderer 自动推导需要在 HTML 模板中注入的内容
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
+
+const config = merge(base, {
+  entry: {
+    app: '/path/to/entry-client.js'
+  },
+  resolve: {
+    alias: {
+      'create-api': './create-api-client.js'
+    }
+  },
+  plugins: [
+    // strip dev-only code in Vue source
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.VUE_ENV': '"client"'
+    }),
+    // extract vendor chunks for better caching
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: function (module) {
+        // a module is extracted into the vendor chunk if...
+        return (
+          // it's inside node_modules
+          /node_modules/.test(module.context) &amp;&amp;
+          // and not a CSS file (due to extract-text-webpack-plugin limitation)
+          !/\.css$/.test(module.request)
+        )
+      }
+    }),
+    // extract webpack runtime &amp; manifest to avoid vendor chunk hash changing
+    // on every build.
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest'
+    }),
+    new VueSSRClientPlugin()
+  ]
+})
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
+    // auto generate service worker
+    new SWPrecachePlugin({
+      cacheId: 'vue-hn',
+      filename: 'service-worker.js',
+      minify: true,
+      dontCacheBustUrlsMatching: /./,
+      staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
+      runtimeCaching: [
+        {
+          urlPattern: '/',
+          handler: 'networkFirst'
+        },
+        {
+          urlPattern: /\/(top|new|show|ask|jobs)/,
+          handler: 'networkFirst'
+        },
+        {
+          urlPattern: '/item/:id',
+          handler: 'networkFirst'
+        },
+        {
+          urlPattern: '/user/:id',
+          handler: 'networkFirst'
+        }
+      ]
+    })
+  )
+}
+
+module.exports = config
+</code></pre>
+
+<h4 id="开发环境配置">开发环境配置</h4>
+
+<p>主要是设置开发模式中间件，比如热重载，通过读取更新后的 bundle，然后重新创建 renderer 实例。生产模式由于性能问题不建议开启:</p>
+
+<pre><code class="language-JS">// setup-dev-server.js
+const fs = require('fs')
+const path = require('path')
+const MFS = require('memory-fs')
+const webpack = require('webpack')
+const chokidar = require('chokidar')
+const clientConfig = require('./webpack.client.config')
+const serverConfig = require('./webpack.server.config')
+
+const readFile = (fs, file) =&gt; {
+  try {
+    return fs.readFileSync(path.join(clientConfig.output.path, file), 'utf-8')
+  } catch (e) {}
+}
+
+module.exports = function setupDevServer (app, templatePath, cb) {
+  let bundle
+  let template
+  let clientManifest
+
+  let ready
+  const readyPromise = new Promise(r =&gt; { ready = r })
+  const update = () =&gt; {
+    if (bundle &amp;&amp; clientManifest) {
+      ready()
+      cb(bundle, {
+        template,
+        clientManifest
+      })
+    }
+  }
+
+  // read template from disk and watch
+  template = fs.readFileSync(templatePath, 'utf-8')
+  chokidar.watch(templatePath).on('change', () =&gt; {
+    template = fs.readFileSync(templatePath, 'utf-8')
+    console.log('index.html template updated.')
+    update()
+  })
+
+  // modify client config to work with hot middleware
+  clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
+  clientConfig.output.filename = '[name].js'
+  clientConfig.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  )
+
+  // dev middleware
+  const clientCompiler = webpack(clientConfig)
+  const devMiddleware = require('webpack-dev-middleware')(clientCompiler, {
+    publicPath: clientConfig.output.publicPath,
+    noInfo: true
+  })
+  app.use(devMiddleware)
+  clientCompiler.plugin('done', stats =&gt; {
+    stats = stats.toJson()
+    stats.errors.forEach(err =&gt; console.error(err))
+    stats.warnings.forEach(err =&gt; console.warn(err))
+    if (stats.errors.length) return
+    clientManifest = JSON.parse(readFile(
+      devMiddleware.fileSystem,
+      'vue-ssr-client-manifest.json'
+    ))
+    update()
+  })
+
+  // hot middleware
+  app.use(require('webpack-hot-middleware')(clientCompiler, { heartbeat: 5000 }))
+
+  // watch and update server renderer
+  const serverCompiler = webpack(serverConfig)
+  const mfs = new MFS()
+  serverCompiler.outputFileSystem = mfs
+  serverCompiler.watch({}, (err, stats) =&gt; {
+    if (err) throw err
+    stats = stats.toJson()
+    if (stats.errors.length) return
+
+    // read bundle generated by vue-ssr-webpack-plugin
+    bundle = JSON.parse(readFile(mfs, 'vue-ssr-server-bundle.json'))
+    update()
+  })
+
+  return readyPromise
+}
+</code></pre>
+
+<h3 id="缓存">缓存</h3>
+
+<h4 id="页面级别缓存">页面级别缓存</h4>
+
+<p>我们可以利用名为 <a href="https://www.nginx.com/blog/benefits-of-microcaching-nginx/"><strong>micro-caching</strong></a> 的缓存策略，来大幅度提高应用程序处理高流量的能力:</p>
+
+<pre><code class="language-JS">// https://github.com/isaacs/node-lru-cache
+const LRU = require('lru-cache')
+const microCache = LRU({
+  max: 100,
+  maxAge: 1000 // 重要提示：条目在 1 秒后过期。
+})
+
+const isCacheable = req =&gt; {
+  // 实现逻辑为，检查请求是否是用户特定(user-specific)。
+  // 只有非用户特定 (non-user-specific) 页面才会缓存
+}
+
+server.get('*', (req, res) =&gt; {
+  const cacheable = isCacheable(req)
+  if (cacheable) {
+    const hit = microCache.get(req.url)
+    if (hit) {
+      return res.end(hit)
+    }
+  }
+
+  renderer.renderToString((err, html) =&gt; {
+    res.end(html)
+    if (cacheable) {
+      microCache.set(req.url, html)
+    }
+  })
+})
+</code></pre>
+
+<h4 id="组件级别缓存">组件级别缓存</h4>
+
+<pre><code class="language-JS">// server.js
+function createRenderer (bundle, options) {
+  // https://github.com/vuejs/vue/blob/dev/packages/vue-server-renderer/README.md#why-use-bundlerenderer
+  return createBundleRenderer(bundle, Object.assign(options, {
+    // for component caching
+    cache: LRU({
+      max: 1000,
+      maxAge: 1000 * 60 * 15
+    }),
+    // this is only needed when vue-server-renderer is npm-linked
+    basedir: resolve('./dist'),
+    // recommended for performance
+    runInNewContext: false
+  }))
+}
+</code></pre>
+
+<p>然后，你可以通过实现 <code class="highlighter-rouge">serverCacheKey</code> 函数来缓存组件:</p>
+
+<pre><code class="language-JS">export default {
+  name: 'item', // 必填选项
+  props: ['item'],
+  serverCacheKey: props =&gt; props.item.id,
+  render (h) {
+    return h('div', this.item.id)
+  }
+}
+</code></pre>
+
+<p>适用于缓存的最常见类型的组件，是在大的 v-for 列表中重复出现的组件。由于这些组件通常由数据库集合(database collection)中的对象驱动，它们可以使用简单的缓存策略：使用其唯一 id，再加上最后更新的时间戳，来生成其缓存键(cache key):</p>
+
+<pre><code class="language-JS">serverCacheKey: props =&gt; props.item.id + '::' + props.item.last_updated
+</code></pre>
+
+<h2 id="nuxt">Nuxt</h2>
+
+<p><a href="https://zh.nuxtjs.org/guide/installation"><strong>Nuxt</strong></a> 是一个基于 Vue.js 的通用应用框架，预设了利用 Vue.js 开发服务端渲染的应用所需要的各种配置。除此之外，我们还提供了一种命令叫：<code class="highlighter-rouge">nuxt generate</code> ，为基于 Vue.js 的应用提供生成对应的静态站点的功能。我们相信这个命令所提供的功能，是向开发集成各种微服务（Microservices）的 Web 应用迈开的新一步:</p>
+
+<p><img src="https://zh.nuxtjs.org/nuxt-schema.svg" alt="Nuxt.js" /></p>
+
+<blockquote>
+  <p>至于服务端渲染，目前实践的其实不多，To be continued</p>
+</blockquote>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2019/08/13/vue-ssr.html';
+        this.page.identifier = '/2019/08/13/vue-ssr';
+        this.page.title = 'Vue SSR';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-08-13 17:11:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<script async src="/search/live2d/autoload.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>

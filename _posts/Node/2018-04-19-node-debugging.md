@@ -5,7 +5,7 @@ comments: True
 flag: Node
 background: gray
 category: 后端
-title:  Node 侦错
+title:  Node 侦错及 pm2
 date:   2018-04-19 21:48:00 GMT+0800 (CST)
 update: 2019-07-18 16:41:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg

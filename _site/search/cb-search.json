@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Vue SSR - ",
+		"url" : "/2019/08/13/vue-ssr.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Vuex 简介 - ",
 		"url" : "/2019/08/06/vuex-profile.html"
 	}
@@ -219,8 +227,8 @@
 	
     
 	{
-		"title" : "React 简介 - ",
-		"url" : "/2018/08/06/react-profile.html"
+		"title" : "React & React Router - ",
+		"url" : "/2018/08/06/react-react-router.html"
 	}
 	
 	,
@@ -331,7 +339,7 @@
 	
     
 	{
-		"title" : "Node 侦错 - ",
+		"title" : "Node 侦错及 pm2 - ",
 		"url" : "/2018/04/19/node-debugging.html"
 	}
 	
