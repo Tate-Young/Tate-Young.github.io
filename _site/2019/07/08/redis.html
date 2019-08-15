@@ -160,6 +160,8 @@
                       发布时间：2019-07-08 21:38:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-08-15 20:06:00
+                      
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -618,7 +620,7 @@ def loop():
 
 <p>场景:用户的发帖、回复、点赞等行为都要严格受控，一般要严格限定某行为在规定时间内允许的次数，超过了次数那就是非法行为。对非法行为，业务必须规定适当的惩处策略，因此除了控制流量，限流还有一个应用目的是用于控制用户行为，避免垃圾请求。</p>
 
-<p><strong>漏斗限流(funnel)</strong>是最常用的限流方法之一，顾名思义，这个算法的灵感源于漏斗（funnel）的结构。漏斗的剩余空间就代表着当前行为可以持续进行的数量，漏嘴的流水速率代表着系统允许该行为的最大频率。Redis 4.0 提供了一个限流 Redis 模块，它叫 <strong>redis-cell</strong>。该模块也使用了漏斗算法，并提供了原子的限流指令。该模块只有一条指令 <code class="highlighter-rouge">cl.throttle</code>:</p>
+<p><strong>漏斗限流(funnel)</strong>是最常用的限流方法之一，顾名思义，这个算法的灵感源于漏斗(funnel)的结构。漏斗的剩余空间就代表着当前行为可以持续进行的数量，漏嘴的流水速率代表着系统允许该行为的最大频率。Redis 4.0 提供了一个限流 Redis 模块，它叫 <strong>redis-cell</strong>。该模块也使用了漏斗算法，并提供了原子的限流指令。该模块只有一条指令 <code class="highlighter-rouge">cl.throttle</code>:</p>
 
 <pre><code class="language-TEXT">&gt; cl.throttle tate:reply 15 30 60 1
                    ▲     ▲  ▲  ▲  ▲
@@ -628,15 +630,82 @@ def loop():
                    └─────────────────── key tate
 </code></pre>
 
-<blockquote>
-  <p>To be continued</p>
-</blockquote>
+<h2 id="高可用方案">高可用方案</h2>
+
+<h3 id="主从复制">主从复制</h3>
+
+<p>通过持久化功能，Redis 保证了即使在服务器重启的情况下也不会损失(或少量损失)数据，因为持久化会把内存中数据保存到硬盘上，重启会从硬盘上加载数据。但是由于数据是存储在一台服务器上的，如果这台服务器出现硬盘故障等问题，也会导致数据丢失。为了避免单点故障，通常的做法是将数据库复制多个副本以部署在不同的服务器上，这样即使有一台服务器出现故障，其他服务器依然可以继续提供服务。为此，Redis 提供了<strong>复制(replication)</strong>功能，可以实现当一台数据库中的数据更新后，自动将更新的数据同步到其他数据库上。</p>
+
+<p>在复制的概念中，数据库分为两类，一类是<strong>主数据库(master)</strong>，另一类是<strong>从数据库(slave)</strong>。主数据库可以进行读写操作，当写操作导致数据变化时会自动将数据同步给从数据库。而从数据库一般是只读的，并接受主数据库同步过来的数据。一个主数据库可以拥有多个从数据库，而一个从数据库只能拥有一个主数据库。</p>
+
+<h3 id="哨兵模式-sentinel">哨兵模式 Sentinel</h3>
+
+<p>当主数据库遇到异常中断服务后，开发者可以通过手动的方式选择一个从数据库来升格为主数据库，以使得系统能够继续提供服务。然而整个过程相对麻烦且需要人工介入，难以实现自动化。为此，Redis 2.8 中提供了<strong>哨兵</strong>工具来实现自动化的系统监控和故障恢复功能。哨兵的作用就是监控 redis 主、从数据库是否正常运行，主出现故障自动将从数据库转换为主数据库。它的功能包括以下两个:</p>
+
+<ul>
+  <li>监控主数据库和从数据库是否正常运行</li>
+  <li>主数据库出现故障时自动将从数据库转换为主数据库</li>
+</ul>
+
+<p><img src="https://i.loli.net/2019/08/15/dmaAGEqFO3l5NUs.png" alt="image15.png" /></p>
+
+<p>默认情况下，每个 <strong>Sentinel 节点</strong>会以 每秒一次 的频率对 Redis 节点和其它的 Sentinel 节点发送 <code class="highlighter-rouge">PING</code> 命令，并通过节点的回复来判断节点是否在线:</p>
+
+<ul>
+  <li><strong>主观下线</strong> - 适用于所有主节点和从节点。如果在 <code class="highlighter-rouge">down-after-milliseconds</code> 毫秒内，Sentinel 没有收到目标节点的有效回复，则会判定该节点为主观下线</li>
+  <li><strong>客观下线</strong> - 只适用于主节点。如果主节点出现故障，Sentinel 节点会通过 <code class="highlighter-rouge">sentinel is-master-down-by-addr</code> 命令，向其它 Sentinel 节点询问对该节点的状态判断。如果超过 <code class="highlighter-rouge">&lt;quorum&gt;</code> 个数的节点判定主节点不可达，则该 Sentinel 节点会判断主节点为客观下线</li>
+</ul>
+
+<p>主从切换的过程:</p>
+
+<ol>
+  <li>在满足客观下线后，如果主节点处于 <code class="highlighter-rouge">SDOWN</code> 状态，则从 slave 中投票自动选出新的主节点</li>
+  <li>其他 slave 修改为新 master 的 slave</li>
+  <li>客户端修改连接</li>
+  <li>老的 master 如果重启成功，变为新 master 的 slave</li>
+</ol>
+
+<h3 id="集群-cluster">集群 cluster</h3>
+
+<p>即使使用哨兵，redis 每个实例也是全量存储，每个 redis 存储的内容都是完整的数据，浪费内存且有木桶效应。为了最大化利用内存，可以采用集群，就是分布式存储，即每台 redis 存储不同的内容，分布式方案一般有以下两种:</p>
+
+<p>1、<strong>客户端分区方案</strong></p>
+
+<p>客户端就已经决定数据会被存储到哪个 redis 节点或者从哪个 redis 节点读取数据。其主要思想是采用哈希算法将 Redis 数据的 key 进行散列，通过 hash 函数，特定的 key 会映射到特定的 Redis 节点上，例如 <strong>Redis Sharding</strong>:</p>
+
+<ul>
+  <li>优点 - 不使用第三方中间件，分区逻辑可控，配置简单，节点之间无关联，容易线性扩展，灵活性强</li>
+  <li>缺点 - 客户端无法动态增删服务节点，客户端需要自行维护分发逻辑，客户端之间无连接共享，会造成连接浪费</li>
+</ul>
+
+<p><img src="https://i.loli.net/2019/08/15/lqiHbvK9MQd1CSX.png" alt="redis-cluster-client.png" /></p>
+
+<p>2、<strong>代理分区方案</strong></p>
+
+<p>客户端发送请求到一个代理组件，代理解析客户端的数据，并将请求转发至正确的节点，最后将结果回复给客户端，例如 <strong>Twemproxy</strong> 和 <strong>Codis</strong>:</p>
+
+<ul>
+  <li>优点 - 简化客户端的分布式逻辑，客户端透明接入，切换成本低，代理的转发和存储分离</li>
+  <li>缺点 - 多了一层代理层，加重了架构部署复杂度和性能损耗</li>
+</ul>
+
+<p><img src="https://i.loli.net/2019/08/15/DI5hTJK7saV9Gep.png" alt="redis-cluster-proxy.png" /></p>
+
+<h2 id="持久化">持久化</h2>
+
+<h3 id="rdb">RDB</h3>
+
+<h3 id="aof">AOF</h3>
+
+<h2 id="常用的命令">常用的命令</h2>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://juejin.im/book/5afc2e5f6fb9a07a9b362527/section/5afc2e5f51882542714ff291">Redis 深度历险：核心原理与应用实践 - 掘进小册</a> By 老钱</li>
-  <li><a href="http://zhangtielei.com/posts/blog-redlock-reasoning.html">基于 Redis 的分布式锁到底安全吗？</a></li>
+  <li><a href="http://zhangtielei.com/posts/blog-redlock-reasoning.html">基于 Redis 的分布式锁到底安全吗？</a> By zhangtielei</li>
+  <li><a href="https://blog.csdn.net/c295477887/article/details/52487621">关于 redis 的主从、哨兵、集群</a> By 黄河边上的牧马人</li>
+  <li><a href="https://juejin.im/post/5b7d226a6fb9a01a1e01ff64">深入剖析 Redis 系列(二) - Redis 哨兵模式与高可用集群</a> By 零壹技术栈</li>
 </ol>
  
 <div id="gitalk-container"></div>
