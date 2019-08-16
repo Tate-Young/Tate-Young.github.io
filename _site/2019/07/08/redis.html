@@ -160,7 +160,7 @@
                       发布时间：2019-07-08 21:38:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-08-15 20:06:00
+                        修改时间：2019-08-16 12:49:00
                       
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
@@ -491,11 +491,15 @@ if redis.set(key, tag, nx=True, ex=5):
 
 <pre><code class="language-SHELL"># delifequals
 if redis.call("get",KEYS[1]) == ARGV[1] then
-  return redis.call("del",KEYS[1])
+  return redis.call("del", KEYS[1])
 else
   return 0
 end
 </code></pre>
+
+<p>目前比较好的一个解决方案是 <strong>RedLock</strong>，简单来说，就是采用 N（通常是 5）个独立的 redis 节点，同时 setnx，如果多数节点成功，就拿到了锁，这样就可以允许少数（2）个节点挂掉了:</p>
+
+<p><img src="https://i.loli.net/2019/08/16/O1ygTIES9GBqcx6.png" alt="image26.png" /></p>
 
 <p>另外提到一下<strong>可重入性</strong>，指线程在持有锁的情况下再次请求加锁，如果一个锁支持同一个线程的多次加锁，那么这个锁就是可重入的，这里就不展开讨论了。</p>
 
@@ -667,7 +671,7 @@ def loop():
 
 <h3 id="集群-cluster">集群 cluster</h3>
 
-<p>即使使用哨兵，redis 每个实例也是全量存储，每个 redis 存储的内容都是完整的数据，浪费内存且有木桶效应。为了最大化利用内存，可以采用集群，就是分布式存储，即每台 redis 存储不同的内容，分布式方案一般有以下两种:</p>
+<p>即使使用哨兵，redis 每个实例也是全量存储，每个 redis 存储的内容都是完整的数据，浪费内存且有木桶效应。为了最大化利用内存，可以采用集群，就是分布式存储，即每台 redis 存储不同的内容，且为五中心结构，分布式方案一般有以下两种:</p>
 
 <p>1、<strong>客户端分区方案</strong></p>
 
@@ -693,11 +697,183 @@ def loop():
 
 <h2 id="持久化">持久化</h2>
 
+<p>Redis 是内存数据库，数据都是存储在内存中，为了避免进程退出导致数据的永久丢失，需要定期将 Redis 中的数据从内存保存到硬盘。当下次 Redis 重启时，利用持久化文件实现数据恢复。除此之外，为了进行灾难备份，可以将持久化文件拷贝到一个远程位置。通常持久化提供了两种方式:</p>
+
+<ul>
+  <li><strong>RDB</strong> - 在指定的时间间隔能对数据进行快照存储</li>
+  <li><strong>AOF</strong> - 记录每次对服务器写的操作,当服务器重启的时候会重新执行这些命令来恢复原始的数据</li>
+</ul>
+
 <h3 id="rdb">RDB</h3>
+
+<p>针对 RDB 方式的持久化，可以分为<strong>手动触发</strong>和<strong>自动触发</strong>。其中手动触发可以使用命令:</p>
+
+<ul>
+  <li><strong>save</strong> - 会阻塞当前 Redis 服务器，直到持久化完成，故线上不推荐使用</li>
+  <li><strong>bgsave</strong> - 该触发方式会 fork 一个子进程，由子进程负责持久化过程，因此阻塞只会发生在 fork 子进程的时候</li>
+</ul>
+
+<pre><code class="language-SHELL">$ save
+OK
+$ bgsave
+Background saving started
+fork operation complete
+Background saving terminated with success
+</code></pre>
+
+<p>自动触发有以下几种情形，会触发 bgsave:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">save m n</code> 配置规则</li>
+  <li>从节点全量复制时，主节点发送 rdb 文件给从节点完成复制操作，主节点会触发 bgsave</li>
+  <li>执行 debug reload 时</li>
+  <li>执行 shutdown 时，如果没有开启 aof，也会触发</li>
+</ol>
+
+<p>上面提到 <code class="highlighter-rouge">save m n</code> 可以设置时间策略，当然还可以设置存储路径等信息:</p>
+
+<pre><code class="language-SHELL"># 表示 300s 内有 1 条写入，就产生快照
+save 300 1
+# 表示 600s 内有 10 条写入，就产生快照
+save 600 10
+# 禁用 RDB
+save ""
+
+# 文件名称
+dbfilename dump.rdb
+
+# 文件保存路径
+dir /home/work/app/redis/data/
+
+# 如果持久化出错，主进程是否停止写入
+stop-writes-on-bgsave-error yes
+
+# 是否压缩
+rdbcompression yes
+
+# 导入时是否检查
+rdbchecksum yes
+</code></pre>
+
+<p><img src="https://i.loli.net/2019/08/16/e4lp8R2YXsNMxJH.png" alt="redis-rdb.png" /></p>
 
 <h3 id="aof">AOF</h3>
 
-<h2 id="常用的命令">常用的命令</h2>
+<p>AOF 则是将 Redis 执行的每次写命令记录到单独的日志文件中，当 Redis 重启时再次执行 AOF 文件中的命令来恢复数据。注意 Redis 服务器默认开启 RDB，关闭 AOF。若要开启 AOF，需要在配置文件中配置:</p>
+
+<pre><code class="language-SHELL"># 是否开启 aof
+appendonly yes
+
+# 文件名称
+appendfilename "appendonly.aof"
+
+# 同步方式，其他为 always 和 no
+# 可能损失一秒的数据
+appendfsync everysec
+
+# aof重写期间是否同步
+no-appendfsync-on-rewrite no
+
+# 重写触发配置，防止 aof 文件过大，使用 bgrewriteaof 命令可以手动触发
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+
+# 加载aof时如果有错如何处理
+aof-load-truncated yes
+
+# 文件重写策略
+aof-rewrite-incremental-fsync yes
+</code></pre>
+
+<p>其中 <strong>appendfsync</strong> 有以下三种策略:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>策略</th>
+      <th>说明</th>
+      <th>优点</th>
+      <th>缺点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>always</strong></td>
+      <td>每次有更新命令，便追加到 AOF 文件中</td>
+      <td>不丢失数据</td>
+      <td>IO 开销大，影响 redis 性能</td>
+    </tr>
+    <tr>
+      <td><strong>everysec</strong></td>
+      <td>每秒写入一次</td>
+      <td>同时兼顾性能、数据</td>
+      <td>可能丢失 1 秒数据</td>
+    </tr>
+    <tr>
+      <td><strong>no</strong></td>
+      <td>将数据交给 OS 处理</td>
+      <td>不用管</td>
+      <td>不可控</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="https://i.loli.net/2019/08/16/ZD7pMUz6EKsPXgL.png" alt="redis-aof.png" /></p>
+
+<blockquote>
+  <p>恢复数据时，Redis 会优先加载 AOF，然后加载 RDB</p>
+</blockquote>
+
+<h3 id="持久化策略">持久化策略</h3>
+
+<p>一般来说，RDB 耗时时间长、和主进程抢占资源、有一定的数据丢失率、启动优先级较 AOF 低，数据恢复快。而 AOF 文件较 RDB 大很多，恢复慢，但是数据丢失少。</p>
+
+<p>下面分场景来讨论持久化策略的选择，仅供参考，实际方案可能更复杂更具多样性:</p>
+
+<ul>
+  <li>如果 Redis 中的数据完全丢弃也没有关系(如 Redis 完全用作 DB 层数据的 cache)，那么无论是单机，还是主从架构，都可以不进行任何持久化</li>
+  <li>在单机环境下，如果可以接受十几分钟或更多的数据丢失，选择 RDB 对 Redis 的性能更加有利；如果只能接受秒级别的数据丢失，应该选择 AOF。</li>
+  <li>在主从环境下，slave 的存在既可以实现数据的热备，也可以进行读写分离分担 Redis 读请求，以及在 master 宕掉后继续提供服务。比如 master 可以完全关闭持久化来保证高性能，或者添加定时任务，在每天 Redis 空闲时调用 bgrewriteaof 手动触发 AOF</li>
+</ul>
+
+<h2 id="问题处理">问题处理</h2>
+
+<h3 id="缓存雪崩">缓存雪崩</h3>
+
+<p>一般是设置缓存时采用了相同的过期时间，导致同一时间内大批量 key 缓存过期失效，所有原本应该访问缓存的请求都去查询数据库了，而对数据库 CPU 和内存造成巨大压力，严重的会造成数据库宕机。从而形成一系列连锁反应，造成整个系统崩溃:</p>
+
+<p><img src="https://i.loli.net/2019/08/16/WIdHUFrq7DsbJ8e.png" alt="image28.png" /></p>
+
+<p>解决方案:</p>
+
+<ol>
+  <li>热点数据不设置过期时间，后台作业手动删除</li>
+  <li>过期时间设置随机值</li>
+  <li>限流、熔断</li>
+</ol>
+
+<h3 id="缓存击穿">缓存击穿</h3>
+
+<p>高并发请求某个 key，它不存在或已过期，查询数据库，导致 DB 压力过大。</p>
+
+<p>解决方案:</p>
+
+<ol>
+  <li>热点数据提前预热(提前设置缓存)，并且不设置过期时间</li>
+  <li>互斥锁(mutex key)</li>
+</ol>
+
+<h3 id="缓存穿透">缓存穿透</h3>
+
+<p>某个 key 缓存、数据库均不存在。</p>
+
+<p>解决方案:</p>
+
+<ol>
+  <li>对查询请求做校验，比如 id &lt; 0 直接返回</li>
+  <li>写入默认值</li>
+  <li>布隆过滤器 - 将所有可能存在的数据哈希到一个足够大的 bitmap 中，一个一定不存在的数据会被这个 bitmap 拦截掉，从而避免了对底层存储系统的查询压力</li>
+</ol>
 
 <h2 id="参考链接">参考链接</h2>
 
@@ -706,6 +882,8 @@ def loop():
   <li><a href="http://zhangtielei.com/posts/blog-redlock-reasoning.html">基于 Redis 的分布式锁到底安全吗？</a> By zhangtielei</li>
   <li><a href="https://blog.csdn.net/c295477887/article/details/52487621">关于 redis 的主从、哨兵、集群</a> By 黄河边上的牧马人</li>
   <li><a href="https://juejin.im/post/5b7d226a6fb9a01a1e01ff64">深入剖析 Redis 系列(二) - Redis 哨兵模式与高可用集群</a> By 零壹技术栈</li>
+  <li><a href="https://juejin.im/post/5b70dfcf518825610f1f5c16">一文看懂 Redis 的持久化原理</a> By 大愚Talk</li>
+  <li><a href="https://www.cnblogs.com/kismetv/p/8654978.html">深入学习 Redis（2）：持久化</a> By 编程迷思</li>
 </ol>
  
 <div id="gitalk-container"></div>
