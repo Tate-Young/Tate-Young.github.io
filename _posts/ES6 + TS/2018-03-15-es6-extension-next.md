@@ -431,6 +431,15 @@ const { match: { params: { client } } } = this.props
 
 > 注意如果解构的值为 null，默认值就不会生效
 
+另外注意将一个已被变量声明过的变量用于解构赋值时，需要把解构赋值表达式放在 `()` 内:
+
+```JS
+let a = 'test'
+
+{a} = {a: 'obj test'} // false
+({a} = {a: 'obj test'}) // true
+```
+
 ## 参考链接
 
 1. [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/string) By 阮一峰
