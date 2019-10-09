@@ -224,7 +224,7 @@
   </tbody>
 </table>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'我就是个错误'</span><span class="p">);</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">我就是个错误</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span> <span class="c1">// '我就是个错误'</span>
 <span class="nx">err</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// 'Error'</span>
 </code></pre></div></div>
@@ -280,12 +280,12 @@
 <p><strong>throw</strong> 语句中断程序执行，并抛出一个异常。</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// throw 可以抛出任何类型的值。</span>
-<span class="k">throw</span> <span class="s1">'Tate'</span><span class="p">;</span> <span class="c1">// Uncaught Tate</span>
+<span class="k">throw</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// Uncaught Tate</span>
 <span class="k">throw</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Uncaught 1</span>
 
 <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'a 必须为正数'</span><span class="p">);</span> <span class="c1">// Error: a 必须为正数</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">a 必须为正数</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// Error: a 必须为正数</span>
 <span class="p">}</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// 未执行</span>
 </code></pre></div></div>
@@ -298,13 +298,13 @@
     <span class="nx">foo</span><span class="p">.</span><span class="nx">bar</span><span class="p">();</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">ReferenceError</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">TypeError</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">": "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
 <span class="p">}</span>
-  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Tate'</span><span class="p">)</span> <span class="c1">// 此异常在 finally 执行之后抛出</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// 此异常在 finally 执行之后抛出</span>
 <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'finally'</span><span class="p">);</span> <span class="c1">// 'finally'</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">finally</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// 'finally'</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -312,8 +312,8 @@
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a new object, that prototypally inherits from the Error constructor.</span>
 <span class="kd">function</span> <span class="nx">MyError</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'MyError'</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span> <span class="o">||</span> <span class="s1">'Default Message'</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">MyError</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">message</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">Default Message</span><span class="dl">'</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">stack</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">()).</span><span class="nx">stack</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -321,7 +321,7 @@
 <span class="nx">MyError</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">MyError</span><span class="p">;</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="k">throw</span> <span class="k">new</span> <span class="nx">MyError</span><span class="p">(</span><span class="s1">'custom message'</span><span class="p">);</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nx">MyError</span><span class="p">(</span><span class="dl">'</span><span class="s1">custom message</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  <span class="c1">// 'custom message'</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>     <span class="c1">// 'MyError'</span>

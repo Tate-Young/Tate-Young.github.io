@@ -205,9 +205,9 @@
 </ul>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 创建闭包的常见方式，就是在一个函数内部返回另一个函数。</span>
-<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">;</span>
 <span class="kd">function</span> <span class="nx">person</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Snow</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">alert</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
   <span class="p">}</span>
@@ -222,7 +222,7 @@
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 可以通过词法作用域解释</span>
 <span class="kd">function</span> <span class="nx">person</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Snow'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Snow</span><span class="dl">'</span><span class="p">;</span>
   <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">alert</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
   <span class="p">}</span>
@@ -311,7 +311,7 @@
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// 变量作用域为函数内部，外部无法访问</span>
-  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">;</span>
 
   <span class="k">return</span> <span class="p">{</span>
     <span class="na">getName</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -333,7 +333,7 @@
 <p>闭包在处理速度和内存消耗方面对脚本性能具有负面影响，由于闭包会携带包含它的函数的作用域，因此会增大内存使用量，使用不当很容易造成内存泄露，降低程序的性能。要么手动去除对其内存中变量对象的引用，要么关闭程序或页面。</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">assignHandler</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'someElement'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">someElement</span><span class="dl">'</span><span class="p">);</span>
   <span class="nx">element</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">alert</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
   <span class="p">};</span>
@@ -346,7 +346,7 @@
 </ol>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">assignHandler</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'someElement'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">someElement</span><span class="dl">'</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
   <span class="nx">element</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">alert</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>

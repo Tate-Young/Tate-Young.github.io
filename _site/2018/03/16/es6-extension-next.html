@@ -675,6 +675,14 @@ const { match: { params: { client } } } = this.props
   <p>注意如果解构的值为 null，默认值就不会生效</p>
 </blockquote>
 
+<p>另外注意将一个已被变量声明过的变量用于解构赋值时，需要把解构赋值表达式放在 <code class="highlighter-rouge">()</code> 内:</p>
+
+<pre><code class="language-JS">let a = 'test'
+
+{a} = {a: 'obj test'} // false
+({a} = {a: 'obj test'}) // true
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>

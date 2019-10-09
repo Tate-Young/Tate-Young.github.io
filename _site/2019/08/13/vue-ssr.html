@@ -637,28 +637,28 @@ app.$mount('#app')
 
 <p>服务器配置，是用于生成传递给 <code class="highlighter-rouge">createBundleRenderer</code> 的 <code class="highlighter-rouge">server bundle</code>:</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">merge</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack-merge'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">nodeExternals</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'webpack-node-externals'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">baseConfig</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./webpack.base.config.js'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">VueSSRServerPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'vue-server-renderer/server-plugin'</span><span class="p">)</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">merge</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">webpack-merge</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">nodeExternals</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">webpack-node-externals</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">baseConfig</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./webpack.base.config.js</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">VueSSRServerPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">vue-server-renderer/server-plugin</span><span class="dl">'</span><span class="p">)</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">baseConfig</span><span class="p">,</span> <span class="p">{</span>
   <span class="c1">// 将 entry 指向应用程序的 server entry 文件</span>
-  <span class="na">entry</span><span class="p">:</span> <span class="s1">'/path/to/entry-server.js'</span><span class="p">,</span>
+  <span class="na">entry</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/path/to/entry-server.js</span><span class="dl">'</span><span class="p">,</span>
 
   <span class="c1">// 这允许 webpack 以 Node 适用方式(Node-appropriate fashion)处理动态导入(dynamic import)，</span>
   <span class="c1">// 并且还会在编译 Vue 组件时，</span>
   <span class="c1">// 告知 `vue-loader` 输送面向服务器代码(server-oriented code)。</span>
-  <span class="na">target</span><span class="p">:</span> <span class="s1">'node'</span><span class="p">,</span>
+  <span class="na">target</span><span class="p">:</span> <span class="dl">'</span><span class="s1">node</span><span class="dl">'</span><span class="p">,</span>
 
   <span class="c1">// 对 bundle renderer 提供 source map 支持</span>
-  <span class="na">devtool</span><span class="p">:</span> <span class="s1">'source-map'</span><span class="p">,</span>
+  <span class="na">devtool</span><span class="p">:</span> <span class="dl">'</span><span class="s1">source-map</span><span class="dl">'</span><span class="p">,</span>
 
   <span class="c1">// 此处告知 server bundle 使用 Node 风格导出模块(Node-style exports)</span>
   <span class="na">output</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'public'</span><span class="p">,</span> <span class="s1">'dist'</span><span class="p">),</span>
-    <span class="na">filename</span><span class="p">:</span> <span class="s1">'server-bundle.js'</span><span class="p">,</span>
-    <span class="na">libraryTarget</span><span class="p">:</span> <span class="s1">'commonjs2'</span>
+    <span class="na">path</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">'</span><span class="s1">public</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">dist</span><span class="dl">'</span><span class="p">),</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="dl">'</span><span class="s1">server-bundle.js</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">libraryTarget</span><span class="p">:</span> <span class="dl">'</span><span class="s1">commonjs2</span><span class="dl">'</span>
   <span class="p">},</span>
 
   <span class="c1">// https://webpack.js.org/configuration/externals/#function</span>
@@ -674,8 +674,8 @@ app.$mount('#app')
   <span class="c1">// 默认文件名为 `vue-ssr-server-bundle.json`</span>
   <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span>
     <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">DefinePlugin</span><span class="p">({</span>
-      <span class="s1">'process.env.NODE_ENV'</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">||</span> <span class="s1">'development'</span><span class="p">),</span>
-      <span class="s1">'process.env.VUE_ENV'</span><span class="p">:</span> <span class="s1">'"server"'</span>
+      <span class="dl">'</span><span class="s1">process.env.NODE_ENV</span><span class="dl">'</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">development</span><span class="dl">'</span><span class="p">),</span>
+      <span class="dl">'</span><span class="s1">process.env.VUE_ENV</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">"server"</span><span class="dl">'</span>
     <span class="p">}),</span>
     <span class="k">new</span> <span class="nx">VueSSRServerPlugin</span><span class="p">()</span>
   <span class="p">]</span>

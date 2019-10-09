@@ -409,7 +409,7 @@
 <span class="p">}</span>
 
 <span class="kd">let</span> <span class="nx">semlinker</span><span class="p">:</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'semlinker'</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">semlinker</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">age</span><span class="p">:</span> <span class="o">**</span>
 <span class="p">};</span>
 </code></pre></div></div>
@@ -427,7 +427,7 @@
 <p>接口能够描述 JavaScript 中对象拥有的各种各样的外形。 除了描述带有属性的普通对象外，接口也可以描述函数类型。</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">SearchFunc</span> <span class="p">{</span>
-  <span class="p">(</span><span class="nx">source</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">subString</span><span class="p">:</span> <span class="nx">string</span><span class="p">):</span> <span class="kr">boolean</span><span class="p">;</span>
+  <span class="p">(</span><span class="nx">source</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">subString</span><span class="p">:</span> <span class="nx">string</span><span class="p">):</span> <span class="nx">boolean</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">let</span> <span class="nx">mySearch</span><span class="p">:</span> <span class="nx">SearchFunc</span><span class="p">;</span>
@@ -472,10 +472,10 @@
 
 <span class="nx">getHeroes</span><span class="p">():</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">Hero</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">Observable</span><span class="p">.</span><span class="k">of</span><span class="p">([</span>
-    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Windstorm'</span> <span class="p">},</span>
-    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Bombasto'</span> <span class="p">},</span>
-    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Magneta'</span> <span class="p">},</span>
-    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Tornado'</span> <span class="p">}</span>
+    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Windstorm</span><span class="dl">'</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bombasto</span><span class="dl">'</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Magneta</span><span class="dl">'</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Tornado</span><span class="dl">'</span> <span class="p">}</span>
   <span class="p">]);</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -502,13 +502,13 @@
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">RequestMethod</span><span class="p">;</span>
 <span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">RequestMethod</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Get"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Get"</span><span class="p">;</span>
-  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Post"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Post"</span><span class="p">;</span>
-  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Put"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Put"</span><span class="p">;</span>
-  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Delete"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Delete"</span><span class="p">;</span>
-  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Options"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Options"</span><span class="p">;</span>
-  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Head"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Head"</span><span class="p">;</span>
-  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="s2">"Patch"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Patch"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="dl">"</span><span class="s2">Get</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Get</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="dl">"</span><span class="s2">Post</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Post</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="dl">"</span><span class="s2">Put</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Put</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="dl">"</span><span class="s2">Delete</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Delete</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="dl">"</span><span class="s2">Options</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Options</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="dl">"</span><span class="s2">Head</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Head</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nx">RequestMethod</span><span class="p">[</span><span class="nx">RequestMethod</span><span class="p">[</span><span class="dl">"</span><span class="s2">Patch</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Patch</span><span class="dl">"</span><span class="p">;</span>
 <span class="p">})(</span><span class="nx">RequestMethod</span> <span class="o">=</span> <span class="nx">exports</span><span class="p">.</span><span class="nx">RequestMethod</span> <span class="o">||</span> <span class="p">(</span><span class="nx">exports</span><span class="p">.</span><span class="nx">RequestMethod</span> <span class="o">=</span> <span class="p">{}));</span>
 </code></pre></div></div>
 
@@ -521,11 +521,11 @@
 <p>AppComponent.ts</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
-  <span class="kr">static</span> <span class="nx">type</span><span class="p">:</span> <span class="nx">string</span> <span class="o">=</span> <span class="s1">'component'</span><span class="p">;</span>
+  <span class="kd">static</span> <span class="nx">type</span><span class="p">:</span> <span class="nx">string</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">component</span><span class="dl">'</span><span class="p">;</span>
   <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
 
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'AppComponent'</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">AppComponent</span><span class="dl">'</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -534,11 +534,11 @@
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">AppComponent</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="kd">function</span> <span class="nx">AppComponent</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'AppComponent'</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">AppComponent</span><span class="dl">'</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">AppComponent</span><span class="p">;</span>
 <span class="p">}());</span>
-<span class="nx">AppComponent</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">'component'</span><span class="p">;</span>
+<span class="nx">AppComponent</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">component</span><span class="dl">'</span><span class="p">;</span>
 </code></pre></div></div>
 
 <p>通过转换后的代码，我们可以知道类中的静态属性是作为 AppComponent 构造函数的一个属性，而成员属性是属于 AppComponent 实例。</p>
@@ -728,10 +728,10 @@ let sum = add(3, 4);
 <p>在 Angular 中 constructor 一般用于依赖注入或执行简单的数据初始化操作，ngOnInit 钩子主要用于执行组件的其它初始化操作或获取组件输入的属性值。</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
-  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
 
   <span class="kd">constructor</span><span class="p">(</span><span class="kr">public</span> <span class="nx">elementRef</span><span class="p">:</span> <span class="nx">ElementRef</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 使用构造注入的方式注入依赖对象</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Semlinker'</span><span class="p">;</span> <span class="c1">// 执行初始化操作</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Semlinker</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 执行初始化操作</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -783,7 +783,7 @@ let sum = add(3, 4);
 
 <p>那么要解决上面的问题，最简单的处理方式是交换类定义的顺序。除此之外，我们还可以使用 Angular  提供的 forward reference 特性来解决问题，具体如下：</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">forwardRef</span> <span class="p">}</span> <span class="k">from</span><span class="s1">'@angular2/core'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">forwardRef</span> <span class="p">}</span> <span class="k">from</span><span class="dl">'</span><span class="s1">@angular2/core</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
 <span class="kd">class</span> <span class="nx">Socket</span> <span class="p">{</span>
@@ -815,26 +815,26 @@ let sum = add(3, 4);
   <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span> 
   <span class="nl">useClass</span><span class="p">:</span> <span class="nx">Type</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
   <span class="c1">// 用于标识是否multiple providers，若是multiple类型，则返回与Token关联的依赖对象列表</span>
-  <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span> 
+  <span class="nx">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span> 
 <span class="p">}</span>
   
 <span class="k">export</span> <span class="kr">interface</span> <span class="nx">ValueProvider</span> <span class="p">{</span>
   <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
   <span class="nl">useValue</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
-  <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span>
+  <span class="nx">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span>
 <span class="p">}</span>
   
 <span class="k">export</span> <span class="kr">interface</span> <span class="nx">ExistingProvider</span> <span class="p">{</span>
   <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
   <span class="nl">useExisting</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
-  <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span>
+  <span class="nx">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span>
 <span class="p">}</span>
   
 <span class="k">export</span> <span class="kr">interface</span> <span class="nx">FactoryProvider</span> <span class="p">{</span>
   <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
   <span class="nl">useFactory</span><span class="p">:</span> <span class="nb">Function</span><span class="p">;</span>
   <span class="nx">deps</span><span class="p">?:</span> <span class="nx">any</span><span class="p">[];</span> <span class="c1">// 用于设置工厂函数的依赖对象</span>
-  <span class="nx">multi</span><span class="p">?:</span> <span class="kr">boolean</span><span class="p">;</span>
+  <span class="nx">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -856,12 +856,12 @@ let sum = add(3, 4);
 
 <h4 id="usevalue">useValue</h4>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="s1">'API_URL'</span><span class="p">,</span> <span class="nx">useValue</span><span class="p">:</span> <span class="s1">'http://my.api.com/v1'</span> <span class="p">}</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">API_URL</span><span class="dl">'</span><span class="p">,</span> <span class="nx">useValue</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://my.api.com/v1</span><span class="dl">'</span> <span class="p">}</span>
 </code></pre></div></div>
 
 <h4 id="useexisting">useExisting</h4>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="s1">'ApiServiceAlias'</span><span class="p">,</span> <span class="nx">useExisting</span><span class="p">:</span> <span class="nx">ApiService</span> <span class="p">}</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">ApiServiceAlias</span><span class="dl">'</span><span class="p">,</span> <span class="nx">useExisting</span><span class="p">:</span> <span class="nx">ApiService</span> <span class="p">}</span>
 </code></pre></div></div>
 
 <h4 id="usefactory">useFactory</h4>
@@ -989,7 +989,7 @@ let sum = add(3, 4);
 
 <h3 id="使用-hidden-属性控制元素可见性有什么问题">使用 <code class="highlighter-rouge">[hidden]</code> 属性控制元素可见性有什么问题？</h3>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="err">[</span><span class="na">hidden</span><span class="err">]="!</span><span class="na">showGreeting</span><span class="err">"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">[hidden]=</span><span class="s">"!showGreeting"</span><span class="nt">&gt;</span>
   Hello, there!
 <span class="nt">&lt;/div&gt;</span>
 </code></pre></div></div>
@@ -1050,9 +1050,9 @@ let sum = add(3, 4);
 
 <p>@Component 中 <code class="highlighter-rouge">@</code> 是语法糖，用于表示装饰器。</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
 <span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
-  <span class="na">selector</span><span class="p">:</span> <span class="s1">'exe-app'</span><span class="p">,</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">exe-app</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">template</span><span class="p">:</span> <span class="s2">`
    &lt;h1&gt;Hello Angular&lt;/h1&gt;
   `</span><span class="p">,</span>
@@ -1065,16 +1065,16 @@ let sum = add(3, 4);
 <p>编译后 ES 5 代码：</p>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">__decorate</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">__decorate</span><span class="p">)</span> <span class="o">||</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">decorators</span><span class="p">,</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">desc</span><span class="p">)</span> <span class="p">{};</span>
-<span class="nx">define</span><span class="p">([</span><span class="s2">"require"</span><span class="p">,</span> <span class="s2">"exports"</span><span class="p">,</span> <span class="s2">"@angular/core"</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">require</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">core_1</span><span class="p">)</span> <span class="p">{</span>
-  <span class="s2">"use strict"</span><span class="p">;</span>
+<span class="nx">define</span><span class="p">([</span><span class="dl">"</span><span class="s2">require</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">exports</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">@angular/core</span><span class="dl">"</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">require</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">core_1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="dl">"</span><span class="s2">use strict</span><span class="dl">"</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">AppComponent</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="kd">function</span> <span class="nx">AppComponent</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
     <span class="k">return</span> <span class="nx">AppComponent</span><span class="p">;</span>
   <span class="p">}());</span>
   <span class="nx">AppComponent</span> <span class="o">=</span> <span class="nx">__decorate</span><span class="p">([</span>
     <span class="nx">core_1</span><span class="p">.</span><span class="nx">Component</span><span class="p">({</span>
-      <span class="na">selector</span><span class="p">:</span> <span class="s1">'exe-app'</span><span class="p">,</span>
-      <span class="na">template</span><span class="p">:</span> <span class="s2">"</span><span class="err">\</span><span class="s2">n   &lt;h1&gt;Hello Angular&lt;/h1&gt;</span><span class="err">\</span><span class="s2">n  "</span><span class="p">,</span>
+      <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">exe-app</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">template</span><span class="p">:</span> <span class="dl">"</span><span class="se">\n</span><span class="s2">   &lt;h1&gt;Hello Angular&lt;/h1&gt;</span><span class="se">\n</span><span class="s2">  </span><span class="dl">"</span><span class="p">,</span>
     <span class="p">})</span>
   <span class="p">],</span> <span class="nx">AppComponent</span><span class="p">);</span>
   <span class="nx">exports</span><span class="p">.</span><span class="nx">AppComponent</span> <span class="o">=</span> <span class="nx">AppComponent</span><span class="p">;</span>
@@ -1413,7 +1413,7 @@ let sum = add(3, 4);
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">constructor</span> <span class="p">(@</span><span class="nd">Optional</span><span class="p">()</span> <span class="p">@</span><span class="nd">SkipSelf</span><span class="p">()</span> <span class="nx">parentModule</span><span class="p">:</span> <span class="nx">CoreModule</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">parentModule</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span>
-      <span class="s1">'CoreModule is already loaded. Import it in the AppModule only'</span><span class="p">);</span>
+      <span class="dl">'</span><span class="s1">CoreModule is already loaded. Import it in the AppModule only</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -1507,9 +1507,9 @@ let sum = add(3, 4);
 
 <h4 id="1导入-formsmodule-模块">1.导入 FormsModule 模块</h4>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">NgModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/platform-browser'</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">FormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/forms'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">NgModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/platform-browser</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">FormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/forms</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
   <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">BrowserModule</span><span class="p">,</span> <span class="nx">FormsModule</span><span class="p">],</span> <span class="c1">// we add FormsModule here</span>
@@ -1522,10 +1522,10 @@ let sum = add(3, 4);
 <h4 id="2实际应用">2.实际应用</h4>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">novalidate</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"name"</span> <span class="nx">ngModel</span> <span class="nx">required</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"street"</span> <span class="nx">ngModel</span> <span class="nx">minlength</span><span class="o">=</span><span class="s2">"3"</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"city"</span> <span class="nx">ngModel</span> <span class="nx">maxlength</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">name</span><span class="o">=</span><span class="s2">"zip"</span> <span class="nx">ngModel</span> <span class="nx">pattern</span><span class="o">=</span><span class="s2">"[A-Za-z]{5}"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">name</span><span class="dl">"</span> <span class="nx">ngModel</span> <span class="nx">required</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">street</span><span class="dl">"</span> <span class="nx">ngModel</span> <span class="nx">minlength</span><span class="o">=</span><span class="dl">"</span><span class="s2">3</span><span class="dl">"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">city</span><span class="dl">"</span> <span class="nx">ngModel</span> <span class="nx">maxlength</span><span class="o">=</span><span class="dl">"</span><span class="s2">10</span><span class="dl">"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">zip</span><span class="dl">"</span> <span class="nx">ngModel</span> <span class="nx">pattern</span><span class="o">=</span><span class="dl">"</span><span class="s2">[A-Za-z]{5}</span><span class="dl">"</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
 </span></code></pre></div></div>
 
@@ -1535,7 +1535,7 @@ let sum = add(3, 4);
 
 <h4 id="1导入-reactiveformsmodule-模块">1.导入 ReactiveFormsModule 模块</h4>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ReactiveFormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/forms'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ReactiveFormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/forms</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
   <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">BrowserModule</span><span class="p">,</span> <span class="nx">ReactiveFormsModule</span><span class="p">],</span>
@@ -1547,7 +1547,7 @@ let sum = add(3, 4);
 <h4 id="2实际应用-1">2.实际应用</h4>
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
-  <span class="na">selector</span><span class="p">:</span> <span class="s1">'exe-app'</span><span class="p">,</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">exe-app</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">template</span><span class="p">:</span> <span class="s2">`
 	&lt;form novalidate [formGroup]="form"&gt;
   		...
@@ -1558,10 +1558,10 @@ let sum = add(3, 4);
   <span class="kd">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">fb</span><span class="p">:</span> <span class="nx">FormBuilder</span><span class="p">)</span> <span class="p">{}</span>
   <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">form</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">fb</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
-      <span class="na">name</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">],</span>
-      <span class="na">street</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">minLength</span><span class="p">(</span><span class="mi">3</span><span class="p">)],</span>
-      <span class="na">city</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
-      <span class="na">zip</span><span class="p">:</span> <span class="p">[</span><span class="s1">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">pattern</span><span class="p">(</span><span class="s1">'[A-Za-z]{5}'</span><span class="p">)]</span>
+      <span class="na">name</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">],</span>
+      <span class="na">street</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">minLength</span><span class="p">(</span><span class="mi">3</span><span class="p">)],</span>
+      <span class="na">city</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+      <span class="na">zip</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">pattern</span><span class="p">(</span><span class="dl">'</span><span class="s1">[A-Za-z]{5}</span><span class="dl">'</span><span class="p">)]</span>
     <span class="p">});</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -1607,21 +1607,21 @@ let sum = add(3, 4);
 
 <p>ngModelGroup 指令是 Angular 提供的另一特殊指令，可以对表单输入内容进行分组，方便我们在语义上区分不同性质的输入。例如联系人的信息包括姓名及住址，现在需对姓名和住址进行精细化信息收集，姓名可精细化成姓和名字，地址可精细化成城市、区、街等。此时就可以将姓名及住址进行分组收集，具体如下:</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="err">#</span><span class="na">concatForm =</span><span class="err"> </span><span class="s">"ngForm"</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;fieldset</span> <span class="na">ngModelGroup=</span><span class="s">"nameGroup"</span> <span class="err">#</span><span class="na">nameGroup=</span><span class="s">"ngModelGroup"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">#concatForm</span> <span class="err">=</span> <span class="err">"</span><span class="na">ngForm</span><span class="err">"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;fieldset</span> <span class="na">ngModelGroup=</span><span class="s">"nameGroup"</span> <span class="na">#nameGroup</span><span class="err">="</span><span class="na">ngModelGroup</span><span class="err">"</span><span class="nt">&gt;</span>
 		<span class="nt">&lt;label&gt;</span>姓:<span class="nt">&lt;/label&gt;</span>
-		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"firstname"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">firstname</span><span class="err">"</span> 
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"firstname"</span> <span class="na">[(ngModel)]=</span><span class="s">"curContact.firstname"</span> 
                <span class="na">required</span><span class="nt">&gt;</span> 
       	<span class="nt">&lt;label&gt;</span>名字:<span class="nt">&lt;/label&gt;</span>
-		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"lastname"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">lastname</span><span class="err">"</span> 	
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"lastname"</span> <span class="na">[(ngModel)]=</span><span class="s">"curContact.lastname"</span> 	
                <span class="na">required</span><span class="nt">&gt;</span>
 	<span class="nt">&lt;/fieldset&gt;</span>
-	<span class="nt">&lt;fieldset</span> <span class="na">ngModelGroup=</span><span class="s">"addressGroup"</span> <span class="err">#</span><span class="na">addressGroup =</span><span class="s">"ngModelGroup"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;fieldset</span> <span class="na">ngModelGroup=</span><span class="s">"addressGroup"</span> <span class="na">#addressGroup</span> <span class="err">="</span><span class="na">ngModelGroup</span><span class="err">"</span><span class="nt">&gt;</span>
 		<span class="nt">&lt;label&gt;</span>街:<span class="nt">&lt;/label&gt;</span>
-		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"street"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">street</span><span class="err">"</span> <span class="na">required</span><span class="nt">&gt;</span> 			<span class="nt">&lt;label&gt;</span>区:<span class="nt">&lt;/label&gt;</span>
-		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"zip"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">zip</span><span class="err">"</span> <span class="na">required</span><span class="nt">&gt;</span> 
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"street"</span> <span class="na">[(ngModel)]=</span><span class="s">"curContact.street"</span> <span class="na">required</span><span class="nt">&gt;</span> 			<span class="nt">&lt;label&gt;</span>区:<span class="nt">&lt;/label&gt;</span>
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"zip"</span> <span class="na">[(ngModel)]=</span><span class="s">"curContact.zip"</span> <span class="na">required</span><span class="nt">&gt;</span> 
         <span class="nt">&lt;label&gt;</span>城市:<span class="nt">&lt;/label&gt;</span>
-		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"city"</span> <span class="err">[(</span><span class="na">ngModel</span><span class="err">)]="</span><span class="na">curContact</span><span class="err">.</span><span class="na">city</span><span class="err">"</span> <span class="na">required</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"city"</span> <span class="na">[(ngModel)]=</span><span class="s">"curContact.city"</span> <span class="na">required</span><span class="nt">&gt;</span>
     <span class="nt">&lt;/fieldset&gt;</span>
 <span class="nt">&lt;/form&gt;</span>
 </code></pre></div></div>
@@ -1630,13 +1630,13 @@ let sum = add(3, 4);
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
   <span class="nl">nameGroup</span><span class="p">:</span> <span class="p">{</span>
-	<span class="nl">firstname</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span>
-	<span class="nx">lastname</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span>
+	<span class="nl">firstname</span><span class="p">:</span> <span class="dl">''</span><span class="err">，</span>
+	<span class="nx">lastname</span><span class="p">:</span> <span class="dl">''</span><span class="err">，</span>
   <span class="p">}</span><span class="err">，</span>
   <span class="nx">addressGroup</span><span class="p">:</span> <span class="p">{</span> 
-    <span class="nl">street</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span> 
-    <span class="nx">zip</span><span class="p">:</span> <span class="s1">''</span><span class="err">，</span> 
-    <span class="nx">city</span><span class="p">:</span> <span class="s1">''</span>
+    <span class="nl">street</span><span class="p">:</span> <span class="dl">''</span><span class="err">，</span> 
+    <span class="nx">zip</span><span class="p">:</span> <span class="dl">''</span><span class="err">，</span> 
+    <span class="nx">city</span><span class="p">:</span> <span class="dl">''</span>
   <span class="p">}</span> 
 <span class="p">}</span>
 </code></pre></div></div>
@@ -1779,9 +1779,9 @@ let sum = add(3, 4);
 
 <p>RepeatPipe 定义</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Pipe</span><span class="p">,</span> <span class="nx">PipeTransform</span><span class="p">}</span> <span class="k">from</span> <span class="s1">'@angular/core'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Pipe</span><span class="p">,</span> <span class="nx">PipeTransform</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
 
-<span class="p">@</span><span class="nd">Pipe</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="s1">'repeat'</span><span class="p">})</span>
+<span class="p">@</span><span class="nd">Pipe</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">repeat</span><span class="dl">'</span><span class="p">})</span>
 <span class="k">export</span> <span class="kd">class</span> <span class="nx">RepeatPipe</span> <span class="kr">implements</span> <span class="nx">PipeTransform</span> <span class="p">{</span>
   <span class="nx">transform</span><span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="nx">any</span><span class="p">,</span> <span class="nx">times</span><span class="p">:</span> <span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="nx">times</span><span class="p">);</span>

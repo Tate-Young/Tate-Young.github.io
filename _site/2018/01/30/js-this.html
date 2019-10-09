@@ -205,7 +205,7 @@
 <span class="c1">// 严格模式中指向的是 undefined</span>
 <span class="k">this</span> <span class="o">===</span> <span class="nb">window</span><span class="p">;</span> <span class="c1">// true</span>
 <span class="kd">function</span> <span class="nx">getName</span><span class="p">(){</span>
-  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">"Tate"</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Tate</span><span class="dl">"</span><span class="p">;</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// undefined</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// Window</span>
 <span class="p">}</span>
@@ -215,7 +215,7 @@
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// this 只是指向当前一层的对象，而不会向上继承</span>
 <span class="c1">// 调用的是 person.spouse 对象，但 spouse 无 name 属性</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">spouse</span><span class="p">:{</span>
     <span class="na">fn</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// undefined</span>
@@ -227,9 +227,9 @@
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 赋值但并未执行函数，相当于执行的是 window.fn()</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">spouse</span><span class="p">:{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s1">'Snow'</span><span class="p">,</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Snow</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">fn</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// undefined</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// Window</span>
@@ -244,7 +244,7 @@
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 内层的 this 不指向外部，而指向顶层对象 Window</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">spouse</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Tate</span>
 
@@ -259,7 +259,7 @@
 <p>可以用变量来保存当前所引用的对象，如下面例子的 that:</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span><span class="p">,</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">spouse</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Tate</span>
     <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
@@ -273,13 +273,13 @@
 
 <p>ES6 <strong>箭头函数(=&gt;)</strong>实际上实现方式与上例类似，它本身是没有 this 属性的，所以也就不能用作构造函数，它会捕获其所在(即定义的位置)上下文的 this 值:</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
-<span class="nx">sayName</span><span class="p">.</span><span class="nx">call</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Snow'</span> <span class="p">});</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">sayName</span><span class="p">.</span><span class="nx">call</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Snow</span><span class="dl">'</span> <span class="p">});</span>
 
 <span class="c1">// ES6</span>
 <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// snow</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">name:</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// snow</span>
   <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -288,7 +288,7 @@
   <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
   <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="p">,</span> <span class="nx">_this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">name:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">_this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
   <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -320,18 +320,18 @@ obj.say(); // 10
 <p>一般情况下若返回的是引用类型，则返回该引用类型；若返回的是基本类型，则无影响。</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'name:'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">name:</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
 
 <span class="c1">// ES5</span>
 <span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">;</span>
   <span class="c1">// return undefined; // Tate</span>
   <span class="c1">// return null; // Tate</span>
   <span class="c1">// return 'Snow'; // Tate</span>
   <span class="c1">// return [1, 2]; // undefined</span>
   <span class="c1">// return {name: 'Snow'}; // Snow</span>
-  <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Snow'</span><span class="p">);</span> <span class="p">};</span> <span class="c1">// undefined</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Snow</span><span class="dl">'</span><span class="p">);</span> <span class="p">};</span> <span class="c1">// undefined</span>
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
@@ -344,7 +344,7 @@ obj.say(); // 10
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span> <span class="o">+</span> <span class="nx">p2</span><span class="p">);</span> <span class="c1">// 3</span>
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s1">'Tate'</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span>
 <span class="p">};</span>
 <span class="nx">foo</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 <span class="nx">foo</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span> <span class="c1">// apply 和 call 类似，只是参数不同，立即执行</span>
@@ -355,7 +355,7 @@ obj.say(); // 10
 <h2 id="构造函数实例化本质">构造函数实例化本质</h2>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'Tate'</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
 
