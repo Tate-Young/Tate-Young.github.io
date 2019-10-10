@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Github Pages - ",
+		"url" : "/2019/10/10/github-pages.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Vue SSR - ",
 		"url" : "/2019/08/13/vue-ssr.html"
 	}
