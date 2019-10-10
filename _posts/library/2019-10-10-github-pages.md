@@ -125,20 +125,7 @@ bundle install # 'bundle' is a shortcut for 'bundle install'
 # Use `bundle show [gemname]` to see where a bundled gem is installed.
 ```
 
-### _config.yml
-
-**_config.yml** 是管理包含全局配置和变量定义在内的配置文件，并且这些变量定义在执行时会被读取，更多变量[可以参考这里](http://jekyllcn.com/docs/variables/) 👈:
-
-```TEXT
-title:            "Tate & Snow"
-description:      "Lovely Home"
-url:              https://tate-young.github.io # 域名
-# 分页
-paginate: 15
-paginate_path: "blog:num"
-plugins: [jekyll-paginate]
-...
-```
+### 文件结构
 
 一个基本的 jekyll [文件结构](https://jekyllrb.com/docs/structure/)如下:
 
@@ -171,6 +158,49 @@ plugins: [jekyll-paginate]
 
 > 评论插件之前用的国外的 [**disqus**](https://disqus.com)，现在换成了 [**gitalk**](https://github.com/gitalk/gitalk)
 
+#### _config.yml
+
+**_config.yml** 是管理包含全局配置和变量定义在内的配置文件，并且这些变量定义在执行时会被读取，更多变量[可以参考这里](http://jekyllcn.com/docs/variables/) 👈:
+
+```TEXT
+title:            "Tate & Snow"
+description:      "Lovely Home"
+url:              https://tate-young.github.io # 域名
+# 分页
+paginate: 15
+paginate_path: "blog:num"
+plugins: [jekyll-paginate]
+...
+```
+
+#### member.yml
+
+一般情况下，文件结构会包含 `_data` 目录，即专门用来存放数据。jekyll 的引擎会自动加载在该目录下所有的 yaml 文件（后缀是 .yml, .yaml, .json 或者 .csv ）。这些文件可以经由 `site.data` 访问。如果有一个 `members.yml` 文件在该目录下，你就可以通过 `site.data.members` 获取该文件的内容:
+
+```TEXT
+<!-- member.yml -->
+- name: Tate
+- name: Snow
+```
+
+在模板中取值如下:
+
+```HTML
+{ % for member in site.data.member % }
+<ul>
+  <li>{{ member.name }}</li>
+</ul>
+{ % endfor % }
+```
+
+{% for member in site.data.member %}
+<ul>
+  <li>{{ member.name }}</li>
+</ul>
+{% endfor %}
+
+> 注：这里的 `members.yml` 只是举例用，命名可随意 😯
+
 ## liquid 模板
 
 [**liquid**](https://shopify.github.io/liquid/basics/introduction/) 模板引擎也是通过 Ruby 编写的，使用方法可以直接参考官方文档，以下只是简单介绍下:
@@ -187,6 +217,30 @@ plugins: [jekyll-paginate]
 { % if product.type == "Shirt" and product.title contains "Pack" % }
   This is a pack shirt.
 { % endif % }
+```
+
+**for** 可以进行遍历:
+
+```HTML
+{ % for product in collection.products % }
+  { { product.title } }
+{ % else % }
+  The collection is empty.
+{ % endfor % }
+```
+
+**assign** 进行赋值，**capture** 进行捕获赋值:
+
+```HTML
+{ % assign favorite_food = "pizza" % }
+{ % assign age = 35 % }
+
+{ % capture about_me % }
+I am { { age } } and my favorite food is { { favorite_food } }.
+{ % endcapture % }
+
+{ { about_me } }
+<!-- I am 35 and my favourite food is pizza. -->
 ```
 
 **filters** 通过使用 "\|" 来返回输出的值:
@@ -212,4 +266,15 @@ which ruby
 
 # 列出所有 ruby 版本
 rvm list
+```
+
+注意我们安装完后需要重启下 `.zshrc` 或者 `.bashrc` 和 `.bash_profile` 文件，因为里面会写入环境变量:
+
+```SHELL
+# 安装 rvm
+\curl -sSL https://get.rvm.io | bash -s stable
+
+souce ~/.zshrc
+rvm -v
+# rvm 1.29.9 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
 ```

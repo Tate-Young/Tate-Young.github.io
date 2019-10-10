@@ -305,19 +305,7 @@ gem 'nokogiri', '~&gt; 1.6.1' # 版本号 &gt;= 1.6.1，但 &lt; 1.7.1
 # Use `bundle show [gemname]` to see where a bundled gem is installed.
 </code></pre>
 
-<h3 id="_configyml">_config.yml</h3>
-
-<p><strong>_config.yml</strong> 是管理包含全局配置和变量定义在内的配置文件，并且这些变量定义在执行时会被读取，更多变量<a href="http://jekyllcn.com/docs/variables/">可以参考这里</a> 👈:</p>
-
-<pre><code class="language-TEXT">title:            "Tate &amp; Snow"
-description:      "Lovely Home"
-url:              https://tate-young.github.io # 域名
-# 分页
-paginate: 15
-paginate_path: "blog:num"
-plugins: [jekyll-paginate]
-...
-</code></pre>
+<h3 id="文件结构">文件结构</h3>
 
 <p>一个基本的 jekyll <a href="https://jekyllrb.com/docs/structure/">文件结构</a>如下:</p>
 
@@ -353,6 +341,50 @@ plugins: [jekyll-paginate]
   <p>评论插件之前用的国外的 <a href="https://disqus.com"><strong>disqus</strong></a>，现在换成了 <a href="https://github.com/gitalk/gitalk"><strong>gitalk</strong></a></p>
 </blockquote>
 
+<h4 id="_configyml">_config.yml</h4>
+
+<p><strong>_config.yml</strong> 是管理包含全局配置和变量定义在内的配置文件，并且这些变量定义在执行时会被读取，更多变量<a href="http://jekyllcn.com/docs/variables/">可以参考这里</a> 👈:</p>
+
+<pre><code class="language-TEXT">title:            "Tate &amp; Snow"
+description:      "Lovely Home"
+url:              https://tate-young.github.io # 域名
+# 分页
+paginate: 15
+paginate_path: "blog:num"
+plugins: [jekyll-paginate]
+...
+</code></pre>
+
+<h4 id="memberyml">member.yml</h4>
+
+<p>一般情况下，文件结构会包含 <code class="highlighter-rouge">_data</code> 目录，即专门用来存放数据。jekyll 的引擎会自动加载在该目录下所有的 yaml 文件（后缀是 .yml, .yaml, .json 或者 .csv ）。这些文件可以经由 <code class="highlighter-rouge">site.data</code> 访问。如果有一个 <code class="highlighter-rouge">members.yml</code> 文件在该目录下，你就可以通过 <code class="highlighter-rouge">site.data.members</code> 获取该文件的内容:</p>
+
+<pre><code class="language-TEXT">&lt;!-- member.yml --&gt;
+- name: Tate
+- name: Snow
+</code></pre>
+
+<p>在模板中取值如下:</p>
+
+<pre><code class="language-HTML">{ % for member in site.data.member % }
+&lt;ul&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+{ % endfor % }
+</code></pre>
+
+<ul>
+  <li>Tate</li>
+</ul>
+
+<ul>
+  <li>Snow</li>
+</ul>
+
+<blockquote>
+  <p>注：这里的 <code class="highlighter-rouge">members.yml</code> 只是举例用，命名可随意 😯</p>
+</blockquote>
+
 <h2 id="liquid-模板">liquid 模板</h2>
 
 <p><a href="https://shopify.github.io/liquid/basics/introduction/"><strong>liquid</strong></a> 模板引擎也是通过 Ruby 编写的，使用方法可以直接参考官方文档，以下只是简单介绍下:</p>
@@ -367,6 +399,28 @@ plugins: [jekyll-paginate]
 <pre><code class="language-HTML">{ % if product.type == "Shirt" and product.title contains "Pack" % }
   This is a pack shirt.
 { % endif % }
+</code></pre>
+
+<p><strong>for</strong> 可以进行遍历:</p>
+
+<pre><code class="language-HTML">{ % for product in collection.products % }
+  { { product.title } }
+{ % else % }
+  The collection is empty.
+{ % endfor % }
+</code></pre>
+
+<p><strong>assign</strong> 进行赋值，<strong>capture</strong> 进行捕获赋值:</p>
+
+<pre><code class="language-HTML">{ % assign favorite_food = "pizza" % }
+{ % assign age = 35 % }
+
+{ % capture about_me % }
+I am { { age } } and my favorite food is { { favorite_food } }.
+{ % endcapture % }
+
+{ { about_me } }
+&lt;!-- I am 35 and my favourite food is pizza. --&gt;
 </code></pre>
 
 <p><strong>filters</strong> 通过使用 “|” 来返回输出的值:</p>
@@ -390,6 +444,16 @@ which ruby
 
 # 列出所有 ruby 版本
 rvm list
+</code></pre>
+
+<p>注意我们安装完后需要重启下 <code class="highlighter-rouge">.zshrc</code> 或者 <code class="highlighter-rouge">.bashrc</code> 和 <code class="highlighter-rouge">.bash_profile</code> 文件，因为里面会写入环境变量:</p>
+
+<pre><code class="language-SHELL"># 安装 rvm
+\curl -sSL https://get.rvm.io | bash -s stable
+
+souce ~/.zshrc
+rvm -v
+# rvm 1.29.9 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
 </code></pre>
  
 <div id="gitalk-container"></div>
