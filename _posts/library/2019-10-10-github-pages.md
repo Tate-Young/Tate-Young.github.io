@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Github Pages
 date:   2019-10-10 22:13:00 GMT+0800 (CST)
-update: 2019-10-11 00:48:00 GMT+0800 (CST)
+update: 2019-10-11 18:06:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/10/10/9tMd8wKqhTeJujb.png
 tags:
 - html
@@ -17,7 +17,7 @@ tags:
 
 ## 什么是 Github Pages
 
-你现在正在浏览的这个网页就是 [**Github Pages**](https://pages.github.com)，创建方法很简单，分以下几步:
+你现在正在浏览的这个网页部署在 [**Github Pages**](https://pages.github.com)，部署方法很简单，分以下几步:
 
 1. 前往 Github 创建仓库，命名为 [$username].github.io - create a repository
 2. 克隆仓库 - Clone the repository
@@ -241,7 +241,7 @@ bundle
 3、Navigate to http://localhost:4000/admin to access the administrative interface
 ```
 
-同时我们可以在 _config.yml 文件中做一些配置:
+同时我们可以在 `_config.yml` 文件中做一些配置:
 
 ```TEXT
 # 可以选择隐藏哪些链接

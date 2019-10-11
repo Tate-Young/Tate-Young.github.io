@@ -156,6 +156,8 @@ git add forgotten_file
 git commit --amend
 ```
 
+> `gc --amend --no-edit` 可以直接采用上个提交的描述，跳过编辑步骤，更方便 nice
+
 <video controls="">
   <source src="http://github.liaoxuefeng.com/sinaweibopy/video/master-branch-forward.mp4" type="video/mp4"></source>
 </video>

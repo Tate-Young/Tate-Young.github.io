@@ -175,6 +175,8 @@
                       发布时间：2018-03-06 12:40:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-10-11 18:49:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -242,7 +244,7 @@ window.onfocus = function() {
     <ul>
       <li>hidden：页面在后台标签页中或者浏览器最小化</li>
       <li>visible：页面在前台标签页中</li>
-      <li>prerender：页面在屏幕外执行预渲染处理，此时 document.hidden 为 true</li>
+      <li>prerender：页面在屏幕外执行预渲染处理，此时 <code class="highlighter-rouge">document.hidden</code> 为 true</li>
       <li>unloaded：页面正在从内存中卸载</li>
     </ul>
   </li>
@@ -358,10 +360,173 @@ if (typeof document.addEventListener === "undefined" || typeof document[hidden] 
   <p><a href="http://daniemon.com/tech/webapps/page-visibility/">在线视频例子</a> 👈👈👈</p>
 </blockquote>
 
+<h2 id="page-lifecycle-api">Page Lifecycle API</h2>
+
+<p>场景：Android、iOS 和最新的 Windows 系统可以随时自主地停止后台进程，及时释放系统资源。也就是说，网页可能随时被系统丢弃掉。Page Visibility API 只在网页对用户不可见时触发，至于网页会不会被系统丢弃掉，它就无能为力了。因此 W3C 新制定了一个 <a href="https://developers.google.com/web/updates/2018/07/page-lifecycle-api"><strong>Page Lifecycle API</strong></a>，统一了网页从诞生到卸载的行为模式，并且定义了新的事件，允许开发者响应网页状态的各种转换。首先我们看生命周期:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>state</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Active</strong></td>
+      <td>网页处于可见状态，有输入焦点</td>
+    </tr>
+    <tr>
+      <td><strong>Passive</strong></td>
+      <td>网页处于可见状态，无输入焦点</td>
+    </tr>
+    <tr>
+      <td><strong>Hidden</strong></td>
+      <td>网页不可见，但尚未冻结</td>
+    </tr>
+    <tr>
+      <td><strong>Frozen</strong></td>
+      <td>如果网页处于 Hidden 阶段的时间过久或者可见状态下长时间不操作，用户又不关闭网页，浏览器就有可能冻结网页。这个阶段的特征是，网页不会再被分配 CPU 计算资源。定时器、回调函数、网络请求、DOM 操作都不会执行，不过正在运行的任务会执行完</td>
+    </tr>
+    <tr>
+      <td><strong>Terminated</strong></td>
+      <td>网页被浏览器内存所卸载和清除，一般是用户主动操作</td>
+    </tr>
+    <tr>
+      <td><strong>Discarded</strong></td>
+      <td>浏览器自动卸载网页，清除该网页的内存占用，一般是在用户没有介入的情况下，由系统强制执行</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="https://developers.google.com/web/updates/images/2018/07/page-lifecycle-api-state-event-flow.png" alt="page lifecycle" /></p>
+
+<p>接下来总结下事件:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>event</th>
+      <th>描述</th>
+      <th>状态可能变化</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>focus</strong></td>
+      <td>页面获得输入焦点时触发</td>
+      <td>Passive –&gt; Active</td>
+    </tr>
+    <tr>
+      <td><strong>blur</strong></td>
+      <td>页面失去输入焦点时触发</td>
+      <td>Active –&gt; Passive</td>
+    </tr>
+    <tr>
+      <td><strong>visibilitychange</strong></td>
+      <td>网页可见状态发生变化时触发</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><strong>freeze</strong></td>
+      <td>网页进入 Frozen 阶段时触发</td>
+      <td>hidden –&gt; Frozen</td>
+    </tr>
+    <tr>
+      <td><strong>resume</strong></td>
+      <td>网页离开 Frozen 阶段，变为 Active / Passive / Hidden 阶段时触发</td>
+      <td>Frozen –&gt; Active / Passive / Hidden</td>
+    </tr>
+    <tr>
+      <td><strong>pageshow</strong></td>
+      <td>只跟浏览器的 History 记录的变化有关。用户加载网页时触发。有可能是全新的页面加载，也可能是从缓存中获取的页面。如果是从缓存中获取，则该事件对象的 event.persisted 属性为 true，否则为 false</td>
+      <td>Frozen –&gt; Active / Passive / Hidden</td>
+    </tr>
+    <tr>
+      <td><strong>pagehide</strong></td>
+      <td>只跟浏览器的 History 记录的变化有关。用户离开当前网页、进入另一个网页时触发。如果浏览器能够将当前页面添加到缓存以供稍后重用，则事件对象的 event.persisted 属性为 true。 如果为 true 且页面添加到了缓存，则页面进入 Frozen 状态，否则进入 Terminatied 状态</td>
+      <td>hidden –&gt; Frozen / Terminated</td>
+    </tr>
+    <tr>
+      <td><strong>beforeunload</strong></td>
+      <td>页面即将卸载时触发</td>
+      <td>hidden –&gt; Terminated</td>
+    </tr>
+    <tr>
+      <td><strong>unload</strong></td>
+      <td>页面正在卸载时触发</td>
+      <td>hidden –&gt; Terminated</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>在 Chrome68 版本中，新增了 <code class="highlighter-rouge">document.wasDiscarded</code> 来判断页面是否被丢弃:</p>
+
+<pre><code class="language-JS">if (document.wasDiscarded) {
+  // Page was previously discarded by the browser while in a hidden tab.
+}
+</code></pre>
+
+<p>另外通过 <strong>visibilityState</strong> 属性，我们可以直接判断当前网页是否处于 Active、Passive 或 Hidden 阶段:</p>
+
+<pre><code class="language-JS">const getState = () =&gt; {
+  if (document.visibilityState === 'hidden') {
+    return 'hidden'
+  }
+  if (document.hasFocus()) {
+    return 'active'
+  }
+  return 'passive'
+}
+</code></pre>
+
+<p>如果网页处于 <code class="highlighter-rouge">Frozen</code> 和 <code class="highlighter-rouge">Terminated</code> 状态，由于定时器代码不会执行，只能通过事件监听判断状态。进入 Frozen 阶段，可以监听 <code class="highlighter-rouge">freeze</code> 事件；进入 Terminated 阶段，可以监听 <code class="highlighter-rouge">pagehide</code> 事件。因此我们可以通过下列代码来监听不同状态:</p>
+
+<pre><code class="language-JS">// Stores the initial state using the `getState()` function (defined above).
+let state = getState();
+
+// Accepts a next state and, if there's been a state change, logs the
+// change to the console. It also updates the `state` value defined above.
+const logStateChange = (nextState) =&gt; {
+  const prevState = state;
+  if (nextState !== prevState) {
+    console.log(`State change: ${prevState} &gt;&gt;&gt; ${nextState}`);
+    state = nextState;
+  }
+};
+
+// These lifecycle events can all use the same listener to observe state
+// changes (they call the `getState()` function to determine the next state).
+['pageshow', 'focus', 'blur', 'visibilitychange', 'resume'].forEach((type) =&gt; {
+  window.addEventListener(type, () =&gt; logStateChange(getState()), {capture: true});
+});
+
+// The next two listeners, on the other hand, can determine the next
+// state from the event itself.
+window.addEventListener('freeze', () =&gt; {
+  // In the freeze event, the next state is always frozen.
+  logStateChange('frozen');
+}, {capture: true});
+
+window.addEventListener('pagehide', (event) =&gt; {
+  if (event.persisted) {
+    // If the event's persisted property is `true` the page is about
+    // to enter the page navigation cache, which is also in the frozen state.
+    logStateChange('frozen');
+  } else {
+    // If the event's persisted property is not `true` the page is
+    // about to be unloaded.
+    logStateChange('terminated');
+  }
+}, {capture: true});
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Page_Visibility_API">MDN - Page Visibility API</a></li>
+  <li><a href="https://developers.google.com/web/updates/2018/07/page-lifecycle-api">Google Developer - Page Lifecycle API</a></li>
+  <li><a href="http://www.ruanyifeng.com/blog/2018/11/page_lifecycle_api.html">Page Lifecycle API 教程</a> By 阮一峰</li>
 </ol>
  
 <div id="gitalk-container"></div>
