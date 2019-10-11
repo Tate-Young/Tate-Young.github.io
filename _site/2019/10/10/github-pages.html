@@ -160,6 +160,8 @@
                       发布时间：2019-10-10 22:13:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-10-11 00:48:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -384,6 +386,33 @@ plugins: [jekyll-paginate]
 <blockquote>
   <p>注：这里的 <code class="highlighter-rouge">members.yml</code> 只是举例用，命名可随意 😯</p>
 </blockquote>
+
+<h3 id="jekyll-admin">Jekyll Admin</h3>
+
+<p><a href="https://jekyll.github.io/jekyll-admin/"><strong>Jekyll Admin</strong></a> 是 CMS(内容管理系统) 风格的图形化后台管理插件，可以在本地给用户提供服务。使用方式很简单:</p>
+
+<pre><code class="language-TEXT">1、 Add the following to your site's Gemfile
+gem 'jekyll-admin', group: :jekyll_plugins
+
+2、Run bundle install
+bundle
+
+3、Navigate to http://localhost:4000/admin to access the administrative interface
+</code></pre>
+
+<p>同时我们可以在 _config.yml 文件中做一些配置:</p>
+
+<pre><code class="language-TEXT"># 可以选择隐藏哪些链接
+jekyll_admin:
+  hidden_links:
+    - posts
+    - pages
+    - staticfiles
+    - datafiles
+    - configuration
+</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/jekyll/jekyll-admin/master/screenshot.png" alt="jekyll admin" /></p>
 
 <h2 id="liquid-模板">liquid 模板</h2>
 

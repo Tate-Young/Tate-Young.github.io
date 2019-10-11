@@ -7,6 +7,7 @@ background: green
 category: 前端
 title:  Github Pages
 date:   2019-10-10 22:13:00 GMT+0800 (CST)
+update: 2019-10-11 00:48:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/10/10/9tMd8wKqhTeJujb.png
 tags:
 - html
@@ -200,6 +201,35 @@ plugins: [jekyll-paginate]
 {% endfor %}
 
 > 注：这里的 `members.yml` 只是举例用，命名可随意 😯
+
+### Jekyll Admin
+
+[**Jekyll Admin**](https://jekyll.github.io/jekyll-admin/) 是 CMS(内容管理系统) 风格的图形化后台管理插件，可以在本地给用户提供服务。使用方式很简单:
+
+```TEXT
+1、 Add the following to your site's Gemfile
+gem 'jekyll-admin', group: :jekyll_plugins
+
+2、Run bundle install
+bundle
+
+3、Navigate to http://localhost:4000/admin to access the administrative interface
+```
+
+同时我们可以在 _config.yml 文件中做一些配置:
+
+```TEXT
+# 可以选择隐藏哪些链接
+jekyll_admin:
+  hidden_links:
+    - posts
+    - pages
+    - staticfiles
+    - datafiles
+    - configuration
+```
+
+![jekyll admin](https://raw.githubusercontent.com/jekyll/jekyll-admin/master/screenshot.png)
 
 ## liquid 模板
 

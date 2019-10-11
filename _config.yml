@@ -36,3 +36,7 @@ permalink: /:year/:month/:day/:title.html
 defaults:
   - values:
       layout: "default"
+
+jekyll_admin:
+  hidden_links:
+    - pages
