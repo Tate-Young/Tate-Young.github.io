@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记一些命令行工具
 date:   2019-04-01 18:58:00 GMT+0800 (CST)
-update: 2019-04-19 18:07:00 GMT+0800 (CST)
+update: 2019-10-11 20:36:00 GMT+0800 (CST)
 background-image: https://raw.githubusercontent.com/nvbn/thefuck/master/example.gif
 tags:
 - Other
@@ -273,9 +273,16 @@ $ fkill --help
 | v | off | verbose output |
 | vv | off | very verbose output |
 
+由于 primitive 是由 Go 语言编写的，因此我们需要先安装 Go，[传送门在此](https://golang.org/doc/install):
+
 ```SHELL
+# install Go，通过 go get 命令获取 primitive
+go get -u github.com/fogleman/primitive
+
 primitve -i products.png -o products-shape.svg -n 800
 ```
+
+> 需要注意的是 primitive 安装目录此处为 `/Users/tate/go/bin`，因此需要设置好环境变量
 
 这里再配合另一个库 [**svgo**](https://github.com/svg/svgo)  进行压缩:
 
