@@ -269,6 +269,7 @@ DEPENDENCIES
   github-pages
   jekyll (>= 3.7.4)
   jekyll-admin
+  jekyll-seo-tag
   nokogiri (>= 1.8.5)
 
 BUNDLED WITH

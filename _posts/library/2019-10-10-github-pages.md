@@ -189,7 +189,7 @@ plugins: [jekyll-paginate]
 ```HTML
 { % for member in site.data.member % }
 <ul>
-  <li>{{ member.name }}</li>
+  <li>{ { member.name } }</li>
 </ul>
 { % endfor % }
 ```
@@ -202,7 +202,32 @@ plugins: [jekyll-paginate]
 
 > 注：这里的 `members.yml` 只是举例用，命名可随意 😯
 
-### Jekyll Admin
+#### Front Matter
+
+[**Front Matter(头信息)**](https://jekyllrb.com/docs/front-matter/) 是文件头部的 **yaml** 配置，它其实是设置文件自有的局部变量，之后可以在文件任何地方使用 liquid 标签来获取这些变量:
+
+```HTML
+---
+layout: blog # 会指定使用该模板文件，如 blog.html
+title: Blogging Like a Hacker
+food: Pizza
+---
+
+<h1>{ { page.food } }</h1>
+```
+
+还可以在 `_config.yml` 中使用 `defaults` 设置一个路径下 Front Matter 默认值:
+
+```TEXT
+<!-- 默认使用 default.html 模板 -->
+defaults:
+  - values:
+      layout: "default"
+```
+
+### plugins 插件
+
+#### Jekyll Admin
 
 [**Jekyll Admin**](https://jekyll.github.io/jekyll-admin/) 是 CMS(内容管理系统) 风格的图形化后台管理插件，可以在本地给用户提供服务。使用方式很简单:
 
@@ -230,6 +255,24 @@ jekyll_admin:
 ```
 
 ![jekyll admin](https://raw.githubusercontent.com/jekyll/jekyll-admin/master/screenshot.png)
+
+#### Jekyll SEO Tag
+
+[**Jekyll SEO Tag**](https://jekyll.github.io/jekyll-seo-tag/) 可以根据 `_config.yml` 文件的配置项添加 SEO 标签:
+
+```TEXT
+1、 Add the following to your site's Gemfile
+gem 'jekyll-seo-tag'
+
+2、 Add plugins to _config.yml
+plugins:
+  - jekyll-seo-tag
+
+3、Add the following right before </head> in your site’s template
+{ % seo % }
+```
+
+完成后我们直接查看元素，添加的 SEO 标签起于 `<!-- Begin Jekyll SEO tag v2.5.0 -->`，终于 `<!-- End Jekyll SEO tag -->`。
 
 ## liquid 模板
 
@@ -308,3 +351,14 @@ souce ~/.zshrc
 rvm -v
 # rvm 1.29.9 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
 ```
+
+## Hexo
+
+[**Hexo**](https://hexo.io) 是一款基于 node.js 的静态博客框架，可以方便的生成静态网页托管在 GitHub 和 [Heroku](https://www.heroku.com) 上。
+
+> 更多 Hexo 信息可以直接参考官网
+
+## 参考链接
+
+1. [48 个你需要知道的 Jekyll 使用技巧](https://crispgm.com/page/48-tips-for-jekyll-you-should-know.html) By David Zhang
+2. [GitHub+Hexo 搭建个人网站详细教程](https://zhuanlan.zhihu.com/p/26625249) By 吴润

@@ -1,7 +1,6 @@
 
 <!DOCTYPE>
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
-
 <head>
     <meta content='Github Pages - Tate & Snow' name='title' />
     <meta content='Github Pages - Tate & Snow' name='og:title' />
@@ -57,6 +56,22 @@
   });
 </script>
 <meta content="" property="fb:app_id" />
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Github Pages | Tate &amp; Snow</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Github Pages" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Github Pages" />
+<meta property="og:description" content="Github Pages" />
+<link rel="canonical" href="http://localhost:2333/2019/10/10/github-pages.html" />
+<meta property="og:url" content="http://localhost:2333/2019/10/10/github-pages.html" />
+<meta property="og:site_name" content="Tate &amp; Snow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-10T22:13:00+08:00" />
+<script type="application/ld+json">
+{"description":"Github Pages","@type":"BlogPosting","url":"http://localhost:2333/2019/10/10/github-pages.html","headline":"Github Pages","dateModified":"2019-10-10T22:13:00+08:00","datePublished":"2019-10-10T22:13:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/10/10/github-pages.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
 <script>
   (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -370,7 +385,7 @@ plugins: [jekyll-paginate]
 
 <pre><code class="language-HTML">{ % for member in site.data.member % }
 &lt;ul&gt;
-  &lt;li&gt;&lt;/li&gt;
+  &lt;li&gt;{ { member.name } }&lt;/li&gt;
 &lt;/ul&gt;
 { % endfor % }
 </code></pre>
@@ -387,7 +402,30 @@ plugins: [jekyll-paginate]
   <p>注：这里的 <code class="highlighter-rouge">members.yml</code> 只是举例用，命名可随意 😯</p>
 </blockquote>
 
-<h3 id="jekyll-admin">Jekyll Admin</h3>
+<h4 id="front-matter">Front Matter</h4>
+
+<p><a href="https://jekyllrb.com/docs/front-matter/"><strong>Front Matter(头信息)</strong></a> 是文件头部的 <strong>yaml</strong> 配置，它其实是设置文件自有的局部变量，之后可以在文件任何地方使用 liquid 标签来获取这些变量:</p>
+
+<pre><code class="language-HTML">---
+layout: blog # 会指定使用该模板文件，如 blog.html
+title: Blogging Like a Hacker
+food: Pizza
+---
+
+&lt;h1&gt;{ { page.food } }&lt;/h1&gt;
+</code></pre>
+
+<p>还可以在 <code class="highlighter-rouge">_config.yml</code> 中使用 <code class="highlighter-rouge">defaults</code> 设置一个路径下 Front Matter 默认值:</p>
+
+<pre><code class="language-TEXT">&lt;!-- 默认使用 default.html 模板 --&gt;
+defaults:
+  - values:
+      layout: "default"
+</code></pre>
+
+<h3 id="plugins-插件">plugins 插件</h3>
+
+<h4 id="jekyll-admin">Jekyll Admin</h4>
 
 <p><a href="https://jekyll.github.io/jekyll-admin/"><strong>Jekyll Admin</strong></a> 是 CMS(内容管理系统) 风格的图形化后台管理插件，可以在本地给用户提供服务。使用方式很简单:</p>
 
@@ -413,6 +451,23 @@ jekyll_admin:
 </code></pre>
 
 <p><img src="https://raw.githubusercontent.com/jekyll/jekyll-admin/master/screenshot.png" alt="jekyll admin" /></p>
+
+<h4 id="jekyll-seo-tag">Jekyll SEO Tag</h4>
+
+<p><a href="https://jekyll.github.io/jekyll-seo-tag/"><strong>Jekyll SEO Tag</strong></a> 可以根据 <code class="highlighter-rouge">_config.yml</code> 文件的配置项添加 SEO 标签:</p>
+
+<pre><code class="language-TEXT">1、 Add the following to your site's Gemfile
+gem 'jekyll-seo-tag'
+
+2、 Add plugins to _config.yml
+plugins:
+  - jekyll-seo-tag
+
+3、Add the following right before &lt;/head&gt; in your site’s template
+{ % seo % }
+</code></pre>
+
+<p>完成后我们直接查看元素，添加的 SEO 标签起于 <code class="highlighter-rouge">&lt;!-- Begin Jekyll SEO tag v2.5.0 --&gt;</code>，终于 <code class="highlighter-rouge">&lt;!-- End Jekyll SEO tag --&gt;</code>。</p>
 
 <h2 id="liquid-模板">liquid 模板</h2>
 
@@ -484,6 +539,21 @@ souce ~/.zshrc
 rvm -v
 # rvm 1.29.9 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
 </code></pre>
+
+<h2 id="hexo">Hexo</h2>
+
+<p><a href="https://hexo.io"><strong>Hexo</strong></a> 是一款基于 node.js 的静态博客框架，可以方便的生成静态网页托管在 GitHub 和 <a href="https://www.heroku.com">Heroku</a> 上。</p>
+
+<blockquote>
+  <p>更多 Hexo 信息可以直接参考官网</p>
+</blockquote>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://crispgm.com/page/48-tips-for-jekyll-you-should-know.html">48 个你需要知道的 Jekyll 使用技巧</a> By David Zhang</li>
+  <li><a href="https://zhuanlan.zhihu.com/p/26625249">GitHub+Hexo 搭建个人网站详细教程</a> By 吴润</li>
+</ol>
  
 <div id="gitalk-container"></div>
 <script>

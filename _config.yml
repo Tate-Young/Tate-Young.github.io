@@ -40,3 +40,9 @@ defaults:
 jekyll_admin:
   hidden_links:
     - pages
+
+# 插件 jekyll3.5.0 版本之前使用 gems
+plugins:
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-admin
