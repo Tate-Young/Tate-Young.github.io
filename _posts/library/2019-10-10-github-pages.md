@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Github Pages
 date:   2019-10-10 22:13:00 GMT+0800 (CST)
-update: 2019-10-11 18:06:00 GMT+0800 (CST)
+update: 2019-10-12 11:04:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/10/10/9tMd8wKqhTeJujb.png
 tags:
 - html
@@ -17,7 +17,7 @@ tags:
 
 ## 什么是 Github Pages
 
-你现在正在浏览的这个网页部署在 [**Github Pages**](https://pages.github.com)，部署方法很简单，分以下几步:
+你现在正在浏览的这个网页就是 [**Github Pages**](https://pages.github.com)，部署方法很简单，分以下几步:
 
 1. 前往 Github 创建仓库，命名为 [$username].github.io - create a repository
 2. 克隆仓库 - Clone the repository
@@ -25,13 +25,13 @@ tags:
 4. 通过 Git 命令 push 到远端
 5. 浏览器访问 https://[$username].github.io 即可
 
-需要注意的是，每个 github 账号或组织只能搭建一个站点，但是以上搭建的页面太过简单，如果要使用博客等功能的话，则需要用到其他工具。比如当前网页，它其实是通过 [**Jekyll**](https://jekyllrb.com/docs/) 搭建的。
+需要注意的是，每个 github 账号或组织只能搭建一个站点，但是以上搭建的页面太过简单，基本常用语项目介绍页面。如果要使用博客等功能的话，则需要用到其他工具。比如当前网页，它其实是通过 [**Jekyll**](https://jekyllrb.com/docs/) 搭建的。
 
-> 至于详细怎么搭建的后面有空再写，现在只是列一些比较容易忘记的名词
+> 至于详细怎么搭建的后面有空再写，或者直接参考[阮一峰这篇文章](http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html)也行。现在只是列一些比较容易忘记的名词
 
 ## Jekyll
 
-**Jekyll** 是一个简单的静态站点生成器，它支持 **Markdown**、**liquid 模板**，因此可以将我们编写的 md 文档转化成一个完整的可发布的静态网站。也就是说，你可以使用 GitHub 的服务来搭建你的项目页面、博客或者网站，而且是完全免费的 😀。
+**Jekyll** 是一个简单的静态站点生成器，它支持 **Markdown**、**liquid 模板** 和各种插件，因此可以将我们编写的 md 文档转化成一个完整的可发布的静态网站。也就是说，你可以使用 GitHub 的服务来搭建你的项目页面、博客或者网站，而且是完全免费的 😀。
 
 Jekyll 本身是由 **Ruby** 语言编写的，因此我们要安装 Ruby 环境，这里我们推荐用 [**rvm**](https://github.com/rvm/rvm) 进行版本管理(类似于 node 版本管理工具 nvm 或 n)，安装和使用方法[直接参考下文](#rvm)，接下来:
 
