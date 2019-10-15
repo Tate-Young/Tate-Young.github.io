@@ -25,7 +25,7 @@ tags:
 4. 通过 Git 命令 push 到远端
 5. 浏览器访问 https://[$username].github.io 即可
 
-需要注意的是，每个 github 账号或组织只能搭建一个站点，但是以上搭建的页面太过简单，基本常用语项目介绍页面。如果要使用博客等功能的话，则需要用到其他工具。比如当前网页，它其实是通过 [**Jekyll**](https://jekyllrb.com/docs/) 搭建的。
+需要注意的是，每个 github 账号或组织只能搭建一个站点，但是以上搭建的页面太过简单，基本常用于项目介绍页面。如果要使用博客等功能的话，则需要用到其他工具。比如当前博客，它其实是通过 [**Jekyll**](https://jekyllrb.com/docs/) 搭建的。
 
 > 至于详细怎么搭建的后面有空再写，或者直接参考[阮一峰这篇文章](http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html)也行。现在只是列一些比较容易忘记的名词
 

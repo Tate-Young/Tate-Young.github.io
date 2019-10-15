@@ -7,6 +7,7 @@ background: green
 category: 前端
 title: 记各种代码规范实践
 date:   2019-01-25 20:41:00 GMT+0800 (CST)
+update: 2019-10-15 16:41:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/01/28/5c4ea7dbcf6f9.png
 tags:
 - Other
@@ -116,14 +117,14 @@ registerServiceWorker.js
 推荐的跳过检测的方式除了可以直接在 rules 下进行配置规则外，还可以对区域代码进行注释:
 
 ```JS
-# eslint 报错: Use array destructuring  prefer-destructuring
+// eslint 报错: Use array destructuring  prefer-destructuring
 brand = brand_role[0]
 
-# 跳过检测的两种方式，不推荐直接用 eslint-disable-line，而是后面跟上对应的一个或多个规则，用逗号隔开
+// 跳过检测的两种方式，不推荐直接用 eslint-disable-line，而是后面跟上对应的一个或多个规则，用逗号隔开
 // eslint-disable-next-line prefer-destructuring
 brand = brand_role[0] // eslint-disable-line prefer-destructuring, max-len
 
-# 如何想针对整个文件跳过检测规则的话，可以在顶部输入
+// 如何想针对整个文件跳过检测规则的话，可以在顶部输入
 /* eslint-disable */
 ```
 
@@ -153,11 +154,38 @@ brand = brand_role[0] // eslint-disable-line prefer-destructuring, max-len
       "node_modules/**/*.ts",
       "coverage/lcov-report/*.js"
     ]
-  }
+  },
+  "rules": {
+    "semicolon": [true, "never"],
+    "quotemark": [true, "single"],
+    "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
+    "jsx-no-multiline-js": false,
+    "function-name": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "no-empty": [true, "allow-empty-catch"],
+    "max-line-length": [true, {"limit": 120, "ignore-pattern": "^import |^export {(.*?)}"}]
+  },
 }
 ```
 
-> to be continued
+> 当使用 cli 命令行或者相关编辑器插件时，则根据 `tslint.json` 或者 `tslint.yaml` 文件配置来运行对应的规则
+
+当我们需要跳过检测时，用法和上述的 eslint 差不多，只是语法上稍微有点变化:
+
+```JS
+// block is empty (no-empty)tslint(1)
+const noop = () => {}
+
+// tslint:disable-next-line:no-empty
+const noop = () => {} // tslint:disable-line:no-empty
+
+// 如何想针对指定区间跳过检测规则的话，可以输入
+/* tslint:disable:max-line-length */
+// ... code here
+/* tslint:enable:max-line-length */
+```
 
 ## EditorConfig
 
@@ -259,8 +287,6 @@ module.exports = {
   },
 }
 ```
-
-![commitlint](https://camo.githubusercontent.com/7a550a88bab7c9b897e97f3b138696727db47db0/68747470733a2f2f63646e2e7261776769742e636f6d2f6d6172696f6e65626c2f636f6d6d69746c696e742f333539343339373931396336313838636533316363666339346130313133643632356435353531362f646f63732f6173736574732f636f6d6d69746c696e742e737667)
 
 ## markdownlint
 

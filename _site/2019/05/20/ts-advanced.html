@@ -175,7 +175,7 @@
                       发布时间：2019-05-20 18:36:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-05-27 15:54:00
+                        修改时间：2019-10-15 16:43:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -214,7 +214,7 @@
 
 <h2 id="tsconfigjson">tsconfig.json</h2>
 
-<p>如果一个目录下存在一个 <code class="highlighter-rouge">tsconfig.json</code> 文件，那么它意味着这个目录是 TypeScript 项目的根目录。 tsconfig.json 文件中指定了用来编译这个项目的根文件和编译选项，使用 <code class="highlighter-rouge">tsc --init</code>即可自动生成该文件，更多<a href="http://www.typescriptlang.org/docs/handbook/compiler-options.html">配置查看这里</a> 👈:</p>
+<p>如果一个目录下存在一个 <code class="highlighter-rouge">tsconfig.json</code> 文件，那么它意味着这个目录是 TypeScript 项目的根目录。 <code class="highlighter-rouge">tsconfig.json</code> 文件中指定了用来编译这个项目的根文件和编译选项，使用 <code class="highlighter-rouge">tsc --init</code>即可自动生成该文件，更多<a href="http://www.typescriptlang.org/docs/handbook/compiler-options.html">配置查看这里</a> 👈:</p>
 
 <pre><code class="language-JSON">{
   "compilerOptions": {
@@ -289,7 +289,7 @@
 </code></pre>
 
 <blockquote>
-  <p>注意，<code class="highlighter-rouge">tsc</code> 的命令行选项具有优先级，会覆盖 tsconfig.json 中的同名选项</p>
+  <p>注意，<code class="highlighter-rouge">tsc</code> 的命令行选项具有优先级，会覆盖 <code class="highlighter-rouge">tsconfig.json</code> 中的同名选项</p>
 </blockquote>
 
 <p>我们还可以通过以下几种选项来决定需要编译的文件:</p>
@@ -372,6 +372,10 @@ import { test } from 'appConfig'
   }
 }
 </code></pre>
+
+<h2 id="tslint">TSLint</h2>
+
+<p><strong>TSLint</strong> 是 TypeScript 代码风格检查器，它能够在可读性、可维护性、代码正确性等方面为开发者提供帮助。其配置可<a href="https://palantir.github.io/tslint/usage/configuration/">参考官方文档</a>，配置文件一般为 <code class="highlighter-rouge">tslint.json</code>。具体<a href="http://localhost:2333/2019/01/25/coding-standards.html#tslint">参考这篇博客</a> 👈</p>
 
 <h2 id="definitelytyped">DefinitelyTyped</h2>
 

@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2019-05-27 15:54:00 GMT+0800 (CST)
+update: 2019-10-15 16:43:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -16,7 +16,7 @@ tags:
 
 ## tsconfig.json
 
-如果一个目录下存在一个 `tsconfig.json` 文件，那么它意味着这个目录是 TypeScript 项目的根目录。 tsconfig.json 文件中指定了用来编译这个项目的根文件和编译选项，使用 `tsc --init`即可自动生成该文件，更多[配置查看这里](http://www.typescriptlang.org/docs/handbook/compiler-options.html) 👈:
+如果一个目录下存在一个 `tsconfig.json` 文件，那么它意味着这个目录是 TypeScript 项目的根目录。 `tsconfig.json` 文件中指定了用来编译这个项目的根文件和编译选项，使用 `tsc --init`即可自动生成该文件，更多[配置查看这里](http://www.typescriptlang.org/docs/handbook/compiler-options.html) 👈:
 
 ```JSON
 {
@@ -91,7 +91,7 @@ tags:
 }
 ```
 
-> 注意，`tsc` 的命令行选项具有优先级，会覆盖 tsconfig.json 中的同名选项
+> 注意，`tsc` 的命令行选项具有优先级，会覆盖 `tsconfig.json` 中的同名选项
 
 我们还可以通过以下几种选项来决定需要编译的文件:
 
@@ -176,6 +176,10 @@ import { test } from 'appConfig'
   }
 }
 ```
+
+## TSLint
+
+**TSLint** 是 TypeScript 代码风格检查器，它能够在可读性、可维护性、代码正确性等方面为开发者提供帮助。其配置可[参考官方文档](https://palantir.github.io/tslint/usage/configuration/)，配置文件一般为 `tslint.json`。具体[参考这篇博客]( {{site.url}}/2019/01/25/coding-standards.html#tslint ) 👈
 
 ## DefinitelyTyped
 
