@@ -15,7 +15,7 @@
 <meta name="twitter:keywords" content="响应式图片设计 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="响应式图片设计 - Tate & Snow">
-<meta name="og:keywords" content="响应式图片设计 - Tate & Snow|响应式图片设计响应式图片响应式图片无非两个解决方案，即 inline images 和 CSS images。而他们解决的问题也不过与两大方面:  Resolution Switching - 分辨率切换  Art Direction..."
+<meta name="og:keywords" content="响应式图片设计 - Tate & Snow|响应式图片设计响应式图片响应式图片无非两个解决方案，即 inline images 和 CSS images。而他们解决的问题也无非两大方面:  Resolution Switching - 分辨率切换  Art Direction ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="响应式图片设计响应式图片响应式图片无非两个解决方案，即 inline images 和 CSS images。而他们解决的问题也不过与两大方面:  Resolution Switching - 分辨率切换  Art Direction..." property='og:description'
+<meta name="keywords" content="响应式图片设计响应式图片响应式图片无非两个解决方案，即 inline images 和 CSS images。而他们解决的问题也无非两大方面:  Resolution Switching - 分辨率切换  Art Direction ..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:2333/2019/10/15/html-responsive-images.html' property='og:url' />
-<meta content="http://localhost:2333/2019/10/15/html-responsive-images.html|响应式图片设计响应式图片响应式图片无非两个解决方案，即 inline images 和 CSS images。而他们解决的问题也不过与两大方面:  Resolution Switching - 分辨率切换  Art Direction..." property='og:description'
+<meta content="http://localhost:2333/2019/10/15/html-responsive-images.html|响应式图片设计响应式图片响应式图片无非两个解决方案，即 inline images 和 CSS images。而他们解决的问题也无非两大方面:  Resolution Switching - 分辨率切换  Art Direction ..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -175,6 +175,8 @@
                       发布时间：2019-10-15 21:47:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-10-16 21:47:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -212,7 +214,7 @@
 
 <h2 id="响应式图片">响应式图片</h2>
 
-<p>响应式图片无非两个解决方案，即 <strong>inline images</strong> 和 <strong>CSS images</strong>。而他们解决的问题也不过与两大方面:</p>
+<p>响应式图片无非两个解决方案，即 <strong>inline images</strong> 和 <strong>CSS images</strong>。而他们解决的问题也无非两大方面:</p>
 
 <ul>
   <li><strong>Resolution Switching</strong> - 分辨率切换</li>
@@ -346,6 +348,10 @@
 &lt;/picture&gt;
 </code></pre>
 
+<blockquote>
+  <p>针对浏览器不兼容情况的，可以使用 <a href="http://scottjehl.github.io/picturefill/">Picturefill</a></p>
+</blockquote>
+
 <h3 id="figure">&lt;figure&gt;</h3>
 
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure">&lt;figure&gt;</a> 与 &lt;img&gt;、&lt;picture&gt; 不同的是它是独立的引用单元，而非技术上的图片资源。 比如 &lt;figure&gt; 可以有自己的 &lt;figurecaption&gt; 标签，还可以包含文字说明、代码片段等:</p>
@@ -383,7 +389,63 @@
 
 <p><img src="https://29comwzoq712ml5vj5gf479x-wpengine.netdna-ssl.com/wp-content/uploads/2015/06/resolution-mq.png" alt="media queries" /></p>
 
-<h2 id="webp">webp</h2>
+<h2 id="webp">WebP</h2>
+
+<p><a href="https://zh.wikipedia.org/wiki/WebP"><strong>Webp</strong></a> (发音 weppy)，是 Google 2010 年推出的一种旨在加快图片加载速度的图片格式。我们知道对于其他图片格式如 png、jpeg 和 gif 等，优化方面已被榨干，WebP 在保证相同图片品质的情况下，能极大的减少图片的大小，这对于我们网站优化而言就是福音。</p>
+
+<p>我们可以先对比下主流图片格式的压缩算法，WebP 同时提供了<strong>有损压缩(lossy compression)</strong>和<strong>无损压缩(lossless compression)</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>图片格式</th>
+      <th>压缩算法</th>
+      <th>优点</th>
+      <th>缺点</th>
+      <th>使用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>JPG/JPEG(Joint Photographic Experts Group)</td>
+      <td>有损</td>
+      <td>小</td>
+      <td>丢失细节</td>
+      <td>一般图片</td>
+    </tr>
+    <tr>
+      <td>GIF (Graphics Interchange Format)</td>
+      <td>无损</td>
+      <td>小，动图</td>
+      <td>丢失质量</td>
+      <td>icons、logo 等</td>
+    </tr>
+    <tr>
+      <td>PNG (Portable Network Graphics)</td>
+      <td>无损</td>
+      <td>可支持<a href="https://zh.wikipedia.org/wiki/阿尔法通道">透明色</a></td>
+      <td>稍大</td>
+      <td>平面艺术元素</td>
+    </tr>
+    <tr>
+      <td>WebP</td>
+      <td>无损 / 有损</td>
+      <td>拥有以上全部优点，且更小</td>
+      <td>兼容性</td>
+      <td>几乎所有图片</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>在保证同等品质下，Webp 无损模式相较于 PNG 可以小 26%，有损模式相较于 JPEG 可以小 25–34%。详细<a href="https://isparta.github.io/compare-webp/index.html#12345">示例可参考这里</a>，具体算法细节<a href="https://developers.google.com/speed/webp/docs/compression">可以参考这里</a> 👈</p>
+</blockquote>
+
+<blockquote>
+  <p>对于 WebP 的兼容性问题，我们可以参照上述的 &lt;picture&gt; 标签进行选择性展示，现今也有一些 polyfill 来解决浏览器不支持问题，比如 <a href="http://webpjs.appspot.com">WebPJS</a></p>
+</blockquote>
+
+<p>当然，我们也可以将现有的图片格式转换为 WebP 格式，现在也有很多工具可以选择。比如在线网站 <a href="https://cloudconvert.com/webp-to-anything">cloudconvert</a> 或 <a href="http://isparta.github.io">iSparta</a>，也可以用第三方库 <a href="https://imagemagick.org"><strong>ImageMagick</strong></a> 等。</p>
 
 <h2 id="参考链接">参考链接</h2>
 
@@ -392,6 +454,9 @@
   <li><a href="https://cloudfour.com/thinks/responsive-images-101-part-8-css-images/">Responsive Images 101, Part 8: CSS Images</a></li>
   <li><a href="https://harttle.land/2018/05/30/responsive-img-picture.html">正确使用 HTML5 标签：img, picture, figure 的响应式设计</a> By harttle</li>
   <li><a href="https://www.zhangxinxu.com/wordpress/2014/10/responsive-images-srcset-size-w-descriptor/">响应式图片 srcset 全新释义 sizes 属性 w 描述符</a> By 张鑫旭</li>
+  <li><a href="https://developers.google.com/speed/webp/docs/compression">WebP - Compression Techniques</a></li>
+  <li><a href="https://medium.com/beginners-guide-to-mobile-web-development/web-image-formats-googles-webp-17e2fe5fc53e">Web Image Formats &amp; Google’s WebP</a> By Prabha Venkatesh</li>
+  <li><a href="https://cloud.tencent.com/developer/article/1033988">腾讯云 - 关于 webp 图片格式初探</a> By 向治洪</li>
 </ol>
  
 <div id="gitalk-container"></div>

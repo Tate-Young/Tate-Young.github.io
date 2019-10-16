@@ -7,6 +7,7 @@ background: purple
 category: 前端
 title:  响应式图片设计
 date:   2019-10-15 21:47:00 GMT+0800 (CST)
+update: 2019-10-16 16:56:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/07/24/5b56b1a40824c.jpg
 tags:
 - css
@@ -15,7 +16,7 @@ tags:
 
 ## 响应式图片
 
-响应式图片无非两个解决方案，即 **inline images** 和 **CSS images**。而他们解决的问题也不过与两大方面:
+响应式图片无非两个解决方案，即 **inline images** 和 **CSS images**。而他们解决的问题也无非两大方面:
 
 * **Resolution Switching** - 分辨率切换
 * **Art Direction** - 美术设计
@@ -115,6 +116,8 @@ tags:
 </picture>
 ```
 
+> 针对浏览器不兼容情况的，可以使用 [Picturefill](http://scottjehl.github.io/picturefill/)
+
 ### \<figure\>
 
 [\<figure\>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) 与 \<img\>、\<picture\> 不同的是它是独立的引用单元，而非技术上的图片资源。 比如 \<figure\> 可以有自己的 \<figurecaption\> 标签，还可以包含文字说明、代码片段等:
@@ -155,9 +158,24 @@ tags:
 
 ![media queries](https://29comwzoq712ml5vj5gf479x-wpengine.netdna-ssl.com/wp-content/uploads/2015/06/resolution-mq.png)
 
-## webp
+## WebP
 
-> to be continued
+[**Webp**](https://zh.wikipedia.org/wiki/WebP) (发音 weppy)，是 Google 2010 年推出的一种旨在加快图片加载速度的图片格式。我们知道对于其他图片格式如 png、jpeg 和 gif 等，优化方面已被榨干，WebP 在保证相同图片品质的情况下，能极大的减少图片的大小，这对于我们网站优化而言就是福音。
+
+我们可以先对比下主流图片格式的压缩算法，WebP 同时提供了**有损压缩(lossy compression)**和**无损压缩(lossless compression)**:
+
+| 图片格式        |   压缩算法   |   优点  |  缺点 | 使用场景 |
+| ------------ | ------- | ------- | ------- | ------- |
+| JPG/JPEG(Joint Photographic Experts Group) | 有损 | 小 | 丢失细节 | 一般图片 |
+| GIF (Graphics Interchange Format) | 无损 | 小，动图 | 丢失质量 | icons、logo 等 |
+| PNG (Portable Network Graphics) | 无损 | 可支持[透明色](https://zh.wikipedia.org/wiki/阿尔法通道) | 稍大 | 平面艺术元素 |
+| WebP | 无损 / 有损 | 拥有以上全部优点，且更小 | 兼容性 | 几乎所有图片 |
+
+> 在保证同等品质下，Webp 无损模式相较于 PNG 可以小 26%，有损模式相较于 JPEG 可以小 25–34%。详细[示例可参考这里](https://isparta.github.io/compare-webp/index.html#12345)，具体算法细节[可以参考这里](https://developers.google.com/speed/webp/docs/compression) 👈
+
+> 对于 WebP 的兼容性问题，我们可以参照上述的 \<picture\> 标签进行选择性展示，现今也有一些 polyfill 来解决浏览器不支持问题，比如 [WebPJS](http://webpjs.appspot.com)
+
+当然，我们也可以将现有的图片格式转换为 WebP 格式，现在也有很多工具可以选择。比如在线网站 [cloudconvert](https://cloudconvert.com/webp-to-anything) 或 [iSparta](http://isparta.github.io)，也可以用第三方库 [**ImageMagick**](https://imagemagick.org) 等。
 
 ## 参考链接
 
@@ -165,3 +183,6 @@ tags:
 2. [Responsive Images 101, Part 8: CSS Images](https://cloudfour.com/thinks/responsive-images-101-part-8-css-images/)
 3. [正确使用 HTML5 标签：img, picture, figure 的响应式设计](https://harttle.land/2018/05/30/responsive-img-picture.html) By harttle
 4. [响应式图片 srcset 全新释义 sizes 属性 w 描述符](https://www.zhangxinxu.com/wordpress/2014/10/responsive-images-srcset-size-w-descriptor/) By 张鑫旭
+5. [WebP - Compression Techniques](https://developers.google.com/speed/webp/docs/compression)
+6. [Web Image Formats & Google’s WebP](https://medium.com/beginners-guide-to-mobile-web-development/web-image-formats-googles-webp-17e2fe5fc53e) By Prabha Venkatesh
+7. [腾讯云 - 关于 webp 图片格式初探](https://cloud.tencent.com/developer/article/1033988) By 向治洪
