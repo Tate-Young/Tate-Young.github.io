@@ -175,7 +175,7 @@
                       发布时间：2018-04-15 14:15:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-08-08 11:47:00
+                        修改时间：2019-10-17 22:14:00
                       
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
@@ -582,6 +582,12 @@ find /home ! -name "*.txt"
 
 # 查找当前目录下以 .txt 或 .pdf 结尾的文件名
 find . -name "*.txt" -o -name "*.pdf"
+</code></pre>
+
+<p>如果只查找当前目录，而不包括子目录的时候:</p>
+
+<pre><code class="language-SHELL"># -maxdepth 后的数字即使查找的目录层级
+find . -name '*.sh' -maxdepth 1
 </code></pre>
 
 <p>还可以根据文件类型进行搜索:</p>

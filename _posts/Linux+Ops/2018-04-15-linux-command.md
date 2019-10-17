@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Linux 常用命令
 date:   2018-04-15 14:15:00 GMT+0800 (CST)
-update: 2019-08-08 11:47:00 GMT+0800 (CST)
+update: 2019-10-17 22:14:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
 tags:
 - Linux
@@ -238,6 +238,13 @@ find /home ! -name "*.txt"
 
 # 查找当前目录下以 .txt 或 .pdf 结尾的文件名
 find . -name "*.txt" -o -name "*.pdf"
+```
+
+如果只查找当前目录，而不包括子目录的时候:
+
+```SHELL
+# -maxdepth 后的数字即使查找的目录层级
+find . -name '*.sh' -maxdepth 1
 ```
 
 还可以根据文件类型进行搜索:
