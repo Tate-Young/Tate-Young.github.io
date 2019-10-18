@@ -175,6 +175,8 @@
                       发布时间：2018-03-01 15:33:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-10-18 20:56:00
+                      
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -394,9 +396,332 @@ GET /users?name=tate
 
 <h2 id="graphql">GraphQL</h2>
 
+<h3 id="特性及-graphiql">特性及 GraphiQL</h3>
+
+<p><a href="https://graphql.cn"><strong>GraphQL</strong></a> 是一种用于 API 的查询语言，它主要有以下特性:</p>
+
+<ul>
+  <li>总是返回可预测的结果，不多不少</li>
+  <li>典型的 REST API 请求多个资源时得载入多个 URL，而 GraphQL 可以通过一次请求就获取你应用所需的所有数据</li>
+  <li>使用类型来保证应用只请求可能的数据，还提供了清晰的辅助性错误信息</li>
+</ul>
+
+<p>一个 GraphQL 服务是通过定义类型和类型上的字段来创建的，然后给每个类型上的每个字段提供解析函数。例如，一个 GraphQL 服务告诉我们当前登录用户是 me，这个用户的名称可能像这样:</p>
+
+<pre><code class="language-JS">type Query {
+  me: User
+}
+
+type User {
+  id: ID
+  name: String
+}
+</code></pre>
+
+<p>还有每个类型上字段的解析函数:</p>
+
+<pre><code class="language-JS">function Query_me(request) {
+  return request.auth.user;
+}
+
+function User_name(user) {
+  return user.getName();
+}
+</code></pre>
+
+<p>旦一个 GraphQL 服务运行起来，它就能接收 GraphQL 查询，并验证和执行。接收到的查询首先会被检查确保它只引用了已定义的类型和字段，然后运行指定的解析函数来生成结果:</p>
+
+<pre><code class="language-JS">// 查询
+{
+  me {
+    name
+  }
+}
+</code></pre>
+
+<pre><code class="language-JS">// 查询结果
+{
+  "me": {
+    "name": "Luke Skywalker"
+  }
+}
+</code></pre>
+
+<video src="https://graphql.cn/img/graphiql.mp4?x" controls="controls"></video>
+
 <blockquote>
-  <p>to be continued</p>
+  <p>性感 GraphiQL 编辑器，<a href="https://graphql.org/swapi-graphql">在线操作</a> 👈</p>
 </blockquote>
+
+<h3 id="graphqljs">graphql.js</h3>
+
+<h4 id="基于-express-的配置">基于 express 的配置</h4>
+
+<p>GraphQL 已有多种编程语言和框架支持，现在基于 express 来搭建试一试，具体语法可以<a href="https://graphql.cn/learn/queries/">参考官方文档</a>:</p>
+
+<pre><code class="language-JS">var express = require('express');
+var graphqlHTTP = require('express-graphql');
+var { buildSchema } = require('graphql');
+// Construct a schema, using GraphQL schema language
+var schema = buildSchema(`
+  type Query {
+    hello: String
+  }
+`);
+
+var root = { hello: () =&gt; 'Hello Tate!' };
+
+var app = express();
+// 通过访问 graphql 路由就可以打开上述的 GraphiQL 编辑页面
+app.use('/graphql', graphqlHTTP({
+  schema: schema, // A GraphQLSchema instance from GraphQL.js
+  rootValue: root,
+  graphiql: true,
+}));
+app.listen(4000, () =&gt; console.log('Now browse to localhost:4000/graphql'));
+</code></pre>
+
+<blockquote>
+  <p><code class="highlighter-rouge">graphql.js</code> 的用法<a href="https://graphql.org/graphql-js/">参考官方文档</a> 👈</p>
+</blockquote>
+
+<p>我们打开 <code class="highlighter-rouge">localhost:4000/graphql</code> 后，便可以看到上述的 GraphiQL 编辑页面，此时在控制台模拟下客户端请求代码:</p>
+
+<pre><code class="language-JS">fetch('/graphql', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+  body: JSON.stringify({query: "{ hello }"})
+})
+  .then(r =&gt; r.json())
+  .then(data =&gt; console.log('data returned:', data)); // Hello Tate!
+</code></pre>
+
+<h4 id="基本类型">基本类型</h4>
+
+<p>在绝大部分情况下，我们只用通过 GraphQL schema language 来指定 API 的类型，并作为参数传给 <code class="highlighter-rouge">buildSchema</code> 函数。目前支持的基本类型有五个 - <code class="highlighter-rouge">String, Int, Float, Boolean, and ID</code>。需要注意的是，默认情况下，这几种类型都可能返回 null，如果你确定他们是非 null 的话，可以直接在类型后加 “!”，如 <code class="highlighter-rouge">String!</code>。另外要表示数组的话，可以直接用 <code class="highlighter-rouge">[Int]</code>表示:</p>
+
+<pre><code class="language-JS">// Construct a schema, using GraphQL schema language
+var schema = buildSchema(`
+  type Query {
+    quoteOfTheDay: String
+    random: Float!
+    rollThreeDice: [Int]
+  }
+`);
+
+// The root provides a resolver function for each API endpoint
+var root = {
+  quoteOfTheDay: () =&gt; {
+    return Math.random() &lt; 0.5 ? 'Take it easy' : 'Salvation lies within';
+  },
+  random: () =&gt; {
+    return Math.random();
+  },
+  rollThreeDice: () =&gt; {
+    return [1, 2, 3].map(_ =&gt; 1 + Math.floor(Math.random() * 6));
+  },
+};
+</code></pre>
+
+<p>当然我们也可以自定义对象类型，操作起来与 ts 的接口很相似:</p>
+
+<pre><code class="language-JS">type RandomDie {
+  numSides: Int!
+  rollOnce: Int!
+  roll(numRolls: Int!): [Int]
+}
+
+type Query {
+  getDie(numSides: Int): RandomDie
+}
+</code></pre>
+
+<h4 id="传递参数">传递参数</h4>
+
+<pre><code class="language-JS">var schema = buildSchema(`
+  type Query {
+    rollDice(numDice: Int!, numSides: Int): [Int]
+  }
+`);
+
+// The root provides a resolver function for each API endpoint
+var root = {
+  rollDice: function ({ numDice, numSides }) {
+    var output = [];
+    for (var i = 0; i &lt; numDice; i++) {
+      output.push(1 + Math.floor(Math.random() * (numSides || 6)));
+    }
+    return output;
+  }
+};
+</code></pre>
+
+<p>因此查询的时候一定要带上对应的参数:</p>
+
+<pre><code class="language-JS">{
+  rollDice(numDice: 3, numSides: 6)
+}
+</code></pre>
+
+<p>在客户端请求的时候，我们可以通过 “$” 定义 query 的变量，并将变量作为单独映射来传递:</p>
+
+<pre><code class="language-JS">var dice = 3;
+var sides = 6;
+var query = `query RollDice($dice: Int!, $sides: Int) {
+  rollDice(numDice: $dice, numSides: $sides)
+}`;
+
+fetch('/graphql', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+  body: JSON.stringify({
+    query,
+    variables: { dice, sides },
+  })
+})
+  .then(r =&gt; r.json())
+  .then(data =&gt; console.log('data returned:', data));
+</code></pre>
+
+<blockquote>
+  <p>使用 <code class="highlighter-rouge">$dice</code> 和 <code class="highlighter-rouge">$sides</code> 作为 GraphQL 中的变量，我们无需在客户端对它们进行转义</p>
+</blockquote>
+
+<h4 id="mutation--input-types">Mutation / Input Types</h4>
+
+<p>假设你有一个 API 入口端点用于修改数据，像是向数据库中插入数据或修改已有数据，在 GraphQL 中，你应该将这个入口端点做为 <strong>Mutation</strong> 而不是 <strong>Query</strong>:</p>
+
+<pre><code class="language-JS">type Mutation {
+  setMessage(message: String): String
+}
+
+type Query {
+  getMessage: String
+}
+
+...
+var fakeDatabase = {};
+var root = {
+  setMessage: function ({message}) {
+    fakeDatabase.message = message;
+    return message;
+  },
+  getMessage: function () {
+    return fakeDatabase.message;
+  }
+};
+</code></pre>
+
+<p>但是更多情况下，你会发现有多个不同的变更接受相同的输入参数。常见的案例是在数据库中创建对象和更新对象的接口通常会接受一样的参数。你可以使用“输入类型”来简化 schema，使用 <strong>input</strong> 关键字而不是 <strong>type</strong> 关键字即可:</p>
+
+<pre><code class="language-JS">var schema = buildSchema(`
+  input MessageInput {
+    content: String
+    author: String
+  }
+
+  type Message {
+    id: ID!
+    content: String
+    author: String
+  }
+
+  type Query {
+    getMessage(id: ID!): Message
+  }
+
+  type Mutation {
+    createMessage(input: MessageInput): Message
+    updateMessage(id: ID!, input: MessageInput): Message
+  }
+`);
+
+// 如果 Message 拥有复杂字段，我们把它们放在这个对象里面。
+class Message {
+  constructor(id, {content, author}) {
+    this.id = id;
+    this.content = content;
+    this.author = author;
+  }
+}
+
+// 映射 username 到 content
+var fakeDatabase = {};
+
+var root = {
+  getMessage: function ({id}) {
+    if (!fakeDatabase[id]) {
+      throw new Error('no message exists with id ' + id);
+    }
+    return new Message(id, fakeDatabase[id]);
+  },
+  createMessage: function ({input}) {
+    // Create a random id for our "database".
+    var id = require('crypto').randomBytes(10).toString('hex');
+
+    fakeDatabase[id] = input;
+    return new Message(id, input);
+  },
+  updateMessage: function ({id, input}) {
+    if (!fakeDatabase[id]) {
+      throw new Error('no message exists with id ' + id);
+    }
+    // This replaces all old data, but some apps might want partial update.
+    fakeDatabase[id] = input;
+    return new Message(id, input);
+  },
+};
+</code></pre>
+
+<p>因此查询的时候如下写，并返回 id 等字段信息:</p>
+
+<pre><code class="language-JS">mutation {
+  createMessage(input: {
+    author: "andy",
+    content: "hope is a good thing",
+  }) {
+    id
+    author
+  }
+}
+</code></pre>
+
+<p>同样在客户端，我们可以这么写:</p>
+
+<pre><code class="language-JS">var author = 'andy';
+var content = 'hope is a good thing';
+var query = `mutation CreateMessage($input: MessageInput) {
+  createMessage(input: $input) {
+    id
+    author
+  }
+}`;
+
+fetch('/graphql', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+  body: JSON.stringify({
+    query,
+    variables: {
+      input: {
+        author,
+        content,
+      }
+    }
+  })
+})
+  .then(r =&gt; r.json())
+  .then(data =&gt; console.log('data returned:', data));
+</code></pre>
 
 <h2 id="uri--url">URI / URL</h2>
 
@@ -422,6 +747,7 @@ GET /users?name=tate
   <li><a href="https://segmentfault.com/q/1010000003064904">SegmentFault - 什么是 RESTful ？到底 REST 和 SOAP、RPC 有何区别？</a></li>
   <li><a href="https://msdn.microsoft.com/en-us/magazine/dd942839.aspx">MSDN - Service Station - More On REST</a> By Jon Flanders</li>
   <li><a href="https://www.cnblogs.com/LBSer/p/4853234.html">你应该知道的 RPC 原理</a> By zhanlijun</li>
+  <li><a href="https://graphql.org/graphql-js/">Getting Started With GraphQL.js</a></li>
 </ol>
  
 <div id="gitalk-container"></div>
