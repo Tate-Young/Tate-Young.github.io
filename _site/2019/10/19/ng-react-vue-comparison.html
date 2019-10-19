@@ -67,9 +67,9 @@
 <meta property="og:url" content="http://localhost:2333/2019/10/19/ng-react-vue-comparison.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-10-19T19:53:00+08:00" />
+<meta property="article:published_time" content="2019-10-19T20:00:00+08:00" />
 <script type="application/ld+json">
-{"description":"Angular、React 和 Vue","@type":"BlogPosting","url":"http://localhost:2333/2019/10/19/ng-react-vue-comparison.html","headline":"Angular、React 和 Vue","dateModified":"2019-10-19T19:53:00+08:00","datePublished":"2019-10-19T19:53:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/10/19/ng-react-vue-comparison.html"},"@context":"http://schema.org"}</script>
+{"description":"Angular、React 和 Vue","@type":"BlogPosting","url":"http://localhost:2333/2019/10/19/ng-react-vue-comparison.html","headline":"Angular、React 和 Vue","dateModified":"2019-10-19T20:00:00+08:00","datePublished":"2019-10-19T20:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/10/19/ng-react-vue-comparison.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -171,8 +171,8 @@
                 <h1 class="post-title" itemprop="name headline">
                     Angular、React 和 Vue</h1>
                 <div class="post-data">
-                    <time datetime="2019-10-19 19:53:00" itemprop="datePublished">
-                      发布时间：2019-10-19 19:53:00
+                    <time datetime="2019-10-19 20:00:00" itemprop="datePublished">
+                      发布时间：2019-10-19 20:00:00
                       &nbsp;&nbsp;&nbsp;
                       
                     </time>
@@ -208,7 +208,7 @@
             <h1 class="post-title" itemprop="name headline">
                 Angular、React 和 Vue</h1>
             <div class="post-data">
-                <time datetime="2019-10-19 19:53:00" itemprop="datePublished">2019-10-19 19:53:00</time>
+                <time datetime="2019-10-19 20:00:00" itemprop="datePublished">2019-10-19 20:00:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -317,9 +317,9 @@
   <li>完全由 TypeScript 编写</li>
   <li>提供 Angular CLI 脚手架</li>
   <li>提供了更全面的生命周期钩子</li>
-  <li>提升移动端的性能和 <code class="highlighter-rouge">iconic</code> 的融合，提供 <code class="highlighter-rouge">@angular/service-worker</code> 组件，更易于实践 PWA</li>
+  <li>提升移动端的性能和 <a href="https://ionicframework.com/docs/react/your-first-app">Ionic</a> 的融合，提供 <code class="highlighter-rouge">@angular/service-worker</code> 组件，更易于实践 PWA</li>
   <li>抛弃传统的 controller + $scope 的设计，拥抱组件式开发</li>
-  <li>融合 RxJS - 创建可观察对象，提供一系列操作符，替代 Promise，具体<a href="http://localhost:2333/2018/03/21/es6-promise-observable.html">参考我的这篇博客</a></li>
+  <li>集成 RxJS - 创建可观察对象，提供一系列操作符，替代 Promise，具体<a href="http://localhost:2333/2018/03/21/es6-promise-observable.html">参考我的这篇博客</a></li>
   <li>修改脏检测机制，采用单向数据流</li>
   <li>性能更好，体积更小</li>
 </ul>
@@ -468,7 +468,7 @@ const App={
 <p>总结评价 Vue 的话，我觉得应该是”前启 Angular，后继 React”，毕竟它的确充分吸收了 Angular 和 React 这两位前辈的优点和长处，并更好的运用于自身。👍</p>
 
 <blockquote>
-  <p>Vue 介绍可以<a href="http://localhost:2333/2018/08/06/react-react-router.html">参考我的这篇博客</a> 👈</p>
+  <p>Vue 介绍可以<a href="http://localhost:2333/2018/06/12/vue-profile.html">参考我的这篇博客</a> 👈</p>
 </blockquote>
 
 <h2 id="他们在未来的发展趋势是什么">他们在未来的发展趋势是什么</h2>
@@ -489,23 +489,92 @@ const App={
 
 <p><img src="https://i.loli.net/2019/10/19/YCk84RHBo37Qg1A.png" alt="angular-react-vue-npm-trends.png" /></p>
 
-<p>我们可以看到 Angular 和 React 在国际上使用还是很多的，而且发展趋于稳定。而 Vue 的话近几年发展速度很快，在国内已经达到很高的占有率，相比之下它的发展目前并不稳定。</p>
+<p>我们可以看到 Angular 和 React 在国际上使用还是很多的，而且发展趋于稳定，社区也比较强大。而 Vue 的话近几年发展速度很快，在国内已经达到很高的占有率，相比之下它的发展目前并不稳定。</p>
 
 <h3 id="ssr">SSR</h3>
 
-<h3 id="css-in-js-">CSS In JS ?</h3>
+<p>服务端渲染，相较于客户端渲染的两个比较大的优势:</p>
+
+<ul>
+  <li>更好的 SEO - 搜索引擎爬虫抓取工具可以直接查看完全渲染的页面</li>
+  <li>更快的内容到达时间 (time-to-content)，即首屏加载更快</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Angular</td>
+      <td>React</td>
+      <td>Vue</td>
+    </tr>
+    <tr>
+      <td>Angular Universal</td>
+      <td>Next</td>
+      <td>Nuxt</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="状态管理">状态管理</h3>
 
-<ul>
-  <li>Angular - ngrx/store</li>
-  <li>React - mobx / redux</li>
-  <li>Vue - vuex</li>
-</ul>
+<p>通过状态管理容器可以更方便管理数据和追踪变更，更容易维护和侦错:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Angular</td>
+      <td>React</td>
+      <td>Vue</td>
+    </tr>
+    <tr>
+      <td>ngrx/store</td>
+      <td>Mobx / Redux</td>
+      <td>Vuex</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="支持原生开发">支持原生开发</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Angular</td>
+      <td>React</td>
+      <td>Vue</td>
+    </tr>
+    <tr>
+      <td>Ionic / NativeScript</td>
+      <td>React-Native</td>
+      <td>Weex / NativeScript</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="typescript">TypeScript</h3>
 
+<p>JS 的松散语法给我们带来便利的同时，也带来了一些隐患：一些（通常是低级的）错误，要等到运行时才会抛出来。而 <strong>TypeScript</strong> 增加了类型检查，加强了数据的可预测性，大大降低了 TypeError 的几率。代码的维护和重构也更加方便。具体细节可以<a href="http://localhost:2333/2019/02/26/ts-profile.html">参考我的这篇博客</a> 👈</p>
+
+<blockquote>
+  <p><a href="https://rollbar.com">Rollbar</a>(类似 Sentry 可实时捕捉错误并汇集日志的平台) 于 2018 年总结的 <a href="https://rollbar.com/blog/top-10-javascript-errors/">top10 JavaScript Errors</a>，大部分都可以杜绝</p>
+</blockquote>
+
+<h3 id="css-in-js">CSS In JS</h3>
+
 <h2 id="我应该选择哪一个">我应该选择哪一个</h2>
+
+<p>现代框架之间的差距日渐减少，在选型方面不用太过纠结，可以参考下:</p>
+
+<ul>
+  <li>大型项目 - Angular &gt; React &gt; Vue</li>
+  <li>中小型项目 - React &gt; Vue &gt; Angular</li>
+  <li>减少人力成本 - Vue &gt; React &gt; Angular</li>
+  <li>移动开发 - React &gt; Angular &gt; Vue</li>
+</ul>
+
+<blockquote>
+  <p>小学生才做选择题</p>
+</blockquote>
 
 <h2 id="我学不动了怎么办">我学不动了怎么办</h2>
 
@@ -523,6 +592,7 @@ const App={
   <li><a href="https://recallhyx.github.io/2018/03/18/前端三大框架数据流动和原理/">前端三大框架数据流动和原理</a> By recallhyx</li>
   <li><a href="https://hackernoon.com/angular-vs-react-vs-vue-which-is-the-best-choice-for-2019-16ce0deb3847">Angular vs React vs Vue: Which is the Best Choice for 2019?</a> By Sophia</li>
   <li><a href="https://medium.com/@TechMagic/reactjs-vs-angular5-vs-vue-js-what-to-choose-in-2018-b91e028fa91d">React vs Angular vs Vue.js — What to choose in 2019?</a> By TechMagic</li>
+  <li><a href="https://juejin.im/post/5d018eb8e51d4550723b13d9">2019 年，Flutter 和 React Native 谁主沉浮</a> By 前端小智</li>
 </ol>
  
 <div id="gitalk-container"></div>
@@ -570,7 +640,7 @@ const App={
 
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-10-19 19:53:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-10-19 20:00:00</p> -->
         </div>
     </article>
 
