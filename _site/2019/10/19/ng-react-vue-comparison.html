@@ -1,0 +1,833 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+<head>
+    <meta content='Angular、React 和 Vue - Tate & Snow' name='title' />
+    <meta content='Angular、React 和 Vue - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>Angular、React 和 Vue - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Angular、React 和 Vue - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular、React 和 Vue - Tate & Snow">
+<meta name="twitter:keywords" content="Angular、React 和 Vue - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular、React 和 Vue - Tate & Snow">
+<meta name="og:keywords" content="Angular、React 和 Vue - Tate & Snow|Angular、React 和 Vue都 9102 年了，对于前端三大框架自己都有些接触，一直没有做一下总结，这次趁分享的机会好好理一下。我们接下来会探讨:  Angular、React 和 Vue 是什么，为什么存在？  他们分别有..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="Angular、React 和 Vue都 9102 年了，对于前端三大框架自己都有些接触，一直没有做一下总结，这次趁分享的机会好好理一下。我们接下来会探讨:  Angular、React 和 Vue 是什么，为什么存在？  他们分别有..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2019/10/19/ng-react-vue-comparison.html' property='og:url' />
+<meta content="http://localhost:2333/2019/10/19/ng-react-vue-comparison.html|Angular、React 和 Vue都 9102 年了，对于前端三大框架自己都有些接触，一直没有做一下总结，这次趁分享的机会好好理一下。我们接下来会探讨:  Angular、React 和 Vue 是什么，为什么存在？  他们分别有..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<!-- <script async src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Angular、React 和 Vue | Tate &amp; Snow</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Angular、React 和 Vue" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Angular、React 和 Vue" />
+<meta property="og:description" content="Angular、React 和 Vue" />
+<link rel="canonical" href="http://localhost:2333/2019/10/19/ng-react-vue-comparison.html" />
+<meta property="og:url" content="http://localhost:2333/2019/10/19/ng-react-vue-comparison.html" />
+<meta property="og:site_name" content="Tate &amp; Snow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-19T19:53:00+08:00" />
+<script type="application/ld+json">
+{"description":"Angular、React 和 Vue","@type":"BlogPosting","url":"http://localhost:2333/2019/10/19/ng-react-vue-comparison.html","headline":"Angular、React 和 Vue","dateModified":"2019-10-19T19:53:00+08:00","datePublished":"2019-10-19T19:53:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/10/19/ng-react-vue-comparison.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('框架', '/tool')" title="访问 框架" data-hover="框架">框架</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('后端', '/back')" title="访问 后端" data-hover="后端">后端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:2333/">首页</a>
+                
+                <a href="http://localhost:2333/front">前端</a>
+                
+                <a href="http://localhost:2333/tool">框架</a>
+                
+                <a href="http://localhost:2333/back">后端</a>
+                
+                <a href="http://localhost:2333/tags">标签</a>
+                
+                <a href="http://localhost:2333/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('框架', 'http://localhost:2333/tool')">框架</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('后端', 'http://localhost:2333/back')">后端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('Angular、React 和 Vue')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Angular、React 和 Vue</h1>
+                <div class="post-data">
+                    <time datetime="2019-10-19 19:53:00" itemprop="datePublished">
+                      发布时间：2019-10-19 19:53:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('Vue')" title="访问Vue" data-hover="Vue">
+                        Vue
+                        <span>(5)</span>
+                        
+                    </a>
+                    
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('Angular')" title="访问Angular" data-hover="Angular">
+                        Angular
+                        <span>(4)</span>
+                        
+                    </a>
+                    
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('React')" title="访问React" data-hover="React">
+                        React
+                        <span>(5)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Angular、React 和 Vue</h1>
+            <div class="post-data">
+                <time datetime="2019-10-19 19:53:00" itemprop="datePublished">2019-10-19 19:53:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="Javascript:;" onclick="onClickTag('Vue')" title="访问Vue" data-hover="Vue">
+                    Vue
+                    <span>(5)</span>
+                    </a>
+                
+                <a href="Javascript:;" onclick="onClickTag('Angular')" title="访问Angular" data-hover="Angular">
+                    Angular
+                    <span>(4)</span>
+                    </a>
+                
+                <a href="Javascript:;" onclick="onClickTag('React')" title="访问React" data-hover="React">
+                    React
+                    <span>(5)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="angularreact-和-vue">Angular、React 和 Vue</h1>
+
+<p>都 9102 年了，对于前端三大框架自己都有些接触，一直没有做一下总结，这次趁分享的机会好好理一下。我们接下来会探讨:</p>
+
+<ol>
+  <li>Angular、React 和 Vue 是什么，为什么存在？</li>
+  <li>他们分别有什么特性？</li>
+  <li>AngularJS 和 Angular 有什么区别吗？Vue 是抄袭 AngularJS 吗？</li>
+  <li>他们在未来的发展趋势是什么</li>
+  <li>我应该选择哪一个</li>
+  <li>我学不动了怎么办</li>
+</ol>
+
+<p>当然在介绍三大框架之前，我们先粗略看下这方面的前端发展史。</p>
+
+<h2 id="前端发展史">前端发展史</h2>
+
+<p>前端的发展一直都很迅速，这一切都可以总结为四个字，即 <strong>业务驱动</strong>。很好理解，场景和业务的复杂度越来越高，用户的需求也越来越多，用户体验也越来越严苛，因而我们的关注点和技术也时刻在变，如果不能顺应这股潮流，那么只能被淘汰。</p>
+
+<p>1、针对于 PC</p>
+
+<p>在很久很久之前，前端还在被叫做切图仔的时代，如何把图切得又精致又好看是门技术活儿，当然开玩笑，那时候前端还是主要负责做一个页面模板，然后拿给后端渲染。自从 ajax 横空出世，开创 web2.0 时代，开发模式也逐渐趋近于前后端分离，但是这个阶段主要还是根据 W3C 制定的标准来解决浏览器兼容性问题，因此 <strong>jQuery</strong> 应运而生，加上 api 简单易用，因此很大程度上流行了起来。但是它的缺点是什么呢，它的关注点一直在 DOM 而不是数据，而操作 DOM 一直是个繁琐的过程，而且对性能有很大影响。所以随着技术的演进，我们需要面向对象的编程思想，我们要能够提供一系列解决方案，因此前端的开发模式也逐渐演变至 MVVM，我们只需要关注数据，让框架自动去更新 DOM 状态就行了。在这种模式下，三足鼎立的局面就此呈现:</p>
+
+<ol>
+  <li>2009 - AnguarJS</li>
+  <li>2013 - React</li>
+  <li>2014 - Vue</li>
+  <li>2016 - Angular</li>
+</ol>
+
+<p><img src="https://i.loli.net/2019/10/19/ZsCdyIYibWFBa8X.jpg" alt="angular-react-vue-jquery.jpeg" /></p>
+
+<p>而关于 MVVM 的解释，这里引用<a href="https://www.jcat.club/2018/10/23/mvm和mvvm区别/">此篇博客</a>的图:</p>
+
+<p><img src="https://img-blog.csdnimg.cn/20181103150157814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzIxNjEwNQ==,size_16,color_FFFFFF,t_70" alt="MVVM" /></p>
+
+<p>2、 针对于 移动端</p>
+
+<p>随着智能手机的普遍，移动端的需求也越来越多，因此更多关注响应式设计和用户体验。<strong>hybrid</strong> 应用也逐渐火热，但是它在体验和性能上，仍然比原生要差很远。所以之后阿里推出了 <a href="https://github.com/alibaba/weex">weex</a>、facebook 推出了 <a href="https://github.com/facebook/react-native">React Native</a>、Google 也推出了 <a href="https://github.com/flutter/flutter">flutter</a>。而在网页开发技术上，Google 更是推出了 <strong>PWA</strong>，利用 Service workder 等技术来实现离线访问和消息推送等，具体可<a href="http://localhost:2333/2019/04/07/progressive-web-app.html">参考我的这篇博客</a> 👈</p>
+
+<p>在未来的发展道路上，前端还有很多路要走，谁又能知道随着 VR、AR 等的普及，又有哪些框架能够站出来，或者哪些又要退出历史舞台。</p>
+
+<h2 id="他们分别有什么特性">他们分别有什么特性</h2>
+
+<h3 id="angularjs">AngularJS</h3>
+
+<p>在讲 Angular 之前，必须要提到它的前身 <strong>AngularJS</strong>，作为老大哥，他 2009 年就出道了，它的背后就是 Google 大佬，因此它的出世必定受到世人的瞩目，那么它的出现给我们带来了什么:</p>
+
+<ul>
+  <li>模板 - 可复用的 html 片段</li>
+  <li>指令 - ng，操作 DOM 或复用模板，分为编译和链接两个阶段。<a href="http://localhost:2333/2018/01/30/js-this.html">具体可以参考我之前这篇博客</a></li>
+  <li>依赖注入(Dependency Injection) - 我需要什么服务或依赖，我自己注入进来即可</li>
+  <li>双向数据绑定 - 脏检测(Dirty Checking)，采用深度优先遍历原则。<a href="http://localhost:2333/2018/04/26/ng-two-way-data-binding.html">具体可以参考我之前这篇博客</a></li>
+</ul>
+
+<blockquote>
+  <p>Angular 特指 2.x 以上版本，1.x 版本成为 AngularJS</p>
+</blockquote>
+
+<p>让我们来看看一个标准的 AngularJS 的示例，<code class="highlighter-rouge">ng-app</code> 的启动过程可以<a href="http://localhost:2333/2018/04/24/ng-bootstrap.html">参考我的这篇博客</a>:</p>
+
+<pre><code class="language-HTML">&lt;html ng-app&gt;
+  &lt;head&gt;
+    &lt;script src="http://code.angularjs.org/angular-xxx.min.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;label&gt;Name:&lt;/label&gt;
+      &lt;my-directive /&gt;
+      &lt;input type="text" ng-model="name" placeholder="Enter your name"&gt;
+      &lt;hr&gt;
+      &lt;h1&gt;Hello, { {  name || 'World' } }!&lt;/h1&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>成也萧何，败也萧何。正是双向数据绑定的脏检测机制太消耗性能，对于中大型应用的话，每一次检测都是致命的，再加上 AngularJS 本身太臃肿，又对移动端的支持不是那么完善，因此它的替代者 Angular 出现了。</p>
+
+<h3 id="angular">Angular</h3>
+
+<p>虽然 Angular 在模式上一定程度上继承了 AngularJS，比如指令、双向绑定等，也有一些做了优化换了名字，比如 filter 改为 pipe 管道等，但是很多地方它的实现方式更加优化了，同时最大的改动是，它完全由 TypeScript 编写。因此从这个角度来看，Angular 完全是区别于 AngularJS 单独存在的，那它总共带来了哪些变化呢:</p>
+
+<ul>
+  <li>完全由 TypeScript 编写</li>
+  <li>提供 Angular CLI 脚手架</li>
+  <li>提供了更全面的生命周期钩子</li>
+  <li>提升移动端的性能和 <code class="highlighter-rouge">iconic</code> 的融合，提供 <code class="highlighter-rouge">@angular/service-worker</code> 组件，更易于实践 PWA</li>
+  <li>抛弃传统的 controller + $scope 的设计，拥抱组件式开发</li>
+  <li>融合 RxJS - 创建可观察对象，提供一系列操作符，替代 Promise，具体<a href="http://localhost:2333/2018/03/21/es6-promise-observable.html">参考我的这篇博客</a></li>
+  <li>修改脏检测机制，采用单向数据流</li>
+  <li>性能更好，体积更小</li>
+</ul>
+
+<pre><code class="language-JS">import { Component, ViewEncapsulation } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.less'],
+  encapsulation: ViewEncapsulation.Emulated,
+})
+
+export class AppComponent {
+  title = 'angular-demo';
+}
+</code></pre>
+
+<p>对于双向数据绑定，Angular 通过 <code class="highlighter-rouge">Zone</code> 优化了脏检测的方式，采用<strong>猴子补丁(Monkey-patched)</strong>运行时动态替换的方式，将 JavaScript 中的异步任务都进行了包装，这使得这些异步任务都能运行在 Zone 的执行上下文中，每个异步任务在 Zone 中都是一个任务。从而实现了监听，然后去执行变化检测。对于 Angular，任何数据都是从顶部往底部流动，即单向数据流，而且我们可以通过 <code class="highlighter-rouge">onPush</code> 策略来控制哪些部分可以跳过检测，从而避免不必要的性能损耗。我们可以简单的看一下变化检测器的状态:</p>
+
+<pre><code class="language-JS">export declare enum ChangeDetectorStatus {
+  CheckOnce = 0, // 表示在执行 detectChanges 之后，变化检测器的状态将会变成 Checked
+  Checked = 1, // 表示变化检测将被跳过，直到变化检测器的状态恢复成 CheckOnce
+  CheckAlways = 2, // 表示在执行 detectChanges 之后，变化检测器的状态始终为 CheckAlways
+  Detached = 3, // 表示该变化检测器树已从根变化检测器树中移除，变化检测将会被跳过
+  Errored = 4, // 表示在执行变化检测时出现异常
+  Destroyed = 5 // 表示变化检测器已被销毁
+}
+</code></pre>
+
+<blockquote>
+  <p>同样，更多细节请<a href="http://localhost:2333/2018/04/24/ng-bootstrap.html">参考我的这篇博客</a> 👈</p>
+</blockquote>
+
+<h3 id="react">React</h3>
+
+<p><strong>React</strong> 是 facebook 于 2013 年推出的库，严格意义上并不是框架，它又带来了什么呢:</p>
+
+<ul>
+  <li>组件化，更灵活</li>
+  <li>利用 props 形成单向的数据流，根据 state 的变化来更新 view</li>
+  <li>万物皆 JavaScript - JSX、<a href="2019/04/13/css-in-js.html">CSS In Js</a></li>
+  <li>利用虚拟 DOM 通过 diff 算法来提升渲染性能</li>
+  <li><a href="2019/04/16/react-hooks.html">React Hooks</a></li>
+</ul>
+
+<p>React 作为一个库，优点就是灵活，但如果要开发项目时，就得入手 React 全家桶，虽然基本都是无缝式接入，但是还是要考虑其他依赖库的稳定性:</p>
+
+<pre><code class="language-JS">class HelloMessage extends React.Component {
+  render() {
+    return (
+      &lt;div&gt;
+        Hello {this.props.name}
+      &lt;/div&gt;
+    );
+  }
+}
+
+ReactDOM.render(
+  &lt;HelloMessage name="Taylor" /&gt;,
+  document.getElementById('hello-example')
+);
+</code></pre>
+
+<blockquote>
+  <p>React 介绍可以<a href="http://localhost:2333/2018/08/06/react-react-router.html">参考我的这篇博客</a> 👈</p>
+</blockquote>
+
+<h3 id="vue">Vue</h3>
+
+<p>Vue 作为最后一个上场的，自然吸收了天地之精华，去粗取精，那么尤大又为它带来了什么呢:</p>
+
+<ul>
+  <li>模板</li>
+  <li>指令 - v</li>
+  <li>依赖注入</li>
+  <li>双向数据绑定</li>
+  <li>虚拟 DOM</li>
+</ul>
+
+<p>额，这么一看，Vue 的确是在 AngularJS 和 React 身上取了不少经，但它自身也做了不少优化，比如指令简化了很多，双向数据绑定也是基于 <code class="highlighter-rouge">Object.defineProperty</code> 来实现，可以参考 <a href="http://localhost:2333/2018/07/20/vue-reactivity-in-depth.html">Vue 深入响应式原理</a>。同时它也带来了新的一些特性，比如 computed 计算属性等:</p>
+
+<pre><code class="language-JS">&lt;template&gt;
+  &lt;div id="app"&gt;
+    &lt;img alt="Vue logo" src="./assets/logo.png"&gt;
+    &lt;HelloWorld msg="Welcome to Your Vue.js App"/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: 'app',
+  components: {
+    HelloWorld
+  }
+}
+&lt;/script&gt;
+</code></pre>
+
+<p>而 Vue3.0 也呼之欲出，我们可以提前看下它做出的一些变化，更多可以<a href="https://juejin.im/post/5c3e89f651882524b333b3bd">参考这篇文章</a>:</p>
+
+<ul>
+  <li>更小巧，对 <code class="highlighter-rouge">tree-shaking</code> 支持更好</li>
+  <li>采用 TypeScrip 重写，并增強对 TypeScript 的支持</li>
+  <li><a href="https://zhuanlan.zhihu.com/p/68477600">Function-based api</a></li>
+</ul>
+
+<p>这个 api 写起来你会发现跟 React Hooks 极其相似，但是按照尤大的解释，性能上会好一些，而且写起来更简单:</p>
+
+<pre><code class="language-JS"># React Hooks
+function App() {
+  const [count, setCount] = useState(0);
+  return (
+    &lt;div className="App"&gt;
+      &lt;button onClick={() =&gt; setCount(count - 1)}&gt;add&lt;/button&gt;
+      &lt;h2&gt;{count}&lt;/h2&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;remove&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+# Vue Function-based
+const App={
+  template: `
+    &lt;div class="App"&gt;
+      &lt;button @click="addCount"&gt;add&lt;/button&gt;
+      &lt;h2&gt;8&lt;/h2&gt;
+      &lt;button @click="removeCount"&gt;remove&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+  setup() {
+    const count = value(0);
+    const addCount = () =&gt; count.value++;
+    const removeCount = () =&gt; count.value--;
+    return {
+      count,
+      addCount,
+      removeCount,
+    }
+  }
+}
+</code></pre>
+
+<p>总结评价 Vue 的话，我觉得应该是”前启 Angular，后继 React”，毕竟它的确充分吸收了 Angular 和 React 这两位前辈的优点和长处，并更好的运用于自身。👍</p>
+
+<blockquote>
+  <p>Vue 介绍可以<a href="http://localhost:2333/2018/08/06/react-react-router.html">参考我的这篇博客</a> 👈</p>
+</blockquote>
+
+<h2 id="他们在未来的发展趋势是什么">他们在未来的发展趋势是什么</h2>
+
+<h3 id="市场占有率">市场占有率</h3>
+
+<p>三大框架目前市场趋势可以参考下面:</p>
+
+<p><a href="https://trends.google.com/trends/?geo=US">谷歌趋势</a>:</p>
+
+<p><img src="https://i.loli.net/2019/10/19/PG6g9eOfqKsdBCj.png" alt="angular-react-vue-google-trends.png" /></p>
+
+<p><a href="http://zhishu.baidu.com/v2/index.html#/">百度趋势</a>:</p>
+
+<p><img src="https://i.loli.net/2019/10/19/EJGSiWtkLMNXpBn.png" alt="angular-react-vue-baidu-trends.png" /></p>
+
+<p><a href="https://www.npmtrends.com">npm 趋势</a>:</p>
+
+<p><img src="https://i.loli.net/2019/10/19/YCk84RHBo37Qg1A.png" alt="angular-react-vue-npm-trends.png" /></p>
+
+<p>我们可以看到 Angular 和 React 在国际上使用还是很多的，而且发展趋于稳定。而 Vue 的话近几年发展速度很快，在国内已经达到很高的占有率，相比之下它的发展目前并不稳定。</p>
+
+<h3 id="ssr">SSR</h3>
+
+<h3 id="css-in-js-">CSS In JS ?</h3>
+
+<h3 id="状态管理">状态管理</h3>
+
+<ul>
+  <li>Angular - ngrx/store</li>
+  <li>React - mobx / redux</li>
+  <li>Vue - vuex</li>
+</ul>
+
+<h3 id="typescript">TypeScript</h3>
+
+<h2 id="我应该选择哪一个">我应该选择哪一个</h2>
+
+<h2 id="我学不动了怎么办">我学不动了怎么办</h2>
+
+<p>撸起袖子干</p>
+
+<blockquote>
+  <p>未完待续</p>
+</blockquote>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://juejin.im/post/5c130f6ee51d4571a157701f">前端发展历程</a> By 411020382</li>
+  <li><a href="https://kknews.cc/tech/o53226p.html">web2.0 時代</a> By 前端探索旺</li>
+  <li><a href="https://recallhyx.github.io/2018/03/18/前端三大框架数据流动和原理/">前端三大框架数据流动和原理</a> By recallhyx</li>
+  <li><a href="https://hackernoon.com/angular-vs-react-vs-vue-which-is-the-best-choice-for-2019-16ce0deb3847">Angular vs React vs Vue: Which is the Best Choice for 2019?</a> By Sophia</li>
+  <li><a href="https://medium.com/@TechMagic/reactjs-vs-angular5-vs-vue-js-what-to-choose-in-2018-b91e028fa91d">React vs Angular vs Vue.js — What to choose in 2019?</a> By TechMagic</li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2019/10/19/ng-react-vue-comparison.html';
+        this.page.identifier = '/2019/10/19/ng-react-vue-comparison';
+        this.page.title = 'Angular、React 和 Vue';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-10-19 19:53:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<script async src="/search/live2d/autoload.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
