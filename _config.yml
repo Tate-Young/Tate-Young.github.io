@@ -17,11 +17,11 @@ links:
   - name:         前端
     url:          /front
     external:     false
-  - name:         框架
-    url:          /tool
+  - name:         历史
+    url:          /history
     external:     false
-  - name:         后端
-    url:          /back
+  - name:         其他
+    url:          /other
     external:     false
   - name:         标签
     url:          /tags

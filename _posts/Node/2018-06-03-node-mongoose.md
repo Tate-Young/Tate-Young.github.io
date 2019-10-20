@@ -1,6 +1,6 @@
 ---
 layout: blog
-back: true
+front: true
 comments: True
 flag: Node
 background: gray

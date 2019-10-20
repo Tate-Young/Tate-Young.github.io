@@ -11,7 +11,6 @@ update: 2019-03-21 17:25:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/03/20/5c921f1c29709.png
 tags:
 - React
-- Mobx
 ---
 # {{ page.title }}
 

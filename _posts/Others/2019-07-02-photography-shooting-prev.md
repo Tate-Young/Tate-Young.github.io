@@ -1,6 +1,7 @@
 ---
 layout: blog
 comments: True
+other: true
 flag: Other
 background: green
 category: 娱乐

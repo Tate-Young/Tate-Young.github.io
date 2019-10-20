@@ -1,7 +1,7 @@
 ---
 layout: blog
-back: true
-tool: true
+front: true
+front: true
 comments: True
 flag: Express
 background: gray

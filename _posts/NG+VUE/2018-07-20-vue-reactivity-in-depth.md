@@ -1,6 +1,6 @@
 ---
 layout: blog
-tool: true
+front: true
 comments: True
 flag: Vue
 background: green

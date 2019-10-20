@@ -1,6 +1,6 @@
 ---
 layout: blog
-tool: true
+front: true
 comments: True
 flag: Vue
 background: green
@@ -11,6 +11,7 @@ background-image: https://miro.medium.com/max/7680/1*MjrP9m07l0qJ0Y9TSH1QCA.jpeg
 tags:
 - Vue
 - Angular
+- AngularJS
 - React
 ---
 # {{ page.title }}

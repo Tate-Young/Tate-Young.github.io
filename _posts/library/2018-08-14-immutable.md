@@ -1,6 +1,6 @@
 ---
 layout: blog
-tool: true
+front: true
 comments: True
 flag: JS
 background: green
@@ -9,9 +9,8 @@ title:  Immutable
 date:   2018-08-14 22:50:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/14/5b726b7f8d3b1.jpg
 tags:
-- immutable
-- redux
 - js
+- React
 ---
 # {{ page.title }}
 
@@ -177,8 +176,8 @@ const { List } = require('immutable')
 
 const list1 = List([1, 2, 3]);
 var list2 = list1.withMutations(function (list) {
-    // 经过优化，会合并中间装填，仅仅会生成最后一次 Imutable
-    list.push(4).push(5).push(6);
+  // 经过优化，会合并中间装填，仅仅会生成最后一次 Imutable
+  list.push(4).push(5).push(6);
 });
 // 每一个 push 会生成一个新的 Imutable
 var list3 = list1.push(4).push(5).push(6);

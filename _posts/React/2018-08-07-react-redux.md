@@ -11,7 +11,6 @@ update: 2019-03-10 13:38:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/08/5b6a497fea578.png
 tags:
 - React
-- Redux
 ---
 # {{ page.title }}
 
