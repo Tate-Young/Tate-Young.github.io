@@ -175,6 +175,8 @@
                       发布时间：2019-10-19 20:00:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-10-21 00:00:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -248,7 +250,7 @@
 <ol>
   <li>Angular、React 和 Vue 是什么，为什么存在？</li>
   <li>他们分别有什么特性？</li>
-  <li>AngularJS 和 Angular 有什么区别吗？Vue 是抄袭 AngularJS 吗？</li>
+  <li>AngularJS 和 Angular 有什么区别吗？Vue 是“抄袭” AngularJS 吗？</li>
   <li>他们在未来的发展趋势是什么</li>
   <li>我应该选择哪一个</li>
   <li>我学不动了怎么办</li>
@@ -287,7 +289,7 @@
 
 <h3 id="angularjs">AngularJS</h3>
 
-<p>在讲 Angular 之前，必须要提到它的前身 <strong>AngularJS</strong>，作为老大哥，他 2009 年就出道了，它的背后就是 Google 大佬，因此它的出世必定受到世人的瞩目，那么它的出现给我们带来了什么:</p>
+<p>在讲 Angular 之前，必须要提到它的前身 <strong>AngularJS</strong>，作为老大哥，他 2009 年就出道了，它的背后就是 Google 大佬，因此它的出世必定受到世人的瞩目，那么它的出现给我们带来了什么 pros and cons:</p>
 
 <ul>
   <li>模板 - 可复用的 html 片段</li>
@@ -332,7 +334,7 @@
   <li>抛弃传统的 controller + $scope 的设计，拥抱组件式开发</li>
   <li>集成 RxJS - 创建可观察对象，提供一系列操作符，替代 Promise，具体<a href="http://localhost:2333/2018/03/21/es6-promise-observable.html">参考我的这篇博客</a></li>
   <li>修改脏检测机制，采用单向数据流</li>
-  <li>性能更好，体积更小</li>
+  <li>AOT 预先编译机制 - 在浏览器下载和运行代码之前的编译阶段，AOT 会先把你的 Angular HTML 和 TypeScript 代码转换成高效的 JavaScript 代码，渲染更快，性能更好，体积更小</li>
 </ul>
 
 <pre><code class="language-JS">import { Component, ViewEncapsulation } from '@angular/core';
@@ -372,7 +374,7 @@ export class AppComponent {
 <ul>
   <li>组件化，更灵活</li>
   <li>利用 props 形成单向的数据流，根据 state 的变化来更新 view</li>
-  <li>万物皆 JavaScript - JSX、<a href="2019/04/13/css-in-js.html">CSS In Js</a></li>
+  <li>万物皆可 JavaScript - JSX、<a href="2019/04/13/css-in-js.html">CSS In Js</a></li>
   <li>利用虚拟 DOM 通过 diff 算法来提升渲染性能</li>
   <li><a href="2019/04/16/react-hooks.html">React Hooks</a></li>
 </ul>
@@ -405,7 +407,7 @@ ReactDOM.render(
 
 <ul>
   <li>模板</li>
-  <li>指令 - v</li>
+  <li>指令 - v，简化功能，只封装 DOM 操作</li>
   <li>依赖注入</li>
   <li>双向数据绑定</li>
   <li>虚拟 DOM</li>
@@ -484,7 +486,7 @@ const App={
 
 <h2 id="他们在未来的发展趋势是什么">他们在未来的发展趋势是什么</h2>
 
-<h3 id="市场占有率">市场占有率</h3>
+<h3 id="市场占有率及性能">市场占有率及性能</h3>
 
 <p>三大框架目前市场趋势可以参考下面:</p>
 
@@ -500,7 +502,37 @@ const App={
 
 <p><img src="https://i.loli.net/2019/10/19/YCk84RHBo37Qg1A.png" alt="angular-react-vue-npm-trends.png" /></p>
 
-<p>我们可以看到 Angular 和 React 在国际上使用还是很多的，而且发展趋于稳定，社区也比较强大。而 Vue 的话近几年发展速度很快，在国内已经达到很高的占有率，相比之下它的发展目前并不稳定。</p>
+<p>我们可以看到 Angular 和 React 在国际上使用还是很多的，而且发展趋于稳定，社区也比较强大。而 Vue 的话近几年发展速度很快，在国内已经达到很高的占有率，相比之下它的发展目前并不稳定。我们可以再看一看他们之间的<a href="https://www.stefankrause.net/js-frameworks-benchmark6/webdriver-ts-results/table.html">性能测试比较</a>:</p>
+
+<p><img src="https://i.loli.net/2019/10/21/qZJNmKtwMO1rnRu.png" alt="angular-react-vue-benchmark.png" /></p>
+
+<h3 id="单向-or-双向数据绑定">单向 or 双向数据绑定</h3>
+
+<p>数据绑定来说，单向和双向都有适合自己的场景，虽然双向绑定带来了很多便利，但仍有很多不容忽视的问题:</p>
+
+<ul>
+  <li>单向 - 实现简单，容易追踪数据变化</li>
+  <li>双向 - 实现复杂，不易追踪数据变化，但可以简化代码，数据模型和视图无缝同步，更适用于表单操作</li>
+</ul>
+
+<h3 id="状态管理">状态管理</h3>
+
+<p>通过状态管理容器可以更方便管理数据和追踪变更，更容易维护和侦错。那是不是这样就完了，还有一个书写的问题，既然要有效管理这些数据，样板代码自然就多了，比如原生 redux 就一直被诟病，因此我们可以借助类似 <code class="highlighter-rouge">redux-sauce</code> 或者 <code class="highlighter-rouge">iron-redux</code> 来简化书写:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Angular</td>
+      <td>React</td>
+      <td>Vue</td>
+    </tr>
+    <tr>
+      <td>ngrx/store</td>
+      <td>Mobx / Redux</td>
+      <td>Vuex</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="ssr">SSR</h3>
 
@@ -526,25 +558,6 @@ const App={
   </tbody>
 </table>
 
-<h3 id="状态管理">状态管理</h3>
-
-<p>通过状态管理容器可以更方便管理数据和追踪变更，更容易维护和侦错:</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>Angular</td>
-      <td>React</td>
-      <td>Vue</td>
-    </tr>
-    <tr>
-      <td>ngrx/store</td>
-      <td>Mobx / Redux</td>
-      <td>Vuex</td>
-    </tr>
-  </tbody>
-</table>
-
 <h3 id="支持原生开发">支持原生开发</h3>
 
 <table>
@@ -562,6 +575,15 @@ const App={
   </tbody>
 </table>
 
+<h3 id="css-in-js-or-css-modules">CSS In JS or CSS Modules</h3>
+
+<p>CSS 模块化的解决方案有很多，主要是针对全局作用域问题，现主要有两类，具体<a href="http://localhost:2333/2019/04/13/css-in-js.html">参考我的这篇博客</a>:</p>
+
+<ul>
+  <li>CSS Modules - 采用 CSS，或者直接用 Sass/Less 预编译，搭配 webpack 使用</li>
+  <li>CSS in JS - 抛弃 CSS，通过 JS 来写样式。缺点是不能利用成熟的 CSS 预处理器，复用性差，需要编辑器支持代码补全和高亮。目前比较好的集成于 React</li>
+</ul>
+
 <h3 id="typescript">TypeScript</h3>
 
 <p>JS 的松散语法给我们带来便利的同时，也带来了一些隐患：一些（通常是低级的）错误，要等到运行时才会抛出来。而 <strong>TypeScript</strong> 增加了类型检查，加强了数据的可预测性，大大降低了 TypeError 的几率。代码的维护和重构也更加方便。具体细节可以<a href="http://localhost:2333/2019/02/26/ts-profile.html">参考我的这篇博客</a> 👈</p>
@@ -570,11 +592,9 @@ const App={
   <p><a href="https://rollbar.com">Rollbar</a>(类似 Sentry 可实时捕捉错误并汇集日志的平台) 于 2018 年总结的 <a href="https://rollbar.com/blog/top-10-javascript-errors/">top10 JavaScript Errors</a>，大部分都可以杜绝</p>
 </blockquote>
 
-<h3 id="css-in-js">CSS In JS</h3>
-
 <h2 id="我应该选择哪一个">我应该选择哪一个</h2>
 
-<p>现代框架之间的差距日渐减少，在选型方面不用太过纠结，可以参考下:</p>
+<p>现代框架之间的差距日渐减少，在选型方面不用太过纠结，实在要说的话可以参考下:</p>
 
 <ul>
   <li>大型项目 - Angular &gt; React &gt; Vue</li>
@@ -583,17 +603,9 @@ const App={
   <li>移动开发 - React &gt; Angular &gt; Vue</li>
 </ul>
 
-<blockquote>
-  <p>小学生才做选择题</p>
-</blockquote>
-
 <h2 id="我学不动了怎么办">我学不动了怎么办</h2>
 
 <p>撸起袖子干</p>
-
-<blockquote>
-  <p>未完待续</p>
-</blockquote>
 
 <h2 id="参考链接">参考链接</h2>
 
@@ -601,9 +613,9 @@ const App={
   <li><a href="https://juejin.im/post/5c130f6ee51d4571a157701f">前端发展历程</a> By 411020382</li>
   <li><a href="https://kknews.cc/tech/o53226p.html">web2.0 時代</a> By 前端探索旺</li>
   <li><a href="https://recallhyx.github.io/2018/03/18/前端三大框架数据流动和原理/">前端三大框架数据流动和原理</a> By recallhyx</li>
-  <li><a href="https://hackernoon.com/angular-vs-react-vs-vue-which-is-the-best-choice-for-2019-16ce0deb3847">Angular vs React vs Vue: Which is the Best Choice for 2019?</a> By Sophia</li>
   <li><a href="https://medium.com/@TechMagic/reactjs-vs-angular5-vs-vue-js-what-to-choose-in-2018-b91e028fa91d">React vs Angular vs Vue.js — What to choose in 2019?</a> By TechMagic</li>
   <li><a href="https://juejin.im/post/5d018eb8e51d4550723b13d9">2019 年，Flutter 和 React Native 谁主沉浮</a> By 前端小智</li>
+  <li><a href="https://github.com/camsong/blog/issues/11">给 2019 前端的 5 个建议</a> By camsong</li>
 </ol>
  
 <div id="gitalk-container"></div>
