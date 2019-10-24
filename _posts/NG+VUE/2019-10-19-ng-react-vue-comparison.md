@@ -79,7 +79,7 @@ tags:
       <my-directive />
       <input type="text" ng-model="name" placeholder="Enter your name">
       <hr>
-      <h1>Hello, { {  name || 'World' } }!</h1>
+      <h1>Hello, {{  name || 'World' }}!</h1>
     </div>
   </body>
 </html>
@@ -143,20 +143,18 @@ export declare enum ChangeDetectorStatus {
 React 作为一个库，优点就是灵活，但如果要开发项目时，就得入手 React 全家桶，虽然基本都是无缝式接入，但是还是要考虑其他依赖库的稳定性:
 
 ```JS
-class HelloMessage extends React.Component {
-  render() {
-    return (
-      <div>
-        Hello {this.props.name}
-      </div>
-    );
-  }
+function HelloMessage {
+  return (
+    <div>
+      Hello {this.props.name}
+    </div>
+  )
 }
 
 ReactDOM.render(
-  <HelloMessage name="Taylor" />,
+  <HelloMessage name="World" />,
   document.getElementById('hello-example')
-);
+)
 ```
 
 > React 介绍可以[参考我的这篇博客]( {{site.url}}/2018/08/06/react-react-router.html ) 👈
@@ -266,7 +264,7 @@ const App={
 
 数据绑定来说，单向和双向都有适合自己的场景，虽然双向绑定带来了很多便利，但仍有很多不容忽视的问题:
 
-* 单向 - 实现简单，容易追踪数据变化
+* 单向 - 实现简单，容易追踪数据变化，更适合状态管理
 * 双向 - 实现复杂，不易追踪数据变化，但可以简化代码，数据模型和视图无缝同步，更适用于表单操作
 
 ### 状态管理

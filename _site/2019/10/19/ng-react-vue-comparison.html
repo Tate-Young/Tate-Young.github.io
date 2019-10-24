@@ -175,7 +175,7 @@
                       发布时间：2019-10-19 20:00:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-10-21 00:00:00
+                        修改时间：2019-10-21 17:59:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -314,7 +314,7 @@
       &lt;my-directive /&gt;
       &lt;input type="text" ng-model="name" placeholder="Enter your name"&gt;
       &lt;hr&gt;
-      &lt;h1&gt;Hello, { {  name || 'World' } }!&lt;/h1&gt;
+      &lt;h1&gt;Hello, !&lt;/h1&gt;
     &lt;/div&gt;
   &lt;/body&gt;
 &lt;/html&gt;
@@ -381,20 +381,18 @@ export class AppComponent {
 
 <p>React 作为一个库，优点就是灵活，但如果要开发项目时，就得入手 React 全家桶，虽然基本都是无缝式接入，但是还是要考虑其他依赖库的稳定性:</p>
 
-<pre><code class="language-JS">class HelloMessage extends React.Component {
-  render() {
-    return (
-      &lt;div&gt;
-        Hello {this.props.name}
-      &lt;/div&gt;
-    );
-  }
+<pre><code class="language-JS">function HelloMessage {
+  return (
+    &lt;div&gt;
+      Hello {this.props.name}
+    &lt;/div&gt;
+  )
 }
 
 ReactDOM.render(
-  &lt;HelloMessage name="Taylor" /&gt;,
+  &lt;HelloMessage name="World" /&gt;,
   document.getElementById('hello-example')
-);
+)
 </code></pre>
 
 <blockquote>
@@ -511,7 +509,7 @@ const App={
 <p>数据绑定来说，单向和双向都有适合自己的场景，虽然双向绑定带来了很多便利，但仍有很多不容忽视的问题:</p>
 
 <ul>
-  <li>单向 - 实现简单，容易追踪数据变化</li>
+  <li>单向 - 实现简单，容易追踪数据变化，更适合状态管理</li>
   <li>双向 - 实现复杂，不易追踪数据变化，但可以简化代码，数据模型和视图无缝同步，更适用于表单操作</li>
 </ul>
 

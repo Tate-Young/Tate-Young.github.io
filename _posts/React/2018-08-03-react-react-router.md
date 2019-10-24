@@ -21,7 +21,7 @@ React 是一个 View 层的框架，用来渲染视图，它主要做几件事�
 * 根据 state 的变化来更新 view
 * 利用虚拟 DOM 来提升渲染性能
 
-> React 将 DOM 抽象为 **虚拟 DOM**, 然后通过新旧虚拟 DOM 这两个对象的差异(**Diff** 算法)，将变化的部分重新渲染
+> React 将 DOM 抽象为 **虚拟 DOM**, 然后通过新旧虚拟 DOM 这两个对象的差异(**Diff** 算法)，将变化的部分重新渲染，具体可以[查看这篇博客](https://hackernoon.com/virtual-dom-in-reactjs-43a3fdb1d130) 👈
 
 ## 安装
 
@@ -754,3 +754,4 @@ const ShowTheLocationWithRouter = withRouter(ShowTheLocation);
 12. [深入理解 React 组件状态(State)](https://juejin.im/entry/59522bdb6fb9a06b9a516113)
 13. [React 虚拟 Dom 和 diff 算法](https://juejin.im/post/5a3200fe51882554bd5111a0) By Y__
 14. [React Router 4.x 开发，这些雷区我们都帮你踩过了](http://jdc.jd.com/archives/212552) By sunyinfeng
+15. [Virtual DOM in ReactJS](https://hackernoon.com/virtual-dom-in-reactjs-43a3fdb1d130) By Rupesh Mishra
