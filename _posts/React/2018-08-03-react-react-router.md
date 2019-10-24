@@ -21,7 +21,7 @@ React 是一个 View 层的框架，用来渲染视图，它主要做几件事�
 * 根据 state 的变化来更新 view
 * 利用虚拟 DOM 来提升渲染性能
 
-> React 将 DOM 抽象为 **虚拟 DOM**, 然后通过新旧虚拟 DOM 这两个对象的差异(**Diff** 算法)，将变化的部分重新渲染，具体可以[查看这篇博客](https://hackernoon.com/virtual-dom-in-reactjs-43a3fdb1d130) 👈
+> React 将 DOM 抽象为 **虚拟 DOM**, 然后通过新旧虚拟 DOM 这两个对象的差异(**Diff** 算法)，将变化的部分重新渲染，具体可以[查看我的这篇博客]( {{site.url}}/2019/10/24/react-virtual-dom.html ) 👈
 
 ## 安装
 

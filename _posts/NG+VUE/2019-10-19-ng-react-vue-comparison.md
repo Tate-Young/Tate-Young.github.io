@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Angular、React 和 Vue
 date:   2019-10-19 20:00:00 GMT+0800 (CST)
-update: 2019-10-21 17:59:00 GMT+0800 (CST)
+update: 2019-10-24 16:02:00 GMT+0800 (CST)
 background-image: https://miro.medium.com/max/7680/1*MjrP9m07l0qJ0Y9TSH1QCA.jpeg
 tags:
 - Vue
@@ -137,8 +137,8 @@ export declare enum ChangeDetectorStatus {
 * 组件化，更灵活
 * 利用 props 形成单向的数据流，根据 state 的变化来更新 view
 * 万物皆可 JavaScript - JSX、[CSS In Js](2019/04/13/css-in-js.html)
-* 利用虚拟 DOM 通过 diff 算法来提升渲染性能
-* [React Hooks](2019/04/16/react-hooks.html)
+* 利用[**虚拟 DOM**]( {{site.url}}/2019/10/24/react-virtual-dom.html ) 通过 diff 算法来提升渲染性能
+* [**React Hooks**]( {{site.url}}/2019/04/16/react-hooks.html )
 
 React 作为一个库，优点就是灵活，但如果要开发项目时，就得入手 React 全家桶，虽然基本都是无缝式接入，但是还是要考虑其他依赖库的稳定性:
 

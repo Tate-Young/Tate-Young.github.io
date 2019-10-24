@@ -13,8 +13,6 @@ tags:
 ---
 # {{ page.title }}
 
-这篇文章是按照 hackernoon 博文来翻译编写的，[详细请看这里](https://hackernoon.com/virtual-dom-in-reactjs-43a3fdb1d130) 👈
-
 ## Real DOM
 
 为什么我们需要虚拟 DOM，因为更新真实 DOM 耗时耗力，我们可以先看下页面是怎么渲染构建的。根据 Webkit 渲染引擎工作流可总结以下五个步骤，具体可以[参考我的这篇博客]( {{site.url}}/2018/02/10/html-how-browsers-work.html ):
