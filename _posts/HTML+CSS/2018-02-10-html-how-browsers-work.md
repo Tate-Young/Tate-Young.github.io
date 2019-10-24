@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  页面渲染
 date:   2018-02-10 20:39:00 GMT+0800 (CST)
-background-image: https://sfault-image.b0.upaiyun.com/235/151/2351517245-5972085e433ea
+background-image: https://hackernoon.com/hn-images/1*4s99HTDCA0UUyOc39k5dag.png
 tags:
 - html
 ---
@@ -17,13 +17,13 @@ tags:
 
 根据 Webkit 渲染引擎工作流可总结以下五个步骤:
 
-1. HTML Parser 将 HTML 解析成 **DOM** ;
-1. CSS Parser 将 CSS 解析成 **CSSOM**;
-1. 结合 DOM 和 CSSOM，生成一棵渲染树 **Render Tree**;
-1. **布局(layout)**，计算每个节点的几何信息;
-1. **绘制(painting)**，将渲染器的内容显示在屏幕上。
+1. HTML Parser 将 HTML 解析成 **DOM**;
+2. CSS Parser 将 CSS 解析成 **CSSOM**;
+3. 结合 DOM 和 CSSOM，生成一棵渲染树 **Render Tree**;
+4. **布局(layout)**，计算每个节点的几何信息;
+5. **绘制(painting)**，将渲染器的内容显示在屏幕上。
 
-![webkit渲染引擎]( {{page.background-image}} )
+![webkit 渲染引擎]( {{page.background-image}} )
 
 ## DOM
 

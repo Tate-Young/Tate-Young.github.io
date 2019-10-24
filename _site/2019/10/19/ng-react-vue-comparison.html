@@ -203,7 +203,7 @@
                     
                     <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('React')" title="访问React" data-hover="React">
                         React
-                        <span>(8)</span>
+                        <span>(9)</span>
                         
                     </a>
                        
@@ -239,7 +239,7 @@
                 
                 <a href="Javascript:;" onclick="onClickTag('React')" title="访问React" data-hover="React">
                     React
-                    <span>(8)</span>
+                    <span>(9)</span>
                     </a>
                    
             </p>
@@ -314,7 +314,7 @@
       &lt;my-directive /&gt;
       &lt;input type="text" ng-model="name" placeholder="Enter your name"&gt;
       &lt;hr&gt;
-      &lt;h1&gt;Hello, !&lt;/h1&gt;
+      &lt;h1&gt;Hello, { {  name || 'World' } }!&lt;/h1&gt;
     &lt;/div&gt;
   &lt;/body&gt;
 &lt;/html&gt;
@@ -509,7 +509,7 @@ const App={
 <p>数据绑定来说，单向和双向都有适合自己的场景，虽然双向绑定带来了很多便利，但仍有很多不容忽视的问题:</p>
 
 <ul>
-  <li>单向 - 实现简单，容易追踪数据变化，更适合状态管理</li>
+  <li>单向 - 实现简单，容易追踪数据变化，更方便状态管理</li>
   <li>双向 - 实现复杂，不易追踪数据变化，但可以简化代码，数据模型和视图无缝同步，更适用于表单操作</li>
 </ul>
 
@@ -584,7 +584,7 @@ const App={
 
 <h3 id="typescript">TypeScript</h3>
 
-<p>JS 的松散语法给我们带来便利的同时，也带来了一些隐患：一些（通常是低级的）错误，要等到运行时才会抛出来。而 <strong>TypeScript</strong> 增加了类型检查，加强了数据的可预测性，大大降低了 TypeError 的几率。代码的维护和重构也更加方便。具体细节可以<a href="http://localhost:2333/2019/02/26/ts-profile.html">参考我的这篇博客</a> 👈</p>
+<p>JS 的松散语法给我们带来便利的同时，也带来了一些隐患：一些（通常是低级的）错误，要等到运行时才会抛出来。而 <strong>TypeScript</strong> 增加了静态类型检查，加强了数据的可预测性，大大降低了 TypeError 的几率。代码的维护和重构也更加方便。具体细节可以<a href="http://localhost:2333/2019/02/26/ts-profile.html">参考我的这篇博客</a> 👈</p>
 
 <blockquote>
   <p><a href="https://rollbar.com">Rollbar</a>(类似 Sentry 可实时捕捉错误并汇集日志的平台) 于 2018 年总结的 <a href="https://rollbar.com/blog/top-10-javascript-errors/">top10 JavaScript Errors</a>，大部分都可以杜绝</p>
