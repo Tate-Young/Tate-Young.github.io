@@ -57,6 +57,7 @@ tags:
 1、安装和设置代理
 
 ```SHELL
+# man-in-the-middle proxy
 brew install mitmproxy
 ```
 

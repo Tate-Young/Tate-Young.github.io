@@ -876,6 +876,10 @@ self.addEventListener('sync', function (e) {
 
 ![Background Sync](https://user-gold-cdn.xitu.io/2018/5/13/163598ca174364ed?w=800&h=499&f=gif&s=2269837)
 
+## TWA
+
+[**TWA(Trusted Web Activity)**](https://developers.google.com/web/updates/2019/02/using-twa) 是一种技术，用来将 PWA 打包成安卓应用。设置 TWA 不要求开发人员编写 Java 代码，但需要 [Android Studio](https://developer.android.com/studio/)。
+
 ## Firebase
 
 以上项目可部署至 [**Firebase**](https://firebase.google.com)，需要先创建帐户并安装一些工具：
