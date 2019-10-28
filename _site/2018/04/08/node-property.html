@@ -175,6 +175,8 @@
                       发布时间：2018-04-08 10:54:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-10-28 11:17:00
+                      
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -612,6 +614,89 @@ function travel(dir, callback, finish) {
 }
 </code></pre>
 
+<h2 id="流-stream">流 stream</h2>
+
+<p><strong>流</strong>是数据的集合，类似于数组或字符串。区别在于流中的数据可能不会同时全部可用，并且不用 全部放入内存。这使得流在操作大量数据或是数据从外部来源逐段发送过来的时候变得非常有用。然而，流的作用并不仅限于操作大量数据，它还带给我们组合代码的能力。就像我们可以通过管道连接几个简单的 Linux 命令以组合出强大的功能一样，我们可以利用流在 Node 中做同样的事:</p>
+
+<pre><code class="language-JS">a.pipe(b).pipe(c).pipe(d)
+
+// 等价于:
+a.pipe(b)
+b.pipe(c)
+c.pipe(d)
+
+// 在 Linux 中，等价于：
+a | b | c | d
+</code></pre>
+
+<p>在 Node 中有四种基本类型的流，所有的流都是 <strong>EventEmitter</strong> 的实例，它们发出可用于读取或写入数据的事件。另一方面我们可以利用 <strong>pipe</strong> 方法以一种更简单的方式使用流中的数据:</p>
+
+<ul>
+  <li><strong>可读流</strong> - 对一个可以读取数据的源的抽象。如 <code class="highlighter-rouge">fs.createReadStream</code></li>
+  <li><strong>可写流</strong> - 对一个可以写入数据的目标的抽象。如 <code class="highlighter-rouge">fs.createWriteStream</code></li>
+  <li><strong>双向流</strong> - 既是可读的，又是可写的。如 TCP socket</li>
+  <li><strong>变换流</strong> - 一种特殊的双向流，它会基于写入的数据生成可供读取的数据。如使用 <code class="highlighter-rouge">zlib.createGzip</code> 来压缩数据。你可以把一个变换流想象成一个函数，这个函数的输入部分对应可写流，输出部分对应可读流</li>
+</ul>
+
+<p><img src="https://cdn-media-1.freecodecamp.org/images/1*HGXpeiF5-hJrOk_8tT2jFA.png" alt="eventemitter" /></p>
+
+<pre><code class="language-JS">// 使用事件来模拟 pipe 读取、写入数据
+// readable.pipe(writable)
+
+readable.on('data', (chunk) =&gt; {
+  writable.write(chunk);
+});
+
+readable.on('end', () =&gt; {
+  writable.end();
+});
+</code></pre>
+
+<p>我们对数据流的具体使用举个栗子，先通过 fs 模块使用流接口读取和写入比较大的文件:</p>
+
+<pre><code class="language-JS">const fs = require('fs');
+const file = fs.createWriteStream('./big.file');
+
+for(let i=0; i&lt;= 1e6; i++) {
+  file.write('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n');
+}
+
+file.end();
+</code></pre>
+
+<p>然后我们在服务端收到请求后，通过异步方法 <code class="highlighter-rouge">fs.readFile</code> 读取文件内容发送给客户端:</p>
+
+<pre><code class="language-JS">const fs = require('fs');
+const server = require('http').createServer();
+
+server.on('request', (req, res) =&gt; {
+  fs.readFile('./big.file', (err, data) =&gt; {
+    if (err) throw err;
+
+    res.end(data);
+  });
+});
+
+server.listen(8000);
+</code></pre>
+
+<p>当我们在客户端请求时，会发现此刻服务器内存暴增，非常低效。HTTP 响应对象也是一个可写流，这意味着如果我们有一个代表了 <code class="highlighter-rouge">big.file</code> 内容的可读流，就可以将两个流连接起来以实现相同的功能，并且性能上更优:</p>
+
+<pre><code class="language-JS">const fs = require('fs');
+const server = require('http').createServer();
+
+server.on('request', (req, res) =&gt; {
+  const src = fs.createReadStream('./big.file');
+  src.pipe(res);
+});
+
+server.listen(8000);
+</code></pre>
+
+<blockquote>
+  <p>我们还可以通过 <strong>stream</strong> 模块来自定义流接口。更多关于流的分析，请<a href="https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/">参考这篇文章</a> 👈</p>
+</blockquote>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
@@ -621,6 +706,7 @@ function travel(dir, callback, finish) {
   <li><a href="https://www.jianshu.com/p/dde6a01c4094">5 分钟让你明白“软链接”和“硬链接”的区别</a> By Cyandev</li>
   <li><a href="https://cnodejs.org/topic/5231a630101e574521e45ef8">exports 和 module.exports 的区别</a> By nswbmw</li>
   <li><a href="https://cnodejs.org/topic/5734017ac3e4ef7657ab1215">module.exports 与 exports 的区别解释【极简版】这还看不懂就没救了。。。</a> By lellansin</li>
+  <li><a href="https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/">Node.js Streams: Everything you need to know</a> By Samer Buna</li>
 </ol>
  
 <div id="gitalk-container"></div>

@@ -7,6 +7,7 @@ background: gray
 category: 后端
 title:  Node 常用模块
 date:   2018-04-08 10:54:00 GMT+0800 (CST)
+update: 2019-10-28 11:17:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
 tags:
 - Node
@@ -354,6 +355,90 @@ function travel(dir, callback, finish) {
 }
 ```
 
+## 流 stream
+
+**流**是数据的集合，类似于数组或字符串。区别在于流中的数据可能不会同时全部可用，并且不用 全部放入内存。这使得流在操作大量数据或是数据从外部来源逐段发送过来的时候变得非常有用。然而，流的作用并不仅限于操作大量数据，它还带给我们组合代码的能力。就像我们可以通过管道连接几个简单的 Linux 命令以组合出强大的功能一样，我们可以利用流在 Node 中做同样的事:
+
+```JS
+a.pipe(b).pipe(c).pipe(d)
+
+// 等价于:
+a.pipe(b)
+b.pipe(c)
+c.pipe(d)
+
+// 在 Linux 中，等价于：
+a | b | c | d
+```
+
+在 Node 中有四种基本类型的流，所有的流都是 **EventEmitter** 的实例，它们发出可用于读取或写入数据的事件。另一方面我们可以利用 **pipe** 方法以一种更简单的方式使用流中的数据:
+
+* **可读流** - 对一个可以读取数据的源的抽象。如 `fs.createReadStream`
+* **可写流** - 对一个可以写入数据的目标的抽象。如 `fs.createWriteStream`
+* **双向流** - 既是可读的，又是可写的。如 TCP socket
+* **变换流** - 一种特殊的双向流，它会基于写入的数据生成可供读取的数据。如使用 `zlib.createGzip` 来压缩数据。你可以把一个变换流想象成一个函数，这个函数的输入部分对应可写流，输出部分对应可读流
+
+![eventemitter](https://cdn-media-1.freecodecamp.org/images/1*HGXpeiF5-hJrOk_8tT2jFA.png)
+
+```JS
+// 使用事件来模拟 pipe 读取、写入数据
+// readable.pipe(writable)
+
+readable.on('data', (chunk) => {
+  writable.write(chunk);
+});
+
+readable.on('end', () => {
+  writable.end();
+});
+```
+
+我们对数据流的具体使用举个栗子，先通过 fs 模块使用流接口读取和写入比较大的文件:
+
+```JS
+const fs = require('fs');
+const file = fs.createWriteStream('./big.file');
+
+for(let i=0; i<= 1e6; i++) {
+  file.write('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n');
+}
+
+file.end();
+```
+
+然后我们在服务端收到请求后，通过异步方法 `fs.readFile` 读取文件内容发送给客户端:
+
+```JS
+const fs = require('fs');
+const server = require('http').createServer();
+
+server.on('request', (req, res) => {
+  fs.readFile('./big.file', (err, data) => {
+    if (err) throw err;
+
+    res.end(data);
+  });
+});
+
+server.listen(8000);
+```
+
+当我们在客户端请求时，会发现此刻服务器内存暴增，非常低效。HTTP 响应对象也是一个可写流，这意味着如果我们有一个代表了 `big.file` 内容的可读流，就可以将两个流连接起来以实现相同的功能，并且性能上更优:
+
+```JS
+const fs = require('fs');
+const server = require('http').createServer();
+
+server.on('request', (req, res) => {
+  const src = fs.createReadStream('./big.file');
+  src.pipe(res);
+});
+
+server.listen(8000);
+```
+
+> 我们还可以通过 **stream** 模块来自定义流接口。更多关于流的分析，请[参考这篇文章](https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/) 👈
+
 ## 参考链接
 
 1. [nodeJS 之 fs 文件系统](https://www.cnblogs.com/xiaohuochai/p/6938104.html) By 小火柴的蓝色理想
@@ -362,3 +447,4 @@ function travel(dir, callback, finish) {
 4. [5 分钟让你明白“软链接”和“硬链接”的区别](https://www.jianshu.com/p/dde6a01c4094) By Cyandev
 5. [exports 和 module.exports 的区别](https://cnodejs.org/topic/5231a630101e574521e45ef8) By nswbmw
 6. [module.exports 与 exports 的区别解释【极简版】这还看不懂就没救了。。。](https://cnodejs.org/topic/5734017ac3e4ef7657ab1215) By lellansin
+7. [Node.js Streams: Everything you need to know](https://www.freecodecamp.org/news/node-js-streams-everything-you-need-to-know-c9141306be93/) By Samer Buna
