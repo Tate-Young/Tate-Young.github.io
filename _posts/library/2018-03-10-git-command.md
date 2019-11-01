@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: Git 命令
 date:   2018-03-11 12:03:00 GMT+0800 (CST)
-update: 2019-08-08 11:55:00 GMT+0800 (CST)
+update: 2019-11-01 12:36:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/03/11/5aa49b6c003a8.gif
 
 tags:
@@ -54,7 +54,7 @@ tags:
 **config** 命令也可设置别名:
 
 * `git config` - 仅针对当前仓库起作用，配置文件位于 <code>.git/config</code> 文件中
-* `git config --global` - 针对当前用户起作用，配置文件位于 <code>.gitconfig</code> 文件中
+* `git config --global` - 针对当前用户起作用，配置文件位于 <code>~/.gitconfig</code> 文件中
 
 ```SHELL
 # git unstage
@@ -114,11 +114,13 @@ git branch --merged
 # 强制删除本地分支
 git branch -D branchname
 
-# 删除远端分支
+# 删除远端不存在的分支
 git branch -r -d origin/branchname
 # 或者
 git push origin :branchname
 ```
+
+> Use -r together with -d to delete remote-tracking branches. Note, that it only makes sense to delete remote-tracking branches if they no longer exist in the remote repository or if git fetch was configured not to fetch them again.
 
 如果想要批量删除分支，可以根据查询结果进行过滤，最常用的写法如下，即删掉除 master 的所有本地分支:
 
@@ -242,10 +244,15 @@ git revert HEAD
 
 # 撤销最近 一 个提交，回滚到倒数第 二 个提交
 git revert HEAD^
-gut revert HEAD~1
+git revert HEAD~1
 
 # 还是推荐使用 commit id
 git revert bb0aa8b
+
+# 回滚时不自动创建新的提交
+git revert xxx --no-commit
+# 回滚时采用默认提交描述
+git revert xxx --no-edit
 ```
 
 revert 撤销一个合并提交时，如果除了 commit id 而不加任何其他参数，git 将会提示错误:
@@ -273,8 +280,8 @@ git revert -m 1 bb0aa8b
 * 切换分支:
   * <code>git checkout branchname</code> - 切换至指定分支
   * <code>git checkout -b branchname</code> - 创建并切换至该分支
-  * <code>git checkout -b branchname orgin/branchname</code> - 从远端拉取到本地并切换至该分支
-  * <code>git checkout orgin/branchname -b branchname</code> - 同上，推荐上面写法
+  * <code>git checkout -b branchname origin/branchname</code> - 从远端拉取到本地并切换至该分支
+  * <code>git checkout origin/branchname -b branchname</code> - 同上，推荐上面写法
 
 * 把 HEAD 移动到特定的提交:
   * <code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用。也可以跟 commit id
@@ -314,6 +321,8 @@ git log --graph --pretty=oneline --abbrev-commit
 git merge --no-ff -m "merge with no-ff" feature
 ```
 
+> Fast forward 仅仅只用做指针的移动
+
 ![git-merge-no-ff.png](https://i.loli.net/2018/03/11/5aa481bc41c5a.png)
 
 ### rebase
@@ -325,7 +334,9 @@ git merge --no-ff -m "merge with no-ff" feature
 
 一、分支合并
 
-rebase 和 merge 都可以进行合并，rebase 会对 commit 序列重新设置基础点，不会产生和 merge 一样的分叉，保持整个项目的清洁。
+rebase 和 merge 都可以进行合并，rebase 会对 commit 序列重新设置基础点，不会产生和 merge 一样的分叉，保持整个项目的清洁。想必我们不想看到这样的提交历史:
+
+![merge](https://image-static.segmentfault.com/219/761/2197618497-58e86f5cda2dd_articlex)
 
 假设现处于 branch1 分支，需将 branch1 分支合并到 master:
 
@@ -359,7 +370,7 @@ rebase 的黄金法则是绝不要在公共的分支上使用。倘若在 master
 
 ![git-rebase-error.gif](https://i.loli.net/2018/03/11/5aa49b6796eb8.gif)
 
-> 总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利
+> 总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利。很好的栗子可以[参考这篇文章](https://segmentfault.com/a/1190000005937408)
 
 另外，在 rebase 的过程中，也许会出现冲突 conflict。在这种情况，git 会停止 rebase 并会让你去解决冲突。在解决完冲突后，用 git add 命令去更新这些内容:
 
@@ -662,6 +673,8 @@ git diff --cached
 git diff --stat # 仅仅比较统计信息
 ```
 
+> 在线学习 git 操作，[直接点击这里](https://learngitbranching.js.org) 👈
+
 ## 参考链接
 
 1. [Git - book](https://git-scm.com/book/zh/v2)
@@ -675,3 +688,4 @@ git diff --stat # 仅仅比较统计信息
 9. [Git-用 cherry-pick 挑好看的小樱桃](https://drprincess.github.io/2018/03/05/Git-%E7%94%A8%20cherry-pick%20%E6%8C%91%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%B0%8F%E6%A8%B1%E6%A1%83/) By DRPrincess
 10. [彻底搞懂 Git-Rebase](http://jartto.wang/2018/12/11/git-rebase/) By jartto
 11. [使用 git rebase 合并多次 commit](https://github.com/zuopf769/how_to_use_git/blob/master/使用git%20rebase合并多次commit.md) By zuopf769
+12. [Git Rebase 原理以及黄金准则详解](https://segmentfault.com/a/1190000005937408) By 王下邀月熊_Chevalier
