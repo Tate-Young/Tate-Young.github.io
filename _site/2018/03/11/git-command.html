@@ -175,7 +175,7 @@
                       发布时间：2018-03-11 12:03:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-11-01 12:36:00
+                        修改时间：2019-11-03 14:36:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -672,12 +672,33 @@ git merge branch1
 
 <p><img src="https://i.loli.net/2018/03/11/5aa49b6c003a8.gif" alt="git-rebase.gif" /></p>
 
-<p>rebase 的黄金法则是绝不要在公共的分支上使用。倘若在 master 分支使用了 rebase，会出现以下情况，如果这两个 commit 之前已经在中央仓库存在，这就会导致没法 push 了:</p>
+<p>我们再进行图解下:</p>
 
-<p><img src="https://i.loli.net/2018/03/11/5aa49b6796eb8.gif" alt="git-rebase-error.gif" /></p>
+<pre><code class="language-TEXT">          A---B---C topic
+         /
+    D---E---F---G master
+
+        ⬇️
+                  A'--B'--C' topic
+                 /
+    D---E---F---G master
+</code></pre>
+
+<p>当上游分支(upstream branch)包含了节点的修改时，会直接跳过这个节点，比如:</p>
+
+<pre><code class="language-TEXT">          A---B---C topic
+         /
+    D---E---A'---F master
+
+        ⬇️
+
+                       B'---C' topic
+                  /
+    D---E---A'---F master
+</code></pre>
 
 <blockquote>
-  <p>总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利。很好的栗子可以<a href="https://segmentfault.com/a/1190000005937408">参考这篇文章</a></p>
+  <p>使用 rebase 的黄金法则，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利。很好的栗子可以<a href="https://segmentfault.com/a/1190000005937408">参考这篇文章</a></p>
 </blockquote>
 
 <p>另外，在 rebase 的过程中，也许会出现冲突 conflict。在这种情况，git 会停止 rebase 并会让你去解决冲突。在解决完冲突后，用 git add 命令去更新这些内容:</p>
@@ -690,6 +711,28 @@ git rebase --continue
 <p>在任何时候，我们都可以用 <code class="highlighter-rouge">--abort</code> 参数来终止 rebase 的行动，并且分支会回到 rebase 开始前的状态:</p>
 
 <pre><code class="language-SHELL">git rebase --abort
+</code></pre>
+
+<p>另外这里在介绍一下 <code class="highlighter-rouge">--onto</code> 参数的用法，比如我们有如下的分支结构:</p>
+
+<pre><code class="language-TEXT">    o---o---o---o---o  master
+         \
+          o---o---o---o---o  next
+                           \
+                            o---o---o  topic
+</code></pre>
+
+<p>我们要想只把 topic 分支做出的修改变基到 master，这时候就可以用以下命令:</p>
+
+<pre><code class="language-SHELL">git rebase --onto master next topic
+</code></pre>
+
+<pre><code class="language-TEXT">&lt;!-- 经过 onto 转变之后 --&gt;
+    o---o---o---o---o  master
+        |            \
+        |             o'--o'--o'  topic
+         \
+          o---o---o---o---o  next
 </code></pre>
 
 <p>二、合并多次提交</p>

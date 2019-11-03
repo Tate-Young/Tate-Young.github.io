@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: Git 命令
 date:   2018-03-11 12:03:00 GMT+0800 (CST)
-update: 2019-11-01 12:36:00 GMT+0800 (CST)
+update: 2019-11-03 14:36:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/03/11/5aa49b6c003a8.gif
 
 tags:
@@ -366,11 +366,33 @@ git merge branch1
 
 ![git-rebase.gif](https://i.loli.net/2018/03/11/5aa49b6c003a8.gif)
 
-rebase 的黄金法则是绝不要在公共的分支上使用。倘若在 master 分支使用了 rebase，会出现以下情况，如果这两个 commit 之前已经在中央仓库存在，这就会导致没法 push 了:
+我们再进行图解下:
 
-![git-rebase-error.gif](https://i.loli.net/2018/03/11/5aa49b6796eb8.gif)
+```TEXT
+          A---B---C topic
+         /
+    D---E---F---G master
 
-> 总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利。很好的栗子可以[参考这篇文章](https://segmentfault.com/a/1190000005937408)
+        ⬇️
+                  A'--B'--C' topic
+                 /
+    D---E---F---G master
+```
+
+当上游分支(upstream branch)包含了节点的修改时，会直接跳过这个节点，比如:
+
+```TEXT
+          A---B---C topic
+         /
+    D---E---A'---F master
+
+        ⬇️
+                       B'---C' topic
+                  /
+    D---E---A'---F master
+```
+
+> 使用 rebase 的黄金法则，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利。很好的栗子可以[参考这篇文章](https://segmentfault.com/a/1190000005937408)
 
 另外，在 rebase 的过程中，也许会出现冲突 conflict。在这种情况，git 会停止 rebase 并会让你去解决冲突。在解决完冲突后，用 git add 命令去更新这些内容:
 
@@ -384,6 +406,31 @@ git rebase --continue
 
 ```SHELL
 git rebase --abort
+```
+
+另外这里在介绍一下 `--onto` 参数的用法，比如我们有如下的分支结构:
+
+```TEXT
+    o---o---o---o---o  master
+         \
+          o---o---o---o---o  next
+                           \
+                            o---o---o  topic
+```
+
+我们要想只把 topic 分支做出的修改变基到 master，这时候就可以用以下命令:
+
+```SHELL
+git rebase --onto master next topic
+```
+
+```TEXT
+<!-- 经过 onto 转变之后 -->
+    o---o---o---o---o  master
+        |            \
+        |             o'--o'--o'  topic
+         \
+          o---o---o---o---o  next
 ```
 
 二、合并多次提交
