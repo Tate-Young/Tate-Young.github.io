@@ -181,6 +181,8 @@ git branch --set-upstream master origin/branchname
 git pull
 ```
 
+> `git pull --rebase` 可以使用 rebase 代替 merge
+
 有时候拉取代码都要输入账号密码进行验证，比较麻烦，因此有几种方法可以设置缓存:
 
 ```SHELL

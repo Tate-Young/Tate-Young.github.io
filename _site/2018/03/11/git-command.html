@@ -470,6 +470,10 @@ git branch --set-upstream master origin/branchname
 git pull
 </code></pre>
 
+<blockquote>
+  <p><code class="highlighter-rouge">git pull --rebase</code> 可以使用 rebase 代替 merge</p>
+</blockquote>
+
 <p>有时候拉取代码都要输入账号密码进行验证，比较麻烦，因此有几种方法可以设置缓存:</p>
 
 <pre><code class="language-SHELL"># 默认，15 分钟
@@ -691,7 +695,6 @@ git merge branch1
     D---E---A'---F master
 
         ⬇️
-
                        B'---C' topic
                   /
     D---E---A'---F master
