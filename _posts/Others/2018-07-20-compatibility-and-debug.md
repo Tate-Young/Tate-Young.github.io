@@ -83,7 +83,7 @@ mitmproxy -p 8888
 | i | 拦截 intercept |
 | r | 重新请求 |
 | esc | 退出编辑 |
-| fn | 按住拖动光标即可选中 |
+| fn | 按住拖动光标即可选中，进行复制 |
 
 当然 mitmproxy 还可以直接运行 py 脚本:
 

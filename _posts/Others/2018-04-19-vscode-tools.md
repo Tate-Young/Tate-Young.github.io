@@ -2,23 +2,23 @@
 layout: blog
 front: true
 comments: True
-flag: Node
+flag: vscode
 background: gray
-category: 后端
-title:  Node 侦错及 pm2
+category: 前端
+title:  VS Code 插件及小技巧
 date:   2018-04-19 21:48:00 GMT+0800 (CST)
-update: 2019-07-18 16:41:00 GMT+0800 (CST)
+update: 2019-11-09 11:45:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
 tags:
 - Node
 ---
 # {{ page.title }}
 
-本文只针对 vscode 工具进行调试举例。需要额外插件一枚: [Debugger for Chrome](https://github.com/Microsoft/vscode-chrome-debug)，可以配合 Chrome 进行调试。
+## 断点调试
+
+本节主要针对 node 进行调试，需要额外插件一枚: [Debugger for Chrome](https://github.com/Microsoft/vscode-chrome-debug)，可以配合 Chrome 进行调试。
 
 ![debug](https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png)
-
-## Visual Studio Code
 
 ### launch.json 配置
 
@@ -139,7 +139,7 @@ nodemon --inspect index.js
 * 被取消的断点显示为灰色圆圈
 * 调试启动后，不能被注册的断点显示为灰色的空心圆圈
 
-也可以通过代码语句 <code>debugger</code> 设置断点:
+也可以通过代码语句 `debugger` 设置断点:
 
 ```JS
 app.get('/', function(req, res) {
@@ -151,7 +151,39 @@ app.get('/', function(req, res) {
 
 ![breakpoints](https://code.visualstudio.com/assets/docs/editor/debugging/debug-session.png)
 
-### code 命令
+## Markdown 转 PDF
+
+这里推荐使用 [**Markdown PDF**](https://github.com/yzane/vscode-markdown-pdf/blob/master/sample/README.pdf) 插件，当然它也可以转 html、jpeg、png。需要注意的是，它会尝试安装 chromium，如果安装失败的话，一定要自己去 `settings.json` 里设置 `executablePath` 执行路径:
+
+```TEXT
+<!-- macOS -->
+"markdown-pdf.executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+<!-- windows -->
+<!-- All \ need to be written as \\ (Windows) -->
+"markdown-pdf.executablePath": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+```
+
+这里我们可以直接用它设置的样式，也可以自定义:
+
+```TEXT
+"markdown-pdf.styles": [
+  "C:\\Users\\<USERNAME>\\Documents\\markdown-pdf.css",
+  "/home/<USERNAME>/settings/markdown-pdf.css",
+],
+```
+
+它也拥有其他丰富的配置项，详见文档:
+
+```TEXT
+"markdown-pdf.displayHeaderFooter": false,
+"markdown-pdf.outputDirectory": "/Users/tate/Desktop"
+```
+
+之后我们直接在 command palette (快捷键 cmd+shift+p)中输入 export 关键词，选择 `markdown-pdf: Export (pdf)` 即可。
+
+> `settings.json` 也可以直接通过 command palette 来检索打开
+
+## code 命令
 
 这里介绍一个**炒鸡**好用的功能，如果我们想在终端通过命令来调用 VS Code 来编辑一些文件，可以在编辑器打开命令面板（ ⇧⌘P ），然后找到 `Install ‘code' command in PATH` 进行安装，之后我们就可以使用 `code` 命令啦:
 
@@ -166,7 +198,40 @@ code file1 file2 file3
 code folder1 folder2
 ```
 
-### jsconfig.json
+## Multi-root Workspaces
+
+可以直接[参考官方文档这一节](https://code.visualstudio.com/docs/editor/multi-root-workspaces)。一般情况下我们可以直接在编辑器上新增工作区，当然我们也可以用命令行:
+
+```SHELL
+code --add myProject
+```
+
+如果是新建的工作区，当我们退出 vscode 时会提示保存，并会自动创建一个 `yourname.code-workspace` 的配置文件:
+
+```JSON
+{
+  "folders": [
+    {
+      // Source code
+      "name": "Product", // name 可以语义替换原本的项目名称
+      "path": "vscode"
+    },
+    {
+      // Docs and release notes
+      "name": "Documentation",
+      "path": "vscode-docs"
+    }
+  ]
+}
+```
+
+之后只需要双击这个文件就可以打开这个工作区了，当然也可以直接用 `code` 命令来操作:
+
+```SHELL
+code path/yourname.code-workspace
+```
+
+## jsconfig.json
 
 这里额外提到下 vscode 的 **jsconfig.json** 文件，目录中存在该文件表示该目录是 JavaScript 项目的根目录。jsconfig.json 文件指定根文件和 JavaScript 语言服务提供的功能选项。具体可以参考 [vscode 官方文档](https://code.visualstudio.com/docs/languages/jsconfig)。
 

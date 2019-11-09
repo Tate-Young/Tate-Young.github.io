@@ -2,20 +2,20 @@
 <!DOCTYPE>
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 <head>
-    <meta content='Node 侦错及 pm2 - Tate & Snow' name='title' />
-    <meta content='Node 侦错及 pm2 - Tate & Snow' name='og:title' />
+    <meta content='VS Code 插件及小技巧 - Tate & Snow' name='title' />
+    <meta content='VS Code 插件及小技巧 - Tate & Snow' name='og:title' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-    <title>Node 侦错及 pm2 - Tate & Snow</title>
+    <title>VS Code 插件及小技巧 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Node 侦错及 pm2 - Tate & Snow</title>
+<title>VS Code 插件及小技巧 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node 侦错及 pm2 - Tate & Snow">
-<meta name="twitter:keywords" content="Node 侦错及 pm2 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="VS Code 插件及小技巧 - Tate & Snow">
+<meta name="twitter:keywords" content="VS Code 插件及小技巧 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node 侦错及 pm2 - Tate & Snow">
-<meta name="og:keywords" content="Node 侦错及 pm2 - Tate & Snow|Node 侦错及 pm2本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。Visual Studio Codelaunch.json 配置laun..."
+<meta property="og:title" content="VS Code 插件及小技巧 - Tate & Snow">
+<meta name="og:keywords" content="VS Code 插件及小技巧 - Tate & Snow|VS Code 插件及小技巧断点调试本节主要针对 node 进行调试，需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Node 侦错及 pm2本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。Visual Studio Codelaunch.json 配置laun..." property='og:description'
+<meta name="keywords" content="VS Code 插件及小技巧断点调试本节主要针对 node 进行调试，需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:2333/2018/04/19/node-debugging.html' property='og:url' />
-<meta content="http://localhost:2333/2018/04/19/node-debugging.html|Node 侦错及 pm2本文只针对 vscode 工具进行调试举例。需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。Visual Studio Codelaunch.json 配置laun..." property='og:description'
+<meta content='http://localhost:2333/2018/04/19/vscode-tools.html' property='og:url' />
+<meta content="http://localhost:2333/2018/04/19/vscode-tools.html|VS Code 插件及小技巧断点调试本节主要针对 node 进行调试，需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -57,19 +57,19 @@
 </script>
 <meta content="" property="fb:app_id" />
 <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Node 侦错及 pm2 | Tate &amp; Snow</title>
+<title>VS Code 插件及小技巧 | Tate &amp; Snow</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Node 侦错及 pm2" />
+<meta property="og:title" content="VS Code 插件及小技巧" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Node 侦错及 pm2" />
-<meta property="og:description" content="Node 侦错及 pm2" />
-<link rel="canonical" href="http://localhost:2333/2018/04/19/node-debugging.html" />
-<meta property="og:url" content="http://localhost:2333/2018/04/19/node-debugging.html" />
+<meta name="description" content="VS Code 插件及小技巧" />
+<meta property="og:description" content="VS Code 插件及小技巧" />
+<link rel="canonical" href="http://localhost:2333/2018/04/19/vscode-tools.html" />
+<meta property="og:url" content="http://localhost:2333/2018/04/19/vscode-tools.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-04-19T21:48:00+08:00" />
 <script type="application/ld+json">
-{"description":"Node 侦错及 pm2","@type":"BlogPosting","url":"http://localhost:2333/2018/04/19/node-debugging.html","headline":"Node 侦错及 pm2","dateModified":"2018-04-19T21:48:00+08:00","datePublished":"2018-04-19T21:48:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/04/19/node-debugging.html"},"@context":"http://schema.org"}</script>
+{"description":"VS Code 插件及小技巧","@type":"BlogPosting","url":"http://localhost:2333/2018/04/19/vscode-tools.html","headline":"VS Code 插件及小技巧","dateModified":"2018-04-19T21:48:00+08:00","datePublished":"2018-04-19T21:48:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/04/19/vscode-tools.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -163,22 +163,22 @@
             </div>
         </div>
     </header>
-    <a href="#header" class="back-to-top" onclick="onClickTop('Node 侦错及 pm2')">⤴Top⤴</a>
+    <a href="#header" class="back-to-top" onclick="onClickTop('VS Code 插件及小技巧')">⤴Top⤴</a>
     <div class="post-header-thumb bg-white}">
         <div class="post-header-thumb-op"></div>
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    Node 侦错及 pm2</h1>
+                    VS Code 插件及小技巧</h1>
                 <div class="post-data">
                     <time datetime="2018-04-19 21:48:00" itemprop="datePublished">
                       发布时间：2018-04-19 21:48:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-07-18 16:41:00
+                        修改时间：2019-11-09 11:45:00
                       
                     </time>
-                    <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
                 <div class="post-tags">
@@ -196,7 +196,7 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                Node 侦错及 pm2</h1>
+                VS Code 插件及小技巧</h1>
             <div class="post-data">
                 <time datetime="2018-04-19 21:48:00" itemprop="datePublished">2018-04-19 21:48:00</time>
             </div>
@@ -210,13 +210,13 @@
                     </a>
                    
             </p>
-            <h1 id="node-侦错及-pm2">Node 侦错及 pm2</h1>
+            <h1 id="vs-code-插件及小技巧">VS Code 插件及小技巧</h1>
 
-<p>本文只针对 vscode 工具进行调试举例。需要额外插件一枚: <a href="https://github.com/Microsoft/vscode-chrome-debug">Debugger for Chrome</a>，可以配合 Chrome 进行调试。</p>
+<h2 id="断点调试">断点调试</h2>
+
+<p>本节主要针对 node 进行调试，需要额外插件一枚: <a href="https://github.com/Microsoft/vscode-chrome-debug">Debugger for Chrome</a>，可以配合 Chrome 进行调试。</p>
 
 <p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png" alt="debug" /></p>
-
-<h2 id="visual-studio-code">Visual Studio Code</h2>
 
 <h3 id="launchjson-配置">launch.json 配置</h3>
 
@@ -341,7 +341,7 @@ nodemon --inspect index.js
   <li>调试启动后，不能被注册的断点显示为灰色的空心圆圈</li>
 </ul>
 
-<p>也可以通过代码语句 <code>debugger</code> 设置断点:</p>
+<p>也可以通过代码语句 <code class="highlighter-rouge">debugger</code> 设置断点:</p>
 
 <pre><code class="language-JS">app.get('/', function(req, res) {
   console.log('tate')
@@ -352,7 +352,38 @@ nodemon --inspect index.js
 
 <p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debug-session.png" alt="breakpoints" /></p>
 
-<h3 id="code-命令">code 命令</h3>
+<h2 id="markdown-转-pdf">Markdown 转 PDF</h2>
+
+<p>这里推荐使用 <a href="https://github.com/yzane/vscode-markdown-pdf/blob/master/sample/README.pdf"><strong>Markdown PDF</strong></a> 插件，当然它也可以转 html、jpeg、png。需要注意的是，它会尝试安装 chromium，如果安装失败的话，一定要自己去 <code class="highlighter-rouge">settings.json</code> 里设置 <code class="highlighter-rouge">executablePath</code> 执行路径:</p>
+
+<pre><code class="language-TEXT">&lt;!-- macOS --&gt;
+"markdown-pdf.executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+&lt;!-- windows --&gt;
+&lt;!-- All \ need to be written as \\ (Windows) --&gt;
+"markdown-pdf.executablePath": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+</code></pre>
+
+<p>这里我们可以直接用它设置的样式，也可以自定义:</p>
+
+<pre><code class="language-TEXT">"markdown-pdf.styles": [
+  "C:\\Users\\&lt;USERNAME&gt;\\Documents\\markdown-pdf.css",
+  "/home/&lt;USERNAME&gt;/settings/markdown-pdf.css",
+],
+</code></pre>
+
+<p>它也拥有其他丰富的配置项，详见文档:</p>
+
+<pre><code class="language-TEXT">"markdown-pdf.displayHeaderFooter": false,
+"markdown-pdf.outputDirectory": "/Users/tate/Desktop"
+</code></pre>
+
+<p>之后我们直接在 command palette (快捷键 cmd+shift+p)中输入 export 关键词，选择 <code class="highlighter-rouge">markdown-pdf: Export (pdf)</code> 即可。</p>
+
+<blockquote>
+  <p><code class="highlighter-rouge">settings.json</code> 也可以直接通过 command palette 来检索打开</p>
+</blockquote>
+
+<h2 id="code-命令">code 命令</h2>
 
 <p>这里介绍一个<strong>炒鸡</strong>好用的功能，如果我们想在终端通过命令来调用 VS Code 来编辑一些文件，可以在编辑器打开命令面板（ ⇧⌘P ），然后找到 <code class="highlighter-rouge">Install ‘code' command in PATH</code> 进行安装，之后我们就可以使用 <code class="highlighter-rouge">code</code> 命令啦:</p>
 
@@ -366,7 +397,37 @@ code file1 file2 file3
 code folder1 folder2
 </code></pre>
 
-<h3 id="jsconfigjson">jsconfig.json</h3>
+<h2 id="multi-root-workspaces">Multi-root Workspaces</h2>
+
+<p>可以直接<a href="https://code.visualstudio.com/docs/editor/multi-root-workspaces">参考官方文档这一节</a>。一般情况下我们可以直接在编辑器上新增工作区，当然我们也可以用命令行:</p>
+
+<pre><code class="language-SHELL">code --add myProject
+</code></pre>
+
+<p>如果是新建的工作区，当我们退出 vscode 时会提示保存，并会自动创建一个 <code class="highlighter-rouge">yourname.code-workspace</code> 的配置文件:</p>
+
+<pre><code class="language-JSON">{
+  "folders": [
+    {
+      // Source code
+      "name": "Product", // name 可以语义替换原本的项目名称
+      "path": "vscode"
+    },
+    {
+      // Docs and release notes
+      "name": "Documentation",
+      "path": "vscode-docs"
+    }
+  ]
+}
+</code></pre>
+
+<p>之后只需要双击这个文件就可以打开这个工作区了，当然也可以直接用 <code class="highlighter-rouge">code</code> 命令来操作:</p>
+
+<pre><code class="language-SHELL">code path/yourname.code-workspace
+</code></pre>
+
+<h2 id="jsconfigjson">jsconfig.json</h2>
 
 <p>这里额外提到下 vscode 的 <strong>jsconfig.json</strong> 文件，目录中存在该文件表示该目录是 JavaScript 项目的根目录。jsconfig.json 文件指定根文件和 JavaScript 语言服务提供的功能选项。具体可以参考 <a href="https://code.visualstudio.com/docs/languages/jsconfig">vscode 官方文档</a>。</p>
 
@@ -530,9 +591,9 @@ pm2 update
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/04/19/node-debugging.html';
-        this.page.identifier = '/2018/04/19/node-debugging';
-        this.page.title = 'Node 侦错及 pm2';
+        this.page.url = 'https://tate-young.github.io/2018/04/19/vscode-tools.html';
+        this.page.identifier = '/2018/04/19/vscode-tools';
+        this.page.title = 'VS Code 插件及小技巧';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
