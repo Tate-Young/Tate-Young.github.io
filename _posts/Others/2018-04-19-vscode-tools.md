@@ -8,7 +8,7 @@ category: 前端
 title:  VS Code 插件及小技巧
 date:   2018-04-19 21:48:00 GMT+0800 (CST)
 update: 2019-11-09 11:45:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
+background-image: /style/images/darling.jpg
 tags:
 - Node
 ---
@@ -29,7 +29,7 @@ tags:
   * **launch** - 启动一个独立的具有 debug 模式的程序
   * **attach** - 附加于已启动的程序并进行 debug
 
-当配置完成后，会在根目录下自动生成文件 <code>.vscode/launch.json</code>。配置参数选项有很多，可以直接[参考官网文档](https://code.visualstudio.com/Docs/editor/debugging)。
+当配置完成后，会在根目录下自动生成文件 `.vscode/launch.json`。配置参数选项有很多，可以直接[参考官网文档](https://code.visualstudio.com/Docs/editor/debugging)。
 
 ```JSON
 {
@@ -107,7 +107,7 @@ Debugger attached.
 listening on port 8080
 ```
 
-此时 Chrome 上打开 <code>localhost:8080</code> 即可进行断点调试，但代码有修改的话，必须重新监听。
+此时 Chrome 上打开 `localhost:8080` 即可进行断点调试，但代码有修改的话，必须重新监听。
 
 #### attach
 
@@ -129,7 +129,7 @@ nodemon --debug index.js
 nodemon --inspect index.js
 ```
 
-监听之后执行 debug，终端会显示 "Debugger attached."，另外底边栏会有 <code>Auto Attach:Off</code> 状态，点击可切换为 On 状态，即当内容有修改后，会自动进行 attach 操作。
+监听之后执行 debug，终端会显示 "Debugger attached."，另外底边栏会有 `Auto Attach:Off` 状态，点击可切换为 On 状态，即当内容有修改后，会自动进行 attach 操作。
 
 ### 断点
 

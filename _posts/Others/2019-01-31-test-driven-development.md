@@ -7,6 +7,7 @@ background: green
 category: 前端
 title: TDD 测试驱动开发
 date:   2019-01-31 16:23:00 GMT+0800 (CST)
+update: 2019-11-11 16:32:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/01/31/5c5296c40ec9c.png
 tags:
 - Other
@@ -232,6 +233,27 @@ Mock.mock({
 })
 // => { constellation: "射手座" }
 ```
+
+## 自动化测试
+
+### Cypress
+
+[**Cypress**](https://docs.cypress.io/zh-cn/guides/overview/why-cypress.html#) 是为现代网络打造的下一代前端测试工具。Cypress 从底层和结构上都不同于 **Selenium**。它能够突破很多 Selenium 上的限制，比如 Selenium 是通过在浏览器外部运行并在网络上执行远程命令来运行。Cypress 恰恰相反，它在与你的应用程序相同的生命周期里执行，背后是 Node 服务进程。Cypress 和 Node进 程不断进行通信，同步和执行任务。访问这两个部分（前端和后端）使我们能够实时响应你的 web 应用程序的事件，与此同时在浏览器之外也能工作以完成需要更高权限的任务。Cypress 允许你编写所有类型的测试，并且可以测试任何在浏览器中运行的内容：
+
+* 端到端测试
+* 集成测试
+* 单元测试
+
+```SHELL
+# 安装
+yarn add cypress --dev
+# 运行测试执行器
+yarn run cypress open
+```
+
+<video style="width:100%;" src="https://docs.cypress.io/img/snippets/first-test-30fps.18fecab5.mp4" controls="controls"></video>
+
+> 简单用法可以[查看视频](https://vimeo.com/237115455) 👈
 
 ## 参考链接
 
