@@ -7,6 +7,7 @@ background: green
 category: 前端
 title:  React Virtual DOM
 date:   2019-10-24 15:55:00 GMT+0800 (CST)
+update: 2019-11-12 18:09:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
 tags:
 - React
@@ -32,8 +33,6 @@ document.getElementById('elementId').innerHTML = "Tate & Snow"
 ```
 
 ## Virtual DOM
-
-### 协调 Reconciliation
 
 **Virtual DOM** 其实是通过 JavaScript 对象的形式来描述真实 DOM，它之所以更快是由于以下几点:
 
@@ -113,7 +112,12 @@ document.getElementById('elementId').innerHTML = "Tate & Snow"
 
 > 万不得已，你可以传递他们在数组中的索引作为 key。若元素没有重排，该方法效果不错，但重排会使得其变慢
 
-### React Fiber
+## React Fiber
+
+其实上述的协调比较广义，具体应该分为以下两个过程:
+
+* **协调阶段**(reconciliation) - ：在这个阶段 React 会更新数据生成新的 Virtual DOM，然后通过 Diff 算法，快速找出需要更新的元素，放到更新队列中去，得到新的更新队列
+* **渲染阶段**(commit) - 这个阶段 React 会遍历更新队列，将其所有的变更一次性更新到 DOM 上。commit 完成后，将执行 `componentDidMount` 函数
 
 [React Fiber](https://github.com/acdlite/react-fiber-architecture) 是 React v16 发布的协调的新核心算法，即 `Fiber reconciler`，用以代替之前的 `Stack reconciler`。可以带来更好的性能优化，它是基于 `Scheduling`(决定工作什么时候执行)来实现的，总结来讲:
 
@@ -122,15 +126,61 @@ document.getElementById('elementId').innerHTML = "Tate & Snow"
 * reuse previously completed work. - 复用已经完成的工作
 * abort work if it's no longer needed. - 中止不需要的工作
 
-协调算法（Stack Reconciler）会一次同步处理整个组件树，来比较新旧两颗树，得到需要更新的部分。这个过程基于递归调用，一旦开始则很难去打断，而且涉及大量的计算就会堵塞整个主线程。因此我们可以根据优先级调整工作，使得大量的计算可以被拆解，异步化，浏览器主线程得以释放，保证了渲染的帧率，从而提高响应性。
+> > The **reconciler** is the part of React which contains the algorithm used to diff one tree with another to determine which parts need to be changed
 
-> The **reconciler** is the part of React which contains the algorithm used to diff one tree with another to determine which parts need to be changed
+协调算法（Stack Reconciler）会一次同步处理整个组件树，来比较新旧两颗树，得到需要更新的部分。这个过程基于递归调用，一旦开始则很难去打断，而且涉及大量的计算就会堵塞整个主线程。因此我们可以根据优先级调整工作，使得大量的计算可以被拆解，异步化，浏览器主线程得以释放，保证了渲染的帧率，从而提高响应性。所以理想状况下应该是像下图所示一样，每次只做一个很小的任务，然后回到主线程看下有没有什么更高优先级的任务需要处理，如果有则先处理更高优先级的任务，没有则继续执行:
+
+![react-fiber.png](https://i.loli.net/2019/11/12/sO8M9qKJikV1Pm3.png)
+
+由于递归调用导致的调用栈我们本身无法控制，而 Fiber 就是为了解决这个痛点，实现了 **virtual stack frame**，可以去按需要打断调用栈，手动去控制。
+
+> The advantage of reimplementing the stack is that you can keep stack frames in memory and execute them however (and whenever) you want. This is crucial for accomplishing the goals we have for scheduling.
+
+React 主要使用 [**requestIdelCallback**](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback) API 来实现这种特性，对于不支持的会自动加上 pollyfill。通常客户端线程执行任务时会以帧的形式划分，大部分设备控制在 30-60 帧是不会影响用户体验；在两个执行帧之间，主线程通常会有一小段空闲时间，requestIdleCallback 可以在这个**空闲期（Idle Period）**调用**空闲期回调（Idle Callback）**从而执行一些任务:
+
+![react-requestIdelCallback.png](https://i.loli.net/2019/11/12/hkbz9ILCm4qlnaJ.png)
+
+通过将协调过程，分解成小的工作单元的方式，可以让页面对于浏览器事件的响应更加及时。但是另外一个问题还是没有解决，就是如果当前在处理的 react 渲染耗时较长，仍然会阻塞后面的渲染。这就是为什么 fiber reconciler 增加了优先级策略:
+
+```JSON
+module.exports = {
+  NoWork: 0, // No work is pending.
+  SynchronousPriority: 1, // For controlled text inputs. Synchronous side-effects.
+  AnimationPriority: 2, // Needs to complete before the next frame.
+  HighPriority: 3, // Interaction that needs to complete pretty soon to feel responsive.
+  LowPriority: 4, // Data fetching, or result from updating stores.
+  OffscreenPriority: 5, // Won't be visible but do the work in case it becomes visible.
+}
+```
+
+另一方面由于协调阶段会被打断，可能会导致 commit 前的这些生命周期函数多次执行。react 官方目前已经把 `componentWillMount`、`componentWillReceiveProps` 和 `componetWillUpdate` 标记为 `unsafe`，并使用新的生命周期函数 `getDerivedStateFromProps` 和 `getSnapshotBeforeUpdate` 进行替换。
+
+![react-fiber-phase.png](https://i.loli.net/2019/11/12/kjEibw9mTK2FLgQ.png)
 
 > 我们可以看下 youtube 发布的 stack 与 fiber 对比视频，[戳这里](https://www.youtube.com/watch?v=Qu_6ItnlDQg) 👈。完整[视频戳这里](https://www.youtube.com/watch?v=ZCuYPiUIONs) 👈
 
-### batch update
+## snabbdom
 
-根据 diff 算法找到需要更新的节点之后，为了考虑性能的影响，React 并没有直接去更新真实 DOM，而是将这些操作进行打包，统一更新。
+Vue 则是基于 [**snabbdom**](https://github.com/snabbdom/snabbdom) VDOM 库来实现 diff 算法，它专注于使用的简单以及功能和的模型化，并在效率和性能上有着很好的表现。
+
+在 snabbdom 中提供了 `h` 函数做为创建 VDOM 的主要函数，h 函数接受的三个参数同时揭示了 diff 算法中关注的三个核心：节点类型，属性数据，子节点对象。而 `patch` 方法即是用来创建初始 DOM 节点与更新 VDOM 的 diff 核心函数。一个使用 snabbdom 创建的 demo 是这样的:
+
+```JS
+import snabbdom from 'snabbdom';
+import h from 'snabbdom/h'; // helper function for creating vnodes
+
+const patch = snabbdom.init([
+  require('snabbdom/modules/class'),          // makes it easy to toggle classes
+  require('snabbdom/modules/props'),          // for setting properties on DOM elements
+  require('snabbdom/modules/style'),          // handles styling on elements with support for animations
+  require('snabbdom/modules/eventlisteners'), // attaches event listeners
+]);
+
+var vnode = h('div', {style: {fontWeight: 'bold'}}, 'Hello world');
+patch(document.getElementById('placeholder'), vnode)
+```
+
+> Therefore, the mainstream diff algorithm of VirtualDOM tends to be consistent at present. In the main diff idea, snabbdom and react have basically the same reconilation method.
 
 ## 参考链接
 
@@ -138,3 +188,5 @@ document.getElementById('elementId').innerHTML = "Tate & Snow"
 2. [React Virtual DOM Explained in Simple English](https://programmingwithmosh.com/react/react-virtual-dom-explained/) By Mosh Hamedani
 3. [学习与理解 React Fiber](https://github.com/creeperyang/blog/issues/44) By creeperyang
 4. [知乎 - 如何理解 React Fiber 架构？](https://www.zhihu.com/question/49496872)
+5. [React Fiber](https://juejin.im/post/5ab7b3a2f265da2378403e57) - 妖僧风月
+6. [探索 Virtual DOM 的前世今生](https://zhuanlan.zhihu.com/p/35876032) - 郭羽峰
