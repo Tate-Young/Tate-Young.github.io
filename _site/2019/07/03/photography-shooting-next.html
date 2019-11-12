@@ -231,7 +231,7 @@
 
 <p>选中浏览器中的视频，然后点击左上角 🗝 图标即可添加<strong>关键词</strong>，添加完后，在事件下则会立即显示该关键词进行分类，比如上图中的”延时摄影”和”早餐”。</p>
 
-<h4 id="标记">标记</h4>
+<h4 id="评级">评级</h4>
 
 <p>可以对浏览器中的视频进行<strong>评级</strong>，选中后的操作有以下这些，然后根据评级即可过滤出自己想要的片段:</p>
 
@@ -258,7 +258,7 @@
 </ul>
 
 <blockquote>
-  <p>以上快捷键对于时间轴上的视频也适用</p>
+  <p>以上快捷键对于时间轴上的视频也适用，之后按快捷键 <code class="highlighter-rouge">E</code> 即可添置时间轴末尾，<code class="highlighter-rouge">shift+z</code> 可自适应时间轴大小</p>
 </blockquote>
 
 <h4 id="过滤器">过滤器</h4>
@@ -266,6 +266,50 @@
 <p><strong>过滤器</strong>相当于功能更强大的搜索，可以根据各种维度(包括自定义)来搜索视频素材。比如我们选中视频，在视频信息一栏中的”元数据视图”选择”通用”，这时会比默认的”基本”显示更多配置项，比如”场景”、”拍摄”等。我们在”场景”一栏输入”desk”，然后去过滤器通过格式信息进行筛选:</p>
 
 <p><img src="/style/images/photography/fcpx-filter.png" alt="过滤器" /></p>
+
+<h3 id="代理">代理</h3>
+
+<p>可以创建相对于源文件更小的拷贝，这对于我们编辑视频时能带来更好的性能优化，我们要合理使用代理的话要遵循以下几个步骤：</p>
+
+<ol>
+  <li>代理可以在偏好设置的导入项中勾选，当我们导入源文件的时候，会自动帮我们在后台转码和分析</li>
+  <li>在剪辑视频前，选中 <code class="highlighter-rouge">View -&gt; Proxy</code> 才能使用代理进行剪辑</li>
+  <li>剪辑完后，再次选中 <code class="highlighter-rouge">View -&gt; Optimized/Original</code> 恢复成原片</li>
+  <li>执行 <code class="highlighter-rouge">Modify -&gt; Render All</code> 进行全部渲染后导出</li>
+</ol>
+
+<blockquote>
+  <p>设置代理好处多多，但是千万别忘了编辑完后需要恢复到源文件并渲染，否则画质会受到影响</p>
+</blockquote>
+
+<h3 id="试演">试演</h3>
+
+<p>试演位置在 <code class="highlighter-rouge">Clip -&gt; Audition</code>，一般使用的场景是要对比同一个位置不同片段的一个效果，使用步骤如下:</p>
+
+<ol>
+  <li>将要试演的视频拖到目标视频上，此时会弹出窗口，选择 <code class="highlighter-rouge">Add to Auditon</code></li>
+  <li>此时视频左上角会有试演图标，点击图标则会弹出试演窗口</li>
+  <li>在试演窗口中可以选择想要试演的片段，并且可以复制该片段进行编辑，从而生成一个新的试演片段</li>
+  <li>使用 ⌥+⌃+&gt; 或 ⌥+⌃+&lt; 则可以快捷切换试演片段</li>
+</ol>
+
+<p><img src="/style/images/photography/fcpx-audition.png" alt="试演" /></p>
+
+<h3 id="片段">片段</h3>
+
+<p>我们可以针对时间轴上同一行的编辑区进行创建<strong>故事情节</strong>，具体操作为选中所有片段，然后执行 <code class="highlighter-rouge">Clip -&gt; Create Storyline</code>，快捷键为 ⌘+G，即类似于分组，因此我们可以统一进行移动等操作，如果要拆除的话，具体操作为选中然后执行 <code class="highlighter-rouge">Clip -&gt; Break Apart Clip Items</code>，快捷键为 ⇧+⌘+G。</p>
+
+<p>如果需要针对不同行的编辑区进行统一管理，同时使得时间轴更加简洁，则可以使用<strong>复合片段</strong>。具体操作为选中所有片段后右键选中 <code class="highlighter-rouge">New Compound Clip</code>，快捷键为 ⌥+G。在命名后，即会生成一个复合片段，双击该复合片段则可以跳转到子片段中进行编辑，点击返回按钮则可以返回到主时间线上。同样 ⇧+⌘+G 也可以拆分。</p>
+
+<p>再介绍一个<strong>同步片段</strong>的功能，比如我们用电脑录制视频，但是电脑自带麦克风效果不是很好，因此我们外接了第三方的麦，在后期匹配音频的时候，可以直接选中视频(包括效果不好的音频)和单独录制的音频，然后选中 <code class="highlighter-rouge">Clip -&gt; Synchronize clips</code>，此时会有个弹窗，勾选<code class="highlighter-rouge">停用 AV 片段上的音频组件</code>后确定，这样录制好的音频会直接匹配和替换到视频当中。</p>
+
+<h3 id="索引与标记">索引与标记</h3>
+
+<p>点击<strong>索引</strong>可以看到有三个标签栏：片段、标记和角色，可以根据不同分类选取对应的片段，比如我想导出一份不需要字幕的视频，只需要在角色一栏中去掉字幕的勾选即可。</p>
+
+<p><strong>标记</strong>的话分为三类：标准、待办事项和章节。快捷键为 M，双击的时候可以自定义名称，更方便我们做记号。如果选中章节的话，选中标记点还可以拖动，范围内即是规定的章节，而且在索引的标记栏中也可以查阅所有标记。</p>
+
+<p><img src="/style/images/photography/fcpx-index.png" alt="索引" /></p>
 
 <iframe src="//player.bilibili.com/player.html?aid=22791972&amp;cid=37848627&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 

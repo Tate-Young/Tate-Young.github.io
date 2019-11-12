@@ -126,13 +126,13 @@ document.getElementById('elementId').innerHTML = "Tate & Snow"
 * reuse previously completed work. - 复用已经完成的工作
 * abort work if it's no longer needed. - 中止不需要的工作
 
-> > The **reconciler** is the part of React which contains the algorithm used to diff one tree with another to determine which parts need to be changed
+> The **reconciler** is the part of React which contains the algorithm used to diff one tree with another to determine which parts need to be changed
 
-协调算法（Stack Reconciler）会一次同步处理整个组件树，来比较新旧两颗树，得到需要更新的部分。这个过程基于递归调用，一旦开始则很难去打断，而且涉及大量的计算就会堵塞整个主线程。因此我们可以根据优先级调整工作，使得大量的计算可以被拆解，异步化，浏览器主线程得以释放，保证了渲染的帧率，从而提高响应性。所以理想状况下应该是像下图所示一样，每次只做一个很小的任务，然后回到主线程看下有没有什么更高优先级的任务需要处理，如果有则先处理更高优先级的任务，没有则继续执行:
+协调算法（Stack Reconciler）会一次同步处理整个组件树，来比较新旧两颗树，得到需要更新的部分。这个过程基于递归调用，一旦开始则很难去打断，而且涉及大量的计算就会堵塞整个主线程。因此我们可以根据优先级调整工作，使得大量的计算可以被拆解，异步化，浏览器主线程得以释放，保证了渲染的帧率，从而提高响应性。所以更优解是每次只做一个单元任务，然后回到主线程看下有没有什么更高优先级的任务需要处理，如果有则先处理，没有则继续执行:
 
 ![react-fiber.png](https://i.loli.net/2019/11/12/sO8M9qKJikV1Pm3.png)
 
-由于递归调用导致的调用栈我们本身无法控制，而 Fiber 就是为了解决这个痛点，实现了 **virtual stack frame**，可以去按需要打断调用栈，手动去控制。
+由于递归调用生成的调用栈我们本身无法控制，而 Fiber 实现了 **virtual stack frame**，可以去按需去手动控制。
 
 > The advantage of reimplementing the stack is that you can keep stack frames in memory and execute them however (and whenever) you want. This is crucial for accomplishing the goals we have for scheduling.
 
