@@ -904,6 +904,10 @@ const MemodFuncComponent = React.memo(FunComponent)
 })
 </code></pre>
 
+<blockquote>
+  <p>注意如果 props 相等，则返回 true，否则返回 false。这与 shouldComponentUpdate 方法的返回值刚好相反</p>
+</blockquote>
+
 <p>综上所述，我们解决组件性能优化问题无外乎两个方面:</p>
 
 <ul>

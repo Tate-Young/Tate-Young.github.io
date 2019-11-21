@@ -729,6 +729,8 @@ React.memo(Funcomponent, (nextProps, prevProps) => {
 })
 ```
 
+> 注意如果 props 相等，则返回 true，否则返回 false。这与 shouldComponentUpdate 方法的返回值刚好相反
+
 综上所述，我们解决组件性能优化问题无外乎两个方面:
 
 * setState 会触发组件的重新渲染，无论值是否改变 --> 避免不必要的渲染
