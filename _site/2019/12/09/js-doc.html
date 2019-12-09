@@ -2,20 +2,20 @@
 <!DOCTYPE>
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 <head>
-    <meta content='执行上下文与作用域 - Tate & Snow' name='title' />
-    <meta content='执行上下文与作用域 - Tate & Snow' name='og:title' />
+    <meta content='JSDoc - Tate & Snow' name='title' />
+    <meta content='JSDoc - Tate & Snow' name='og:title' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-    <title>执行上下文与作用域 - Tate & Snow</title>
+    <title>JSDoc - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>执行上下文与作用域 - Tate & Snow</title>
+<title>JSDoc - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="执行上下文与作用域 - Tate & Snow">
-<meta name="twitter:keywords" content="执行上下文与作用域 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="JSDoc - Tate & Snow">
+<meta name="twitter:keywords" content="JSDoc - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="执行上下文与作用域 - Tate & Snow">
-<meta name="og:keywords" content="执行上下文与作用域 - Tate & Snow|执行上下文与作用域什么是执行上下文执行上下文可执行代码(executable code) 包含三种  全局代码(global code) - 代码首次执行的默认环境  函数代码(function code) - 执行流进入函数体  e..."
+<meta property="og:title" content="JSDoc - Tate & Snow">
+<meta name="og:keywords" content="JSDoc - Tate & Snow|JSDocJSDocJSDoc 是根据注释自动生成 API 文档的工具，类似的还有 YUIDoc、JSDuck、ESDoc 等。用法很简单，先安装，之后通过命令行对指定文件进行操作即可:# 安装npm i -g jsdoc# 指定文件..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="执行上下文与作用域什么是执行上下文执行上下文可执行代码(executable code) 包含三种  全局代码(global code) - 代码首次执行的默认环境  函数代码(function code) - 执行流进入函数体  e..." property='og:description'
+<meta name="keywords" content="JSDocJSDocJSDoc 是根据注释自动生成 API 文档的工具，类似的还有 YUIDoc、JSDuck、ESDoc 等。用法很简单，先安装，之后通过命令行对指定文件进行操作即可:# 安装npm i -g jsdoc# 指定文件..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:2333/2018/02/09/js-scope.html' property='og:url' />
-<meta content="http://localhost:2333/2018/02/09/js-scope.html|执行上下文与作用域什么是执行上下文执行上下文可执行代码(executable code) 包含三种  全局代码(global code) - 代码首次执行的默认环境  函数代码(function code) - 执行流进入函数体  e..." property='og:description'
+<meta content='http://localhost:2333/2019/12/09/js-doc.html' property='og:url' />
+<meta content="http://localhost:2333/2019/12/09/js-doc.html|JSDocJSDocJSDoc 是根据注释自动生成 API 文档的工具，类似的还有 YUIDoc、JSDuck、ESDoc 等。用法很简单，先安装，之后通过命令行对指定文件进行操作即可:# 安装npm i -g jsdoc# 指定文件..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -57,19 +57,19 @@
 </script>
 <meta content="" property="fb:app_id" />
 <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>执行上下文与作用域 | Tate &amp; Snow</title>
+<title>JSDoc | Tate &amp; Snow</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="执行上下文与作用域" />
+<meta property="og:title" content="JSDoc" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="执行上下文与作用域" />
-<meta property="og:description" content="执行上下文与作用域" />
-<link rel="canonical" href="http://localhost:2333/2018/02/09/js-scope.html" />
-<meta property="og:url" content="http://localhost:2333/2018/02/09/js-scope.html" />
+<meta name="description" content="JSDoc" />
+<meta property="og:description" content="JSDoc" />
+<link rel="canonical" href="http://localhost:2333/2019/12/09/js-doc.html" />
+<meta property="og:url" content="http://localhost:2333/2019/12/09/js-doc.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-02-09T11:25:00+08:00" />
+<meta property="article:published_time" content="2019-12-09T20:00:00+08:00" />
 <script type="application/ld+json">
-{"description":"执行上下文与作用域","@type":"BlogPosting","url":"http://localhost:2333/2018/02/09/js-scope.html","headline":"执行上下文与作用域","dateModified":"2018-02-09T11:25:00+08:00","datePublished":"2018-02-09T11:25:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/02/09/js-scope.html"},"@context":"http://schema.org"}</script>
+{"description":"JSDoc","@type":"BlogPosting","url":"http://localhost:2333/2019/12/09/js-doc.html","headline":"JSDoc","dateModified":"2019-12-09T20:00:00+08:00","datePublished":"2019-12-09T20:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/12/09/js-doc.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -163,16 +163,16 @@
             </div>
         </div>
     </header>
-    <a href="#header" class="back-to-top" onclick="onClickTop('执行上下文与作用域')">⤴Top⤴</a>
+    <a href="#header" class="back-to-top" onclick="onClickTop('JSDoc')">⤴Top⤴</a>
     <div class="post-header-thumb bg-white}">
         <div class="post-header-thumb-op"></div>
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    执行上下文与作用域</h1>
+                    JSDoc</h1>
                 <div class="post-data">
-                    <time datetime="2018-02-09 11:25:00" itemprop="datePublished">
-                      发布时间：2018-02-09 11:25:00
+                    <time datetime="2019-12-09 20:00:00" itemprop="datePublished">
+                      发布时间：2019-12-09 20:00:00
                       &nbsp;&nbsp;&nbsp;
                       
                     </time>
@@ -194,9 +194,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                执行上下文与作用域</h1>
+                JSDoc</h1>
             <div class="post-data">
-                <time datetime="2018-02-09 11:25:00" itemprop="datePublished">2018-02-09 11:25:00</time>
+                <time datetime="2019-12-09 20:00:00" itemprop="datePublished">2019-12-09 20:00:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -208,198 +208,347 @@
                     </a>
                    
             </p>
-            <h1 id="执行上下文与作用域">执行上下文与作用域</h1>
+            <h1 id="jsdoc">JSDoc</h1>
 
-<h2 id="什么是执行上下文">什么是执行上下文</h2>
+<h2 id="jsdoc-1">JSDoc</h2>
 
-<h3 id="执行上下文">执行上下文</h3>
+<p><a href="https://github.com/jsdoc/jsdoc"><strong>JSDoc</strong></a> 是根据注释自动生成 API 文档的工具，类似的还有 YUIDoc、JSDuck、ESDoc 等。用法很简单，先安装，之后通过命令行对指定文件进行操作即可:</p>
 
-<p><strong>可执行代码(executable code)</strong> 包含三种</p>
+<pre><code class="language-SHELL"># 安装
+npm i -g jsdoc
+# 指定文件
+jsdoc example.js
+</code></pre>
+
+<h3 id="块标签--行内标签">块标签 / 行内标签</h3>
+
+<p>JSDoc 注释一般应该放置在方法或函数声明之前，它必须以 <code class="highlighter-rouge">/**</code> 开始，以便由 JSDoc 解析器识别。其他任何以 <code class="highlighter-rouge">/*</code>，<code class="highlighter-rouge">/***</code> 或者超过 3 个星号的注释，都将被 JSDoc 解析器忽略。让我们先看个简单的栗子 🌰:</p>
+
+<pre><code class="language-JS">/**
+ * Book 类，代表一个书本.
+ * @constructor
+ * @param {string} title - 书本的标题.
+ * @param {string} author - 书本的作者.
+ */
+function Book(title, author) {
+  this.title = title
+  this.author = author
+}
+
+Book.prototype = {
+  /**
+   * 获取书本的标题
+   * @returns {string|*}
+   */
+  getTitle() {
+    return this.title
+  },
+  /**
+   * 设置书本的页数
+   * @param pageNum {number} 页数
+   */
+  setPageNum(pageNum) {
+    this.pageNum = pageNum
+  }
+}
+
+const book = new Book('柳林风声', '肯尼斯·格雷厄姆')
+console.log(book.getTitle())
+</code></pre>
+
+<p>执行完命令后我们会默认得到一个名为 <code class="highlighter-rouge">out</code> 的文件夹，结构如下:</p>
+
+<pre><code class="language-TEXT">├── out
+│  ├── Book.html
+│  ├── example.js.html
+│  ├── fonts
+│  ├── index.html
+│  ├── scripts
+│  └── styles
+</code></pre>
+
+<p><img src="https://i.loli.net/2019/12/09/HsTKRIEZ8tFUowf.png" alt="jsdoc-example.png" /></p>
+
+<p>我们可以看到，JSDoc 为我们提供了<a href="https://jsdoc.app/index.html">非常丰富的标签</a>，它的解析器会对这些标签进行额外处理。这些标签大概可以分成两类:</p>
 
 <ul>
-  <li>全局代码(global code) - 代码首次执行的默认环境</li>
-  <li>函数代码(function code) - 执行流进入函数体</li>
-  <li>eval 代码(eval code) - 执行 eval 方法</li>
+  <li><strong>块标签(Block Tags)</strong>：以 @ 符号开头，后跟一个空格。如 @param、@example</li>
+  <li><strong>行内标签(Inline Tags)</strong>：位于块标签内的标签，以 @ 符号开头，行内标签及其文本必须在花括号内，如 {@link}、{@tutorial}</li>
 </ul>
 
-<p><strong>执行上下文(execution context)</strong>: 也叫执行环境，当 JavaScript 执行一段可执行代码时，会创建对应的执行上下文，全局执行上下文即是最外围的一个执行环境。一个执行上下文的生命周期可以分为两个阶段:</p>
+<pre><code class="language-JS">/**
+ * @param {string} name - see {@link Person} and {@link Person#getName}
+ */
+function InlineTag() {}
+
+InlineTag.prototype.getName = function (name) {
+  // todo...
+}
+</code></pre>
+
+<p>常用的块标签汇总如下:</p>
+
+<pre><code class="language-JS">/**
+ * @author Tate
+ * @class
+ * @name Greetings - 强制 JSDoc 使用这个给定的名称，而忽略实际代码里的名称
+ * @description Base Class of Greetings.
+ * @param {string} guest
+ * @param {Object} options - The options of Greetings. See {@link Option} for detail.
+ * @return {Greetings}
+ *
+ * @example - 描述多个示例
+ * // create your Greetings
+ * new Greetings(guest, options)
+ */
+class Greetings {
+  /**
+   * @private
+   * @function
+   * @name Greetings#sayHello
+   * @description say hello to guest
+   */
+  sayHello() {
+    // todo
+  }
+}
+</code></pre>
+
+<blockquote>
+  <p>vscode 结合 <code class="highlighter-rouge">Document this</code> 插件食用最佳，可以自动生成一些基于 JSDoc 规范的注释</p>
+</blockquote>
+
+<h3 id="命令行参数">命令行参数</h3>
+
+<p><strong>jsdoc</strong> 命令支持很多参数，具体可以<a href="https://jsdoc.app/about-commandline.html">参考这里</a>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>-a <value>, --access <value></value></value></td>
+      <td>Only display symbols with the given access property: private, protected, public, or undefined, or all for all access levels. By default, all except private symbols are shown.</td>
+    </tr>
+    <tr>
+      <td>-c <value>, --configure <value></value></value></td>
+      <td>The path to a JSDoc configuration file. Defaults to conf.json or conf.json.EXAMPLE in the directory where JSDoc is installed.</td>
+    </tr>
+    <tr>
+      <td>-d <value>, --destination <value></value></value></td>
+      <td>The path to the output folder for the generated documentation. For JSDoc’s built-in Haruki template, use console to dump data to the console. Defaults to ./out.</td>
+    </tr>
+    <tr>
+      <td>–debug</td>
+      <td>Log information that can help debug issues in JSDoc itself.</td>
+    </tr>
+    <tr>
+      <td>-e <value>, --encoding <value></value></value></td>
+      <td>Assume this encoding when reading all source files. Defaults to utf8.</td>
+    </tr>
+    <tr>
+      <td>-h, –help</td>
+      <td>Display information about JSDoc’s command-line options, then exit.</td>
+    </tr>
+    <tr>
+      <td>–match <value></value></td>
+      <td>Only run tests whose names contain value.</td>
+    </tr>
+    <tr>
+      <td>–nocolor</td>
+      <td>When running tests, do not use color in the console output. On Windows, this option is enabled by default.</td>
+    </tr>
+    <tr>
+      <td>-p, –private</td>
+      <td>Include symbols marked with the @private tag in the generated documentation. By default, private symbols are not included.</td>
+    </tr>
+    <tr>
+      <td>-P, –package</td>
+      <td>The package.json file that contains the project name, version, and other details. Defaults to the first package.json file found in the source paths.</td>
+    </tr>
+    <tr>
+      <td>–pedantic</td>
+      <td>Treat errors as fatal errors, and treat warnings as errors. Defaults to false.</td>
+    </tr>
+    <tr>
+      <td>-q <value>, --query <value></value></value></td>
+      <td>A query string to parse and store in the global variable env.opts.query. Example: foo=bar&amp;baz=true.</td>
+    </tr>
+    <tr>
+      <td>-r, –recurse</td>
+      <td>Recurse into subdirectories when scanning for source files and tutorials.</td>
+    </tr>
+    <tr>
+      <td>-R, –readme</td>
+      <td>The README.md file to include in the generated documentation. Defaults to the first README.md file found in the source paths.</td>
+    </tr>
+    <tr>
+      <td>-t <value>, --template <value></value></value></td>
+      <td>The path to the template to use for generating output. Defaults to templates/default, JSDoc’s built-in default template.</td>
+    </tr>
+    <tr>
+      <td>-T, –test</td>
+      <td>Run JSDoc’s test suite, and print the results to the console.</td>
+    </tr>
+    <tr>
+      <td>-u <value>, --tutorials <value></value></value></td>
+      <td>Directory in which JSDoc should search for tutorials. If omitted, no tutorial pages will be generated. See the tutorial instructions for more information.</td>
+    </tr>
+    <tr>
+      <td>-v, –version</td>
+      <td>Displays JSDoc’s version number, then exits.</td>
+    </tr>
+    <tr>
+      <td>–verbose</td>
+      <td>Log detailed information to the console as JSDoc runs. Defaults to false.</td>
+    </tr>
+    <tr>
+      <td>-X, –explain</td>
+      <td>Dump all doclets to the console in JSON format, then exit.</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-SHELL"># 将生成的文件自动放入 mydoc 目录下
+jsdoc example.js example2.js -d mydocs
+# 使用指定模板
+jsdoc example.js -t path/to/clean-jsdoc-theme
+# 根据配置文件生成
+jsdoc example.js -c ./conf.json
+</code></pre>
+
+<h3 id="配置文件">配置文件</h3>
+
+<h4 id="source">source</h4>
+
+<p>jsdoc 配置文件有以下比较重要的几个参数：</p>
 
 <ul>
-  <li>创建阶段 - 执行上下文会分别创建变量对象，建立作用域链，以及确定 this 的指向。</li>
-  <li>代码执行阶段 - 完成变量赋值，函数引用，以及执行其他代码。</li>
+  <li>source.include - 可选路径数组，应该包含的</li>
+  <li>source.exclude - 可选路径数组，应该忽略的</li>
+  <li>source.includePattern - 可选正则表达式，所有文件必须匹配，JSDoc 进行扫描</li>
+  <li>source.excludePattern - 任何匹配该正则表达式的文件都被忽略</li>
 </ul>
 
-<p>对于每个执行上下文，都有三个重要属性：</p>
+<pre><code class="language-JSON">{
+  "source": {
+    "include": ["./a.js", "./lib", "./_private"],
+    "exclude": ["./lib/ignore.js"],
+    "includePattern": ".+\\.js?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  }
+}
+</code></pre>
+
+<p>配置项还支持 templates、plugins 等。详细的<a href="https://jsdoc.app/about-configuring-jsdoc.html">请看文档这里</a> 👈</p>
+
+<pre><code class="language-JSON">{
+  "plugins": [], // No plugins are loaded
+  "recurseDepth": 10, // 搭配 -r 参数使用，JSDoc will search for files 10 levels deep
+  "source": {
+    "includePattern": ".+\\.js(doc|x)?$", // Only files ending in .js, .jsdoc, and .jsx will be processed
+    "excludePattern": "(^|\\/|\\\\)_" // Any file starting with an underscore, or in a directory starting with an underscore, will be ignored
+  },
+  "sourceType": "module", // JSDoc supports code that uses ES2015 modules
+  "tags": {
+    "allowUnknownTags": true, // JSDoc allows you to use unrecognized tags
+    "dictionaries": ["jsdoc", "closure"] // Both standard JSDoc tags and Closure Compiler tags are enabled
+  },
+  "templates": { // Inline {@link} tags are rendered in plain text
+    "cleverLinks": false,
+    "monospaceLinks": false
+  }
+}
+</code></pre>
+
+<h4 id="templates">templates</h4>
+
+<p>这里举一个模板的栗子，比如 <a href="https://github.com/ankitskvmdam/clean-jsdoc-theme">clean-jsdoc-theme</a>，我们直接通过以下命令来使用:</p>
+
+<pre><code class="language-SHELL"># 安装
+npm install clean-jsdoc-theme -D
+# 套用模板
+jsdoc example.js -t ./node_modules/clean-jsdoc-theme
+</code></pre>
+
+<p><img src="https://i.loli.net/2019/12/09/aurXhomDEGF1xpe.png" alt="jsdoc-template" /></p>
+
+<blockquote>
+  <p>更多模板可以<a href="https://cancerberosgx.github.io/jsdoc-templates-demo/demo/">参考这里 jsdoc-templates-demo</a> 👈</p>
+</blockquote>
+
+<p>还有其他的一些工具，比如有转换成 markdown 格式的 <a href="https://github.com/jsdoc2md/jsdoc-to-markdown"><strong>jsdoc-to-markdown</strong></a>:</p>
+
+<pre><code class="language-SHELL"># npm i -g jsdoc-to-markdown
+jsdoc2md example.js &gt; example.md
+</code></pre>
+
+<pre><code class="language-JS">/**
+ * A quite wonderful function.
+ * @param {object} - privacy gown
+ * @param {object} - security
+ * @returns {survival}
+ */
+function protection (cloak, dagger) {}
+</code></pre>
+
+<pre><code class="language-TEXT">## protection(cloak, dagger) ⇒ &lt;code&gt;survival&lt;/code&gt;
+A quite wonderful function.
+
+**Kind**: global function
+
+| Param  | Type                | Description  |
+| ------ | ------------------- | ------------ |
+| cloak  | &lt;code&gt;object&lt;/code&gt; | privacy gown |
+| dagger | &lt;code&gt;object&lt;/code&gt; | security     |
+</code></pre>
+
+<h3 id="文件类型支持">文件类型支持</h3>
 
 <ul>
-  <li><strong>变量对象(variable object)</strong></li>
-  <li><strong>作用域链(scope chain)</strong></li>
-  <li><strong><a href="http://localhost:2333/2018/01/30/js-this.html">this</a></strong></li>
+  <li>JSX：JSDoc3.4 版本后支持</li>
+  <li>Typescript - 有一些标签已经支持，<a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html#supported-jsdoc">详细请看这里</a> 👈</li>
+  <li>vue - jsdoc-vuejs</li>
+  <li>css/sass/less - 如 <a href="http://sassdoc.com/">sassdoc</a></li>
 </ul>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ---------------global context---------------</span>
-<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">;</span>
+<pre><code class="language-JS">/**
+ * @type {string}
+ */
+const s
 
-<span class="kd">function</span> <span class="nx">person</span><span class="p">(){</span>
-  <span class="c1">// ---------------execution context---------------</span>
-  <span class="kd">var</span> <span class="nx">anotherName</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Snow</span><span class="dl">'</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+/** @type {Window} */
+const win
 
-  <span class="kd">function</span> <span class="nx">sayName</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ---------------execution context---------------</span>
-    <span class="k">return</span> <span class="nx">anotherName</span><span class="p">;</span>
-  <span class="p">}</span>
+/** @type {PromiseLike&lt;string&gt;} */
+const promisedString
 
-  <span class="kd">function</span> <span class="nx">sayAge</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ---------------execution context---------------</span>
-    <span class="k">return</span> <span class="nx">age</span><span class="p">;</span>
-  <span class="p">}</span>
+// You can specify an HTML Element with DOM properties
+/** @type {HTMLElement} */
+const myElement = document.querySelector(selector)
+element.dataset.myData = ''
 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">name:%s &amp; age:%s</span><span class="dl">'</span><span class="p">,</span> <span class="nx">sayName</span><span class="p">(),</span> <span class="nx">sayAge</span><span class="p">());</span>
-<span class="p">}</span>
-</code></pre></div></div>
+/**
+ * @type {string | boolean}
+ */
+const sb
 
-<h3 id="执行上下文栈">执行上下文栈</h3>
-
-<p><strong>执行上下文栈(execution context stack)</strong> : 即<a href="http://localhost:2333/2018/02/05/js-event-loop.html">调用栈</a>，也称为执行栈。管理所有生成的执行上下文。</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 一旦上下文执行完毕之后, 它就会从栈中弹出并且返回控制权到下一个上下文当中，直到全局上下文又再次被访问。</span>
-<span class="p">(</span><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">foo</span><span class="p">(</span><span class="o">++</span><span class="nx">i</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}(</span><span class="mi">0</span><span class="p">));</span>
-</code></pre></div></div>
-
-<p><img src="http://davidshariff.com/blog/wp-content/uploads/2012/06/es1.gif" alt="执行上下文" /></p>
-
-<h2 id="变量对象">变量对象</h2>
-
-<p><strong>变量对象(variable object)</strong> 是与执行上下文相关的数据作用域，存储了在执行上下文中定义的所有变量和函数声明。变量对象对于程序而言是不可读的，只有编译器才有权访问变量对象。</p>
-
-<p><strong>活动对象(activation object)</strong> 是在进入函数上下文时刻被创建的，它通过函数的 arguments 属性初始化。随后，它被当做变量对象用于变量初始化。</p>
-
-<blockquote>
-  <p>未进入执行阶段之前，变量对象(VO)中的属性都不能访问！但是进入执行阶段之后，变量对象(VO)转变为了活动对象(AO)，里面的属性都能被访问了，然后开始进行执行阶段的操作。</p>
-</blockquote>
-
-<h2 id="作用域">作用域</h2>
-
-<p>JavaScript 采用 <strong>词法作用域(lexical scoping)</strong>，也就是静态作用域，用来确定当前执行代码对变量的访问权限。分为全局作用域和局部作用域(函数作用域)，ES6 中新增块级作用域。函数的作用域在函数定义的时候就决定了。</p>
-
-<h2 id="作用域链">作用域链</h2>
-
-<p>当查找变量的时候，会先从当前上下文的变量对象中查找，如果没有找到，就会从上层执行上下文的变量对象中查找，一直找到全局上下文的变量对象，也就是全局对象。这样由多个执行上下文的变量对象构成的链表就叫做<strong>作用域链</strong>。</p>
-
-<h3 id="scope">[[scope]]</h3>
-
-<p>在定义函数时， <strong>[[scope]]</strong> 内部属性包含了函数被创建的作用域中对象的集合，这个集合被称为函数的作用域链，它决定了哪些数据能被函数访问。。</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="nx">bar</span><span class="p">()</span> <span class="p">{}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>当函数在创建时，各自的 [[scope]] 属性可抽象化理解为:</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">foo</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
-<span class="p">];</span>
-
-<span class="nx">bar</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="nx">fooContext</span><span class="p">.</span><span class="nx">AO</span><span class="p">,</span>
-  <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
-<span class="p">];</span>
-</code></pre></div></div>
-
-<blockquote>
-  <p>作用域链是一个由变量对象组成的带头结点的单向链表，其主要作用就是用来进行变量查找。而[[scope]]属性是一个指向这个链表头结点的指针。</p>
-</blockquote>
-
-<h3 id="构建过程">构建过程</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">global scope</span><span class="dl">'</span><span class="p">;</span>
-<span class="kd">function</span> <span class="nx">checkscope</span><span class="p">(){</span>
-  <span class="kd">var</span> <span class="nx">scope2</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">local scope</span><span class="dl">'</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">scope2</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">checkscope</span><span class="p">();</span>
-</code></pre></div></div>
-
-<p>作用域链的构建过程可抽象化为:</p>
-
-<p>1、checkscope 函数被创建，保存作用域链到内部属性 [[scope]];</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="nx">globalContext</span><span class="p">.</span><span class="nx">VO</span>
-<span class="p">];</span>
-</code></pre></div></div>
-
-<p>2、 执行 checkscope 函数，创建 checkscope 函数执行上下文，并被压入执行上下文栈上;</p>
-
-<p>3、 checkscope 函数在执行前:</p>
-
-<p>第一步：复制函数 [[scope]] 属性创建作用域链;</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>第二步：用 arguments 创建活动对象，随后初始化活动对象，加入形参、函数声明、变量声明;</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="p">},</span>
-    <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
-  <span class="p">}</span><span class="err">，</span>
-  <span class="na">scope</span><span class="p">:</span> <span class="nx">checkscope</span><span class="p">.[[</span><span class="nx">scope</span><span class="p">]],</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>第三步：将活动对象压入 checkscope 作用域链顶端。</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="p">},</span>
-    <span class="na">scope2</span><span class="p">:</span> <span class="kc">undefined</span>
-  <span class="p">},</span>
-  <span class="na">scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">scope</span><span class="p">]]]</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>4、 开始执行函数，随着函数的执行，修改 AO 的属性值;</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">checkscopeContext</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">AO</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">arguments</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">length</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="p">},</span>
-    <span class="na">scope2</span><span class="p">:</span> <span class="dl">'</span><span class="s1">local scope</span><span class="dl">'</span>
-  <span class="p">},</span>
-  <span class="na">scope</span><span class="p">:</span> <span class="p">[</span><span class="nx">AO</span><span class="p">,</span> <span class="p">[[</span><span class="nx">scope</span><span class="p">]]]</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>5、 查找到 scope2 的值，返回后函数执行完毕，函数上下文从执行上下文栈中弹出。</p>
-
-<blockquote>
-  <p>作用域链的前端始终是当前的执行上下文中的变量对象，终端是全局执行上下文中的变量对象。</p>
-</blockquote>
+/** @type {number[]} */
+const ns
+/** @type {Array&lt;number&gt;} */
+const nas
+/** @type {(s: string, b: boolean) =&gt; number} Typescript syntax */
+const sbn
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/">What is the Execution Context &amp; Stack in JavaScript?</a> By David Shariff</li>
-  <li><a href="https://medium.com/@Alexandra2XU/javascript-execution-context-call-stack-and-event-queue-d58b672d76f7">JavaScript: Execution Context, Call Stack, and Event Queue</a> By Alexandra Williams</li>
-  <li><a href="https://github.com/mqyqingfeng/Blog/issues/6">JavaScript 深入之作用域链</a> By mqyqingfeng</li>
-  <li><a href="https://github.com/kuitos/kuitos.github.io/issues/18">一道 js 面试题引发的思考</a> By kuitos</li>
+  <li><a href="http://www.shouce.ren/api/view/a/13232">JSDoc 中文在线文档</a></li>
 </ol>
  
 <div id="gitalk-container"></div>
@@ -426,9 +575,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/09/js-scope.html';
-        this.page.identifier = '/2018/02/09/js-scope';
-        this.page.title = '执行上下文与作用域';
+        this.page.url = 'https://tate-young.github.io/2019/12/09/js-doc.html';
+        this.page.identifier = '/2019/12/09/js-doc';
+        this.page.title = 'JSDoc';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -447,7 +596,7 @@
 
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-02-09 11:25:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-12-09 20:00:00</p> -->
         </div>
     </article>
 
