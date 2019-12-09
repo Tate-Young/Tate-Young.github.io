@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  React Virtual DOM
 date:   2019-10-24 15:55:00 GMT+0800 (CST)
-update: 2019-11-12 18:09:00 GMT+0800 (CST)
+update: 2019-12-09 14:30:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
 tags:
 - React
@@ -49,7 +49,41 @@ document.getElementById('elementId').innerHTML = "Tate & Snow"
 
 ![diff](https://i0.wp.com/programmingwithmosh.com/wp-content/uploads/2018/11/lnrn_0201.png?ssl=1)
 
-有一些解决将一棵树转换为另一棵树的最小操作数算法问题的通用方案。然而，树中元素个数为 n，最先进的算法 的时间复杂度为 O(n3) 。若我们在 React 中使用，展示 1000 个元素则需要进行10 亿次的比较。这操作太过昂贵，相反，React 基于两点假设，实现了一个启发的 O(n) 算法:
+有一些解决将一棵树转换为另一棵树的最小操作数算法问题的通用方案。然而，树中元素个数为 n，最先进的算法 的时间复杂度为 O(n^3) 。若我们在 React 中使用，展示 1000 个元素则需要进行 10 亿次的比较。这操作太过昂贵，相反，React 基于两点假设，实现了一个启发的 O(n) 算法。那么问题来了，为啥之前的先进算法时间复杂度都为 O(n^3)，而之后只有 O(n) 了呢，要回答这个问题可以依据[知乎这篇回答](https://www.zhihu.com/question/66851503/answer/246766239):
+
+```TEXT
+Prev                  Last
+          A                     A  
+         / \                   / \
+        /   \                 /   \
+       B     D     ====>     D     B
+      /                             \
+     C                               C
+```
+
+传统 Diff 算法的话，先要两两比对节点是否相同，时间复杂度为 O(n^2)，即:
+
+```TEXT
+PA -> LA
+PA -> LB
+PA -> LC
+PA -> LD
+PB -> LA
+...
+```
+
+找到差异后还要计算最小转换方式，比如新增或删除，此时间复杂度为 O(n)，因此最终结果为 O(n^3)。React 的处理方式可以简化为以下，只用遍历一遍，因此时间复杂度为 O(n):
+
+```TEXT
+# 按叶子节点位置比较
+PA -> LA   # 相同
+PB -> LD   # 不同，删除 PB，添加 LD
+PD -> LB   # 不同，更新
+PC -> Null # Last 树没有该节点，所以删除 PC 即可
+Null -> LC # Prev 树没有该节点，所以添加 C 到该位置
+```
+
+React 在更新节点上还遵循了以下两条规则，使得效率进一步提高:
 
 * 两个不同类型的元素将产生不同的树 - 每当根元素有不同类型，React 将卸载旧树并重新构建新树。当比较两个相同类型的 React DOM 元素时，React 则会观察二者的属性，保持相同的底层 DOM 节点，并仅更新变化的属性
 * 通过渲染器附带 key 属性 - 使用 key 来匹配原本树的子节点和新树的子节点，Keys 应该是稳定的，可预测的，且唯一的
