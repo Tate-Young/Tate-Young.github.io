@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记一些命令行工具
 date:   2019-04-01 18:58:00 GMT+0800 (CST)
-update: 2019-10-11 20:36:00 GMT+0800 (CST)
+update: 2019-12-10 11:57:00 GMT+0800 (CST)
 background-image: https://raw.githubusercontent.com/nvbn/thefuck/master/example.gif
 tags:
 - Other
@@ -305,7 +305,7 @@ svgo -i products-shape.svg -o products-shape.svg
 | Ctrl + U | 删除整行 |
 | Ctrl + K | 删除光标后的所有字符 |
 | Opt + 点击 | 跳到当前点击的字符位置 |
-| Opt + ←/→ | 跳到左/右的一个单词位置 |
+| Opt + ←/→ | 跳到左/右的一个单词位置，方向键换成 del 的话则删除一个单词 |
 | Fn + ←/→ | 跳到行首/尾，效果同 `Ctrl + A/E`，更方便 |
 | Fn + Del | 删除光标后的单个字符，直接 Del 则删除光标前的单个字符 |
 
@@ -322,6 +322,20 @@ svgo -i products-shape.svg -o products-shape.svg
 | [boom3d](https://www.globaldelight.com/boom/boom-ppc.php?utm_source=google&utm_medium=cpc&utm_campaign=Worldwide-Brand&gclid=Cj0KCQjw7YblBRDFARIsAKkK-dK06kvxpwChCrYM-KzdtGKcVhG-nOYVKP2orqwFaM-9TrL08r0Go08aAjxfEALw_wcB) | 音效增强 |
 | [Downie3](https://software.charliemonroe.net/downie/) | 类似硕鼠，视频下载 |
 | [magnetx](http://bt.xiandan.in) | 种子下载 |
+
+## 快捷键
+
+### 拼音声调
+
+在 MacOS 系统自带的中文拼音输入法里，敲入拼音字母后，按住 `option` 键，然后每按一下 `tab` 就依次切换 `1/2/3/4` 声调:
+
+```TEXT
+shē shé shě shè
+```
+
+### 自动生成 MindNode 脑图
+
+目前发现在 vscode 下，使用快捷键 `Opt + B` 会自动生成 MindNode 脑图，前提当然是已安装过，[点击可预览](mindnode://open?name=Mind%20Map.mindnode)。
 
 ## 参考链接
 
