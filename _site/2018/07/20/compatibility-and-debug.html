@@ -175,7 +175,7 @@
                       发布时间：2018-07-20 11:01:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-07-20 19:14:00
+                        修改时间：2019-12-10 14:14:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -506,6 +506,21 @@ def request(flow):
   <li>给 div 上加 <code>onclick='void(0);'</code></li>
   <li>将 div 换成其他可点击元素 a、button 等</li>
 </ul>
+
+<h3 id="隐藏滚动条">隐藏滚动条</h3>
+
+<p>这里只介绍比较简单的 CSS 方式来隐藏滚动条:</p>
+
+<pre><code class="language-CSS">.demo {
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  &amp;::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+}
+</code></pre>
 
 <h2 id="移动端">移动端</h2>
 

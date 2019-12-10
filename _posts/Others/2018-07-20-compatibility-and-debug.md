@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种调试和兼容问题
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-07-20 19:14:00 GMT+0800 (CST)
+update: 2019-12-10 14:14:00 GMT+0800 (CST)
 background-image: /style/images/js.png
 tags:
 - Other
@@ -271,6 +271,22 @@ Object.defineProperty(window, 'tate', {
 * 在 div 上添加样式 <code>cursor: pointer</code>
 * 给 div 上加 <code>onclick='void(0);'</code>
 * 将 div 换成其他可点击元素 a、button 等
+
+### 隐藏滚动条
+
+这里只介绍比较简单的 CSS 方式来隐藏滚动条:
+
+```CSS
+.demo {
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+}
+```
 
 ## 移动端
 
