@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  XHR & Fetch API
 date:   2018-03-28 15:46:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/js.png
 tags:
 - JavaScript
 ---

@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  尾调用优化
 date:   2018-02-05 23:26:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/js.png
 tags:
 - JavaScript
 - ES6

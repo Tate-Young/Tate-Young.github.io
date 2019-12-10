@@ -8,7 +8,7 @@ category: 前端
 title:  事件循环
 date:   2018-02-05 16:58:00 GMT+0800 (CST)
 update: 2019-05-21 20:24:00 GMT+0800 (CST)
-background-image: https://sfault-image.b0.upaiyun.com/360/409/3604095867-59a67ae56079d_articlex
+background-image: https://cdn-images-1.medium.com/max/1600/1*-MMBHKy_ZxCrouecRqvsBg.png
 tags:
 - JavaScript
 ---
@@ -96,10 +96,6 @@ console.log('end');
 // world
 // Tate
 ```
-
-事件循环过程可以参考如下:
-
-![事件循环示范图](https://sfault-image.b0.upaiyun.com/360/409/3604095867-59a67ae56079d_articlex)
 
 ## 微任务 / 宏任务
 

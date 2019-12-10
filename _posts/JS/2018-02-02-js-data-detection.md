@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  数据检测
 date:   2018-02-04 01:18:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/js.png
 tags:
 - JavaScript
 ---

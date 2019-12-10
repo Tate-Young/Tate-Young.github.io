@@ -8,7 +8,7 @@ category: 前端
 title:  页面可见性 API
 date:   2018-03-06 12:40:00 GMT+0800 (CST)
 update: 2019-10-11 18:49:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/js.png
 tags:
 - JavaScript
 ---

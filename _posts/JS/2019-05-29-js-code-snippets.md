@@ -8,7 +8,7 @@ category: 前端
 title:  记一些小技巧和代码块
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
 update: 2019-08-07 16:36:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/js.png
 tags:
 - JavaScript
 ---

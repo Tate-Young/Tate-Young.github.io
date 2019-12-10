@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  变量提升
 date:   2018-02-08 15:05:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/js.png
 tags:
 - JavaScript
 - ES6

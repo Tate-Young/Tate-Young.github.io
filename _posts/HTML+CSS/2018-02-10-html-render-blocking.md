@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  加载阻塞
 date:   2018-02-11 11:38:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/js.png
 tags:
 - html
 ---

@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  页面生命周期
 date:   2018-02-11 17:33:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/js.png
 tags:
 - html
 ---

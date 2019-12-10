@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  Touch & Drag 事件
 date:   2018-03-28 09:52:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/js.png
 tags:
 - JavaScript
 ---

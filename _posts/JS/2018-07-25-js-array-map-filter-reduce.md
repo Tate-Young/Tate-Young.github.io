@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  数组 map filter reduce
 date:   2018-07-27 11:15:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/js.png
 tags:
 - JavaScript
 ---
