@@ -274,7 +274,7 @@ Object.defineProperty(window, 'tate', {
 
 ### 隐藏滚动条
 
-这里只介绍比较简单的 CSS 方式来隐藏滚动条:
+这里只介绍比较简单的 CSS 方式来隐藏滚动条，可能不生效，要实际测试一下 😳:
 
 ```CSS
 .demo {

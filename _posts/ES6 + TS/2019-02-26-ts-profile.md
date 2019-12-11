@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 简介
 date:   2019-02-26 17:54:00 GMT+0800 (CST)
-update: 2019-05-20 16:34:00 GMT+0800 (CST)
+update: 2019-12-11 14:02:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -24,7 +24,7 @@ tags:
 
 ### 特殊类型
 
-1、 基础类型
+#### 基础类型
 
 TypeScript 支持与 JavaScript 几乎相同的数据类型，**类型注解**使用 `:TypeAnnotation` 语法:
 
@@ -40,7 +40,7 @@ const list: number[] = [1, 2, 3]
 const list: Array<number> = [1, 2, 3] // 第二种方式是使用数组泛型，Array<元素类型>
 ```
 
-2、 元组
+#### 元组
 
 **元组**类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同:
 
@@ -53,7 +53,7 @@ x = ['hello', 10] // OK
 x = [10, 'hello'] // Error
 ```
 
-3、 枚举
+#### 枚举
 
 **enum** 类型是对 JavaScript 标准数据类型的一个补充:
 
@@ -89,32 +89,72 @@ namespace Weekday {
     switch (day) {
       case Weekday.Saturday:
       case Weekday.Sunday:
-        return false;
+        return false
       default:
-        return true;
+        return true
     }
   }
 }
 
-const mon = Weekday.Monday;
-const sun = Weekday.Sunday;
+const mon = Weekday.Monday
+const sun = Weekday.Sunday
 
-console.log(Weekday.isBusinessDay(mon)); // true
-console.log(Weekday.isBusinessDay(sun));
+console.log(Weekday.isBusinessDay(mon)) // true
+console.log(Weekday.isBusinessDay(sun))
 ```
 
-4、 Any
+#### Any / Unknown
 
-**Any** 类型是指定那些在编程阶段还不清楚类型的变量，这些值可能来自于动态的内容:
+**Any** 类型是指定那些在编程阶段还不清楚类型的变量，这些值可能来自于动态的内容，例子[来源于这里](https://mariusschulz.com/blog/the-unknown-type-in-typescript):
 
 ```JS
-let notSure: any = 4
-notSure = 'maybe a string instead'
-notSure = false // okay, definitely a boolean
-const list: any[] = [1, true, 'free']
+let value: any
+
+value.foo.bar  // OK
+value.trim()   // OK
+value()        // OK
+new value()    // OK
+value[0][1]    // OK
 ```
 
-5、 Void
+TypeScript 3.0 引入了新的 **unknown** 顶级类型，与 any 的主要区别是 unknown 类型会更加严格，即 TypeScript 不允许我们对类型为 unknown 的值执行任意操作。相反，我们必须首先执行某种类型检查以缩小我们正在使用的值的类型范围。而且我们过多使用 any 类型，就无法享受 TypeScript 给予的保护机制:
+
+```JS
+let value: unknown
+
+value.foo.bar  // Error
+value.trim()   // Error
+value()        // Error
+new value()    // Error
+value[0][1]    // Error
+```
+
+我们可以通过不同的方式将 unknown 类型缩小为更具体的类型范围，包括 `typeof`、`instanceof` 和自定义类型保护函数:
+
+```JS
+function stringifyForLogging(value: unknown): string {
+  if (typeof value === 'function') {
+    // Within this branch, `value` has type `Function`, so we can access the function's `name` property
+    const functionName = value.name || '(anonymous)'
+    return `[function ${functionName}]`
+  }
+
+  if (value instanceof Date) {
+    // Within this branch, `value` has type `Date`, so we can call the `toISOString` method
+    return value.toISOString()
+  }
+  
+  return String(value)
+}
+
+// 如果要强制编译器信任类型为 unknown 的值为给定类型，则可以使用类似这样的类型断言
+const value: unknown = 'Hello World'
+const someString: string = value as string // 若不断言的话则会报错，因为 unknown 类型只能赋值给 unknown 或 any
+// const value1: string = value   // Error
+const otherString = someString.toUpperCase()  // 'HELLO WORLD'
+```
+
+#### Void / Never
 
 当一个函数没有返回值时，其类型可以用 **void**:
 
@@ -127,9 +167,7 @@ function warnUser(): void {
 const unusable: void = undefined
 ```
 
-6、 Never
-
-**never** 类型表示的是那些永不存在的值的类型。 比如那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型:
+**never** 类型表示的是那些永不存在的值的类型。比如那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型:
 
 ```JS
 // 返回never的函数必须存在无法达到的终点
@@ -140,6 +178,43 @@ function error(message: string): never {
 
 > void 指可以被赋值的类型(在 strictNullChecking 为 false 时)，但是 never 不能赋值给其他任何类型，除了 never。
 
+> void 与 never 的区别 - void return void, never never return
+
+#### Object / object / {}
+
+首先，这三种类型都表示你的值是一个没有任何自定义属性的对象，只从 `Object.prototype` 继承了基本的方法。意味着 TypeScript 会有以下限制：
+
+```JS
+let user: object = { name: 'tate' }
+user.toString() // OK
+user.name // Error: Property 'name' does not exist on type 'object'.(2339)
+```
+
+另一方面，如果你之前不了解 {}, object, Object 分别代表哪些值，下面这段代码可能会让你感觉相当困惑:
+
+```JS
+let title: {}
+title = {} // OK
+title = [] // OK
+title = 123 // OK
+
+let content: object
+content = {} // OK
+content = [] // OK
+content = 123 // Error: Type '123' is not assignable to type 'object'.ts(2322)
+```
+
+我们知道 JavaScript 中有多种原始类型 (primitive type): number、string、boolean、symbol、null 和 undefined。而 object (TypeScript v2.2 新加入的类型)就是用来表示**非原始类型**的。也就是说，如果一个变量的值是 object 类型，那么它可以是任何非原始类型值，比如上面的空对象和空数组，但是不能是原始类型值，比如 123。
+
+{} 类型不仅包含非原始类型，还包含除 `null | undefined` 之外的其他原始类型，这也是为什么把 123 和 [] 赋值给 {} 类型都不会报错。清楚了每个类型所包含的值的范围，也就很好理解上面的代码为什么会有这样的差异了。至于 Object 的话，在行为上跟 {} 基本上是一样的。新增的 object 类型在某些情况下是有用的，比如用来限定 `Object.create` 方法的参数类型:
+
+```JS
+interface ObjectConstructor {
+  // ...
+  create(o: object | null): any
+  // ...
+}
+```
 
 ### 联合类型 |
 
@@ -154,7 +229,7 @@ interface Fish {
   swim()
   layEggs()
 }
-let pet = getPet() // getPet() 的返回值类型是`Bird | Fish` 
+let pet = getPet() // getPet() 的返回值类型是`Bird | Fish`
 pet.layEggs() // 允许
 pet.swim() // 报错
 ```
@@ -228,30 +303,30 @@ const strLength: number = (someValue as string).length
 类型断言的一个常见用例是当你从 JavaScript 迁移到 TypeScript 时:
 
 ```JS
-const foo = {};
-foo.bar = 123; // Error: 'bar' 属性不存在于 ‘{}’
-foo.bas = 'hello'; // Error: 'bas' 属性不存在于 '{}'
+const foo = {}
+foo.bar = 123 // Error: 'bar' 属性不存在于 ‘{}’
+foo.bas = 'hello' // Error: 'bas' 属性不存在于 '{}'
 ```
 
 这里的代码发出了错误警告，因为 foo 的类型推断为 {}，即是具有零属性的对象。因此，你不能在它的属性上添加 bar 或 bas，你可以通过类型断言来避免此问题:
 
 ```JS
 interface Foo {
-  bar: number;
-  bas: string;
+  bar: number
+  bas: string
 }
 
-const foo = {} as Foo;
-foo.bar = 123;
-foo.bas = 'hello';
+const foo = {} as Foo
+foo.bar = 123
+foo.bas = 'hello'
 ```
 
 让我们再看看**双重类型断言**的栗子:
 
 ```JS
 function handler(event: Event) {
-  // const mouseEvent = event as MouseEvent;
-  const element = event as HTMLElement; // Error: 'Event' 和 'HTMLElement' 中的任何一个都不能赋值给另外一个
+  // const mouseEvent = event as MouseEvent
+  const element = event as HTMLElement // Error: 'Event' 和 'HTMLElement' 中的任何一个都不能赋值给另外一个
 }
 ```
 
@@ -259,13 +334,13 @@ function handler(event: Event) {
 
 ```JS
 function handler(event: Event) {
-  const element = (event as any) as HTMLElement; // ok
+  const element = (event as any) as HTMLElement // ok
 }
 ```
 
 ## 接口 Interface
 
-TypeScript 的核心原则之一是对值所具有的结构进行类型检查。它有时被称做'鸭式辨型法'或'结构性子类型化'。 在 TypeScript 里，**接口**的作用就是为这些类型命名和为你的代码或第三方代码定义契约。
+TypeScript 的核心原则之一是对值所具有的结构进行类型检查。它有时被称做'鸭式辨型法'或'结构性子类型化'。 在 TypeScript 里，**接口**的作用就是为这些类型命名和为你的代码或第三方代码定义契约。一般自定义的接口建议用 `I` 前缀，如 IProps:
 
 ```JS
 // 不使用接口
@@ -281,13 +356,13 @@ printLabel(myObj)
 ```JS
 // 使用接口
 // 代表了有一个 label 属性且类型为 string 的对象
-interface LabelledValue {
+interface ILabelledValue {
   label: string
   size?: number // 可选属性
   gender?: 'man' | 'woman'
 }
 
-function printLabel(labelledObj: LabelledValue) {
+function printLabel(labelledObj: ILabelledValue) {
   console.log(labelledObj.label)
 }
 
@@ -300,11 +375,11 @@ printLabel(myObj)
 一些对象属性只能在对象刚刚创建的时候修改其值。可以在属性名前用 **readonly** 来指定只读属性:
 
 ```JS
-interface Point {
+interface IPoint {
   readonly x: number
   readonly y: number
 }
-let p1: Point = { x: 10, y: 20 }
+let p1: IPoint = { x: 10, y: 20 }
 p1.x = 5 // error!
 ```
 
@@ -324,7 +399,7 @@ a = ro // error!
 如果能够确定某个对象可能具有某些做为特殊用途使用的额外属性，还能够添加一个字符串**索引签名**:
 
 ```JS
-interface SquareConfig {
+interface ISquareConfig {
   color?: string
   width?: number
   [propName: string]: any
@@ -334,11 +409,11 @@ interface SquareConfig {
 接口除了描述带有属性的普通对象外，也可以描述函数类型:
 
 ```JS
-interface SearchFunc {
+interface ISearchFunc {
   (source: string, subString: string): boolean
 }
 
-let mySearch: SearchFunc
+let mySearch: ISearchFunc
 // 如果你不想指定类型，TypeScript 的类型系统会推断出参数类型，因为函数直接赋值给了 SearchFunc 类型变量
 mySearch = function(source: string, subString: string) {
   const result = source.search(subString)
@@ -349,11 +424,11 @@ mySearch = function(source: string, subString: string) {
 与使用接口描述函数类型差不多，我们也可以描述那些能够“通过索引得到”的类型，比如 a[10] 或 ageMap['daniel']。可索引类型具有一个**索引签名**，它描述了对象索引的类型，还有相应的索引返回值类型:
 
 ```JS
-interface StringArray {
+interface IStringArray {
   [index: number]: string
 }
 
-let myArray: StringArray
+let myArray: IStringArray
 myArray = ['Bob', 'Fred']
 
 const myStr: string = myArray[0]
@@ -365,12 +440,12 @@ TypeScript 能够用它来明确的强制一个类去符合某种契约:
 
 ```JS
 // 接口描述了类的公共部分
-interface ClockInterface {
+interface IClockInterface {
   currentTime: Date
   setTime(d: Date) // 可以在接口中描述一个方法，在类里实现它
 }
 
-class Clock implements ClockInterface {
+class Clock implements IClockInterface {
   currentTime: Date
   setTime(d: Date) {
     this.currentTime = d
@@ -382,24 +457,24 @@ class Clock implements ClockInterface {
 类是具有两个类型的：静态部分的类型和实例的类型。我们应该直接操作类的静态部分。 看下面的例子，我们定义了两个接口，`ClockConstructor` 为构造函数所用和 `ClockInterface` 为实例方法所用:
 
 ```JS
-interface ClockConstructor {
-  new (hour: number, minute: number): ClockInterface
+interface IClockConstructor {
+  new (hour: number, minute: number): IClockInterface
 }
-interface ClockInterface {
+interface IClockInterface {
   tick()
 }
 
-function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
+function createClock(ctor: IClockConstructor, hour: number, minute: number): IClockInterface {
   return new ctor(hour, minute)
 }
 
-class DigitalClock implements ClockInterface {
+class DigitalClock implements IClockInterface {
   constructor(h: number, m: number) { }
   tick() {
     console.log('beep beep')
   }
 }
-class AnalogClock implements ClockInterface {
+class AnalogClock implements IClockInterface {
   constructor(h: number, m: number) { }
   tick() {
     console.log('tick tock')
@@ -415,20 +490,20 @@ let analog = createClock(AnalogClock, 7, 32)
 和类一样，接口也可以相互继承:
 
 ```JS
-interface Shape {
+interface IShape {
   color: string
 }
 
-interface PenStroke {
+interface IPenStroke {
   penWidth: number
 }
 
 // 一个接口可以继承多个接口，创建出多个接口的合成接口
-interface Square extends Shape, PenStroke {
+interface ISquare extends IShape, IPenStroke {
   sideLength: number
 }
 
-let square = <Square>{}
+let square = <ISquare>{}
 square.color = 'blue'
 square.sideLength = 10
 square.penWidth = 5.0
@@ -443,11 +518,11 @@ class Control {
 
 // SelectableControl 包含了 Control 的所有成员，包括私有成员 state
 // 因为 state 是私有成员，所以只能够是 Control 的子类们才能实现 SelectableControl 接口
-interface SelectableControl extends Control {
+interface ISelectableControl extends Control {
   select(): void
 }
 
-class Button extends Control implements SelectableControl {
+class Button extends Control implements ISelectableControl {
   select() { }
 }
 
@@ -456,10 +531,22 @@ class TextBox extends Control {
 }
 
 // 错误：“Image”类型缺少“state”属性。
-class Image implements SelectableControl {
+class Image implements ISelectableControl {
   select() { }
 }
 ```
+
+### interface 与 type 的区别
+
+type alias 和 interface 在很多时候都可以相互替换使用，具体什么情况该用哪一个并没有强制的要求。相比直接提供一些使用的建议，我觉得把两者主要的差异点先列出来也许更有必要：
+
+* 同一个作用域中同名的 interface 会**合并声明** (declaration merging)，而同一个作用域同名的 type alias 会报错
+* type alias 的右值可以是任何类型，包括原始类型 (比如 string, number) 和类型表达式，interface 只能是对象类型 (shape)
+* interface 可以继承 (extends) 其他 shape 类型
+
+> 注意：上面有提到一个 shape 类型，其实就是非原始类型 object。很多人会误以为 interface 只能继承其他 interface、class 只能 implements interface，但实际上可以 extends 或者 implements 其他任何 shape 类型。
+
+了解了这几个重要的差异之后，我们再回到 type alias 和 interface 的使用场景。一般来讲，使用哪种更多的是个人偏好，不过 type alias 似乎比 interface 要简洁通用一些 (type alias 支持类型表达式比如条件判断)。而如果你准备编写一个公共库，可能还需要仔细考虑库中定义的类型是否允许使用者扩展 (declaration merging)。
 
 ## 泛型 Generics
 
@@ -640,6 +727,8 @@ namespace Validation {
 }
 ```
 
+> 三斜线指令
+
 ```JS
 /// <reference path='Validation.ts' />
 /// <reference path='LettersOnlyValidator.ts' />
@@ -743,6 +832,229 @@ declare class Greeter {
 
   greeting: string
   showGreeting(): void
+}
+```
+
+## 声明合并
+
+### 接口合并
+
+最简单也最常见的声明合并类型是接口合并。 从根本上说，合并的机制是把双方的成员放到一个同名的接口里:
+
+```JS
+interface IBox {
+  height: number
+  width: number
+}
+
+interface IBox {
+  scale: number
+}
+
+let box: IBox = {height: 5, width: 6, scale: 10}
+```
+
+接口的非函数的成员应该是唯一的。如果它们不是唯一的，那么它们必须是相同的类型。如果两个接口中同时声明了同名的非函数成员且它们的类型不同，则编译器会报错。对于函数成员，每个同名函数声明都会被当成这个函数的一个重载。同时需要注意，当接口 A 与后来的接口 A 合并时，后面的接口具有更高的优先级:
+
+```JS
+interface Cloner {
+  clone(animal: Animal): Animal
+}
+
+interface Cloner {
+  clone(animal: Sheep): Sheep
+}
+
+interface Cloner {
+  clone(animal: Dog): Dog
+  clone(animal: Cat): Cat
+}
+
+// 合并为
+interface Cloner {
+  clone(animal: Dog): Dog
+  clone(animal: Cat): Cat
+  clone(animal: Sheep): Sheep
+  clone(animal: Animal): Animal
+}
+```
+
+> 这个规则有一个例外是当出现特殊的函数签名时。如果签名里有一个参数的类型是单一的字符串字面量（比如，不是字符串字面量的联合类型），那么它将会被提升到重载列表的最顶端
+
+### 命名空间合并
+
+对于命名空间的合并，模块导出的同名接口进行合并，构成单一命名空间内含合并后的接口。对于命名空间里值的合并，如果当前已经存在给定名字的命名空间，那么后来的命名空间的导出成员会被加到已经存在的那个模块里:
+
+```JS
+namespace Animals {
+  export class Zebra { }
+}
+
+namespace Animals {
+  export interface Legged { numberOfLegs: number }
+  export class Dog { }
+}
+
+// 合并为
+namespace Animals {
+  export interface Legged { numberOfLegs: number }
+
+  export class Zebra { }
+  export class Dog { }
+}
+```
+
+除了这些合并外，你还需要了解非导出成员是如何处理的。 非导出成员仅在其原有的（合并前的）命名空间内可见。这就是说合并之后，从其它命名空间合并进来的成员无法访问非导出成员:
+
+```JS
+namespace Animal {
+  let haveMuscles = true
+
+  export function animalsHaveMuscles() {
+    return haveMuscles
+  }
+}
+
+namespace Animal {
+  export function doAnimalsHaveMuscles() {
+    return haveMuscles  // Error, because haveMuscles is not accessible here
+  }
+}
+```
+
+名空间还可以与其它类型的声明进行合并，只要命名空间的定义符合将要合并类型的定义，合并结果包含两者的声明类型。我们可以用以下方式表示内部类:
+
+```JS
+class Album {
+  label: Album.AlbumLabel
+}
+namespace Album {
+  export class AlbumLabel { }
+}
+```
+
+除了内部类的模式，你在 JavaScript 里，创建一个函数稍后扩展它增加一些属性也是很常见的。 TypeScript 使用声明合并来达到这个目的并保证类型安全:
+
+```JS
+function buildLabel(name: string): string {
+  return buildLabel.prefix + name + buildLabel.suffix
+}
+
+namespace buildLabel {
+  export let suffix = ""
+  export let prefix = "Hello, "
+}
+
+console.log(buildLabel("Sam Smith"))
+```
+
+### 模块扩展
+
+虽然 JavaScript 不支持合并，但你可以为导入的对象打补丁以更新它们。让我们考察一下这个玩具性的示例:
+
+```JS
+// observable.js
+export class Observable<T> {
+  // ... implementation left as an exercise for the reader ...
+}
+
+// map.js
+import { Observable } from "./observable"
+Observable.prototype.map = function (f) {
+  // ... another exercise for the reader
+}
+```
+
+它也可以很好地工作在 TypeScript 中， 但编译器对 `Observable.prototype.map` 一无所知。 你可以使用扩展模块来将它告诉编译器:
+
+```JS
+// observable.ts stays the same
+// map.ts
+import { Observable } from "./observable"
+declare module "./observable" {
+  interface Observable<T> {
+    map<U>(f: (x: T) => U): Observable<U>
+  }
+}
+Observable.prototype.map = function (f) {
+  // ... another exercise for the reader
+}
+
+
+// consumer.ts
+import { Observable } from "./observable"
+import "./map"
+let o: Observable<number>
+o.map(x => x.toFixed())
+```
+
+再举个工作中遇到的例子，比如使用富文本导出 html 的库 `draft-js-export-html` 定义了以下接口，但是发现 Options 接口少定义了一个 `InlineStyleFn` 属性:
+
+```JS
+/// <reference types="draft-js" />
+
+declare module 'draft-js-export-html' {
+  import draftjs = require("draft-js");
+
+  type BlockStyleFn = (block: draftjs.ContentBlock) => RenderConfig|undefined;
+  type EntityStyleFn = (entity: draftjs.EntityInstance) => RenderConfig|undefined;
+  type BlockRenderer = (block: draftjs.ContentBlock) => string;
+  type RenderConfig = {
+    element?: string;
+    attributes?: any;
+    style?: any;
+  };
+
+  export interface Options {
+    defaultBlockTag?: string;
+    inlineStyles?: { [styleName: string]: RenderConfig };
+    blockRenderers?: { [blockType: string]: BlockRenderer };
+    blockStyleFn?: BlockStyleFn;
+    entityStyleFn?: EntityStyleFn;
+  }
+
+  export function stateToHTML(content: draftjs.ContentState, options?: Options): string;
+}
+```
+
+于是重新创建一个声明文件进行补充和合并:
+
+```JS
+declare module 'draft-js-export-html' {
+  import draftjs = require("draft-js")
+
+  interface IInlineStyle {
+    element: string,
+    style: { [p: string]: string }
+  }
+
+  type InlineStyleFn = (styles: draftjs.DraftInlineStyle) => draftjs.DraftInlineStyle | IInlineStyle
+
+  export interface Options {
+    inlineStyleFn?: InlineStyleFn
+  }
+}
+
+```
+
+### 全局扩展
+
+也可以在模块内部添加声明到全局作用域中:
+
+```JS
+// observable.ts
+export class Observable<T> {
+  // ... still no implementation ...
+}
+
+declare global {
+  interface Array<T> {
+    toObservable(): Observable<T>
+  }
+}
+
+Array.prototype.toObservable = function () {
+  // ...
 }
 ```
 
