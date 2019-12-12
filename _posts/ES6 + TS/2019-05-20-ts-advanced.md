@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2019-10-15 16:43:00 GMT+0800 (CST)
+update: 2019-12-12 12:11:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -267,6 +267,94 @@ const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
   "lib": ["es6", "dom"]
 }
 }
+```
+
+## 泛型参数
+
+### 参数定义位置的区别
+
+上一节里讲到了泛型的基本概念，这次深入看下泛型的使用场景。回忆一下我们用到泛型最多的情况应该是在函数中:
+
+```JS
+function arrayify<T>(data: T): T[] {
+  return [data]
+}
+```
+
+这算的上是最简单的使用泛型的场景了。我们除了可以在函数里使用泛型参数来设置约定，还有以下几个场景可以用到泛型:
+
+1. `class Arrayify<T> {}`
+1. `type Arrayify = <T>(data: T) => T[]`
+1. `type Arrayify<T> = (data: T) => T[]`
+1. `interface Arrayify { <T>(data: T): T[] }`
+1. `interface Arrayify<T> { (data: T): T[] }`
+
+例 1 很简单，class 在 JavaScript 中本质上还是函数，所以泛型的使用跟普通函数一致;2、 3 一眼看上去非常类似，只是泛型定义的位置不同。2 中的泛型参数定义在调用签名 (call signature) 前面，而 3 的泛型参数紧跟在 type alias 后面。就这个 Arrayify 例子而言，虽然泛型位置不同，但是 2 跟 3 的效果是一样的，那么这两种定义方式有什么区别？简单来讲，泛型定义的位置决定了它涵盖的作用域。再举个例子:
+
+```JS
+type Arrayify = {
+  <T>(data: T): T[]
+  customProp: string
+}
+
+type Arrayify<T> = {
+  (data: T): T[]
+  customProp: T
+}
+```
+
+这个例子应该是非常清晰的，定义在调用签名的泛型参数只能用在单个调用签名中，而定义在 type alias 后面的泛型参数可以用在整个 type 中。例 4、5 没有细讲，是因为 interface 在使用泛型的情况下跟 type alias 是类似的，大家自行脑补就好。那么使用泛型时为什么有的时候我不用提供具体的类型，而有时候必须要提供？
+
+```JS
+const stringArr = arrayify('hello') // string[]
+const ageArr = arrayify({ age: 100 }) // {age: number}[]
+```
+
+我们调用 arrayify 时传入了不同类型的参数，但是并没有显示指定泛型参数 T 的具体类型，这是因为 TypeScript 会根据函数参数来推断泛型的具体类型。比如:
+
+```JS
+type Arrayify = <T>(data: T) => T[]
+type StringArr = Arrayify // correct
+```
+
+上面的代码很好理解，只是把 Arrayify 赋值给了另一个 type StringArr，这俩是等价的。我们再试试当 Arrayify 的泛型参数是声明在 type 后面的情况:
+
+```JS
+type Arrayify<T> = (data: T) => T[]
+type StringArr = Arrayify // error: Generic type 'Arrayify' requires 1 type argument(s).(2314)
+type NumberArr = Arrayify<number> // correct
+```
+
+TypeScript 并不允许我们在不提供泛型参数值的情况下直接把 Arrayify 赋值给 StringArr。回想一下上一个问题中我有提到过：“简单来讲，泛型定义的位置决定了它涵盖的作用域”，注意只是“简单来讲”，还没说完呢，实际上**泛型参数定义的位置不仅决定了它涵盖的作用域，还决定了 TypeScript 什么时候会给泛型参数赋予具体类型**。如果泛型参数声明在调用签名前，表示函数调用的时候会决定好泛型的具体类型 (我们可以手动指定，也可以让 TypeScript 根据函数参数来推断)。而如果是直接定义在 type alias 后面的泛型参数，那么在使用这个 type alias 时我们必须要手动指定明确的具体类型，因为这种情况 TypeScript 无法帮我们推断出泛型的具体类型。
+关于 `Arrayify<number>` 还有一点要说的是，可以把 Arrayify 理解成一个“函数”，`Arrayify<number>` 理解成函数调用。每次“调用” Arrayify 时，会生成一个新的、泛型参数绑定到我们传入类型的 type alias。
+
+### Promise 的类型推断
+
+好的，既然解释了这个问题，我们再看下另一个问题，为什么在构造 Promise 实例时需要明确指定泛型参数的具体类型？我们先来构造一个简单的 Promise 实例:
+
+```JS
+let promise = new Promise(resolve => resolve(45))
+promise.then(value => value * 2) // error: Object is of type 'unknown'.(2571)
+```
+
+面这段代码没有类型信息，只是一段普通的 JavaScript 代码，但是在 TypeScript 环境中执行到 `value * 2` 时却报错了。要知道具体原因的话我们得看看 Promise 构造函数本身具体的定义是怎样的：
+
+```JS
+interface PromiseConstructor {
+  // ...
+  new <T>(executor: (resolve: (value?: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void): Promise<T>
+  // ...
+}
+```
+
+上面的类型定义来自 TypeScript 内置的 `lib.es2015.promise.d.ts` 文件，我们省略了一些实例方法，只关注构造函数。可以看到 Promise 构造函数有一个泛型参数，回忆下在上一问题中我们说过：TypeScript 通过函数参数来推断其泛型参数，那么 `new Promise(resolve => resolve(45))` 显然是不能提供足够的信息来帮助 TypeScript 推断出泛型参数具体类型的，因为 `resolve(45)` 是函数体中的表达式。
+
+既然 TypeScript 无法从参数里推断出泛型的具体类型，我们在 new 表达式中也没有为泛型指定具体类型，那么 T 的具体类型应该是什么？在 `TypeScript v3.7.2` 中，T 绑定到了 unknown, 而我测试在 v3.4.4 中 T 则被绑定到了 {}。无论是 unknown 还是 {}，TypeScript 都不会让我们执行 `value * 2`。因此我们可以这么去做:
+
+```JS
+let promise = new Promise<number>(resolve => resolve(45))
+// 或
+let promise: Promise<number> = new Promise(resolve => resolve(45))
 ```
 
 ## 高级类型

@@ -175,7 +175,7 @@
                       发布时间：2019-02-26 17:54:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-12-11 14:02:00
+                        修改时间：2019-12-12 11:43:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -867,7 +867,7 @@ createInstance(Lion).keeper.nametag  // typechecks!
 createInstance(Bee).keeper.hasMask   // typechecks!
 </code></pre>
 
-<h2 id="命名空间">命名空间</h2>
+<h2 id="命名空间-namespace">命名空间 namespace</h2>
 
 <p>“内部模块”现在称做”<strong>命名空间(namespace)</strong>“，”外部模块”则简称为”<strong>模块(module)</strong>“，不应该对模块使用命名空间，使用命名空间是为了提供逻辑分组和避免命名冲突:</p>
 
@@ -893,7 +893,7 @@ namespace Validation {
 </code></pre>
 
 <blockquote>
-  <p>三斜线指令</p>
+  <p><strong>三斜线指令(Triple Slash Directive)</strong> 一般用来为某一文件制定特殊的编译选项，或者指示某一文件依赖其他文件</p>
 </blockquote>
 
 <pre><code class="language-JS">/// &lt;reference path='Validation.ts' /&gt;
@@ -946,7 +946,7 @@ declare const $: any
 <pre><code class="language-JS">// ---- 函数 ----
 greet('hello, world')
 
-declare function greet(greeting: string): void
+declare function greet(name: string): void
 </code></pre>
 
 <pre><code class="language-JS">// ---- 带属性的对象 使用 declare namespace 描述用点表示法访问的类型或值 ----
@@ -993,6 +993,12 @@ declare class Greeter {
   showGreeting(): void
 }
 </code></pre>
+
+<p>从上面的例子我们可以看到 <code class="highlighter-rouge">d.ts</code> 文件和 <code class="highlighter-rouge">ts</code> 文件相比，就相当于代码减去值，只保留了类型信息。<code class="highlighter-rouge">d.ts</code> 是用来给 JavaScript 添加类型信息的，所以我们能够在 TypeScript 项目中安全的使用 JavaScript 模块。如果项目都是 TypeScript 代码，那么基本上不会用到 d.ts 文件，因为 .ts 文件本身就包含类型。但是如果我们某些依赖的模块是用 JavaScript 写的，并且没有对应的 <code class="highlighter-rouge">d.ts</code><strong>，DefinitelyTyped</strong> 中也没有第三方贡献的 type 模块，这个时候可能需要我们自己在项目中新建一个 <code class="highlighter-rouge">d.ts</code> 文件，为这些 JavaScript 模块增加相应的类型。</p>
+
+<blockquote>
+  <p><strong>declare</strong> 关键字用来表示一个断言：如在相应的 JavaScript 模块中，一定导出了一个函数 greeting，它的类型是 <code class="highlighter-rouge">(name: string) =&gt; void</code>。注意只有在编写类型信息时才会用到该关键字</p>
+</blockquote>
 
 <h2 id="声明合并">声明合并</h2>
 

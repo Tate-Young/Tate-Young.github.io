@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 简介
 date:   2019-02-26 17:54:00 GMT+0800 (CST)
-update: 2019-12-11 14:02:00 GMT+0800 (CST)
+update: 2019-12-12 11:43:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -700,7 +700,7 @@ createInstance(Lion).keeper.nametag  // typechecks!
 createInstance(Bee).keeper.hasMask   // typechecks!
 ```
 
-## 命名空间
+## 命名空间 namespace
 
 "内部模块"现在称做"**命名空间(namespace)**"，"外部模块"则简称为"**模块(module)**"，不应该对模块使用命名空间，使用命名空间是为了提供逻辑分组和避免命名冲突:
 
@@ -727,7 +727,7 @@ namespace Validation {
 }
 ```
 
-> 三斜线指令
+> **三斜线指令(Triple Slash Directive)** 一般用来为某一文件制定特殊的编译选项，或者指示某一文件依赖其他文件
 
 ```JS
 /// <reference path='Validation.ts' />
@@ -784,7 +784,7 @@ declare const $: any
 // ---- 函数 ----
 greet('hello, world')
 
-declare function greet(greeting: string): void
+declare function greet(name: string): void
 ```
 
 ```JS
@@ -834,6 +834,10 @@ declare class Greeter {
   showGreeting(): void
 }
 ```
+
+从上面的例子我们可以看到 `d.ts` 文件和 `ts` 文件相比，就相当于代码减去值，只保留了类型信息。`d.ts` 是用来给 JavaScript 添加类型信息的，所以我们能够在 TypeScript 项目中安全的使用 JavaScript 模块。如果项目都是 TypeScript 代码，那么基本上不会用到 d.ts 文件，因为 .ts 文件本身就包含类型。但是如果我们某些依赖的模块是用 JavaScript 写的，并且没有对应的 `d.ts`**，DefinitelyTyped** 中也没有第三方贡献的 type 模块，这个时候可能需要我们自己在项目中新建一个 `d.ts` 文件，为这些 JavaScript 模块增加相应的类型。
+
+> **declare** 关键字用来表示一个断言：如在相应的 JavaScript 模块中，一定导出了一个函数 greeting，它的类型是 `(name: string) => void`。注意只有在编写类型信息时才会用到该关键字
 
 ## 声明合并
 
