@@ -175,7 +175,7 @@
                       发布时间：2018-02-26 18:45:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-05-23 17:36:00
+                        修改时间：2019-12-12 18:39:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -261,8 +261,6 @@
     </tr>
   </tbody>
 </table>
-
-<p><img src="http://tenny.qiniudn.com/HTTPQUBIE2.png" alt="HTTPS" /></p>
 
 <h2 id="请求报文">请求报文</h2>
 
@@ -553,6 +551,103 @@
       <td style="text-align: left">其他协议使用</td>
       <td style="text-align: left">HTTP、HTTPS、FTP、SMTP、Telnet</td>
       <td style="text-align: left">DNS、DHCP</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="get-与-post-请求的区别">Get 与 Post 请求的区别</h2>
+
+<blockquote>
+  <p>tldr - 两者本质上区别不大，都是基于 TCP/IP 协议传输，更多是语义上的一些区别，再加上 HTTP 其他的一些规定和浏览器和服务器等的限制，导致他们的行为有所不同</p>
+</blockquote>
+
+<p>上面已经说了本质一样，但是行为有区别，到底区别在哪儿呢，我们接着看:</p>
+
+<p>1、Get</p>
+
+<pre><code class="language-TEXT">&lt;!-- 查询字符串（名称/值对）是在 GET 请求的 URL 中发送的 --&gt;
+/test/demo_form.asp?name1=value1&amp;name2=value2
+</code></pre>
+
+<ol>
+  <li>幂等</li>
+  <li>请求可被缓存</li>
+  <li>请求保留在浏览器历史记录中</li>
+  <li>请求可被收藏为书签</li>
+  <li>请求不应在处理敏感数据时使用</li>
+  <li>请求有长度限制</li>
+  <li>请求只应当用于取回数据</li>
+</ol>
+
+<p>2、Post</p>
+
+<pre><code class="language-TEXT">&lt;!-- 查询字符串（名称/值对）是在 POST 请求的 HTTP 消息主体中发送的 --&gt;
+POST /test/demo_form.asp HTTP/1.1
+Host: w3schools.com
+name1=value1&amp;name2=value2
+</code></pre>
+
+<ol>
+  <li>不幂等</li>
+  <li>请求不会被缓存</li>
+  <li>请求不会保留在浏览器历史记录中</li>
+  <li>不能被收藏为书签</li>
+  <li>请求对数据长度没有要求</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>维度</th>
+      <th>Get</th>
+      <th>Post</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>后退按钮/刷新</td>
+      <td>无害</td>
+      <td>数据会被重新提交（浏览器应该告知用户数据会被重新提交）。</td>
+    </tr>
+    <tr>
+      <td>书签</td>
+      <td>可收藏为书签</td>
+      <td>不可收藏为书签</td>
+    </tr>
+    <tr>
+      <td>缓存</td>
+      <td>能被缓存</td>
+      <td>不能缓存</td>
+    </tr>
+    <tr>
+      <td>编码类型</td>
+      <td><code class="highlighter-rouge">application/x-www-form-urlencoded</code></td>
+      <td><code class="highlighter-rouge">application/x-www-form-urlencoded</code> 或 <code class="highlighter-rouge">multipart/form-data</code>。为二进制数据使用多重编码</td>
+    </tr>
+    <tr>
+      <td>历史</td>
+      <td>参数保留在浏览器历史中</td>
+      <td>参数不会保存在浏览器历史中</td>
+    </tr>
+    <tr>
+      <td>对数据长度的限制</td>
+      <td>是的。当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符）</td>
+      <td>无限制</td>
+    </tr>
+    <tr>
+      <td>对数据类型的限制</td>
+      <td>只允许 ASCII 字符</td>
+      <td>没有限制。也允许二进制数据</td>
+    </tr>
+    <tr>
+      <td>安全性</td>
+      <td>与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分。在发送密码或其他敏感信息时绝不要使用 GET</td>
+      <td>POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中</td>
+    </tr>
+    <tr>
+      <td>可见性</td>
+      <td>数据在 URL 中对所有人都是可见的</td>
+      <td>数据不会显示在 URL 中</td>
     </tr>
   </tbody>
 </table>

@@ -7,7 +7,7 @@ background: orange
 category: 前端
 title: HTTPS
 date:   2018-02-26 18:45:00 GMT+0800 (CST)
-update: 2019-12-12 17:36:00 GMT+0800 (CST)
+update: 2019-12-12 18:39:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/02/26/5a941e489c7af.png
 tags:
 - http
@@ -36,8 +36,6 @@ HTTPS 与 HTTP 的区别:
 | 端口 | 80 | 443 |
 | 证书 | 无 | 需要向 CA(证书颁发机构) 申请证书 |
 | 加密 | 直接将数据给到 TCP 进行传输 | 先将数据给到 SSL/TLS 进行加密，然后再由 TCP 进行传输 |
-
-![HTTPS](http://tenny.qiniudn.com/HTTPQUBIE2.png)
 
 ## 请求报文
 
@@ -176,6 +174,54 @@ netstat -n -p TCP | grep SYN_RECV
 | 应用场合 | 大量数据，如文件传输 | 少量数据，如广播通信 |
 | 速度 | 慢 | 快 |
 | 其他协议使用 | HTTP、HTTPS、FTP、SMTP、Telnet | DNS、DHCP |
+
+## Get 与 Post 请求的区别
+
+> tldr - 两者本质上区别不大，都是基于 TCP/IP 协议传输，更多是语义上的一些区别，再加上 HTTP 其他的一些规定和浏览器和服务器等的限制，导致他们的行为有所不同
+
+上面已经说了本质一样，但是行为有区别，到底区别在哪儿呢，我们接着看:
+
+1、Get
+
+```TEXT
+<!-- 查询字符串（名称/值对）是在 GET 请求的 URL 中发送的 -->
+/test/demo_form.asp?name1=value1&name2=value2
+```
+
+1. 幂等
+1. 请求可被缓存
+1. 请求保留在浏览器历史记录中
+1. 请求可被收藏为书签
+1. 请求不应在处理敏感数据时使用
+1. 请求有长度限制
+1. 请求只应当用于取回数据
+
+2、Post
+
+```TEXT
+<!-- 查询字符串（名称/值对）是在 POST 请求的 HTTP 消息主体中发送的 -->
+POST /test/demo_form.asp HTTP/1.1
+Host: w3schools.com
+name1=value1&name2=value2
+```
+
+1. 不幂等
+1. 请求不会被缓存
+1. 请求不会保留在浏览器历史记录中
+1. 不能被收藏为书签
+1. 请求对数据长度没有要求
+
+| 维度        |   Get   | Post |
+| ------------ | ------- | ------- |
+| 后退按钮/刷新 | 无害 | 数据会被重新提交（浏览器应该告知用户数据会被重新提交）。 |
+| 书签 | 可收藏为书签 | 不可收藏为书签 |
+| 缓存 | 能被缓存 | 不能缓存 |
+| 编码类型 | `application/x-www-form-urlencoded` | `application/x-www-form-urlencoded` 或 `multipart/form-data`。为二进制数据使用多重编码 |
+| 历史 | 参数保留在浏览器历史中 | 参数不会保存在浏览器历史中 |
+| 对数据长度的限制 | 是的。当发送数据时，GET 方法向 URL 添加数据；URL 的长度是受限制的（URL 的最大长度是 2048 个字符） | 无限制 |
+| 对数据类型的限制 | 只允许 ASCII 字符 | 没有限制。也允许二进制数据 |
+| 安全性 | 与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分。在发送密码或其他敏感信息时绝不要使用 GET | POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中 |
+| 可见性 | 数据在 URL 中对所有人都是可见的 | 数据不会显示在 URL 中 |
 
 ## 参考链接
 
