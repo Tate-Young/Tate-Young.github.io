@@ -50,42 +50,42 @@ tags:
 
 ### 优先级权重计算
 
-* 优先级就是分配给指定的 CSS 声明的一个权重，它由 匹配的选择器中的 每一种选择器类型的 数值 决定。
+* 优先级就是分配给指定的 CSS 声明的一个权重，它由匹配的选择器中的每一种选择器类型的数值决定。
 * 而当优先级与多个 CSS 声明中任意一个声明的优先级相等的时候，CSS 中最后的那个声明将会被应用到元素上。
 * 当同一个元素有多个声明的时候，优先级才会有意义。因为每一个直接作用于元素的 CSS 规则总是会接管或覆盖该元素从祖先元素继承而来的规则。
 
 ```CSS
 /* 权值计算 100(#content) + 1(div) + 100(#main-content) + 1(h2) = 202 */
 #content div#main-content h2{
-    color:red;
+  color:red;
 }
 ```
 
 ```CSS
 /* 权值计算 100(#main-content) + 1(div) + 10(.paragraph) + 1(h2) = 112 */
 #main-content div.paragraph h2 {
-    color:orange;
+  color:orange;
 }
 ```
 
 ```CSS
 /* 权值计算 100(#main-content) + 10(class="paragraph") + 1(h2) = 111 */
 #main-content [class="paragraph"] h2 {
-    color:yellow;
+  color:yellow;
 }
 ```
 
 ```HTML
 <!-- 栗子转载于链接3，感谢提供 -->
 <div id="content">
-    <div id="main-content">
-        <h2>CSS简介</h2>
-        <p>CSS（Cascading Style Sheet，可译为“层叠样式表”或“级联样式表”）是一组格式设置规则，用于控制Web页面的外观。</p>
-        <div class="paragraph">
-            <h2 class="first">使用CSS布局的优点</h2>
-            <p>1、表现和内容相分离 2、提高页面浏览速度 3、易于维护和改版 4、使用CSS布局更符合现在的W3C标准.</p>
-        </div>
+  <div id="main-content">
+    <h2>CSS简介</h2>
+    <p>CSS（Cascading Style Sheet，可译为“层叠样式表”或“级联样式表”）是一组格式设置规则，用于控制Web页面的外观。</p>
+    <div class="paragraph">
+      <h2 class="first">使用CSS布局的优点</h2>
+      <p>1、表现和内容相分离 2、提高页面浏览速度 3、易于维护和改版 4、使用CSS布局更符合现在的W3C标准.</p>
     </div>
+  </div>
 </div>
 ```
 
