@@ -280,7 +280,7 @@ document.cookie = "key=name; max-age=-1; domain=www.example.com; path=/; secure;
 
 <p>在响应头中可加入 set-cookie 字段设置 cookie，如下图则对应 5 个 cookie:</p>
 
-<p><img src="https://sfault-image.b0.upaiyun.com/237/110/2371104766-56dd2fc2ba7ae_articlex" alt="cookie - 服务端" /></p>
+<p><img src="https://image-static.segmentfault.com/237/110/2371104766-56dd2fc2ba7ae_articlex" alt="cookie - 服务端" /></p>
 
 <ul>
   <li><strong>客户端</strong></li>
@@ -316,7 +316,7 @@ document.cookie = "key=name; max-age=-1; domain=www.example.com; path=/; secure;
 
 <p>session 也可设置过期时间，禁用 cookie 并不一定无法使用 session。除了 cookie，客户端还可以将发送给服务器的数据包含在请求的 URL 中:</p>
 
-<p><img src="http://upload-images.jianshu.io/upload_images/1234352-474c42b13e2d470d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="session - url" /></p>
+<p><img src="https://i.loli.net/2019/12/14/LNeYo9fwqFruhCA.png" alt="http-cookie-session.png" /></p>
 
 <h2 id="web-storage">Web Storage</h2>
 
@@ -402,9 +402,9 @@ localforage.setDriver([localforage.WEBSQL, localforage.INDEXEDDB]);
 
 <p>上述 Web Storage 对于大量结构化数据就无能为力了，灵活大不够强大。</p>
 
-<h3 id="web-sql">Web SQL</h3>
+<h3 id="web-sqldeprecated">Web SQL(<em>deprecated</em>)</h3>
 
-<p><strong>Web SQL</strong>(<em>deprecated</em>) 是属于前端的<strong>关系型数据库</strong>，由一张张的二维表组成的，它也是本地存储的一种，使用 SQLite 实现，可通过 SQL(即操作关系型 DB 的语言)支持增删查改等。同样的关系型数据库比如有 MySQL、SQLite、SQL Server、Oracle 等。</p>
+<p><strong>Web SQL</strong> 是属于前端的<strong>关系型数据库</strong>，由一张张的二维表组成的，它也是本地存储的一种，使用 SQLite 实现，可通过 SQL(即操作关系型 DB 的语言)支持增删查改等。同样的关系型数据库比如有 MySQL、SQLite、SQL Server、Oracle 等。</p>
 
 <p>关系型数据库的缺点是:</p>
 
@@ -414,8 +414,6 @@ localforage.setDriver([localforage.WEBSQL, localforage.INDEXEDDB]);
   <li>关系型数据库为了保持事务的一致性特点，难以应对高并发</li>
 </ul>
 
-<p><img src="https://dn-sdkcnssl.qbox.me/editor/oVrWVVjH3Ewo-uwiYtE5.png" alt="Web SQL" /></p>
-
 <h3 id="indexeddb">IndexedDB</h3>
 
 <p><strong>IndexedDB</strong> 属于<strong>非关系型数据库(NoSQL = not only sql)</strong>，非关系型数据库根据它的存储特点，常用的有:</p>
@@ -424,8 +422,6 @@ localforage.setDriver([localforage.WEBSQL, localforage.INDEXEDDB]);
   <li>key-value 型，如 Redis、IndexedDB，value 可以为任意数据类型</li>
   <li>json / document 型，如 MongoDB，可对 value 的字段做索引，IndexedDB 也支持</li>
 </ul>
-
-<p><img src="https://dn-sdkcnssl.qbox.me/editor/9Ks86rbq3cacvngmF0NI.png" alt="IndexedDB" /></p>
 
 <p>它的特点是存储比较灵活，但是查找没有像关系型数据库一样好用。适用于数据量很大，只需要单表 key 查询，一致性不用很高的场景。具体操作请<a href="https://fed.renren.com/2017/06/11/sql/">参考这里</a>。</p>
 

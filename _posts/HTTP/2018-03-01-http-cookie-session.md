@@ -7,7 +7,7 @@ background: orange
 category: 前端
 title: Cookie & Session
 date:   2018-03-02 10:10:00 GMT+0800 (CST)
-background-image: http://upload-images.jianshu.io/upload_images/1234352-474c42b13e2d470d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240
+background-image: https://i.loli.net/2019/12/14/LNeYo9fwqFruhCA.png
 tags:
 - http
 ---
@@ -67,7 +67,7 @@ cookie 既可以由服务端来设置，也可以由客户端来设置。
 
 在响应头中可加入 set-cookie 字段设置 cookie，如下图则对应 5 个 cookie:
 
-![cookie - 服务端](https://sfault-image.b0.upaiyun.com/237/110/2371104766-56dd2fc2ba7ae_articlex)
+![cookie - 服务端](https://image-static.segmentfault.com/237/110/2371104766-56dd2fc2ba7ae_articlex)
 
 * **客户端**
 
@@ -98,7 +98,7 @@ document.cookie = "key=name; max-age=100; secure";
 
 session 也可设置过期时间，禁用 cookie 并不一定无法使用 session。除了 cookie，客户端还可以将发送给服务器的数据包含在请求的 URL 中:
 
-![session - url](http://upload-images.jianshu.io/upload_images/1234352-474c42b13e2d470d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![http-cookie-session.png](https://i.loli.net/2019/12/14/LNeYo9fwqFruhCA.png)
 
 ## Web Storage
 
@@ -182,9 +182,9 @@ localforage.setDriver([localforage.WEBSQL, localforage.INDEXEDDB]);
 
 上述 Web Storage 对于大量结构化数据就无能为力了，灵活大不够强大。
 
-### Web SQL
+### Web SQL(*deprecated*)
 
-**Web SQL**(*deprecated*) 是属于前端的**关系型数据库**，由一张张的二维表组成的，它也是本地存储的一种，使用 SQLite 实现，可通过 SQL(即操作关系型 DB 的语言)支持增删查改等。同样的关系型数据库比如有 MySQL、SQLite、SQL Server、Oracle 等。
+**Web SQL** 是属于前端的**关系型数据库**，由一张张的二维表组成的，它也是本地存储的一种，使用 SQLite 实现，可通过 SQL(即操作关系型 DB 的语言)支持增删查改等。同样的关系型数据库比如有 MySQL、SQLite、SQL Server、Oracle 等。
 
 关系型数据库的缺点是:
 
@@ -192,16 +192,12 @@ localforage.setDriver([localforage.WEBSQL, localforage.INDEXEDDB]);
 * 海量数据用 SQL 联表查询，性能将会非常差
 * 关系型数据库为了保持事务的一致性特点，难以应对高并发
 
-![Web SQL](https://dn-sdkcnssl.qbox.me/editor/oVrWVVjH3Ewo-uwiYtE5.png)
-
 ### IndexedDB
 
 **IndexedDB** 属于**非关系型数据库(NoSQL = not only sql)**，非关系型数据库根据它的存储特点，常用的有:
 
 * key-value 型，如 Redis、IndexedDB，value 可以为任意数据类型
 * json / document 型，如 MongoDB，可对 value 的字段做索引，IndexedDB 也支持
-
-![IndexedDB](https://dn-sdkcnssl.qbox.me/editor/9Ks86rbq3cacvngmF0NI.png)
 
 它的特点是存储比较灵活，但是查找没有像关系型数据库一样好用。适用于数据量很大，只需要单表 key 查询，一致性不用很高的场景。具体操作请[参考这里](https://fed.renren.com/2017/06/11/sql/)。
 
