@@ -7,6 +7,7 @@ background: orange
 category: 前端
 title: HTTP 缓存
 date:   2018-02-27 17:03:00 GMT+0800 (CST)
+update: 2019-12-14 09:23:00 GMT+0800 (CST)
 background-image: http://imweb-io-1251594266.file.myqcloud.com/FozLFZKB5y67NUSXLhioLseHJYbE
 tags:
 - http
@@ -19,6 +20,10 @@ tags:
 
 * **200 OK (from cache)** - 不向服务器发送请求，直接使用客户端缓存
 * **304 not modified** - 代表资源在客户端中的缓存依然是有效的，否则返回 200 状态码(相当于重新请求)
+
+浏览器发起请求时，对于缓存的处理是根据返回的响应头来确定的，而针对首次请求，其流程如下，这就是缓存机制实现的关键:
+
+![client-cache-first-request.png](https://i.loli.net/2019/12/14/4OH8pS76cCV3djx.png)
 
 ## 首部字段
 
@@ -180,6 +185,53 @@ Pragma: no-cache
 
 ![Ctrl + F5](http://imweb-io-1251594266.file.myqcloud.com/FonZrh_J5auduA4JaqZKW9hZqXrG)
 
+## 缓存位置
+
+这部分主要是讨论浏览器缓存的位置，主要是[参考这篇博客](https://www.jianshu.com/p/54cc04190252)，从缓存位置上来说分为四种，并且各自有一些优先级，当然也要是情况而定，当依次查找缓存且都没有命中的时候，才会去请求网络:
+
+1. Service Worker
+2. Memory Cache
+3. Disk Cache
+4. Push Cache
+
+### Service Worker
+
+[**Service Workder**](https://developers.google.com/web/fundamentals/primers/service-workers?hl=zh-CN) 在介绍 PWA 那篇博客已经详细说了，其作用就是提供丰富的离线体验、定期的后台同步以及推送通知等通常需要将面向本机应用的功能将引入到网页应用中。而其中一项功能就是通过自定义一些策略缓存接口，让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的。
+
+Service Worker 实现缓存功能一般分为三个步骤：首先需要先注册 Service Worker，然后监听到 install 事件以后就可以缓存需要的文件，那么在下次用户访问的时候就可以通过拦截请求的方式查询是否存在缓存，存在缓存的话就可以直接读取缓存文件，否则就去请求数据。
+
+当 Service Worker 没有命中缓存的时候，我们需要去调用 fetch 函数获取数据。也就是说，如果我们没有在 Service Worker 命中缓存的话，会根据缓存查找优先级去查找数据。但是不管我们是从 Memory Cache 中还是从网络请求中获取的数据，浏览器都会显示我们是从 Service Worker 中获取的内容。
+
+### Memory Cache
+
+**Memory Cache** 也就是内存中的缓存，主要包含的是当前中页面中已经抓取到的资源，例如页面上已经下载的脚本、图片等。其优点是读取速度快，但是持续性很短，会随着进程的释放而释放，即一旦我们关闭页面，内存中的缓存也就被释放了。由于内存空间有限，所以一般也不会存放比较大的文件。
+
+### Disk Cache
+
+**Disk Cache** 也就是存储在硬盘中的缓存，由于读取缓存需要对该缓存存放的硬盘文件进行 I/O 操作，然后重新解析该缓存内容，所以读取速度比较慢。但是你懂的，更持久。而且应用也是最广泛的。一般情况下，样式 CSS 文件会缓存于此。
+
+### Push Cache
+
+**Push Cache** 是 HTTP/2 缓存推送中的内容，[详情见这里](https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/)，这里不做介绍了。
+
+以上列出了众多缓存位置，那么浏览器究竟是怎么选择的呢，以下基于 chrome 为例:
+
+1、首次访问[我的博客](https://tate-young.github.io/)， 200 没毛病
+
+2、关闭标签页后重新打开，可以看到基本从 `Disk Cache` 取:
+
+![client-cache-disk-cache.png](https://i.loli.net/2019/12/14/J4lW5r6NDcg1mkC.png)
+
+3、普通刷新页面，可以看到有些从 `Memory Cache` 中取，但是值得注意的是，每次重复到该步骤，很多文件或接口并不完全规定好了在哪儿取，可能同一个文件，缓存位置都不一样:
+
+![client-cache-memory-cache.png](https://i.loli.net/2019/12/14/RjBoqn8eaxXNwuT.png)
+
+因此总结一下：在一般情况下，整体的优先级，还是以 chrome 为例:
+
+1. Service Worker 优先
+2. 如果新开一个以前打开过的页面缓存会从 Disk Cache 中拿（前提是命中强缓存）
+3. 刷新当前页面时浏览器会根据当前运行环境内存来决定是从 Memory Cache 还是从 Disk Cache 中拿
+
 ## 参考链接
 
 1. [MDN - Cache-Control](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control)
@@ -187,3 +239,5 @@ Pragma: no-cache
 1. [IMWeb - HTTP 缓存控制小结](http://imweb.io/topic/5795dcb6fb312541492eda8c)
 1. [IMWeb - 缓存策略](http://imweb.io/topic/55c6f9bac222e3af6ce235b9)
 1. [说说客户端端缓存的那点事儿-扑朔迷离的 etag 与 last-modified](https://github.com/rccoder/blog/issues/12) By rccoder
+1. [深入理解浏览器的缓存机制](https://www.jianshu.com/p/54cc04190252) By 浪里行舟
+1. [彻底理解浏览器的缓存机制](https://heyingye.github.io/2018/04/16/彻底理解浏览器的缓存机制/) By heyingye

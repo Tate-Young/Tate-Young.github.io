@@ -79,7 +79,7 @@ tags:
 
 ![service worker](https://user-gold-cdn.xitu.io/2018/4/8/162a560d0bdb6ed1?w=567&h=271&f=png&s=14952)
 
-> Service Worker 实际运行于本机上，相当于一个客户端代理。
+> Service Worker 实际运行于本机上，相当于一个客户端代理，更多[请参考这里](https://developers.google.com/web/fundamentals/primers/service-workers?hl=zh-CN) 👈
 
 ### 注册
 

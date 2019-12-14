@@ -26,9 +26,7 @@ redirect_from:
 
 ## 定个小目标
 
-最近面了个X公司，感觉好多知识都很陌生，没有去钻研或者深究，甚至有的都没听说过 😭，因此有了这个小计划，一定要养成做笔记的习惯，虽然一直用印象笔记，但是都没有细心整理。
-
-给自己加油打打气！！！
+每天都有新收获，给自己加油打打气！！！
 
 ```npm
  ____                          ____                          __  __
@@ -46,7 +44,7 @@ redirect_from:
 
 * [Github](https://github.com/Tate-Young)
 
-* [Gmail邮箱](mailto:smd.tate@gmail.com?body=Hi~很高兴认识你)
+* [Gmail 邮箱](mailto:smd.tate@gmail.com?body=Hi~很高兴认识你)
 
 ## 技能标签
 
