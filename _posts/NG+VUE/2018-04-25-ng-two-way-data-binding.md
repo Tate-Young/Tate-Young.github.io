@@ -288,7 +288,7 @@ class ApplicationRef_ extends ApplicationRef {
 
 对于 Angular，任何数据都是从顶部往底部流动，即单向数据流:
 
-![change detection](https://sfault-image.b0.upaiyun.com/263/495/2634958555-58ce98d1a84ec_articlex)
+![angular-data-detection.png](https://i.loli.net/2019/12/15/qJdrB5F1wXTuzUv.png)
 
 ### onPush
 
@@ -355,7 +355,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 因此变化检测流程变成了下图:
 
-![onPush](https://sfault-image.b0.upaiyun.com/398/469/3984699873-58ce98e815740_articlex)
+![angular-data-detection-onpush.png](https://i.loli.net/2019/12/15/Ej6mhPB5NAweniS.png)
 
 ### Mutable / Immutable
 

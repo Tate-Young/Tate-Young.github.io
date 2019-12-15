@@ -359,7 +359,7 @@ res.set('Cache-Control', 'no-cache, max-age=0, no-store, must-revalidate')
 
 ## 中间件
 
-**[中间件(Middleware)](http://www.expressjs.com.cn/guide/using-middleware.html)** 是一个函数，它可以访问 **请求对象(req)**, **响应对象(res)** 和 web 应用中处于请求/响应循环流程中的中间件，下一个中间件函数通常由名为 **next** 的变量来表示。。如果当前中间件没有终结请求/响应循环，则必须调用 next() 方法将控制权交给下一个中间件，否则请求就会挂起。中间件装入顺序很重要：首先装入的中间件函数也首先被执行。
+**[中间件(Middleware)](http://www.expressjs.com.cn/guide/using-middleware.html)** 是一个函数，它可以访问 **请求对象(req)**, **响应对象(res)** 和 web 应用中处于请求/响应循环流程中的中间件，下一个中间件函数通常由名为 **next** 的变量来表示。如果当前中间件没有终结请求/响应循环，则必须调用 next() 方法将控制权交给下一个中间件，否则请求就会挂起。中间件装入顺序很重要：首先装入的中间件函数也首先被执行。
 
 ```JS
 // 基本的中间件结构
