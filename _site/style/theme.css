@@ -253,6 +253,10 @@ code {
     border-radius: 4px;
 }
 
+code.language-TEXT {
+  white-space: break-spaces;
+}
+
 pre code {
     font-size: 12px;
     display: block;

@@ -7,7 +7,7 @@ background: orange
 category: 前端
 title: HTTPS & TCP
 date:   2018-02-26 18:45:00 GMT+0800 (CST)
-update: 2019-12-13 14:10:00 GMT+0800 (CST)
+update: 2019-12-16 12:24:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/02/26/5a941e489c7af.png
 tags:
 - http
@@ -94,9 +94,11 @@ HTTPS 的加密方式主要有以下几种:
 
 ## TCP
 
-**传输控制协议(TCP)**是一种面向连接的、可靠的、基于字节流的传输层通信协议。
+**传输控制协议(TCP)**是一种面向连接的、可靠的、基于字节流的传输层通信协议。它完成第四层传输层所指定的功能。
 
-![TCP](https://user-images.githubusercontent.com/23043941/61610138-c873b000-ac8a-11e9-9478-5b9197cb2288.png)
+当传输数据时，TCP 把数据流分割成适当长度的报文段（通常受该计算机连接的网络的数据链路层的**最大传输单元（MTU）**的限制）。之后 TCP 把结果包传给 IP 层，由它来透过网络将包传送给接收端实体的 TCP 层。TCP 为了保证不发生丢包，就给每个包一个序号，同时序号也保证了传送到接收端实体的包的按序接收。然后接收端实体对已成功收到的包发回一个相应的确认信息（ACK）；如果发送端实体在合理的往返时延（RTT）内未收到确认，那么对应的数据包就被假设为已丢失并进行重传。TCP 用一个校验和函数来检验数据是否有错误，在发送和接收时都要计算校验和。
+
+在 TCP 的数据传送状态，很多重要的机制保证了 TCP 的可靠性和强壮性。它们包括：使用序号，对收到的 TCP 报文段进行排序以及检测重复的数据；使用校验和检测报文段的错误，即无错传输；使用确认和计时器来检测和纠正丢包或延时，丢失包的重传等。
 
 ### 三次握手
 
@@ -116,11 +118,15 @@ HTTPS 的加密方式主要有以下几种:
 
 握手流程：
 
-* **第一次握手**：客户端向服务器端发送连接请求包 SYN(syn=j)，等待服务器回应，这里的 syn 即代表 SEQ 随机序列号；
-* **第二次握手**：服务器端响应后发送两个包给客户端，并进入 `SYN_RECV` 状态;
+* **第一次握手**：客户端向服务器端发送连接请求包 SYN(syn=j)，等待服务器回应，这里的 syn 即代表 SEQ 随机序列号，此时确认号无效；
+* **第二次握手**：服务器端响应后发送两个包给客户端(组合成单一讯息)，并进入 `SYN_RECV` 状态;
   * 向客户端发送确认自己收到其连接请求的确认包 ACK(ack=j+1)
   * 向客户端发送连接询问请求包 SYN(syn=k)，询问客户端是否已经准备好建立连接
-* **第三次握手**：客户端收到服务器的两个包后，向服务器发送连接建立的确认包 ACK(ack=k+1)，服务器收到后，服务器与客户端进入 `ESTABLISHED` 状态，开始进行数据传送。
+* **第三次握手**：客户端收到服务器的两个包后，向服务器发送连接建立的确认包 ACK(syn=j+1,ack=k+1)，服务器收到后，服务器与客户端进入 `ESTABLISHED` 状态，开始进行数据传送。
+
+```TEXT
+Connection set-up uses the SYN flags. They are not used except for connection set-up. The establish a connection the initiator (active open) selects an initial sequence number X and sends a packet with sequence number X and SYN flag 1. The other machine (server, passive open) will select its own initial sequence number Y and will send a packet with sequence number Y, SYN flag 1, acknowledgement number Y+1 and ACK flag 1. The initiator will complete the three way handshake by sending a packet with ACK flag 1 and acknowledgement number Y+1. The connection is now established.
+```
 
 #### 为什么三次
 
@@ -130,9 +136,19 @@ HTTPS 的加密方式主要有以下几种:
 
 ![seq](https://s3.notfalse.net/wp-content/uploads/2017/03/12013524/TCP-Header-Format-SEQ.png)
 
-> TCP 使用**确认号(Acknowledgment Number)**栏位，指出下一个期望接收的 SEQ
-
 > 简而言之，三次握手的目的：消除旧有连接请求的 SYN 消息对新连接的干扰，同步连接双方的序列号和确认号并交换 TCP 窗口大小信息
+
+#### SEQ 序列号
+
+```TEXT
+All bytes in a TCP connection are numbered, beginning at a randomly chosen initial sequence number (ISN). The SYN packets consume one sequence number, so actual data will begin at ISN+1. The sequence number is the byte number of the first byte of data in the TCP packet sent (also called a TCP segment). The acknowledgement number is the sequence number of the next byte the receiver expects to receive. The receiver ack'ing sequence number x acknowledges receipt of all data bytes less than (but not including) byte number x.
+
+The sequence number is always valid. The acknowledgement number is only valid when the ACK flag is one. The only time the ACK flag is not set, that is, the only time there is not a valid acknowledgement number in the TCP header, is during the first packet of connection set-up.
+```
+
+> Packets in TCP are called **segments**.
+
+> TCP 使用**确认号(Acknowledgment Number)**栏位，指出下一个期望接收的 SEQ。仅在有 ACK 标志位时生效，即除了第一次连接时发送的包
 
 #### ISN 初始序列号
 
@@ -165,7 +181,7 @@ netstat -n -p TCP | grep SYN_RECV
 
 ### 四次挥手
 
-**四次挥手(four-way wavehand)**用来终止 TCP 连接，由于 TCP 的半关闭特性，TCP连接时数据在两个方向上能同时传递，因此每个方向必须单独的进行关闭。
+**四次挥手(four-way wavehand)**用来终止 TCP 连接，由于 TCP 的**双全工(full duplex)**特性，TCP 连接时数据在两个方向上能同时传递，因此每个方向必须单独的进行关闭。
 
 ![四次挥手](https://i.loli.net/2018/02/26/5a941d204af5e.png)
 
