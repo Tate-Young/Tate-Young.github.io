@@ -220,7 +220,7 @@ npm i -g jsdoc
 jsdoc example.js
 </code></pre>
 
-<h3 id="块标签--行内标签">块标签 / 行内标签</h3>
+<h3 id="块标签--内联标签">块标签 / 内联标签</h3>
 
 <p>JSDoc 注释一般应该放置在方法或函数声明之前，它必须以 <code class="highlighter-rouge">/**</code> 开始，以便由 JSDoc 解析器识别。其他任何以 <code class="highlighter-rouge">/*</code>，<code class="highlighter-rouge">/***</code> 或者超过 3 个星号的注释，都将被 JSDoc 解析器忽略。让我们先看个简单的栗子 🌰:</p>
 
@@ -273,7 +273,7 @@ console.log(book.getTitle())
 
 <ul>
   <li><strong>块标签(Block Tags)</strong>：以 @ 符号开头，后跟一个空格。如 @param、@example</li>
-  <li><strong>行内标签(Inline Tags)</strong>：位于块标签内的标签，以 @ 符号开头，行内标签及其文本必须在花括号内，如 {@link}、{@tutorial}</li>
+  <li><strong>内联标签(Inline Tags)</strong>：位于块标签内的标签，以 @ 符号开头，内联标签及其文本必须在花括号内，如 {@link}、{@tutorial}</li>
 </ul>
 
 <pre><code class="language-JS">/**

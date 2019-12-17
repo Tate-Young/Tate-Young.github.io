@@ -19,6 +19,10 @@ tags:
 
 ![array-map-filter-reduce.png](https://i.loli.net/2018/07/25/5b57e50329aba.png)
 
+或者 emmm... 可以参考下图:
+
+![array-map-filter-reduce-funny.png](https://i.loli.net/2019/12/17/gytjW4A8JFXCLka.png)
+
 ### map
 
 ```JS

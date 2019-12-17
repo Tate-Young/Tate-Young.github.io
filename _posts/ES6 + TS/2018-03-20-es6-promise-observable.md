@@ -7,6 +7,7 @@ background: blue
 category: 前端
 title:  Promise & Observable
 date:   2018-03-21 15:07:00 GMT+0800 (CST)
+update: 2019-12-17 14:18:00 GMT+0800 (CST)
 background-image: https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2447683882,2644927629&fm=27&gp=0.jpg
 tags:
 - ES6
@@ -180,7 +181,7 @@ const p = Promise.all([p1, p2, p3]).then(...);
 * 只有 p1、p2、p3 的状态都变成 fulfilled，p 的状态才会变成 fulfilled，此时 p1、p2、p3 的返回值组成一个数组，传递给 p 的回调函数
 * 只要 p1、p2、p3 之中有一个被 rejected，p 的状态就变成 rejected，此时第一个被 reject 的实例的返回值，会传递给 p 的回调函数
 
-如果作为参数的 Promise 实例定义了 catch 方法，那么它一旦处于 rejected 状态，将不会触发 Promise.all() 的 catch 方法:
+如果作为参数的 Promise 实例定义了 catch 方法，那么它一旦处于 rejected 状态，将不会触发 `Promise.all()` 的 catch 方法:
 
 ```JS
 const p1 = new Promise((resolve, reject) => {
@@ -198,6 +199,34 @@ Promise.all([p1, p2])
 .catch(e => console.log(e)); // ["tate", Error: something goes wrong at Promise]
 ```
 
+其原理很简单，我们可以[参考这里](https://github.com/Youthink/promise-all/blob/master/index.js)的简单实现:
+
+```JS
+function promiseAll(promises) {
+  return new Promise(function(resolve, reject) {
+    if (!Array.isArray(promises)) {
+      return reject(new TypeError('arguments must be an array'));
+    }
+    var resolvedCounter = 0;
+    var promiseNum = promises.length;
+    var resolvedValues = new Array(promiseNum);
+    for (var i = 0; i < promiseNum; i++) {
+      (function(i) {
+        Promise.resolve(promises[i]).then(function(value) {
+          resolvedCounter++
+          resolvedValues[i] = value
+          if (resolvedCounter == promiseNum) {
+            return resolve(resolvedValues)
+          }
+        }, function(reason) {
+          return reject(reason)
+        })
+      })(i)
+    }
+  })
+}
+```
+
 ### Promise.race
 
 **Promise.race** 方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。
@@ -207,6 +236,44 @@ const p = Promise.race([p1, p2, p3]).then(...);
 ```
 
 * 只要 p1、p2、p3 之中有一个实例率先改变状态，p 的状态就跟着改变。率先改变的 Promise 实例的返回值，就传递给 p 的回调函数
+
+其实现同样也很简单，我们可以参考 [es6-promise](https://github.com/stefanpenner/es6-promise/blob/master/lib/es6-promise/promise/race.js) 的实现:
+
+```JS
+export default function race(entries) {
+  /*jshint validthis:true */
+  let Constructor = this;
+
+  if (!isArray(entries)) {
+    return new Constructor((_, reject) => reject(new TypeError('You must pass an array to race.')));
+  } else {
+    return new Constructor((resolve, reject) => {
+      let length = entries.length;
+      for (let i = 0; i < length; i++) {
+        Constructor.resolve(entries[i]).then(resolve, reject);
+      }
+    });
+  }
+}
+```
+
+我们可以看到，race 并不是真正意义上的让 entries 都在同一起跑线，由于使用了遍历，在某些情况下，只要靠前的产生了结果，就会提前返回结果，我们不妨来看个例子:
+
+```JS
+const promise1 = new Promise((resolve, reject) => setTimeout(resolve, 1000, 'tate'))
+
+const promise2 = new Promise((resolve, reject) => setTimeout(resolve, 500, 'snow'));
+
+// 很显然 promise2 跑得快
+Promise.race([promise1, promise2]).then((value) => console.log(value)) // snow
+
+// 由于这里加了定时器，且让他们都能够在 1s 之内全部执行完
+// 我们可以看到，对于全部执行完达标的 promise，谁先遍历谁先输出
+setTimeout(() => {
+  Promise.race([promise1, promise2]).then((value) => console.log(value)) // tate
+  Promise.race([promise2, promise1]).then((value) => console.log(value)) // snow
+}, 1000)
+```
 
 ## Observable
 
