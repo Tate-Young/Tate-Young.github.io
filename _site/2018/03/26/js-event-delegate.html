@@ -183,7 +183,7 @@
                        
                     <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
                         JavaScript
-                        <span>(21)</span>
+                        <span>(22)</span>
                         
                     </a>
                        
@@ -204,7 +204,7 @@
                    
                 <a href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
                     JavaScript
-                    <span>(21)</span>
+                    <span>(22)</span>
                     </a>
                    
             </p>
@@ -375,18 +375,18 @@ btn.attachEvent('onclick', _ =&gt; console.log('tate'); // 'tate' 先触发
   </tbody>
 </table>
 
-<p>DOM 事件中还有个 currentTarget 属性，与 target 的区别是:</p>
+<p>DOM 事件中还有个 <code class="highlighter-rouge">currentTarget</code> 属性，与 <code class="highlighter-rouge">target</code> 的区别是:</p>
 
 <ul>
   <li><strong>target</strong> - 实际触发事件的目标</li>
   <li><strong>currentTarget</strong> - 事件绑定的元素，总是与 this 指向一致</li>
 </ul>
 
-<p>DOM 事件中还可以通过 stopPropagation 阻止冒泡行为，与 stopImmediatePropagation 的区别是:</p>
+<p>DOM 事件中还可以通过 <code class="highlighter-rouge">stopPropagation</code> 阻止冒泡行为，与 <code class="highlighter-rouge">stopImmediatePropagation</code> 的区别是:</p>
 
 <ul>
   <li><strong>stopPropagation()</strong> - 阻止冒泡行为</li>
-  <li><strong>stopImmediatePropagation()</strong> - 同上，且当一个事件有多个事件处理程序时，stopImmediatePropagation() 可以阻止之后事件处理程序被调用</li>
+  <li><strong>stopImmediatePropagation()</strong> - 同上，且当一个事件有多个事件处理程序时，该方法可以阻止之后事件处理程序被调用</li>
 </ul>
 
 <p>在 DOM 事件中，兼容 DOM 的浏览器都会将一个 event 对象作为参数传入到事件处理程序中，而 IE 事件中的 event 是一个 window 全局对象:</p>

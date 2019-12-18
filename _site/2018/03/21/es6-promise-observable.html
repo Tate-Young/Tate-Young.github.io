@@ -236,11 +236,11 @@
 
 <pre><code class="language-JS">const promise = new Promise((resolve, reject) =&gt; {
   if (/* 异步操作成功 */){
-    resolve(value);
+    resolve(value)
   } else {
-    reject(error);
+    reject(error)
   }
-});
+})
 </code></pre>
 
 <pre><code class="language-JS">promise
@@ -249,7 +249,7 @@
   })
   .catch(function(err) {
     // err
-  });
+  })
 </code></pre>
 
 <p>如上，这里如何操作，通常有三种选择:</p>
@@ -266,31 +266,31 @@
   const promise = new Promise((resolve, reject) =&gt; {
     const handler = _ =&gt; {
       if (this.readyState !== 4) {
-        return;
+        return
       }
       if (this.status === 200) {
-        resolve(this.response);
+        resolve(this.response)
       } else {
-        reject(new Error(this.statusText));
+        reject(new Error(this.statusText))
       }
-    };
-    const client = new XMLHttpRequest();
-    client.open("GET", url);
-    client.onreadystatechange = handler;
-    client.responseType = "json";
-    client.setRequestHeader("Accept", "application/json");
-    client.send();
+    }
+    const client = new XMLHttpRequest()
+    client.open("GET", url)
+    client.onreadystatechange = handler
+    client.responseType = "json"
+    client.setRequestHeader("Accept", "application/json")
+    client.send()
 
-  });
+  })
 
-  return promise;
-};
+  return promise
+}
 
 getJSON("/posts.json").then((json) =&gt; {
-  console.log('Contents: ' + json);
+  console.log('Contents: ' + json)
 }, (err) =&gt; {
-  console.error('出错了', err);
-});
+  console.error('出错了', err)
+})
 </code></pre>
 
 <h3 id="then--catch--finally">then / catch / finally</h3>
@@ -298,21 +298,21 @@ getJSON("/posts.json").then((json) =&gt; {
 <p><strong>then</strong> 方法返回的是一个新的 Promise 实例(若不是 Promise 实例，则会调用 Promise.resolve 方法，将返回值转为 Promise 实例)，因此可以采用链式写法。第一个回调函数完成以后，会将返回结果作为参数，传入第二个回调函数。</p>
 
 <pre><code class="language-JS">promise.then((data) =&gt; {
-  return data.info;
+  return data.info
 }).then((info) =&gt; {
   // ...
-});
+})
 </code></pre>
 
 <p><strong>catch</strong> 是用于指定发生错误时的回调函数，可以捕获 then 方法里回调函数运行中抛出的错误和 rejected 状态。跟传统的 try/catch 代码块不同的是，如果没有使用 catch 方法指定错误处理的回调函数，Promise 对象抛出的错误不会传递到外层代码。</p>
 
 <pre><code class="language-JS">getJSON('/post/test.json').then((post) =&gt; {
-  return getJSON(post.commentURL);
+  return getJSON(post.commentURL)
 }).then((comments) =&gt; {
   // some code
 }).catch((error) =&gt; {
   // 捕获前面三个 Promise 产生的错误或 rejected 状态
-});
+})
 </code></pre>
 
 <p>注意 then(resolveHandler, rejectHandler) 方法的第二个参数 rejectHandler 无法捕获 resolveHandler 自身抛出的错误:</p>
@@ -320,15 +320,15 @@ getJSON("/posts.json").then((json) =&gt; {
 <pre><code class="language-JS">Promise.resolve().then(function () {
   console.log('previous then')
 }).then(function () {
-  throw new Error('current then');
+  throw new Error('current then')
 }, function (err) {
   console.log(err) // 无法捕获错误
 })
 
 Promise.resolve().then(function () {
-  throw new Error('previous then');
+  throw new Error('previous then')
 }).then(function () {
-  throw new Error('current then');
+  throw new Error('current then')
 }, function (err) {
   console.log(err) // 捕获错误: 'previous then'
 })
@@ -342,7 +342,7 @@ promise
     // success
   }, function(err) {
     // error
-  });
+  })
 
 // good
 promise
@@ -351,26 +351,26 @@ promise
   })
   .catch(function(err) {
     // error
-  });
+  })
 </code></pre>
 
 <p><strong>finally</strong> 是 ES2018 引入标准的新方法，不管 promise 最后的状态如何，在执行完 then 或 catch 指定的回调函数以后，都会执行 finally 方法指定的回调函数。
 实现方式如下:</p>
 
 <pre><code class="language-JS">Promise.prototype.finally = function(callback) {
-  let P = this.constructor;
+  let P = this.constructor
   return this.then(
     value  =&gt; P.resolve(callback()).then(() =&gt; value),
     reason =&gt; P.resolve(callback()).then(() =&gt; { throw reason })
-  );
-};
+  )
+}
 </code></pre>
 
 <h3 id="promiseall">Promise.all</h3>
 
 <p><strong>Promise.all</strong> 方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
 
-<pre><code class="language-JS">const p = Promise.all([p1, p2, p3]).then(...);
+<pre><code class="language-JS">const p = Promise.all([p1, p2, p3]).then(...)
 </code></pre>
 
 <ul>
@@ -381,18 +381,18 @@ promise
 <p>如果作为参数的 Promise 实例定义了 catch 方法，那么它一旦处于 rejected 状态，将不会触发 <code class="highlighter-rouge">Promise.all()</code> 的 catch 方法:</p>
 
 <pre><code class="language-JS">const p1 = new Promise((resolve, reject) =&gt; {
-  resolve('tate');
+  resolve('tate')
 })
 
 const p2 = new Promise((resolve, reject) =&gt; {
-  throw new Error('something goes wrong');
+  throw new Error('something goes wrong')
 })
 .then(result =&gt; result)
-.catch(e =&gt; e); // 返回值状态变为 resovled，将会执行下面的 then 回调，除非显示 Promise.reject(e) 才会被 下面的 catch 捕获
+.catch(e =&gt; e) // 返回值状态变为 resovled，将会执行下面的 then 回调，除非显示 Promise.reject(e) 才会被 下面的 catch 捕获
 
 Promise.all([p1, p2])
 .then(result =&gt; console.log(result))
-.catch(e =&gt; console.log(e)); // ["tate", Error: something goes wrong at Promise]
+.catch(e =&gt; console.log(e)) // ["tate", Error: something goes wrong at Promise]
 </code></pre>
 
 <p>其原理很简单，我们可以<a href="https://github.com/Youthink/promise-all/blob/master/index.js">参考这里</a>的简单实现:</p>
@@ -400,12 +400,12 @@ Promise.all([p1, p2])
 <pre><code class="language-JS">function promiseAll(promises) {
   return new Promise(function(resolve, reject) {
     if (!Array.isArray(promises)) {
-      return reject(new TypeError('arguments must be an array'));
+      return reject(new TypeError('arguments must be an array'))
     }
-    var resolvedCounter = 0;
-    var promiseNum = promises.length;
-    var resolvedValues = new Array(promiseNum);
-    for (var i = 0; i &lt; promiseNum; i++) {
+    var resolvedCounter = 0
+    var promiseNum = promises.length
+    var resolvedValues = new Array(promiseNum)
+    for (var i = 0 i &lt; promiseNum i++) {
       (function(i) {
         Promise.resolve(promises[i]).then(function(value) {
           resolvedCounter++
@@ -426,7 +426,7 @@ Promise.all([p1, p2])
 
 <p><strong>Promise.race</strong> 方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
 
-<pre><code class="language-JS">const p = Promise.race([p1, p2, p3]).then(...);
+<pre><code class="language-JS">const p = Promise.race([p1, p2, p3]).then(...)
 </code></pre>
 
 <ul>
@@ -437,17 +437,17 @@ Promise.all([p1, p2])
 
 <pre><code class="language-JS">export default function race(entries) {
   /*jshint validthis:true */
-  let Constructor = this;
+  let Constructor = this
 
   if (!isArray(entries)) {
-    return new Constructor((_, reject) =&gt; reject(new TypeError('You must pass an array to race.')));
+    return new Constructor((_, reject) =&gt; reject(new TypeError('You must pass an array to race.')))
   } else {
     return new Constructor((resolve, reject) =&gt; {
-      let length = entries.length;
-      for (let i = 0; i &lt; length; i++) {
-        Constructor.resolve(entries[i]).then(resolve, reject);
+      let length = entries.length
+      for (let i = 0 i &lt; length i++) {
+        Constructor.resolve(entries[i]).then(resolve, reject)
       }
-    });
+    })
   }
 }
 </code></pre>
@@ -456,7 +456,7 @@ Promise.all([p1, p2])
 
 <pre><code class="language-JS">const promise1 = new Promise((resolve, reject) =&gt; setTimeout(resolve, 1000, 'tate'))
 
-const promise2 = new Promise((resolve, reject) =&gt; setTimeout(resolve, 500, 'snow'));
+const promise2 = new Promise((resolve, reject) =&gt; setTimeout(resolve, 500, 'snow'))
 
 // 很显然 promise2 跑得快
 Promise.race([promise1, promise2]).then((value) =&gt; console.log(value)) // snow
@@ -487,63 +487,63 @@ setTimeout(() =&gt; {
 <p>在代码中使用时避免添加整个 RxJS 库:</p>
 
 <pre><code class="language-JS">// bad
-import Rx from 'rxjs/Rx';
-Rx.Observable.of(1,2,3);
+import Rx from 'rxjs/Rx'
+Rx.Observable.of(1,2,3)
 
 // good
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
-Observable.of(1,2,3).map(x =&gt; x + '!!!'); // etc
+import {Observable} from 'rxjs/Observable'
+import 'rxjs/add/observable/of'
+import 'rxjs/add/operator/map'
+Observable.of(1,2,3).map(x =&gt; x + '!!!') // etc
 </code></pre>
 
 <p>Observable 可以和 Promise 之间互相转换:</p>
 
-<pre><code class="language-JS">const ob = Observable.fromPromise(somePromise); // Promise --&gt; Observable
-const promise = someObservable.toPromise(); // Observable --&gt; Promise
+<pre><code class="language-JS">const ob = Observable.fromPromise(somePromise) // Promise --&gt; Observable
+const promise = someObservable.toPromise() // Observable --&gt; Promise
 </code></pre>
 
 <p>举个栗子 🌰，例如注册事件监听:</p>
 
 <pre><code class="language-JS">// 以往
-var button = document.querySelector('button');
-button.addEventListener('click', () =&gt; console.log('Clicked!'));
+var button = document.querySelector('button')
+button.addEventListener('click', () =&gt; console.log('Clicked!'))
 </code></pre>
 
 <pre><code class="language-JS">// Observable
-var button = document.querySelector('button');
-Observable.fromEvent(button, 'click').subscribe(() =&gt; console.log('Clicked!'));
+var button = document.querySelector('button')
+Observable.fromEvent(button, 'click').subscribe(() =&gt; console.log('Clicked!'))
 </code></pre>
 
 <p>栗子拓展开，比如每秒最多只能点击一次的实现:</p>
 
 <pre><code class="language-JS">// 纯 JS
-var count = 0;
-var rate = 1000;
-var lastClick = Date.now() - rate;
-var button = document.querySelector('button');
+var count = 0
+var rate = 1000
+var lastClick = Date.now() - rate
+var button = document.querySelector('button')
 button.addEventListener('click', () =&gt; {
   if (Date.now() - lastClick &gt;= rate) {
-    console.log(`Clicked ${++count} times`);
-    lastClick = Date.now();
+    console.log(`Clicked ${++count} times`)
+    lastClick = Date.now()
   }
-});
+})
 </code></pre>
 
 <pre><code class="language-JS">// Observable
-var button = document.querySelector('button');
+var button = document.querySelector('button')
 Observable.fromEvent(button, 'click')
 .throttleTime(1000)
 .scan(count =&gt; count + 1, 0) // 类似 reduce，回调函数的返回值将成为下一次回调函数运行时要传递的下一个参数值
-.subscribe(count =&gt; console.log(`Clicked ${count} times`));
+.subscribe(count =&gt; console.log(`Clicked ${count} times`))
 </code></pre>
 
 <h3 id="observable-可观察对象">Observable 可观察对象</h3>
 
 <p><strong>Observable</strong> 可观察对象，简单来说数据就在 Observable 中流动，你可以使用各种 <strong>operator</strong> 操作符对流进行处理。作为 Observable 序列必须被”订阅”才能够触发上述过程，也就是 <strong>subscribe</strong>(发布/订阅模式)。订阅是完全同步的，就像调用一个函数。</p>
 
-<pre><code class="language-JS">const ob = Observable.interval(1000); // 每隔 1000ms 发射一个递增的数据，即 0 -&gt; 1 -&gt; 2 ...
-ob.take(3).map(n =&gt; n * 2).filter(n =&gt; n &gt; 0).subscribe(n =&gt; console.log(n)); // take(3) 为取前三个数据
+<pre><code class="language-JS">const ob = Observable.interval(1000) // 每隔 1000ms 发射一个递增的数据，即 0 -&gt; 1 -&gt; 2 ...
+ob.take(3).map(n =&gt; n * 2).filter(n =&gt; n &gt; 0).subscribe(n =&gt; console.log(n)) // take(3) 为取前三个数据
 // 2 第二秒
 // 4 第三秒
 </code></pre>
@@ -558,18 +558,18 @@ ob.take(3).map(n =&gt; n * 2).filter(n =&gt; n &gt; 0).subscribe(n =&gt; console
 
 <pre><code class="language-JS">// create 方法用于创建一个新的 Observable 对象，接收 Observer 观察者参数
 var foo = Observable.create((observer) =&gt; {
-console.log('tate');
-observer.next(0);
-observer.next(1);
-observer.next(2);
-// observer.complete();
-});
+console.log('tate')
+observer.next(0)
+observer.next(1)
+observer.next(2)
+// observer.complete()
+})
 
-console.log('before');
+console.log('before')
 foo.subscribe((x) =&gt; { // 同步 返回一个 subscription 对象
-console.log(x);
-});
-console.log('after');
+console.log(x)
+})
+console.log('after')
 // 'before' 'tate' 0 1 2 'after'
 </code></pre>
 
@@ -584,24 +584,24 @@ console.log('after');
 })
 
 // 当订阅一个可观察对象，你可能仅仅提供回调来作为参数就够了，并不需要完整的观察者对象，作为示例:
-observable.subscribe(x =&gt; console.log('Observer got a next value: ' + x));
+observable.subscribe(x =&gt; console.log('Observer got a next value: ' + x))
 
 // 或者通过将三个函数作为参数提供三种回调
 observable.subscribe(
   x =&gt; console.log('Observer got a next value: ' + x),
   err =&gt; console.error('Observer got an error: ' + err),
   () =&gt; console.log('Observer got a complete notification')
-);
+)
 </code></pre>
 
 <h3 id="subscription-订阅">Subscription 订阅</h3>
 
 <p><strong>Subscription</strong> 订阅通常是一个可观察对象的执行，订阅对象有一个 <strong>unsubscribe</strong> 方法用来释放资源或者取消可观察对象的执行。</p>
 
-<pre><code class="language-JS">var observable = Observable.from([10, 20, 30]); // from 可将几乎所有的东西转化一个可观察对象
-var subscription = observable.subscribe(x =&gt; console.log(x));
+<pre><code class="language-JS">var observable = Observable.from([10, 20, 30]) // from 可将几乎所有的东西转化一个可观察对象
+var subscription = observable.subscribe(x =&gt; console.log(x))
 // Later:
-subscription.unsubscribe();
+subscription.unsubscribe()
 </code></pre>
 
 <h3 id="subject-主题">Subject 主题</h3>
@@ -617,24 +617,24 @@ subscription.unsubscribe();
 
 <pre><code class="language-JS">// import { BehaviorSubject, Observable, Subscription } from 'rxjs'
 // Subject 有两个观察者
-var subject = new Subject();
+var subject = new Subject()
 
 subject.subscribe({
   next: (v) =&gt; console.log('observerA: ' + v)
-});
+})
 subject.subscribe({
   next: (v) =&gt; console.log('observerB: ' + v)
-});
+})
 
-subject.next(1); // observerA: 1 observerB: 1
-subject.next(2); // observerA: 2 observerB: 2
+subject.next(1) // observerA: 1 observerB: 1
+subject.next(2) // observerA: 2 observerB: 2
 </code></pre>
 
 <p>由于 Subject 也是一个观察者，这就意味着你可以提供一个 Subject 当做 observable.subscribe() 的参数，如下:</p>
 
-<pre><code class="language-JS">var observable = Observable.from([1, 2, 3]);
+<pre><code class="language-JS">var observable = Observable.from([1, 2, 3])
 
-observable.subscribe(subject); // You can subscribe providing a Subject
+observable.subscribe(subject) // You can subscribe providing a Subject
 // observerA: 1 observerB: 1
 // observerA: 2 observerB: 2
 // observerA: 3 observerB: 3
@@ -646,20 +646,20 @@ observable.subscribe(subject); // You can subscribe providing a Subject
 
 <p>在下面的例子中，BehaviorSubject 被初始化为 0，第一个观察者将会在订阅的时候接收到这个值。第二个观察者接收数值 2，即使它是在数值 2 被发送之后订阅的:</p>
 
-<pre><code class="language-JS">var subject = new BehaviorSubject(0); // 0 is the initial value
+<pre><code class="language-JS">var subject = new BehaviorSubject(0) // 0 is the initial value
 
 subject.subscribe({
   next: (v) =&gt; console.log('observerA: ' + v)
-});
+})
 
-subject.next(1);
-subject.next(2);
+subject.next(1)
+subject.next(2)
 
 subject.subscribe({
   next: (v) =&gt; console.log('observerB: ' + v)
-});
+})
 
-subject.next(3);
+subject.next(3)
 // observerA: 0
 // observerA: 1
 // observerA: 2 observerB: 2
@@ -670,24 +670,24 @@ subject.next(3);
 
 <p><strong>ReplaySubect</strong> 类似于 BehaviorSubject，一个 ReplaySubject 从一个可观察对象的执行中记录多个值，并且可以重新发送给新的订阅者。</p>
 
-<pre><code class="language-JS">var subject = new ReplaySubject(3); // buffer 3 values for new subscribers ，注:缓存了三个值。
+<pre><code class="language-JS">var subject = new ReplaySubject(3) // buffer 3 values for new subscribers ，注:缓存了三个值。
 // 除了指定缓存值个数之外，还可以指定一个以毫秒为单位的时间，表示这个有效时间段内的有效个数
-// var subject = new ReplaySubject(3, 500 /* windowTime */);
+// var subject = new ReplaySubject(3, 500 /* windowTime */)
 
 subject.subscribe({
   next: (v) =&gt; console.log('observerA: ' + v)
-});
+})
 
-subject.next(1);
-subject.next(2);
-subject.next(3);
-subject.next(4);
+subject.next(1)
+subject.next(2)
+subject.next(3)
+subject.next(4)
 
 subject.subscribe({
   next: (v) =&gt; console.log('observerB: ' + v)
-});
+})
 
-subject.next(5);
+subject.next(5)
 // observerA: 1 observerA: 2 observerA: 3 observerA: 4
 // observerB: 2 observerB: 3 observerB: 4
 // observerA: 5 observerB: 5
@@ -697,21 +697,21 @@ subject.next(5);
 
 <p><strong>AsyncSubject</strong> 仅在执行结束(complete)时发送给观察者可观察对象执行的最新值。</p>
 
-<pre><code class="language-JS">var subject = new AsyncSubject();
+<pre><code class="language-JS">var subject = new AsyncSubject()
 
 subject.subscribe({
   next: (v) =&gt; console.log('observerA: ' + v)
-});
+})
 
-subject.next(1);
-subject.next(2);
+subject.next(1)
+subject.next(2)
 
 subject.subscribe({
   next: (v) =&gt; console.log('observerB: ' + v)
-});
+})
 
-subject.next(3);
-subject.complete(); // observerA: 3 observerB: 3
+subject.next(3)
+subject.complete() // observerA: 3 observerB: 3
 </code></pre>
 
 <h3 id="operators-操作符">Operators 操作符</h3>
@@ -829,10 +829,10 @@ subject.complete(); // observerA: 3 observerB: 3
   </tbody>
 </table>
 
-<pre><code class="language-JS">const source = Rx.Observable.of('Hello');
+<pre><code class="language-JS">const source = Rx.Observable.of('Hello')
 //map to inner observable and flatten
-const example = source.mergeMap(val =&gt; Observable.of(`${val} World!`));
-const subscribe = example.subscribe(val =&gt; console.log(val)); // 'Hello World!'
+const example = source.mergeMap(val =&gt; Observable.of(`${val} World!`))
+const subscribe = example.subscribe(val =&gt; console.log(val)) // 'Hello World!'
 </code></pre>
 
 <ul>
@@ -893,7 +893,7 @@ const subscribe = example.subscribe(val =&gt; console.log(val)); // 'Hello World
 
 <pre><code class="language-JS">Observable.of(1, 1, 2, 2, 2, 1, 1, 2, 3, 3, 4)
   .distinctUntilChanged()
-  .subscribe(x =&gt; console.log(x)); // 1, 2, 1, 2, 3, 4
+  .subscribe(x =&gt; console.log(x)) // 1, 2, 1, 2, 3, 4
 
 Observable.of&lt;Person&gt;(
   { age: 1, name: 'tate'},
@@ -901,7 +901,7 @@ Observable.of&lt;Person&gt;(
   { age: 3, name: 'tate'},
   { age: 4, name: 'tate'})
   .distinctUntilKeyChanged('name')
-  .subscribe(x =&gt; console.log(x.age)); // 1, 2, 3
+  .subscribe(x =&gt; console.log(x.age)) // 1, 2, 3
 </code></pre>
 
 <ul>
@@ -947,12 +947,12 @@ Observable.of&lt;Person&gt;(
 
 <p>注意 concat 和 merge 的区别，concat 是按顺序拼接值:</p>
 
-<pre><code class="language-JS">var source = Observable.interval(500).take(3);
-var source2 = Observable.interval(300).take(6);
-var example = source.merge(source2);
+<pre><code class="language-JS">var source = Observable.interval(500).take(3)
+var source2 = Observable.interval(300).take(6)
+var example = source.merge(source2)
 example.subscribe({
     x =&gt;  console.log(x)
-});
+})
 // 0 0 1 2 1 3 2 4 5
 </code></pre>
 
@@ -1026,7 +1026,7 @@ Observable.of&lt;Person&gt;(
   {age: 26, name: 'tate'},
   {age: 18, name: 'snow'})
   .max&lt;Person&gt;((a: Person, b: Person) =&gt; a.age &lt; b.age ? -1 : 1)
-  .subscribe((x: Person) =&gt; console.log(x.name)); // 'tate'
+  .subscribe((x: Person) =&gt; console.log(x.name)) // 'tate'
 </code></pre>
 
 <h4 id="mergemap--forkjoin">mergeMap / forkJoin</h4>
@@ -1034,23 +1034,23 @@ Observable.of&lt;Person&gt;(
 <p>举个栗子 🌰，如果发送的一个请求时，需要依赖于上一个请求的数据，嵌套的写法很冗长:</p>
 
 <pre><code class="language-JS">// Angular
-apiUrl = 'https://jsonplaceholder.typicode.com/users';
-username: string = '';
-user: any;
+apiUrl = 'https://jsonplaceholder.typicode.com/users'
+username: string = ''
+user: any
 
 ngOnInit() {
   this.http.get(this.apiUrl)
     .map(res =&gt; res.json())
     .subscribe(users =&gt; {
-      let username = users[0].username;
+      let username = users[0].username
       this.http.get(`${this.apiUrl}?username=${username}`)
         .map(res =&gt; res.json())
         .subscribe(
           user =&gt; {
-            this.username = username;
-            this.user = user;
-          });
-    });
+            this.username = username
+            this.user = user
+          })
+    })
   }
 </code></pre>
 
@@ -1060,25 +1060,25 @@ ngOnInit() {
   this.http.get(this.apiUrl)
     .map(res =&gt; res.json())
     .mergeMap(users =&gt; {
-      this.username = users[0].username;
+      this.username = users[0].username
       return this.http.get(`${this.apiUrl}?username=${this.username}`)
         .map(res =&gt; res.json())
     })
-    .subscribe(user =&gt; this.user = user);
+    .subscribe(user =&gt; this.user = user)
 }
 </code></pre>
 
 <p>若对于并发的 http 请求，则可以采用类似 Promise.all 的写法，即使用 forkJoin():</p>
 
 <pre><code class="language-JS">ngOnInit() {
-  let post1 = this.http.get(`${this.apiUrl}/1`);
-  let post2 = this.http.get(`${this.apiUrl}/2`);
+  let post1 = this.http.get(`${this.apiUrl}/1`)
+  let post2 = this.http.get(`${this.apiUrl}/2`)
 
   Observable.forkJoin(post1, post2)
     .subscribe(results =&gt; {
-      this.post1 = results[0];
-      this.post2 = results[1];
-    });
+      this.post1 = results[0]
+      this.post2 = results[1]
+    })
   }
 </code></pre>
 
@@ -1087,14 +1087,14 @@ ngOnInit() {
 <p>switchMap 操作符用于对源 Observable 对象发出的值，做映射处理。若有新的 Observable 对象出现，会在新的 Observable 对象发出新值后，退订前一个未处理完的 Observable 对象。举个搜索的栗子 🌰，摘自 Angular 官网:</p>
 
 <pre><code class="language-JS">export class HeroSearchComponent implements OnInit {
-  heroes: Observable&lt;Hero[]&gt;;
-  private searchTerms = new Subject&lt;string&gt;(); // 创建一个主题
+  heroes: Observable&lt;Hero[]&gt;
+  private searchTerms = new Subject&lt;string&gt;() // 创建一个主题
   constructor(
     private heroSearchService: HeroSearchService,
     private router: Router) {}
   // Push a search term into the observable stream.
   search(term: string): void {
-    this.searchTerms.next(term);
+    this.searchTerms.next(term)
   }
   ngOnInit(): void {
     this.heroes = this.searchTerms
@@ -1107,12 +1107,12 @@ ngOnInit() {
         : Observable.of&lt;Hero[]&gt;([]))
       .catch(error =&gt; {
         // TODO: add real error handling
-        console.log(error);
-        return Observable.of&lt;Hero[]&gt;([]);
-      });
+        console.log(error)
+        return Observable.of&lt;Hero[]&gt;([])
+      })
   }
   gotoDetail(hero: Hero): void {
-    this.router.navigate(['/detail', hero.id]);
+    this.router.navigate(['/detail', hero.id])
   }
 }
 </code></pre>

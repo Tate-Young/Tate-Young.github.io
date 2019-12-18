@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "富文本原理 - ",
+		"url" : "/2019/12/18/js-rich-editor.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Node 熔断与容灾 - ",
 		"url" : "/2019/12/16/node-circuit-breaker.html"
 	}

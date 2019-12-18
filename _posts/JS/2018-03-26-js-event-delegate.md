@@ -145,15 +145,15 @@ var EventUtil = {
 | 阻止默认行为 | <code>event.preventDefault()</code> | <code>event.returnValue = false</code> |
 | 阻止冒泡行为 | <code>event.stopPropagation()</code> | <code>event.cancelBubble = true</code> |
 
-DOM 事件中还有个 currentTarget 属性，与 target 的区别是:
+DOM 事件中还有个 `currentTarget` 属性，与 `target` 的区别是:
 
 * **target** - 实际触发事件的目标
 * **currentTarget** - 事件绑定的元素，总是与 this 指向一致
 
-DOM 事件中还可以通过 stopPropagation 阻止冒泡行为，与 stopImmediatePropagation 的区别是:
+DOM 事件中还可以通过 `stopPropagation` 阻止冒泡行为，与 `stopImmediatePropagation` 的区别是:
 
 * **stopPropagation()** - 阻止冒泡行为
-* **stopImmediatePropagation()** - 同上，且当一个事件有多个事件处理程序时，stopImmediatePropagation() 可以阻止之后事件处理程序被调用
+* **stopImmediatePropagation()** - 同上，且当一个事件有多个事件处理程序时，该方法可以阻止之后事件处理程序被调用
 
 在 DOM 事件中，兼容 DOM 的浏览器都会将一个 event 对象作为参数传入到事件处理程序中，而 IE 事件中的 event 是一个 window 全局对象:
 

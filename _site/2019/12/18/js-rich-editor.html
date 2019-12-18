@@ -1,0 +1,1666 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+<head>
+    <meta content='富文本原理 - Tate & Snow' name='title' />
+    <meta content='富文本原理 - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>富文本原理 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>富文本原理 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="富文本原理 - Tate & Snow">
+<meta name="twitter:keywords" content="富文本原理 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="富文本原理 - Tate & Snow">
+<meta name="og:keywords" content="富文本原理 - Tate & Snow|富文本原理富文本contenteditablecontenteditable 是一个枚举属性，表示元素是否可被用户编辑。如果可以，浏览器会修改元素的部件以允许编辑:&lt;blockquote contenteditable="tru..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="富文本原理富文本contenteditablecontenteditable 是一个枚举属性，表示元素是否可被用户编辑。如果可以，浏览器会修改元素的部件以允许编辑:&lt;blockquote contenteditable="tru..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2019/12/18/js-rich-editor.html' property='og:url' />
+<meta content="http://localhost:2333/2019/12/18/js-rich-editor.html|富文本原理富文本contenteditablecontenteditable 是一个枚举属性，表示元素是否可被用户编辑。如果可以，浏览器会修改元素的部件以允许编辑:&lt;blockquote contenteditable="tru..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<!-- <script async src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>富文本原理 | Tate &amp; Snow</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="富文本原理" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="富文本原理" />
+<meta property="og:description" content="富文本原理" />
+<link rel="canonical" href="http://localhost:2333/2019/12/18/js-rich-editor.html" />
+<meta property="og:url" content="http://localhost:2333/2019/12/18/js-rich-editor.html" />
+<meta property="og:site_name" content="Tate &amp; Snow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-18T20:22:00+08:00" />
+<script type="application/ld+json">
+{"description":"富文本原理","@type":"BlogPosting","url":"http://localhost:2333/2019/12/18/js-rich-editor.html","headline":"富文本原理","dateModified":"2019-12-18T20:22:00+08:00","datePublished":"2019-12-18T20:22:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/12/18/js-rich-editor.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('历史', '/history')" title="访问 历史" data-hover="历史">历史</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('其他', '/other')" title="访问 其他" data-hover="其他">其他</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:2333/">首页</a>
+                
+                <a href="http://localhost:2333/front">前端</a>
+                
+                <a href="http://localhost:2333/history">历史</a>
+                
+                <a href="http://localhost:2333/other">其他</a>
+                
+                <a href="http://localhost:2333/tags">标签</a>
+                
+                <a href="http://localhost:2333/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('历史', 'http://localhost:2333/history')">历史</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('其他', 'http://localhost:2333/other')">其他</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('富文本原理')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    富文本原理</h1>
+                <div class="post-data">
+                    <time datetime="2019-12-18 20:22:00" itemprop="datePublished">
+                      发布时间：2019-12-18 20:22:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
+                        JavaScript
+                        <span>(22)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                富文本原理</h1>
+            <div class="post-data">
+                <time datetime="2019-12-18 20:22:00" itemprop="datePublished">2019-12-18 20:22:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
+                    JavaScript
+                    <span>(22)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="富文本原理">富文本原理</h1>
+
+<h2 id="富文本">富文本</h2>
+
+<h3 id="contenteditable">contenteditable</h3>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/contenteditable"><strong>contenteditable</strong></a> 是一个枚举属性，表示元素是否可被用户编辑。如果可以，浏览器会修改元素的部件以允许编辑:</p>
+
+<pre><code class="language-HTML">&lt;blockquote contenteditable="true"&gt;
+  &lt;p&gt;Edit this content to add your own quote&lt;/p&gt;
+  &lt;!-- 子元素不想被编辑，添加 false 即可 --&gt;
+  &lt;p contentEditable="false"&gt;不能编辑我&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;cite contenteditable="true"&gt;-- Write your own name here&lt;/cite&gt;
+</code></pre>
+
+<blockquote contenteditable="true">
+  <p>Edit this content to add your own quote</p>
+  <p contenteditable="false">不能编辑我</p>
+  <cite style="color:white">-- Write your own name here</cite>
+</blockquote>
+
+<h3 id="documentexeccommand">document.execCommand</h3>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand"><strong>document.execCommand</strong></a> 允许运行命令来操纵可编辑内容区域的元素，说人话，当使用 <code class="highlighter-rouge">contentEditable</code> 时，调用 <code class="highlighter-rouge">execCommand()</code> 将影响当前活动的可编辑元素。语法如下:</p>
+
+<pre><code class="language-JS">/**
+ * 返回一个 Boolean ，如果是 false 则表示操作不被支持或未被启用
+ *
+ * @param {*} aCommandName - 一个 DOMString ，命令的名称
+ * @param {*} aShowDefaultUI - 一个 Boolean， 是否展示用户界面，一般为 false
+ * @param {*} aValueArgument - 一些命令（如 insertImage）需要额外的参数（insertImage 需要提供插入 image 的 url），默认为 null。
+ */
+bool = document.execCommand(aCommandName, aShowDefaultUI, aValueArgument)
+</code></pre>
+
+<p>针对命令名称，我们可以看下默认常用的有哪些，需要注意的是不同浏览器表现可能有所不同，使用的话要考虑到兼容性:</p>
+
+<ul>
+  <li>backColor - 修改文档的背景颜色。在 styleWithCss 模式下，则只影响容器元素的背景颜色。这需要一个 <code class="highlighter-rouge">&lt;color&gt;</code> 类型的字符串值作为参数传入。注意，IE 浏览器用这个设置文字的背景颜色</li>
+  <li>bold - 开启或关闭选中文字或插入点的粗体字效果。IE 浏览器使用 <code class="highlighter-rouge">&lt;strong&gt;</code> 标签，而不是 <code class="highlighter-rouge">&lt;b&gt;</code> 标签</li>
+  <li>copy - 拷贝当前选中内容到剪贴板</li>
+  <li>createLink - 将选中内容创建为一个锚链接。这个命令需要一个 hrefURI 字符串作为参数值传入。URI 必须包含至少一个字符，例如一个空格。（浏览器会创建一个空链接）</li>
+  <li>cut - 剪贴当前选中的文字并复制到剪贴板</li>
+  <li>delete - 删除选中部分</li>
+  <li>fontName - 在插入点或者选中文字部分修改字体名称. 需要提供一个字体名称字符串 (例如：”Arial”)作为参数</li>
+  <li>fontSize - 在插入点或者选中文字部分修改字体大小. 需要提供一个 HTML 字体尺寸 (1-7) 作为参数</li>
+  <li>foreColor - 在插入点或者选中文字部分修改字体颜色. 需要提供一个颜色值字符串作为参数。</li>
+  <li>formatBlock - 添加一个 HTML 块式标签在包含当前选择的行, 如果已经存在了，更换包含该行的块元素，需要提供一个标签名称字符串作为参数(例如 “H1”, “P”, “DL”, “BLOCKQUOTE”)</li>
+  <li>heading - 添加一个标题标签在光标处或者所选文字上。 需要提供标签名称字符串作为参数 (例如. “H1”, “H6”)</li>
+  <li>insertImage - 在插入点插入一张图片并删除选中的部分。需要一个 URL 字符串(可以为 base64)作为参数。这个 URL 图片地址至少包含一个字符。空白字符也可以</li>
+  <li>italic - 在光标插入点开启或关闭斜体字。IE 浏览器使用 <code class="highlighter-rouge">&lt;em&gt;</code> 标签，而不是 <code class="highlighter-rouge">&lt;i&gt;</code></li>
+  <li>justifyCenter - 对光标插入位置或者所选内容进行文字居中。同理还有 justifyLeft、justifyRight 等</li>
+  <li>paste - 在光标位置粘贴剪贴板的内容，如果有被选中的内容，会被替换</li>
+  <li>redo - 重做被撤销的操作</li>
+  <li>removeFormat - 对所选内容去除所有格式</li>
+  <li>underline - 在光标插入点开启或关闭下划线</li>
+  <li>undo - 撤销最近执行的命令</li>
+  <li>unlink - 去除所选的锚链接的 <code class="highlighter-rouge">&lt;a&gt;</code> 标签</li>
+</ul>
+
+<pre><code class="language-JS">// 加粗
+document.execCommand('bold', false, null)
+// 添加一个块标签包裹
+document.execCommand('formatBlock', false, '&lt;blockquote&gt;')
+</code></pre>
+
+<blockquote>
+  <p>浏览器会对 <code class="highlighter-rouge">contenteditable</code> 生成的可编辑区维护一个 <code class="highlighter-rouge">undo</code> 栈和 <code class="highlighter-rouge">redo</code> 栈，使我们能够执行前进和后退的操作</p>
+</blockquote>
+
+<h3 id="selection--range">Selection / Range</h3>
+
+<p>当我们执行 <code class="highlighter-rouge">execCommand</code> 的时候，我们需要指明对哪些选区进行操作，即 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Selection"><strong>Selection</strong></a>，它表示用户选择的文本范围或插入符号的当前位置。文本选区由用户拖拽鼠标经过文字而产生，要获取用于检查或修改的 Selection 对象，请调用 <code class="highlighter-rouge">window.getSelection()</code>，它包含了以下术语:</p>
+
+<ul>
+  <li><strong>锚点(anchor)</strong> - 锚指的是一个选区的起始点(注意不同于 HTML 中的锚点链接)。当我们使用鼠标框选一个区域的时候，锚点就是我们鼠标按下瞬间的那个点。在用户拖动鼠标时，锚点是不会变的。</li>
+  <li><strong>焦点(focus)</strong> - 选区的焦点是该选区的终点，当您用鼠标框选一个选区的时候，焦点是你的鼠标松开瞬间所记录的那个点。随着用户拖动鼠标，焦点的位置会随着改变。</li>
+  <li><strong>范围(range)</strong> - 范围指的是文档中连续的一部分。一个范围包括整个节点，也可以包含节点的一部分，例如文本节点的一部分。用户通常下只能选择一个范围，但是有的时候用户也有可能选择多个范围。“范围”会被作为 range 对象返回。Range对象也能通过 DOM 创建、增加、删减</li>
+</ul>
+
+<p>Selection 对象所对应的是用户所选择的 <strong>ranges(区域)</strong>，俗称拖蓝。默认情况下，该函数只针对一个区域，我们可以这样使用这个函数:</p>
+
+<pre><code class="language-JS">const selObj: Selection = window.getSelection()
+const range: Range = selObj.getRangeAt(0) // 获取我们选中的区间
+</code></pre>
+
+<p>Selection 拥有以下常用的属性:</p>
+
+<ul>
+  <li>anchorNode - 返回该选区起点所在的节点（Node）</li>
+  <li>anchorOffset - 返回一个数字，其表示的是选区起点在 anchorNode 中的位置偏移量</li>
+  <li>focusNode - 返回该选区终点所在的节点</li>
+  <li>focusOffset - 返回一个数字，其表示的是选区终点在 focusNode 中的位置偏移量</li>
+  <li>isCollapsed - 返回一个布尔值，用于判断选区的起始点和终点是否在同一个位置</li>
+  <li>rangeCount - 返回该选区所包含的连续范围的数量</li>
+</ul>
+
+<p>并且有以下常用方法:</p>
+
+<ul>
+  <li>getRangeAt - 返回选区开始的节点（Node）</li>
+  <li>collapse - 将当前的选区折叠为一个点</li>
+  <li>addRange - 一个区域（Range）对象将被加入选区</li>
+  <li>removeRange - 从选区中移除一个区域</li>
+  <li>removeAllRanges - 将所有的区域都从选区中移除</li>
+  <li>deleteFromDocument - 从页面中删除选区中的内容</li>
+  <li>toString - 返回当前选区的纯文本内容</li>
+  <li>containsNode - 判断某一个 node 是否为当前选区的一部分</li>
+</ul>
+
+<blockquote>
+  <p>Range 对象也包含了很多属性和方法，具体可以<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Range">查阅这里</a> 👈</p>
+</blockquote>
+
+<p>我们直接用一些例子来对比下选区和相应的属性值:</p>
+
+<p><img src="https://i.loli.net/2019/12/17/vRNApDcCBuPza65.png" alt="rich-editor-selection.png" /></p>
+
+<blockquote>
+  <p>需要注意的是 2 步骤中，如果有一段文本有设置命令，则它会被分割成多个片段</p>
+</blockquote>
+
+<h3 id="setselectionrange">setSelectionRange</h3>
+
+<blockquote>
+  <p>todo</p>
+</blockquote>
+
+<h3 id="简单的富文本实现">简单的富文本实现</h3>
+
+<p>我们了解了关于富文本的一些技术实现后，很容易就可以手动撸一个了:</p>
+
+<style>
+  .container button {
+    padding: 5px;
+    cursor: pointer;
+  }
+  .container label {
+    padding: 5px;
+    background-color: white;
+    cursor: pointer;
+  }
+  .editor-container {
+    display: flex;
+  }
+  .editor-container div {
+    width: 400px;
+    height: 200px;
+    overflow: auto;
+    background-color: white;
+  }
+  .editor-container div p {
+    color: black !important;
+  }
+  .editor-container div a {
+    color: red !important;
+  }
+</style>
+
+<div>
+  <div class="container" role="nav">
+    <button onclick="exec('copy')">复制</button>
+    <!-- <button onclick="exec('paste')">粘贴</button> -->
+    <button onclick="exec('bold')">加粗</button>
+    <button onclick="exec('underline')">下划线</button>
+    <button onclick="exec('formatBlock', false, '&lt;p&gt;')">段落</button>
+    <button onclick="createLink()">设置超链接</button>
+    <button onclick="createImage()">设置图片链接</button>
+    <button onclick="clickImage()">插入图片</button>
+    <button onclick="exec('removeFormat')">清除样式</button>
+    <button onclick="exec('undo')">撤销</button>
+    <button onclick="exec('redo')">重做</button>
+    <input id="editor-img" style="display:none" type="file" accept="image/gif, image/jpeg, image/png" onchange="insertImage(event)" />
+  </div>
+  <div role="editor-container" class="editor-container">
+    <div style="margin-right:10px" role="editor" oninput="print()" contenteditable="true">不妨来试一试 😜</div>
+    <div role="preview">不妨来试一试 😜</div>
+  </div>
+</div>
+<script>
+  let currentRange = null // 当前选区
+  const saveSelection = () => { // 保存当前 Range 对象
+    const selection = window.getSelection()
+    if (selection.rangeCount > 0) {
+      return selection.getRangeAt(0)
+    }
+    return null
+  }
+  const restoreSelection = () => {
+    const selection = window.getSelection()
+    if (currentRange) {
+      selection.removeAllRanges()  // 清空所有 Range 对象
+      selection.addRange(currentRange) // 恢复保存的 Range
+    }
+  }
+  const exec = (aCommandName, aShowDefaultUI = false, aValueArgument = null) => {
+    document.execCommand(aCommandName, aShowDefaultUI, aValueArgument)
+  }
+  const saveCurrentSelection = () => {
+    currentRange = saveSelection()
+  }
+  const createLink = () => {
+    const url = window.prompt('请输入超链接')
+    if (url) {
+      exec('createLink', false, url)
+    }
+  }
+  const clickImage = () => {
+    saveCurrentSelection()
+    document.querySelector('#editor-img').click()
+  }
+  const createImage = () => {
+    saveCurrentSelection()
+    const url = window.prompt('请输入图片链接')
+    if (url) {
+      exec('insertImage', false, url)
+    }
+  }
+  const insertImage = (e) => {
+    let reader = new FileReader()
+    let file = e.target.files[0]
+    // document.querySelector('.editor-container div[role="editor"]').focus()
+    reader.onload = () => {
+      let base64Img = reader.result
+      restoreSelection()
+      exec('insertImage', false, base64Img)
+      document.querySelector('.editor-img input').value = '' // 解决同一张图片上传无效的问题
+    }
+    reader.readAsDataURL(file)
+  }
+  const print = () => {
+    document.querySelector("div[role='preview']").innerText = document.querySelector("div[role='editor']").innerHTML
+  }
+</script>
+
+<p>但是我们一定要关注 focus 的状态，只有聚焦在编辑区才能执行相应的命令，因此我们可以定义一些方法来保存和恢复选区的 Range 对象:</p>
+
+<pre><code class="language-JS">let currentRange = null // 当前选区
+const saveSelection = () =&gt; { // 保存当前 Range 对象
+  const selection = window.getSelection()
+  if (selection.rangeCount &gt; 0) {
+    return selection.getRangeAt(0)
+  }
+  return null
+}
+const restoreSelection = () =&gt; {
+  const selection = window.getSelection()
+  if (currentRange) {
+    selection.removeAllRanges()  // 清空所有 Range 对象
+    selection.addRange(currentRange) // 恢复保存的 Range
+  }
+}
+</code></pre>
+
+<h2 id="draftjs">Draft.js</h2>
+
+<p><a href="https://draftjs.org"><strong>Draft.js</strong></a> 是 facebook 推出的用于 React 的富文本编辑器框架，是通过 <code class="highlighter-rouge">Immutable.js</code> 来保存数据的。一个炒鸡简单的 demo 如下:</p>
+
+<p><img src="https://camo.githubusercontent.com/441ad6e66bcdf56276026625ad31a1e7a634d822/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f5848556a6178454c7063313153695253714e2f67697068792e676966" alt="Draft.js" /></p>
+
+<pre><code class="language-JS">import React from 'react'
+import ReactDOM from 'react-dom'
+import { Editor, EditorState } from 'Draft.js'
+
+function MyEditor() {
+  const [editorState, setEditorState] = React.useState(
+    EditorState.createEmpty()
+  )
+
+  const editor = React.useRef(null)
+
+  function focusEditor() {
+    editor.current.focus()
+  }
+
+  React.useEffect(() =&gt; {
+    focusEditor()
+  }, [])
+
+  return (
+    &lt;div onClick={focusEditor}&gt;
+      &lt;Editor
+        ref={editor}
+        editorState={editorState}
+        onChange={editorState =&gt; setEditorState(editorState)}
+      /&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+
+<h3 id="editorstate">EditorState</h3>
+
+<p><a href="https://draftjs.org/docs/api-reference-editor-state"><strong>EditorState</strong></a> 是编辑器最顶层的状态对象，它是一个 <code class="highlighter-rouge">Immutable Record</code> 对象，保存了编辑器中全部的状态信息，包括文本状态、选中状态等:</p>
+
+<p><img src="http://www.wukai.me/asset/images/2019-07-21-draft-editor-01.png" alt="EditorState" /></p>
+
+<p>当操作 EditorState 对象时，我们不应该直接通过 Immutable 的 API 来获取想要的值，而是通过它暴露出来的静态方法和实例方法:</p>
+
+<ul>
+  <li>getCurrentContent(): ContentState - 返回一个 <strong>ContentState</strong> 对象，存放的是当前编辑器中的内容</li>
+  <li>getSelection(): SelectionState - 返回当前选中的状态</li>
+  <li>getCurrentInlineStyle(): DraftInlineStyle - 返回一个代表着编辑器“当前”内联样式的 <code class="highlighter-rouge">OrderedSet&lt;string&gt;</code></li>
+  <li>static createEmpty(?decorator): EditorState - 创建空的 EditorState 实例</li>
+  <li>static createWithContent(contentState, ?decorator): EditorState - 基于 ContentState 和 decorator 返回一个新的 EditorState</li>
+  <li>static create(config): EditorState</li>
+  <li>static push(editorState, contentState, changeType): EditorState - 返回一个新的 EditorState 对象，该对象使用指定的 ContentState 作为新的当前内容。基于changeType，这个ContentState可能会被视为撤销/重做的边界状态</li>
+  <li>static undo(editorState): EditorState - 从 undo 栈 pop 出一个新的 EditorState 对象，更新为当前的 ContentState 对象</li>
+  <li>static redo(editorState): EditorState - 同上，只不过是 redo 栈</li>
+  <li>static forceSelection(editorState, selectionState): EditorState - 返回一个新的 EditorState 对象，该对象使用指定的 SelectionState，并强制选择被渲染</li>
+  <li>static set(editorState, EditorStateRecordType): EditorState</li>
+</ul>
+
+<pre><code class="language-JS">// 创建空的 EditorState 实例
+const createEmptyEditorState: (p?: any) =&gt; EditorState = decorator =&gt;
+  EditorState.createEmpty(decorator)
+
+const createEditorState: (state: ContentState, p?: any) =&gt; EditorState = (contentState, decorator) =&gt;
+  EditorState.createWithContent(contentState, decorator)
+
+// 基于 raw 来创建 EditorState 对象
+const emptyEditorState = isEmptyObject(raw) ? createEmptyEditorState() : createEditorState(convertFromRaw(raw))
+</code></pre>
+
+<h3 id="contentstate">ContentState</h3>
+
+<p><a href="https://draftjs.org/docs/api-reference-content-state"><strong>ContentState</strong></a> 是用来保存编辑器里的全部内容和渲染前后的两个选中状态，常用的方法有:</p>
+
+<ul>
+  <li>getEntityMap(): EntityMap - 返回一个包含所有已创建的 DraftEntity 记录的存储对象 EntityMap</li>
+  <li>getBlockMap(): BlockMap - 获取 BlockMap，表示整个文档状态的 ContentBlock 对象组成的完整有序映射</li>
+  <li>getBlockForKey(key: string): ContentBlock - 根据 key 返回对应的 ContentBlock 对象</li>
+  <li>getFirstBlock() - 获取第一个 ContentBlock 对象，同理有 <code class="highlighter-rouge">getLastBlock</code></li>
+  <li>getLastCreatedEntityKey(): string - 返回最近一次创建的 DraftEntityRecord 对象的应用 key。因为在 ContentState 对象中可以通过字符串 key 来引用对应的实体对象。应在 CharacterMetadata 对象中使用字符串 key 来标记对应的字符实体</li>
+  <li>createEntity(type: DraftEntityType, mutability: DraftEntityMutability, data?: Object): ContentState - 返回 EntityMap 中包含了新建的 DraftEntity 对象的 ContentState 对象</li>
+  <li>getEntity(key: string): DraftEntityInstance - 根据 key 返回对应的 DraftEntityInstance 对象</li>
+</ul>
+
+<p>我们可以通过 <code class="highlighter-rouge">EditorState.getCurrentContent()</code> 来获取当前的 ContentState，使用 <code class="highlighter-rouge">toObject()</code> 转换为普通 javascript 对象后，可以看到它主要包含了 <strong>BlockMap</strong> 和 <strong>EntityMap</strong> 有序映射，我们可以分别通过上面提到的 <code class="highlighter-rouge">getBlockMap</code> 和 <code class="highlighter-rouge">getEntityMap</code> 方法来获取他们:</p>
+
+<pre><code class="language-TEXT"># blockMap: OrderedMap {size: 6, _map: Map, _list: List, __ownerID: undefined, __hash: undefined}
+# entityMap: {0: "1"}
+# selectionAfter: SelectionState {_map: Map, __ownerID: undefined}
+# selectionBefore: SelectionState {_map: Map, __ownerID: undefined}
+</code></pre>
+
+<p>那么他们到底是什么呢？通过 <code class="highlighter-rouge">convertToRaw(currentContent)</code> 转换后看看其中的内容，这里只有 blocks 和 entityMap 这两项:</p>
+
+<pre><code class="language-TEXT"># blocks: Array(6)
+  0: {key: "dpibs", text: "123", type: "unstyled", depth: "0", inlineStyleRanges: Array(5), …}
+  1: {key: "8evo3", text: "", type: "unstyled", depth: "0", inlineStyleRanges: Array(0), …}
+  2: {key: "9p4vp", text: "", type: "unstyled", depth: "0", inlineStyleRanges: Array(0), …}
+  3: {key: "eigub", text: "tate", type: "unstyled", depth: "0", inlineStyleRanges: Array(2), …}
+  4: {key: "607oo", text: "", type: "unstyled", depth: "0", inlineStyleRanges: Array(0), …}
+  5:
+    data: {}
+    depth: "0"
+    entityRanges: Array(1)
+      0: {offset: 0, length: 4, key: 0}
+    inlineStyleRanges: Array(2)
+      0: {offset: 0, length: 4, style: "FONTFAMILY-Helvetica"}
+      1: {offset: 0, length: 4, style: "LINEHEIGHT-1.5"}
+    key: "ff87"
+    text: "link"
+    type: "unstyled"
+# entityMap:
+  0:
+    data: {url: "www.baidu.com"}
+    mutability: "MUTABLE"
+    type: "LINK"
+</code></pre>
+
+<p>可以看到 blocks 这个数组中依次存放了各个 block 的信息，每一个 block 都是一个 <strong>ContentBlock</strong> 对象。而 entityMap 则包含了所有实体。</p>
+
+<h3 id="contentblock">ContentBlock</h3>
+
+<p><a href="https://draftjs.org/docs/api-reference-content-block"><strong>ContentBlock</strong></a> 表示编辑器内容中每一个 block 的完整状态，类似于段落这种块级元素，主要包含了以下几方面:</p>
+
+<ul>
+  <li>key - 标识符，获取方式为 <code class="highlighter-rouge">getKey()</code></li>
+  <li>type - 这是何种类型的 block，常见的有 <code class="highlighter-rouge">unstyled</code>、 <code class="highlighter-rouge">paragragh</code>、<code class="highlighter-rouge">atomic</code> 等，获取方式为 <code class="highlighter-rouge">getType()</code></li>
+  <li>text - 纯文字，不包括任何样式、修饰或 HTML 信息，获取方式为 <code class="highlighter-rouge">getText()</code></li>
+  <li>data - 块级元数据，获取方式为 <code class="highlighter-rouge">getData()</code></li>
+  <li>entityRanges - 实体
+    <ul>
+      <li>type - 实体类型</li>
+      <li>data - 实体包含的数据</li>
+      <li>mutability - 标识实体在用户编辑的时候展现出来的特性</li>
+    </ul>
+  </li>
+  <li>inlineStyleRanges - 所有内联样式
+    <ul>
+      <li>offset - 偏移量</li>
+      <li>length - 字符长度</li>
+      <li>style - 样式类型</li>
+    </ul>
+  </li>
+  <li>characterList - 是一个 immutable List 列表，其中包含该块中每个字符的 <strong>CharacterMetadata</strong> 对象，我们通过这种方式用代码来构建块的样式和实体，获取方式为 <code class="highlighter-rouge">getCharacterList()</code></li>
+</ul>
+
+<p>通过在这些 characterList 列表和 CharacterMetadata 对象上大量使用不可变和数据持久化特性，使得在编辑器中编辑内容占用内存很小。当我们创建一个包含 text 但不包含 characterList 的 ContentBlock 对象时，会默认为提供的文本添加一个带有空 CharacterMetadata 对象的 characterList。</p>
+
+<h3 id="charactermetadata">CharacterMetadata</h3>
+
+<p><strong>CharacterMetadata</strong> 表示一个包含单一字符行内样式和实体信息的对象。CharacterMetadata 对象被即时的汇总和共享。如果两个字符拥有相同的行内样式和实体，它们会被表示为相同的 CharacterMetadata 对象。因此，我们只需要尽可能多的组合带有实体 key 的内联样式集合，以达到即便内容的大小和复杂性增加，我们的内存占用也很小的目的。为此，你需要用过提供的静态方法来为 CharacterMetadata 对象创建或应用变更，这能确保最大限度的复用:</p>
+
+<ul>
+  <li>static create(…): CharacterMetadata - 根据提供的配置信息生成一个 CharacterMetadata 对象</li>
+  <li>static applyStyle(…): CharacterMetadata - 在 CharacterMetadata 对象上应用指定内联样式</li>
+  <li>static removeStyle(…): CharacterMetadata - 从 CharacterMetadata 对象中移除指定内联样式</li>
+  <li>static applyEntity(…): CharacterMetadata - 在 CharacterMetadata 对象上应用一个实体 key</li>
+</ul>
+
+<p>比如我要做个选中后清除选区所有内联样式的功能，那我可能会针对所选的 block 中 characterList 进行遍历，清除每一个 CharacterMetadata 对象包含的内联样式信息，那么首先我们要筛选出选中的 block 萌:</p>
+
+<pre><code class="language-JS">const getSelectedBlocks: (state: EditorState) =&gt; ContentBlock[] = editorState =&gt; {
+  const selection = editorState.getSelection()
+  const contentState = editorState.getCurrentContent()
+
+  const startKey = selection.getStartKey() // 包含选区起始位置的 block 的 key
+  const endKey = selection.getEndKey() // 包含选区结束位置的 block 的 key
+  const isSameBlock = startKey === endKey
+  const startingBlock = contentState.getBlockForKey(startKey)
+  const selectedBlocks = [startingBlock]
+
+  if (!isSameBlock) { // 如果是好多 block
+    let blockKey = startKey
+
+    while (blockKey !== endKey) {
+      const nextBlock = contentState.getBlockAfter(blockKey)
+      selectedBlocks.push(nextBlock)
+      blockKey = nextBlock.getKey()
+    }
+  }
+
+  return selectedBlocks
+}
+</code></pre>
+
+<p>然后我们需要更新 characterList 列表，把空的样式覆盖进去并更新当前的 EditorState:</p>
+
+<pre><code class="language-JS">// 更新 characterList 列表
+const updateEachCharacterOfSelection: (state: EditorState, f: any) =&gt; any = (editorState, callback) =&gt; {
+  const selection = editorState.getSelection()
+  const contentState = editorState.getCurrentContent()
+  const contentBlocks = contentState.getBlockMap()
+  const selectedBlocks = getSelectedBlocks(editorState)
+
+  if (selectedBlocks.length === 0) {
+    return editorState
+  }
+
+  const startKey = selection.getStartKey()
+  const startOffset = selection.getStartOffset()
+  const endKey = selection.getEndKey()
+  const endOffset = selection.getEndOffset()
+
+  const nextContentBlocks = contentBlocks.map((block?: ContentBlock | undefined) =&gt; {
+    const curBlock = block as ContentBlock
+    if (!selectedBlocks.includes(curBlock)) {
+      return block
+    }
+
+    const blockKey = curBlock.getKey()
+    const charactersList = curBlock.getCharacterList()
+    let nextCharactersList = null
+
+    if (blockKey === startKey &amp;&amp; blockKey === endKey) {
+      nextCharactersList = charactersList.map((character, index) =&gt; {
+        const i = index as number
+        if (i &gt;= startOffset &amp;&amp; i &lt; endOffset) {
+          return callback(character)
+        }
+        return character
+      })
+    } else if (blockKey === startKey) {
+      nextCharactersList = charactersList.map((character, index) =&gt; {
+        const i = index as number
+        if (i &gt;= startOffset) {
+          return callback(character)
+        }
+        return character
+      })
+    } else if (blockKey === endKey) {
+      nextCharactersList = charactersList.map((character, index) =&gt; {
+        const i = index as number
+        if (i &lt; endOffset) {
+          return callback(character)
+        }
+        return character
+      })
+    } else {
+      nextCharactersList = charactersList.map(character =&gt; {
+        return callback(character)
+      })
+    }
+
+    return curBlock.merge({
+      characterList: nextCharactersList,
+    })
+  })
+
+  return EditorState.push(editorState, (contentState as any).merge({
+    blockMap: nextContentBlocks,
+    selectionBefore: selection,
+    selectionAfter: selection,
+  }), 'remove-range')
+}
+
+// 清除内联样式
+const removeSelectionInlineStyles: (state: EditorState) =&gt; EditorState = editorState =&gt;
+  updateEachCharacterOfSelection(editorState, (characterMetadata: CharacterMetadata) =&gt;
+    (characterMetadata as any).merge({
+      style: Immutable.OrderedSet([]),
+    }),
+  )
+</code></pre>
+
+<h3 id="entity">Entity</h3>
+
+<p>文本中会有许多高级的元数据，<strong>Entity</strong> 实体就是用于表示这些元数据，使得我们可以在内容中添加链接，图片等，链接，提及和嵌入式内容都可以使用实体来实现。在上面 ContentBlock 里有介绍到，它有三个属性:</p>
+
+<ul>
+  <li>type - 实体类型，例如’LINK’，’MENTION’，’PHOTO’。</li>
+  <li>mutability - 此属性表示在编辑器中编辑文本范围时，使用此实体对象注释的一系列文本的行为。它拥有以下三种值:
+    <ul>
+      <li>IMMUTABLE - 如果不从文本中删除实体注释，则无法更改此文本。比如 mention</li>
+      <li>MUTABLE - 允许自由改变 Entity 的文本，如超链接</li>
+      <li>SEGMENTED - “分段”的实体以与“不可变”实体非常相似的方式与其文本紧密耦合，但允许通过删除进行自定义</li>
+    </ul>
+  </li>
+  <li>data - 包含实体元数据的可选对象。 例如，“LINK” 实体对象可能包含该链接的 href 的值。</li>
+</ul>
+
+<blockquote>
+  <p>使用 decorator 装饰器或自定义块组件，可以根据实体元数据向编辑器添加丰富的渲染样式</p>
+</blockquote>
+
+<p>Entity 本身的 <code class="highlighter-rouge">create</code> 等方法已经被弃用，直接使用上述 ContentState 对象的 <code class="highlighter-rouge">createEntity</code> 代替，其他同理。我们尝试创建和检索实体:</p>
+
+<ol>
+  <li>通过 <code class="highlighter-rouge">contentState.createEntity</code> 来创建实体。</li>
+  <li>他接受上面 3 个属性作为参数。</li>
+  <li>此方法返回一个 ContentState 记录。</li>
+  <li>通过 <code class="highlighter-rouge">contentState.getLastCreatedEntityKey</code> 来获取创建的实体记录的 key</li>
+</ol>
+
+<pre><code class="language-JS">const contentState = editorState.getCurrentContent()
+const contentStateWithEntity = contentState.createEntity(
+  'LINK',
+  'MUTABLE',
+  { url: 'http://www.baidu.com' }
+)
+const entityKey = contentStateWithEntity.getLastCreatedEntityKey()
+const currentContent = Modifier.applyEntity(
+  contentStateWithEntity,
+  selectionState,
+  entityKey
+)
+const newEditorState = EditorState.push(editorState, { currentContent })
+</code></pre>
+
+<p>对于给定的文本范围，则可以通过在 ContentBlock 对象上使用 <code class="highlighter-rouge">getEntityAt()</code> 方法来提取其关联的实体 key，从而传递目标偏移值:</p>
+
+<pre><code class="language-JS">const getEntityKey: (state: EditorState, k?: SelectionState) =&gt; string = (editorState, selection) =&gt; {
+  const selectionState = selection || editorState.getSelection()
+  const startKey = selectionState.getStartKey()
+  const startOffset = selectionState.getStartOffset()
+  return editorState
+    .getCurrentContent()
+    .getBlockForKey(startKey)
+    .getEntityAt(startOffset)
+}
+</code></pre>
+
+<h3 id="decorator">Decorator</h3>
+
+<p>内联和块级样式并不是我们想要添加到编辑器的唯一富文本样式。例如，Facebook 评论输入给提及和标签提供了蓝色背景高亮。为了支持自定义富文本的灵活性，Draft 提供了一个“修饰器”系统，即 <strong>Decorator</strong>，我们可以看作是用来添加高级富内容的一种方法。</p>
+
+<p>我们可以使用 <code class="highlighter-rouge">CompositeDecorator</code> 类定义所需的修饰器行为。该类允许您提供多个 DraftDecorator 对象，并根据策略依次搜索每一组文本。修饰器存储在 EditorState 记录中。当创建一个新的 EditorState 对象（例如：<code class="highlighter-rouge">EditorState.createEmpty()</code>）的时候，可以选择提供修饰器参数。当然我们也可以动态区更新这些修饰器:</p>
+
+<pre><code class="language-JS">// 获取 entity type
+const getEntityType: (state: ContentState, k: string) =&gt; DraftEntityType = (contentState, entityKey) =&gt;
+  contentState
+    .getEntity(entityKey)
+    .getType()
+
+const getEntityData: (state: ContentState, k: string) =&gt; any = (contentState, entityKey) =&gt;
+  contentState
+    .getEntity(entityKey)
+    .getData()
+
+// 设置新的修饰器
+const turnOffHandleDecorations: (state: EditorState, k: object) =&gt; EditorState = (editorState, decorator) =&gt;
+  EditorState.set(editorState, { decorator })
+
+function findLinkEntities(contentBlock: ContentBlock, callback: (start: number, end: number) =&gt; void, contentState: ContentState) {
+  contentBlock.findEntityRanges(
+    (character: CharacterMetadata) =&gt; {
+      const entityKey = character.getEntity()
+      return (
+        entityKey !== null &amp;&amp; getEntityType(contentState, entityKey) === LINK_ENTITY
+      )
+    },
+    callback,
+  )
+}
+
+const LinkComponent = (props: ILinkProps) =&gt; {
+  const { contentState, children, entityKey } = props
+  const { url } = getEntityData(contentState, entityKey) // 获取实体内容
+  return (
+    &lt;a target='_blank' onClick={e =&gt; previewLink(e, url)} href={url}&gt;
+      {children}
+    &lt;/a&gt;
+  )
+}
+
+// 定义一些修饰器
+const decorator = new CompositeDecorator([
+  {
+    strategy: findLinkEntities, // 指定策略
+    component: LinkComponent, // 指定 React 组件去渲染它们
+  },
+])
+
+function RichEditor(props: IProps) {
+  //...
+  const [editorState, setEditorState] = useState&lt;EditorState&gt;(turnOffHandleDecorations(emptyEditorState, decorator))
+}
+</code></pre>
+
+<h3 id="richutils">RichUtils</h3>
+
+<p><strong>RichUtils</strong> 是为实现富文本编辑器准备的一组实用的静态函数集合。在使用中，这些方法接收带有相关参数的 EditorState 对象，并且返回 EditorState 对象，我们常用的如下:</p>
+
+<ul>
+  <li>toggleBlockType(editorState: EditorState, blockType: string): EditorState - 在选中区域上切指定的块级样式</li>
+  <li>toggleInlineStyle(editorState: EditorState, inlineStyle: string): EditorState - 在选中区域上切换指定的内联样式。如果用户的选区是折叠的，则应用或移除内部状态的样式</li>
+  <li>toggleLink(editorState: EditorState, targetSelection: SelectionState, entityKey: string): EditorState - 切换超链接样式，entityKey 为 null 则为清除</li>
+</ul>
+
+<pre><code class="language-JS">// 切换内联样式，比如 BOLD、ITALIC、UNDERLINE 等
+const toggleInlineStyle = (inlineStyle: string) =&gt; {
+  setEditorState(
+    RichUtils.toggleInlineStyle(
+      editorState,
+      inlineStyle,
+    ),
+  )
+}
+</code></pre>
+
+<p>对于我们自定义的内联样式，切记如果用户的选区是折叠的，则应用或移除内部状态的样式:</p>
+
+<pre><code class="language-JS">const toggleSelectionInlineStyle: (state: EditorState, p: string, k: string) =&gt; EditorState = (editorState, style, prefix = '') =&gt; {
+  let nextEditorState = editorState
+  if (prefix) {
+    nextEditorState = updateEachCharacterOfSelection(nextEditorState, (characterMetadata: CharacterMetadata) =&gt; {
+      // tslint:disable-next-line:max-line-length
+      return (characterMetadata as any).toJS().style.reduce((c: CharacterMetadata, characterStyle: string): CharacterMetadata =&gt; {
+        if (characterStyle.startsWith(prefix) &amp;&amp; style !== characterStyle) {
+          return CharacterMetadata.removeStyle(c, characterStyle)
+        } else {
+          return c
+        }
+      }, characterMetadata)
+    })
+  }
+  return RichUtils.toggleInlineStyle(nextEditorState, style)
+}
+</code></pre>
+
+<h3 id="modifier">Modifier</h3>
+
+<p><strong>Modifier</strong> 模块是一组实用的静态函数，主要封装 ContentState 对象上的各种常用编辑操作。任何情况下，这些方法都接收具有相关参数的 ContentState 对象，并返回一个新的 ContentState 对象。如果实际并未发生任何编辑行为，将原样返回输入的 ContentState 对象。具体方法可以查看文档，比如 <code class="highlighter-rouge">removeInlineStyle</code> 方法可以从整个选中范围中移除指定的内联样式:</p>
+
+<pre><code class="language-JS">// deprecated 可以用上述的 toggleSelectionInlineStyle 优化
+const setNextEditorState: (
+  state: EditorState, selection: SelectionState, p: IStyleObject, k: EditorChangeType,
+) =&gt; EditorState = (editorState, selection, reduceStyle, changeType) =&gt; {
+  // 清除之前的样式
+  const nextContentState = Object.keys(reduceStyle).reduce(
+    (state, font) =&gt; Modifier.removeInlineStyle(
+      state, selection, font,
+    ), getCurrentContent(editorState),
+  )
+
+  // 由 nextContentState 产生新的 editorState
+  return EditorState.push(
+    editorState,
+    nextContentState,
+    changeType,
+  )
+}
+</code></pre>
+
+<h3 id="数据转换">数据转换</h3>
+
+<p>因为富文本编辑器不可能凭空存在，因此对内容进行保存和传输非常重要，你可能希望将 ContentState 对象转换为原生 JS，或者反过来将原生 JS 转换为 ContentState 对象。目前提供了三个方法:</p>
+
+<ul>
+  <li>convertFromRaw(rawState: RawDraftContentState): ContentState - 将一个原始 state 转换为 ContentState 对象</li>
+  <li>convertToRaw(contentState: ContentState): RawDraftContentState - 将一个 ContentState 对象转换为原生 JS 结构，当需要保存编辑器状态、将编辑数据转换为其他格式，或在应用中开发其他功能时，非常有用。</li>
+  <li>convertFromHTML - 将一段 HTML 片段转换为一个包含两个 key 的对象。其中一个(contentBlocks)保存 ContentBlock 对象数组，另一个(entityMap)保存对 entityMap 的引用。再从 contentBlocks 和 entityMap 构造 contentState，然后使用该 contentState 更新 editorState</li>
+</ul>
+
+<pre><code class="language-JS">const sampleMarkup =
+  '&lt;b&gt;Bold text&lt;/b&gt;, &lt;i&gt;Italic text&lt;/i&gt;&lt;br/ &gt;&lt;br /&gt;' +
+  '&lt;a href="http://www.facebook.com"&gt;Example link&lt;/a&gt;'
+
+const blocksFromHTML = convertFromHTML(sampleMarkup)
+const state = ContentState.createFromBlockArray(
+  blocksFromHTML.contentBlocks,
+  blocksFromHTML.entityMap
+)
+
+setEditorState(EditorState.createWithContent(state))
+</code></pre>
+
+<blockquote>
+  <p>emmmm… 是的你没看错，它并没有转换成 html 的方法，因此我们常借助于一些其他库，比如 <a href="https://www.npmjs.com/package/draft-js-export-html">draft-js-export-html</a>，下面会介绍到详细用法</p>
+</blockquote>
+
+<h2 id="draftjs-实战">Draft.js 实战</h2>
+
+<h3 id="默认样式">默认样式</h3>
+
+<p>Draft 里面有默认的块级和内联样式，块级比如有 “blockquote”、”code-block”、”ordered-list-item” 等；内联样式比如有 “bold”、”italic”、”underline” 等，我们看其中一个例子:</p>
+
+<pre><code class="language-JS">const BLOCK_TYPES: IRichEditorControls[] = [
+  { label: '引用', style: 'blockquote', icon: FormatQuote },
+  { label: '无序列表', style: 'unordered-list-item', icon: FormatListBulleted },
+  { label: '有序列表', style: 'ordered-list-item', icon: FormatListNumbered },
+  { label: '代码块', style: 'code-block', icon: Code },
+]
+
+// 获取 block type
+const getBlockType: (state: EditorState) =&gt; DraftBlockType = editorState =&gt;
+  editorState
+    .getCurrentContent()
+    .getBlockForKey(editorState.getSelection().getStartKey())
+    .getType()
+
+interface IProps {
+  editorState: EditorState
+  onToggle: (p: DraftBlockType) =&gt; void
+  children?: React.ReactNode
+}
+
+function BlockStyleControls(props: IProps) {
+  const { editorState, onToggle, children } = props
+  const blockType = getBlockType(editorState)
+
+  return (
+    &lt;div className='RichEditor-controls'&gt;
+      {children}
+      {BLOCK_TYPES.map(type =&gt; (
+        &lt;StyleButton
+          key={type.label}
+          active={type.style === blockType}
+          icon={type.icon}
+          label={type.label}
+          onToggle={onToggle}
+          style={type.style}
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  )
+}
+
+export default BlockStyleControls
+</code></pre>
+
+<p>这里从父组件传入的 onToggle 其实就是上述自定义的 <code class="highlighter-rouge">toggleInlineStyle</code> 方法，是不是很简单，而且我们可以直接实现 redo/undo 操作:</p>
+
+<pre><code class="language-JS">const undo: (state: EditorState) =&gt; EditorState = editorState =&gt;
+  EditorState.undo(editorState)
+
+const redo: (state: EditorState) =&gt; EditorState = editorState =&gt;
+  EditorState.redo(editorState)
+
+// 只要传过来一个标示即可
+const toggleUndoOrRedo = (doStyle: string) =&gt; {
+  if (doStyle === 'undo') {
+    setEditorState(undo(editorState))
+  } else {
+    setEditorState(redo(editorState))
+  }
+}
+</code></pre>
+
+<blockquote>
+  <p>当然我们也可以去修改默认的配置，就要用到下面讲到的 Editor 对象去操作</p>
+</blockquote>
+
+<h3 id="自定义样式">自定义样式</h3>
+
+<h4 id="editor">Editor</h4>
+
+<p>在自定义样式前，我们有必要先了解下核心受控的 contentEditable 组件，即 <strong>Editor</strong> 自身的 API 和 props:</p>
+
+<ul>
+  <li>editorState - EditorState 对象由 Editor 创建</li>
+  <li>onChange - 在 Editor 编辑或文本选区(selection)变化的时候触发</li>
+  <li>placeholder</li>
+  <li>blockRenderMap - 提供了 block 的渲染配置，每个块级样式映射了一个元素标签以及一个可选的 wrapper 元素包裹起来</li>
+  <li>blockRendererFn - 可选地设置一个函数来定义自定义块的呈现</li>
+  <li>customStyleMap - 可选地设置一个内联样式表，以应用到具有指定样式的文本范围</li>
+  <li>customStyleFn - 可选地设置一个函数来将内联样式转换为 CSS 样式并应用到具体指定样式的文本范围</li>
+</ul>
+
+<h4 id="块级样式">块级样式</h4>
+
+<p>这一节主要讲 <code class="highlighter-rouge">blockRenderMap</code> 的应用，以“居中、居左”这种功能项为例，我们直接在默认样式里的配置上加入这几种自定义样式:</p>
+
+<pre><code class="language-JS">const BLOCK_TYPES: IRichEditorControls[] = [
+  // ...
+  { label: '居左', style: ALIGN_KEYS.left, icon: FormatAlignLeft },
+  { label: '居中', style: ALIGN_KEYS.center, icon: FormatAlignCenter },
+  { label: '居右', style: ALIGN_KEYS.right, icon: FormatAlignRight },
+]
+</code></pre>
+
+<p>然后我们新建一个 <code class="highlighter-rouge">Align.ts</code> 文件来定义我们需要用来渲染的组件和样式:</p>
+
+<pre><code class="language-JS">// Align.ts
+function Align(props: IProps) {
+  const { type, children } = props
+  return (
+    &lt;div className={'align-' + type}&gt;
+      {/* here, children contains a &lt;section&gt; container, as that was the matching element */}
+      {children}
+    &lt;/div&gt;
+  )
+}
+
+export const ALIGN_KEYS = {
+  center: 'align-center',
+  left: 'align-left',
+  right: 'align-right',
+}
+
+// https://draftjs.org/docs/advanced-topics-custom-block-render-map
+const blockRenderMap = Immutable.Map({
+  [ALIGN_KEYS.center]: {
+    wrapper: &lt;Align type='center' /&gt;,
+  },
+  [ALIGN_KEYS.left]: {
+    wrapper: &lt;Align type='left' /&gt;,
+  },
+  [ALIGN_KEYS.right]: {
+    wrapper: &lt;Align type='right' /&gt;,
+  },
+})
+
+export default blockRenderMap
+</code></pre>
+
+<p>我们导出了一个 blockRenderMap 对象，我们需要编辑器去应用我们所配置的样式，因此这里需要用到 Editor 对象的 <code class="highlighter-rouge">blockRenderMap</code> 属性进行配置:</p>
+
+<pre><code class="language-JS">import { DefaultDraftBlockRenderMap } from 'draft-js'
+
+// 与默认的块级样式合并
+const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMapAlign)
+
+function RichEditor(props: IProps) {
+  // ...
+  return {
+    // ...
+    &lt;Editor
+      ref={editor}
+      blockRenderMap={extendedBlockRenderMap}
+      editorState={editorState}
+      onChange={state =&gt; setEditorState(state)}
+      placeholder='写点什么呢...'
+      spellCheck={true}
+    /&gt;
+  }
+}
+</code></pre>
+
+<h4 id="内联样式">内联样式</h4>
+
+<p>这一节主要讲 <code class="highlighter-rouge">customStyleMap</code> 和 <code class="highlighter-rouge">customStyleFn</code> 的应用，以设置字体为例，我们不妨先针对这个控件创建新的文件:</p>
+
+<pre><code class="language-JS">// FontFamilyControls
+const FONTFAMILY_TYPES = [
+  { label: '默认', style: 'FONTFAMILY-inherit' },
+  { label: 'Arial', style: 'FONTFAMILY-Arial' },
+  { label: 'Artnext', style: 'FONTFAMILY-Artnext' },
+  { label: 'Avenir', style: 'FONTFAMILY-Avenir' },
+  { label: 'Banghdad', style: 'FONTFAMILY-Banghdad' },
+  { label: 'Helvetica', style: 'FONTFAMILY-Helvetica' },
+  { label: 'Muli', style: 'FONTFAMILY-Muli' },
+  { label: 'SF ui test', style: 'FONTFAMILY-SF ui test' },
+  { label: 'PingFangSC', style: 'FONTFAMILY-PingFangSC' },
+  { label: '思源黑体', style: 'FONTFAMILY-Souce Han Sans CN' },
+]
+
+const defaultValue = 'FONTFAMILY-inherit'
+
+interface IProps {
+  editorState: EditorState
+  saveCurrentSelection: () =&gt; void // 保存选区
+  onToggle(p: string, k: string): void
+}
+
+function FontFamilyControls(props: IProps) {
+  const { onToggle, saveCurrentSelection, editorState } = props
+  const classes = useStyle()
+  const [currentValue, setCurrentValue] = useState&lt;string&gt;(defaultValue)
+  const inputLabel = useRef&lt;HTMLLabelElement&gt;(null)
+  const [labelWidth, setLabelWidth] = useState(0)
+
+  useEffect(() =&gt; {
+    setLabelWidth(inputLabel.current!.offsetWidth)
+  }, [])
+
+  const getFontFamilyFromStyle: (p: string) =&gt; string = style =&gt; style.replace(fontFamilyKey, '')
+
+  const onChoose = (e: React.ChangeEvent&lt;{ value: unknown }&gt;) =&gt; {
+    const { target: { value = '' } = {} } = e
+    saveCurrentSelection()
+    onToggle(value as string, fontFamilyKey)
+  }
+
+  const fontFamilyStyle: (p: string) =&gt; React.CSSProperties = style =&gt; ({
+    fontFamily: getFontFamilyFromStyle(style),
+  })
+
+  return (
+    &lt;FormControl variant='outlined' className={classes.formControl}&gt;
+      &lt;InputLabel ref={inputLabel} htmlFor='select-outlined-label'&gt;字体&lt;/InputLabel&gt;
+      &lt;Select
+        value={currentValue}
+        onChange={onChoose}
+        MenuProps={HigherMenuProps}
+        input={&lt;OutlinedInput labelWidth={labelWidth} name='style' id='select-outlined-label' /&gt;}
+      &gt;
+        {FONTFAMILY_TYPES.map(({ style, label }: IFontSize) =&gt; (
+          &lt;MenuItem key={label} style={fontFamilyStyle(style)} value={style}&gt;{label}&lt;/MenuItem&gt;
+        ))}
+      &lt;/Select&gt;
+    &lt;/FormControl&gt;
+  )
+}
+</code></pre>
+
+<p>我们可以看到，最终实现的也是 toggle 方法，让我们看看父组件里面怎么实现吧:</p>
+
+<pre><code class="language-JS">// 切换字体大小，将此方法传入子组件，属性为 toggle
+const changeFont: (p: string, k: string) =&gt; void = (inlineStyle, key) =&gt; {
+  // 储存选择过的颜色，是为了在去除掉以前的样式中用
+  let newStyleMap = {}
+  const value = getStyleValue(inlineStyle) // 根据内联样式获取对应的 css 样式值
+
+  // 假设这里对字体、字体大小和行高等样式进行处理
+  if (key === fontSizeKey) {
+    newStyleMap = {
+      [inlineStyle]: {
+        fontSize: `${value}px`,
+      },
+    }
+  } else if (key === fontFamilyKey) {
+    newStyleMap = {
+      [inlineStyle]: {
+        fontFamily: value,
+      },
+    }
+  } else if (key === lineHeightKey) {
+    newStyleMap = {
+      [inlineStyle]: {
+        lineHeight: value,
+      },
+    }
+  }
+
+  // 更新自定义颜色
+  setCustomStyleMap({ ...customStyleMap, ...newStyleMap })
+  // 清除旧样式并更新新样式
+  setEditorState(toggleSelectionInlineStyle(editorState, inlineStyle, key))
+  clearCurrentSelection()
+}
+</code></pre>
+
+<p>我们可以看到，我们使用了钩子 setCustomStyleMap 来设置了自定义的内联样式，那么同样我们还是需要 Editor 的 <code class="highlighter-rouge">customStyleMap</code> 配置来应用这些样式:</p>
+
+<pre><code class="language-JS">&lt;Editor
+  ref={editor}
+  blockRenderMap={extendedBlockRenderMap}
+  blockStyleFn={getBlockStyle}
+  customStyleMap={customStyleMap}
+  customStyleFn={customStyleFn}
+  editorState={editorState}
+  onChange={state =&gt; setEditorState(state)}
+  placeholder='写点什么呢...'
+  spellCheck={true}
+/&gt;
+</code></pre>
+
+<p>但是有一点需要注意的是，我们新增的自定义样式都是临时的，是根据不同样式类型自动生成的，当我们关闭编辑器保存内容后重新打开时，这些样式如果没有被保存的话，将无法按照它来渲染，因为我们需要 <code class="highlighter-rouge">customStyleFn</code> 来定义渲染规则:</p>
+
+<pre><code class="language-JS">// 设置样式 key
+const styleKeys = {
+  fontSizeKey: 'FONTSIZE-',
+  fontFamilyKey: 'FONTFAMILY-',
+  fontColorKey: 'COLOR-',
+  fontBgColorKey: 'BGCOLOR-',
+  lineHeightKey: 'LINEHEIGHT-',
+}
+
+const removeKey: (p: string) =&gt; string = key =&gt; key.replace('Key', '')
+
+const getFirstElement = (styles: DraftInlineStyle) =&gt; {
+  const styleElement: IInlineStyleElement = {}
+  Object.keys(styleKeys).forEach((key: string) =&gt; {
+    // styles is immutable
+    (styleElement as any)[removeKey(key)] = styles.filter((value: any) =&gt; value.startsWith((styleKeys as any)[key])).first()
+  })
+  return styleElement
+}
+
+const customStyleFn: (p: DraftInlineStyle) =&gt; any = style =&gt; {
+  const output: any = {}
+  // styles immutable
+  const { getFirstElement, getStyleValue } = stateToHtmlOptions
+  const {
+    fontColor, fontBgColor, fontSize, fontFamily, lineHeight,
+  } = getFirstElement(style)
+
+  if (fontColor) { output.color = getStyleValue(fontColor) }
+
+  if (fontBgColor) { output.backgroundColor = getStyleValue(fontBgColor) }
+
+  if (fontSize) { output.fontSize = `${getStyleValue(fontSize)}px` }
+
+  if (fontFamily) { output.fontFamily = getStyleValue(fontFamily) }
+
+  if (lineHeight) { output.lineHeight = getStyleValue(lineHeight) }
+
+  return output
+}
+</code></pre>
+
+<p>ok 完事，至于其他超链接的实现这里就不展示了，上面再讲 entity 的时候，代码已经贴的差不多了。剩下的就是如何导出我们写好的富文本了。</p>
+
+<h3 id="导出-html">导出 html</h3>
+
+<p>当我们导出 html 标签的时候，我们又需要对不同样式类型进行解析和转换，这里推荐一个库 <a href="https://www.npmjs.com/package/draft-js-export-html">draft-js-export-html</a>，使用方法很简单:</p>
+
+<pre><code class="language-JS">import {stateToHTML} from 'draft-js-export-html'
+
+const html = stateToHTML(contentState, options)
+</code></pre>
+
+<p>它支持众多的 options 可选项，具体可以查阅文档，我们这里直接贴例子:</p>
+
+<pre><code class="language-JS">const options = {
+  defaultBlockTag: 'div',
+  inlineStyleFn: (styles: DraftInlineStyle) =&gt; {
+    // styles immutable
+    const {
+      fontSize, fontColor, fontBgColor, fontFamily, lineHeight,
+    } = getFirstElement(styles)
+
+    let style = {}
+
+    if (fontSize) {
+      style = { ...style, 'font-size': getStyleValue(fontSize) }
+    }
+
+    if (fontFamily) {
+      style = { ...style, 'font-family': getStyleValue(fontFamily) }
+    }
+
+    if (fontColor) {
+      style = { ...style, color: getStyleValue(fontColor) }
+    }
+
+    if (fontBgColor) {
+      style = { ...style, 'background-color': getStyleValue(fontBgColor) }
+    }
+
+    if (lineHeight) {
+      // FIXME: 为了防止自动加上 px，所以暂时采用 !important
+      style = { ...style, 'line-height': `${getStyleValue(lineHeight)} !important` }
+    }
+
+    if (!isEmptyObject(style)) {
+      return {
+        element: 'span',
+        style,
+      }
+    }
+
+    return styles
+  },
+  blockStyleFn: (block: ContentBlock) =&gt; {
+    let output
+    switch (block.getType()) {
+      case ALIGN_KEYS.center:
+        output = getAlignStyle('center')
+        break
+      case ALIGN_KEYS.left:
+        output = getAlignStyle('left')
+        break
+      case ALIGN_KEYS.right:
+        output = getAlignStyle('right')
+        break
+      default:
+        break
+    }
+
+    return output
+  },
+  entityStyleFn: (entity: EntityInstance) =&gt; {
+    if (entity.getType() === LINK_ENTITY) {
+      const { url: href } = entity.getData()
+      return {
+        element: 'a',
+        attributes: {
+          href,
+          target: '_blank',
+        },
+        // style: {
+        //   // Put styles here...
+        // },
+      }
+    }
+  },
+}
+</code></pre>
+
+<p>这样转换之后，我们就可以得到我们心爱的 html 文本啦，赶紧拿去前台渲染吧 😁</p>
+
+<blockquote>
+  <p>基于 draft.js 开发的也有好多好用的富文本工具，比如 <a href="https://braft.margox.cn">braft-editor</a> 等，其他关于富文本的库也有很多，比如 <a href="http://neilj.github.io/Squire/">squire</a> 等。</p>
+</blockquote>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://juejin.im/post/5cfe4e8a6fb9a07ec63b09a4#heading-0">富文本原理了解一下？</a> By 尤水就下</li>
+  <li><a href="http://www.wukai.me/2019/07/21/draftjs-editor-tutorial-1/">从插入图片功能的实现来介绍如何用 Draft.js 编写富文本编辑器</a> By 吴锴</li>
+  <li><a href="http://seejs.me/draft-js-cn/docs/kuai-su-kai-shi/gai-yao.html">Draft.js 中文翻译文档</a></li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2019/12/18/js-rich-editor.html';
+        this.page.identifier = '/2019/12/18/js-rich-editor';
+        this.page.title = '富文本原理';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2019-12-18 20:22:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<script async src="/search/live2d/autoload.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
