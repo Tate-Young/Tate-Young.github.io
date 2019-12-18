@@ -7,6 +7,7 @@ background: blue
 category: 前端
 title:  富文本原理
 date:   2019-12-18 20:22:00 GMT+0800 (CST)
+update: 2019-12-18 23:34:00 GMT+0800 (CST)
 background-image: /style/images/js.png
 tags:
 - JavaScript
@@ -127,7 +128,96 @@ Selection 拥有以下常用的属性:
 
 ### setSelectionRange
 
-> todo
+上述是我们主动去选择一块儿区域，我们也可以通过 `setSelectionRange` 来创建一片选区:
+
+```JS
+/**
+ * 每次调用这个这个方法会更新 HTMLInputElement 的 selectionStart, selectionEnd,和 selectionDirection 属性
+ *
+ * @param {*} selectionStart - 被选中的第一个字符的位置
+ * @param {*} selectionEnd - 被选中的最后一个字符的 下一个 位置
+ * @param {*} selectionDirection - 一个指明选择方向的字符串，有"forward","backward"和"none" 3个可选值
+ */
+inputElement.setSelectionRange(selectionStart, selectionEnd, [optional] selectionDirection);
+```
+
+> 注意，setSelectionRange 只能在一个被 focused 的 `<input>` 元素中选中特定范围的内容，否则无法选中
+
+<script>
+  const selectText = () => {
+    const input = document.querySelector('#mytextbox')
+    input.focus()
+    input.setSelectionRange(7, 11) // 选择特定部分
+    // input.setSelectionRange(0, -1) // 全选
+  }
+
+  const execCopyText = node => {
+    let canUserSelect = true
+    const selection = window.getSelection()
+    const range = document.createRange() // 返回一个 Range 对象
+
+    // 不让选也要选
+    if (getComputedStyle(node).userSelect === 'none' || getComputedStyle(node)['-webkit-user-select'] === 'none') {
+      canUserSelect = false
+      node.style.userSelect = 'text'
+      node.style['-webkit-user-select'] = 'text'
+    }
+
+    // 设置 Range 使其包含一个 Node 的内容
+    range.selectNodeContents(node)
+
+    selection.removeAllRanges()
+    selection.addRange(range)
+    document.execCommand('copy')
+
+    if (!canUserSelect) {
+      node.style.userSelect = 'none'
+      node.style['-webkit-user-select'] = 'none'
+    }
+  }
+
+  const copyText = () => {
+    const input = document.querySelector('#test')
+    input.focus()
+    execCopyText(input)
+  }
+</script>
+<body>
+  <p><input type="text" id="mytextbox" size="20" value="Tate & Snow"/></p>
+  <p id="test" style="user-select:none;-webkit-user-select:none">Tate & Snow Copied</p>
+  <p>
+    <button style="padding:2px" onclick="selectText()">Select Snow</button>
+    <button style="padding:2px" onclick="copyText()">Copy text</button>
+  </p>
+</body>
+
+如果不是 input 框呢，我们还可以通过其他方式来实现"隔空拷贝"。可以看是否能选中 `Tate & Snow Copied`，不行的话试试点击下上面的 "Copy text" 按钮 😄:
+
+```JS
+const execCopyText: (node: HTMLElement) => void = node => {
+  let canUserSelect = true
+  const selection = window.getSelection() as Selection
+  const range = document.createRange() // 返回一个 Range 对象
+
+  // 不让选也要选
+  // 如果是 safari 浏览器，则需要判断 getComputedStyle(node)['-webkit-user-select']，其他同理做兼容性处理
+  if (getComputedStyle(node).userSelect === 'none') {
+    canUserSelect = false
+    node.style.userSelect = 'text'
+  }
+
+  // 设置 Range 使其包含一个 Node 的内容
+  range.selectNodeContents(node)
+
+  selection.removeAllRanges()
+  selection.addRange(range)
+  document.execCommand('copy')
+
+  if (!canUserSelect) {
+    node.style.userSelect = 'none'
+  }
+}
+```
 
 ### 简单的富文本实现
 
@@ -660,6 +750,25 @@ const toggleSelectionInlineStyle: (state: EditorState, p: string, k: string) => 
 }
 ```
 
+RichUtils 还提供有关 Web 编辑器可用的核心键盘命令的信息，如 `Cmd + B`（粗体），`Cmd + I`（斜体）等。我们可以通过 `handleKeyCommand` 属性来观察和处理键盘命令，并将它们传入 RichUtils 中来应用或删除所需的样式:
+
+```JS
+const handleKeyCommand: (p: DraftEditorCommand, k: EditorState) => DraftHandleValue = (command, state) => {
+  const newState = RichUtils.handleKeyCommand(state, command)
+  if (newState) {
+    setEditorState(newState)
+    return 'handled'
+  }
+  return 'not-handled'
+}
+
+// 返回的 Editor 组件
+<Editor
+  handleKeyCommand={handleKeyCommand}
+  onChange={state => setEditorState(state)}
+/>
+```
+
 ### Modifier
 
 **Modifier** 模块是一组实用的静态函数，主要封装 ContentState 对象上的各种常用编辑操作。任何情况下，这些方法都接收具有相关参数的 ContentState 对象，并返回一个新的 ContentState 对象。如果实际并未发生任何编辑行为，将原样返回输入的 ContentState 对象。具体方法可以查看文档，比如 `removeInlineStyle` 方法可以从整个选中范围中移除指定的内联样式:
@@ -1128,7 +1237,7 @@ const options = {
 
 这样转换之后，我们就可以得到我们心爱的 html 文本啦，赶紧拿去前台渲染吧 😁
 
-> 基于 draft.js 开发的也有好多好用的富文本工具，比如 [braft-editor](https://braft.margox.cn) 等，其他关于富文本的库也有很多，比如 [squire](http://neilj.github.io/Squire/) 等。
+> 基于 draft.js 开发的也有好多好用的插件和成熟的富文本工具，比如 [braft-editor](https://braft.margox.cn) 等，其他关于富文本的库也有很多，比如 [squire](http://neilj.github.io/Squire/) 等。
 
 ## 参考链接
 

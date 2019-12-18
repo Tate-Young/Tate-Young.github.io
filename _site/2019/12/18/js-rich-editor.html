@@ -175,6 +175,8 @@
                       发布时间：2019-12-18 20:22:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-12-18 23:34:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -334,9 +336,97 @@ const range: Range = selObj.getRangeAt(0) // 获取我们选中的区间
 
 <h3 id="setselectionrange">setSelectionRange</h3>
 
+<p>上述是我们主动去选择一块儿区域，我们也可以通过 <code class="highlighter-rouge">setSelectionRange</code> 来创建一片选区:</p>
+
+<pre><code class="language-JS">/**
+ * 每次调用这个这个方法会更新 HTMLInputElement 的 selectionStart, selectionEnd,和 selectionDirection 属性
+ *
+ * @param {*} selectionStart - 被选中的第一个字符的位置
+ * @param {*} selectionEnd - 被选中的最后一个字符的 下一个 位置
+ * @param {*} selectionDirection - 一个指明选择方向的字符串，有"forward","backward"和"none" 3个可选值
+ */
+inputElement.setSelectionRange(selectionStart, selectionEnd, [optional] selectionDirection);
+</code></pre>
+
 <blockquote>
-  <p>todo</p>
+  <p>注意，setSelectionRange 只能在一个被 focused 的 <code class="highlighter-rouge">&lt;input&gt;</code> 元素中选中特定范围的内容，否则无法选中</p>
 </blockquote>
+
+<script>
+  const selectText = () => {
+    const input = document.querySelector('#mytextbox')
+    input.focus()
+    input.setSelectionRange(7, 11) // 选择特定部分
+    // input.setSelectionRange(0, -1) // 全选
+  }
+
+  const execCopyText = node => {
+    let canUserSelect = true
+    const selection = window.getSelection()
+    const range = document.createRange() // 返回一个 Range 对象
+
+    // 不让选也要选
+    if (getComputedStyle(node).userSelect === 'none' || getComputedStyle(node)['-webkit-user-select'] === 'none') {
+      canUserSelect = false
+      node.style.userSelect = 'text'
+      node.style['-webkit-user-select'] = 'text'
+    }
+
+    // 设置 Range 使其包含一个 Node 的内容
+    range.selectNodeContents(node)
+
+    selection.removeAllRanges()
+    selection.addRange(range)
+    document.execCommand('copy')
+
+    if (!canUserSelect) {
+      node.style.userSelect = 'none'
+      node.style['-webkit-user-select'] = 'none'
+    }
+  }
+
+  const copyText = () => {
+    const input = document.querySelector('#test')
+    input.focus()
+    execCopyText(input)
+  }
+</script>
+
+<body>
+  <p><input type="text" id="mytextbox" size="20" value="Tate &amp; Snow" /></p>
+  <p id="test" style="user-select:none;-webkit-user-select:none">Tate &amp; Snow Copied</p>
+  <p>
+    <button style="padding:2px" onclick="selectText()">Select Snow</button>
+    <button style="padding:2px" onclick="copyText()">Copy text</button>
+  </p>
+</body>
+
+<p>如果不是 input 框呢，我们还可以通过其他方式来实现”隔空拷贝”。可以看是否能选中 <code class="highlighter-rouge">Tate &amp; Snow Copied</code>，不行的话试试点击下上面的 “Copy text” 按钮 😄:</p>
+
+<pre><code class="language-JS">const execCopyText: (node: HTMLElement) =&gt; void = node =&gt; {
+  let canUserSelect = true
+  const selection = window.getSelection() as Selection
+  const range = document.createRange() // 返回一个 Range 对象
+
+  // 不让选也要选
+  // 如果是 safari 浏览器，则需要判断 getComputedStyle(node)['-webkit-user-select']，其他同理做兼容性处理
+  if (getComputedStyle(node).userSelect === 'none') {
+    canUserSelect = false
+    node.style.userSelect = 'text'
+  }
+
+  // 设置 Range 使其包含一个 Node 的内容
+  range.selectNodeContents(node)
+
+  selection.removeAllRanges()
+  selection.addRange(range)
+  document.execCommand('copy')
+
+  if (!canUserSelect) {
+    node.style.userSelect = 'none'
+  }
+}
+</code></pre>
 
 <h3 id="简单的富文本实现">简单的富文本实现</h3>
 
@@ -883,6 +973,24 @@ const toggleInlineStyle = (inlineStyle: string) =&gt; {
 }
 </code></pre>
 
+<p>RichUtils 还提供有关 Web 编辑器可用的核心键盘命令的信息，如 <code class="highlighter-rouge">Cmd + B</code>（粗体），<code class="highlighter-rouge">Cmd + I</code>（斜体）等。我们可以通过 <code class="highlighter-rouge">handleKeyCommand</code> 属性来观察和处理键盘命令，并将它们传入 RichUtils 中来应用或删除所需的样式:</p>
+
+<pre><code class="language-JS">const handleKeyCommand: (p: DraftEditorCommand, k: EditorState) =&gt; DraftHandleValue = (command, state) =&gt; {
+  const newState = RichUtils.handleKeyCommand(state, command)
+  if (newState) {
+    setEditorState(newState)
+    return 'handled'
+  }
+  return 'not-handled'
+}
+
+// 返回的 Editor 组件
+&lt;Editor
+  handleKeyCommand={handleKeyCommand}
+  onChange={state =&gt; setEditorState(state)}
+/&gt;
+</code></pre>
+
 <h3 id="modifier">Modifier</h3>
 
 <p><strong>Modifier</strong> 模块是一组实用的静态函数，主要封装 ContentState 对象上的各种常用编辑操作。任何情况下，这些方法都接收具有相关参数的 ContentState 对象，并返回一个新的 ContentState 对象。如果实际并未发生任何编辑行为，将原样返回输入的 ContentState 对象。具体方法可以查看文档，比如 <code class="highlighter-rouge">removeInlineStyle</code> 方法可以从整个选中范围中移除指定的内联样式:</p>
@@ -1347,7 +1455,7 @@ const html = stateToHTML(contentState, options)
 <p>这样转换之后，我们就可以得到我们心爱的 html 文本啦，赶紧拿去前台渲染吧 😁</p>
 
 <blockquote>
-  <p>基于 draft.js 开发的也有好多好用的富文本工具，比如 <a href="https://braft.margox.cn">braft-editor</a> 等，其他关于富文本的库也有很多，比如 <a href="http://neilj.github.io/Squire/">squire</a> 等。</p>
+  <p>基于 draft.js 开发的也有好多好用的插件和成熟的富文本工具，比如 <a href="https://braft.margox.cn">braft-editor</a> 等，其他关于富文本的库也有很多，比如 <a href="http://neilj.github.io/Squire/">squire</a> 等。</p>
 </blockquote>
 
 <h2 id="参考链接">参考链接</h2>
