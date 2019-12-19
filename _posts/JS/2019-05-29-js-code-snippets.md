@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  记一些小技巧和代码块
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-08-07 16:36:00 GMT+0800 (CST)
+update: 2019-12-19 11:58:00 GMT+0800 (CST)
 background-image: /style/images/js.png
 tags:
 - JavaScript
@@ -274,6 +274,34 @@ const getQueries = (str = '') => {
 
 ```JS
 const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1)
+```
+
+### 执行拷贝
+
+```JS
+const execCopyText: (node: HTMLElement) => void = node => {
+  let canUserSelect = true
+  const selection = window.getSelection() as Selection
+  const range = document.createRange() // 返回一个 Range 对象
+
+  // 不让选也要选
+  // 如果是 safari 浏览器，则需要判断 getComputedStyle(node)['-webkit-user-select']，其他同理做兼容性处理
+  if (getComputedStyle(node).userSelect === 'none') {
+    canUserSelect = false
+    node.style.userSelect = 'text'
+  }
+
+  // 设置 Range 使其包含一个 Node 的内容
+  range.selectNodeContents(node)
+
+  selection.removeAllRanges()
+  selection.addRange(range)
+  document.execCommand('copy')
+
+  if (!canUserSelect) {
+    node.style.userSelect = 'none'
+  }
+}
 ```
 
 ## 参考链接

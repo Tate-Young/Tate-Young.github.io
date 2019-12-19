@@ -175,7 +175,7 @@
                       发布时间：2018-07-20 11:01:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-08-07 16:36:00
+                        修改时间：2019-12-19 11:58:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -462,6 +462,33 @@ const getQueries = (str = '') =&gt; {
 <h3 id="首字母-capitalize">首字母 capitalize</h3>
 
 <pre><code class="language-JS">const capitalize = s =&gt; s.charAt(0).toUpperCase() + s.slice(1)
+</code></pre>
+
+<h3 id="执行拷贝">执行拷贝</h3>
+
+<pre><code class="language-JS">const execCopyText: (node: HTMLElement) =&gt; void = node =&gt; {
+  let canUserSelect = true
+  const selection = window.getSelection() as Selection
+  const range = document.createRange() // 返回一个 Range 对象
+
+  // 不让选也要选
+  // 如果是 safari 浏览器，则需要判断 getComputedStyle(node)['-webkit-user-select']，其他同理做兼容性处理
+  if (getComputedStyle(node).userSelect === 'none') {
+    canUserSelect = false
+    node.style.userSelect = 'text'
+  }
+
+  // 设置 Range 使其包含一个 Node 的内容
+  range.selectNodeContents(node)
+
+  selection.removeAllRanges()
+  selection.addRange(range)
+  document.execCommand('copy')
+
+  if (!canUserSelect) {
+    node.style.userSelect = 'none'
+  }
+}
 </code></pre>
 
 <h2 id="参考链接">参考链接</h2>

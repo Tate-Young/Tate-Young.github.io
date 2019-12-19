@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种调试和兼容问题
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-12-10 14:14:00 GMT+0800 (CST)
+update: 2019-12-19 14:03:00 GMT+0800 (CST)
 background-image: /style/images/js.png
 tags:
 - Other
@@ -205,8 +205,6 @@ Object.defineProperty(window, 'tate', {
 * `shift + up / down` - 增加或减少 10 单位
 * `alt + up / down` - 增加或减少 0.1 单位
 
-![chrome tip 3](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/is-running.gif)
-
 4、Elements - 使用 `animation 检查器`可以检查运行中的 CSS 动画属性
 
 ![chrome tip 4](https://www.w3cplus.com/sites/default/files/blogs/2016/1601/animation-inspector.gif)
@@ -328,6 +326,51 @@ function looseBody() {
 ```
 
 更多方法和比较可以[参考这篇文章](https://github.com/pod4g/tool/wiki/移动端滚动穿透问题) 👈
+
+### ios 点击延迟 300ms
+
+罪恶之源就是 ios 双击缩放(double tap to zoom)，在完成一次点击之后，需要等待 300ms 来检测下一次点击。因为我们本来只是想单纯的点击，现在却延迟了，体验不是很好，解决方案如下，具体[可以参考这里](https://www.telerik.com/blogs/what-exactly-is.....-the-300ms-click-delay):
+
+1、禁用缩放功能
+
+通过 meta 标签来禁用缩放功能，缺点也显而易见，就是缩放功能被废掉了，一刀切:
+
+```HTML
+<meta name="viewport" content="user-scalable=no">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1">
+```
+
+2、更改默认的视口宽度
+
+因为双击缩放主要是用来改善桌面站点在移动端浏览体验的，而随着响应式设计的普及，双击缩放已经无足轻重，因此也可以通过 meta 标签来识别已经做过适配的网页。它的优点是没有完全禁用缩放，而只是禁用了浏览器默认的双击缩放行为，但用户仍然可以通过双指缩放(pin to zoom)操作来缩放页面:
+
+```HTML
+<meta name="viewport" content="width=device-width">
+```
+
+3、利用 `touch-action` 样式
+
+[**touch-action**](https://developer.mozilla.org/zh-CN/docs/Web/CSS/touch-action) 决定了用户在点击了目标元素之后，是否能够进行缩放操作。将其置为 `none` 即可移除目标元素的 300ms 延迟:
+
+```CSS
+/* 对于不支持的浏览器，可以使用 polyfill */
+a[href], button {
+  -ms-touch-action: none;
+  touch-action: none;
+}
+```
+
+4、利用 `FastClick` 库
+
+[**FastClick**](https://github.com/ftlabs/fastclick) 是专门为解决移动端浏览器 300ms 点击延迟问题所开发的一个轻量级的库。简而言之，FastClick 在检测到 touchend 事件的时候，会通过 DOM 自定义事件立即触发一个模拟 click 事件，并把浏览器在 300ms 之后真正触发的 click 事件阻止掉。并且当 FastClick 检测到当前页面使用了基于 `<meta>` 标签或者 `touch-action` 属性的解决方案时，会静默退出:
+
+```JS
+if ('addEventListener' in document) {
+  document.addEventListener('DOMContentLoaded', function() {
+    FastClick.attach(document.body)
+  }, false)
+}
+```
 
 ## 参考链接
 
