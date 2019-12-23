@@ -175,6 +175,8 @@
                       发布时间：2019-12-19 19:53:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2019-12-23 11:52:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -212,15 +214,24 @@
 
 <h2 id="什么是-jsbridge">什么是 JSBridge</h2>
 
-<p>想当年最开始工作的时候，就是做的移动端 hybrid 混合式开发，里面很重要的一环就是 JS 与原生 Native 的相互通信，而它就是我们今天要介绍的主人翁 - <strong>JSBridge</strong>。顾名思义，它作为一座桥梁，连接了 JS 与 Native，让前端可以方便地调用原生的摄像头、视频等，而原生也可以接收前端发出的信息而作出相应的处理。在介绍 JSBridge 原理之前，我们先看看传统方式是怎么来使用的。以下主要<a href="https://medium.com/@Alibaba_Cloud/in-depth-profiling-of-jsbridge-63dc797f8c77">摘自深度解析 JSBridge 这篇博客</a>:</p>
+<p>想当年最开始工作的时候，就是做的移动端 hybrid 混合式开发，里面很重要的一环就是 JS 与原生 Native 的相互通信，而它就是我们今天要介绍的主人翁 - <strong>JSBridge</strong>。顾名思义，它作为一座桥梁，连接了 JS 与 Native，让前端可以方便地调用原生的摄像头、视频等，而原生也可以接收前端发出的信息而作出相应的处理。准确来讲，它并不是一项技术，而是一套解决方案。在介绍 JSBridge 原理之前，我们先看看传统方式是怎么来使用的。以下主要<a href="https://blog.csdn.net/xiangzhihong8/article/details/66970600">摘自 JSBridge 深度剖析这篇博客</a>:</p>
 
-<h2 id="传统方式---注入-api">传统方式 - 注入 API</h2>
+<h2 id="传统方式">传统方式</h2>
 
 <h3 id="js-调用-native">JS 调用 Native</h3>
 
+<p>JS 调用 Native 主要是通过两种方式:</p>
+
+<ul>
+  <li>API 注入</li>
+  <li>URL Scheme</li>
+</ul>
+
+<h4 id="api-注入">API 注入</h4>
+
 <p>注入 API 方式的主要原理是，通过 WebView 提供的接口，向 JS 的 Context(window) 中注入对象或者方法，让 JS 调用时，直接执行相应的 Native 代码逻辑，这里也对应三个不同平台进行分析:</p>
 
-<h4 id="iosuiwebview">IOS(UIWebView)</h4>
+<p>1、 IOS(UIWebView)</p>
 
 <pre><code class="language-JS">// Native 中通过引入官方提供的 JavaScriptCore 库(iOS7 以上),然后可以将 api 绑定到 JSContext 上
 // import &lt;JavaScriptCore/JavaScriptCore.h&gt;
@@ -239,10 +250,10 @@ context[@"postBridgeMessage"] = ^(NSArray&lt;NSArray *&gt; *calls) {
 </code></pre>
 
 <blockquote>
-  <p>iOS7 才出现这种方式，在这之前，JS 无法直接调用 Native，只能通过 JSBridge 方式间接调用</p>
+  <p>IOS7 才出现这种方式，在这之前，JS 无法直接调用 Native，只能通过 JSBridge 方式间接调用</p>
 </blockquote>
 
-<h4 id="ioswkwebview">IOS(WKWebView)</h4>
+<p>2、 IOS(WKWebView)</p>
 
 <p>首先，<strong>WKWebView</strong> 是 ios8 之后推行的，可以替代之前的 <strong>UIWebView</strong> 控件，解决了很多性能和兼容上的问题，那么它又是怎么使用的呢:</p>
 
@@ -276,7 +287,7 @@ context[@"postBridgeMessage"] = ^(NSArray&lt;NSArray *&gt; *calls) {
 <pre><code class="language-JS">window.webkit.messageHandlers.nativeBridge.postMessage(message)
 </code></pre>
 
-<h4 id="android">Android</h4>
+<p>3、 Android</p>
 
 <pre><code class="language-JS">public class JavaScriptInterfaceDemoActivity extends Activity {
   private WebView Wv;
@@ -325,6 +336,22 @@ window.nativeBridge.postMessage(message)
   <p>在 API17 以前，<code class="highlighter-rouge">addJavascriptInterface</code> 是有风险的，黑客可以通过反编译获取 Native 注册的 JS 对象，然后在页面通过反射 Java 的内置静态类，获取一些敏感的信息和破坏</p>
 </blockquote>
 
+<h4 id="拦截-url-scheme">拦截 URL Scheme</h4>
+
+<p><strong>url scheme</strong> 是一种类似于 url 的链接，是为了方便 app 直接互相调用设计的。具体来讲如果是系统的 url scheme，比如 <code class="highlighter-rouge">tel://136xxx5495</code> ，则打开系统应用，否则看是否有 app 注册这种 scheme，有则打开对应 app，注意这种 scheme 必须原生 app 注册后才会生效:</p>
+
+<pre><code class="language-TEXT">&lt;!-- 普通的 url --&gt;
+https://host:port/path
+&lt;!-- url scheme - scheme 这里就相当于协议 --&gt;
+scheme://host:port/path
+</code></pre>
+
+<p>而我们通过拦截 url scheme，就可以达到传输数据的目的，进而实现两端的通信。在前端，一般是通过 <code class="highlighter-rouge">iframe.src</code> 来发送 url scheme 请求，然后 Native 捕获后，根据定义好的协议，分析当前触发了哪种方法。相较于上面的 API 注入，它的适用性更广，IOS 和安卓都可兼容，但是请求可能会有一些耗时。</p>
+
+<blockquote>
+  <p>为什么选择 <code class="highlighter-rouge">iframe.src</code> 不选择 <code class="highlighter-rouge">locaiton.href</code> ？因为如果通过 <code class="highlighter-rouge">location.href</code> 连续调用 Native，在 Native 层只能接收到最后一次请求，从而很容易丢失一些调用</p>
+</blockquote>
+
 <h3 id="native-调用-js">Native 调用 JS</h3>
 
 <p>Native 调用 JS 相对较简单一些，只用去执行 JS 暴露出来的全局方法即可。</p>
@@ -356,25 +383,11 @@ webView.loadUrl("javascript:" + javaScriptString);
 });
 </code></pre>
 
-<h2 id="jsbridge-原理">JSBridge 原理</h2>
+<h2 id="jsbridge-原理及简单实现">JSBridge 原理及简单实现</h2>
 
-<p>有了上述的双端通信的基础通道，我们就可以基于此去构建一套易用的方法封装。同时也解决了以下存在的一些问题:</p>
-
-<ol>
-  <li>Android4.2 以下 <code class="highlighter-rouge">addJavascriptInterface</code> 方式有安全漏掉</li>
-  <li>iOS7 以下 JS 无法调用 Native</li>
-  <li>url scheme 方案较为成熟</li>
-</ol>
+<p>有了上述的双端通信的基础通道，我们就可以基于此去构建一套易用的方法封装，解决一些兼容性或安全问题，更易于维护和扩展，一个简单的通信流程如下:</p>
 
 <p><img src="https://miro.medium.com/max/1400/0*i0r9tA8EGzSBwhAj.png" alt="JSBridge" /></p>
-
-<h3 id="url-scheme">URL scheme</h3>
-
-<p><strong>url scheme</strong> 是一种类似于 url 的链接，是为了方便 app 直接互相调用设计的。具体来讲如果是系统的 url scheme，则打开系统应用，否则看是否有 app 注册这种 scheme，有则打开对应 app，注意这种 scheme 必须原生 app 注册后才会生效。</p>
-
-<p>而在我们实际的开发中，app 不会注册对应的 scheme，而是由前端页面通过某种方式触发 scheme(如用 iframe.src)，然后 Native 用某种方法捕获对应的 url 触发事件，然后拿到当前的触发 url，根据定义好的协议，分析当前触发了哪种方法。</p>
-
-<h3 id="技术实现">技术实现</h3>
 
 <p>要实现 JSBridge，我们可以按以下步骤分析:</p>
 
@@ -382,10 +395,11 @@ webView.loadUrl("javascript:" + javaScriptString);
   <li>设计出一个 Native 与 JS 交互的全局桥对象</li>
   <li>JS 如何调用 Native</li>
   <li>Native 如何得知 api 被调用</li>
-  <li>分析 url 参数和回调的格式</li>
-  <li>Native 如何调用J S</li>
+  <li>Native 如何调用 JS</li>
   <li>H5 中 api 方法的注册以及格式</li>
 </ol>
+
+<p>1、 <strong>设计出一个 Native 与 JS 交互的全局桥对象</strong></p>
 
 <p>我们首先要定义一个全局变量，并定义一些方法:</p>
 
@@ -398,30 +412,55 @@ webView.loadUrl("javascript:" + javaScriptString);
   <li>_handleMessageFromNative - 原生调用 JS 注册的方法，或者通知前端页面执行回调方法</li>
 </ul>
 
-<p><img src="https://miro.medium.com/max/1400/0*2fFCZ2sM_3nyELgV.png" alt="registerHandler" /></p>
+<p><img src="https://yqfile.alicdn.com/db68a2b9154d16b09ce8046f369ae34199cf2f01.png" alt="JSBridge props" /></p>
 
-<p>在执行 <code class="highlighter-rouge">callHandler</code> 时，实际执行了以下步骤:</p>
+<p>2、<strong>JS 如何调用 Native</strong></p>
+
+<p>其关键就在于 <code class="highlighter-rouge">callHandler</code> 方法，实际执行了以下步骤:</p>
 
 <ol>
-  <li>判断是否有回调函数，若有，则生成一个回调函数 id，并将 id 和对应回调添加进入回调函数集合 responseCallbacks 中</li>
+  <li>判断是否有回调函数，若有，则生成一个回调函数 id，并将 id 和对应回调添加进入回调函数集合 responseCallbacks 中，其中 handlerName 是和 app 商议好的方法名称</li>
   <li>通过特定的参数转换方法，将传入的数据、方法名一起拼接成一个 url scheme</li>
 </ol>
 
+<pre><code class="language-JS">// 调用线程
+function callHandler(handlerName, data, responseCallback) {
+  _doSend({
+    handlerName: handlerName, // 和 app 商议好的方法名称
+    data: data // 要传递的数据，结构可以相互约定
+  }, responseCallback);
+}
+
+// 触发 native 处理 message，如果有回调的话，则会带上生成的回调 id
+function _doSend(message, responseCallback) {
+  if (responseCallback) {
+    const callbackId = generateCallbackId() // 生成一些回调 id
+    responseCallbacks[callbackId] = responseCallback
+    message.callbackId = callbackId // 发送的 message 中只会传递回调函数的 id
+  }
+
+  // 发送的 message 存在一个 sendMessageQueue 队列中
+  sendMessageQueue.push(message)
+  
+  // 通过 iframe.src 发送 url scheme
+}
+</code></pre>
+
+<p>通过 <code class="highlighter-rouge">iframe.src</code> 发送 url scheme 的实现如下，我们这里的目的只是告诉 Native 有新消息需要处理:</p>
+
 <pre><code class="language-JS">// 定义 url scheme
-const uri = CUSTOM_PROTOCOL_SCHEME: // API_Name:callbackId/handlerName?data
+const uri = CUSTOM_PROTOCOL_SCHEME + '://' + QUEUE_HAS_MESSAGE
 
 // 创建隐藏 iframe 过程
 const messagingIframe = document.createElement('iframe')
 messagingIframe.style.display = 'none'
 document.documentElement.appendChild(messagingIframe)
 
-// 通过 iframe.src 触发 scheme
+// 通过 iframe.src 触发 scheme，通知 Native，有新数据(message)需要处理
 messagingIframe.src = uri
 </code></pre>
 
-<blockquote>
-  <p>为什么选择 <code class="highlighter-rouge">iframe.src</code> 不选择 <code class="highlighter-rouge">locaiton.href</code> ？因为如果通过 <code class="highlighter-rouge">location.href</code> 连续调用 Native，在 Native 层只能接收到最后一次请求，从而很容易丢失一些调用</p>
-</blockquote>
+<p>3、 <strong>Native 如何得知 api 被调用</strong></p>
 
 <p>上一步，我们已经成功在前端页面中触发 scheme，那么 Native 如何捕获 scheme 被触发呢？安卓和 IOS 捕获方式如下:</p>
 
@@ -439,10 +478,77 @@ public boolean shouldOverrideUrlLoading(WebView view, String url){
   NSString *requestString = [[request URL] absoluteString];
 </code></pre>
 
-<p>既然 Native 已经接收到了 JS 调用的方法，那么接下来，原生就应该按照定义好的数据格式来解析数据了，Native 接收到 Url 后，可以按照这种格式将回调参数 id、api 名、参数提取出来，然后去执行:</p>
+<p>既然 Native 已经接收到了 JS 调用的方法，那么会通过 <code class="highlighter-rouge">_fetchQueue</code> 统一处理存储在 <code class="highlighter-rouge">sendMessageQueue</code> 中的数据，并重置为空:</p>
 
-<pre><code class="language-JS">JSBridge._handleMessageFromNative(messageJSON)
+<pre><code class="language-JS">// 获取 sendMessageQueue 返回给 Native
+// 由于 Android 不能直接获取返回的内容，所以使用 shouldOverrideUrlLoading 的方式返回内容
+function _fetchQueue() {
+  const messageQueueString = JSON.stringify(sendMessageQueue);
+  sendMessageQueue = [];
+  // android can't read directly the return data, so we can reload iframe src to communicate with java
+  if (messageQueueString !== '[]') {
+    bizMessagingIframe.src = CUSTOM_PROTOCOL_SCHEME + '://return/_fetchQueue/' + encodeURIComponent(messageQueueString);
+  }
+}
 </code></pre>
+
+<p>4、 <strong>Native 如何调用 JS，以及 H5 中 api 方法的注册以及格式</strong></p>
+
+<p>JS 通过 <code class="highlighter-rouge">registerHandler</code> 来注册方法提供给 Native 调用，这些注册的方法会统一放到 <code class="highlighter-rouge">messageHandlers</code> 中管理:</p>
+
+<pre><code class="language-JS">function registerHandler(handlerName, handler) {
+  messageHandlers[handlerName] = handler
+}
+</code></pre>
+
+<p>接下来再看看 <code class="highlighter-rouge">_dispatchMessageFromNative</code> 的实现，主要用于处理前端主动调用时的回调或 Native 主动调用 JS 注册方法:</p>
+
+<pre><code class="language-JS">// 参考 JsBridge 仓库的 assets/WebViewJavascriptBridge 实现
+// 提供给 native 使用，对接收到的数据队列进行遍历执行
+function _dispatchMessageFromNative(messageJSON) {
+  setTimeout(function() {
+    var message = JSON.parse(messageJSON);
+    var responseCallback;
+    // java call finished, now need to call js callback function
+    // 处理前端主动调用时的回调
+    // responseId 是 java 执行 sendResponse 处理回调信息时赋值的 - response.responseId = callbackId;
+    if (message.responseId) {
+      // 根据 id 找到 responseCallbacks 对应的回调方法
+      responseCallback = responseCallbacks[message.responseId];
+      if (!responseCallback) {
+        return;
+      }
+      responseCallback(message.responseData);
+      delete responseCallbacks[message.responseId];
+    } else {
+      // 直接发送，Native 主动调用 JS 注册方法
+      if (message.callbackId) {
+        var callbackResponseId = message.callbackId;
+        responseCallback = function(responseData) {
+          _doSend('response', responseData, callbackResponseId);
+        };
+      }
+
+      var handler = WebViewJavascriptBridge._messageHandler;
+      if (message.handlerName) {
+        handler = messageHandlers[message.handlerName];
+      }
+      // 在本地函数集合 messageHandlers 中查找指定 handler 并执行
+      try {
+        handler(message.data, responseCallback);
+      } catch (exception) {
+        if (typeof console != 'undefined') {
+          console.log("WebViewJavascriptBridge: WARNING: javascript handler threw.", message, exception);
+        }
+      }
+    }
+  });
+}
+</code></pre>
+
+<p>完整的流程如下:</p>
+
+<p><img src="https://yqfile.alicdn.com/1dda1826cc58c69285e46c138ea54245cfe3b66c.png" alt="whole period" /></p>
 
 <p>在实际的开发中，我们统一出以下方案来针对 IOS 和安卓:</p>
 
@@ -455,7 +561,8 @@ public boolean shouldOverrideUrlLoading(WebView view, String url){
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://medium.com/@Alibaba_Cloud/in-depth-profiling-of-jsbridge-63dc797f8c77">In-depth Profiling of JSBridge</a> By Alibaba Cloud</li>
+  <li><a href="https://blog.csdn.net/xiangzhihong8/article/details/66970600">JSBridge 深度剖析</a> By xiangzhihong8</li>
+  <li><a href="https://www.jianshu.com/p/be491bfbca0d">JSBridge 总结</a> By NowhereToRun</li>
 </ol>
  
 <div id="gitalk-container"></div>
