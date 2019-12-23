@@ -226,11 +226,7 @@ Vue.component('custom-input', {
 
 ### 动态组件
 
-可以通过 Vue 的 <component> 元素加一个特殊的 **is** 特性来实现，详见 JSFiddle:
-
-<script async src="//jsfiddle.net/chrisvfritz/o3nycadu/embed/"></script>
-
-重新创建动态组件的行为通常是非常有用的，但是在这个案例中，我们更希望那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。为了解决这个问题，我们可以用一个 <keep-alive> 元素将其动态组件包裹起来:
+动态组件可以通过 Vue 的 `<component>` 元素加一个特殊的 **is** 特性来实现。重新创建动态组件的行为通常是非常有用的，我们还可以让那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。为了解决这个问题，我们可以用一个 `<keep-alive>` 元素将其动态组件包裹起来:
 
 ```HTML
 <!-- 失活的组件将会被缓存！-->
@@ -258,7 +254,7 @@ Vue.component('custom-input', {
 
 ### 插槽 slot
 
-#### 单个插槽
+1、 **单个插槽**
 
 **插槽(slot)** 是用来作内容分发的，比如将父组件的内容放到子组件指定的位置，先看个例子:
 
@@ -283,7 +279,7 @@ Vue.component('custom-input', {
 
 当组件渲染的时候，这个 \<slot\> 元素将会被替换为图标和 “Your Profile”。插槽内可以包含任何模板代码，包括 HTML。
 
-#### 具名插槽
+2、 **具名插槽**
 
 **具名插槽**则是提供了 name 属性的 slot。
 
@@ -317,7 +313,7 @@ Vue.component('custom-input', {
 </base-layout>
 ```
 
-#### 作用域插槽
+3、 **作用域插槽**
 
 作用域插槽可以将子组件的值传到父组件供使用，需要在 slot 上绑定数据，以[此篇博客](https://segmentfault.com/a/1190000012996217)为例:
 
@@ -565,6 +561,88 @@ methods: {
 ```
 
 上述两个方法的结果相同，但区别是计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。但是计算属性目前无法传参。
+
+虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器。这就是为什么 Vue 通过 watch 选项提供了一个更通用的方法，来响应数据的变化。当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。
+
+## mixin
+
+**混入 (mixin)** 提供了一种非常灵活的方式，来分发 Vue 组件中的可复用功能。一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。其混入的规则为:
+
+1. 当组件和混入对象含有同名选项时，这些选项将以恰当的方式进行“合并”，比如 data 数据对象
+2. 同名钩子函数将合并为一个数组，因此都将被调用。另外，混入对象的钩子将在组件自身钩子之前调用。如 created
+3. 值为对象的选项，例如 methods、components 和 directives，将被合并为同一个对象。两个对象键名冲突时，取组件对象的键值对
+
+```JS
+var mixin = {
+  data: function () {
+    return {
+      message: 'hello',
+      foo: 'abc'
+    }
+  },
+  methods: {
+    foo: function () {
+      console.log('foo')
+    },
+    conflicting: function () {
+      console.log('from mixin')
+    }
+  }
+}
+
+var vm = new Vue({
+  mixins: [mixin],
+  data: function () {
+    return {
+      message: 'goodbye',
+      bar: 'def'
+    }
+  },
+  created: function () {
+    console.log(this.$data)
+    // => { message: "goodbye", foo: "abc", bar: "def" }
+  },
+  methods: {
+    bar: function () {
+      console.log('bar')
+    },
+    conflicting: function () {
+      console.log('from self')
+    }
+  }
+})
+
+vm.foo() // => "foo"
+vm.bar() // => "bar"
+vm.conflicting() // => "from self"
+```
+
+> `Vue.extend()` 也使用同样的策略进行合并
+
+> 也可以通过 `Vue.mixin()` 进行全局注册。使用时格外小心！一旦使用全局混入，它将影响每一个之后创建的 Vue 实例。使用恰当时，这可以用来为自定义选项注入处理逻辑。
+
+## provide / inject
+
+这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。如果你熟悉 React，这与 React 的上下文特性很相似:
+
+```JS
+// 父级组件提供 'foo' 属性或者某个方法
+var Provider = {
+  provide: {
+    foo: 'bar'
+  },
+  // ...
+}
+
+// 子组件注入 'foo'
+var Child = {
+  inject: ['foo'],
+  created () {
+    console.log(this.foo) // => "bar"
+  }
+  // ...
+}
+```
 
 ## 参考链接
 

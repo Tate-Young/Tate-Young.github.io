@@ -175,7 +175,7 @@
                       发布时间：2019-05-20 18:36:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-12-12 12:11:00
+                        修改时间：2019-12-23 19:40:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -543,6 +543,51 @@ promise.then(value =&gt; value * 2) // error: Object is of type 'unknown'.(2571)
 let promise: Promise&lt;number&gt; = new Promise(resolve =&gt; resolve(45))
 </code></pre>
 
+<h3 id="函数重载的实现">函数重载的实现</h3>
+
+<p>一般我们实现重载无外乎两种办法，一个是手动检查入参的类型，或者通过 arguments 获取到参数个数来进行判断:</p>
+
+<pre><code class="language-JS">function getResult(a) {
+  if (typeof a === 'number') {
+    console.log('a is a number')
+  } else {
+    console.log('a is a string')
+  }
+}
+</code></pre>
+
+<p>我们先用 TS 改写一下，加上类型声明:</p>
+
+<pre><code class="language-JS">function getResult(a: number | string) {
+  if (typeof a === 'number') {
+    console.log('a is a number')
+  } else {
+    console.log('a is a string')
+  }
+  return a
+}
+
+const result = getResult('1').length // Property 'length' does not exist on type 'number'
+// const result = (getResult('1') as string).length
+</code></pre>
+
+<p>可以看到我们拿到 result 后，并不知道他的类型，因此会报错，再改成重载方式:</p>
+
+<pre><code class="language-JS">function getResult(a: number): number
+function getResult(a: string): string
+// 以下为共有函数体
+function getResult(a: any): any {
+  if (typeof a === 'number') {
+    console.log('a is a number')
+  } else {
+    console.log('a is a string')
+  }
+  return a
+}
+
+const result = getResult('1').length
+</code></pre>
+
 <h2 id="高级类型">高级类型</h2>
 
 <p>在<a href="http://localhost:2333/2019/02/26/ts-profile.html">上一篇里</a>介绍了联合类型等，这里再介绍其他一些高级类型。</p>
@@ -619,7 +664,7 @@ let x4 = getProperty(obj, 'hobby') // 报错：Argument of type '"hobby"' is not
 }
 </code></pre>
 
-<p>而现在typescript为我们提供了映射类型，能够使得这种转化更加方便，在映射类型里，新类型将以相同的形式去转换旧类型里每个属性，如以上例子可以改写为:</p>
+<p>而现在 Typescript 为我们提供了映射类型，能够使得这种转化更加方便，在映射类型里，新类型将以相同的形式去转换旧类型里每个属性，如以上例子可以改写为:</p>
 
 <pre><code class="language-JS">// 源码
 type Readonly&lt;T&gt; = {
@@ -664,6 +709,68 @@ let partialState: PickedState = {
   bar: 'world'
 }
 // bar 不在类型 Pick&lt;{ foo: number; bar: string; }, "foo"&gt; 中
+</code></pre>
+
+<h2 id="typeof-获取声明类型">typeof 获取声明类型</h2>
+
+<p>上面我们看到了 <strong>typeof</strong> 的使用，我们知道，在 JS 中 typeof 可以判断一个变量的基础数据类型，但在这里，它还有一个作用，就是获取一个变量的声明类型，如果不存在，则获取该类型的推论类型:</p>
+
+<pre><code class="language-JS">let rectangle1 = { width: 100, height: 200 }
+
+// Obtain the type of `rectangle1` and call it `Rectangle`
+type Rectangle = typeof rectangle1
+
+let rectangle2: Rectangle
+</code></pre>
+
+<h2 id="const-断言">const 断言</h2>
+
+<p>一般情况下，当我们使用关键字 const 声明一个字面量时，类型是等号右边的文字，例如:</p>
+
+<pre><code class="language-JS">// const 只保证该字面量的严格类型 a
+const a = 'a' // a has the type 'a'
+
+// let 会自动推断类型 string
+let a = 'a' // a has the type string
+</code></pre>
+
+<p>从上面我们可以看到，const 只保证该字面量的严格类型，即 ‘a’，而 let 则会自动推断类型。如果我们需要使用 let，又要限制其字面量类型为 ‘a’ 时，可以这么做:</p>
+
+<pre><code class="language-JS">let a = 'a' as const // a has the type 'a'
+</code></pre>
+
+<p>我们结合上面讲到的 typeof 再来做个示例:</p>
+
+<pre><code class="language-JS">const styleMap = {
+  CODE: {
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontSize: 16,
+    padding: 2,
+  },
+}
+
+type style = typeof styleMap
+// type style = {
+//   CODE: {
+//     backgroundColor: string;
+//     fontFamily: string;
+//     fontSize: number;
+//     padding: number;
+//   };
+// }
+</code></pre>
+
+<pre><code class="language-JS">const styleMap = { ... } as const
+type style = typeof styleMap
+// type style = {
+//   readonly CODE: {
+//     readonly backgroundColor: "rgba(0, 0, 0, 0.05)";
+//     readonly fontFamily: "\"Inconsolata\", \"Menlo\", \"Consolas\", monospace";
+//     readonly fontSize: 16;
+//     readonly padding: 2;
+//   };
+// }
 </code></pre>
 
 <h2 id="其它">其它</h2>

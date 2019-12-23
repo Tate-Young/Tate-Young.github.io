@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 简介
 date:   2019-02-26 17:54:00 GMT+0800 (CST)
-update: 2019-12-12 11:43:00 GMT+0800 (CST)
+update: 2019-12-23 19:11:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -18,7 +18,7 @@ tags:
 
 **TypeScript** 是由微软开发的开源的编程语言。它是 **JavaScript** 的一个严格超集，并添加了可选的静态类型和基于类的面向对象编程。
 
-> 静态类型检查相对于动态类型检查，可以提前在编译阶段发现错误，
+> 静态类型检查相对于动态类型检查，可以提前在编译阶段发现错误
 
 ## 类型注解
 
@@ -837,13 +837,27 @@ declare class Greeter {
 
 从上面的例子我们可以看到 `d.ts` 文件和 `ts` 文件相比，就相当于代码减去值，只保留了类型信息。`d.ts` 是用来给 JavaScript 添加类型信息的，所以我们能够在 TypeScript 项目中安全的使用 JavaScript 模块。如果项目都是 TypeScript 代码，那么基本上不会用到 d.ts 文件，因为 .ts 文件本身就包含类型。但是如果我们某些依赖的模块是用 JavaScript 写的，并且没有对应的 `d.ts`**，DefinitelyTyped** 中也没有第三方贡献的 type 模块，这个时候可能需要我们自己在项目中新建一个 `d.ts` 文件，为这些 JavaScript 模块增加相应的类型。
 
+在 `tsconfig.json` 中，我们可以开启编译选项 `declaration`，告诉 TypeScript 编译成 JavaScript 代码时，自动生成对应的 `d.ts` 文件，里面包含对应的类型信息:
+
+```JSON
+{
+  "compilerOptions": {
+    // ...
+    "target": "es2015",
+    "module": "esnext",
+    "declaration": true,
+    // ...
+  }
+}
+```
+
 > **declare** 关键字用来表示一个断言：如在相应的 JavaScript 模块中，一定导出了一个函数 greeting，它的类型是 `(name: string) => void`。注意只有在编写类型信息时才会用到该关键字
 
 ## 声明合并
 
 ### 接口合并
 
-最简单也最常见的声明合并类型是接口合并。 从根本上说，合并的机制是把双方的成员放到一个同名的接口里:
+最简单也最常见的声明合并类型是接口合并。从根本上说，合并的机制是把双方的成员放到一个同名的接口里:
 
 ```JS
 interface IBox {
@@ -1021,9 +1035,10 @@ declare module 'draft-js-export-html' {
 }
 ```
 
-于是重新创建一个声明文件进行补充和合并:
+于是重新创建一个 `ambient.d.t` 声明文件进行补充和合并:
 
 ```JS
+// ambient.d.ts
 declare module 'draft-js-export-html' {
   import draftjs = require("draft-js")
 
@@ -1038,8 +1053,9 @@ declare module 'draft-js-export-html' {
     inlineStyleFn?: InlineStyleFn
   }
 }
-
 ```
+
+> 注意，如果 `ambient.d.t` 里面定义的模块是全局的，那么 TS 在找到这个声明文件里的模块后将不会继续找 node_modules 里的这个模块了，相当于覆盖了第三方的模块声明。这种情况需要在末尾使用 `export {}` 来让它变成非全局的声明
 
 ### 全局扩展
 

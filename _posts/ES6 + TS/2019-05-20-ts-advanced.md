@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2019-12-12 12:11:00 GMT+0800 (CST)
+update: 2019-12-23 19:40:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -357,6 +357,54 @@ let promise = new Promise<number>(resolve => resolve(45))
 let promise: Promise<number> = new Promise(resolve => resolve(45))
 ```
 
+### 函数重载的实现
+
+一般我们实现重载无外乎两种办法，一个是手动检查入参的类型，或者通过 arguments 获取到参数个数来进行判断:
+
+```JS
+function getResult(a) {
+  if (typeof a === 'number') {
+    console.log('a is a number')
+  } else {
+    console.log('a is a string')
+  }
+}
+```
+
+我们先用 TS 改写一下，加上类型声明:
+
+```JS
+function getResult(a: number | string) {
+  if (typeof a === 'number') {
+    console.log('a is a number')
+  } else {
+    console.log('a is a string')
+  }
+  return a
+}
+
+const result = getResult('1').length // Property 'length' does not exist on type 'number'
+// const result = (getResult('1') as string).length
+```
+
+可以看到我们拿到 result 后，并不知道他的类型，因此会报错，再改成重载方式:
+
+```JS
+function getResult(a: number): number
+function getResult(a: string): string
+// 以下为共有函数体
+function getResult(a: any): any {
+  if (typeof a === 'number') {
+    console.log('a is a number')
+  } else {
+    console.log('a is a string')
+  }
+  return a
+}
+
+const result = getResult('1').length
+```
+
 ## 高级类型
 
 在[上一篇里]( {{site.url}}/2019/02/26/ts-profile.html )介绍了联合类型等，这里再介绍其他一些高级类型。
@@ -435,7 +483,7 @@ interface PersonPartial {
 }
 ```
 
-而现在typescript为我们提供了映射类型，能够使得这种转化更加方便，在映射类型里，新类型将以相同的形式去转换旧类型里每个属性，如以上例子可以改写为:
+而现在 Typescript 为我们提供了映射类型，能够使得这种转化更加方便，在映射类型里，新类型将以相同的形式去转换旧类型里每个属性，如以上例子可以改写为:
 
 ```JS
 // 源码
@@ -482,6 +530,73 @@ let partialState: PickedState = {
   bar: 'world'
 }
 // bar 不在类型 Pick<{ foo: number; bar: string; }, "foo"> 中
+```
+
+## typeof 获取声明类型
+
+上面我们看到了 **typeof** 的使用，我们知道，在 JS 中 typeof 可以判断一个变量的基础数据类型，但在这里，它还有一个作用，就是获取一个变量的声明类型，如果不存在，则获取该类型的推论类型:
+
+```JS
+let rectangle1 = { width: 100, height: 200 }
+
+// Obtain the type of `rectangle1` and call it `Rectangle`
+type Rectangle = typeof rectangle1
+
+let rectangle2: Rectangle
+```
+
+## const 断言
+
+一般情况下，当我们使用关键字 const 声明一个字面量时，类型是等号右边的文字，例如:
+
+```JS
+// const 只保证该字面量的严格类型 a
+const a = 'a' // a has the type 'a'
+
+// let 会自动推断类型 string
+let a = 'a' // a has the type string
+```
+
+从上面我们可以看到，const 只保证该字面量的严格类型，即 'a'，而 let 则会自动推断类型。如果我们需要使用 let，又要限制其字面量类型为 'a' 时，可以这么做:
+
+```JS
+let a = 'a' as const // a has the type 'a'
+```
+
+我们结合上面讲到的 typeof 再来做个示例:
+
+```JS
+const styleMap = {
+  CODE: {
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+    fontSize: 16,
+    padding: 2,
+  },
+}
+
+type style = typeof styleMap
+// type style = {
+//   CODE: {
+//     backgroundColor: string;
+//     fontFamily: string;
+//     fontSize: number;
+//     padding: number;
+//   };
+// }
+```
+
+```JS
+const styleMap = { ... } as const
+type style = typeof styleMap
+// type style = {
+//   readonly CODE: {
+//     readonly backgroundColor: "rgba(0, 0, 0, 0.05)";
+//     readonly fontFamily: "\"Inconsolata\", \"Menlo\", \"Consolas\", monospace";
+//     readonly fontSize: 16;
+//     readonly padding: 2;
+//   };
+// }
 ```
 
 ## 其它
