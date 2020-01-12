@@ -75,9 +75,11 @@ tags:
 
 ## Service Worker
 
-**Service Worker** 可以简单理解为一个独立于前端页面，在后台运行的进程。它有一个非常重要的特性：你可以在 Service Worker 中监听所有客户端(Web)发出的请求，然后通过它来代理，向后端服务发起请求。通过监听用户请求信息，Service Worker 可以决定是否使用缓存来作为 Web 请求的返回。因此它是实现离线访问的核心，下图展示普通 Web App 与添加了 Service Worker 的 Web App 在网络请求上的差异:
+[**Service Worker**](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers) 可以简单理解为一个独立于前端页面，在后台运行的进程。它有一个非常重要的特性：你可以在 Service Worker 中监听所有客户端(Web)发出的请求，然后通过它来代理，向后端服务发起请求。通过监听用户请求信息，Service Worker 可以决定是否使用缓存来作为 Web 请求的返回。因此它是实现离线访问的核心，下图展示普通 Web App 与添加了 Service Worker 的 Web App 在网络请求上的差异:
 
 ![service worker](https://user-gold-cdn.xitu.io/2018/4/8/162a560d0bdb6ed1?w=567&h=271&f=png&s=14952)
+
+> Service Worker 是一个特殊类型的 woker 上下文运行环境，与主运行线程（执行脚本）相独立，同时也没有访问 DOM 的能力。
 
 > Service Worker 实际运行于本机上，相当于一个客户端代理，更多[请参考这里](https://developers.google.com/web/fundamentals/primers/service-workers?hl=zh-CN) 👈
 
@@ -143,6 +145,8 @@ self.addEventListener('install', function (e) {
   e.waitUntil(cacheOpenPromise);
 });
 ```
+
+> 注意: `localStorage` 跟  `service worker` 的 cache 工作原理很类似，但是它是同步的，所以不允许在  `service workers` 内使用
 
 缓存有了，但是如何告知浏览器使用呢，可以参考以下几个策略:
 
