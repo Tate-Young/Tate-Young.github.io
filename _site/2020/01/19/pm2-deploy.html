@@ -2,20 +2,20 @@
 <!DOCTYPE>
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 <head>
-    <meta content='VS Code 插件及小技巧 - Tate & Snow' name='title' />
-    <meta content='VS Code 插件及小技巧 - Tate & Snow' name='og:title' />
+    <meta content='PM2 自动化部署 - Tate & Snow' name='title' />
+    <meta content='PM2 自动化部署 - Tate & Snow' name='og:title' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-    <title>VS Code 插件及小技巧 - Tate & Snow</title>
+    <title>PM2 自动化部署 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>VS Code 插件及小技巧 - Tate & Snow</title>
+<title>PM2 自动化部署 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VS Code 插件及小技巧 - Tate & Snow">
-<meta name="twitter:keywords" content="VS Code 插件及小技巧 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="PM2 自动化部署 - Tate & Snow">
+<meta name="twitter:keywords" content="PM2 自动化部署 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="VS Code 插件及小技巧 - Tate & Snow">
-<meta name="og:keywords" content="VS Code 插件及小技巧 - Tate & Snow|VS Code 插件及小技巧断点调试本节主要针对 node 进行调试，需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个..."
+<meta property="og:title" content="PM2 自动化部署 - Tate & Snow">
+<meta name="og:keywords" content="PM2 自动化部署 - Tate & Snow|PM2 自动化部署什么是 PM2PM2 是一个 node 后台进程管理工具，你可以对进程进行 start、stop、restart 或者 delete 等操作，还可以支持性能监控、负载均衡等功能，同类型的还有 forever 等:np..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="VS Code 插件及小技巧断点调试本节主要针对 node 进行调试，需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个..." property='og:description'
+<meta name="keywords" content="PM2 自动化部署什么是 PM2PM2 是一个 node 后台进程管理工具，你可以对进程进行 start、stop、restart 或者 delete 等操作，还可以支持性能监控、负载均衡等功能，同类型的还有 forever 等:np..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:2333/2018/04/19/vscode-tools.html' property='og:url' />
-<meta content="http://localhost:2333/2018/04/19/vscode-tools.html|VS Code 插件及小技巧断点调试本节主要针对 node 进行调试，需要额外插件一枚: Debugger for Chrome，可以配合 Chrome 进行调试。launch.json 配置launch.json 文件配置里的有两个..." property='og:description'
+<meta content='http://localhost:2333/2020/01/19/pm2-deploy.html' property='og:url' />
+<meta content="http://localhost:2333/2020/01/19/pm2-deploy.html|PM2 自动化部署什么是 PM2PM2 是一个 node 后台进程管理工具，你可以对进程进行 start、stop、restart 或者 delete 等操作，还可以支持性能监控、负载均衡等功能，同类型的还有 forever 等:np..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -57,19 +57,19 @@
 </script>
 <meta content="" property="fb:app_id" />
 <!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>VS Code 插件及小技巧 | Tate &amp; Snow</title>
+<title>PM2 自动化部署 | Tate &amp; Snow</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="VS Code 插件及小技巧" />
+<meta property="og:title" content="PM2 自动化部署" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="VS Code 插件及小技巧" />
-<meta property="og:description" content="VS Code 插件及小技巧" />
-<link rel="canonical" href="http://localhost:2333/2018/04/19/vscode-tools.html" />
-<meta property="og:url" content="http://localhost:2333/2018/04/19/vscode-tools.html" />
+<meta name="description" content="PM2 自动化部署" />
+<meta property="og:description" content="PM2 自动化部署" />
+<link rel="canonical" href="http://localhost:2333/2020/01/19/pm2-deploy.html" />
+<meta property="og:url" content="http://localhost:2333/2020/01/19/pm2-deploy.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-04-19T21:48:00+08:00" />
+<meta property="article:published_time" content="2020-01-19T17:47:00+08:00" />
 <script type="application/ld+json">
-{"description":"VS Code 插件及小技巧","@type":"BlogPosting","url":"http://localhost:2333/2018/04/19/vscode-tools.html","headline":"VS Code 插件及小技巧","dateModified":"2018-04-19T21:48:00+08:00","datePublished":"2018-04-19T21:48:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/04/19/vscode-tools.html"},"@context":"http://schema.org"}</script>
+{"description":"PM2 自动化部署","@type":"BlogPosting","url":"http://localhost:2333/2020/01/19/pm2-deploy.html","headline":"PM2 自动化部署","dateModified":"2020-01-19T17:47:00+08:00","datePublished":"2020-01-19T17:47:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/01/19/pm2-deploy.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -163,29 +163,27 @@
             </div>
         </div>
     </header>
-    <a href="#header" class="back-to-top" onclick="onClickTop('VS Code 插件及小技巧')">⤴Top⤴</a>
+    <a href="#header" class="back-to-top" onclick="onClickTop('PM2 自动化部署')">⤴Top⤴</a>
     <div class="post-header-thumb bg-white}">
         <div class="post-header-thumb-op"></div>
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    VS Code 插件及小技巧</h1>
+                    PM2 自动化部署</h1>
                 <div class="post-data">
-                    <time datetime="2018-04-19 21:48:00" itemprop="datePublished">
-                      发布时间：2018-04-19 21:48:00
+                    <time datetime="2020-01-19 17:47:00" itemprop="datePublished">
+                      发布时间：2020-01-19 17:47:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-11-09 11:45:00
-                      
                     </time>
-                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
                 <div class="post-tags">
                        
-                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('Node')" title="访问Node" data-hover="Node">
-                        Node
-                        <span>(9)</span>
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('Server')" title="访问Server" data-hover="Server">
+                        Server
+                        <span>(4)</span>
                         
                     </a>
                        
@@ -196,253 +194,316 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                VS Code 插件及小技巧</h1>
+                PM2 自动化部署</h1>
             <div class="post-data">
-                <time datetime="2018-04-19 21:48:00" itemprop="datePublished">2018-04-19 21:48:00</time>
+                <time datetime="2020-01-19 17:47:00" itemprop="datePublished">2020-01-19 17:47:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
             <p class="post-tags">
                    
-                <a href="Javascript:;" onclick="onClickTag('Node')" title="访问Node" data-hover="Node">
-                    Node
-                    <span>(9)</span>
+                <a href="Javascript:;" onclick="onClickTag('Server')" title="访问Server" data-hover="Server">
+                    Server
+                    <span>(4)</span>
                     </a>
                    
             </p>
-            <h1 id="vs-code-插件及小技巧">VS Code 插件及小技巧</h1>
+            <h1 id="pm2-自动化部署">PM2 自动化部署</h1>
 
-<h2 id="断点调试">断点调试</h2>
+<h2 id="什么是-pm2">什么是 PM2</h2>
 
-<p>本节主要针对 node 进行调试，需要额外插件一枚: <a href="https://github.com/Microsoft/vscode-chrome-debug">Debugger for Chrome</a>，可以配合 Chrome 进行调试。</p>
+<p><a href="https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/"><strong>PM2</strong></a> 是一个 node 后台进程管理工具，你可以对进程进行 start、stop、restart 或者 delete 等操作，还可以支持性能监控、负载均衡等功能，同类型的还有 <a href="https://github.com/foreversd/forever"><strong>forever</strong></a> 等:</p>
 
-<p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png" alt="debug" /></p>
-
-<h3 id="launchjson-配置">launch.json 配置</h3>
-
-<p><strong>launch.json</strong> 文件配置里的有两个重要的属性 <strong>type</strong> 和 <strong>request</strong>，取值为:</p>
-
-<ul>
-  <li><strong>type</strong> - 设置需要启动的调试类型，选项是根据所安装的 debug 插件决定，如 “node” for built-in node debugger</li>
-  <li><strong>request</strong> - 设置需要启动的 request 类型，有两种取值:
-    <ul>
-      <li><strong>launch</strong> - 启动一个独立的具有 debug 模式的程序</li>
-      <li><strong>attach</strong> - 附加于已启动的程序并进行 debug</li>
-    </ul>
-  </li>
-</ul>
-
-<p>当配置完成后，会在根目录下自动生成文件 <code class="highlighter-rouge">.vscode/launch.json</code>。配置参数选项有很多，可以直接<a href="https://code.visualstudio.com/Docs/editor/debugging">参考官网文档</a>。</p>
-
-<pre><code class="language-JSON">{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Launch",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceRoot}/app.js",
-      "stopOnEntry": false,
-      "args": [],
-      "cwd": "${workspaceRoot}",
-      "preLaunchTask": null,
-      "runtimeExecutable": null,
-      "runtimeArgs": [
-        "--nolazy"
-      ],
-      "env": {
-        "NODE_ENV": "development"
-      },
-      "externalConsole": false,
-      "sourceMaps": false,
-      "outDir": null
-    },
-    {
-      "name": "Attach",
-      "type": "node",
-      "request": "attach",
-      "port": 5858,
-      "address": "localhost",
-      "restart": false,
-      "sourceMaps": false,
-      "outDir": null,
-      "localRoot": "${workspaceRoot}",
-      "remoteRoot": null
-    }
-  ]
-}
+<pre><code class="language-SHELL">npm install pm2 -g
 </code></pre>
 
-<p>此处作为测试，作如下配置:</p>
-
-<pre><code class="language-JSON">{
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch myTest",
-      "program": "${workspaceFolder}/index.js"
-    },
-    {
-      "type": "node",
-      "request": "attach",
-      "name": "Attach myTest",
-      "port": 9229
-    }
-  ]
-}
-</code></pre>
-
-<h4 id="launch">launch</h4>
-
-<p>根据 launch.json 配置选项，选择 “Launch myTest” 模式并执行，此时控制台输出:</p>
-
-<pre><code class="language-SHELL">/usr/local/bin/node --inspect-brk=11561 index.js
-Debugger listening on ws://127.0.0.1:11561/ba83731f-67bb-484e-8e7d-4ed842f62a60
-Debugger attached.
-listening on port 8080
-</code></pre>
-
-<p>此时 Chrome 上打开 <code class="highlighter-rouge">localhost:8080</code> 即可进行断点调试，但代码有修改的话，必须重新监听。</p>
-
-<h4 id="attach">attach</h4>
-
-<p>根据 launch.json 配置选项，选择 “Attach myTest” 模式，但注意在执行 debug 之前必须让程序启动，否则会报错:</p>
-
-<pre><code class="language-TEXT">Cannot connect to runtime; make sure that runtime is in 'legacy' debug mode.
-</code></pre>
-
-<p>这里使用 <strong>nodemon</strong> 做示例，但根据协议需要新增模式参数的选择:</p>
-
-<ul>
-  <li><strong>Legacy Protocol</strong> - <strong>–debug</strong> 模式，默认 <strong>5858</strong> 端口，一般用于旧版 Node (&lt; 6.3)</li>
-  <li><strong>Inspector Protocol</strong> - <strong>–inspect</strong> 模式，默认 <strong>9229</strong> 端口，一般用于新版 Node (&gt;= 6.3)</li>
-</ul>
-
-<pre><code class="language-SHELL">nodemon --debug index.js
-
-# 或
-nodemon --inspect index.js
-</code></pre>
-
-<p>监听之后执行 debug，终端会显示 “Debugger attached.”，另外底边栏会有 <code class="highlighter-rouge">Auto Attach:Off</code> 状态，点击可切换为 On 状态，即当内容有修改后，会自动进行 attach 操作。</p>
-
-<h3 id="断点">断点</h3>
-
-<p>单击编辑器侧边缘即可为所在行添加或删除断点，调试时在 BREAKPOINTS 区域中也可对断点进行操作(enable/disable/reapply)。</p>
-
-<ul>
-  <li>断点一般显示为红色圆圈</li>
-  <li>被取消的断点显示为灰色圆圈</li>
-  <li>调试启动后，不能被注册的断点显示为灰色的空心圆圈</li>
-</ul>
-
-<p>也可以通过代码语句 <code class="highlighter-rouge">debugger</code> 设置断点:</p>
-
-<pre><code class="language-JS">app.get('/', function(req, res) {
-  console.log('tate')
-  debugger // 相当于断点
-  res.send('bbb')
-})
-</code></pre>
-
-<p><img src="https://code.visualstudio.com/assets/docs/editor/debugging/debug-session.png" alt="breakpoints" /></p>
-
-<h2 id="markdown-转-pdf">Markdown 转 PDF</h2>
-
-<p>这里推荐使用 <a href="https://github.com/yzane/vscode-markdown-pdf/blob/master/sample/README.pdf"><strong>Markdown PDF</strong></a> 插件，当然它也可以转 html、jpeg、png。需要注意的是，它会尝试安装 chromium，如果安装失败的话，一定要自己去 <code class="highlighter-rouge">settings.json</code> 里设置 <code class="highlighter-rouge">executablePath</code> 执行路径:</p>
-
-<pre><code class="language-TEXT">&lt;!-- macOS --&gt;
-"markdown-pdf.executablePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-&lt;!-- windows --&gt;
-&lt;!-- All \ need to be written as \\ (Windows) --&gt;
-"markdown-pdf.executablePath": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
-</code></pre>
-
-<p>这里我们可以直接用它设置的样式，也可以自定义:</p>
-
-<pre><code class="language-TEXT">"markdown-pdf.styles": [
-  "C:\\Users\\&lt;USERNAME&gt;\\Documents\\markdown-pdf.css",
-  "/home/&lt;USERNAME&gt;/settings/markdown-pdf.css",
-],
-</code></pre>
-
-<p>它也拥有其他丰富的配置项，详见文档:</p>
-
-<pre><code class="language-TEXT">"markdown-pdf.displayHeaderFooter": false,
-"markdown-pdf.outputDirectory": "/Users/tate/Desktop"
-</code></pre>
-
-<p>之后我们直接在 command palette (快捷键 cmd+shift+p)中输入 export 关键词，选择 <code class="highlighter-rouge">markdown-pdf: Export (pdf)</code> 即可。</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Feature</th>
+      <th style="text-align: left">Forever</th>
+      <th style="text-align: left">PM2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Keep Alive</td>
+      <td style="text-align: left">✔</td>
+      <td style="text-align: left">✔</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Coffeescript</td>
+      <td style="text-align: left">✔</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Log aggregation</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">✔</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">API</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">✔</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Terminal monitoring</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">✔</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Clustering</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">✔</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">JSON configuration</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">✔</td>
+    </tr>
+  </tbody>
+</table>
 
 <blockquote>
-  <p><code class="highlighter-rouge">settings.json</code> 也可以直接通过 command palette 来检索打开</p>
+  <p>PM2 is daemon process manager that will help you manage and keep your application online ✅</p>
 </blockquote>
 
-<h2 id="code-命令">code 命令</h2>
+<h2 id="常用命令">常用命令</h2>
 
-<p>这里介绍一个<strong>炒鸡</strong>好用的功能，如果我们想在终端通过命令来调用 VS Code 来编辑一些文件，可以在编辑器打开命令面板（ ⇧⌘P ），然后找到 <code class="highlighter-rouge">Install ‘code' command in PATH</code> 进行安装，之后我们就可以使用 <code class="highlighter-rouge">code</code> 命令啦:</p>
+<pre><code class="language-SHELL"># 启动一个 node 程序
+pm2 start index.js
+# 启动并取别名
+pm2 start app_h5/bin/www --name application1
+# 在文件改变的时候会重新启动程序
+pm2 start index.js --watch
 
-<pre><code class="language-SHELL"># 若不存在则创建
-code README.md
+# 中止进程，指定进程 id 或名称，
+pm2 stop 0
 
-# 还可以一次性打开多个文件
-code file1 file2 file3
+# 删除进程，all 则删除所有
+pm2 delete 0
 
-# 也支持打开文件目录
-code folder1 folder2
+# 查看详情
+pm2 describe 0
+
+# 查看进程的资源消耗情况
+pm2 monit
+
+# 重启进程，也可用 restart
+# Use reload instead of restart for 0-seconds downtime reloads
+# restart 是先 kill 然后重启，而 reload 反之，故不会停机
+pm2 reload 0
+
+# 查看日志
+pm2 logs 0
+
+# 集群 cluster 启动 - 负载均衡
+# -i 表示 number-instances 实例数量
+# max 表示 PM2 将自动检测可用 CPU 的数量 可以自己指定数量
+pm2 start start.js -i max
+
+# 查看监控界面，即 pm2 list
+pm2 l
 </code></pre>
 
-<h2 id="multi-root-workspaces">Multi-root Workspaces</h2>
+<p><img src="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2-list.png" alt="pm2" /></p>
 
-<p>可以直接<a href="https://code.visualstudio.com/docs/editor/multi-root-workspaces">参考官方文档这一节</a>。一般情况下我们可以直接在编辑器上新增工作区，当然我们也可以用命令行:</p>
+<p>更新 pm2 的方法:</p>
 
-<pre><code class="language-SHELL">code --add myProject
+<pre><code class="language-SHELL"># 保存当前进程状态
+pm2 save
+# 全局安装
+npm i -g pm2
+# pm2 update is necessary in order to refresh the PM2 daemon
+pm2 update
 </code></pre>
 
-<p>如果是新建的工作区，当我们退出 vscode 时会提示保存，并会自动创建一个 <code class="highlighter-rouge">yourname.code-workspace</code> 的配置文件:</p>
+<blockquote>
+  <p>关于 <code class="highlighter-rouge">pm2 save</code> 的用法: pm2 save takes a snapshot of your currently running Node applications. You can then restore these applications using <code class="highlighter-rouge">pm2 resurrect</code>. This is useful because it means you don’t have to manually restart each application when you restart pm2 (such as a machine reboot). Instead, you can just have a script that calls pm2 resurrect and it’ll start up all the Node apps.</p>
+</blockquote>
 
-<pre><code class="language-JSON">{
-  "folders": [
-    {
-      // Source code
-      "name": "Product", // name 可以语义替换原本的项目名称
-      "path": "vscode"
+<h2 id="自动化部署">自动化部署</h2>
+
+<p>一般情况下，我们项目部署在服务器上，但是有个问题，就是每次要更新的话必须在服务器上去操作，然后 <code class="highlighter-rouge">pm2 reload</code> 重启该进程，这样显然比较麻烦，因此我们可以借助 <code class="highlighter-rouge">pm2 deploy</code> 来进行自动化部署。具体可以参照 pm2 官方文档 <a href="https://pm2.keymetrics.io/docs/usage/deployment/">Deployment 一节</a>。</p>
+
+<p>1、 Generate a sample <code class="highlighter-rouge">ecosystem.json</code> file that lists the processes and the deployment environment.</p>
+
+<pre><code class="language-SHELL">pm2 ecosystem
+</code></pre>
+
+<p>自动会创建 <code class="highlighter-rouge">ecosystem.json</code> 文件，当然也支持 yaml 配置文件，然后在对应位置自定义即可:</p>
+
+<pre><code class="language-JS">{
+  // Applications part
+  "apps" : [{
+    "name"      : "API",
+    "script"    : "app.js",
+    "env": {
+      "COMMON_VARIABLE": "true"
     },
-    {
-      // Docs and release notes
-      "name": "Documentation",
-      "path": "vscode-docs"
+    // Environment variables injected when starting with --env production
+    // http://pm2.keymetrics.io/docs/usage/application-declaration/#switching-to-different-environments
+    "env_production" : {
+      "NODE_ENV": "production"
     }
-  ]
+  },{
+    "name"      : "WEB",
+    "script"    : "web.js"
+  }],
+  // Deployment part
+  // Here you describe each environment
+  "deploy" : {
+    "production" : {
+      "user" : "node",
+      // Multi host is possible, just by passing IPs/hostname as an array
+      "host" : ["212.83.163.1", "212.83.163.2", "212.83.163.3"],
+      // Branch
+      "ref"  : "origin/master",
+      // Git repository to clone
+      "repo" : "git@github.com:repo.git",
+      // Path of the application on target servers
+      "path" : "/var/www/production",
+      // Can be used to give options in the format used in the configura-
+      // tion file.  This is useful for specifying options for which there
+      // is no separate command-line flag, see 'man ssh'
+      // can be either a single string or an array of strings
+      "ssh_options": "StrictHostKeyChecking=no",
+      // To prepare the host by installing required software (eg: git)
+      // even before the setup process starts
+      // can be multiple commands separated by the character ";"
+      // or path to a script on your local machine
+      "pre-setup" : "apt-get install git",
+      // Commands / path to a script on the host machine
+      // This will be executed on the host after cloning the repository
+      // eg: placing configurations in the shared dir etc
+      "post-setup": "ls -la",
+      // Commands to execute locally (on the same machine you deploy things)
+      // Can be multiple commands separated by the character ";"
+      "pre-deploy-local" : "echo 'This is a local executed command'"
+      // Commands to be executed on the server after the repo has been cloned
+      "post-deploy" : "npm install &amp;&amp; pm2 startOrRestart ecosystem.json --env production"
+      // Environment variables that must be injected in all applications on this env
+      "env"  : {
+        "NODE_ENV": "production"
+      }
+    },
+    "staging" : {
+      "user" : "node", // 登录用户名
+      "host" : "212.83.163.1", // 要部署的目标服务器 ip/域名
+      "ref"  : "origin/master", // 用于部署代码时的分支
+      "repo" : "git@github.com:repo.git", // git 仓库地址
+      "path" : "/var/www/development", // 在目标服务器上部署的文件目录地址
+      "ssh_options": ["StrictHostKeyChecking=no", "PasswordAuthentication=no"],
+      "post-deploy" : "pm2 startOrRestart ecosystem.json --env dev", // 部署后启动的脚本
+      "env"  : {
+        "NODE_ENV": "staging"
+      }
+    }
+  }
 }
 </code></pre>
 
-<p>之后只需要双击这个文件就可以打开这个工作区了，当然也可以直接用 <code class="highlighter-rouge">code</code> 命令来操作:</p>
+<p>2、Be sure that you have the public <strong>ssh key</strong> on your local machine</p>
 
-<pre><code class="language-SHELL">code path/yourname.code-workspace
+<pre><code class="language-SHELL">ssh-keygen -t rsa
+ssh-copy-id node@myserver.com
 </code></pre>
 
-<h2 id="jsconfigjson">jsconfig.json</h2>
-
-<p>这里额外提到下 vscode 的 <strong>jsconfig.json</strong> 文件，目录中存在该文件表示该目录是 JavaScript 项目的根目录。jsconfig.json 文件指定根文件和 JavaScript 语言服务提供的功能选项。具体可以参考 <a href="https://code.visualstudio.com/docs/languages/jsconfig">vscode 官方文档</a>。</p>
-
 <blockquote>
-  <p>jsconfig.json 源于 <code class="highlighter-rouge">tsconfig.json</code>，是 TypeScript 的配置文件。jsconfig.json 相当于 tsconfig.json 的 <code class="highlighter-rouge">allowJs</code> 属性设置为 true</p>
+  <p><code class="highlighter-rouge">ssh-keygen</code> 自动生成公钥和私钥，<code class="highlighter-rouge">ssh-copy-id</code> 命令将公钥传送到远端服务器，可以查看<a href="http://localhost:2333/2019/02/03/linux-ssh-rz-sz.html#身份认证">之前这篇博客</a> 👈</p>
 </blockquote>
 
-<h2 id="参考链接">参考链接</h2>
+<p>3、Now initialize the remote folder with:</p>
 
-<ol>
-  <li><a href="https://code.visualstudio.com/Docs/editor/debugging">Visual Studio Code - Debugging</a></li>
-  <li><a href="http://jerryzou.com/posts/vscode-debug-guide/">Visual Studio Code 前端调试不完全指南</a> By Jerry</li>
-  <li><a href="https://mrvautin.com/running-nodejs-applications-in-production-forever-vs-supervisord-vs-pm2/">Running Nodejs applications in production forever vs supervisord vs pm2</a> By mrvautin</li>
-  <li><a href="https://pm2.io/doc/en/runtime/quick-start/?utm_source=pm2&amp;utm_medium=website&amp;utm_campaign=rebranding">PM2 官方文档</a></li>
-</ol>
+<pre><code class="language-SHELL"># 首次部署，该命令会在远端服务器上创建文件目录
+pm2 deploy &lt;configuration_file&gt; &lt;environment&gt; setup
+
+# demo
+pm2 deploy ecosystem.json production setup
+</code></pre>
+
+<p>4、Deploy your code</p>
+
+<pre><code class="language-SHELL"># 再次部署，会上传项目代码，并用 PM2 启动
+# 以后都用此命令进行更新代码和部署即可
+pm2 deploy ecosystem.json production
+</code></pre>
+
+<blockquote>
+  <p>注意：本地和服务器确保都安装 PM2</p>
+</blockquote>
+
+<p>当然 deploy 命令也支持其他一些参数:</p>
+
+<pre><code class="language-TEXT"># pm2 deploy help
+
+setup                run remote setup commands
+update               update deploy to the latest release
+revert [n]           revert to [n]th last deployment or 1
+curr[ent]            output current release commit
+prev[ious]           output previous release commit
+exec|run &lt;cmd&gt;       execute the given &lt;cmd&gt;
+list                 list previous deploy commits
+[ref]                deploy to [ref], the "ref" setting, or latest tag
+</code></pre>
+
+<pre><code class="language-SHELL"># Update remote version
+pm2 deploy production update
+
+# Revert to -1 deployment
+pm2 deploy production revert 1
+
+# execute command on remote machines
+pm2 deploy production exec "pm2 reload all"
+</code></pre>
+
+<h2 id="与-nginx-的配合使用">与 Nginx 的配合使用</h2>
+
+<p>下面是一个官网的 demo，Nginx 将 80 端口代理到 3001 端口，更多可以参照 <a href="http://localhost:2333/2019/01/30/nginx.html">Nginx 这篇博客</a>:</p>
+
+<pre><code class="language-TEXT">upstream my_nodejs_upstream {
+  server 127.0.0.1:3001;
+  keepalive 64;
+}
+
+server {
+  listen 443 ssl;
+
+  server_name www.my-website.com;
+  ssl_certificate_key /etc/ssl/main.key;
+  ssl_certificate     /etc/ssl/main.crt;
+
+  location / {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host $http_host;
+
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_pass http://my_nodejs_upstream/;
+    proxy_redirect off;
+    proxy_read_timeout 240s;
+  }
+}
+</code></pre>
+
+<h2 id="nodemon--supervisor">nodemon / supervisor</h2>
+
+<p>两种常用于开发环境监听文件改动并重启服务的方式，还可以搭配 <strong><a href="https://browsersync.io/">Browsersync</a></strong> 实现客户端自动刷新:</p>
+
+<ul>
+  <li><strong><a href="https://github.com/remy/nodemon">nodemon</a></strong> - 占用内存更少，易扩展</li>
+  <li><strong><a href="https://github.com/Supervisor/supervisor">supervisor</a></strong></li>
+</ul>
+
+<pre><code class="language-SHELL">nodemon index.js
+
+# 也可省略写法，默认找 index.js
+nodemon
+</code></pre>
+
  
 <div id="gitalk-container"></div>
 <script>
@@ -468,9 +529,9 @@ code folder1 folder2
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/04/19/vscode-tools.html';
-        this.page.identifier = '/2018/04/19/vscode-tools';
-        this.page.title = 'VS Code 插件及小技巧';
+        this.page.url = 'https://tate-young.github.io/2020/01/19/pm2-deploy.html';
+        this.page.identifier = '/2020/01/19/pm2-deploy';
+        this.page.title = 'PM2 自动化部署';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -489,7 +550,7 @@ code folder1 folder2
 
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-04-19 21:48:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2020-01-19 17:47:00</p> -->
         </div>
     </article>
 
