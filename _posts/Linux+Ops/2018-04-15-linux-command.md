@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Linux 常用命令
 date:   2018-04-15 14:15:00 GMT+0800 (CST)
-update: 2019-10-17 22:14:00 GMT+0800 (CST)
+update: 2020-01-31 20:42:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
 tags:
 - Linux
@@ -55,6 +55,88 @@ tags:
 * **Wget** 是一个在网络上进行下载的简单而强大的自由软件，目前它支持通过 HTTP、HTTPS 以及 FTP 这三个最常见的 TCP/IP 协议下载，可以递归，支持断点
 * **cURL** 是一个利用 URL 语法在命令行下工作的文件传输工具，支持文件上传和下载，相较于 wget，它支持更多的协议，批量下载
 * **[homebrew](https://brew.sh/)** 是是一款自由及开放源代码的软件包管理系统，用以简化 macOS 系统上的软件安装过程，类似于 yum/apt-get；Windows 系统则可以使用 [**chocolatey**](https://chocolatey.org/)
+
+## homebrew
+
+[**homebrew**](https://brew.sh) 上面已经说到了是用 ruby 开发的 macOS 的包管理系统，常用的命令总结如下，更多可以[参考官方文档](https://docs.brew.sh/Manpage):
+
+```SHELL
+# install
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+```SHELL
+# 更新 brew 本身
+brew update
+# 查看需要更新的包，并且会显示当前版本和最新版本号对照
+brew outdated
+
+brew search $FORMULA  # 搜索包
+brew install $FORMULA # 安装包
+brew list             # 列出已安装包
+
+brew upgrade             # 更新所有的包
+brew upgrade $FORMULA    # 更新指定的包
+
+brew cleanup             # 清理所有包的旧版本
+brew cleanup $FORMULA    # 清理指定包的旧版本
+brew cleanup -n          # 查看可清理的旧版本包，不执行实际操作
+
+brew pin $FORMULA      # 锁定包
+brew unpin $FORMULA    # 取消锁定
+
+brew info $FORMULA    # 显示包的信息
+brew info             # 显示安装了包数量，文件数量，和总占用空间
+brew deps --installed --tree # 查看已安装的包的依赖，树形显示
+
+brew rm $FORMULA                # 删除包
+brew uninstall --force $FORMULA # 删除所有版本
+```
+
+当然为了更方便使用，我们可以设置一些别名 alias:
+
+```TEXT
+bcubc='brew cask reinstall $(brew cask outdated) && brew cleanup'
+bcubo='brew update && brew cask outdated'
+bi='brew install'
+brewp='brew pin'
+brews='brew list -1'
+brewsp='brew list --pinned'
+bs='brew search'
+bubc='brew upgrade && brew cleanup'
+bubo='brew update && brew outdated'
+bubu='bubo && bubc'
+```
+
+还有两种用法需要我们注意，一个是 `brew cast`，另一个是 `brew tap`:
+
+* brew cast - 针对编译好的应用包，比如 `brew cast chrome`，即相当于安装软件
+* brew tap - 针对第三方的包，仓库源不仅限于 Github，不带参数的话会列出所有安装的 taps，一般用法为 `brew tap <github_userid/repo_name>`。反之为 `brew untap $FORMULA`
+
+> 命令中的 repo_name 其实是 `brew tap <github_userid/homebrew-repo_name>` 的简写，我们可以看到多了个 homebrew 的前缀，这个是和仓库名一致的
+
+```SHELL
+brew tap
+# homebrew/cask
+# homebrew/core
+# mongodb/brew
+
+brew install vim                     # installs from homebrew/core
+brew install username/repo/vim       # installs from your custom repo
+```
+
+那么问题来了，如果第三方和 homebrew/core 的安装包名称重复了怎么办？这时候就需要看下下载优先级了。当你使用 `brew install` 这个命令时，brew 其实会将按照下面的顺序去查找哪个 formula(tap) 将被使用:
+
+1. pinned taps
+2. core formulae
+3. other taps
+
+因此，如果我们想优先下载第三方的同名包，必须先通过下面命令 `tap-pin` 去 pin 这个仓库:
+
+```SHELL
+brew tap-pin username/repo # pin 仓库
+brew tap-unpin username/repo # unpin 仓库
+```
 
 ## cURL & HTTPie
 

@@ -49,17 +49,17 @@ plugins:
   - jekyll-feed
   - jekyll-strapi
 
-strapi:
-  # Your API endpoint (optional, default to http://localhost:1337)
-  endpoint: http://localhost:1337
-  # Collections, key is used to access in the strapi.collections
-  # template variable
-  collections:
-    # Example for a "posts" collection
-    posts:
-      # Collection name (optional). Used to construct the url requested. Example: type `foo` would generate the following url `http://localhost:1337/foo`.
-      type: posts
-      # Permalink used to generate the output files (eg. /posts/:id).
-      permalink: /posts/:slug/
-      # layout: index.html
-      # output: true
+# strapi:
+#   # Your API endpoint (optional, default to http://localhost:1337)
+#   endpoint: http://localhost:1337
+#   # Collections, key is used to access in the strapi.collections
+#   # template variable
+#   collections:
+#     # Example for a "posts" collection
+#     posts:
+#       # Collection name (optional). Used to construct the url requested. Example: type `foo` would generate the following url `http://localhost:1337/foo`.
+#       type: posts
+#       # Permalink used to generate the output files (eg. /posts/:id).
+#       permalink: /posts/:slug/
+#       # layout: index.html
+#       # output: true
