@@ -56,7 +56,7 @@
   });
 </script>
 <meta content="" property="fb:app_id" />
-<!-- Begin Jekyll SEO tag v2.5.0 -->
+<!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Github Pages | Tate &amp; Snow</title>
 <meta name="generator" content="Jekyll v3.8.5" />
 <meta property="og:title" content="Github Pages" />
@@ -69,7 +69,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-10-10T22:13:00+08:00" />
 <script type="application/ld+json">
-{"description":"Github Pages","@type":"BlogPosting","url":"http://localhost:2333/2019/10/10/github-pages.html","headline":"Github Pages","dateModified":"2019-10-10T22:13:00+08:00","datePublished":"2019-10-10T22:13:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/10/10/github-pages.html"},"@context":"http://schema.org"}</script>
+{"description":"Github Pages","@type":"BlogPosting","url":"http://localhost:2333/2019/10/10/github-pages.html","headline":"Github Pages","dateModified":"2019-10-10T22:13:00+08:00","datePublished":"2019-10-10T22:13:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/10/10/github-pages.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -526,8 +526,12 @@ ruby -v
 which ruby
 # /Users/tate/.rvm/rubies/ruby-2.3.8/bin/ruby
 
-# 列出所有 ruby 版本
+# 列出所有安装 ruby 版本
 rvm list
+# 列出所有已知 ruby 版本
+rvm list known
+# 使用已安装的 ruby 版本
+rvm use ruby-2.4.6
 </code></pre>
 
 <p>注意我们安装完后需要重启下 <code class="highlighter-rouge">.zshrc</code> 或者 <code class="highlighter-rouge">.bashrc</code> 和 <code class="highlighter-rouge">.bash_profile</code> 文件，因为里面会写入环境变量:</p>

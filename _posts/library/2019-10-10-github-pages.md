@@ -337,8 +337,12 @@ ruby -v
 which ruby
 # /Users/tate/.rvm/rubies/ruby-2.3.8/bin/ruby
 
-# 列出所有 ruby 版本
+# 列出所有安装 ruby 版本
 rvm list
+# 列出所有已知 ruby 版本
+rvm list known
+# 使用已安装的 ruby 版本
+rvm use ruby-2.4.6
 ```
 
 注意我们安装完后需要重启下 `.zshrc` 或者 `.bashrc` 和 `.bash_profile` 文件，因为里面会写入环境变量:

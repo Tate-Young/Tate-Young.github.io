@@ -56,7 +56,7 @@
   });
 </script>
 <meta content="" property="fb:app_id" />
-<!-- Begin Jekyll SEO tag v2.5.0 -->
+<!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>JAMstack | Tate &amp; Snow</title>
 <meta name="generator" content="Jekyll v3.8.5" />
 <meta property="og:title" content="JAMstack" />
@@ -69,7 +69,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-01-30T17:11:00+08:00" />
 <script type="application/ld+json">
-{"description":"JAMstack","@type":"BlogPosting","url":"http://localhost:2333/2020/01/30/jamstack.html","headline":"JAMstack","dateModified":"2020-01-30T17:11:00+08:00","datePublished":"2020-01-30T17:11:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/01/30/jamstack.html"},"@context":"http://schema.org"}</script>
+{"description":"JAMstack","@type":"BlogPosting","url":"http://localhost:2333/2020/01/30/jamstack.html","headline":"JAMstack","dateModified":"2020-01-30T17:11:00+08:00","datePublished":"2020-01-30T17:11:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/01/30/jamstack.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -174,6 +174,8 @@
                     <time datetime="2020-01-30 17:11:00" itemprop="datePublished">
                       发布时间：2020-01-30 17:11:00
                       &nbsp;&nbsp;&nbsp;
+                      
+                        修改时间：2020-01-31 19:33:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -283,11 +285,149 @@
 
 <p><img src="https://css-tricks.com/wp-content/uploads/2016/03/headless.svg" alt="headless CMS" /></p>
 
+<h2 id="jekyll--strapi-实战">Jekyll + Strapi 实战</h2>
+
+<p>之前有说过我的博客用的站点生成器就是 Jekyll，这里我介绍下如何用 <strong>Strapi</strong> headless CMS 来为站点提供 API 数据支持。大体上其实分为三个步骤:</p>
+
+<ol>
+  <li>安装和配置 Strapi，启动</li>
+  <li>启动 Jekyll 站点</li>
+  <li>通过一些依赖和配置，让 Jekyll 能正常调用到 Strapi 提供的 API</li>
+</ol>
+
+<p>一、安装和配置 Strapi</p>
+
+<p><a href="https://github.com/strapi/strapi/">Strapi</a> 直接可以<a href="https://strapi.io/documentation/3.0.0-beta.x/getting-started/quick-start-tutorial.html#_1-install-strapi-and-create-a-project">参考官网的安装步骤</a>，已经巨详细了，一般情况下这里都不会有什么问题，但是有几个地方需要注意下，我们首先需要安装:</p>
+
+<pre><code class="language-SHELL">yarn create strapi-app my-project --quickstart
+# or
+npx create-strapi-app my-project --quickstart
+</code></pre>
+
+<blockquote>
+  <p><code class="highlighter-rouge">--quickstart</code> 参数这里会默认用到轻便的 SQLite 数据库，你可以不使用该参数，但是会要求你选择所需的数据库，并且在你使用上述命令构建前，就必须让它能够在本地运行。比如 MongoDB，你可以<a href="https://strapi.io/documentation/3.0.0-beta.x/guides/databases.html#sqlite-installation">参照这里来进行安装和选择</a>。</p>
+</blockquote>
+
+<p>安装完成后会自动开启 Strapi 项目，这时候需要你在打开的网页中注册 Administrator 用户，它将拥有所有的访问和操作权限。之后便可以去创建 Content Type，具体可以参照官网步骤。</p>
+
+<p><img src="https://strapi.io/documentation/assets/img/content-type-dashboard.40ce5bb2.png" alt="Strapi type" /></p>
+
+<p>需要注意的是，默认情况下，Strapi 会通过权限来管控发布的 Content Type，也就是说你需要为你所创建的 Content Type 来下放权限，可以在 <code class="highlighter-rouge">Roles &amp; Permissions</code> 菜单中为他们勾选对应的操作权限，如 find、findone 等。而且在你创建了比如名为 Restaurant 的 Content Type 时，会自动创建对应路由来访问数据，比如 <code class="highlighter-rouge">http://localhost:1337/restaurants</code>，如果没有权限的话将返回 403:</p>
+
+<p><img src="https://strapi.io/documentation/assets/img/restaurant-api.3040f37d.png" alt="Restaurant" /></p>
+
+<p>二、启动 Jekyll 站点</p>
+
+<p>这个就没什么说了，我们把项目启动即可，可以直接<a href="http://localhost:2333/2019/10/10/github-pages.html#jekyll">参考下之前的博客</a> 👈</p>
+
+<p>三、配置 Jekyll 使其能访问 Strapi API</p>
+
+<p>我们这里使用了 <a href="https://github.com/strapi/jekyll-strapi"><strong>jekyll-strapi</strong></a> 插件，具体配置方式如下，首先在 gemfile 添加对应 gem:</p>
+
+<pre><code class="language-YAML"># If you have any plugins, put them here!
+group :jekyll_plugins do  
+  gem "jekyll-feed", "~&gt; 0.6"
+  gem "jekyll-strapi", "~&gt; 0.1"
+end  
+</code></pre>
+
+<p>安装这些 gem，然后将他们添加到 <code class="highlighter-rouge">_config.yml</code> 配置文件中:</p>
+
+<pre><code class="language-SHELL">gem install jekyll-strapi  
+</code></pre>
+
+<pre><code class="language-YAML"># _config.yml
+plugins:  
+  - jekyll-feed
+  - jekyll-strapi
+</code></pre>
+
+<p>之后我们运行 <code class="highlighter-rouge">bundle</code> 来安装这些依赖，剩下的我们需要做一些数据访问的配置:</p>
+
+<pre><code class="language-YAML"># _config.yml
+strapi:
+  # Your API endpoint (optional, default to http://localhost:1337)
+  endpoint: http://localhost:1337
+  # Collections, key is used to access in the strapi.collections
+  # template variable
+  collections:
+    # Example for a "posts" collection
+    posts:
+      # Collection name (optional). Used to construct the url requested. Example: type `foo` would generate the following url `http://localhost:1337/foo`.
+      type: posts
+      # Permalink used to generate the output files (eg. /posts/:id).
+      permalink: /posts/:slug/
+</code></pre>
+
+<p>配置之后，我们就可以访问到全局变量 strapi，并且通过 <code class="highlighter-rouge">strapi.collection.posts</code> 来访问到我们所创建的 posts 数据，如果我们在模板中使用的话，可以参考下面:</p>
+
+<pre><code class="language-HTML">&lt;div class="home"&gt;
+  &lt;h1 class="page-heading"&gt;Posts&lt;/h1&gt;
+  { %- if strapi.collections.posts.size &gt; 0 -% }
+  &lt;ul class="post-list"&gt;
+    { %- for post in strapi.collections.posts -% }
+    &lt;li&gt;
+      &lt;span class="post-meta"&gt; by &lt;/span&gt;
+      &lt;h3&gt;
+        &lt;a class="post-link" href=""&gt;
+          
+        &lt;/a&gt;
+      &lt;/h3&gt;
+      &lt;!-- Display an excerpt of the article --&gt;
+      &lt;p&gt;
+&lt;/p&gt;
+    &lt;/li&gt;
+    { %- endfor -% }
+  &lt;/ul&gt;
+  { %- endif -% }
+&lt;/div&gt;
+</code></pre>
+
+<p>这里有个地方需要注意的是，在我们如上配置了之后，试着启动 Jekyll 项目时，可能会发现有个报错: <code class="highlighter-rouge">The Strapi server sent a error with the following status: 404. Please make sure it is correctly running.</code>。感谢<a href="https://stackoverflow.com/questions/54188789/jekyll:-and-strapi-liquid-exception-please-make-sure-strapi-server-is-correctly">这里提供了帮助</a>，试着把 Jekyll 和插件版本升级之后就可以了:</p>
+
+<pre><code class="language-YAML">gem "jekyll", "~&gt; 3.8.5"
+[...]
+group :jekyll_plugins do
+  gem "jekyll-feed", "~&gt; 0.12"
+  # github 这里的参数确保了最新修复 bug 的版本，而这个 bug 就是 Can't convert fixnum into String
+  gem 'jekyll-strapi', github: 'strapi/jekyll-strapi'
+end
+</code></pre>
+
+<p>上面这些步骤我们其实还只是配置了首页，在我们能够正常访问到 strapi api 获取数据的前提下，我们接下来要为他们创建详情页，首先我们在 <code class="highlighter-rouge">_layouts</code> 目录下新建 <code class="highlighter-rouge">post.html</code> 来创建模板，配置项我们需要稍作修改:</p>
+
+<pre><code class="language-YAML"># _config.yml
+strapi:
+  # Your API endpoint (optional, default to http://localhost:1337)
+  endpoint: http://localhost:1337
+  # Collections, key is used to access in the strapi.collections
+  # template variable
+  collections:
+    # Example for a "posts" collection
+    posts:
+      # Collection name (optional). Used to construct the url requested. Example: type `foo` would generate the following url `http://localhost:1337/foo`.
+      type: posts
+      # Permalink used to generate the output files (eg. /posts/:id).
+      permalink: /posts/:slug/
+      layout: post.html
+      # Generate output files or not (default: false)
+      output: true
+</code></pre>
+
+<p>我们可以看到只是新增了 layout 和 output 选项，就是为了要让 Jekyll 利用指定模板自动去为 post 生成新的详情页。重启 Jekyll 项目后，我们可以在 <code class="highlighter-rouge">_site</code> 目录下看到自动生成的新目录 <code class="highlighter-rouge">posts</code>，里面就包含了自动生成的页面。这样之后，我们就可以访问详情页啦:</p>
+
+<p><img src="https://blog.strapi.io/content/images/2018/04/Screen-Shot-2018-04-24-at-22.42.52.png" alt="strapi posts" /></p>
+
+<blockquote>
+  <p>以上只是列举一些关键步骤，更多的细节和配置可以直接<a href="https://strapi.io/blog/building-a-static-website-using-jekyll-and-strapi">参考这篇文档</a> 👈</p>
+</blockquote>
+
 <h2 id="参考连接">参考连接</h2>
 
 <ol>
   <li><a href="https://snipcart.com/blog/jamstack">New to JAMstack? Everything You Need to Know to Get Started</a></li>
   <li><a href="https://css-tricks.com/what-is-a-headless-cms/">What is a Headless CMS?</a> By Chris Coyier</li>
+  <li><a href="https://strapi.io/blog/building-a-static-website-using-jekyll-and-strapi">Building a static blog using Jekyll and Strapi</a> By Pierre Burgy</li>
 </ol>
  
 <div id="gitalk-container"></div>
