@@ -123,6 +123,10 @@ brew tap
 
 brew install vim                     # installs from homebrew/core
 brew install username/repo/vim       # installs from your custom repo
+
+# 举个安装 Elasticsearch 的栗子
+brew tap elastic/tap
+brew install elastic/tap/elasticsearch-full
 ```
 
 那么问题来了，如果第三方和 homebrew/core 的安装包名称重复了怎么办？这时候就需要看下下载优先级了。当你使用 `brew install` 这个命令时，brew 其实会将按照下面的顺序去查找哪个 formula(tap) 将被使用:
