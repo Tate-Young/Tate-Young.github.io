@@ -15,7 +15,7 @@
 <meta name="twitter:keywords" content="包装对象 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="包装对象 - Tate & Snow">
-<meta name="og:keywords" content="包装对象 - Tate & Snow|包装对象怎么理解 JS 一切都是对象对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是immutable不可变的，也没有属性和方法而言。然而如下例子var s = 'Tate';console.log(s...."
+<meta name="og:keywords" content="包装对象 - Tate & Snow|包装对象怎么理解 JS 一切都是对象对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是 immutable 不可变的，也没有属性和方法而言。然而如下例子var s = 'Tate';console.log(..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="包装对象怎么理解 JS 一切都是对象对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是immutable不可变的，也没有属性和方法而言。然而如下例子var s = 'Tate';console.log(s...." property='og:description'
+<meta name="keywords" content="包装对象怎么理解 JS 一切都是对象对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是 immutable 不可变的，也没有属性和方法而言。然而如下例子var s = 'Tate';console.log(..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:2333/2018/02/01/js-wrapper-object.html' property='og:url' />
-<meta content="http://localhost:2333/2018/02/01/js-wrapper-object.html|包装对象怎么理解 JS 一切都是对象对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是immutable不可变的，也没有属性和方法而言。然而如下例子var s = 'Tate';console.log(s...." property='og:description'
+<meta content="http://localhost:2333/2018/02/01/js-wrapper-object.html|包装对象怎么理解 JS 一切都是对象对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是 immutable 不可变的，也没有属性和方法而言。然而如下例子var s = 'Tate';console.log(..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -183,7 +183,7 @@
                        
                     <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
                         JavaScript
-                        <span>(24)</span>
+                        <span>(25)</span>
                         
                     </a>
                        
@@ -204,7 +204,7 @@
                    
                 <a href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
                     JavaScript
-                    <span>(24)</span>
+                    <span>(25)</span>
                     </a>
                    
             </p>
@@ -212,7 +212,7 @@
 
 <h2 id="怎么理解-js-一切都是对象">怎么理解 JS 一切都是对象</h2>
 
-<p>对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是immutable不可变的，也没有属性和方法而言。然而如下例子</p>
+<p>对象是拥有属性和方法的特殊数据类型，个人认为基本类型其实不属于对象，因为他们是 immutable 不可变的，也没有属性和方法而言。然而如下例子</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span> <span class="c1">// 4</span>
@@ -221,11 +221,11 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="c1">// 'Tate' 基本类型值不可变</span>
 </code></pre></div></div>
 
-<p>为什么基本类型也拥有类似对象的特性，原因就在于调用属性和方法的时候，JS会自动将其转换成对应的包装对象(只读)，调用结束后这个临时对象会被销毁。</p>
+<p>为什么基本类型也拥有类似对象的特性，原因就在于调用属性和方法的时候，JS 会自动将其转换成对应的包装对象(只读)，调用结束后这个临时对象会被销毁。</p>
 
 <h2 id="什么是包装对象">什么是包装对象</h2>
 
-<p>所谓“<strong>包装对象(Wrapper Object)</strong>”，就是分别与数值、字符串、布尔值相对应的<strong>Number、String、Boolean</strong>三个原生对象。这三个原生对象可以把原始类型的值包装成对象。</p>
+<p>所谓“<strong>包装对象(Wrapper Object)</strong>”，就是分别与数值、字符串、布尔值相对应的 <strong>Number、String、Boolean</strong> 三个原生对象。这三个原生对象可以把原始类型的值包装成对象。</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 以上例子实际等同于</span>
 <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Tate</span><span class="dl">'</span><span class="p">;</span>

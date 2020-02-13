@@ -165,7 +165,7 @@ function assignHandler() {
 ```
 
 1. 通过把 element.id 的一个副本保存在变量中，消除其在闭包中的循环引用。
-2. 通过把 element 变量设置为 null，可以解除 DOM 对象的引用，顺利地减少其引用数，确保正常回收其占用的内存。
+2. 通过把 element 变量设置为 null，可以解除 DOM 对象的引用，将其释放出啦，确保正常回收其占用的内存。
 
 ```js
 function assignHandler() {

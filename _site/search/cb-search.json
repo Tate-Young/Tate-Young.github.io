@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "JS 垃圾处理机制 - ",
+		"url" : "/2020/02/13/js-garbage-collection.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "【科普】细菌与病毒 - ",
 		"url" : "/2020/02/10/bacteria-viruses.html"
 	}
@@ -357,14 +365,6 @@
 	{
 		"title" : "记各种代码规范实践 - ",
 		"url" : "/2019/01/25/coding-standards.html"
-	}
-	
-	,
-	
-    
-	{
-		"title" : "陈君的作品参考 - ",
-		"url" : "/2018/08/20/snow.html"
 	}
 	
 	,
