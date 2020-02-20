@@ -5,7 +5,7 @@ comments: True
 flag: science
 background: white
 category: 历史
-title:  【科普】细菌与病毒
+title:  科普 - 细菌与病毒
 date:   2020-02-10 20:09:00 GMT+0800 (CST)
 background-image: http://image.sciencenet.cn/album/201612/10/102531tiati07763tns06g.jpg
 tags:
