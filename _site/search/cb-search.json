@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Web Worker - ",
+		"url" : "/2020/02/21/html-web-woker.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "JS 垃圾处理机制 - ",
 		"url" : "/2020/02/13/js-garbage-collection.html"
 	}

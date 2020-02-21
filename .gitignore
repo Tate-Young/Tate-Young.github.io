@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 
 .sass-cache/*
+_site/feed.xml

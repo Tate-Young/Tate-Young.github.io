@@ -1,0 +1,898 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+<head>
+    <meta content='Web Worker - Tate & Snow' name='title' />
+    <meta content='Web Worker - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>Web Worker - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Web Worker - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web Worker - Tate & Snow">
+<meta name="twitter:keywords" content="Web Worker - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Worker - Tate & Snow">
+<meta name="og:keywords" content="Web Worker - Tate & Snow|Web Worker什么是 Web Worker我们都知道 JavaScript 是单线程的，也就是说代码同步执行时，后续代码必须等到前面代码执行完了才能执行。但是如果前面代码耗时较长怎么办，不能干等着，有些场景我们可以用异步来处理，..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="Web Worker什么是 Web Worker我们都知道 JavaScript 是单线程的，也就是说代码同步执行时，后续代码必须等到前面代码执行完了才能执行。但是如果前面代码耗时较长怎么办，不能干等着，有些场景我们可以用异步来处理，..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2020/02/21/html-web-woker.html' property='og:url' />
+<meta content="http://localhost:2333/2020/02/21/html-web-woker.html|Web Worker什么是 Web Worker我们都知道 JavaScript 是单线程的，也就是说代码同步执行时，后续代码必须等到前面代码执行完了才能执行。但是如果前面代码耗时较长怎么办，不能干等着，有些场景我们可以用异步来处理，..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<!-- <script async src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Web Worker | Tate &amp; Snow</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Web Worker" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Web Worker" />
+<meta property="og:description" content="Web Worker" />
+<link rel="canonical" href="http://localhost:2333/2020/02/21/html-web-woker.html" />
+<meta property="og:url" content="http://localhost:2333/2020/02/21/html-web-woker.html" />
+<meta property="og:site_name" content="Tate &amp; Snow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-02-21T17:59:00+08:00" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/02/21/html-web-woker.html"},"url":"http://localhost:2333/2020/02/21/html-web-woker.html","headline":"Web Worker","dateModified":"2020-02-21T17:59:00+08:00","datePublished":"2020-02-21T17:59:00+08:00","description":"Web Worker","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
+                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('历史', '/history')" title="访问 历史" data-hover="历史">历史</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('其他', '/other')" title="访问 其他" data-hover="其他">其他</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:2333/">首页</a>
+                
+                <a href="http://localhost:2333/front">前端</a>
+                
+                <a href="http://localhost:2333/history">历史</a>
+                
+                <a href="http://localhost:2333/other">其他</a>
+                
+                <a href="http://localhost:2333/tags">标签</a>
+                
+                <a href="http://localhost:2333/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('历史', 'http://localhost:2333/history')">历史</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('其他', 'http://localhost:2333/other')">其他</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('Web Worker')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Web Worker</h1>
+                <div class="post-data">
+                    <time datetime="2020-02-21 17:59:00" itemprop="datePublished">
+                      发布时间：2020-02-21 17:59:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('HTML')" title="访问HTML" data-hover="HTML">
+                        HTML
+                        <span>(1)</span>
+                        
+                    </a>
+                    
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
+                        JavaScript
+                        <span>(26)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Web Worker</h1>
+            <div class="post-data">
+                <time datetime="2020-02-21 17:59:00" itemprop="datePublished">2020-02-21 17:59:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="Javascript:;" onclick="onClickTag('HTML')" title="访问HTML" data-hover="HTML">
+                    HTML
+                    <span>(1)</span>
+                    </a>
+                
+                <a href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
+                    JavaScript
+                    <span>(26)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="web-worker">Web Worker</h1>
+
+<h2 id="什么是-web-worker">什么是 Web Worker</h2>
+
+<p>我们都知道 JavaScript 是单线程的，也就是说代码同步执行时，后续代码必须等到前面代码执行完了才能执行。但是如果前面代码耗时较长怎么办，不能干等着，有些场景我们可以用异步来处理，比如 ajax 请求服务器数据，但是这仍然没有改变代码单线程执行的本质，我们依旧不能把耗时的复杂运算放在页面上执行，不然会造成无响应，影响用户体验。因此为了实现多线程，就必须用到 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Worker"><strong>Web Worker</strong></a>。</p>
+
+<p>HTML5 提出了 Web Worker 标准，表示 JavaScript 允许有多个线程，但是子线程完全受主线程的控制，且子线程<strong>不能操作 DOM。由于位于外部文件，也不能访问 Window、Document 等对象</strong>。并且规范出 Web Worker 的三大主要特征</p>
+
+<ol>
+  <li>能够长时间运行和响应</li>
+  <li>理想的启动性能</li>
+  <li>理想的内存消耗</li>
+</ol>
+
+<p>HTML5 中的多线程是这样一种机制，它允许在 Web 程序中并发执行多个 JavaScript 脚本，每个脚本执行流都称为一个线程，彼此间互相独立，并且有浏览器中的 JavaScript 引擎负责管理。它是运行在后台的 JavaScript，独立于其他脚本，一般不会影响页面的性能。因此我们常常可以把一些耗时和复杂计算的操作放到后台去执行，接下来便可以继续做任何你想做的事情：点击、选取内容等等。</p>
+
+<p>HTML5 中的 Web Worker 可以分为两种不同线程类型，一个是<strong>专用线程(Dedicated Worker)</strong>，一个是<strong>共享线程(Shared Worker)</strong>。两种类型的线程各有不同的用途，下面分别来介绍下。</p>
+
+<blockquote>
+  <p>本篇的数据通信和实例摘自阮一峰的 <a href="http://www.ruanyifeng.com/blog/2018/07/web-worker.html">Web Worker 使用教程</a> 👈</p>
+</blockquote>
+
+<p><img src="https://bitsofco.de/content/images/2018/11/web-worker.jpg" alt="Web Worker" /></p>
+
+<h2 id="专用线程">专用线程</h2>
+
+<h3 id="创建线程">创建线程</h3>
+
+<p>创建子线程的方法很简单，直接通过构造函数 Worker 创建实例即可，它只执行 URL 指定的脚本。Worker 不指定 URL 时，而由使用 Blob 创建:</p>
+
+<pre><code class="language-JS">// 根据指定的 worker.js 来创建 Web Worker 实例，从而开辟子线程
+const worker = new Worker("/javascripts/worker.js")
+</code></pre>
+
+<p>需要注意的是，<strong>参数 URL 不能是本地的文件，只能是通过网络来下载的文件并且是同源</strong>，如果下载失败。则不会创建子线程。比如上述的 <code class="highlighter-rouge">"/javascripts/worker.js"</code> 就是 Express 项目启动后所访问的资源文件路径。</p>
+
+<pre><code class="language-TEXT"># 引用本地文件报错
+Uncaught DOMException: Failed to construct 'Worker': Script at 'file:///Users/xxx/worker.js' cannot be accessed from origin 'null'.
+</code></pre>
+
+<h3 id="线程通信">线程通信</h3>
+
+<p>在创建了子线程后，我们需要在主线程和子线程中互相通信。主线程和 Worker 线程提供以下常用的方法和事件句柄:</p>
+
+<ul>
+  <li>主线程
+    <ul>
+      <li><strong>Worker.postMessage</strong> - 发送一条消息到最近的外层对象，消息可由任何 JavaScript 对象组成</li>
+      <li><strong>Worker.terminate</strong> - 立即在主线程终止 worker。另外关闭页面也可以终止。在子线程中关闭则需要使用 <strong>close</strong> 方法</li>
+      <li><strong>Worker.onmessage</strong> - 当 MessageEvent 类型的事件冒泡到 worker 时，事件监听函数 EventListener 被调用，消息保存在事件对象的 data 属性中</li>
+      <li><strong>Worker.onmessageerror</strong> - 指定 messageerror 事件的监听函数。发送的数据无法序列化成字符串时，会触发这个事件</li>
+      <li><strong>Worker.onerror</strong> - 当 ErrorEvent 类型的事件冒泡到 worker 时，事件监听函数 EventListener 被调用</li>
+    </ul>
+  </li>
+  <li>Worker 线程
+    <ul>
+      <li><strong>self.name</strong> - 指定 Worker 的名称，用来区分多个 Worker 线程</li>
+      <li><strong>self.postMessage</strong> - 向产生这个 Worker 线程的线程发送消息</li>
+      <li><strong>self.close</strong> - 关闭 Worker 线程</li>
+      <li><strong>self.onmessage</strong> - 指定 message 事件的监听函数</li>
+      <li><strong>self.onmessageerror</strong> - 指定 messageerror 事件的监听函数。发送的数据无法序列化成字符串时，会触发这个事件</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>也可以选择使用 <strong>addEventListener</strong> 方法，它最终的实现方式和作用和 onmessage 相同</p>
+</blockquote>
+
+<blockquote>
+  <p>Worker 线程一旦新建成功，就会始终运行，不会被主线程上的活动(比如用户点击按钮、提交表单)打断。这样有利于随时响应主线程的通信，但是也造成了一定的资源浪费，所以不再使用时应该调用 <strong>terminate</strong> 或 <strong>close</strong> 方法进行关闭，从而释放资源</p>
+</blockquote>
+
+<p>我们来看下最简单的示例:</p>
+
+<pre><code class="language-JS">// main.js
+// create worker
+const worker = new Worker("/javascripts/worker.js")
+
+// Send message to worker
+worker.postMessage("这是主线程发送的信息")
+
+// Receive message from worker
+worker.onmessage = (e) =&gt; {
+  console.log(e.data)
+}
+
+// worker,onerror = ...
+</code></pre>
+
+<pre><code class="language-JS">// worker.js
+name = 'Tate' // 指定 Worker 的名称，用来区分多个 Worker 线程
+
+// Receive message from main file
+onmessage = (e) =&gt; {
+  console.log(e.data)
+  // Send message to main file
+  postMessage("这是 worker 发送的信息")
+}
+
+// self.close() // 关闭该子线程
+
+// self 和 this 代表子线程自身，即子线程的全局对象
+console.log('this or self', self, this)
+console.log('location', location)
+</code></pre>
+
+<p>当我们运行项目时，便能看到对应的打印信息，我们可以看到，在后台我们仍然可以访问如下 API 和处理事件监听:</p>
+
+<pre><code class="language-TEXT"># this or self
+name: "Tate"
+onmessage: (e) =&gt; {…}
+onmessageerror: null
+self: DedicatedWorkerGlobalScope {name: "", onmessageerror: null, onmessage: ƒ, postMessage: ƒ, close: ƒ, …}
+location: WorkerLocation {href: "http://localhost:3000/javascripts/worker.js", origin: "http://localhost:3000", protocol: "http:", host: "localhost:3000", hostname: "localhost", …}
+onerror: null
+onlanguagechange: null
+navigator: WorkerNavigator {hardwareConcurrency: 12, appCodeName: "Mozilla", appName: "Netscape", appVersion: "5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKi…L, like Gecko) Chrome/79.0.3945.130 Safari/537.36", platform: "MacIntel", …}
+onrejectionhandled: null
+onunhandledrejection: null
+isSecureContext: true
+origin: "http://localhost:3000"
+</code></pre>
+
+<pre><code class="language-TEXT"># location
+href: "http://localhost:3000/javascripts/worker.js"
+origin: "http://localhost:3000"
+protocol: "http:"
+host: "localhost:3000"
+hostname: "localhost"
+port: "3000"
+pathname: "/javascripts/worker.js"
+search: ""
+hash: ""
+</code></pre>
+
+<h3 id="数据通信">数据通信</h3>
+
+<p>主线程与 Worker 之间的通信内容，可以是文本，也可以是对象。需要注意的是，<strong>这种通信是拷贝关系，即是传值而不是传址</strong>，Worker 对通信内容的修改，不会影响到主线程。事实上，浏览器内部的运行机制是，先将通信内容串行化，然后把串行化后的字符串发给 Worker，后者再将它还原。主线程与 Worker 之间也可以交换二进制数据，比如 File、Blob、ArrayBuffer 等类型，也可以在线程之间发送:</p>
+
+<pre><code class="language-JS">// 主线程
+var uInt8Array = new Uint8Array(new ArrayBuffer(10))
+
+for (var i = 0 i &lt; uInt8Array.length ++i) {
+  uInt8Array[i] = i * 2 // [0, 2, 4, 6, 8,...]
+}
+
+worker.postMessage(uInt8Array)
+
+// Worker 线程
+self.onmessage = function (e) {
+  var uInt8Array = e.data
+  postMessage('Inside worker.js: uInt8Array.toString() = ' + uInt8Array.toString())
+  postMessage('Inside worker.js: uInt8Array.byteLength = ' + uInt8Array.byteLength)
+}
+</code></pre>
+
+<p>但是，拷贝方式发送二进制数据，会造成性能问题。比如，主线程向 Worker 发送一个 500MB 文件，默认情况下浏览器会生成一个原文件的拷贝。为了解决这个问题，JavaScript 允许主线程把二进制数据直接转移给子线程，但是一旦转移，主线程就无法再使用这些二进制数据了，这是为了防止出现多个线程同时修改数据的麻烦局面。这种转移数据的方法，叫做 <a href="http://w3c.github.io/html/infrastructure.html#transferable-objects"><strong>Transferable Objects</strong></a>。这使得主线程可以快速把数据交给 Worker，对于影像处理、声音处理、3D 运算等就非常方便了，不会产生性能负担。如果要直接转移数据的控制权，就要使用下面的写法:</p>
+
+<pre><code class="language-JS">// Transferable Objects 格式
+worker.postMessage(arrayBuffer, [arrayBuffer])
+
+// 例子
+var ab = new ArrayBuffer(1)
+worker.postMessage(ab, [ab])
+
+// 高效的发送 ArrayBuffer 数据代码
+worker.postMessage({
+ operation: 'list_all_users',
+ // ArrayBuffer object
+ input: buffer,
+ threshold: 0.8,
+}, [buffer]);
+</code></pre>
+
+<h3 id="importscripts">importScripts</h3>
+
+<p>Worker 内部还可以使用 <strong>importScripts</strong> 方法来加载其他的脚本文件:</p>
+
+<pre><code class="language-JS">/**
+ * 需要注意的是 importScripts 是同步方法
+ * 使用 importScripts 方法引入外部资源脚本，在这里我们使用了数学公式计算工具库 math_utilities.js
+ * 当 JavaScript 引擎对这个资源文件加载完毕后，继续执行下面的代码。同时，下面的的代码可以访问和调用在资源文件中定义的变量和方法。
+ **/
+importScripts('math_utilities.js')
+
+// 引入多个脚本文件
+importScripts('script1.js', 'script2.js')
+</code></pre>
+
+<h2 id="共享线程">共享线程</h2>
+
+<p>共享线程是为了避免线程的重复创建和销毁过程，降低了系统性能的消耗，共享线程 SharedWorker 可以同时有多个页面的线程链接。使用 SharedWorker 创建共享线程，也需要提供一个脚本文件的 URL 地址或 Blob，该脚本文件中包含了我们在线程中需要执行的代码:</p>
+
+<pre><code class="language-JS">// 第二个参数 mysharedworker 代表了共享线程的名称
+const worker = new SharedWorker('sharedworker.js', 'mysharedworker')
+</code></pre>
+
+<p>共享线程也使用了 message 事件监听线程消息，但使用 SharedWorker 对象的 <code class="highlighter-rouge">port</code> 属性与线程进行通信:</p>
+
+<pre><code class="language-JS">// 从端口接收数据, 包括文本数据以及结构化数据
+worker.port.onmessage = function (event) { define your logic here... }
+// 向端口发送普通文本数据
+worker.port.postMessage('put your message here … ')
+// 向端口发送结构化数据
+worker.port.postMessage({ username: 'usertext'; live_city: ['data-one', 'data-two', 'data-three','data-four']})
+</code></pre>
+
+<h2 id="实例worker-线程复杂计算">实例：Worker 线程复杂计算</h2>
+
+<p>我们知道当有复杂耗时计算的时候，往往会影响后续代码的执行，而且会影响用户体验，因此在后台去计算不失为一个好的方法:</p>
+
+<pre><code class="language-JS">// main.js
+const worker = new Worker("/javascripts/worker.js")
+
+worker.postMessage({
+  first: 3477340803423744400,
+  second: 34237444003423744400,
+})
+
+worker.onmessage = function (event) {
+  // 显示计算之后拿到的数值
+  document.getElementById('computation_result').textContent = event.data
+}
+</code></pre>
+
+<pre><code class="language-JS">// worker.js
+// calculate the greatest common divisor
+const divisor = (a, b) =&gt; a % b == 0 ? b : divisor(b, a % b)
+
+// calculate the least common multiple
+const multiple = (a,  b) =&gt; a * b / divisor(a, b) || 0
+
+/*
+* calculate the least common multiple
+* and the greatest common divisor
+*/
+const calculate = (first, second) =&gt; {
+  // do the calculation work
+  const common_divisor = divisor(first, second)
+  const common_multiple = multiple(first, second)
+  postMessage(`Work done!The least common multiple is ${common_divisor} and the greatest common divisor is ${common_multiple}`)
+}
+
+/**
+ * This worker is used to calculate
+ * the least common multiple
+ * and the greatest common divisor
+ */
+onmessage = function (event) {
+  const { data: { first, second } = {} } = event
+  calculate(first, second)
+}
+</code></pre>
+
+<h2 id="实例worker-线程完成轮询">实例：Worker 线程完成轮询</h2>
+
+<p>有时，浏览器需要轮询服务器状态，以便第一时间得知状态改变。这个工作可以放在 Worker 里面。Worker 每秒钟轮询一次数据，然后跟缓存做比较。如果不一致，就说明服务端有了新的变化，因此就要通知主线程:</p>
+
+<pre><code class="language-JS">function createWorker(f) {
+  var blob = new Blob(['(' + f.toString() +')()'])
+  var url = window.URL.createObjectURL(blob)
+  var worker = new Worker(url)
+  return worker
+}
+
+var pollingWorker = createWorker(function (e) {
+  var cache
+
+  function compare(new, old) { ... }
+
+  setInterval(function () {
+    fetch('/my-api-endpoint').then(function (res) {
+      var data = res.json()
+
+      if (!compare(data, cache)) {
+        cache = data
+        self.postMessage(data)
+      }
+    })
+  }, 1000)
+})
+
+pollingWorker.onmessage = function () {
+  // render data
+}
+
+pollingWorker.postMessage('init')
+</code></pre>
+
+<h2 id="实例共享线程处理多用户并发连接">实例：共享线程处理多用户并发连接</h2>
+
+<p>由于线程的构建以及销毁都要消耗很多的系统性能，例如 CPU 的处理器调度，内存的占用回收等，在一般的编程语言中都会有<strong>线程池</strong>的概念，线程池是一种对多线程并发处理的形式，在处理过程中系统将所有的任务添加到一个任务队列，然后在构建好线程池以后自动启动这些任务。处理完任务后再把线程收回到线程池中，用于下一次任务调用。线程池也是共享线程的一种应用。</p>
+
+<p>在 HTML5 中也引入了共享线程技术，但是由于每个共享线程可以有多个连接，HTML5 对共享线程提供了和普通工作线程稍微有些区别的 API 接口。下面我们给出一个例子：创建一个共享线程用于接收从不同连接发送过来的指令，然后实现自己的指令处理逻辑，指令处理完成后将结果返回到各个不同的连接用户:</p>
+
+<pre><code class="language-HTML">&lt;body&gt;
+  &lt;output id='response_from_worker'&gt;
+  send instructions to shared worker:
+  &lt;input type="text" autofocus oninput="postMessageToSharedWorker(this);return false;"&gt;
+&lt;/body&gt;
+&lt;script&gt;
+ var worker = new SharedWorker('sharedworker.js')
+ var log = document.getElementById('response_from_worker')
+ worker.port.addEventListener('message', function(e) {
+  // log the response data in web page
+  log.textContent = e.data
+  }, false)
+ worker.port.start() // 启动端口，用于 addEventListener 来监听 message
+ worker.port.postMessage('ping from user web page..')
+  
+ // following method will send user input to sharedworker
+ function postMessageToSharedWorker(input) {
+  //define a json object to construct the request
+  var instructions = { instruction: input.value }
+  worker.port.postMessage(instructions)
+ }
+&lt;/script&gt;
+</code></pre>
+
+<p>接下来是用于处理用户指令的共享线程代码，创建一个共享线程用于接收从不同连接发送过来的指令，指令处理完成后将结果返回到各个不同的连接用户。:</p>
+
+<pre><code class="language-JS">/*
+* define a connect count to trace connecting
+* this variable will be shared within all connections
+*/
+var connect_number = 0
+
+onconnect = function(e) {
+  connect_number = connect_number + 1;
+  // get the first port here
+  var port = e.ports[0]
+  // 每次刷新页面，共享线程重新实例化的时候会进行连接，此时连接数加 1
+  port.postMessage('A new connection! The current connection number is ' + connect_number)
+  port.onmessage = function(e) {
+  // get instructions from requester
+  var instruction = e.data.instruction
+  var results = execute_instruction(instruction)
+  port.postMessage('Request: ' + instruction + ' Response ' + results + ' from shared worker...')
+ }
+}
+
+/*
+* this function will be used to execute the instructions send from requester
+* @param instruction
+* @return
+*/
+function execute_instruction(instruction) {
+  var result_value
+  // implement your logic here
+  // execute the instruction...
+  return result_value
+}
+</code></pre>
+
+<p>在上面的共享线程例子中，在主页面即各个用户连接页面构造出一个共享线程对象，然后定义了一个方法 <code class="highlighter-rouge">postMessageToSharedWorker</code> 向共享线程发送来之用户的指令。同时，在共享线程的实现代码片段中定义 <code class="highlighter-rouge">connect_number</code> 用来记录连接到这个共享线程的总数。之后，用 <code class="highlighter-rouge">onconnect</code> 事件处理器接受来自不同用户的连接，解析它们传递过来的指令。最后，定义一个了方法 <code class="highlighter-rouge">execute_instruction</code> 用于执行用户的指令，指令执行完成后将结果返回给各个用户。</p>
+
+<p>这里我们并没有跟前面的例子一样使用到了工作线程的 <code class="highlighter-rouge">onmessage</code> 事件处理器，而是使用了另外一种方式 <code class="highlighter-rouge">addEventListener</code>。实际上，这两种的实现原理基本一致，只有有些稍微的差别，如果使用到了 <code class="highlighter-rouge">addEventListener</code> 来接受来自共享线程的消息，那么就要使用 <code class="highlighter-rouge">worker.port.start()</code> 方法来启动这个端口。之后就可以像工作线程的使用方式一样正常的接收和发送消息。</p>
+
+<blockquote>
+  <p>更多场景和示例可以参考 IBM 的这篇<a href="https://www.ibm.com/developerworks/cn/web/1112_sunch_webworker/">多线程编程</a> 👈</p>
+</blockquote>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://www.ibm.com/developerworks/cn/web/1112_sunch_webworker/">IBM - 深入 HTML5 Web Worker 应用实践：多线程编程</a></li>
+  <li><a href="http://www.ruanyifeng.com/blog/2018/07/web-worker.html">Web Worker 使用教程</a> By 阮一峰</li>
+  <li><a href="https://bitsofco.de/web-workers-vs-service-workers-vs-worklets/">bitsofcode - Web workers vs Service workers vs Worklets</a></li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2020/02/21/html-web-woker.html';
+        this.page.identifier = '/2020/02/21/html-web-woker';
+        this.page.title = 'Web Worker';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2020-02-21 17:59:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<script async src="/search/live2d/autoload.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
