@@ -15,7 +15,7 @@
 <meta name="twitter:keywords" content="Git Flow - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git Flow - Tate & Snow">
-<meta name="og:keywords" content="Git Flow - Tate & Snow|Git Flow什么是 GitGit 是一个分布式版本控制系统。版本控制系统 VCS版本控制系统(Version Control System - VCS) 最基本的功能是版本控制。即在文件的修改历程中保留修改历史，让你可以方便地撤销..."
+<meta name="og:keywords" content="Git Flow - Tate & Snow|Git Flow什么是 GitGit 是一个分布式版本控制系统，由大佬 Linux 之父 Linus 亲自编写的，默默流下了羡慕的泪水 😭。版本控制系统 VCS版本控制系统(Version Control System - VCS) ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="Git Flow什么是 GitGit 是一个分布式版本控制系统。版本控制系统 VCS版本控制系统(Version Control System - VCS) 最基本的功能是版本控制。即在文件的修改历程中保留修改历史，让你可以方便地撤销..." property='og:description'
+<meta name="keywords" content="Git Flow什么是 GitGit 是一个分布式版本控制系统，由大佬 Linux 之父 Linus 亲自编写的，默默流下了羡慕的泪水 😭。版本控制系统 VCS版本控制系统(Version Control System - VCS) ..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:2333/2018/03/10/git-flow.html' property='og:url' />
-<meta content="http://localhost:2333/2018/03/10/git-flow.html|Git Flow什么是 GitGit 是一个分布式版本控制系统。版本控制系统 VCS版本控制系统(Version Control System - VCS) 最基本的功能是版本控制。即在文件的修改历程中保留修改历史，让你可以方便地撤销..." property='og:description'
+<meta content="http://localhost:2333/2018/03/10/git-flow.html|Git Flow什么是 GitGit 是一个分布式版本控制系统，由大佬 Linux 之父 Linus 亲自编写的，默默流下了羡慕的泪水 😭。版本控制系统 VCS版本控制系统(Version Control System - VCS) ..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -175,7 +175,7 @@
                       发布时间：2018-03-10 23:36:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-07-19 17:49:00
+                        修改时间：2020-02-24 18:37:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -214,47 +214,35 @@
 
 <h2 id="什么是-git">什么是 Git</h2>
 
-<p><strong>Git</strong> 是一个分布式版本控制系统。</p>
+<p><strong>Git</strong> 是一个分布式版本控制系统，由大佬 Linux 之父 Linus 亲自编写的，默默流下了羡慕的泪水 😭。</p>
 
 <h3 id="版本控制系统-vcs">版本控制系统 VCS</h3>
 
-<p><strong>版本控制系统(Version Control System - VCS)</strong> 最基本的功能是版本控制。即在文件的修改历程中保留修改历史，让你可以方便地撤销之前对文件的修改操作。</p>
+<p><strong>版本控制系统(Version Control System - VCS)</strong> 最基本的功能是版本控制。即在文件的修改历程中保留修改历史，让你可以方便地撤销之前对文件的修改操作:</p>
 
-<p><strong>中央式版本控制系统(Centralized VCS)</strong> 都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。缺点是中央服务器的单点故障可能导致无法提交更新，甚至可能丢失历史记录。</p>
-
-<p><strong>分布式版本控制系统(Distributed VCS)</strong> 客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份。</p>
+<ul>
+  <li><strong>中央式版本控制系统(Centralized VCS)</strong> - 都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。缺点是中央服务器的单点故障可能导致无法提交更新，甚至可能丢失历史记录。</li>
+  <li><strong>分布式版本控制系统(Distributed VCS)</strong> - 客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份。</li>
+</ul>
 
 <p><img src="https://i.loli.net/2018/03/09/5aa23d502bf86.png" alt="VCS" /></p>
 
-<h3 id="svn">SVN</h3>
+<h3 id="git-vs-svn">Git vs SVN</h3>
 
 <p><strong>SVN</strong> 作为 CVCS，Git 相比 SVN 的主要优点:</p>
 
 <ul>
-  <li><strong>直接记录快照，而非差异比较</strong></li>
+  <li><strong>直接记录快照，而非差异比较</strong> - Git 存储项目随时间改变的快照，效率更高；而 SVN 存储每个文件与初始版本的差异。</li>
+  <li><strong>近乎所有操作都是本地执行</strong> - Git 中的绝大多数操作都只需要访问本地文件和资源，所以速度更快，而且无需联网；而 SVN 处于断网状态时是无法提交更新的。</li>
+  <li><strong>数据完整性</strong> - Git 中所有数据在存储前都通过 SHA-1 散列计算校验和，然后以校验和来引用。实际上，Git 数据库中保存的信息都是以文件内容的哈希值来索引，而不是文件名，如 commit id。</li>
+  <li><strong>更优的分支</strong> - Git 中分支(branch)的创建实际上是创建了一个可以移动的新的指针，操作几乎能在瞬间完成，并且在不同分支之间的切换操作也是一样便捷；而 SVN 中的分支是一个完整的目录，且这个目录拥有完整的实际文件，占用空间大且低效。</li>
 </ul>
-
-<p>Git 存储项目随时间改变的快照，效率更高；而 SVN 存储每个文件与初始版本的差异。</p>
-
-<ul>
-  <li><strong>近乎所有操作都是本地执行</strong></li>
-</ul>
-
-<p>Git 中的绝大多数操作都只需要访问本地文件和资源，所以速度更快，而且无需联网；而 SVN 处于断网状态时是无法提交更新的。</p>
-
-<ul>
-  <li><strong>数据完整性</strong></li>
-</ul>
-
-<p>Git 中所有数据在存储前都通过 SHA-1 散列计算校验和，然后以校验和来引用。实际上，Git 数据库中保存的信息都是以文件内容的哈希值来索引，而不是文件名，如 commit id。</p>
-
-<ul>
-  <li><strong>更优的分支</strong></li>
-</ul>
-
-<p>Git 中分支(branch)的创建实际上是创建了一个可以移动的新的指针，操作几乎能在瞬间完成，并且在不同分支之间的切换操作也是一样便捷；而 SVN 中的分支是一个完整的目录，且这个目录拥有完整的实际文件，占用空间大且低效。</p>
 
 <h2 id="git-flow-1">Git Flow</h2>
+
+<p>Git 如此优秀的版本控制工具，给我们提供了极大的便利，但是在实际工作中，一个项目可能需要很多人维护，协同工作就成为了一个巨大的威胁。而且有可能我们只用到 Master 或者 Develop 少数的分支，并且提交历史混乱。基于上述情况，我们需要一个清晰的流程和规范，来更大程度上地享受 Git 带来的便利，这就是接下来要介绍的 <a href="https://nvie.com/posts/a-successful-git-branching-model/"><strong>Git Flow</strong></a>。</p>
+
+<h3 id="流程图">流程图</h3>
 
 <p>Git Flow 常用的分支:</p>
 
@@ -294,6 +282,91 @@
 <blockquote>
   <p>Git 中分支实际上是指向某个 commit 的指针。</p>
 </blockquote>
+
+<h3 id="git-命令">Git 命令</h3>
+
+<p>流程我们知道了，那么如何去运用呢，一般情况下我们可以直接使用命令行，不妨来看看栗子:</p>
+
+<pre><code class="language-SHELL"># -------------------- feature ------------------------
+# 创建 feature 分支并开发
+gco -b smd-feature develop
+# 完成 feature 分支，合并到 develop，并删除
+gco develop &amp;&amp; gl
+grb develop smd-feature
+gm smd-feature &amp;&amp; gp # rebase 合并到 develop
+
+gb -d smd-feature # 删除本地
+# gp origin :smd-feature # 若推送过远端则删除远端分支
+
+# -------------------- release ------------------------
+# 创建 release 分支，准备发布
+gco -b release-0.1.0 develop
+# 完成 release，分别合并到 master 和 develop，然后删除打标签
+gcm &amp;&amp; gl
+grb master release-0.1.0
+gm release-0.1.0 &amp;&amp; gp
+
+gco develop &amp;&amp; gl
+grb develop release-0.1.0
+gm release-0.1.0 &amp;&amp; gp
+
+gb -d release-0.1.0
+
+git tag -a v0.1.0 master # 打标签
+gp --tags
+
+# -------------------- hotfix ------------------------
+# 创建 hotfix 修复
+gco -b hotfix-0.1.1 master
+# 完成 hotfix 修复，分别合并到 master 和 develop，然后删除打标签
+# 省略一万个字，同 release 操作
+git tag -a v0.1.1 master
+gp --tags
+</code></pre>
+
+<h3 id="git-flow-命令">git flow 命令</h3>
+
+<p>我们可以看到，通过 Git 命令去实现工作流还是很繁琐的，很可能你会漏掉一些。因此我们可以借助一些工具，比如 Git flow script:</p>
+
+<pre><code class="language-SHELL"># 安装 git-flow
+brew install git-flow
+</code></pre>
+
+<pre><code class="language-SHELL"># 初始化
+git flow init
+# 开始 feature
+git flow feature start smd-feature
+# 发布 feature
+git flow feature publish smd-feature
+# 获取已发布的 feature
+git flow feature pull origin smd-feature
+# 完成 feature
+git flow feature finish smd-feature
+# 开始 release
+git flow release start RELEASE [BASE]
+# 发布 release
+git flow release publish RELEASE
+# 完成 release
+git flow release finish RELEASE
+# 开始 hotfix
+git flow hotfix start VERSION [BASENAME]
+# 发布 hotfix
+git flow hotfix finish VERSION
+</code></pre>
+
+<blockquote>
+  <p>上述发布(release)动作指的是 push 到远端</p>
+</blockquote>
+
+<p><img src="https://i.loli.net/2020/02/24/4FMWxPZGkHN9i3Q.png" alt="git-flow.png" /></p>
+
+<h3 id="sourcetree">Sourcetree</h3>
+
+<p>我们还可以通过 GUI 来更便捷的去操作，可视化效果会更好，值得推荐的是 <a href="https://www.sourcetreeapp.com"><strong>Sourcetree</strong></a>，我们来看看 gitflow 对应的操作图，我们只用点击对应的功能按键就可以实现上述一些功能:</p>
+
+<p><img src="https://i.loli.net/2020/02/24/Bl4x7YUJFiuLjIf.png" alt="source-tree.png" /></p>
+
+<p><img src="https://i.loli.net/2020/02/24/xQdhcXaFEBWHN32.png" alt="source-tree-2.png" /></p>
 
 <h2 id="gitignore">.gitignore</h2>
 
