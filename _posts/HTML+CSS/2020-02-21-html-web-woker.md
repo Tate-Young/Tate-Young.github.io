@@ -18,7 +18,7 @@ tags:
 
 我们都知道 JavaScript 是单线程的，也就是说代码同步执行时，后续代码必须等到前面代码执行完了才能执行。但是如果前面代码耗时较长怎么办，不能干等着，有些场景我们可以用异步来处理，比如 ajax 请求服务器数据，但是这仍然没有改变代码单线程执行的本质，我们依旧不能把耗时的复杂运算放在页面上执行，不然会造成无响应，影响用户体验。因此为了实现多线程，就必须用到 [**Web Worker**](https://developer.mozilla.org/zh-CN/docs/Web/API/Worker)。
 
-HTML5 提出了 Web Worker 标准，表示 JavaScript 允许有多个线程，但是子线程完全受主线程的控制，且子线程**不能操作 DOM。由于位于外部文件，也不能访问 Window、Document 等对象**。并且规范出 Web Worker 的三大主要特征
+HTML5 提出了 Web Worker 标准，表示 JavaScript 允许有多个线程，但是子线程完全受主线程的控制，且子线程**不能操作 DOM。由于位于外部文件，也不能访问 Window、Document 等对象**。并且规范出 Web Worker 的三大主要特征:
 
 1. 能够长时间运行和响应
 2. 理想的启动性能

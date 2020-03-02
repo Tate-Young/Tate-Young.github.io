@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "WebAssembly - ",
+		"url" : "/2020/03/02/webassembly.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Web Worker - ",
 		"url" : "/2020/02/21/html-web-woker.html"
 	}
