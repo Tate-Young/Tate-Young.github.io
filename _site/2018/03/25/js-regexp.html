@@ -15,7 +15,7 @@
 <meta name="twitter:keywords" content="正则表达式 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式 - Tate & Snow">
-<meta name="og:keywords" content="正则表达式 - Tate & Snow|正则表达式什么是正则表达式正则表达式(Regular Expressions) 是用于匹配字符串中字符组合的模式，构建正则表达式有两种形式:/*   /pattern/flags*/var regex = /[0-9a-zA-Z]/g..."
+<meta name="og:keywords" content="正则表达式 - Tate & Snow|正则表达式什么是正则表达式正则表达式(Regular Expressions) 是用于匹配字符串中字符组合的模式，构建正则表达式有两种形式:/*   /pattern/flags*/const reg = /[0-9a-zA-Z]/g..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="正则表达式什么是正则表达式正则表达式(Regular Expressions) 是用于匹配字符串中字符组合的模式，构建正则表达式有两种形式:/*   /pattern/flags*/var regex = /[0-9a-zA-Z]/g..." property='og:description'
+<meta name="keywords" content="正则表达式什么是正则表达式正则表达式(Regular Expressions) 是用于匹配字符串中字符组合的模式，构建正则表达式有两种形式:/*   /pattern/flags*/const reg = /[0-9a-zA-Z]/g..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:2333/2018/03/25/js-regexp.html' property='og:url' />
-<meta content="http://localhost:2333/2018/03/25/js-regexp.html|正则表达式什么是正则表达式正则表达式(Regular Expressions) 是用于匹配字符串中字符组合的模式，构建正则表达式有两种形式:/*   /pattern/flags*/var regex = /[0-9a-zA-Z]/g..." property='og:description'
+<meta content="http://localhost:2333/2018/03/25/js-regexp.html|正则表达式什么是正则表达式正则表达式(Regular Expressions) 是用于匹配字符串中字符组合的模式，构建正则表达式有两种形式:/*   /pattern/flags*/const reg = /[0-9a-zA-Z]/g..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -219,14 +219,17 @@
 <pre><code class="language-JS">/*
    /pattern/flags
 */
-var regex = /[0-9a-zA-Z]/g;
+const reg = /[0-9a-zA-Z]/g;
 </code></pre>
 
 <pre><code class="language-JS">/*
     new RegExp(pattern [, flags])
 */
-var regex = new RegExp('[0-9a-zA-Z]', 'g');
-var regex = new RegExp(/[0-9a-zA-Z]/g);
+const reg = new RegExp('[0-9a-zA-Z]', 'g');
+const reg = new RegExp(/[0-9a-zA-Z]/g);
+
+// 还可以使用变量
+const reg = new RegExp(`.+(?=${c})`, 'g')
 </code></pre>
 
 <h2 id="特殊字符pattern">特殊字符(pattern)</h2>
