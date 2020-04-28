@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 记各种调试和兼容问题
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-12-19 14:03:00 GMT+0800 (CST)
+update: 2020-04-27 15:43:00 GMT+0800 (CST)
 background-image: /style/images/js.png
 tags:
 - Other
@@ -132,6 +132,11 @@ mitmproxy -s mitm.py
 2、在 chrome 浏览器输入 <code>chrome://inspect/#devices</code> 打开 inspect 调试器，上面会显示所连接的设备上的页面，点击 inspect 就可以调试啦。
 
 ![debugger-inspect.png](https://i.loli.net/2018/11/22/5bf616017176c.png)
+
+但是注意，如果安卓没有搜到开发者选项，有个方法可以启动开发者模式，参考的[解决方案在这里](https://stackoverflow.com/questions/21925992/chrome-devtools-devices-does-not-detect-device-when-plugged-in/57524521#57524521):
+
+1. Settings / About phone / Software information / Build number (**tap it 7 times to turn on developer mode**)
+2. Settings / Developer options / USB debugging (turn it on)
 
 ## Chrome 小技巧
 

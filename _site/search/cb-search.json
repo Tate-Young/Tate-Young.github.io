@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Redux Toolkit - ",
+		"url" : "/2020/04/28/react-redux-toolkit.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "WebAssembly - ",
 		"url" : "/2020/03/02/webassembly.html"
 	}
