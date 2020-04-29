@@ -175,6 +175,8 @@
                       发布时间：2018-08-14 22:50:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2020-04-29 14:19:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -478,6 +480,10 @@ export default combineReducers({
 // reduxsauce 的写法
 const editComponent = (state = INITIAL_STATE, action) =&gt; state.set('activeData', action.component)
 </code></pre>
+
+<h2 id="immer">immer</h2>
+
+<p>这里 <strong>immer</strong> 是新补充的，使用 RTK 的时候发现它为 reducer 集成了 immer 这个工具。具体<a href="http://localhost:2333/2020/04/28/react-redux-toolkit.html#immer">可以移步这里</a> 👈</p>
 
 <h2 id="参考链接">参考链接</h2>
 

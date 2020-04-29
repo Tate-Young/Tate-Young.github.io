@@ -291,7 +291,7 @@ export function fetchPosts(subreddit) {
 }
 ```
 
-> 异步建议使用 **redux-saga** 来处理数据的读取。不同于 redux-thunk，你不会再遇到回调地狱了，你可以很容易地测试异步流程并保持你的 action 是干净的。
+> 异步建议使用 **redux-saga** 来处理数据的读取。不同于 redux-thunk，你不会再遇到回调地狱了，你可以很容易地测试异步流程并保持你的 action 是干净的。当然我们现在有更多选择，比如 [**redux-observable**](https://redux-observable.js.org/docs/basics/Epics.html)
 
 ## React-Redux
 
