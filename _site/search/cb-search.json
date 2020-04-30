@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "移动端跨平台方案 - ",
+		"url" : "/2020/04/30/mobile-cross-platform-solution.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Redux Toolkit - ",
 		"url" : "/2020/04/28/react-redux-toolkit.html"
 	}
