@@ -831,10 +831,6 @@ const wrappedSlice = createGenericSlice({
 
 <p><img src="https://immerjs.github.io/immer/img/immer.png" alt="immer draftState" /></p>
 
-<blockquote>
-  <p><strong>Freeze</strong> indicates that the state tree has been frozen after producing it. This is a development best practice, as it prevents developers from accidentally modifying the state tree.</p>
-</blockquote>
-
 <p>让我们看个简单的官方栗子，是不是很简洁:</p>
 
 <pre><code class="language-JS">import produce from "immer"
@@ -853,10 +849,14 @@ const nextState = produce(baseState, draftState =&gt; {
 })
 </code></pre>
 
+<p>之前也有介绍 <a href="( http://localhost:2333/2018/08/14/immutable.html )"><strong>immutable.js</strong></a> 的文章，可以比较下两者具体的差异。immer 相较之下更轻便，学习成本低，与 TS 结合更好，更重要的是可以直接操作原生数据结构，可以抛弃 fromJS 和 toJS 大法，真香 🍚。</p>
+
+<p>还有一点就是性能上的问题，在某些层面上，immer 甚至要比纯 reducer 更加高效，因为 immer 会检测到那些没有修改的 state，从而返回原始值，而不是返回新的 state，这样就可以避免很多不必要的渲染。下图是来自官方的一个简单性能对比:</p>
+
 <p><img src="https://immerjs.github.io/immer/img/performance.png" alt="immer performance" /></p>
 
 <blockquote>
-  <p>之前也有介绍 <a href="( http://localhost:2333/2018/08/14/immutable.html )"><strong>immutable.js</strong></a> 的文章，可以比较下两者具体的差异。immer 相较之下更轻便，学习成本低，与 TS 结合更好，更重要的是可以直接操作原生数据结构，可以抛弃 fromJS 和 toJS 大法，真香 🍚。</p>
+  <p><strong>Freeze</strong> indicates that the state tree has been frozen after producing it. This is a development best practice, as it prevents developers from accidentally modifying the state tree.</p>
 </blockquote>
 
 <h3 id="produce">produce</h3>

@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Redux Toolkit
 date:   2020-04-28 14:11:00 GMT+0800 (CST)
-UPdate: 2020-04-29 17:56:00 GMT+0800 (CST)
+UPdate: 2020-04-30 10:50:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/08/5b6a497fea578.png
 tags:
 - React
@@ -652,8 +652,6 @@ const wrappedSlice = createGenericSlice({
 
 ![immer draftState](https://immerjs.github.io/immer/img/immer.png)
 
-> **Freeze** indicates that the state tree has been frozen after producing it. This is a development best practice, as it prevents developers from accidentally modifying the state tree.
-
 让我们看个简单的官方栗子，是不是很简洁:
 
 ```JS
@@ -673,9 +671,13 @@ const nextState = produce(baseState, draftState => {
 })
 ```
 
+之前也有介绍 [**immutable.js**](( {{site.url}}/2018/08/14/immutable.html )) 的文章，可以比较下两者具体的差异。immer 相较之下更轻便，学习成本低，与 TS 结合更好，更重要的是可以直接操作原生数据结构，可以抛弃 fromJS 和 toJS 大法，真香 🍚。
+
+还有一点就是性能上的问题，在某些层面上，immer 甚至要比纯 reducer 更加高效，因为 immer 会检测到那些没有修改的 state，从而返回原始值，而不是返回新的 state，这样就可以避免很多不必要的渲染。下图是来自官方的一个简单性能对比:
+
 ![immer performance](https://immerjs.github.io/immer/img/performance.png)
 
-> 之前也有介绍 [**immutable.js**](( {{site.url}}/2018/08/14/immutable.html )) 的文章，可以比较下两者具体的差异。immer 相较之下更轻便，学习成本低，与 TS 结合更好，更重要的是可以直接操作原生数据结构，可以抛弃 fromJS 和 toJS 大法，真香 🍚。
+> **Freeze** indicates that the state tree has been frozen after producing it. This is a development best practice, as it prevents developers from accidentally modifying the state tree.
 
 ### produce
 
