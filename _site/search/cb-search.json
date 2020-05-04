@@ -11,6 +11,14 @@
 	
     
 	{
+		"title" : "移动端跨平台方案 - ",
+		"url" : "/2020/04/30/js-floating-points.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "Redux Toolkit - ",
 		"url" : "/2020/04/28/react-redux-toolkit.html"
 	}
@@ -404,7 +412,7 @@
     
 	{
 		"title" : "Immutable - ",
-		"url" : "/2018/08/14/immutable.html"
+		"url" : "/2018/08/14/js-immutable.html"
 	}
 	
 	,
