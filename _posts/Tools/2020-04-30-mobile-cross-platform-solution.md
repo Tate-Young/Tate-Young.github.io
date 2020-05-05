@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  移动端跨平台方案
 date:   2020-04-30 17:24:00 GMT+0800 (CST)
-background-image: https://cdn.merixstudio.com/media/uploads/2019/12/12/how-nativescript-works.png
+background-image: https://cdn.merixstudio.com/media/uploads/2019/12/12/react-native-use-cases-copy.png
 tags:
 - JavaScript
 ---

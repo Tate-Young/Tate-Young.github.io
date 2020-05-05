@@ -2,20 +2,20 @@
 <!DOCTYPE>
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 <head>
-    <meta content='移动端跨平台方案 - Tate & Snow' name='title' />
-    <meta content='移动端跨平台方案 - Tate & Snow' name='og:title' />
+    <meta content='浮点数处理 - Tate & Snow' name='title' />
+    <meta content='浮点数处理 - Tate & Snow' name='og:title' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-    <title>移动端跨平台方案 - Tate & Snow</title>
+    <title>浮点数处理 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>移动端跨平台方案 - Tate & Snow</title>
+<title>浮点数处理 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动端跨平台方案 - Tate & Snow">
-<meta name="twitter:keywords" content="移动端跨平台方案 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="浮点数处理 - Tate & Snow">
+<meta name="twitter:keywords" content="浮点数处理 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动端跨平台方案 - Tate & Snow">
-<meta name="og:keywords" content="移动端跨平台方案 - Tate & Snow|移动端跨平台方案"
+<meta property="og:title" content="浮点数处理 - Tate & Snow">
+<meta name="og:keywords" content="浮点数处理 - Tate & Snow|浮点数处理问题描述在我们日常撸代码的时候，肯定多多少少碰到过以下浮点数计算的问题:0.1 + 0.1 // 0.2 ✅0.1 + 0.2 // 0.300000000000000040.3 - 0.2 // 0.09999999999..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="移动端跨平台方案" property='og:description'
+<meta name="keywords" content="浮点数处理问题描述在我们日常撸代码的时候，肯定多多少少碰到过以下浮点数计算的问题:0.1 + 0.1 // 0.2 ✅0.1 + 0.2 // 0.300000000000000040.3 - 0.2 // 0.09999999999..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:2333/2020/04/30/js-floating-points.html' property='og:url' />
-<meta content="http://localhost:2333/2020/04/30/js-floating-points.html|移动端跨平台方案" property='og:description'
+<meta content='http://localhost:2333/2020/05/05/js-floating-points.html' property='og:url' />
+<meta content="http://localhost:2333/2020/05/05/js-floating-points.html|浮点数处理问题描述在我们日常撸代码的时候，肯定多多少少碰到过以下浮点数计算的问题:0.1 + 0.1 // 0.2 ✅0.1 + 0.2 // 0.300000000000000040.3 - 0.2 // 0.09999999999..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -57,19 +57,19 @@
 </script>
 <meta content="" property="fb:app_id" />
 <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>移动端跨平台方案 | Tate &amp; Snow</title>
+<title>浮点数处理 | Tate &amp; Snow</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="移动端跨平台方案" />
+<meta property="og:title" content="浮点数处理" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="移动端跨平台方案" />
-<meta property="og:description" content="移动端跨平台方案" />
-<link rel="canonical" href="http://localhost:2333/2020/04/30/js-floating-points.html" />
-<meta property="og:url" content="http://localhost:2333/2020/04/30/js-floating-points.html" />
+<meta name="description" content="浮点数处理" />
+<meta property="og:description" content="浮点数处理" />
+<link rel="canonical" href="http://localhost:2333/2020/05/05/js-floating-points.html" />
+<meta property="og:url" content="http://localhost:2333/2020/05/05/js-floating-points.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-04-30T17:24:00+08:00" />
+<meta property="article:published_time" content="2020-05-05T17:52:00+08:00" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/04/30/js-floating-points.html"},"url":"http://localhost:2333/2020/04/30/js-floating-points.html","headline":"移动端跨平台方案","dateModified":"2020-04-30T17:24:00+08:00","datePublished":"2020-04-30T17:24:00+08:00","description":"移动端跨平台方案","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/05/05/js-floating-points.html"},"url":"http://localhost:2333/2020/05/05/js-floating-points.html","headline":"浮点数处理","dateModified":"2020-05-05T17:52:00+08:00","datePublished":"2020-05-05T17:52:00+08:00","description":"浮点数处理","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -163,16 +163,16 @@
             </div>
         </div>
     </header>
-    <a href="#header" class="back-to-top" onclick="onClickTop('移动端跨平台方案')">⤴Top⤴</a>
+    <a href="#header" class="back-to-top" onclick="onClickTop('浮点数处理')">⤴Top⤴</a>
     <div class="post-header-thumb bg-white}">
         <div class="post-header-thumb-op"></div>
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    移动端跨平台方案</h1>
+                    浮点数处理</h1>
                 <div class="post-data">
-                    <time datetime="2020-04-30 17:24:00" itemprop="datePublished">
-                      发布时间：2020-04-30 17:24:00
+                    <time datetime="2020-05-05 17:52:00" itemprop="datePublished">
+                      发布时间：2020-05-05 17:52:00
                       &nbsp;&nbsp;&nbsp;
                       
                     </time>
@@ -194,9 +194,9 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                移动端跨平台方案</h1>
+                浮点数处理</h1>
             <div class="post-data">
-                <time datetime="2020-04-30 17:24:00" itemprop="datePublished">2020-04-30 17:24:00</time>
+                <time datetime="2020-05-05 17:52:00" itemprop="datePublished">2020-05-05 17:52:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -208,7 +208,153 @@
                     </a>
                    
             </p>
-            <h1 id="移动端跨平台方案">移动端跨平台方案</h1>
+            <h1 id="浮点数处理">浮点数处理</h1>
+
+<style>
+  /* 本文插入 img 暂时宽度都调成 100% */
+  img {
+    width: 100%;
+  }
+</style>
+
+<h2 id="问题描述">问题描述</h2>
+
+<p>在我们日常撸代码的时候，肯定多多少少碰到过以下浮点数计算的问题:</p>
+
+<pre><code class="language-JS">0.1 + 0.1 // 0.2 ✅
+0.1 + 0.2 // 0.30000000000000004
+0.3 - 0.2 // 0.09999999999999998
+19.9 * 10 * 10 // 1990 ✅
+19.9 * 100 // 1989.9999999999998
+0.3 / 0.1 // 2.9999999999999996
+</code></pre>
+
+<p>刚碰到的时候一脸问号，难道这是 bug ❓接下来就针对这个问题解释下，看下结果是怎么计算出来的，为啥会有误差，本文主要<a href="https://github.com/camsong/blog/issues/9">摘自这里</a>。 👈</p>
+
+<h2 id="ieee-754-标准">IEEE 754 标准</h2>
+
+<p>JS 遵循的是目前最广泛使用的浮点数运算 <a href="https://zh.wikipedia.org/wiki/IEEE_754"><strong>IEEE 754 标准</strong></a>，使用 64 位固定长度来表示，也就是 <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format"><strong>double 双精度浮点数</strong></a>:</p>
+
+<ul>
+  <li>符号位 S - 第 1 位是正负数符号位（sign），0 代表正数，1 代表负数</li>
+  <li>指数位 E - 中间的 11 位存储指数（exponent），用来表示次方数。决定了数字的大小</li>
+  <li>尾数位 M - 最后的 52 位是尾数（fraction），超出的部分自动进一舍零。决定了数字的精度。</li>
+</ul>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/IEEE_754_Double_Floating_Point_Format.svg" alt="64-bits" /></p>
+
+<blockquote>
+  <p><strong>注意 fraction 由于整数部分肯定是 1，所以一般默认不写，实际上是有 53 位的</strong>。比如 0.1 转换成二进制就是 <code class="highlighter-rouge">0.000110011001100...</code>，<a href="https://zh.wikipedia.org/wiki/科学记数法"><strong>科学记数法</strong></a>表示是 <code class="highlighter-rouge">1.10011...*10^-4</code>，舍去 1 后 <code class="highlighter-rouge">M = 10011...</code>:</p>
+</blockquote>
+
+<p><img src="https://camo.githubusercontent.com/61cae30c09580aba68ffbfcf3b080e9688fd7609/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f36313561643436316130653836343166316238393837316532656666383765662e706e67" alt="fraction" /></p>
+
+<h2 id="简单计算过程">简单计算过程</h2>
+
+<p>标准已经有了，接下来在做浮点数计算的时候，大致要分为三个步骤:</p>
+
+<ol>
+  <li>浮点数 –&gt; 二进制</li>
+  <li>用二进制科学记数法表示</li>
+  <li>遵循 IEEE 754 标准进行展示</li>
+</ol>
+
+<p>第一步和第三步由于要做数据转换，所以可能会出现精度丢失的情况。我们直接来分析个例子:</p>
+
+<pre><code class="language-JS">// 0.1 和 0.2 都转化成二进制后再进行运算
+0.00011001100110011001100110011001100110011001100110011010 +
+0.0011001100110011001100110011001100110011001100110011010 =
+0.0100110011001100110011001100110011001100110011001100111
+
+// 转成十进制则为 0.30000000000000004
+</code></pre>
+
+<blockquote>
+  <p>在线的 demical –&gt; binary <a href="http://www.binaryconvert.com/convert_double.html">转换工具</a> 👈</p>
+</blockquote>
+
+<h2 id="最大安全整数-max_safe_integer">最大安全整数 MAX_SAFE_INTEGER</h2>
+
+<p>由于 fraction 固定长度是 52 位，再加上上面提到省略的一位，最多可以表示的数是 <code class="highlighter-rouge">2^53=9007199254740992</code>，对应科学记数法尾数是 <code class="highlighter-rouge">9.007199254740992</code>，这也是 JS 最多能表示的精度。它的长度是 16，所以可以使用 <code class="highlighter-rouge">toPrecision(16)</code> 来做精度运算，超过的精度会自动做凑整处理。于是就有:</p>
+
+<pre><code class="language-JS">// 返回 0.1000000000000000，去掉末尾的零后正好为 0.1
+0.10000000000000000555.toPrecision(16)
+
+// 采用高精度则会有误差
+0.1.toPrecision(21) = 0.100000000000000005551
+</code></pre>
+
+<p>JS 的<strong>最大安全整数</strong>即为 <code class="highlighter-rouge">2^53 - 1</code>，用常量 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER"><strong>Number.MAX_SAFE_INTEGER</strong></a> 表示，安全存储区间即为 <code class="highlighter-rouge">(-2^53, 2^53)</code>。这里安全存储的意思是指能够准确区分两个不相同的值:</p>
+
+<pre><code class="language-JS">Number.MAX_SAFE_INTEGER // 9007199254740991
+Math.pow(2, 53) - 1     // 9007199254740991
+
+// 安全存储的意思是指能够准确区分两个不相同的值，以下判断在数学上是错误的
+Number.MAX_SAFE_INTEGER + 1 === Number.MAX_SAFE_INTEGER + 2 // true
+</code></pre>
+
+<blockquote>
+  <p>我们可以通过 <code class="highlighter-rouge">Number.isSafeInteger()</code> 方法用来判断传入的参数值是否是一个”安全整数”(safe integer)。</p>
+</blockquote>
+
+<p>那有小盆友就问了，为啥 <code class="highlighter-rouge">2^53</code> 就不是安全整数了呢？</p>
+
+<p><code class="highlighter-rouge">2^53</code> 的确不是一个安全整数，它能够使用 <code class="highlighter-rouge">IEEE 754</code> 表示，但是 <code class="highlighter-rouge">2^53 + 1</code> 不能使用 <code class="highlighter-rouge">IEEE 754</code> 直接表示，在就近舍入和向零舍入中，会被舍入为 <code class="highlighter-rouge">2^53</code>。因此 <code class="highlighter-rouge">2^53</code> 不是安全整数。</p>
+
+<h2 id="最大整数-max_value">最大整数 MAX_VALUE</h2>
+
+<p>JS 同时也定义了最大和最小整数，如果溢出的话会返回无穷大或无穷小，全局变量 <code class="highlighter-rouge">Infinity</code> 表示无穷大:</p>
+
+<pre><code class="language-JS">Number.MAX_VALUE // 1.7976931348623157e+308
+Number.MIN_VALUE // 5e-324
+Number.POSITIVE_INFINITE // Infinity
+Number.NEGATIVE_INFINITE // -Infinity
+</code></pre>
+
+<pre><code class="language-JS">Math.pow(2, 1023) // 8.98846567431158e+307
+
+Math.pow(2, 1024) // Infinity
+</code></pre>
+
+<h2 id="toprecision--tofixed">toPrecision / toFixed</h2>
+
+<p>我们经常用到的将数字转成字符串，通常有以下两个方法:</p>
+
+<ul>
+  <li><strong>toPresicion</strong> - 以指定的精度返回该数值对象的字符串表示</li>
+  <li><strong>toFixed</strong> - 使用定点表示法来格式化一个数值</li>
+</ul>
+
+<p>两者都能对多余数字做凑整处理，有时候也用 toFixed 来做四舍五入，但有些情况却是有问题的，一定要注意，比如:</p>
+
+<pre><code class="language-JS">1.005.toFixed(2) // 1.00, not 1.01
+</code></pre>
+
+<p>上述结果并不是我们想要的结果 1.001，原因就是 1.005 实际对应的数字是 1.00499999999999989，四舍五入后就成了 1.00。一般情况下我们要做数据展示的话还是推荐用以下封装的方法:</p>
+
+<pre><code class="language-JS">const strip: (p: number, k: number) =&gt; number = (num, precision = 12) =&gt; +parseFloat(num.toPrecision(precision))
+
+strip(1.000000001) === 1 // true
+</code></pre>
+
+<p>如果要进行各种运算的话，这里推荐一个第三方库 <a href="https://github.com/nefe/number-precision">number-precision</a>:</p>
+
+<pre><code class="language-JS">import NP from 'number-precision'
+NP.strip(0.09999999999999998) // = 0.1
+NP.plus(0.1, 0.2)             // = 0.3, not 0.30000000000000004
+NP.plus(2.3, 2.4)             // = 4.7, not 4.699999999999999
+NP.minus(1.0, 0.9)            // = 0.1, not 0.09999999999999998
+NP.times(3, 0.3)              // = 0.9, not 0.8999999999999999
+NP.times(0.362, 100)          // = 36.2, not 36.199999999999996
+NP.divide(1.21, 1.1)          // = 1.1, not 1.0999999999999999
+NP.round(0.105, 2)            // = 0.11, not 0.1
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://github.com/camsong/blog/issues/9">JavaScript 浮点数陷阱及解法</a> By camsong</li>
+</ol>
  
 <div id="gitalk-container"></div>
 <script>
@@ -234,9 +380,9 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2020/04/30/js-floating-points.html';
-        this.page.identifier = '/2020/04/30/js-floating-points';
-        this.page.title = '移动端跨平台方案';
+        this.page.url = 'https://tate-young.github.io/2020/05/05/js-floating-points.html';
+        this.page.identifier = '/2020/05/05/js-floating-points';
+        this.page.title = '浮点数处理';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -255,7 +401,7 @@
 
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2020-04-30 17:24:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2020-05-05 17:52:00</p> -->
         </div>
     </article>
 
