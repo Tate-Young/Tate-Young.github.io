@@ -136,11 +136,11 @@ const strip: (p: number, k: number) => number = (num, precision = 12) => +parseF
 strip(1.000000001) === 1 // true
 ```
 
-如果要进行各种运算的话，这里推荐一个第三方库 [number-precision](https://github.com/nefe/number-precision):
+如果要进行各种运算的话，这里推荐一个轻便的第三方库 [number-precision](https://github.com/nefe/number-precision):
 
 ```JS
 import NP from 'number-precision'
-NP.strip(0.09999999999999998) // = 0.1
+NP.strip(0.09999999999999998) // = 0.1, strip a number to nearest right number
 NP.plus(0.1, 0.2)             // = 0.3, not 0.30000000000000004
 NP.plus(2.3, 2.4)             // = 4.7, not 4.699999999999999
 NP.minus(1.0, 0.9)            // = 0.1, not 0.09999999999999998
@@ -149,6 +149,31 @@ NP.times(0.362, 100)          // = 36.2, not 36.199999999999996
 NP.divide(1.21, 1.1)          // = 1.1, not 1.0999999999999999
 NP.round(0.105, 2)            // = 0.11, not 0.1
 ```
+
+## BigInt
+
+[**BigInt**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt) 是 JavaScript 语言中的一个新的原始类型，它提供了一种方法来表示大于 `2^53 - 1` (即最大安全整数)的整数。它可以表示任意大的整数，在某些方面类似于 Number，但是也有几个关键的不同点:
+
+1. 不能用于 Math 对象中的方法
+2. 不能和任何 Number 实例混合运算，两者必须转换成同一种类型。在两种类型来回转换时要小心，因为 BigInt 变量在转换成 Number 变量时可能会丢失精度
+
+要创建一个 BigInt，只需要在末尾追加 `n` 即可。例如，123 要写成 123n。或者通过全局 BigInt 函数可以用来将 Number 转换成 BigInt:
+
+```JS
+typeof 1n === 'bigint' // true
+123 === 123n // false
+123 == 123n // true, 宽松相等
+
+BigInt(123) === 123n
+
+const previousMaxSafe = BigInt(Number.MAX_SAFE_INTEGER)
+// ↪ 9007199254740991n
+
+const maxPlusOne = previousMaxSafe + 1n
+// ↪ 9007199254740992n
+```
+
+> 为了兼容 asm.js，除一元加号(+)运算符外，所有算术运算符都可用于 BigInt。现在浏览器兼容性还不是很好，具体可以查看 [caniuse](https://caniuse.com/#search=bigint) 👈
 
 ## 参考链接
 
