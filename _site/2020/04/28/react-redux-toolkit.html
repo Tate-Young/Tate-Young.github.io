@@ -401,6 +401,14 @@ const preloadedState = {
   visibilityFilter: 'SHOW_COMPLETED'
 }
 
+// 热重载 webpack Hot Module Replacement (HMR)
+if (process.env.NODE_ENV === 'development' &amp;&amp; module.hot) {
+  module.hot.accept('./rootReducer', () =&gt; {
+    const newRootReducer = require('./rootReducer').default
+    store.replaceReducer(newRootReducer)
+  })
+}
+
 const store = configureStore({
   reducer,
   middleware,
@@ -415,6 +423,10 @@ const store = configureStore({
 // - The Redux DevTools Extension is disabled for production
 // - The middleware, batch, and devtools enhancers were automatically composed together
 </code></pre>
+
+<blockquote>
+  <p>注意热重载如果有报错：Property ‘hot’ does not exist on type ‘NodeModule’. 需要注意下有没有安装依赖 <code class="highlighter-rouge">@types/webpack-env</code>。</p>
+</blockquote>
 
 <h3 id="createaction">createAction</h3>
 

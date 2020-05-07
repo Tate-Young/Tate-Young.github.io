@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Redux Toolkit
 date:   2020-04-28 14:11:00 GMT+0800 (CST)
-UPdate: 2020-04-30 10:50:00 GMT+0800 (CST)
+UPdate: 2020-05-07 15:31:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/08/5b6a497fea578.png
 tags:
 - React
@@ -208,6 +208,14 @@ const preloadedState = {
   visibilityFilter: 'SHOW_COMPLETED'
 }
 
+// 热重载 webpack Hot Module Replacement (HMR)
+if (process.env.NODE_ENV === 'development' && module.hot) {
+  module.hot.accept('./rootReducer', () => {
+    const newRootReducer = require('./rootReducer').default
+    store.replaceReducer(newRootReducer)
+  })
+}
+
 const store = configureStore({
   reducer,
   middleware,
@@ -222,6 +230,8 @@ const store = configureStore({
 // - The Redux DevTools Extension is disabled for production
 // - The middleware, batch, and devtools enhancers were automatically composed together
 ```
+
+> 注意热重载如果有报错：Property 'hot' does not exist on type 'NodeModule'. 需要注意下有没有安装依赖 `@types/webpack-env`。
 
 ### createAction
 
