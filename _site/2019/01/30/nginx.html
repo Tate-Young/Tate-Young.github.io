@@ -175,7 +175,7 @@
                       发布时间：2019-01-30 12:15:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-12-16 16:50:00
+                        修改时间：2020-05-12 14:07:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -290,9 +290,54 @@
   </tbody>
 </table>
 
+<h3 id="配置防盗链">配置防盗链</h3>
+
+<p>一般情况下，为了防止图片链接被盗用，如果在白名单外内嵌该链接，则会失效。直接来看个例子，比如下面我们肯定会看到一个破图，它来自掘金网站，但是如果我们<a href="https://user-gold-cdn.xitu.io/2020/3/25/171110dedff44374?imageView2/1/w/1304/h/734/q/85/interlace/1">点击跳转试一下</a>，可以发现它是可以访问的:</p>
+
+<pre><code class="language-TEXT">Failed to load resource: the server responded with a status of 403 ()
+</code></pre>
+
+<p><img src="https://user-gold-cdn.xitu.io/2020/3/25/171110dedff44374?imageView2/1/w/1304/h/734/q/85/interlace/1" alt="referer" /></p>
+
+<p>我们可以利用 <strong>valid_referers</strong> 来进行相关配置，参数如下，看个最简单的示例吧:</p>
+
+<ul>
+  <li>none - 没有 referer 来源信息</li>
+  <li>blocked - referer 不带协议</li>
+  <li>ip</li>
+  <li>server_name - 域名，支持正则及 *</li>
+</ul>
+
+<blockquote>
+  <p>nginx 会通过查看 referer 字段和 valid_referers 后面的 referer 列表参数进行匹配，如果至少匹配一个，<code class="highlighter-rouge">$invalid_referer</code> 字段值就返回为 0，否则为 1。</p>
+</blockquote>
+
+<pre><code class="language-SHELL">server {
+  #listen      80;
+  server_name  localhost di;
+
+  location / {
+    root   /etc/nginx/conf.d;
+    index  index.html index.htm;
+  }
+
+  location ~ .*.(jpg|gif|png) { # 表示对 jpg、gif、png 后缀的文件实行防盗链
+    valid_referers none blocked my_location; # 至少匹配一个则返回 0
+    if ($invalid_referer) { # 没匹配到则返回 1
+      return 403; # or rewrite
+    }
+    root   /etc/nginx/conf.d;
+  }
+  error_page   500 502 503 504  /50x.html;
+  location = /50x.html {
+    root   /usr/share/nginx/html;
+  }
+}
+</code></pre>
+
 <h3 id="反向代理">反向代理</h3>
 
-<p><strong>反向代理</strong>服务器位于用户与目标服务器之间，但是对于用户而言，反向代理服务器就相当于目标服务器，即用户直接访问反向代理服务器就可以获得目标服务器的资源。同时，用户不需要知道目标服务器的地址，也无须在用户端作任何设定。举个配置的例子(<a href="https://juejin.im/post/5b01336af265da0b8a67e5c9">摘自掘进</a>):</p>
+<p><strong>反向代理</strong>服务器位于用户与目标服务器之间，但是对于用户而言，反向代理服务器就相当于目标服务器，即用户直接访问反向代理服务器就可以获得目标服务器的资源。同时，用户不需要知道目标服务器的地址，也无须在用户端作任何设定。举个配置的例子(<a href="https://juejin.im/post/5b01336af265da0b8a67e5c9">摘自掘金</a>):</p>
 
 <pre><code class="language-TEXT">// nginx.conf, 每次修改都要重启才能生效
 user  www www; // 指定 Nginx 工作进程运行的用户及用户组
