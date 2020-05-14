@@ -7,7 +7,7 @@ background: green
 category: 娱乐
 title: 拍照与摄影(下)
 date:   2019-07-03 10:47:00 GMT+0800 (CST)
-update: 2020-02-09 15:58:00 GMT+0800 (CST)
+update: 2020-05-14 11:10:00 GMT+0800 (CST)
 background-image: /style/images/photography/aperture.jpg
 tags:
 - Other
@@ -118,11 +118,19 @@ tags:
 
 变速除了直接点击对应的倍速或自定义变速外，还可以用快捷键，如 `⌘+p` 自动调整倍速，比如它能对 60fps 素材进行最大限度的慢速调整，使得看起来不会丢帧，也无需额外的插入帧处理。
 
-### 隐藏式字幕
+### 字幕
+
+#### 固定字幕
+
+对于固定字幕的制作，往往是十分繁琐和耗费时间的，这里推荐 [caption burner](https://fxfactory.com/info/captionburner/) 插件，我们可以在上面直接根据时间轴编写字幕，也可以通过导入 SRT 等字幕。如果要制作 SRT 字幕的话，我们可以把处理完的视频仅音频导出来，然后在[讯飞听见](https://www.iflyrec.com/)平台通过语音识别翻译成 SRT 格式文件，虽然是收费的，但是很便宜。这样字幕就大功告成啦！
+
+![caption burner](https://fxfactory.com/info/captionburner/banner-light.jpg)
+
+#### 隐藏式字幕
 
 **隐藏式字幕**和一般固定字幕不一样，它在国外网站如 Youtube 用的比较广泛，需要播放器支持，也就是使用不同语言的童鞋可以切换对应的语言字幕。具体插入隐藏式字幕的方式是 `Edit -> Caption -> Add Caption`，默认是黑底白字，最多两行。隐藏式字幕可以单独导出 `File -> Export Captions`，文件格式默认为 itt，注意此格式的字幕不能内嵌于视频内，它与视频是独立的，但是 CEA-608 格式支持内嵌。
 
-> 目前隐藏式字幕一共可设置 ITT、CEA-608、SRT 三种格式的字幕
+> 目前隐藏式字幕一共可设置 `ITT、CEA-608、SRT` 三种格式的字幕
 
 ### 关键帧
 
@@ -139,6 +147,8 @@ tags:
 音频有时候会出现溢出的情况，这时候有个调节的小技巧，就是如下图在音轨上通过 `Option` 点击生成关键帧，注意左右两边至少需要有两个关键帧才方便调节该区域的音轨:
 
 ![音频调节](/style/images/photography/fcpx-audio.png)
+
+> 一般比较推荐的音量设置为：对白 `-12db~-6db`，bgm `-15db~-18db`。这样对白声音音量刚好，不会失真，bgm 也不会显得吵闹 👈
 
 #### 淡入淡出
 
