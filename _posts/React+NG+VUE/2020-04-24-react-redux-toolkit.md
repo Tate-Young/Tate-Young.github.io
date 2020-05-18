@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Redux Toolkit
 date:   2020-04-28 14:11:00 GMT+0800 (CST)
-UPdate: 2020-05-07 15:31:00 GMT+0800 (CST)
+UPdate: 2020-05-18 19:32:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/08/5b6a497fea578.png
 tags:
 - React
@@ -980,6 +980,111 @@ produce(base, d => { for (let x of y) d.push(x) })
 ```
 
 > 更多注意点可以看[官方文档里的 pitfalls](https://immerjs.github.io/immer/docs/pitfalls) 👈
+
+## 从 Redux+immutable.js 迁移到 RTK
+
+### 点语法代理
+
+由于我们做渐进式迁移，数据层主要存在 immutable 和 plain object 两种数据，为了正确获取他们，我们必须取消掉 immutable.js API `getIn`、`get`，通过点语法去操作。因此我们可以通过代理的方式去实现，替换 redux 原有的 `getState` 方法:
+
+```JS
+// consealImmutablejsEnhancer.ts
+import {
+  AnyAction, StoreEnhancer, Reducer, StoreEnhancerStoreCreator,
+} from 'redux'
+import { Iterable } from 'immutable'
+
+// type guard for isIterable
+function isIterable(maybeIterable: any): maybeIterable is Iterable<PropertyKey, any> {
+  return Iterable.isIterable(maybeIterable)
+}
+
+export default function consealImmutablejsEnhancer(): StoreEnhancer {
+  return (createStore: StoreEnhancerStoreCreator) => <S, A extends AnyAction>(
+    reducer: Reducer<S, A>,
+    ...args: any[]
+  ) => {
+    const store = createStore(reducer, ...args)
+    const getState = () => {
+      const state = store.getState()
+      const objectTraps: ProxyHandler<typeof state> = {
+        get(target, propKey: keyof S) {
+          const value = target[propKey]
+          if (typeof value !== 'function') {
+            // 针对 immutable.js 自身的操作，比如 this._root 等等
+            if (isIterable(value)) {
+              return value
+            }
+
+            // 针对普通属性获取，比如点语法
+            if (value === undefined) {
+              if (isIterable(target)) {
+                if (isIterable(target.get(propKey))) {
+                  return new Proxy(target.get(propKey), objectTraps)
+                }
+
+                // 如果不是 immutable.js 封装的数据结构，直接返回
+                return target.get(propKey)
+              }
+            }
+          }
+
+          return value
+        },
+      }
+      const stateProxy = new Proxy(state, objectTraps)
+      return stateProxy
+    }
+
+    return {
+      ...store,
+      getState,
+    }
+  }
+}
+```
+
+之后我们通过中间件加到 store 配置项即可，接下来我们就可以在 `container` 文件中全部用点语法代替 get API 了:
+
+```JS
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: middlewares,
+  enhancers: [consealImmutablejsEnhancer(), errorBoundaryRestoreEnhancer as StoreEnhancer<{}, {}>],
+})
+```
+
+```JS
+// container 文件
+// before
+state.getIn(['app', 'data'])
+
+// after
+state.app.data
+```
+
+### payload 传参
+
+还有个地方需要注意下，RTK 中 action 参数都推荐包裹在 payload 对象中，如果之前是通过多个参数来传递的，必须要改过来:
+
+```JS
+// before
+const setMyState = (name, data) => ({
+  type: types.SET_NEW_ACT_STATE,
+  name,
+  data,
+})
+
+setMyState(name: 'tate', data: 'boy')
+
+// after
+setMyState(state: ILayoutState, { payload }: PayloadAction<ICommonState>) {
+  const { name, data } = payload
+  set(state, name, data)
+},
+
+setMyState({ name: 'tate', data: 'boy' })
+```
 
 ## 参考链接
 
