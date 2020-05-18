@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2020-05-18 17:49:00 GMT+0800 (CST)
+update: 2020-05-18 20:37:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -483,14 +483,15 @@ interface PersonPartial {
 }
 ```
 
-而现在 Typescript 为我们提供了映射类型，能够使得这种转化更加方便，在映射类型里，新类型将以相同的形式去转换旧类型里每个属性，如以上例子可以改写为:
+而现在 Typescript 为我们提供了映射类型，能够使得这种转化更加方便，在映射类型里，新类型将以相同的形式去转换旧类型里每个属性，如以上例子可以通过以下方法来改写:
 
 ```JS
-// 源码
+// 变为只读
 type Readonly<T> = {
   readonly [P in keyof T]: T[P]
 }
 
+// 变为可选
 type Partial<T> = {
   [P in keyof T]?: T[P]
 }
@@ -503,6 +504,29 @@ type Required<T> = {
 type Pick<T, K extends keyof T> = {
   [P in K]: T[P]
 }
+
+// 将 K 中所有的属性的值转化为 T 类型
+type Record<K extends keyof any, T> = {
+  [P in K]: T
+}
+
+type TRecordDemo = Record<'a' | 'b' | 'c', Person> // -> { a: Person; b: Person; c: Person; }
+
+// 从 T 类型中排除出 U
+type Exclude<T, U> = T extends U ? never : T
+type Extract<T, U> = T extends U ? T : never // 反之
+
+type TExcludeDemo = Exclude<'a' | 'b' | 'c', 'b'> // -> 'a' | 'c'
+
+// 相当于 Exclude 的变种，可以从对象中过滤出需要的 key 值
+type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
+
+type TOmitDemo = Omit<{ name: string, age: number }, 'name'> // -> { age: number }
+
+// 过滤类型中的 null 及 undefined 类型
+type NonNullable<T> = T extends null | undefined ? never : T
+
+type NonNullable = NonNullable<string | number | null> // -> string | number
 
 // 获取一个函数的返回值的类型
 type ReturnType<T> = T extends (
@@ -530,6 +554,33 @@ let partialState: PickedState = {
   bar: 'world'
 }
 // bar 不在类型 Pick<{ foo: number; bar: string; }, "foo"> 中
+```
+
+### 自定义
+
+有时候我们会碰到一些其他场景，上面列举的那些方法又不能满足，因此我们可以结合这些公式进行自定义:
+
+一、partial 只支持处理第一层的属性，层级过多的话没办法处理
+
+```JS
+export type PowerPartial<T> = {
+  // 如果是 object，则递归类型
+  [U in keyof T]?: T[U] extends object ? PowerPartial<T[U]> : T[U]
+}
+```
+
+二、选取某个对象的 key，让它变成可选
+
+```JS
+export type TPickPartial<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>> & Partial<Pick<T, K>>
+```
+
+三、readonly 全部移除
+
+```JS
+export type Mutable<T> = {
+  -readonly [P in keyof T]: T[P]
+}
 ```
 
 ## typeof 获取声明类型

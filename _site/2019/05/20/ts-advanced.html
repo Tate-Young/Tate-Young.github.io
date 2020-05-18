@@ -175,7 +175,7 @@
                       发布时间：2019-05-20 18:36:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2020-05-18 17:49:00
+                        修改时间：2020-05-18 20:37:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -664,13 +664,14 @@ let x4 = getProperty(obj, 'hobby') // 报错：Argument of type '"hobby"' is not
 }
 </code></pre>
 
-<p>而现在 Typescript 为我们提供了映射类型，能够使得这种转化更加方便，在映射类型里，新类型将以相同的形式去转换旧类型里每个属性，如以上例子可以改写为:</p>
+<p>而现在 Typescript 为我们提供了映射类型，能够使得这种转化更加方便，在映射类型里，新类型将以相同的形式去转换旧类型里每个属性，如以上例子可以通过以下方法来改写:</p>
 
-<pre><code class="language-JS">// 源码
+<pre><code class="language-JS">// 变为只读
 type Readonly&lt;T&gt; = {
   readonly [P in keyof T]: T[P]
 }
 
+// 变为可选
 type Partial&lt;T&gt; = {
   [P in keyof T]?: T[P]
 }
@@ -683,6 +684,29 @@ type Required&lt;T&gt; = {
 type Pick&lt;T, K extends keyof T&gt; = {
   [P in K]: T[P]
 }
+
+// 将 K 中所有的属性的值转化为 T 类型
+type Record&lt;K extends keyof any, T&gt; = {
+  [P in K]: T
+}
+
+type TRecordDemo = Record&lt;'a' | 'b' | 'c', Person&gt; // -&gt; { a: Person; b: Person; c: Person; }
+
+// 从 T 类型中排除出 U
+type Exclude&lt;T, U&gt; = T extends U ? never : T
+type Extract&lt;T, U&gt; = T extends U ? T : never // 反之
+
+type TExcludeDemo = Exclude&lt;'a' | 'b' | 'c', 'b'&gt; // -&gt; 'a' | 'c'
+
+// 相当于 Exclude 的变种，可以从对象中过滤出需要的 key 值
+type Omit&lt;T, K extends keyof any&gt; = Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;
+
+type TOmitDemo = Omit&lt;{ name: string, age: number }, 'name'&gt; // -&gt; { age: number }
+
+// 过滤类型中的 null 及 undefined 类型
+type NonNullable&lt;T&gt; = T extends null | undefined ? never : T
+
+type NonNullable = NonNullable&lt;string | number | null&gt; // -&gt; string | number
 
 // 获取一个函数的返回值的类型
 type ReturnType&lt;T&gt; = T extends (
@@ -709,6 +733,30 @@ let partialState: PickedState = {
   bar: 'world'
 }
 // bar 不在类型 Pick&lt;{ foo: number; bar: string; }, "foo"&gt; 中
+</code></pre>
+
+<h3 id="自定义">自定义</h3>
+
+<p>有时候我们会碰到一些其他场景，上面列举的那些方法又不能满足，因此我们可以结合这些公式进行自定义:</p>
+
+<p>一、partial 只支持处理第一层的属性，层级过多的话没办法处理</p>
+
+<pre><code class="language-JS">export type PowerPartial&lt;T&gt; = {
+  // 如果是 object，则递归类型
+  [U in keyof T]?: T[U] extends object ? PowerPartial&lt;T[U]&gt; : T[U]
+}
+</code></pre>
+
+<p>二、选取某个对象的 key，让它变成可选</p>
+
+<pre><code class="language-JS">export type TPickPartial&lt;T, K extends keyof T&gt; = Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt; &amp; Partial&lt;Pick&lt;T, K&gt;&gt;
+</code></pre>
+
+<p>三、readonly 全部移除</p>
+
+<pre><code class="language-JS">export type Mutable&lt;T&gt; = {
+  -readonly [P in keyof T]: T[P]
+}
 </code></pre>
 
 <h2 id="typeof-获取声明类型">typeof 获取声明类型</h2>
