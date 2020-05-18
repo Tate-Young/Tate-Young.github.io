@@ -430,7 +430,7 @@ app.listen(config.port, function () {
     </tr>
     <tr>
       <td style="text-align: left"><strong>req.cookies</strong></td>
-      <td style="text-align: left">cookie-parser/multer 解析后，会返回请求头中包含的 cookies，默认为 {}，访问签名的 cookie 为 <code>req.signedCookies</code></td>
+      <td style="text-align: left">cookie-parser/multer 解析后，会返回请求头中包含的 cookies，默认为 {}，访问签名的 cookie 为 <code class="highlighter-rouge">req.signedCookies</code></td>
     </tr>
   </tbody>
 </table>
@@ -497,7 +497,7 @@ req.signedCookies.user // 'tate'
 
 <h3 id="reqip">req.ip</h3>
 
-<p>获取主机 ip 地址，有些情况带有前缀”::ffff:”，可使用正则 <code>req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0]</code>进行处理:</p>
+<p>获取主机 ip 地址，有些情况带有前缀”::ffff:”，可使用正则 <code class="highlighter-rouge">req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0]</code>进行处理:</p>
 
 <pre><code class="language-JS">// node 获取 ip
 var ip =
@@ -528,7 +528,7 @@ var ip =
     </tr>
     <tr>
       <td style="text-align: left"><strong>res.cookie()</strong></td>
-      <td style="text-align: left">设置 cookie，反之为清除 cookie <code>res.clearCookie()</code></td>
+      <td style="text-align: left">设置 cookie，反之为清除 cookie <code class="highlighter-rouge">res.clearCookie()</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>res.send()</strong></td>
@@ -536,7 +536,7 @@ var ip =
     </tr>
     <tr>
       <td style="text-align: left"><strong>res.json()</strong></td>
-      <td style="text-align: left">发送一个 JSON 响应，如 <code>res.json({user:'tobi'})</code>，res.jsonp 可发送 JSONP 响应，效果同 send()</td>
+      <td style="text-align: left">发送一个 JSON 响应，如 <code class="highlighter-rouge">res.json({user:'tobi'})</code>，res.jsonp 可发送 JSONP 响应，效果同 send()</td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>res.end()</strong></td>
@@ -580,7 +580,7 @@ app.use(function (req, res, next) {
 
 <h3 id="rescookie">res.cookie()</h3>
 
-<p>通过 set-cookie 字段进行设置 cookie，反之为清除 <code>res.clearCookie()</code>。</p>
+<p>通过 set-cookie 字段进行设置 cookie，反之为清除 <code class="highlighter-rouge">res.clearCookie()</code>。</p>
 
 <table>
   <thead>

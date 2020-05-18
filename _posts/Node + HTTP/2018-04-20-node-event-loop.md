@@ -224,7 +224,7 @@ myEmitter.on('event', () => {
 });
 ```
 
-在构造函数 MyEmitter 中，不能立即发射(emit)事件，because the script will not have processed to the point where the user assigns a callback to that event，因此在构造函数内部，需要通过 <code>process.nextTick()</code> 设置一个回调来发射事件。因此构造函数改为:
+在构造函数 MyEmitter 中，不能立即发射(emit)事件，because the script will not have processed to the point where the user assigns a callback to that event，因此在构造函数内部，需要通过 `process.nextTick()` 设置一个回调来发射事件。因此构造函数改为:
 
 ```JS
 function MyEmitter() {

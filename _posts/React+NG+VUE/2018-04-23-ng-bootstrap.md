@@ -183,7 +183,7 @@ function setupModuleLoader(window) {
 };
 ```
 
-因此，在声明 angular.module 后，可以在返回的对象上挂载控制器或服务等，且支持链式调用，如 <code>.controller().directive()</code>:
+因此，在声明 angular.module 后，可以在返回的对象上挂载控制器或服务等，且支持链式调用，如 `.controller().directive()`:
 
 ```JS
 // 创建模块
@@ -203,7 +203,7 @@ function myController($scope) {
 
 ## angularInit()
 
-**angularInit** 方法定义了 angular 的初始化方法，查找 <code>ng-app='myApp'</code> 指令，得到名为 "myApp" 的模块，并在末尾直接调用了 **bootstrap** 方法启动:
+**angularInit** 方法定义了 angular 的初始化方法，查找 `ng-app='myApp'` 指令，得到名为 "myApp" 的模块，并在末尾直接调用了 **bootstrap** 方法启动:
 
 ```JS
 var ngAttrPrefixes = ['ng-', 'data-ng-', 'ng:', 'x-ng-'];
@@ -233,7 +233,7 @@ function angularInit(element, bootstrap) {
 }
 ```
 
-若页面存在多个 ng-app 指令，AngularJS 只会自动引导启动它找到的第一个 ng-app 应用，此时可以通过 <code>angular.bootstrap</code> 方法手动引导:
+若页面存在多个 ng-app 指令，AngularJS 只会自动引导启动它找到的第一个 ng-app 应用，此时可以通过 `angular.bootstrap` 方法手动引导:
 
 ```JS
 angular.bootstrap(element, [modules], [config]);

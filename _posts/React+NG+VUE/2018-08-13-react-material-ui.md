@@ -332,7 +332,7 @@ function CenteredGrid(props) {
 
 | 名称           | 描述      |
 | ------------ | ------ |
-| paper | Styles applied to the <code>Paper</code> component. |
+| paper | Styles applied to the `Paper` component. |
 
 ```JSX
 <Dialog

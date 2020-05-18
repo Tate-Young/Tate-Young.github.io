@@ -256,7 +256,7 @@ Scope.prototype = {
   });
 </code></pre>
 
-<p>而 Scope 与双向数据绑定有着密不可分的关系，而数据的检测正是由<strong>脏检查(dirty checking)</strong>完成，因此涉及到 <code>$watch</code>、<code>$apply</code> 和 <code>$digest</code> 几个重要概念。</p>
+<p>而 Scope 与双向数据绑定有着密不可分的关系，而数据的检测正是由<strong>脏检查(dirty checking)</strong>完成，因此涉及到 <code class="highlighter-rouge">$watch</code>、<code class="highlighter-rouge">$apply</code> 和 <code class="highlighter-rouge">$digest</code> 几个重要概念。</p>
 
 <h3 id="watch">$watch</h3>
 
@@ -312,7 +312,7 @@ function initWatchVal() {}
 
 <ul>
   <li>基础类型值</li>
-  <li>引用类型值 - 根据 $watch 方法的第三个参数 objectEquality 来设置，true 时则使用 <code>angular.equals</code> 来判断，默认为 false</li>
+  <li>引用类型值 - 根据 $watch 方法的第三个参数 objectEquality 来设置，true 时则使用 <code class="highlighter-rouge">angular.equals</code> 来判断，默认为 false</li>
   <li>集合 - 可使用 $watchCollection，比如数组或对象，性能上会更好，详细分析<a href="https://blog.csdn.net/dm_vincent/article/details/51620193">可参考这里</a></li>
 </ul>
 
@@ -438,7 +438,7 @@ D   E
 <ol>
   <li>首先遍历 A，之后遍历其 <script type="math/tex">childHead B，再遍历其</script>childHead D;</li>
   <li>D 之后没有子节点，会去找 <script type="math/tex">nextSibling E，然后在遍历其</script>childHead F;</li>
-  <li>F 之后没有子节点，也没有兄弟节点，则会执行回溯 <code>current = current.$parent</code>;</li>
+  <li>F 之后没有子节点，也没有兄弟节点，则会执行回溯 <code class="highlighter-rouge">current = current.$parent</code>;</li>
   <li>回溯到 B 时，会去找 $$nextSibling C；</li>
   <li>C 之后没有子节点，也没有兄弟节点，则同样执行回溯到 A，循环终止。</li>
 </ol>

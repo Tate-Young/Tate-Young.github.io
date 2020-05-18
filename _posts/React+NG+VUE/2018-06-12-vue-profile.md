@@ -41,7 +41,7 @@ app.$watch('message', function(newValue, oldValue) {
 </div>
 ```
 
-在每个 new Vue 实例的子组件中，其根实例可以通过 $root 属性进行访问，如 <code>this.$root.message</code>。
+在每个 new Vue 实例的子组件中，其根实例可以通过 $root 属性进行访问，如 `this.$root.message`。
 
 ## 组件 component
 
@@ -406,7 +406,7 @@ Vue 2.x 一共有十个钩子，具体可查看官网给出的图 - [生命周�
 <form v-on:submit.prevent="onSubmit">...</form>
 ```
 
-对于常用的 <code>v-bind</code> 和 <code>v-on</code> 可以采用缩写:
+对于常用的 `v-bind` 和 `v-on` 可以采用缩写:
 
 ```HTML
 <a v-bind:href="url">...</a>
@@ -417,7 +417,7 @@ Vue 2.x 一共有十个钩子，具体可查看官网给出的图 - [生命周�
 <a @click="doSomething">...</a>
 ```
 
-用 v-for 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序， 而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 <code>track-by="$index"</code>，此时需要为每项提供一个唯一 key 属性:
+用 v-for 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序， 而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 `track-by="$index"`，此时需要为每项提供一个唯一 key 属性:
 
 ```HTML
 <!-- 遍历操作符 of 可以代替 in -->
@@ -433,7 +433,7 @@ Vue 2.x 一共有十个钩子，具体可查看官网给出的图 - [生命周�
 
 ### v-cloak
 
-这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 <code>[v-cloak] { display: none }</code> 一起用时，这个指令可以隐藏未编译的插值表达式直到实例准备完毕。
+这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 `[v-cloak] { display: none }` 一起用时，这个指令可以隐藏未编译的插值表达式直到实例准备完毕。
 
 ```CSS
 [v-cloak] {
@@ -455,12 +455,12 @@ Vue 2.x 一共有十个钩子，具体可查看官网给出的图 - [生命周�
 
 | 修饰符 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **.stop** | 阻止单击事件继续传播，event.stopPropagation() | <code><a @click.stop="doThis"></a></code> |
-| **.prevent** | 阻止浏览器默认事件，event.preventDefault() | <code><form @submit.prevent="onSubmit"></form></code> |
-| **.capture** | 采用事件捕获 | <code><a @click.capture="doThis"></a></code> |
-| **.self** | 只当在 event.target 是当前元素自身时触发处理函数 | <code><a @click.self="doThis"></a></code> |
-| **.once** | 事件只执行一次 | <code><button @click.once="showMsg">Add</button></code> |
-| **.passive** | 滚动事件的默认行为将会立即触发，能够提升移动端的性能 | <code><div @scroll.passive="onScroll"></div></code> |
+| **.stop** | 阻止单击事件继续传播，event.stopPropagation() | `<a @click.stop="doThis"></a>` |
+| **.prevent** | 阻止浏览器默认事件，event.preventDefault() | `<form @submit.prevent="onSubmit"></form>` |
+| **.capture** | 采用事件捕获 | `<a @click.capture="doThis"></a>` |
+| **.self** | 只当在 event.target 是当前元素自身时触发处理函数 | `<a @click.self="doThis"></a>` |
+| **.once** | 事件只执行一次 | `<button @click.once="showMsg">Add</button>` |
+| **.passive** | 滚动事件的默认行为将会立即触发，能够提升移动端的性能 | `<div @scroll.passive="onScroll"></div>` |
 
 不同修饰符可以串联，但是要注意执行顺序:
 
@@ -507,9 +507,9 @@ Vue 2.x 一共有十个钩子，具体可查看官网给出的图 - [生命周�
 
 | 修饰符 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **.lazy** | 在“change”时而非“input”时更新 | <code><\input v-model.lazy="msg"></code> |
-| **.number** | 将用户的输入值转为数值类型 | <code><\input v-model.number="age" type="number"></code> |
-| **.trim** | 自动过滤用户输入的首尾空白字符 | <code><\input v-model.trim="msg"></code> |
+| **.lazy** | 在“change”时而非“input”时更新 | `<\input v-model.lazy="msg">` |
+| **.number** | 将用户的输入值转为数值类型 | `<\input v-model.number="age" type="number">` |
+| **.trim** | 自动过滤用户输入的首尾空白字符 | `<\input v-model.trim="msg">` |
 
 ## 计算属性 computed
 

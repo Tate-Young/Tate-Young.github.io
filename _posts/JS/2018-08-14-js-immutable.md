@@ -19,7 +19,7 @@ tags:
 
 本段[摘自 CamSong 的 Github 上的博客](https://github.com/camsong/blog/issues/3)
 
-JavaScript 中的对象一般是**可变的(Mutable)**，因为使用了引用赋值，新的对象简单的引用了原始对象，改变新的对象将影响到原始对象。如 <code>foo={a: 1}; bar=foo; bar.a=2</code> 你会发现此时 <code>foo.a</code> 也被改成了 2。虽然这样做可以节约内存，但当应用复杂后，这就造成了非常大的隐患，Mutable 带来的优点变得得不偿失。为了解决这个问题，一般的做法是使用 [**shallowCopy(浅拷贝)** 或 **deepCopy(深拷贝)**]( {{site.url}}/2018/01/31/js-deep-shallow-copy.html ) 来避免被修改，但这样做造成了 CPU 和内存的浪费。因此通常会采用本文介绍的 **Immutable** 不可变对象。
+JavaScript 中的对象一般是**可变的(Mutable)**，因为使用了引用赋值，新的对象简单的引用了原始对象，改变新的对象将影响到原始对象。如 `foo={a: 1}; bar=foo; bar.a=2` 你会发现此时 `foo.a` 也被改成了 2。虽然这样做可以节约内存，但当应用复杂后，这就造成了非常大的隐患，Mutable 带来的优点变得得不偿失。为了解决这个问题，一般的做法是使用 [**shallowCopy(浅拷贝)** 或 **deepCopy(深拷贝)**]( {{site.url}}/2018/01/31/js-deep-shallow-copy.html ) 来避免被修改，但这样做造成了 CPU 和内存的浪费。因此通常会采用本文介绍的 **Immutable** 不可变对象。
 
 对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象。Immutable 实现的原理是 **Persistent Data Structure(持久化数据结构)**，也就是使用旧数据创建新数据时，要保证旧数据同时可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗，Immutable 使用了 **Structural Sharing(结构共享)**，即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享:
 
@@ -65,10 +65,10 @@ map2.get('a'); // 2
 * **fromJS()** - 将一个 js 数据转换为 Immutable 类型的数据
 * **toJS()** - 将一个 Immutable 数据转换为 JS 类型的数据
 * **is()** - 对两个对象进行比较。在 js 中比较两个对象的内存地址，但是在 Immutable 中比较的是这个对象 **hashCode** 和 valueOf，只要两个对象的 hashCode 相等，值就是相同的，避免了深度遍历，提高了性能
-* **get()** - 获取属性，**getIn()** 可以在一个数据结构中获得深处的值，传递一个数组，如 <code>data.getIn(['key', 2])</code>
+* **get()** - 获取属性，**getIn()** 可以在一个数据结构中获得深处的值，传递一个数组，如 `data.getIn(['key', 2])`
 * **set()** - 设置属性，**setIn()** 可以在一个数据结构中设置深处的值
 * **has()** - 判断是否有该属性，**hasIn()** 同上
-* **delete()** - 删除属性，**deleteIn()** 同上，**deleteAll()** 可以删除多个属性，如 <code>data.deleteAll([ 'a', 'c' ])</code>
+* **delete()** - 删除属性，**deleteIn()** 同上，**deleteAll()** 可以删除多个属性，如 `data.deleteAll([ 'a', 'c' ])`
 * **update()** - 对对象中的某个属性进行更新，可对原数据进行相关操作，**updateIn()**同上
 * **clear()** - 清除数据
 * **merge()** - 浅合并，新数据与旧数据对比，不存在则新增，有则覆盖。**mergeDeep()** 为深合并

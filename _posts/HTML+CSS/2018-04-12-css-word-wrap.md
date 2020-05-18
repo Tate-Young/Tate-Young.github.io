@@ -180,7 +180,7 @@ white-space：normal | pre | pre-wrap | pre-line  | nowrap
 
 通过 **display** 属性可以设置元素的布局行为，相关常用的取值为:
 
-* **none** - 隐藏对象，与 <code>visibility: hidden</code>不同，该值不保留隐藏对象的物理空间
+* **none** - 隐藏对象，与 `visibility: hidden`不同，该值不保留隐藏对象的物理空间
 * **inline** - 指定对象为内联元素
 * **block** - 制定对象为块级元素
 * **inline-block** - 指定对象为内联块元素，呈现为 inline 对象，但是对象的内容作为 block 对象呈现

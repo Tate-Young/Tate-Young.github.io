@@ -224,7 +224,7 @@ this.state.title = 'Tate'
 
 State 的更新是异步的，调用 setState，组件的 state 并不会立即改变，setState 只是把要修改的状态放入一个队列中，React 会优化真正的执行时机，并且 React 会出于性能原因，可能会将多次 setState 的状态修改合并成一次状态修改，因此可能出现一些问题。
 
-举个例子，对于一个电商类应用，在我们的购物车中，当我们点击一次购买数量按钮，购买的数量就会加1，如果我们连续点击了两次按钮，就会连续调用两次 <code>this.setState({quantity: this.state.quantity + 1})<code>，在 React 合并多次修改为一次的情况下，相当于等价执行了如下代码:
+举个例子，对于一个电商类应用，在我们的购物车中，当我们点击一次购买数量按钮，购买的数量就会加1，如果我们连续点击了两次按钮，就会连续调用两次 `this.setState({quantity: this.state.quantity + 1})`，在 React 合并多次修改为一次的情况下，相当于等价执行了如下代码:
 
 ```JSX
 // 后面的操作覆盖掉了前面的操作，最终购买的数量只增加了 1 个
@@ -271,7 +271,7 @@ this.setState(preState => ({
 
 ### children
 
-在包含开始和结束标签的 JSX 表达式中，标记之间的内容作为特殊的参数传递：<code>props.children</code>:
+在包含开始和结束标签的 JSX 表达式中，标记之间的内容作为特殊的参数传递：`props.children`:
 
 ```JSX
 // Calls the children callback numTimes to produce a repeated component
@@ -453,7 +453,7 @@ render() {
 
 1、创建 Refs
 
-使用的时候需要通过 <code>React.createRef()</code> 创建 refs，然后通过 ref 属性来获得 React 元素:
+使用的时候需要通过 `React.createRef()` 创建 refs，然后通过 ref 属性来获得 React 元素:
 
 ```JSX
 class MyComponent extends React.Component {

@@ -563,7 +563,7 @@ diff 算法是通过同层的树节点进行比较而非对树进行逐层搜索
 
 ![diff-after](https://user-gold-cdn.xitu.io/2017/12/28/1609be700a80c98a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
-因此异步更新的步骤可以简化为 <code>setter -> Dep -> Watcher -> patch -> 视图</code>
+因此异步更新的步骤可以简化为 `setter -> Dep -> Watcher -> patch -> 视图`
 
 ![virtual-dom](https://user-gold-cdn.xitu.io/2017/12/19/1606e7eaa2a664e8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 

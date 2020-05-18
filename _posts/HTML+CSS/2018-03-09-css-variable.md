@@ -116,7 +116,7 @@ demo.style.removeProperty('--size');
 | 不同点 | getComputedStyle() | element.style |
 |:--------------|:---------|:---------|
 | 读取范围 |  读取的样式是最终样式，包括了“内联样式”、“嵌入样式”和“外部样式” | 读取的只是元素的“内联样式”，即写在元素的 style 属性上的样式 |
-| 写入 |  仅支持 <code>读</code> | 支持 <code>读写</code> |
+| 写入 |  仅支持 `读` | 支持 `读写` |
 | 兼容性 |  IE9 以下使用 **element.currentStyle** | 无 |
 
 ```JS

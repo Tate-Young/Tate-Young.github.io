@@ -19,23 +19,23 @@ tags:
 
 | Node | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **[cheerio](https://github.com/cheeriojs/cheerio)** | 以 jQuery 为核心，解析和操作 DOM 模型，如实现网络爬虫 | <code>require('cheerio')</code> |
-| **[request](https://github.com/request/request)** | 精简的 HTTP 请求客户端 | <code>require('request')</code> |
-| **[marked](https://github.com/markedjs/marked)** | 转换 Markdown 为 Html 显示 | <code>require('marked')</code> |
-| **[chalk](https://github.com/chalk/chalk)** | 修改终端输出信息的样式 | <code>require('chalk')</code> |
-| **[shelljs](https://github.com/shelljs/shelljs)** | 执行 shell 命令 | <code>require('shelljs')</code> |
-| **[async](https://github.com/caolan/async)** | Async utilities | <code>require('async')</code> |
+| **[cheerio](https://github.com/cheeriojs/cheerio)** | 以 jQuery 为核心，解析和操作 DOM 模型，如实现网络爬虫 | `require('cheerio')` |
+| **[request](https://github.com/request/request)** | 精简的 HTTP 请求客户端 | `require('request')` |
+| **[marked](https://github.com/markedjs/marked)** | 转换 Markdown 为 Html 显示 | `require('marked')` |
+| **[chalk](https://github.com/chalk/chalk)** | 修改终端输出信息的样式 | `require('chalk')` |
+| **[shelljs](https://github.com/shelljs/shelljs)** | 执行 shell 命令 | `require('shelljs')` |
+| **[async](https://github.com/caolan/async)** | Async utilities | `require('async')` |
 
 | Express | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **[express-session](https://github.com/expressjs/session)** | session 中间件 | <code>require('express-session')</code> |
-| **[connect-mongo](https://github.com/jdesboeufs/connect-mongo)** | 通过 Mongodb 存储 session，基于 express-session | <code>require('connect-mongo')(session)</code> |
-| **[connect-flash](https://github.com/jaredhanson/connect-flash)** | 页面通知中间件，基于 session 实现 | <code>require('connect-flash')</code> |
-| **[express-formidable](https://github.com/utatti/express-formidable)** | Formidable 中间件，解析表单数据 | <code>require('express-formidable')</code> |
-| **[express-ejs-layouts](https://github.com/Soarez/express-ejs-layouts)** | Layout support for ejs | <code>require('express-ejs-layouts')</code> |
-| **[cookie-parser](https://github.com/expressjs/cookie-parser)** | 解析 cookie，通过 <code>req.cookies</code> 访问 | <code>require('cookie-parser')</code> |
-| **[body-parser](https://github.com/expressjs/body-parser)** | 解析 POST 请求的请求体，通过 <code>req.body</code> 访问 | <code>require('body-parser')</code> |
-| **[compression](https://github.com/expressjs/compression)** | 会尝试压缩所有经过此中间件的响应体 | <code>require('compression')</code> |
+| **[express-session](https://github.com/expressjs/session)** | session 中间件 | `require('express-session')` |
+| **[connect-mongo](https://github.com/jdesboeufs/connect-mongo)** | 通过 Mongodb 存储 session，基于 express-session | `require('connect-mongo')(session)` |
+| **[connect-flash](https://github.com/jaredhanson/connect-flash)** | 页面通知中间件，基于 session 实现 | `require('connect-flash')` |
+| **[express-formidable](https://github.com/utatti/express-formidable)** | Formidable 中间件，解析表单数据 | `require('express-formidable')` |
+| **[express-ejs-layouts](https://github.com/Soarez/express-ejs-layouts)** | Layout support for ejs | `require('express-ejs-layouts')` |
+| **[cookie-parser](https://github.com/expressjs/cookie-parser)** | 解析 cookie，通过 `req.cookies` 访问 | `require('cookie-parser')` |
+| **[body-parser](https://github.com/expressjs/body-parser)** | 解析 POST 请求的请求体，通过 `req.body` 访问 | `require('body-parser')` |
+| **[compression](https://github.com/expressjs/compression)** | 会尝试压缩所有经过此中间件的响应体 | `require('compression')` |
 
 ## Node 第三方库
 
@@ -329,7 +329,7 @@ app.get('/', function (req, res, next) {
 
 req.session 还有其他几个属性和方法:
 
-* **id** - session id，与 session 唯一绑定，也可通过 <code>req.sessionID</code> 访问，不可修改
+* **id** - session id，与 session 唯一绑定，也可通过 `req.sessionID` 访问，不可修改
 * **cookie** - 访问 session id 绑定的 cookie 信息
 * **regenerate()** - 重新生成一个 session
 * **destroy()** - 销毁一个 session
@@ -428,7 +428,7 @@ app.post('/upload', (req, res) => {
 这里的 opts 可以参考 Formidable API，以下列出常用的几个:
 
 * **encoding** - 设置编码形式
-* **uploadDir** - 设置需要上传文件的存放路径，默认是 <code>os.tmpdir()</code>
+* **uploadDir** - 设置需要上传文件的存放路径，默认是 `os.tmpdir()`
 * **keepExtensions** - 布尔类型，是否保持原始文件的后缀名
 * **multiples** - 布尔类型，设置 true 时，当调用 form.parse，files 参数会包含上传文件的数组
 
@@ -569,7 +569,7 @@ app.get('/', function (req, res) {
 
 ### body-parser
 
-解析 HTTP POST 请求中的请求体，通过 <code>req.body</code> 访问。
+解析 HTTP POST 请求中的请求体，通过 `req.body` 访问。
 
 ```JS
 // 常用的设置

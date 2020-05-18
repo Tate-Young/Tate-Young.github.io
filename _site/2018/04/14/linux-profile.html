@@ -327,7 +327,7 @@ chown root:root install.log
 <pre><code class="language-SHELL">chmod [-R] xyz 文件或目录
 </code></pre>
 
-<p>举个栗子 🌰，针对文件权限 <code>-rwxrwx---</code>:</p>
+<p>举个栗子 🌰，针对文件权限 <code class="highlighter-rouge">-rwxrwx---</code>:</p>
 
 <pre><code class="language-TEXT">owner = rwx = 4+2+1 = 7
 group = rwx = 4+2+1 = 7
@@ -573,7 +573,7 @@ cp -r -a aaa/* /bbb
 </ul>
 
 <blockquote>
-  <p>在编辑文件的时候如果异常退出，会自动生成 swp 文件以保证文件的安全性，导致每次启动 vim 编辑该文件时都会进行扰人的提示，解决的办法是 <code>rm -f .[basename].swp</code>。</p>
+  <p>在编辑文件的时候如果异常退出，会自动生成 swp 文件以保证文件的安全性，导致每次启动 vim 编辑该文件时都会进行扰人的提示，解决的办法是 <code class="highlighter-rouge">rm -f .[basename].swp</code>。</p>
 </blockquote>
 
 <p><img src="http://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png" alt="vim" /></p>

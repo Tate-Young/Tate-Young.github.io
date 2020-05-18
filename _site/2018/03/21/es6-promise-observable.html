@@ -575,7 +575,7 @@ console.log('after')
 
 <h3 id="observer-观察者">Observer 观察者</h3>
 
-<p><strong>Observer</strong> 观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数，分别对应一种被可观察对象发送的通知的类型，即 next, error 和 complete。要想使用观察者，需要订阅可观察对象，即 <code>observable.subscribe(observer)</code>。</p>
+<p><strong>Observer</strong> 观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数，分别对应一种被可观察对象发送的通知的类型，即 next, error 和 complete。要想使用观察者，需要订阅可观察对象，即 <code class="highlighter-rouge">observable.subscribe(observer)</code>。</p>
 
 <pre><code class="language-JS">observable.subscribe({
   next: x =&gt; console.log(x),
@@ -738,52 +738,52 @@ subject.complete() // observerA: 3 observerB: 3
     <tr>
       <td style="text-align: left"><strong>create</strong></td>
       <td style="text-align: left">创建一个新的 Observable</td>
-      <td style="text-align: left"><code>Observable.create((observer) =&gt; ...)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.create((observer) =&gt; ...)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>empty</strong></td>
       <td style="text-align: left">仅仅发出 complete 通知，其他什么也不做</td>
-      <td style="text-align: left"><code>Observable.empty()</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.empty()</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>from</strong></td>
       <td style="text-align: left">转化为一个 Observable</td>
-      <td style="text-align: left"><code>Observable.from([1, 2, 3])</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.from([1, 2, 3])</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>fromEvent</strong></td>
       <td style="text-align: left">创建一个来自于 DOM 事件，或者 Node 的 EventEmitter 事件或者其他事件的 Observable</td>
-      <td style="text-align: left"><code>Observable.fromEvent(document, 'click')</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.fromEvent(document, 'click')</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>fromPromise</strong></td>
       <td style="text-align: left">将 Promise 转化为一个 Observable</td>
-      <td style="text-align: left"><code>Observable.fromPromise(fetch('http://myserver.com/'))</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.fromPromise(fetch('http://myserver.com/'))</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>of</strong></td>
       <td style="text-align: left">创建一个 Observable，连续发射指定参数的值，最后发出 complete</td>
-      <td style="text-align: left"><code>Observable.of(1, 2, 3)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.of(1, 2, 3)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>interval</strong></td>
       <td style="text-align: left">返回一个在固定时间间隔发出无限自增的序列整数,如每 1 秒发出自增的数字</td>
-      <td style="text-align: left"><code>Observable.interval(1000)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.interval(1000)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>timer</strong></td>
       <td style="text-align: left">同 interval，但增加延迟执行，如每隔 1 秒发出自增的数字，5 秒后开始发送</td>
-      <td style="text-align: left"><code>Observable.timer(5000, 1000)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.timer(5000, 1000)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>range</strong></td>
       <td style="text-align: left">发出区间范围内的数字序列</td>
-      <td style="text-align: left"><code>Observable.range(1, 10)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.range(1, 10)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>error</strong></td>
       <td style="text-align: left">仅仅发出 error 通知，其他什么也不做</td>
-      <td style="text-align: left"><code>Observable.throw(new Error('oops!'))</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.throw(new Error('oops!'))</code></td>
     </tr>
   </tbody>
 </table>
@@ -804,27 +804,27 @@ subject.complete() // observerA: 3 observerB: 3
     <tr>
       <td style="text-align: left"><strong>map</strong></td>
       <td style="text-align: left">同 Array.prototype.map()</td>
-      <td style="text-align: left"><code>ob.map(ev =&gt; ev.clientX)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.map(ev =&gt; ev.clientX)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>mapTo</strong></td>
       <td style="text-align: left">可以把传进来的值改成一个固定的值</td>
-      <td style="text-align: left"><code>ob.mapTo(1)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.mapTo(1)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>scan</strong></td>
       <td style="text-align: left">类似 reduce + last，回调函数的返回值将成为下一次回调函数运行时要传递的下一个参数值</td>
-      <td style="text-align: left"><code>ob.scan((count) =&gt; count + 1, 0)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.scan((count) =&gt; count + 1, 0)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>mergeMap</strong></td>
       <td style="text-align: left">将每个源值投射成 Observable，再将该 Observable 会合并到输出 Observable 中</td>
-      <td style="text-align: left"><code>ob.mergeMap(x =&gt; Observable.interval(1000).map(i =&gt; x+i)))</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.mergeMap(x =&gt; Observable.interval(1000).map(i =&gt; x+i)))</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>switchMap</strong></td>
       <td style="text-align: left">将每个值映射成 Observable，然后使用 switch 打平所有的内部 Observable</td>
-      <td style="text-align: left"><code>ob.switchMap((ev) =&gt; Observable.interval(1000))</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.switchMap((ev) =&gt; Observable.interval(1000))</code></td>
     </tr>
   </tbody>
 </table>
@@ -851,42 +851,42 @@ const subscribe = example.subscribe(val =&gt; console.log(val)) // 'Hello World!
     <tr>
       <td style="text-align: left"><strong>debounceTime</strong></td>
       <td style="text-align: left">延时执行，但是只通过每次大量发送中的最新值</td>
-      <td style="text-align: left"><code>ob.debounceTime(500)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.debounceTime(500)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>distinct</strong></td>
       <td style="text-align: left">得到的不同的值</td>
-      <td style="text-align: left"><code>Observable.of(1, 2, 2, 3).max()</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.of(1, 2, 2, 3).max()</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>distinctUntilChanged</strong></td>
       <td style="text-align: left">得到的与前一项不同的值</td>
-      <td style="text-align: left"><code>Observable.of(1, 2, 2, 3).distinctUntilChanged()</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.of(1, 2, 2, 3).distinctUntilChanged()</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>distinctUntilKeyChanged</strong></td>
       <td style="text-align: left">基于指定的 key 得到与前一项不同的值</td>
-      <td style="text-align: left"><code>ob.distinctUntilKeyChanged()</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.distinctUntilKeyChanged()</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>filter</strong></td>
       <td style="text-align: left">同 Array.prototype.filter()</td>
-      <td style="text-align: left"><code>ob.filter(x =&gt; x % 2 === 1)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.filter(x =&gt; x % 2 === 1)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>first</strong></td>
       <td style="text-align: left">只发出第一次满足条件的值，反之则为 last</td>
-      <td style="text-align: left"><code>ob.first(x =&gt; x % 2 === 1)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.first(x =&gt; x % 2 === 1)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>skip</strong></td>
       <td style="text-align: left">跳过发出的前 n 个值，跳过后 n 个值则为 skipLast</td>
-      <td style="text-align: left"><code>ob.skip(2)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.skip(2)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>throttleTime</strong></td>
       <td style="text-align: left">让一个值通过，然后在接下来的 duration 毫秒内忽略源值</td>
-      <td style="text-align: left"><code>ob.throttleTime(1000)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.throttleTime(1000)</code></td>
     </tr>
   </tbody>
 </table>
@@ -920,27 +920,27 @@ Observable.of&lt;Person&gt;(
     <tr>
       <td style="text-align: left"><strong>concat</strong></td>
       <td style="text-align: left">拼接，按照顺序将发出的多个值拼接起来，可以有静态方法和实例方法</td>
-      <td style="text-align: left"><code>ob.concat(ob1)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.concat(ob1)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>merge</strong></td>
       <td style="text-align: left">合并，把多个值合并到一个值中，可以有静态方法和实例方法</td>
-      <td style="text-align: left"><code>ob.merge(ob1)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.merge(ob1)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>forkJoin</strong></td>
       <td style="text-align: left">同 Promise.all，等到所有的 Observable 都完成后，才一次性返回值</td>
-      <td style="text-align: left"><code>ob.forkJoin(ob1, ob2)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.forkJoin(ob1, ob2)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>race</strong></td>
       <td style="text-align: left">类似 Promise.race，返回组合中第一个发出项的 Observable 的镜像</td>
-      <td style="text-align: left"><code>ob.race(ob1, ob2)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.race(ob1, ob2)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>startWith</strong></td>
       <td style="text-align: left">先发出指定项，然后发出由源 Observable 发出的项</td>
-      <td style="text-align: left"><code>ob.startWith(1)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.startWith(1)</code></td>
     </tr>
   </tbody>
 </table>
@@ -982,37 +982,37 @@ example: ----0----1----2--0--1--2--3--4--5|
     <tr>
       <td style="text-align: left"><strong>delay</strong></td>
       <td style="text-align: left">延迟执行，每个数据项的发出时间都往后推移固定的毫秒数</td>
-      <td style="text-align: left"><code>ob.delay(1000)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.delay(1000)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>toPromise</strong></td>
       <td style="text-align: left">转换为 Promise</td>
-      <td style="text-align: left"><code>ob.toPromise()</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.toPromise()</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>max</strong></td>
       <td style="text-align: left">获取一连串数字中的最大值，反之为 min</td>
-      <td style="text-align: left"><code>Observable.of(1, 2, 3).max()</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.of(1, 2, 3).max()</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>every</strong></td>
       <td style="text-align: left">返回布尔值，所有项是否都满足指定条件</td>
-      <td style="text-align: left"><code>Observable.of(1, 2, 3).every(x =&gt; x &gt; 0)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.of(1, 2, 3).every(x =&gt; x &gt; 0)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>find</strong></td>
       <td style="text-align: left">找到第一个通过测试的值并将其发出，findIndex 则返回索引值</td>
-      <td style="text-align: left"><code>Observable.of(1, 2, 3).find(x =&gt; x &gt; 0)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">Observable.of(1, 2, 3).find(x =&gt; x &gt; 0)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>count</strong></td>
       <td style="text-align: left">计算源的发送数量，并当源完成时发出该数值</td>
-      <td style="text-align: left"><code>ob.count(x =&gt; x &gt; 0)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.count(x =&gt; x &gt; 0)</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>reduce</strong></td>
       <td style="text-align: left">当源 Observable 完成时，返回 累加的结果，只会返回一个值</td>
-      <td style="text-align: left"><code>ob.reduce((acc, one) =&gt; acc + one, seed)</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">ob.reduce((acc, one) =&gt; acc + one, seed)</code></td>
     </tr>
   </tbody>
 </table>

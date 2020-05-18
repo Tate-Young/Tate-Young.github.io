@@ -20,20 +20,20 @@ tags:
 
 | 命令 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **yum** | 包管理工具 | <code>yum search/install/remove ...</code> |
-| **grep** | 文本搜索 | <code>grep '^tate' filename</code> |
-| **ps** | 查看进程 | <code>ps -ef</code> |
-| **lsof** | 列出当前系统打开文件的工具 | <code>lsof -i:4000</code> |
-| **kill** | 终止进程 | <code>kill -9</code> |
-| **find** | 指定目录下查找文件 | <code>find . -name '*.txt'</code> |
-| **tr** | 对字符进行替换、压缩和删除 | <code>echo "HELLO" | tr 'A-Z' 'a-z'</code> |
-| **pwd** | 以绝对路径的方式显示用户当前工作目录 | <code>pwd</code> |
-| **whoami** | 查看当前有效用户名 | <code>whoami</code> |
-| **date** | 显示或设置系统时间与日期 | <code>date +"%Y-%m-%d"</code> |
-| **mount** | 挂载，umount 接触挂载 | <code>mount -t cifs -o ...</code> |
-| **scp** | Linux 之间复制文件和目录 | <code>mount -t cifs -o ...</code> |
-| **alias** | 设置命令的别名 | <code>scp [可选参数] file_source file_target</code> |
-| **say** | macOS 系统中激活语音合成系统 | <code>say -v Ting-Ting hello</code> |
+| **yum** | 包管理工具 | `yum search/install/remove ...` |
+| **grep** | 文本搜索 | `grep '^tate' filename` |
+| **ps** | 查看进程 | `ps -ef` |
+| **lsof** | 列出当前系统打开文件的工具 | `lsof -i:4000` |
+| **kill** | 终止进程 | `kill -9` |
+| **find** | 指定目录下查找文件 | `find . -name '*.txt'` |
+| **tr** | 对字符进行替换、压缩和删除 | `echo "HELLO" | tr 'A-Z' 'a-z'` |
+| **pwd** | 以绝对路径的方式显示用户当前工作目录 | `pwd` |
+| **whoami** | 查看当前有效用户名 | `whoami` |
+| **date** | 显示或设置系统时间与日期 | `date +"%Y-%m-%d"` |
+| **mount** | 挂载，umount 接触挂载 | `mount -t cifs -o ...` |
+| **scp** | Linux 之间复制文件和目录 | `mount -t cifs -o ...` |
+| **alias** | 设置命令的别名 | `scp [可选参数] file_source file_target` |
+| **say** | macOS 系统中激活语音合成系统 | `say -v Ting-Ting hello` |
 
 ## yum
 
@@ -42,7 +42,7 @@ tags:
 | 系列 | RedHat 系列 | Debian 系列 |
 |:--------------|:---------|:---------|
 | 常用安装包格式 | rmp | deb |
-| 安装包命令 | <code>rmp -参数</code> | <code>dpkg -参数</code> |
+| 安装包命令 | `rmp -参数` | `dpkg -参数` |
 | 包管理工具 | yum | apt-get |
 | 栗子 | Redhat、Centos、Fedora 等 | Debian、Ubuntu 等 |
 
@@ -294,7 +294,7 @@ lsof -i:4000
 
 ## kill
 
-**kill** 根据进程 PID 进行终止，该命令是通过向进程发送指定的信号来结束相应进程的，通过 <code>kill -l</code> 可以列出所有的信号。只有第 9 种信号(SIGKILL)才可以无条件终止进程，其他信号进程都有权利忽略。下面是常用的信号:
+**kill** 根据进程 PID 进行终止，该命令是通过向进程发送指定的信号来结束相应进程的，通过 `kill -l` 可以列出所有的信号。只有第 9 种信号(SIGKILL)才可以无条件终止进程，其他信号进程都有权利忽略。下面是常用的信号:
 
 | 信号 | 信号对应数值 | 描述 |
 |:--------------|:---------|:---------|
@@ -379,7 +379,7 @@ this is a text line.
 
 ## date
 
-**date** 用来显示或设置系统时间与日期，用法为 <code><+时间日期格式></code>，指定显示时使用的[日期时间格式](http://man.linuxde.net/date):
+**date** 用来显示或设置系统时间与日期，用法为 `<+时间日期格式>`，指定显示时使用的[日期时间格式](http://man.linuxde.net/date):
 
 ```SHELL
 date +"%Y-%m-%d"

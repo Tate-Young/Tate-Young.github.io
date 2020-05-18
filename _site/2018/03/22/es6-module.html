@@ -518,10 +518,10 @@ console.log('在 main 中，a.done=%j，b.done=%j', a.done, b.done);
 <p>分解下步骤:</p>
 
 <ol>
-  <li>当 a 被 require 时，立即执行 a 的代码，导出变量 <code>done=false</code>，此时加载 b，a 的执行会暂停;</li>
-  <li>b 的执行同上，会发生循环加载，此时系统会去 a 模块对应对象的 module.exports 属性取值，即为 <code>done=false</code>;</li>
-  <li>b 的执行不会暂停，直到结束，最终导出的变量为 <code>done=true</code></li>
-  <li>a 继续执行，直到结束，最终导出的变量为 <code>done=true</code></li>
+  <li>当 a 被 require 时，立即执行 a 的代码，导出变量 <code class="highlighter-rouge">done=false</code>，此时加载 b，a 的执行会暂停;</li>
+  <li>b 的执行同上，会发生循环加载，此时系统会去 a 模块对应对象的 module.exports 属性取值，即为 <code class="highlighter-rouge">done=false</code>;</li>
+  <li>b 的执行不会暂停，直到结束，最终导出的变量为 <code class="highlighter-rouge">done=true</code></li>
+  <li>a 继续执行，直到结束，最终导出的变量为 <code class="highlighter-rouge">done=true</code></li>
 </ol>
 
 <p>因此打印顺序为:</p>
@@ -538,7 +538,7 @@ a 结束
 
 <h3 id="es6-模块">ES6 模块</h3>
 
-<p>ES6 模块是动态引用，如果使用 import 从一个模块加载变量(即 <code>import foo from 'foo'</code>)，那些变量不会被缓存，而是成为一个指向被加载模块的引用。</p>
+<p>ES6 模块是动态引用，如果使用 import 从一个模块加载变量(即 <code class="highlighter-rouge">import foo from 'foo'</code>)，那些变量不会被缓存，而是成为一个指向被加载模块的引用。</p>
 
 <pre><code class="language-JS">// a.mjs
 import { bar } from './b';
@@ -553,12 +553,12 @@ console.log(foo);
 export let bar = 'bar';
 </code></pre>
 
-<p>终端执行 <code>node a.mjs</code>，分解下步骤:</p>
+<p>终端执行 <code class="highlighter-rouge">node a.mjs</code>，分解下步骤:</p>
 
 <ol>
   <li>a 执行时引入了 b，因此会优先执行 b，a 的执行会暂停;</li>
   <li>b 执行时引入了 a，发生循环引用，此时不会再去执行 a，而是认为这个接口 foo 已经存在，继续往下执行;</li>
-  <li>执行到 <code>console.log(foo)</code> 发现 foo 未定义，故最终打印 undefined。</li>
+  <li>执行到 <code class="highlighter-rouge">console.log(foo)</code> 发现 foo 未定义，故最终打印 undefined。</li>
 </ol>
 
 <p>可以根据变量提升进行修改，让 b 在引入 foo 接口时就已经定义好了:</p>
@@ -578,7 +578,7 @@ function bar() { return 'bar' }
 export { bar };
 </code></pre>
 
-<p>此时在终端执行 <code>node a.mjs</code>，便会依次打印:</p>
+<p>此时在终端执行 <code class="highlighter-rouge">node a.mjs</code>，便会依次打印:</p>
 
 <pre><code class="language-TEXT">b.mjs
 foo

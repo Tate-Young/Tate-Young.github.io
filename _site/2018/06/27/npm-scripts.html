@@ -216,7 +216,7 @@
 
 <h3 id="packagejson">package.json</h3>
 
-<p><strong>package.json</strong> 文件定义了项目所需要的依赖模块和配置信息。可以通过<code>npm init</code>命令来创建 package.json 文件，使用参数 <strong>-f</strong> 可跳过此问答环节:</p>
+<p><strong>package.json</strong> 文件定义了项目所需要的依赖模块和配置信息。可以通过<code class="highlighter-rouge">npm init</code>命令来创建 package.json 文件，使用参数 <strong>-f</strong> 可跳过此问答环节:</p>
 
 <pre><code class="language-SHELL">npm init
 
@@ -224,7 +224,7 @@
 npm init -f
 </code></pre>
 
-<p>当然也可以在初始化前通过<code>npm config set</code>命令去修改默认配置，之后通过初始化时都会套用此配置项:</p>
+<p>当然也可以在初始化前通过<code class="highlighter-rouge">npm config set</code>命令去修改默认配置，之后通过初始化时都会套用此配置项:</p>
 
 <pre><code class="language-SHELL">npm config set init.author.name "tate"
 npm config set init.author.email "smd.tate@gmail.com"
@@ -248,7 +248,7 @@ npm config set init.license "MIT"
 
 <h3 id="脚本命令-scripts">脚本命令 scripts</h3>
 
-<p>package.json 文件里的 scripts 属性下可以自定义执行命令，可以通过命令<code>npm run</code>进行查看:</p>
+<p>package.json 文件里的 scripts 属性下可以自定义执行命令，可以通过命令<code class="highlighter-rouge">npm run</code>进行查看:</p>
 
 <pre><code class="language-JSON">"scripts": {
   "call:tate": "echo tate",
@@ -298,17 +298,17 @@ npm config set init.license "MIT"
 "posttest": "echo post-tate"
 </code></pre>
 
-<p>当执行命令<code>npm test</code>时，实际执行了 “pretest ==&gt; test ==&gt; posttest”。自定义命令也适用。配合 git hooks 可以在提交代码前后进行一些校验输出，这里推荐使用 <a href="https://www.npmjs.com/package/husky">husky</a>。</p>
+<p>当执行命令<code class="highlighter-rouge">npm test</code>时，实际执行了 “pretest ==&gt; test ==&gt; posttest”。自定义命令也适用。配合 git hooks 可以在提交代码前后进行一些校验输出，这里推荐使用 <a href="https://www.npmjs.com/package/husky">husky</a>。</p>
 
 <pre><code class="language-JSON">"precommit": "npm test",
 "prepush": "npm test"
 </code></pre>
 
-<p>在执行<code>git commit</code>命令时，precommit 钩子会自动生效。</p>
+<p>在执行<code class="highlighter-rouge">git commit</code>命令时，precommit 钩子会自动生效。</p>
 
 <h3 id="变量-npm_package">变量 $npm_package</h3>
 
-<p>通过命令<code>npm run env</code>即可查看所有变量列表:</p>
+<p>通过命令<code class="highlighter-rouge">npm run env</code>即可查看所有变量列表:</p>
 
 <pre><code class="language-SHELL">npm run env | grep npm_package | sort
 </code></pre>
@@ -334,9 +334,9 @@ npm config set init.license "MIT"
 <p>除了上述的变量，还有文件系统的操作也需要考虑跨平台兼容，比如:</p>
 
 <ul>
-  <li>rimraf 或 del-cli: 用来删除文件和目录，实现类似于 <code>rm -rf</code> 的功能；</li>
-  <li>cpr: 用于拷贝、复制文件和目录，实现类似于 <code>cp -r</code> 的功能；</li>
-  <li>make-dir-cli: 用于创建目录，实现类似于 <code>mkdir -p</code> 的功能</li>
+  <li>rimraf 或 del-cli: 用来删除文件和目录，实现类似于 <code class="highlighter-rouge">rm -rf</code> 的功能；</li>
+  <li>cpr: 用于拷贝、复制文件和目录，实现类似于 <code class="highlighter-rouge">cp -r</code> 的功能；</li>
+  <li>make-dir-cli: 用于创建目录，实现类似于 <code class="highlighter-rouge">mkdir -p</code> 的功能</li>
 </ul>
 
 <pre><code class="language-JSON">"cover:cleanup": "rm -rf coverage &amp;&amp; rm -rf .nyc_output",
@@ -467,7 +467,7 @@ chmod -R a+x scripts/**/*.sh
 "call:snow": "scripty",
 </code></pre>
 
-<p>执行命令<code>npm run call:tate</code>后，会打印如下信息:</p>
+<p>执行命令<code class="highlighter-rouge">npm run call:tate</code>后，会打印如下信息:</p>
 
 <pre><code class="language-SHELL">&gt; npm_scripts@1.0.0 call:tate /Users/tate/Desktop/lazyload-test
 &gt; scripty
@@ -487,7 +487,7 @@ Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
 
 <h2 id="yarn--npm">yarn &amp; npm</h2>
 
-<p><strong>包管理器</strong>: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的 <code>package-lock.json</code>锁文件类似，通过<code>yarn.lock</code>记录每一个依赖项的确切版本信息。</p>
+<p><strong>包管理器</strong>: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的 <code class="highlighter-rouge">package-lock.json</code>锁文件类似，通过<code class="highlighter-rouge">yarn.lock</code>记录每一个依赖项的确切版本信息。</p>
 
 <table>
   <thead>

@@ -174,7 +174,7 @@ box-sizing：content-box | border-box
 <div class="fir-color">static</div>
 <div class="sec-color"></div>
 
-在上面方块样式中添加 <code>position:relative</code>，并用 top 等定位偏移属性进行调整，可见其原本的空间仍然保留，不会影响常规流中的任何元素:
+在上面方块样式中添加 `position:relative`，并用 top 等定位偏移属性进行调整，可见其原本的空间仍然保留，不会影响常规流中的任何元素:
 
 <div class="fir-color-relative">relative</div>
 <div class="sec-color"></div>
@@ -194,7 +194,7 @@ box-sizing：content-box | border-box
   <div class="fir-color-absolute-2">absolute: 在呵护下成长 😁</div>
 </div>
 
-其规则为: 当元素设置 <code>position:absolute</code> 时，位置就是以其父代元素 position 不为 static 的元素作为参考，若都为 static，则以一直回溯到 body 元素。
+其规则为: 当元素设置 `position:absolute` 时，位置就是以其父代元素 position 不为 static 的元素作为参考，若都为 static，则以一直回溯到 body 元素。
 
 ### fixed
 

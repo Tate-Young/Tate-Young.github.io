@@ -84,7 +84,7 @@ process 进程有以下几个常用的方法:
 * **exit([code])** - 终止进程，可以接受一个参数，表示结束状态码，默认为 0，可以[参考状态码 exit code](http://nodejs.cn/api/process.html#process_process_exit_code)
 * **nextTick(callback[, ...args])** - 将 callback 添加到 "next tick 队列"。一旦当前事件轮询队列的任务全部完成，在 next tick 队列中的所有 callbacks 会被依次调用，有关 Node 事件循环[可参考这里]( {{site.url}}/2018/04/21/node-event-loop.html )
 
-执行 <code>process.exit()</code> 终止进程时或 Node 事件循环数组中不再有额外的工作，会触发 exit 事件:
+执行 `process.exit()` 终止进程时或 Node 事件循环数组中不再有额外的工作，会触发 exit 事件:
 
 ```JS
 // 'exit' 事件监听器的回调函数，只允许包含同步操作
@@ -109,7 +109,7 @@ const path = require('path');
 * **normalize(p)** - 会规范化给定的 path，并解析 '..' 和 '.' 片段
 * **format()** - 从一个对象返回一个路径字符串，与 parse() 相反，对象包含 dir/root/base/name/ext 几个属性
 * **parse()** - 返回一个对象，对象的属性表示 path 的元素
-* **sep** - 路径片段分隔符，常用的是通过 <code>split(path.sep)</code> 分割成数组
+* **sep** - 路径片段分隔符，常用的是通过 `split(path.sep)` 分割成数组
 
 示例如下:
 

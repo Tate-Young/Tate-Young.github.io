@@ -83,7 +83,7 @@ $.ajax({
 });
 ```
 
-AngularJS 使用 HTTP 请求上传 FormData 数据的方法，通过设置 <code>'Content-Type': undefined</code>，这样浏览器会自动把 Content-Type 设置为 multipart/form-data，并生成了一个 boundary 用于分割不同的字段，如果直接手动设置为 <code>'Content-Type': multipart/form-data</code>，后台会抛出异常:
+AngularJS 使用 HTTP 请求上传 FormData 数据的方法，通过设置 `'Content-Type': undefined`，这样浏览器会自动把 Content-Type 设置为 multipart/form-data，并生成了一个 boundary 用于分割不同的字段，如果直接手动设置为 `'Content-Type': multipart/form-data`，后台会抛出异常:
 
 ```JS
 $http({
@@ -100,7 +100,7 @@ $http({
 
 ### FileList
 
-**FileList** 对象通常来自于 <code><input type="file" multiple></code> 选择文件，也可以来自拖放操作生成的 DataTransfer 对象。可以通过这个对象访问到用户所选择或拖放的文件。设置 *multiple* 属性，则可以同时上传多个文件。
+**FileList** 对象通常来自于 `<input type="file" multiple>` 选择文件，也可以来自拖放操作生成的 DataTransfer 对象。可以通过这个对象访问到用户所选择或拖放的文件。设置 *multiple* 属性，则可以同时上传多个文件。
 
 ```HTML
 <input id="fileItem" type="file" multiple>
@@ -351,7 +351,7 @@ function handleFiles(files) {
 
 2、**使用对象 URL**
 
-需要用到的方法如下，这个对象 URL 是一个标识 File 对象的 blob 字符串。每次你调用 <code>URL.createObjectURL()</code>，就会产生一个唯一的对象 URL:
+需要用到的方法如下，这个对象 URL 是一个标识 File 对象的 blob 字符串。每次你调用 `URL.createObjectURL()`，就会产生一个唯一的对象 URL:
 
 ```JS
 // 直接挂到 img 元素的 src 属性上即可
@@ -361,7 +361,7 @@ var objectURL = window.URL.createObjectURL(fileObj);
 // blob:http://localhost:3000/51f4b8ce-4f5d-4807-b21e-de69ef40da69
 ```
 
-每个创建了的对象 URL 必须要释放。当文档关闭时，它们会自动被释放。如果你的网页要动态使用它们，你需要显式调用 <code>window.URL.revokeObjectURL()</code>来释放它们。
+每个创建了的对象 URL 必须要释放。当文档关闭时，它们会自动被释放。如果你的网页要动态使用它们，你需要显式调用 `window.URL.revokeObjectURL()`来释放它们。
 
 ### 番外篇 download
 

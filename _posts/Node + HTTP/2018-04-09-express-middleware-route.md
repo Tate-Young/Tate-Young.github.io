@@ -178,7 +178,7 @@ app.listen(config.port, function () {
 | **req.params** | 一个对象，其包含了一系列的属性，这些属性和在路由中命名的参数名是一一对应的 |
 | **req.query** | 一个对象，为每一个路由中的 query string 参数都分配一个属性 |
 | **req.body** | body-parser 等解析请求体的中间件后，会返回以 key-value 的数据 |
-| **req.cookies** | cookie-parser/multer 解析后，会返回请求头中包含的 cookies，默认为 {}，访问签名的 cookie 为 <code>req.signedCookies</code> |
+| **req.cookies** | cookie-parser/multer 解析后，会返回请求头中包含的 cookies，默认为 {}，访问签名的 cookie 为 `req.signedCookies` |
 
 ### req.baseUrl / req.path
 
@@ -248,7 +248,7 @@ req.signedCookies.user // 'tate'
 
 ### req.ip
 
-获取主机 ip 地址，有些情况带有前缀"::ffff:"，可使用正则 <code>req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0]</code>进行处理:
+获取主机 ip 地址，有些情况带有前缀"::ffff:"，可使用正则 `req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0]`进行处理:
 
 ```JS
 // node 获取 ip
@@ -266,9 +266,9 @@ var ip =
 |:--------------|:---------|
 | **res.headersSent** | 布尔类型的属性，指示这个响应是否已经发送 HTTP 头部 |
 | **res.locals** | 一个对象，其包含了本次请求的响应中的变量，它的变量只提供给本次请求响应的周期内视图渲染里使用(如果有视图的话) |
-| **res.cookie()** | 设置 cookie，反之为清除 cookie <code>res.clearCookie()</code> |
+| **res.cookie()** | 设置 cookie，反之为清除 cookie `res.clearCookie()` |
 | **res.send()** | 发送 HTTP 响应 |
-| **res.json()** | 发送一个 JSON 响应，如 <code>res.json({user:'tobi'})</code>，res.jsonp 可发送 JSONP 响应，效果同 send() |
+| **res.json()** | 发送一个 JSON 响应，如 `res.json({user:'tobi'})`，res.jsonp 可发送 JSONP 响应，效果同 send() |
 | **res.end()** | 结束本响应的过程 |
 | **res.redirect()** | 重定向来源于指定 path 的 URL |
 | **res.render()** | 渲染一个视图，然后将渲染得到的 HTML 文档发送给客户端 |
@@ -292,7 +292,7 @@ app.use(function (req, res, next) {
 
 ### res.cookie()
 
-通过 set-cookie 字段进行设置 cookie，反之为清除 <code>res.clearCookie()</code>。
+通过 set-cookie 字段进行设置 cookie，反之为清除 `res.clearCookie()`。
 
 | Property | Type | Description |
 |:--------------|:---------|:---------|

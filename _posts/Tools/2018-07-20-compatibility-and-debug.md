@@ -38,17 +38,17 @@ tags:
 
 若针对 https 抓包:
 
-1、首先在<code>Help --> SSL Proxying --> Install Charles Root Certificate</code>安装根证书;
+1、首先在`Help --> SSL Proxying --> Install Charles Root Certificate`安装根证书;
 
 2、在钥匙串中选择始终信任:
 
 ![debugger-charles-ssl.png](https://i.loli.net/2018/11/23/5bf7700990d1e.png)
 
-3、其次点击<code>Help --> SSL Proxying --> Install Charles Root Certificate ... or Remote Browser</code>，按照提示在手机等设备安装证书，网址 <code>chls.pro/ssl</code>，切记安装完后，ios 一般要在 <code>设置 --> 通用 --> 关于本机 --> 证书信任设置</code> 里设置证书启用完全信任:
+3、其次点击`Help --> SSL Proxying --> Install Charles Root Certificate ... or Remote Browser`，按照提示在手机等设备安装证书，网址 `chls.pro/ssl`，切记安装完后，ios 一般要在 `设置 --> 通用 --> 关于本机 --> 证书信任设置` 里设置证书启用完全信任:
 
 ![debugger-charles-ssl-device.png](https://i.loli.net/2018/11/23/5bf770e96b33b.png)
 
-4、点击<code>Proxy --> SSL Proxying Settings</code>进行 SSL 代理设置，https 端口设置 443:
+4、点击`Proxy --> SSL Proxying Settings`进行 SSL 代理设置，https 端口设置 443:
 
 ![debugger-charles-ssl-settings.png](https://i.loli.net/2018/11/23/5bf7740529688.png)
 
@@ -69,7 +69,7 @@ mitmproxy -p 8888
 
 3、在 移动端 设置代理，同上
 
-4、在 移动端 安装 CA 证书(https 抓包)，直接在浏览器输入地址 <code>mitm.it</code> 并安装对应证书即可
+4、在 移动端 安装 CA 证书(https 抓包)，直接在浏览器输入地址 `mitm.it` 并安装对应证书即可
 
 ![debugger-mitmproxy.jpg](https://i.loli.net/2018/11/16/5bedb616ee92d.jpg)
 
@@ -121,15 +121,15 @@ mitmproxy -s mitm.py
 
 ### IOS
 
-1、直接打开<code>设置 --> safari 浏览器 --> 高级 --> Web 检查器/Javascript</code>;
+1、直接打开`设置 --> safari 浏览器 --> 高级 --> Web 检查器/Javascript`;
 
 2、将手机连接至电脑，在 safari 开发者模式下调试就 OK 了。
 
 ### android
 
-1、一般是打开<code>设置 --> 开发者选项 --> USB 调试</code>;
+1、一般是打开`设置 --> 开发者选项 --> USB 调试`;
 
-2、在 chrome 浏览器输入 <code>chrome://inspect/#devices</code> 打开 inspect 调试器，上面会显示所连接的设备上的页面，点击 inspect 就可以调试啦。
+2、在 chrome 浏览器输入 `chrome://inspect/#devices` 打开 inspect 调试器，上面会显示所连接的设备上的页面，点击 inspect 就可以调试啦。
 
 ![debugger-inspect.png](https://i.loli.net/2018/11/22/5bf616017176c.png)
 
@@ -271,8 +271,8 @@ Object.defineProperty(window, 'tate', {
 在手机 safari 浏览器中点击该按钮会发现无法触发点击事件，解决方案如下:
 
 * 直接在按钮上绑定事件处理器
-* 在 div 上添加样式 <code>cursor: pointer</code>
-* 给 div 上加 <code>onclick='void(0);'</code>
+* 在 div 上添加样式 `cursor: pointer`
+* 给 div 上加 `onclick='void(0);'`
 * 将 div 换成其他可点击元素 a、button 等
 
 ### 隐藏滚动条

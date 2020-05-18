@@ -23,7 +23,7 @@ tags:
 
 DOM 事件流主要包括三个阶段:
 
-* **事件捕获(event capturing)** - 事件的传播是从最特定的事件目标到最不特定的事件目标。实际目标(<code><div></code>)在捕获阶段不会接收事件
+* **事件捕获(event capturing)** - 事件的传播是从最特定的事件目标到最不特定的事件目标。实际目标(`<div>`)在捕获阶段不会接收事件
 * 处于目标阶段 - 实际的目标接收到事件，但是事件处理会被看成是冒泡阶段的一部分
 * **事件冒泡(event bubbling)** - 事件的传播是从最不特定的事件目标到最特定的事件目标
 
@@ -140,10 +140,10 @@ var EventUtil = {
 
 | 作用 | DOM | IE |
 |:--------------|:---------|:---------|
-| 获取事件类型 | <code>event.type</code> | <code>event.type</code> |
-| 获取事件源 | <code>event.target</code> | <code>event.srcElement</code> |
-| 阻止默认行为 | <code>event.preventDefault()</code> | <code>event.returnValue = false</code> |
-| 阻止冒泡行为 | <code>event.stopPropagation()</code> | <code>event.cancelBubble = true</code> |
+| 获取事件类型 | `event.type` | `event.type` |
+| 获取事件源 | `event.target` | `event.srcElement` |
+| 阻止默认行为 | `event.preventDefault()` | `event.returnValue = false` |
+| 阻止冒泡行为 | `event.stopPropagation()` | `event.cancelBubble = true` |
 
 DOM 事件中还有个 `currentTarget` 属性，与 `target` 的区别是:
 

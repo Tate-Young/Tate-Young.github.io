@@ -381,7 +381,7 @@ angular.element(document.getElementById(‘myId’));
 };
 </code></pre>
 
-<p>因此，在声明 angular.module 后，可以在返回的对象上挂载控制器或服务等，且支持链式调用，如 <code>.controller().directive()</code>:</p>
+<p>因此，在声明 angular.module 后，可以在返回的对象上挂载控制器或服务等，且支持链式调用，如 <code class="highlighter-rouge">.controller().directive()</code>:</p>
 
 <pre><code class="language-JS">// 创建模块
 var app = angular.module('myAPP', []);
@@ -400,7 +400,7 @@ function myController($scope) {
 
 <h2 id="angularinit">angularInit()</h2>
 
-<p><strong>angularInit</strong> 方法定义了 angular 的初始化方法，查找 <code>ng-app='myApp'</code> 指令，得到名为 “myApp” 的模块，并在末尾直接调用了 <strong>bootstrap</strong> 方法启动:</p>
+<p><strong>angularInit</strong> 方法定义了 angular 的初始化方法，查找 <code class="highlighter-rouge">ng-app='myApp'</code> 指令，得到名为 “myApp” 的模块，并在末尾直接调用了 <strong>bootstrap</strong> 方法启动:</p>
 
 <pre><code class="language-JS">var ngAttrPrefixes = ['ng-', 'data-ng-', 'ng:', 'x-ng-'];
 
@@ -429,7 +429,7 @@ function angularInit(element, bootstrap) {
 }
 </code></pre>
 
-<p>若页面存在多个 ng-app 指令，AngularJS 只会自动引导启动它找到的第一个 ng-app 应用，此时可以通过 <code>angular.bootstrap</code> 方法手动引导:</p>
+<p>若页面存在多个 ng-app 指令，AngularJS 只会自动引导启动它找到的第一个 ng-app 应用，此时可以通过 <code class="highlighter-rouge">angular.bootstrap</code> 方法手动引导:</p>
 
 <pre><code class="language-JS">angular.bootstrap(element, [modules], [config]);
 </code></pre>

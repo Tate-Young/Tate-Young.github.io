@@ -31,30 +31,30 @@ tags:
 
 | 常用命令 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| remote | 查看远程库的信息 | <code>git remote -v</code> |
-| clone | 从现有仓库克隆到指定文件目录 | <code>git clone 仓库地址 文件目录</code> |
-| status | 查看文件状态 | <code>git status</code> |
-| add | 跟踪文件，暂存 | <code>git add README.md</code> |
-| diff | 比较工作区中当前文件和暂存区域快照之间的差异 | <code>git diff [filename]</code> |
-| branch | 创建分支，-d 参数为删除分支，-D 强制删除 | <code>git branch -d branchname</code> |
-| merge | 合并，--no-ff 禁用 Fast forward 合并模式 | <code>git merge branchname</code> |
-| rebase | 衍合，改变 commit 序列的基础点，本质上是线性化的自动 cherry-pick | <code>git rebase branchname</code> |
-| commit | 提交到本地仓库 | <code>git commit -m 'initial commit'</code> |
-| reset | 文件从暂存区回退到工作区；版本回退 | <code>git reset HEAD filename</code> |
-| revert | 回滚并创建一个新的提交 | <code>git revert HEAD^</code> |
-| push | 推送到远端仓库，--force 参数为强制推送，缩写 -f | <code>git push --force</code> |
-| pull | 从远端拉取新的代码并合并，相当于 fetch + merge | <code>git pull</code> |
-| log | 查看提交历史，-p 展开显示每次提交的内容差异，-2 则仅显示最近的两次更新 | <code>git log -p -2</code> |
-| reflog | 查看命令历史 | <code>git reflog</code> |
-| tag | 标签，版本库的一个快照 | <code>git tag v1.0.0 commit_id</code> |
-| cherry-pick | 选择某一个分支中的一个或几个 commit 来进行操作 | <code>git cherry-pick commit_id</code> |
+| remote | 查看远程库的信息 | `git remote -v` |
+| clone | 从现有仓库克隆到指定文件目录 | `git clone 仓库地址 文件目录` |
+| status | 查看文件状态 | `git status` |
+| add | 跟踪文件，暂存 | `git add README.md` |
+| diff | 比较工作区中当前文件和暂存区域快照之间的差异 | `git diff [filename]` |
+| branch | 创建分支，-d 参数为删除分支，-D 强制删除 | `git branch -d branchname` |
+| merge | 合并，--no-ff 禁用 Fast forward 合并模式 | `git merge branchname` |
+| rebase | 衍合，改变 commit 序列的基础点，本质上是线性化的自动 cherry-pick | `git rebase branchname` |
+| commit | 提交到本地仓库 | `git commit -m 'initial commit'` |
+| reset | 文件从暂存区回退到工作区；版本回退 | `git reset HEAD filename` |
+| revert | 回滚并创建一个新的提交 | `git revert HEAD^` |
+| push | 推送到远端仓库，--force 参数为强制推送，缩写 -f | `git push --force` |
+| pull | 从远端拉取新的代码并合并，相当于 fetch + merge | `git pull` |
+| log | 查看提交历史，-p 展开显示每次提交的内容差异，-2 则仅显示最近的两次更新 | `git log -p -2` |
+| reflog | 查看命令历史 | `git reflog` |
+| tag | 标签，版本库的一个快照 | `git tag v1.0.0 commit_id` |
+| cherry-pick | 选择某一个分支中的一个或几个 commit 来进行操作 | `git cherry-pick commit_id` |
 
 ### config
 
 **config** 命令也可设置别名:
 
-* `git config` - 仅针对当前仓库起作用，配置文件位于 <code>.git/config</code> 文件中
-* `git config --global` - 针对当前用户起作用，配置文件位于 <code>~/.gitconfig</code> 文件中
+* `git config` - 仅针对当前仓库起作用，配置文件位于 `.git/config` 文件中
+* `git config --global` - 针对当前用户起作用，配置文件位于 `~/.gitconfig` 文件中
 
 ```SHELL
 # git unstage
@@ -233,8 +233,8 @@ git push origin --delete master
   * **hard** 参数 - 丢弃所有本地修改(不包括未跟踪的文件)，移动 HEAD 头指针和重置 Working Copy
 
 版本也可按照 commit id 进行回退，若不记得，可根据不同情况通过以下两种途径获取 commit id:
-* 版本回退 - <code>git log</code> 查看提交历史
-* 版本恢复 - <code>git reflog</code> 查看命令历史
+* 版本回退 - `git log` 查看提交历史
+* 版本恢复 - `git reflog` 查看命令历史
 
 <video controls="">
   <source src="http://github.liaoxuefeng.com/sinaweibopy/video/git-reset.mp4" type="video/mp4"></source>
@@ -280,22 +280,22 @@ git revert -m 1 bb0aa8b
 **checkout** 命令主要有四个用途:
 
 * 可以丢弃工作区中已跟踪文件的修改(*discard*):
-  * <code>git checkout -- filename</code> - 放弃指定文件
-  * <code>git checkout .</code> - 放弃所有工作区文件
+  * `git checkout -- filename` - 放弃指定文件
+  * `git checkout .` - 放弃所有工作区文件
 
 * 切换分支:
-  * <code>git checkout branchname</code> - 切换至指定分支
-  * <code>git checkout -b branchname</code> - 创建并切换至该分支
-  * <code>git checkout -b branchname origin/branchname</code> - 从远端拉取到本地并切换至该分支
-  * <code>git checkout origin/branchname -b branchname</code> - 同上，推荐上面写法
+  * `git checkout branchname` - 切换至指定分支
+  * `git checkout -b branchname` - 创建并切换至该分支
+  * `git checkout -b branchname origin/branchname` - 从远端拉取到本地并切换至该分支
+  * `git checkout origin/branchname -b branchname` - 同上，推荐上面写法
 
 * 把 HEAD 移动到特定的提交:
-  * <code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用。也可以跟 commit id
+  * `git checkout HEAD~2` - 移动至指定分支，对于快速查看项目旧版本来说非常有用。也可以跟 commit id
   * **detached HEAD**: 当前的 HEAD 没有任何分支引用会造成 HEAD 分离。若此时添加新的提交，然后切换到别的分支之后就没办法回到之前添加的这些提交。因此，在为 detached HEAD 添加新的提交时应该创建一个新的分支。
 
 * 快捷解决冲突
-  * <code>git checkout --ours filename</code> - 使用本地代码
-  * <code>git checkout --theirs filename</code> - 使用他人代码
+  * `git checkout --ours filename` - 使用本地代码
+  * `git checkout --theirs filename` - 使用他人代码
 
 <video controls="">
   <source src="http://liaoxuefeng.gitee.io/git-resources/master-and-dev-ff.mp4" type="video/mp4"></source>
@@ -307,11 +307,11 @@ git revert -m 1 bb0aa8b
 git clean
 ```
 
-> 当使用 <code>git checkout branchname</code> 切换分支时，本地无此分支且远端存在同名分支的话，等价于"从远端拉取到本地并切换至该分支"，[详情戳这里](https://git-scm.com/docs/git-checkout) 👈
+> 当使用 `git checkout branchname` 切换分支时，本地无此分支且远端存在同名分支的话，等价于"从远端拉取到本地并切换至该分支"，[详情戳这里](https://git-scm.com/docs/git-checkout) 👈
 
 ### merge
 
-上述视频例子的**合并(merge)**属于**快速合并(Fast forward)**，如果 master 和 feature 都有提文件，此时通过合并 feature 分支则不会产生快速合并。若有同样的文件被提交，则可能会出现**冲突(conflict)**，Git用 <code><<<<<<<，=======，>>>>>>></code> 标记出不同分支的内容，解决完冲突并提交后分支如下:
+上述视频例子的**合并(merge)**属于**快速合并(Fast forward)**，如果 master 和 feature 都有提文件，此时通过合并 feature 分支则不会产生快速合并。若有同样的文件被提交，则可能会出现**冲突(conflict)**，Git用 `<<<<<<<，=======，>>>>>>>` 标记出不同分支的内容，解决完冲突并提交后分支如下:
 
 ```SHELL
 # 也可使用 log 命令查看，--graph 参数可以查看分支合并图
@@ -599,7 +599,7 @@ git stash list
 
 执行 stash 命令后，此时有两种方式进行恢复:
 
-* **git stash apply** - 恢复后，stash 内容并不删除，要用 <code>git stash drop</code> 来删除
+* **git stash apply** - 恢复后，stash 内容并不删除，要用 `git stash drop` 来删除
 * **git stash pop** - 恢复并删除 stash 内容
 
 ```SHELL

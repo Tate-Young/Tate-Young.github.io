@@ -385,7 +385,7 @@ console.log('after')
 
 ### Observer 观察者
 
-**Observer** 观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数，分别对应一种被可观察对象发送的通知的类型，即 next, error 和 complete。要想使用观察者，需要订阅可观察对象，即 <code>observable.subscribe(observer)</code>。
+**Observer** 观察者是可观察对象所发送数据的消费者，观察者简单而言是一组回调函数，分别对应一种被可观察对象发送的通知的类型，即 next, error 和 complete。要想使用观察者，需要订阅可观察对象，即 `observable.subscribe(observer)`。
 
 ```JS
 observable.subscribe({
@@ -541,26 +541,26 @@ subject.complete() // observerA: 3 observerB: 3
 
 | 创建操作符 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **create** | 创建一个新的 Observable | <code>Observable.create((observer) => ...)</code> |
-| **empty** | 仅仅发出 complete 通知，其他什么也不做 | <code>Observable.empty()</code> |
-| **from** | 转化为一个 Observable | <code>Observable.from([1, 2, 3])</code> |
-| **fromEvent** | 创建一个来自于 DOM 事件，或者 Node 的 EventEmitter 事件或者其他事件的 Observable | <code>Observable.fromEvent(document, 'click')</code> |
-| **fromPromise** | 将 Promise 转化为一个 Observable | <code>Observable.fromPromise(fetch('http://myserver.com/'))</code> |
-| **of** | 创建一个 Observable，连续发射指定参数的值，最后发出 complete | <code>Observable.of(1, 2, 3)</code> |
-| **interval** | 返回一个在固定时间间隔发出无限自增的序列整数,如每 1 秒发出自增的数字  | <code>Observable.interval(1000)</code> |
-| **timer** | 同 interval，但增加延迟执行，如每隔 1 秒发出自增的数字，5 秒后开始发送 | <code>Observable.timer(5000, 1000)</code> |
-| **range** | 发出区间范围内的数字序列 | <code>Observable.range(1, 10)</code> |
-| **error** | 仅仅发出 error 通知，其他什么也不做 | <code>Observable.throw(new Error('oops!'))</code> |
+| **create** | 创建一个新的 Observable | `Observable.create((observer) => ...)` |
+| **empty** | 仅仅发出 complete 通知，其他什么也不做 | `Observable.empty()` |
+| **from** | 转化为一个 Observable | `Observable.from([1, 2, 3])` |
+| **fromEvent** | 创建一个来自于 DOM 事件，或者 Node 的 EventEmitter 事件或者其他事件的 Observable | `Observable.fromEvent(document, 'click')` |
+| **fromPromise** | 将 Promise 转化为一个 Observable | `Observable.fromPromise(fetch('http://myserver.com/'))` |
+| **of** | 创建一个 Observable，连续发射指定参数的值，最后发出 complete | `Observable.of(1, 2, 3)` |
+| **interval** | 返回一个在固定时间间隔发出无限自增的序列整数,如每 1 秒发出自增的数字  | `Observable.interval(1000)` |
+| **timer** | 同 interval，但增加延迟执行，如每隔 1 秒发出自增的数字，5 秒后开始发送 | `Observable.timer(5000, 1000)` |
+| **range** | 发出区间范围内的数字序列 | `Observable.range(1, 10)` |
+| **error** | 仅仅发出 error 通知，其他什么也不做 | `Observable.throw(new Error('oops!'))` |
 
 * **转换操作符**
 
 | 转换操作符 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **map** | 同 Array.prototype.map() | <code>ob.map(ev => ev.clientX)</code> |
-| **mapTo** | 可以把传进来的值改成一个固定的值 | <code>ob.mapTo(1)</code> |
-| **scan** | 类似 reduce + last，回调函数的返回值将成为下一次回调函数运行时要传递的下一个参数值 | <code>ob.scan((count) => count + 1, 0)</code> |
-| **mergeMap** | 将每个源值投射成 Observable，再将该 Observable 会合并到输出 Observable 中 | <code>ob.mergeMap(x => Observable.interval(1000).map(i => x+i)))</code> |
-| **switchMap** | 将每个值映射成 Observable，然后使用 switch 打平所有的内部 Observable | <code>ob.switchMap((ev) => Observable.interval(1000))</code> |
+| **map** | 同 Array.prototype.map() | `ob.map(ev => ev.clientX)` |
+| **mapTo** | 可以把传进来的值改成一个固定的值 | `ob.mapTo(1)` |
+| **scan** | 类似 reduce + last，回调函数的返回值将成为下一次回调函数运行时要传递的下一个参数值 | `ob.scan((count) => count + 1, 0)` |
+| **mergeMap** | 将每个源值投射成 Observable，再将该 Observable 会合并到输出 Observable 中 | `ob.mergeMap(x => Observable.interval(1000).map(i => x+i)))` |
+| **switchMap** | 将每个值映射成 Observable，然后使用 switch 打平所有的内部 Observable | `ob.switchMap((ev) => Observable.interval(1000))` |
 
 ```JS
 const source = Rx.Observable.of('Hello')
@@ -573,14 +573,14 @@ const subscribe = example.subscribe(val => console.log(val)) // 'Hello World!'
 
 | 过滤操作符 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **debounceTime** | 延时执行，但是只通过每次大量发送中的最新值 | <code>ob.debounceTime(500)</code> |
-| **distinct** | 得到的不同的值 | <code>Observable.of(1, 2, 2, 3).max()</code> |
-| **distinctUntilChanged** | 得到的与前一项不同的值 | <code>Observable.of(1, 2, 2, 3).distinctUntilChanged()</code> |
-| **distinctUntilKeyChanged** | 基于指定的 key 得到与前一项不同的值 | <code>ob.distinctUntilKeyChanged()</code> |
-| **filter** | 同 Array.prototype.filter() | <code>ob.filter(x => x % 2 === 1)</code> |
-| **first** | 只发出第一次满足条件的值，反之则为 last | <code>ob.first(x => x % 2 === 1)</code> |
-| **skip** | 跳过发出的前 n 个值，跳过后 n 个值则为 skipLast | <code>ob.skip(2)</code> |
-| **throttleTime** | 让一个值通过，然后在接下来的 duration 毫秒内忽略源值 | <code>ob.throttleTime(1000)</code> |
+| **debounceTime** | 延时执行，但是只通过每次大量发送中的最新值 | `ob.debounceTime(500)` |
+| **distinct** | 得到的不同的值 | `Observable.of(1, 2, 2, 3).max()` |
+| **distinctUntilChanged** | 得到的与前一项不同的值 | `Observable.of(1, 2, 2, 3).distinctUntilChanged()` |
+| **distinctUntilKeyChanged** | 基于指定的 key 得到与前一项不同的值 | `ob.distinctUntilKeyChanged()` |
+| **filter** | 同 Array.prototype.filter() | `ob.filter(x => x % 2 === 1)` |
+| **first** | 只发出第一次满足条件的值，反之则为 last | `ob.first(x => x % 2 === 1)` |
+| **skip** | 跳过发出的前 n 个值，跳过后 n 个值则为 skipLast | `ob.skip(2)` |
+| **throttleTime** | 让一个值通过，然后在接下来的 duration 毫秒内忽略源值 | `ob.throttleTime(1000)` |
 
 ```JS
 Observable.of(1, 1, 2, 2, 2, 1, 1, 2, 3, 3, 4)
@@ -600,11 +600,11 @@ Observable.of<Person>(
 
 | 组合操作符 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **concat** | 拼接，按照顺序将发出的多个值拼接起来，可以有静态方法和实例方法 | <code>ob.concat(ob1)</code> |
-| **merge** | 合并，把多个值合并到一个值中，可以有静态方法和实例方法| <code>ob.merge(ob1)</code> |
-| **forkJoin** | 同 Promise.all，等到所有的 Observable 都完成后，才一次性返回值 | <code>ob.forkJoin(ob1, ob2)</code> |
-| **race** | 类似 Promise.race，返回组合中第一个发出项的 Observable 的镜像 | <code>ob.race(ob1, ob2)</code> |
-| **startWith** | 先发出指定项，然后发出由源 Observable 发出的项 | <code>ob.startWith(1)</code> |
+| **concat** | 拼接，按照顺序将发出的多个值拼接起来，可以有静态方法和实例方法 | `ob.concat(ob1)` |
+| **merge** | 合并，把多个值合并到一个值中，可以有静态方法和实例方法| `ob.merge(ob1)` |
+| **forkJoin** | 同 Promise.all，等到所有的 Observable 都完成后，才一次性返回值 | `ob.forkJoin(ob1, ob2)` |
+| **race** | 类似 Promise.race，返回组合中第一个发出项的 Observable 的镜像 | `ob.race(ob1, ob2)` |
+| **startWith** | 先发出指定项，然后发出由源 Observable 发出的项 | `ob.startWith(1)` |
 
 注意 concat 和 merge 的区别，concat 是按顺序拼接值:
 
@@ -633,13 +633,13 @@ example: ----0----1----2--0--1--2--3--4--5|
 
 | 其他操作符 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| **delay** | 延迟执行，每个数据项的发出时间都往后推移固定的毫秒数 | <code>ob.delay(1000)</code> |
-| **toPromise** | 转换为 Promise | <code>ob.toPromise()</code> |
-| **max** | 获取一连串数字中的最大值，反之为 min | <code>Observable.of(1, 2, 3).max()</code> |
-| **every** | 返回布尔值，所有项是否都满足指定条件 | <code>Observable.of(1, 2, 3).every(x => x > 0)</code> |
-| **find** | 找到第一个通过测试的值并将其发出，findIndex 则返回索引值 | <code>Observable.of(1, 2, 3).find(x => x > 0)</code> |
-| **count** | 计算源的发送数量，并当源完成时发出该数值 | <code>ob.count(x => x > 0)</code> |
-| **reduce** | 当源 Observable 完成时，返回 累加的结果，只会返回一个值 | <code>ob.reduce((acc, one) => acc + one, seed)</code> |
+| **delay** | 延迟执行，每个数据项的发出时间都往后推移固定的毫秒数 | `ob.delay(1000)` |
+| **toPromise** | 转换为 Promise | `ob.toPromise()` |
+| **max** | 获取一连串数字中的最大值，反之为 min | `Observable.of(1, 2, 3).max()` |
+| **every** | 返回布尔值，所有项是否都满足指定条件 | `Observable.of(1, 2, 3).every(x => x > 0)` |
+| **find** | 找到第一个通过测试的值并将其发出，findIndex 则返回索引值 | `Observable.of(1, 2, 3).find(x => x > 0)` |
+| **count** | 计算源的发送数量，并当源完成时发出该数值 | `ob.count(x => x > 0)` |
+| **reduce** | 当源 Observable 完成时，返回 累加的结果，只会返回一个值 | `ob.reduce((acc, one) => acc + one, seed)` |
 
 ```JS
 // 使用比较函数 max 来获取最大值的项

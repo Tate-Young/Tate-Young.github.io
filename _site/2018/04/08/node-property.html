@@ -306,7 +306,7 @@ console.log(process.env.ENV)
   <li><strong>nextTick(callback[, …args])</strong> - 将 callback 添加到 “next tick 队列”。一旦当前事件轮询队列的任务全部完成，在 next tick 队列中的所有 callbacks 会被依次调用，有关 Node 事件循环<a href="http://localhost:2333/2018/04/21/node-event-loop.html">可参考这里</a></li>
 </ul>
 
-<p>执行 <code>process.exit()</code> 终止进程时或 Node 事件循环数组中不再有额外的工作，会触发 exit 事件:</p>
+<p>执行 <code class="highlighter-rouge">process.exit()</code> 终止进程时或 Node 事件循环数组中不再有额外的工作，会触发 exit 事件:</p>
 
 <pre><code class="language-JS">// 'exit' 事件监听器的回调函数，只允许包含同步操作
 process.on('exit', (code) =&gt; {
@@ -330,7 +330,7 @@ process.on('exit', (code) =&gt; {
   <li><strong>normalize(p)</strong> - 会规范化给定的 path，并解析 ‘..’ 和 ‘.’ 片段</li>
   <li><strong>format()</strong> - 从一个对象返回一个路径字符串，与 parse() 相反，对象包含 dir/root/base/name/ext 几个属性</li>
   <li><strong>parse()</strong> - 返回一个对象，对象的属性表示 path 的元素</li>
-  <li><strong>sep</strong> - 路径片段分隔符，常用的是通过 <code>split(path.sep)</code> 分割成数组</li>
+  <li><strong>sep</strong> - 路径片段分隔符，常用的是通过 <code class="highlighter-rouge">split(path.sep)</code> 分割成数组</li>
 </ul>
 
 <p>示例如下:</p>

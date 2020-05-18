@@ -52,7 +52,7 @@ angular.module('myApp', [])
   });
 ```
 
-而 Scope 与双向数据绑定有着密不可分的关系，而数据的检测正是由**脏检查(dirty checking)**完成，因此涉及到 <code>$watch</code>、<code>$apply</code> 和 <code>$digest</code> 几个重要概念。
+而 Scope 与双向数据绑定有着密不可分的关系，而数据的检测正是由**脏检查(dirty checking)**完成，因此涉及到 `$watch`、`$apply` 和 `$digest` 几个重要概念。
 
 ### $watch
 
@@ -109,7 +109,7 @@ function initWatchVal() {}
 注册过的 watcher 在检测到当前的值和上次检测的值不同时，才会调用 listener 函数，比较方法类似于 (!==)，这里的值可以分为三种情况:
 
 * 基础类型值
-* 引用类型值 - 根据 $watch 方法的第三个参数 objectEquality 来设置，true 时则使用 <code>angular.equals</code> 来判断，默认为 false
+* 引用类型值 - 根据 $watch 方法的第三个参数 objectEquality 来设置，true 时则使用 `angular.equals` 来判断，默认为 false
 * 集合 - 可使用 $watchCollection，比如数组或对象，性能上会更好，详细分析[可参考这里](https://blog.csdn.net/dm_vincent/article/details/51620193)
 
 当然也可以通过 $watch、**$watchGroup** 或 **$watchCollection** 方法手动去监听变量的值:
@@ -240,7 +240,7 @@ D   E
 
 1. 首先遍历 A，之后遍历其 $$childHead B，再遍历其 $$childHead D;
 2. D 之后没有子节点，会去找 $$nextSibling E，然后在遍历其 $$childHead F;
-3. F 之后没有子节点，也没有兄弟节点，则会执行回溯 <code>current = current.$parent</code>;
+3. F 之后没有子节点，也没有兄弟节点，则会执行回溯 `current = current.$parent`;
 4. 回溯到 B 时，会去找 $$nextSibling C；
 5. C 之后没有子节点，也没有兄弟节点，则同样执行回溯到 A，循环终止。
 

@@ -255,87 +255,87 @@
     <tr>
       <td style="text-align: left">remote</td>
       <td style="text-align: left">查看远程库的信息</td>
-      <td style="text-align: left"><code>git remote -v</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git remote -v</code></td>
     </tr>
     <tr>
       <td style="text-align: left">clone</td>
       <td style="text-align: left">从现有仓库克隆到指定文件目录</td>
-      <td style="text-align: left"><code>git clone 仓库地址 文件目录</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git clone 仓库地址 文件目录</code></td>
     </tr>
     <tr>
       <td style="text-align: left">status</td>
       <td style="text-align: left">查看文件状态</td>
-      <td style="text-align: left"><code>git status</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git status</code></td>
     </tr>
     <tr>
       <td style="text-align: left">add</td>
       <td style="text-align: left">跟踪文件，暂存</td>
-      <td style="text-align: left"><code>git add README.md</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git add README.md</code></td>
     </tr>
     <tr>
       <td style="text-align: left">diff</td>
       <td style="text-align: left">比较工作区中当前文件和暂存区域快照之间的差异</td>
-      <td style="text-align: left"><code>git diff [filename]</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git diff [filename]</code></td>
     </tr>
     <tr>
       <td style="text-align: left">branch</td>
       <td style="text-align: left">创建分支，-d 参数为删除分支，-D 强制删除</td>
-      <td style="text-align: left"><code>git branch -d branchname</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git branch -d branchname</code></td>
     </tr>
     <tr>
       <td style="text-align: left">merge</td>
       <td style="text-align: left">合并，–no-ff 禁用 Fast forward 合并模式</td>
-      <td style="text-align: left"><code>git merge branchname</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git merge branchname</code></td>
     </tr>
     <tr>
       <td style="text-align: left">rebase</td>
       <td style="text-align: left">衍合，改变 commit 序列的基础点，本质上是线性化的自动 cherry-pick</td>
-      <td style="text-align: left"><code>git rebase branchname</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git rebase branchname</code></td>
     </tr>
     <tr>
       <td style="text-align: left">commit</td>
       <td style="text-align: left">提交到本地仓库</td>
-      <td style="text-align: left"><code>git commit -m 'initial commit'</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git commit -m 'initial commit'</code></td>
     </tr>
     <tr>
       <td style="text-align: left">reset</td>
       <td style="text-align: left">文件从暂存区回退到工作区；版本回退</td>
-      <td style="text-align: left"><code>git reset HEAD filename</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git reset HEAD filename</code></td>
     </tr>
     <tr>
       <td style="text-align: left">revert</td>
       <td style="text-align: left">回滚并创建一个新的提交</td>
-      <td style="text-align: left"><code>git revert HEAD^</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git revert HEAD^</code></td>
     </tr>
     <tr>
       <td style="text-align: left">push</td>
       <td style="text-align: left">推送到远端仓库，–force 参数为强制推送，缩写 -f</td>
-      <td style="text-align: left"><code>git push --force</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git push --force</code></td>
     </tr>
     <tr>
       <td style="text-align: left">pull</td>
       <td style="text-align: left">从远端拉取新的代码并合并，相当于 fetch + merge</td>
-      <td style="text-align: left"><code>git pull</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git pull</code></td>
     </tr>
     <tr>
       <td style="text-align: left">log</td>
       <td style="text-align: left">查看提交历史，-p 展开显示每次提交的内容差异，-2 则仅显示最近的两次更新</td>
-      <td style="text-align: left"><code>git log -p -2</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git log -p -2</code></td>
     </tr>
     <tr>
       <td style="text-align: left">reflog</td>
       <td style="text-align: left">查看命令历史</td>
-      <td style="text-align: left"><code>git reflog</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git reflog</code></td>
     </tr>
     <tr>
       <td style="text-align: left">tag</td>
       <td style="text-align: left">标签，版本库的一个快照</td>
-      <td style="text-align: left"><code>git tag v1.0.0 commit_id</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git tag v1.0.0 commit_id</code></td>
     </tr>
     <tr>
       <td style="text-align: left">cherry-pick</td>
       <td style="text-align: left">选择某一个分支中的一个或几个 commit 来进行操作</td>
-      <td style="text-align: left"><code>git cherry-pick commit_id</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">git cherry-pick commit_id</code></td>
     </tr>
   </tbody>
 </table>
@@ -345,8 +345,8 @@
 <p><strong>config</strong> 命令也可设置别名:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">git config</code> - 仅针对当前仓库起作用，配置文件位于 <code>.git/config</code> 文件中</li>
-  <li><code class="highlighter-rouge">git config --global</code> - 针对当前用户起作用，配置文件位于 <code>~/.gitconfig</code> 文件中</li>
+  <li><code class="highlighter-rouge">git config</code> - 仅针对当前仓库起作用，配置文件位于 <code class="highlighter-rouge">.git/config</code> 文件中</li>
+  <li><code class="highlighter-rouge">git config --global</code> - 针对当前用户起作用，配置文件位于 <code class="highlighter-rouge">~/.gitconfig</code> 文件中</li>
 </ul>
 
 <pre><code class="language-SHELL"># git unstage
@@ -527,8 +527,8 @@ git push origin --delete master
 
 <p>版本也可按照 commit id 进行回退，若不记得，可根据不同情况通过以下两种途径获取 commit id:</p>
 <ul>
-  <li>版本回退 - <code>git log</code> 查看提交历史</li>
-  <li>版本恢复 - <code>git reflog</code> 查看命令历史</li>
+  <li>版本回退 - <code class="highlighter-rouge">git log</code> 查看提交历史</li>
+  <li>版本恢复 - <code class="highlighter-rouge">git reflog</code> 查看命令历史</li>
 </ul>
 
 <video controls="">
@@ -574,28 +574,28 @@ git revert -m 1 bb0aa8b
 <ul>
   <li>可以丢弃工作区中已跟踪文件的修改(<em>discard</em>):
     <ul>
-      <li><code>git checkout -- filename</code> - 放弃指定文件</li>
-      <li><code>git checkout .</code> - 放弃所有工作区文件</li>
+      <li><code class="highlighter-rouge">git checkout -- filename</code> - 放弃指定文件</li>
+      <li><code class="highlighter-rouge">git checkout .</code> - 放弃所有工作区文件</li>
     </ul>
   </li>
   <li>切换分支:
     <ul>
-      <li><code>git checkout branchname</code> - 切换至指定分支</li>
-      <li><code>git checkout -b branchname</code> - 创建并切换至该分支</li>
-      <li><code>git checkout -b branchname origin/branchname</code> - 从远端拉取到本地并切换至该分支</li>
-      <li><code>git checkout origin/branchname -b branchname</code> - 同上，推荐上面写法</li>
+      <li><code class="highlighter-rouge">git checkout branchname</code> - 切换至指定分支</li>
+      <li><code class="highlighter-rouge">git checkout -b branchname</code> - 创建并切换至该分支</li>
+      <li><code class="highlighter-rouge">git checkout -b branchname origin/branchname</code> - 从远端拉取到本地并切换至该分支</li>
+      <li><code class="highlighter-rouge">git checkout origin/branchname -b branchname</code> - 同上，推荐上面写法</li>
     </ul>
   </li>
   <li>把 HEAD 移动到特定的提交:
     <ul>
-      <li><code>git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用。也可以跟 commit id</li>
+      <li><code class="highlighter-rouge">git checkout HEAD~2</code> - 移动至指定分支，对于快速查看项目旧版本来说非常有用。也可以跟 commit id</li>
       <li><strong>detached HEAD</strong>: 当前的 HEAD 没有任何分支引用会造成 HEAD 分离。若此时添加新的提交，然后切换到别的分支之后就没办法回到之前添加的这些提交。因此，在为 detached HEAD 添加新的提交时应该创建一个新的分支。</li>
     </ul>
   </li>
   <li>快捷解决冲突
     <ul>
-      <li><code>git checkout --ours filename</code> - 使用本地代码</li>
-      <li><code>git checkout --theirs filename</code> - 使用他人代码</li>
+      <li><code class="highlighter-rouge">git checkout --ours filename</code> - 使用本地代码</li>
+      <li><code class="highlighter-rouge">git checkout --theirs filename</code> - 使用他人代码</li>
     </ul>
   </li>
 </ul>
@@ -610,12 +610,12 @@ git revert -m 1 bb0aa8b
 </code></pre>
 
 <blockquote>
-  <p>当使用 <code>git checkout branchname</code> 切换分支时，本地无此分支且远端存在同名分支的话，等价于”从远端拉取到本地并切换至该分支”，<a href="https://git-scm.com/docs/git-checkout">详情戳这里</a> 👈</p>
+  <p>当使用 <code class="highlighter-rouge">git checkout branchname</code> 切换分支时，本地无此分支且远端存在同名分支的话，等价于”从远端拉取到本地并切换至该分支”，<a href="https://git-scm.com/docs/git-checkout">详情戳这里</a> 👈</p>
 </blockquote>
 
 <h3 id="merge">merge</h3>
 
-<p>上述视频例子的<strong>合并(merge)</strong>属于<strong>快速合并(Fast forward)</strong>，如果 master 和 feature 都有提文件，此时通过合并 feature 分支则不会产生快速合并。若有同样的文件被提交，则可能会出现<strong>冲突(conflict)</strong>，Git用 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 标记出不同分支的内容，解决完冲突并提交后分支如下:</p>
+<p>上述视频例子的<strong>合并(merge)</strong>属于<strong>快速合并(Fast forward)</strong>，如果 master 和 feature 都有提文件，此时通过合并 feature 分支则不会产生快速合并。若有同样的文件被提交，则可能会出现<strong>冲突(conflict)</strong>，Git用 <code class="highlighter-rouge">&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 标记出不同分支的内容，解决完冲突并提交后分支如下:</p>
 
 <pre><code class="language-SHELL"># 也可使用 log 命令查看，--graph 参数可以查看分支合并图
 git log --graph --pretty=oneline --abbrev-commit
@@ -898,7 +898,7 @@ git stash list
 <p>执行 stash 命令后，此时有两种方式进行恢复:</p>
 
 <ul>
-  <li><strong>git stash apply</strong> - 恢复后，stash 内容并不删除，要用 <code>git stash drop</code> 来删除</li>
+  <li><strong>git stash apply</strong> - 恢复后，stash 内容并不删除，要用 <code class="highlighter-rouge">git stash drop</code> 来删除</li>
   <li><strong>git stash pop</strong> - 恢复并删除 stash 内容</li>
 </ul>
 

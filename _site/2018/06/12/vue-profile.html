@@ -236,7 +236,7 @@ app.$watch('message', function(newValue, oldValue) {
 &lt;/div&gt;
 </code></pre>
 
-<p>在每个 new Vue 实例的子组件中，其根实例可以通过 $root 属性进行访问，如 <code>this.$root.message</code>。</p>
+<p>在每个 new Vue 实例的子组件中，其根实例可以通过 $root 属性进行访问，如 <code class="highlighter-rouge">this.$root.message</code>。</p>
 
 <h2 id="组件-component">组件 component</h2>
 
@@ -615,7 +615,7 @@ new Vue({ el: '#components-demo' })
 &lt;form v-on:submit.prevent="onSubmit"&gt;...&lt;/form&gt;
 </code></pre>
 
-<p>对于常用的 <code>v-bind</code> 和 <code>v-on</code> 可以采用缩写:</p>
+<p>对于常用的 <code class="highlighter-rouge">v-bind</code> 和 <code class="highlighter-rouge">v-on</code> 可以采用缩写:</p>
 
 <pre><code class="language-HTML">&lt;a v-bind:href="url"&gt;...&lt;/a&gt;
 &lt;a v-on:click="doSomething"&gt;...&lt;/a&gt;
@@ -625,7 +625,7 @@ new Vue({ el: '#components-demo' })
 &lt;a @click="doSomething"&gt;...&lt;/a&gt;
 </code></pre>
 
-<p>用 v-for 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序， 而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 <code>track-by="$index"</code>，此时需要为每项提供一个唯一 key 属性:</p>
+<p>用 v-for 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序， 而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 <code class="highlighter-rouge">track-by="$index"</code>，此时需要为每项提供一个唯一 key 属性:</p>
 
 <pre><code class="language-HTML">&lt;!-- 遍历操作符 of 可以代替 in --&gt;
 &lt;div v-for="item of items" :key="item.id"&gt;{ { item } }&lt;/div&gt;
@@ -639,7 +639,7 @@ new Vue({ el: '#components-demo' })
 
 <h3 id="v-cloak">v-cloak</h3>
 
-<p>这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 <code>[v-cloak] { display: none }</code> 一起用时，这个指令可以隐藏未编译的插值表达式直到实例准备完毕。</p>
+<p>这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 <code class="highlighter-rouge">[v-cloak] { display: none }</code> 一起用时，这个指令可以隐藏未编译的插值表达式直到实例准备完毕。</p>
 
 <pre><code class="language-CSS">[v-cloak] {
   display: none;
@@ -671,32 +671,32 @@ new Vue({ el: '#components-demo' })
     <tr>
       <td style="text-align: left"><strong>.stop</strong></td>
       <td style="text-align: left">阻止单击事件继续传播，event.stopPropagation()</td>
-      <td style="text-align: left"><code>&lt;a @click.stop="doThis"&gt;&lt;/a&gt;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">&lt;a @click.stop="doThis"&gt;&lt;/a&gt;</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>.prevent</strong></td>
       <td style="text-align: left">阻止浏览器默认事件，event.preventDefault()</td>
-      <td style="text-align: left"><code>&lt;form @submit.prevent="onSubmit"&gt;&lt;/form&gt;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">&lt;form @submit.prevent="onSubmit"&gt;&lt;/form&gt;</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>.capture</strong></td>
       <td style="text-align: left">采用事件捕获</td>
-      <td style="text-align: left"><code>&lt;a @click.capture="doThis"&gt;&lt;/a&gt;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">&lt;a @click.capture="doThis"&gt;&lt;/a&gt;</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>.self</strong></td>
       <td style="text-align: left">只当在 event.target 是当前元素自身时触发处理函数</td>
-      <td style="text-align: left"><code>&lt;a @click.self="doThis"&gt;&lt;/a&gt;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">&lt;a @click.self="doThis"&gt;&lt;/a&gt;</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>.once</strong></td>
       <td style="text-align: left">事件只执行一次</td>
-      <td style="text-align: left"><code>&lt;button @click.once="showMsg"&gt;Add&lt;/button&gt;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">&lt;button @click.once="showMsg"&gt;Add&lt;/button&gt;</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>.passive</strong></td>
       <td style="text-align: left">滚动事件的默认行为将会立即触发，能够提升移动端的性能</td>
-      <td style="text-align: left"><code>&lt;div @scroll.passive="onScroll"&gt;&lt;/div&gt;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">&lt;div @scroll.passive="onScroll"&gt;&lt;/div&gt;</code></td>
     </tr>
   </tbody>
 </table>
@@ -760,17 +760,17 @@ new Vue({ el: '#components-demo' })
     <tr>
       <td style="text-align: left"><strong>.lazy</strong></td>
       <td style="text-align: left">在“change”时而非“input”时更新</td>
-      <td style="text-align: left"><code>&lt;\input v-model.lazy="msg"&gt;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">&lt;\input v-model.lazy="msg"&gt;</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>.number</strong></td>
       <td style="text-align: left">将用户的输入值转为数值类型</td>
-      <td style="text-align: left"><code>&lt;\input v-model.number="age" type="number"&gt;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">&lt;\input v-model.number="age" type="number"&gt;</code></td>
     </tr>
     <tr>
       <td style="text-align: left"><strong>.trim</strong></td>
       <td style="text-align: left">自动过滤用户输入的首尾空白字符</td>
-      <td style="text-align: left"><code>&lt;\input v-model.trim="msg"&gt;</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">&lt;\input v-model.trim="msg"&gt;</code></td>
     </tr>
   </tbody>
 </table>

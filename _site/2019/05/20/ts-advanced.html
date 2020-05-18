@@ -175,7 +175,7 @@
                       发布时间：2019-05-20 18:36:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-12-23 19:40:00
+                        修改时间：2020-05-18 17:49:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -721,6 +721,19 @@ let partialState: PickedState = {
 type Rectangle = typeof rectangle1
 
 let rectangle2: Rectangle
+</code></pre>
+
+<p>我们还可以获取多个层级里某个字段的类型:</p>
+
+<pre><code class="language-JS">const locales = [{
+  locale: 'se',
+  language: 'Swedish',
+}, {
+  locale: 'en',
+  language: 'English',
+}] as const
+
+type Locale = typeof locales[number]['locale'] // type Locale = "se" | "en"
 </code></pre>
 
 <h2 id="const-断言">const 断言</h2>

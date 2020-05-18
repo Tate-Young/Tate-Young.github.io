@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2019-12-23 19:40:00 GMT+0800 (CST)
+update: 2020-05-18 17:49:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
 tags:
 - TS
@@ -543,6 +543,20 @@ let rectangle1 = { width: 100, height: 200 }
 type Rectangle = typeof rectangle1
 
 let rectangle2: Rectangle
+```
+
+我们还可以获取多个层级里某个字段的类型:
+
+```JS
+const locales = [{
+  locale: 'se',
+  language: 'Swedish',
+}, {
+  locale: 'en',
+  language: 'English',
+}] as const
+
+type Locale = typeof locales[number]['locale'] // type Locale = "se" | "en"
 ```
 
 ## const 断言

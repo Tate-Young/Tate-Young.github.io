@@ -401,10 +401,10 @@ async function logger() {
 
 ### 书写形式
 
-* 异步函数声明 - <code>async function foo() {}</code>
-* 异步函数表达式 - <code>const foo = async function () {}</code>
-* 异步函数定义 - <code>let obj = { async foo() {} }</code>
-* 异步箭头函数 - <code>const foo = async () => {}</code>
+* 异步函数声明 - `async function foo() {}`
+* 异步函数表达式 - `const foo = async function () {}`
+* 异步函数定义 - `let obj = { async foo() {} }`
+* 异步箭头函数 - `const foo = async () => {}`
 
 ```JS
 async function logPosts() {

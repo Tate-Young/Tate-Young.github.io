@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Redux & Redux-Saga
 date:   2018-08-07 18:15:00 GMT+0800 (CST)
-update: 2019-03-10 13:38:00 GMT+0800 (CST)
+update: 2020-05-18 19:07:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/08/5b6a497fea578.png
 tags:
 - React
@@ -16,7 +16,7 @@ tags:
 
 ## Redux & Flux
 
-Redux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux 里的 **store**，Redux 里的 **reducer**)。两者都不允许程序直接修改数据，而是用一个叫作 "**action**" 的普通对象来对更改进行描述。而不同于 Flux ，Redux 并没有 **dispatcher** 的概念。原因是它依赖纯函数来替代事件处理器。纯函数构建简单，也不需额外的实体来管理它们。Flux 常常被表述为 <code>(state, action) => state</code>。从这个意义上说，Redux 无疑是 Flux 架构的实现，且得益于纯函数而更为简单。
+Redux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux 一样，Redux 规定，将模型的更新逻辑全部集中于一个特定的层(Flux 里的 **store**，Redux 里的 **reducer**)。两者都不允许程序直接修改数据，而是用一个叫作 "**action**" 的普通对象来对更改进行描述。而不同于 Flux ，Redux 并没有 **dispatcher** 的概念。原因是它依赖纯函数来替代事件处理器。纯函数构建简单，也不需额外的实体来管理它们。Flux 常常被表述为 `(state, action) => state`。从这个意义上说，Redux 无疑是 Flux 架构的实现，且得益于纯函数而更为简单。
 
 > Redux 和 React 之间没有关系。Redux 支持 React、Angular、Ember、jQuery 甚至纯 JavaScript。尽管如此，Redux 还是和 React 和 Deku 这类库搭配起来用最好，因为这类库允许你以 state 函数的形式来描述界面，Redux 通过 action 的形式来发起 state 变化。
 
@@ -26,7 +26,7 @@ Redux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux
 
 ### Action
 
-**Action** 是把数据从应用传到 store 的有效载荷。它是 store 数据的唯一来源。一般通过 <code>store.dispatch()</code> 将 action 传到 store。一般约定 action 是一个拥有 **type** 属性的对象。然后按 type 决定如何处理 action。当然，action 依旧可以拥有其他属性，你可以任意存放想要的数据:
+**Action** 是把数据从应用传到 store 的有效载荷。它是 store 数据的唯一来源。一般通过 `store.dispatch()` 将 action 传到 store。一般约定 action 是一个拥有 **type** 属性的对象。然后按 type 决定如何处理 action。当然，action 依旧可以拥有其他属性，你可以任意存放想要的数据:
 
 ```JS
 // action 示例
@@ -68,7 +68,7 @@ function addTodo (text) {
 }
 ```
 
-现在我们已经确定了 state 对象的结构，就可以开始开发 reducer。reducer 就是一个纯函数，接收旧的 state 和 action，返回新的 state : <code>(previousState, action) => newState</code>。需要谨记 reducer 是[纯函数](https://zh.wikipedia.org/wiki/%E7%BA%AF%E5%87%BD%E6%95%B0)，不要执行有副作用的操作，如 API 请求和路由跳转。
+现在我们已经确定了 state 对象的结构，就可以开始开发 reducer。reducer 就是一个纯函数，接收旧的 state 和 action，返回新的 state : `(previousState, action) => newState`。需要谨记 reducer 是[纯函数](https://zh.wikipedia.org/wiki/%E7%BA%AF%E5%87%BD%E6%95%B0)，不要执行有副作用的操作，如 API 请求和路由跳转。
 
 ```JS
 export default (state = 0, action) => { // 首次执行时，state 为 undefined，需要定义初始值
@@ -353,6 +353,23 @@ const Comp = connect(...args)(MyComp);
 connect([mapStateToProps], [mapDispatchToProps], [mergeProps],[options])
 ```
 
+要做 TS 迁移的话，类型检查可以使用 `ConnectedProps<T>`，可以直接[参考官方文档](https://react-redux.js.org/using-react-redux/static-typing):
+
+```JS
+// alternately, declare `type Props = Props From Redux & {backgroundColor: string}`
+interface Props extends PropsFromRedux {
+  backgroundColor: string;
+}
+
+const MyComponent = (props: Props) => /* same as above */
+
+const connector = connect(/* same as above*/)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(MyComponent)
+```
+
 #### mapStateToProps()
 
 **mapStateToProps** 将 store 中的数据作为 props 绑定到组件上。接收的第一个参数是我们需要从 Redux 中提取的状态，第二个可选参数是组件本身的 props。不必将 Redux 中所有的 state 数据都传进组件，可以结合 ownProps 进行筛选，传入需要的最少属性。
@@ -510,7 +527,7 @@ yield put({type: "USER_FETCH_SUCCEEDED", user: user});
 const user = yield call(Api.fetchUser, action.payload.userId);
 ```
 
-类似于 <code>Promise.all</code> 同时执行多个任务:
+类似于 `Promise.all` 同时执行多个任务:
 
 ```JS
 import { call } from 'redux-saga/effects'
@@ -554,7 +571,7 @@ function* main() {
 }
 ```
 
-在上面的示例中，取消 bgSyncTask 将会导致 Generator 跳进 finally 区块。可使用 <code>yield cancelled()</code> 来检查 Generator 是否已经被取消:
+在上面的示例中，取消 bgSyncTask 将会导致 Generator 跳进 finally 区块。可使用 `yield cancelled()` 来检查 Generator 是否已经被取消:
 
 ```JS
 function* saga() {
@@ -586,7 +603,7 @@ function* loginFlow() {
 
 6、**select**
 
-创建一个 Effect，用来命令 middleware 在当前 Store 的 state 上调用指定的选择器，如果调用 select 的参数为空(即 yield select())，那么 effect 会取得完整的 state(与调用 <code>store.getState()</code> 的结果相同):
+创建一个 Effect，用来命令 middleware 在当前 Store 的 state 上调用指定的选择器，如果调用 select 的参数为空(即 yield select())，那么 effect 会取得完整的 state(与调用 `store.getState()` 的结果相同):
 
 ```JS
 export function* toggleItemFlow() {
@@ -673,7 +690,7 @@ const sayHello = (state = INITIAL_STATE, action) => {
 
 3、触发
 
-在 redux 中，reducers 会被 action 触发，通过 <code>action.type</code> 上的 switch 所驱动。现在只需要一个简单的对象，将所有 actions 映射到 reducer 函数上:
+在 redux 中，reducers 会被 action 触发，通过 `action.type` 上的 switch 所驱动。现在只需要一个简单的对象，将所有 actions 映射到 reducer 函数上:
 
 ```JSX
 import Types from './actionTypes'

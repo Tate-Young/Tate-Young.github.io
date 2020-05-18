@@ -119,7 +119,7 @@ Linux 基本权限就有九个，分别是 **user/group/others** 三种身份各
 chmod [-R] xyz 文件或目录
 ```
 
-举个栗子 🌰，针对文件权限 <code>-rwxrwx---</code>:
+举个栗子 🌰，针对文件权限 `-rwxrwx---`:
 
 ```TEXT
 owner = rwx = 4+2+1 = 7
@@ -294,7 +294,7 @@ cp -r -a aaa/* /bbb
 * **x** - 保存并退出程序，同 wq
 * **set nu** - 显示行数
 
-> 在编辑文件的时候如果异常退出，会自动生成 swp 文件以保证文件的安全性，导致每次启动 vim 编辑该文件时都会进行扰人的提示，解决的办法是 <code>rm -f .[basename].swp</code>。
+> 在编辑文件的时候如果异常退出，会自动生成 swp 文件以保证文件的安全性，导致每次启动 vim 编辑该文件时都会进行扰人的提示，解决的办法是 `rm -f .[basename].swp`。
 
 ![vim](http://www.runoob.com/wp-content/uploads/2014/07/vim-vi-workmodel.png)
 

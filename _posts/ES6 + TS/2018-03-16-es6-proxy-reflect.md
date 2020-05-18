@@ -252,19 +252,19 @@ Reflect 对象一有共 13 种静态方法，大部分与 Object 对象的同名
 
 | 方法 | 描述 | 栗子 |
 |:--------------|:---------|:---------|
-| Reflect.apply(target, thisArg, args) | Function.prototype.apply.call(func, thisArg, args)，用于绑定 this 对象后执行给定函数 | <code>Reflect.apply(Math.min, Math, ages)</code> |
-| Reflect.construct(target, args) | new target(...args)，调用构造函数 | <code>const person = Reflect.construct(Person, ['tate', 18])</code> |
-| Reflect.get(target, name, receiver) | 查找并返回 target 对象的 name 属性 | <code>Reflect.get(obj, 'foo')</code> |
-| Reflect.set(target, name, value, receiver) | 设置 target 对象的 name 属性等于 value | <code>Reflect.set(obj, 'foo', 'bar')</code> |
-| Reflect.defineProperty(target, name, desc) | 同 Object.defineProperty，但返回布尔值 | <code>Reflect.defineProperty(obj, 'foo', {value: 'bar'})</code> |
-| Reflect.deleteProperty(target, name) | delete obj[name]，用于删除对象的属性 | <code>Reflect.deleteProperty(obj, 'foo')</code> |
-| Reflect.has(target, name) | 对应 name in obj 里面的 in 运算符 | <code>Reflect.has(obj, 'foo')</code> |
-| Reflect.ownKeys(target) | 返回对象的所有属性 | <code>Reflect.ownKeys(obj)</code> |
-| Reflect.isExtensible(target) | 同 Object.isExtensible | <code>Reflect.isExtensible(obj)</code> |
-| Reflect.preventExtensions(target) | 同 Object.preventExtensions | <code>Reflect.preventExtensions(obj)</code> |
-| Reflect.getOwnPropertyDescriptor(target, name) | 同 Object.getOwnPropertyDescriptor | <code> Reflect.getOwnPropertyDescriptor(obj, 'foo');</code> |
-| Reflect.getPrototypeOf(target) | 同 Object.getPrototypeOf(obj) | <code>Reflect.getPrototypeOf(obj)</code> |
-| Reflect.setPrototypeOf(target, prototype) | 同 Object.setPrototypeOf(obj, newProto) | <code>Reflect.setPrototypeOf(obj, newProto)</code> |
+| Reflect.apply(target, thisArg, args) | Function.prototype.apply.call(func, thisArg, args)，用于绑定 this 对象后执行给定函数 | `Reflect.apply(Math.min, Math, ages)` |
+| Reflect.construct(target, args) | new target(...args)，调用构造函数 | `const person = Reflect.construct(Person, ['tate', 18])` |
+| Reflect.get(target, name, receiver) | 查找并返回 target 对象的 name 属性 | `Reflect.get(obj, 'foo')` |
+| Reflect.set(target, name, value, receiver) | 设置 target 对象的 name 属性等于 value | `Reflect.set(obj, 'foo', 'bar')` |
+| Reflect.defineProperty(target, name, desc) | 同 Object.defineProperty，但返回布尔值 | `Reflect.defineProperty(obj, 'foo', {value: 'bar'})` |
+| Reflect.deleteProperty(target, name) | delete obj[name]，用于删除对象的属性 | `Reflect.deleteProperty(obj, 'foo')` |
+| Reflect.has(target, name) | 对应 name in obj 里面的 in 运算符 | `Reflect.has(obj, 'foo')` |
+| Reflect.ownKeys(target) | 返回对象的所有属性 | `Reflect.ownKeys(obj)` |
+| Reflect.isExtensible(target) | 同 Object.isExtensible | `Reflect.isExtensible(obj)` |
+| Reflect.preventExtensions(target) | 同 Object.preventExtensions | `Reflect.preventExtensions(obj)` |
+| Reflect.getOwnPropertyDescriptor(target, name) | 同 Object.getOwnPropertyDescriptor | ` Reflect.getOwnPropertyDescriptor(obj, 'foo');` |
+| Reflect.getPrototypeOf(target) | 同 Object.getPrototypeOf(obj) | `Reflect.getPrototypeOf(obj)` |
+| Reflect.setPrototypeOf(target, prototype) | 同 Object.setPrototypeOf(obj, newProto) | `Reflect.setPrototypeOf(obj, newProto)` |
 
 ## 参考链接
 

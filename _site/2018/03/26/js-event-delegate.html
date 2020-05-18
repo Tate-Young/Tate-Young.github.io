@@ -223,7 +223,7 @@
 <p>DOM 事件流主要包括三个阶段:</p>
 
 <ul>
-  <li><strong>事件捕获(event capturing)</strong> - 事件的传播是从最特定的事件目标到最不特定的事件目标。实际目标(<code>&lt;div&gt;</code>)在捕获阶段不会接收事件</li>
+  <li><strong>事件捕获(event capturing)</strong> - 事件的传播是从最特定的事件目标到最不特定的事件目标。实际目标(<code class="highlighter-rouge">&lt;div&gt;</code>)在捕获阶段不会接收事件</li>
   <li>处于目标阶段 - 实际的目标接收到事件，但是事件处理会被看成是冒泡阶段的一部分</li>
   <li><strong>事件冒泡(event bubbling)</strong> - 事件的传播是从最不特定的事件目标到最特定的事件目标</li>
 </ul>
@@ -354,23 +354,23 @@ btn.attachEvent('onclick', _ =&gt; console.log('tate'); // 'tate' 先触发
   <tbody>
     <tr>
       <td style="text-align: left">获取事件类型</td>
-      <td style="text-align: left"><code>event.type</code></td>
-      <td style="text-align: left"><code>event.type</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">event.type</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">event.type</code></td>
     </tr>
     <tr>
       <td style="text-align: left">获取事件源</td>
-      <td style="text-align: left"><code>event.target</code></td>
-      <td style="text-align: left"><code>event.srcElement</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">event.target</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">event.srcElement</code></td>
     </tr>
     <tr>
       <td style="text-align: left">阻止默认行为</td>
-      <td style="text-align: left"><code>event.preventDefault()</code></td>
-      <td style="text-align: left"><code>event.returnValue = false</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">event.preventDefault()</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">event.returnValue = false</code></td>
     </tr>
     <tr>
       <td style="text-align: left">阻止冒泡行为</td>
-      <td style="text-align: left"><code>event.stopPropagation()</code></td>
-      <td style="text-align: left"><code>event.cancelBubble = true</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">event.stopPropagation()</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">event.cancelBubble = true</code></td>
     </tr>
   </tbody>
 </table>

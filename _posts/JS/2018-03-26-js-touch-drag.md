@@ -113,7 +113,7 @@ function getEvent(ev) {
 
 ## Drag 事件
 
-**DragEvent** 鼠标进行拖拽(drag)和释放(drop)，一定要设置可拖拽目标，即设置属性 <code>draggable="true"</code>。
+**DragEvent** 鼠标进行拖拽(drag)和释放(drop)，一定要设置可拖拽目标，即设置属性 `draggable="true"`。
 
 ### 拖拽事件类型
 

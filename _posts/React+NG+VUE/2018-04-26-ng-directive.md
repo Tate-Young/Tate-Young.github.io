@@ -243,7 +243,7 @@ function someFn() {
 }
 ```
 
-倘若 name 属性需要与父域共享，可以在 scope 中定义 <code>{ name: '=' }</code>。但外部的 name 属性发生变化并不会立即反应到内部的 controller 的 this 对象上。在 1.2 版本里面处理这种情况就是使用 $scope 服务上挂载的 $watch 方法去监听 name 属性的变化:
+倘若 name 属性需要与父域共享，可以在 scope 中定义 `{ name: '=' }`。但外部的 name 属性发生变化并不会立即反应到内部的 controller 的 this 对象上。在 1.2 版本里面处理这种情况就是使用 $scope 服务上挂载的 $watch 方法去监听 name 属性的变化:
 
 ```JS
 function someFn() {
@@ -263,7 +263,7 @@ function someFn() {
 }
 ```
 
-bindToController 即针对此情况在 1.3 版本发布的，当 directive 使用独立作用域以及 controllerAs 语法，且 <code>bingToController=true</code> 时，该组件的属性都被绑定到 controller 上而不是 scope:
+bindToController 即针对此情况在 1.3 版本发布的，当 directive 使用独立作用域以及 controllerAs 语法，且 `bingToController=true` 时，该组件的属性都被绑定到 controller 上而不是 scope:
 
 ```JS
 function someFn() {
@@ -407,7 +407,7 @@ export interface Component extends Directive {
 <p appHighlight>Highlight me!</p>
 ```
 
-根据 angular-cli 的命令 <code>ng g d highlight</code> 自动生成空的指令，简单的做下修改:
+根据 angular-cli 的命令 `ng g d highlight` 自动生成空的指令，简单的做下修改:
 
 ```JS
 import { Directive, ElementRef } from '@angular/core'; // 注入 ElementRef，来引用宿主 DOM 元素
@@ -424,7 +424,7 @@ export class HighlightDirective { // 控制器类叫 HighlightDirective，它包
 
 #### 结构型指令
 
-结构性指令最明显的特征是星号(*)，星号是一个用来简化更复杂语法的“语法糖”。从内部实现来说，Angular 把 *ngIf 属性 翻译成一个 <code>ng-template</code> 元素 并用它来包裹宿主元素，在渲染视图之前，Angular 会把 <code>ng-template</code> 及其内容替换为一个注释，代码如下:
+结构性指令最明显的特征是星号(*)，星号是一个用来简化更复杂语法的“语法糖”。从内部实现来说，Angular 把 *ngIf 属性 翻译成一个 `ng-template` 元素 并用它来包裹宿主元素，在渲染视图之前，Angular 会把 `ng-template` 及其内容替换为一个注释，代码如下:
 
 ```HTML
 <div *ngIf="hero" class="name">{ { hero.name } }</div>

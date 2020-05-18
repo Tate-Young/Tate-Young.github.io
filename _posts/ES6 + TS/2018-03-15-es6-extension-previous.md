@@ -19,7 +19,7 @@ ES6 中字符串主要扩展:
 
 | 扩展 | 描述 |
 |:--------------|:---------|
-| Unicode 表示法 | <code>\u{20BB7}</code>codePointAt()、String.fromCodePoint() |
+| Unicode 表示法 | `\u{20BB7}`codePointAt()、String.fromCodePoint() |
 | 新增方法 | includes()、startsWith()、padStart()、repeat() 等 |
 | 字符串模板 | \`这是值 ${value}\` |
 | 标签模板 | fn\`这是参数 ${param}\` |
@@ -141,7 +141,7 @@ ES6 中数值主要扩展:
 | 扩展 | 描述 |
 |:--------------|:---------|
 | 新增方法 | Number.isFinite()、Number.isNaN()、Number.isInteger() |
-| 指数运算符 | <code>**</code> |
+| 指数运算符 | `**` |
 
 ### Number.isNaN()
 
@@ -193,7 +193,7 @@ ES6 中数组主要扩展:
 
 | 扩展 | 描述 |
 |:--------------|:---------|
-| 扩展运算符 | <code>...numbers</code> |
+| 扩展运算符 | `...numbers` |
 | 新增方法 | Array.from()、Array.of()、find()、fill()、includes() 等 |
 | 空位优化| 明确将空位转为 undefined |
 
