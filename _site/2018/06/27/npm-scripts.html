@@ -582,6 +582,17 @@ yarn global add yarn
   <li>npm update 不会默认安装，除非添加 <code class="highlighter-rouge">--dev</code> 参数</li>
 </ul>
 
+<p>如果要用 npm 查看指定库的所有历史版本信息，可以使用 <code class="highlighter-rouge">npm view xxx versions</code> 命令:</p>
+
+<pre><code class="language-SHELL">$npm view @date-io/date-fns versions
+
+[ '0.0.1',
+  '0.0.2',
+  '1.0.0',
+  ...
+  '2.6.1' ]
+</code></pre>
+
 <h2 id="npx">npx</h2>
 
 <p><a href="https://github.com/zkat/npx"><strong>npx</strong></a> 是 <a href="https://github.com/npm/npm/releases/tag/v5.2.0">npm@5.2.0</a> 引入的一个命令，那么它是用来干嘛的呢？采用官方的说法就是:</p>

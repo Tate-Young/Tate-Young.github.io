@@ -434,8 +434,8 @@ include vhost/*.conf;
 <p>既然提到了反向代理，那一定有<strong>正向代理</strong>，是的没错，这里根据两者的不同分别再解释下:</p>
 
 <ul>
-  <li>反向代理(reverse proxy) - 如果局域网向因特网提供资源服务，让因特网上的其他客户端来访问局域网内的资源，则必须通过代理服务器，即反向代理。Nginx 通过 <code class="highlighter-rouge">proxy</code> 模块实现反向代理功能</li>
-  <li>正向代理(forward proxy) - 局域网中的客户端不能直接访问因特网，则需要通过代理服务器来访问，即正向代理。Nginx 本身只支持 http 的正向代理，可以通过 <code class="highlighter-rouge">ngx_http_proxy_connect_module</code> 模块支持 http、https 的正向代理。</li>
+  <li>反向代理(reverse proxy) - 隐藏了真实的服务端，客户端并不知道真正请求的是哪个服务端，即反向代理。Nginx 通过 <code class="highlighter-rouge">proxy</code> 模块实现反向代理功能</li>
+  <li>正向代理(forward proxy) - 隐藏了真实的请求客户端，服务端不知道真实的客户端是谁，客户端请求的服务都由代理服务器来完成，即正向代理。Nginx 本身只支持 http 的正向代理，可以通过 <code class="highlighter-rouge">ngx_http_proxy_connect_module</code> 模块支持 http、https 的正向代理。如 VPN</li>
 </ul>
 
 <p>由于 Nginx 正向代理的功能指令较少，只需要进行简单的配置即可，需要置两个 server 节点，一个处理 HTTP 转发，另一个处理 HTTPS 转发:</p>

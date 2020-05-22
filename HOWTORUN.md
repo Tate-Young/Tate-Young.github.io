@@ -8,6 +8,10 @@
 
 [语法](https://shopify.github.io/liquid/basics/introduction/)
 
+## 引入本地图片
+
+( {{site.url}}/style/images/xxx.png )
+
 ## 引入其他文章
 
 ```TEXT

@@ -268,6 +268,7 @@ scope 可以用其他扩展(如 [commitlint-config-conventional (based on the th
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   rules: {
+    'header-max-length': [0, 'always', 100],
     'type-enum': [
       2,
       'always',

@@ -15,7 +15,7 @@
 <meta name="twitter:keywords" content="域名发散 & CDN - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="域名发散 & CDN - Tate & Snow">
-<meta name="og:keywords" content="域名发散 & CDN - Tate & Snow|域名发散 &amp; CDN什么是域名发散由于浏览器的限制，对每个域名的连接数存在上限，一般为 6 个。浏览器做并发限制的主要原因是减小服务器负载和防止 DDos 攻击。域名发散(domain sharding)，静态资源采用多个子域..."
+<meta name="og:keywords" content="域名发散 & CDN - Tate & Snow|域名发散 &amp; CDN域名发散由于浏览器的限制，对每个域名的连接数存在上限，一般为 6 个。浏览器做并发限制的主要原因是减小服务器负载和防止 DDos 攻击。域名发散(domain sharding)，静态资源采用多个子域名，目..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="域名发散 &amp; CDN什么是域名发散由于浏览器的限制，对每个域名的连接数存在上限，一般为 6 个。浏览器做并发限制的主要原因是减小服务器负载和防止 DDos 攻击。域名发散(domain sharding)，静态资源采用多个子域..." property='og:description'
+<meta name="keywords" content="域名发散 &amp; CDN域名发散由于浏览器的限制，对每个域名的连接数存在上限，一般为 6 个。浏览器做并发限制的主要原因是减小服务器负载和防止 DDos 攻击。域名发散(domain sharding)，静态资源采用多个子域名，目..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:2333/2018/02/22/http-domain-sharing.html' property='og:url' />
-<meta content="http://localhost:2333/2018/02/22/http-domain-sharing.html|域名发散 &amp; CDN什么是域名发散由于浏览器的限制，对每个域名的连接数存在上限，一般为 6 个。浏览器做并发限制的主要原因是减小服务器负载和防止 DDos 攻击。域名发散(domain sharding)，静态资源采用多个子域..." property='og:description'
+<meta content='http://localhost:2333/2018/02/22/http-domain-sharding.html' property='og:url' />
+<meta content="http://localhost:2333/2018/02/22/http-domain-sharding.html|域名发散 &amp; CDN域名发散由于浏览器的限制，对每个域名的连接数存在上限，一般为 6 个。浏览器做并发限制的主要原因是减小服务器负载和防止 DDos 攻击。域名发散(domain sharding)，静态资源采用多个子域名，目..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -63,13 +63,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="域名发散 &amp; CDN" />
 <meta property="og:description" content="域名发散 &amp; CDN" />
-<link rel="canonical" href="http://localhost:2333/2018/02/22/http-domain-sharing.html" />
-<meta property="og:url" content="http://localhost:2333/2018/02/22/http-domain-sharing.html" />
+<link rel="canonical" href="http://localhost:2333/2018/02/22/http-domain-sharding.html" />
+<meta property="og:url" content="http://localhost:2333/2018/02/22/http-domain-sharding.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-02-22T23:42:00+08:00" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/02/22/http-domain-sharing.html"},"url":"http://localhost:2333/2018/02/22/http-domain-sharing.html","headline":"域名发散 &amp; CDN","dateModified":"2018-02-22T23:42:00+08:00","datePublished":"2018-02-22T23:42:00+08:00","description":"域名发散 &amp; CDN","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/02/22/http-domain-sharding.html"},"url":"http://localhost:2333/2018/02/22/http-domain-sharding.html","headline":"域名发散 &amp; CDN","dateModified":"2018-02-22T23:42:00+08:00","datePublished":"2018-02-22T23:42:00+08:00","description":"域名发散 &amp; CDN","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,6 +175,8 @@
                       发布时间：2018-02-22 23:42:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2020-05-22 12:02:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -210,19 +212,19 @@
             </p>
             <h1 id="域名发散--cdn">域名发散 &amp; CDN</h1>
 
-<h2 id="什么是域名发散">什么是域名发散</h2>
+<h2 id="域名发散">域名发散</h2>
 
 <p>由于浏览器的限制，对每个域名的连接数存在上限，<a href="http://www.browserscope.org/?category=network">一般为 6 个</a>。浏览器做并发限制的主要原因是减小服务器负载和防止 <a href="https://zh.wikipedia.org/wiki/%E9%98%BB%E6%96%B7%E6%9C%8D%E5%8B%99%E6%94%BB%E6%93%8A">DDos 攻击</a>。</p>
 
 <p><strong>域名发散(domain sharding)</strong>，静态资源采用多个子域名，目的是充分利用现代浏览器的多线程并发下载能力，解除最大连接数限制。具体实施可以使用子域名申请或者 CNAME 别名解析，一般域名发散的数量应控制在 3 以下。</p>
 
-<p><img src="https://blog.stackpath.com/hubfs/Glossary/domain-sharding-1.gif?t=1519237512138" alt="domain sharding" /></p>
+<p><img src="https://www.keycdn.com/img/support/domain-sharding-lg@2x.png" alt="domain sharding" /></p>
 
 <blockquote>
   <p>譬如 youtube 通过 i.ytimg.com 和 s.ytimg.com 两个子域名把图片资源和脚本资源分开，前者包含 icons、logos 等，后者包含 JS、CSS 等，当用户访问 youtube 时候，会同时下载脚本和媒体文件来渲染页面。</p>
 </blockquote>
 
-<h2 id="什么是域名收敛">什么是域名收敛</h2>
+<h2 id="域名收敛">域名收敛</h2>
 
 <p><strong>域名收敛(domain of convergence)</strong>，静态资源采用一个域名，通常针对移动端而言，因为其解析 DNS 的时间会稍长，发散到多个域名的话会增加首屏时间。</p>
 
@@ -231,6 +233,8 @@
 </blockquote>
 
 <h2 id="cdn">CDN</h2>
+
+<h3 id="内容网络分发">内容网络分发</h3>
 
 <p><strong>CDN(Content Delivery Network)</strong> 即内容分发网络。利用<a href="https://zh.wikipedia.org/wiki/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1">负载均衡技术</a>将源站内容分发至最接近用户的节点，使用户可就近取得所需内容，提高用户访问的响应速度和成功率。解决因分布、带宽、服务器性能带来的访问延迟问题，适用于静态资源仓库、站点加速、点播、直播等场景。</p>
 
@@ -243,18 +247,128 @@
   <li>CDN 的 DNS 服务器将 CDN 的全局负载均衡设备 IP 地址返回用户;</li>
   <li>用户向 CDN 的全局负载均衡设备发起内容 URL 访问请求;</li>
   <li>CDN 全局负载均衡设备根据用户 IP 地址，以及用户请求的内容 URL，选择一台用户所属区域的区域负载均衡设备;</li>
-  <li>区域负载均衡设备会为用户选择一台合适的缓存服务器提供服务，选择的依据包括：根据用户IP地址，判断哪一台服务器距用户最近；根据用户所请求的URL中携带的内容名称，判断哪一台服务器上有用户所需内容；查询各个服务器当前的负载情况，判断哪一台服务器尚有服务能力。基于以上这些条件的综合分析之后，区域负载均衡设备会向全局负载均衡设备返回一台缓存服务器的 IP 地址;</li>
+  <li>区域负载均衡设备会为用户选择一台合适的缓存服务器提供服务，选择的依据包括：根据用户IP地址，判断哪一台服务器距用户最近；根据用户所请求的 URL 中携带的内容名称，判断哪一台服务器上有用户所需内容；查询各个服务器当前的负载情况，判断哪一台服务器尚有服务能力。基于以上这些条件的综合分析之后，区域负载均衡设备会向全局负载均衡设备返回一台缓存服务器的 IP 地址;</li>
   <li>全局负载均衡设备把服务器的 IP 地址返回给用户;</li>
   <li>用户向缓存服务器发起请求，缓存服务器响应用户请求，将用户所需内容传送到用户终端。如果这台缓存服务器上并没有用户想要的内容，而区域均衡设备依然将它分配给了用户，那么这台服务器就要向它的上一级缓存服务器请求内容，直至追溯到网站的源服务器将内容拉到本地。</li>
 </ol>
 
-<p><img src="https://i.loli.net/2018/02/25/5a92318a9ffb2.jpg" alt="CDN-7" /></p>
+<h3 id="静态加速与缓存优化">静态加速与缓存优化</h3>
+
+<p><strong>静态加速</strong>我们很容易理解也接触最多，基本是针对静态文件，比如图片、文本、音视频等，这类文件特点是:</p>
+
+<ol>
+  <li>静态文件更新不频繁，不易改变</li>
+  <li>文件一般较大</li>
+  <li>缓存加速效果明显</li>
+  <li>缓存命中率较高</li>
+</ol>
+
+<p>因此我们可以采用<strong>缓存优化</strong>来解决:</p>
+
+<ol>
+  <li>用户从就近节点读取缓存</li>
+  <li>尽可能增加缓存数据</li>
+  <li>提升用户缓存命中率</li>
+  <li>采用多级缓存进行缓存分级，优化回源路径，降低回源 qps</li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/others/cdn-cache.jpeg" alt="cdn-cache" /></p>
+
+<h3 id="动态加速与-sureroute">动态加速与 sureRoute</h3>
+
+<p><strong>动态加速</strong> 一般是针对动态页面、接口、域名加速，他们特点是:</p>
+
+<ol>
+  <li>更新频繁，内容容易改变</li>
+  <li>请求携带参数或其他内容</li>
+  <li>缓存命中率较低</li>
+  <li>链路加速收益大</li>
+</ol>
+
+<p>因此我们可以使用 akamai 的 <a href="https://developer.akamai.com/legacy/learn/Optimization/SureRoute.html"><strong>sureRoute</strong></a> 服务来解决这些问题:</p>
+
+<ol>
+  <li>根据回源链路时间优化最佳的路径</li>
+  <li>数据包更快到达，页面加载时间减少</li>
+  <li>故障转移。即自动路径探测并实现优选，果第一条路径失败，CDN 链路将选择一条备用路径来帮助确保应用程序可用性。</li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/others/cdn-sureroute.jpeg" alt="cdn-sureroute" /></p>
+
+<h3 id="安全防护-waf">安全防护 WAF</h3>
+
+<p>CDN 一般面临的网络攻击类别有:</p>
+
+<ol>
+  <li>Web 攻击者 - 参与一般 Web 攻击</li>
+  <li>DoS 攻击者 - 参与容积攻击</li>
+  <li>扫描工具 - 执行漏洞扫描</li>
+  <li>网络爬虫 - 从应用程序提取信息</li>
+</ol>
+
+<blockquote>
+  <p>比较知名的解决方案有 <code class="highlighter-rouge">akamai WAF</code> 或者 <code class="highlighter-rouge">cloudfire WAF</code> 等，WAF 即 <code class="highlighter-rouge">Web Application Firewall</code> 👈</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>WAF 应用</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DDos攻击</td>
+      <td>DDos 类攻击防护</td>
+    </tr>
+    <tr>
+      <td>用户验证</td>
+      <td>从真实用户中鉴别出可疑的 BOT， 从而降低其优先级别或者予以阻止</td>
+    </tr>
+    <tr>
+      <td>使用 DNSSEC 的 eDNS</td>
+      <td>针对域名系统 (DNS) 攻击提供可扩展的防御</td>
+    </tr>
+    <tr>
+      <td>Web 应用防火墙 (WAF)</td>
+      <td>在第 7 层(应用程序层)上提供 Web 应用防火墙</td>
+    </tr>
+    <tr>
+      <td>IP 阻止和速率控制</td>
+      <td>网络层上的 IP 阻止和速率限制功能 能够将 web 基础设施与互联网隔离开来</td>
+    </tr>
+    <tr>
+      <td>Site Shield</td>
+      <td>能够将 web 基础设施与互联网隔离开来</td>
+    </tr>
+    <tr>
+      <td>高级缓存、NetStorage + 错误页</td>
+      <td>Site Failed自定义缓存错误页</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>比如 site shield，它的作用是:</p>
+
+<ol>
+  <li>通过指定 IP 段回源</li>
+  <li>通过 IP 白名单限制回源请求地址</li>
+  <li>拦截非法 IP 回源访问</li>
+  <li>拦截源站攻击</li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/others/cdn-site-shield.jpeg" alt="cdn-site-shield" /></p>
+
+<blockquote>
+  <p>当然 CDN 还有其他一些功能，比如内容压缩(如 Gzip)，通过 <a href="https://support.cloudflare.com/hc/zh-cn/articles/206776727-什么是-True-Client-IP-">True-Client-IP Header</a> 获取真实用户 ip 等。</p>
+</blockquote>
 
 <h2 id="spdy">SPDY</h2>
 
-<p><strong>SPDY(speedy)</strong> 可以在不增加域名的情况下，解除最大连接数的限制。SPDY 协议通过压缩、多路复用和优先级来缩短加载时间，提高安全性。2015年9月，Google 宣布了计划，移除对SPDY的支持，拥抱 HTTP/2，并将在 Chrome 51中生效。</p>
+<p><strong>SPDY(speedy)</strong> 可以在不增加域名的情况下，解除最大连接数的限制。SPDY 协议通过压缩、多路复用和优先级来缩短加载时间，提高安全性。2015年9月，Google 宣布了计划，移除对SPDY的支持，拥抱 HTTP/2，并将在 Chrome 51 中生效。</p>
 
-<p><img src="https://camo.githubusercontent.com/d7571ae59436c10b44b8b739ae09ee043bc78bde/687474703a2f2f696d61676573323031352e636e626c6f67732e636f6d2f626c6f672f3630383738322f3230313630342f3630383738322d32303136303430373230303030353331322d323130353734363430342e706e67" alt="SPDY" /></p>
+<p><img src="https://www.keycdn.com/img/support/spdy-protocol-lg@2x.png" alt="SPDY" /></p>
 
 <h2 id="http2">HTTP/2</h2>
 
@@ -312,11 +426,7 @@
 
 <ol>
   <li><a href="https://blog.stackpath.com/glossary/domain-sharding/">What is Domain Sharding</a> By Robert Gibb</li>
-  <li><a href="https://www.zhihu.com/question/36514327?rf=37353035">知乎 - CDN 是什么？使用 CDN 有什么优势？</a></li>
   <li><a href="http://book.51cto.com/art/201205/338756.htm">CDN 技术详解 - CDN 的基本工作过程</a></li>
-  <li><a href="https://github.com/chokcoco/cnblogsArticle/issues/1">【前端性能】浅谈域名发散与域名收敛</a> By chokcoco</li>
-  <li><a href="https://segmentfault.com/a/1190000004647665">域名发散–前端优化(三)</a> By jimmy_thr</li>
-  <li><a href="http://www.geekpark.net/news/158198">SPDY 是什么？如何部署 SPDY？</a> By Afio</li>
   <li><a href="https://github.com/fex-team/http2-spec/blob/master/HTTP2%E4%B8%AD%E8%8B%B1%E5%AF%B9%E7%85%A7%E7%89%88%2806-29%29.md">http2-spec / HTTP2 中英对照版</a> By fex-team</li>
   <li><a href="https://www.cnblogs.com/yingsmirk/p/5248506.html">HTTP/2 协议–特性扫盲篇</a> By 纳爱斯</li>
   <li><a href="http://hectorguo.com/zh/http2-starter/">谈谈 HTTP/2 对前端的影响</a> By 郭海旭</li>
@@ -348,8 +458,8 @@
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/02/22/http-domain-sharing.html';
-        this.page.identifier = '/2018/02/22/http-domain-sharing';
+        this.page.url = 'https://tate-young.github.io/2018/02/22/http-domain-sharding.html';
+        this.page.identifier = '/2018/02/22/http-domain-sharding';
         this.page.title = '域名发散 & CDN';
     };
 

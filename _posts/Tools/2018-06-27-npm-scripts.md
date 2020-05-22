@@ -347,6 +347,18 @@ yarn global add yarn
 * npm install 默认会安装，除非添加 `--production` 参数
 * npm update 不会默认安装，除非添加 `--dev` 参数
 
+如果要用 npm 查看指定库的所有历史版本信息，可以使用 `npm view xxx versions` 命令:
+
+```SHELL
+$npm view @date-io/date-fns versions
+
+[ '0.0.1',
+  '0.0.2',
+  '1.0.0',
+  ...
+  '2.6.1' ]
+```
+
 ## npx
 
 [**npx**](https://github.com/zkat/npx) 是 [npm@5.2.0](https://github.com/npm/npm/releases/tag/v5.2.0) 引入的一个命令，那么它是用来干嘛的呢？采用官方的说法就是:
