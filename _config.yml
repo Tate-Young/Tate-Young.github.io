@@ -10,6 +10,7 @@ share:            true
 paginate: 15
 paginate_path: "blog:num"
 plugins: [jekyll-paginate]
+# - 符号相当于数组
 links:
   - name:         首页
     url:          /
