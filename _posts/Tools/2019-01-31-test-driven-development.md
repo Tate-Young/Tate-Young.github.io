@@ -240,9 +240,9 @@ Mock.mock({
 
 [**Cypress**](https://docs.cypress.io/zh-cn/guides/overview/why-cypress.html#) 是为现代网络打造的下一代前端测试工具。Cypress 从底层和结构上都不同于 **Selenium**。它能够突破很多 Selenium 上的限制，比如 Selenium 是通过在浏览器外部运行并在网络上执行远程命令来运行。Cypress 恰恰相反，它在与你的应用程序相同的生命周期里执行，背后是 Node 服务进程。Cypress 和 Node进 程不断进行通信，同步和执行任务。访问这两个部分（前端和后端）使我们能够实时响应你的 web 应用程序的事件，与此同时在浏览器之外也能工作以完成需要更高权限的任务。Cypress 允许你编写所有类型的测试，并且可以测试任何在浏览器中运行的内容：
 
-* 端到端测试
-* 集成测试
 * 单元测试
+* 集成测试
+* 端到端测试
 
 ```SHELL
 # 安装

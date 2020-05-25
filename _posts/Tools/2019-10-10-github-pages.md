@@ -12,7 +12,6 @@ background-image: https://i.loli.net/2019/10/10/9tMd8wKqhTeJujb.png
 tags:
 - html
 ---
-<!-- markdownlint-disable MD024 -->
 # {{ page.title }}
 
 ## 什么是 Github Pages
