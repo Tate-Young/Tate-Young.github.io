@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Redux Toolkit
 date:   2020-04-28 14:11:00 GMT+0800 (CST)
-UPdate: 2020-05-18 19:32:00 GMT+0800 (CST)
+UPdate: 2020-05-27 15:04:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/08/08/5b6a497fea578.png
 tags:
 - React
@@ -1069,21 +1069,41 @@ state.app.data
 
 ```JS
 // before
-const setMyState = (name, data) => ({
+const setMyState = (path, data) => ({
   type: types.SET_NEW_ACT_STATE,
-  name,
+  path,
   data,
 })
 
-setMyState(name: 'tate', data: 'boy')
+setMyState(path: 'tate', data: 'boy')
 
 // after
 setMyState(state: ILayoutState, { payload }: PayloadAction<ICommonState>) {
-  const { name, data } = payload
-  set(state, name, data)
+  const { path, data } = payload
+  set(state, path, data)
 },
 
-setMyState({ name: 'tate', data: 'boy' })
+setMyState({ path: 'tate', data: 'boy' })
+```
+
+### lodash.set
+
+路径通常会是一个数组，比如 `['props', 'items', 0, 'imgSrc']`，如果直接采用点语法来设置的话不是很方便，所以结合 `lodash.set` 来更改 state 的话更佳:
+
+```JS
+// before
+state.props.items[0].imgSrc = ''
+
+// after
+set(state, ['props', 'items', 0, 'imgSrc'], data)
+set(state, 'props.items.0.imgSrc', data) // or
+```
+
+如果需要添加 updator 来更新对象数据的话，则可以使用 `lodash.update`:
+
+```JS
+const updator = (datas) => { ... }
+update(state, path, updator)
 ```
 
 ## 参考链接

@@ -38,3 +38,15 @@
 ## 一些读音纠正
 
 yaml /ˈjæməl/
+
+## yaml 格式
+
+[yaml 在线 demo](http://nodeca.github.io/js-yaml/)
+
+1、数组
+
+```YAML
+- Cat
+- Dog
+- Goldfish
+```

@@ -1250,21 +1250,39 @@ state.app.data
 <p>还有个地方需要注意下，RTK 中 action 参数都推荐包裹在 payload 对象中，如果之前是通过多个参数来传递的，必须要改过来:</p>
 
 <pre><code class="language-JS">// before
-const setMyState = (name, data) =&gt; ({
+const setMyState = (path, data) =&gt; ({
   type: types.SET_NEW_ACT_STATE,
-  name,
+  path,
   data,
 })
 
-setMyState(name: 'tate', data: 'boy')
+setMyState(path: 'tate', data: 'boy')
 
 // after
 setMyState(state: ILayoutState, { payload }: PayloadAction&lt;ICommonState&gt;) {
-  const { name, data } = payload
-  set(state, name, data)
+  const { path, data } = payload
+  set(state, path, data)
 },
 
-setMyState({ name: 'tate', data: 'boy' })
+setMyState({ path: 'tate', data: 'boy' })
+</code></pre>
+
+<h3 id="lodashset">lodash.set</h3>
+
+<p>路径通常会是一个数组，比如 <code class="highlighter-rouge">['props', 'items', 0, 'imgSrc']</code>，如果直接采用点语法来设置的话不是很方便，所以结合 <code class="highlighter-rouge">lodash.set</code> 来更改 state 的话更佳:</p>
+
+<pre><code class="language-JS">// before
+state.props.items[0].imgSrc = ''
+
+// after
+set(state, ['props', 'items', 0, 'imgSrc'], data)
+set(state, 'props.items.0.imgSrc', data) // or
+</code></pre>
+
+<p>如果需要添加 updator 来更新对象数据的话，则可以使用 <code class="highlighter-rouge">lodash.update</code>:</p>
+
+<pre><code class="language-JS">const updator = (datas) =&gt; { ... }
+update(state, path, updator)
 </code></pre>
 
 <h2 id="参考链接">参考链接</h2>
