@@ -175,7 +175,7 @@
                       发布时间：2018-03-11 12:03:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-11-03 14:36:00
+                        修改时间：2020-05-28 14:36:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -368,8 +368,15 @@ git config --global alias.graph "log --color --graph --pretty=format:'%Cgreen%h%
 
 <p>使用 remote 修改远端仓库地址的三种方法:</p>
 
-<pre><code class="language-SHELL"># 1 - 修改
-git remote set-url origin [url]
+<pre><code class="language-SHELL"># 1 - 通过 set-url 修改
+git remote set-url origin [url] # 修改已存在的
+git remote set-url --add origin [url] # or --delete
+# With --push, push URLs are manipulated instead of fetch URLs.
+git remote set-url --add --push origin [url] # --add --push 操作后，代码可以推送到不同的两个远端
+git remote -v # 查看远程库的信息
+# origin xxx.git (fetch)
+# origin xxx.git (push)
+# origin xxx (push)
 # 2 - 删除和添加
 git remote rm origin
 git remote add origin [url]

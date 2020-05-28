@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: Git 命令
 date:   2018-03-11 12:03:00 GMT+0800 (CST)
-update: 2019-11-03 14:36:00 GMT+0800 (CST)
+update: 2020-05-28 14:36:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/03/11/5aa49b6c003a8.gif
 
 tags:
@@ -78,8 +78,15 @@ git config --global alias.graph "log --color --graph --pretty=format:'%Cgreen%h%
 使用 remote 修改远端仓库地址的三种方法:
 
 ```SHELL
-# 1 - 修改
-git remote set-url origin [url]
+# 1 - 通过 set-url 修改
+git remote set-url origin [url] # 修改已存在的
+git remote set-url --add origin [url] # or --delete
+# With --push, push URLs are manipulated instead of fetch URLs.
+git remote set-url --add --push origin [url] # --add --push 操作后，代码可以推送到不同的两个远端
+git remote -v # 查看远程库的信息
+# origin xxx.git (fetch)
+# origin xxx.git (push)
+# origin xxx (push)
 # 2 - 删除和添加
 git remote rm origin
 git remote add origin [url]
