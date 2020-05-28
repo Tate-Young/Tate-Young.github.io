@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  响应式图片设计
 date:   2019-10-15 21:47:00 GMT+0800 (CST)
-update: 2019-10-16 16:56:00 GMT+0800 (CST)
+update: 2020-05-28 11:50:00 GMT+0800 (CST)
 background-image: https://i.loli.net/2018/07/24/5b56b1a40824c.jpg
 tags:
 - css
@@ -160,7 +160,9 @@ tags:
 
 ## WebP
 
-[**Webp**](https://zh.wikipedia.org/wiki/WebP) (发音 weppy)，是 Google 2010 年推出的一种旨在加快图片加载速度的图片格式。我们知道对于其他图片格式如 png、jpeg 和 gif 等，优化方面已被榨干，WebP 在保证相同图片品质的情况下，能极大的减少图片的大小，这对于我们网站优化而言就是福音。
+### 与其他格式对比
+
+[**WebP**](https://zh.wikipedia.org/wiki/WebP) (发音 weppy)，是 Google 2010 年推出的一种旨在加快图片加载速度的图片格式。我们知道对于其他图片格式如 png、jpeg 和 gif 等，优化方面已被榨干，WebP 在保证相同图片品质的情况下，能极大的减少图片的大小，这对于我们网站优化而言就是福音。
 
 我们可以先对比下主流图片格式的压缩算法，WebP 同时提供了**有损压缩(lossy compression)**和**无损压缩(lossless compression)**:
 
@@ -173,9 +175,56 @@ tags:
 
 > 在保证同等品质下，Webp 无损模式相较于 PNG 可以小 26%，有损模式相较于 JPEG 可以小 25–34%。详细[示例可参考这里](https://isparta.github.io/compare-webp/index.html#12345)，具体算法细节[可以参考这里](https://developers.google.com/speed/webp/docs/compression) 👈
 
-> 对于 WebP 的兼容性问题，我们可以参照上述的 \<picture\> 标签进行选择性展示，现今也有一些 polyfill 来解决浏览器不支持问题，比如 [WebPJS](http://webpjs.appspot.com)
-
 当然，我们也可以将现有的图片格式转换为 WebP 格式，现在也有很多工具可以选择。比如在线网站 [cloudconvert](https://cloudconvert.com/webp-to-anything) 或 [iSparta](http://isparta.github.io)，也可以用第三方库 [**ImageMagick**](https://imagemagick.org) 等。
+
+### 兼容性
+
+对于 WebP 的兼容性问题，我们可以参照上述的 \<picture\> 标签进行选择性展示，现今也有一些 polyfill 来解决浏览器不支持问题，比如 [WebPJS](http://webpjs.appspot.com)。那么我们如何判断当前浏览器是否支持呢？有两种方法比较通用:
+
+一、HTMLCanvasElement.toDataURL()
+
+[HTMLCanvasElement.toDataURL()](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/toDataURL) 方法返回一个包含图片展示的 data URI 。可以使用 type 参数其类型，默认为 PNG 格式。如果传入的类型非 `image/png`，但是返回的值以 `data:image/png` 开头，那么该传入的类型是不支持的，通过这一点我们可以来判断是否支持 WebP:
+
+```JS
+// 第二个参数为 encoderOptions - 可以从 0 到 1 的区间内选择图片的质量。如果超出取值范围，将会使用默认值 0.92
+document.createElement('canvas').toDataURL('image/webp', 0.5)
+// chrome - "data:image/webp;base64,UklGRrgAAABXRUJQVlA4WAoAAAAQAAA... ✅
+// safari - "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACW... ❌
+```
+
+```JS
+// 判断是否支持 WebP
+const isSupportWebp () => {
+  try {
+    return document.createElement('canvas').toDataURL('image/webp', 0.5).includes('data:image/webp')
+  } catch(err) {
+    return false
+  }
+}
+```
+
+二、加载 WebP 图片
+
+```JS
+// 加载一个 WebP 图片，如果能获取到图片的宽度和高度，就说明是支持 WebP 的，反之则不支持
+function check_webp_feature(feature, callback) {
+  var kTestImages = {
+    lossy: "UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA",
+    lossless: "UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==",
+    alpha: "UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA==",
+    animation: "UklGRlIAAABXRUJQVlA4WAoAAAASAAAAAAAAAAAAQU5JTQYAAAD/////AABBTk1GJgAAAAAAAAAAAAAAAAAAAGQAAABWUDhMDQAAAC8AAAAQBxAREYiI/gcA",
+  }
+  var img = new Image()
+  img.onload = function () {
+    var result = (img.width > 0) && (img.height > 0)
+    callback(feature, result)
+  }
+  img.onerror = function () {
+    callback(feature, false)
+  };
+  img.src = "data:image/webp;base64," + kTestImages[feature]
+}
+```
 
 ## 参考链接
 
