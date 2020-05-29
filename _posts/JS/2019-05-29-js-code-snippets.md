@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  记一些小技巧和代码块
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2019-12-19 11:58:00 GMT+0800 (CST)
+update: 2020-05-29 11:56:00 GMT+0800 (CST)
 background-image: /style/images/js.png
 tags:
 - JavaScript
@@ -184,33 +184,53 @@ Intersection Observer 即重叠观察者，从这个命名就可以看出它用�
 ```JS
 const options = {
   // 表示重叠面积占被观察者的比例，从 0 - 1 取值，
-  // 1 表示完全被包含
-  threshold: 1.0,
+  // 1 表示完全被包含，默认为 0
+  threshold: [1],
+  // threshold: [0, 0.25, 0.5, 0.75, 1]
+  root: document.querySelector(".scrollable-container"), // 指定父级元素，默认为视窗
+  rootMargin: "0px 0px -100px 0px" // 触发交叉的偏移值，默认为"0px 0px 0px 0px"（上左下右，正数为向外扩散，负数则向内收缩）
 }
 
 const callback = (entries, observer) => { ....}
 // 传入的参数 callback 在重叠比例超过 threshold 时会被执行
+// callback 一般会触发两次。一次是目标元素刚刚进入视口（开始可见），另一次是完全离开视口（开始不可见）
 const observer = new IntersectionObserver(callback, options)
 ```
+
+> 用户可以自定义 threshold 这个数组。比如，[0, 0.25, 0.5, 0.75, 1] 就表示当目标元素 0%、25%、50%、75%、100% 可见时，会依次触发 callback 回调函数。
+
+![threshold](http://www.ruanyifeng.com/blogimg/asset/2016/bg2016110202.gif)
 
 2、传入被观察者
 
 ```JS
 const target = document.querySelector('.target')
+// 通过 observe 传入被观察者 - 如果要观察多个节点，就要多次调用这个方法
 observer.observe(target);
+
+// 停止观察
+observer.unobserve(element);
+
+// 关闭观察器
+observer.disconnect();
 
 // 上段代码中被省略的 callback
 const callback = function(entries, observer) {
-  entries.forEach(entry => {
+  entries.forEach(entry => { // IntersectionObserverEntry 对象
     entry.time               // 触发的时间
     entry.rootBounds         // 根元素的位置矩形，这种情况下为视窗位置
     entry.boundingClientRect // 被观察者的位置矩形
     entry.intersectionRect   // 重叠区域的位置矩形
-    entry.intersectionRatio  // 重叠区域占被观察者面积的比例（被观察者不是矩形时也按照矩形计算）
+    entry.intersectionRatio  // 重叠区域占被观察者面积的比例（被观察者不是矩形时也按照矩形计算）- 完全可见时为 1，完全不可见时小于等于 0
     entry.target             // 被观察者 👈
+    entry.isIntersecting     // 是否交叉
   })
 }
 ```
+
+> 请留意，你注册的回调函数将会在主线程中被执行。所以该函数执行速度要尽可能的快。如果有一些耗时的操作需要执行，建议使用 `Window.requestIdleCallback()` 方法。
+
+![IntersectionObserverEntry](http://www.ruanyifeng.com/blogimg/asset/2016/bg2016110202.png)
 
 根据在线栗子，我们来对比下两者的实践和性能。首先是使用 Element.getBoundingClientRect() 进行计算实现的效果，可以看到有非常明显的卡顿，主要是因为需要对每一个元素都进行计算，判断它们是否在视窗之内。具体的代码可以[点击查看](https://codepen.io/elvinn/pen/YgWKGy):
 
@@ -219,6 +239,66 @@ const callback = function(entries, observer) {
 然后是使用 Intersection Observer API 进行注册回调实现的效果，可以看出来十分流畅。具体的代码可以[点击查看](https://codepen.io/elvinn/pen/jJrNyZ):
 
 ![2](https://ws1.sinaimg.cn/large/005XbUDxgy1g0pv6x5m2qg30ir0bkwnf.gif)
+
+在实际应用上我们还可以实现懒加载或者触底下拉刷新等功能:
+
+```JS
+// 懒加载
+// <img src="" data-origin="图片链接">
+const images = document.querySelectorAll("img.lazyload");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(item => {
+    if (item.isIntersecting) {
+      item.target.src = item.target.dataset.origin; // 开始加载图片
+      observer.unobserve(item.target); // 停止监听已开始加载的图片
+    }
+  });
+});
+
+images.forEach(item => observer.observe(item))
+```
+
+```JS
+// 触底下拉刷新
+// <ul>
+//   <li>index</li>
+// </ul>
+
+// <!-- 参照元素 -->
+// <div class="reference"></div>
+
+new IntersectionObserver(entries => {
+  let item = entries[0]
+  if (item.isIntersecting) {
+    // ... 触底请求数据
+  }
+}).observe(document.querySelector(".reference")) // 监听参照元素
+```
+
+```JS
+// 吸顶
+// <!-- 参照元素 -->
+// <div class="reference"></div>
+
+// <nav>吸顶大法</nav>
+
+const nav = document.querySelector('nav')
+const reference = document.querySelector(".reference")
+reference.style.top = nav.offsetTop + "px" // 绝对定位
+
+new IntersectionObserver(entries => {
+  const item = entries[0]
+  const top = item.boundingClientRect.top
+
+  // 当参照元素的的top值小于0，也就是在视窗的顶部的时候，开始吸顶，否则移除吸顶
+  if (top < 0) {
+    nav.classList.add("fixed")
+  } else {
+    nav.classList.remove("fixed")
+  }
+}).observe(reference)
+```
 
 ## 代码块
 
