@@ -89,7 +89,7 @@
     <header id="header" class="header bg-white">
         <div class="navbar-container">
             <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
-                <img src="https://i.loli.net/2018/03/13/5aa74f5b4c2c7.png" alt="Tate & Snow"> </a>
+                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
             <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
             <div class="navbar-menu">
                 
@@ -174,6 +174,8 @@
                     <time datetime="2020-01-19 17:47:00" itemprop="datePublished">
                       发布时间：2020-01-19 17:47:00
                       &nbsp;&nbsp;&nbsp;
+                      
+                        修改时间：2020-06-05 16:44:00
                       
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
@@ -321,6 +323,59 @@ pm2 update
 <blockquote>
   <p>关于 <code class="highlighter-rouge">pm2 save</code> 的用法: pm2 save takes a snapshot of your currently running Node applications. You can then restore these applications using <code class="highlighter-rouge">pm2 resurrect</code>. This is useful because it means you don’t have to manually restart each application when you restart pm2 (such as a machine reboot). Instead, you can just have a script that calls pm2 resurrect and it’ll start up all the Node apps.</p>
 </blockquote>
+
+<h2 id="如何启动一个项目">如何启动一个项目</h2>
+
+<p>我们在启动一个项目的时候，首先克隆到服务器上，并且设置好 nginx 代理配置文件，主要是 <code class="highlighter-rouge">server_name</code> 和 <code class="highlighter-rouge">proxy_pass</code>，举个例子:</p>
+
+<pre><code class="language-SHELL"># nginx 配置目录 - /usr/local/nginx/conf/vhost
+server {
+  listen  80;
+  server_name m1.xxx.com;
+  location / {
+    proxy_pass http://127.0.0.1:3000;
+    # ...
+  }
+}
+</code></pre>
+
+<p>当我们设置完配置文件后，需要运行以下命令来重启 nginx 使其生效:</p>
+
+<pre><code class="language-SHELL"># 使用 -c 的参数指定 nginx.conf 文件的位置
+nginx -c /usr/local/nginx/conf/nginx.conf -s reload
+</code></pre>
+
+<p>接下来我们要通过 pm2 启动项目，并且端口号设定为配置的 <code class="highlighter-rouge">3000</code>:</p>
+
+<pre><code class="language-SHELL">PORT=3003 pm2 start xxx/bin/www --name myProject
+</code></pre>
+
+<p>需要注意的 <code class="highlighter-rouge">PORT</code> 是我们项目里面接收的端口号环境变量的字段，比如前台 node.js 代码:</p>
+
+<pre><code class="language-JS">// https://github.com/indexzero/nconf
+// node.js configuration with files, environment variables, and so on
+var nconf = require('nconf');
+
+// Setup nconf to use (in-order):
+//   1. Command-line arguments
+//   2. Environment variables
+//   3. A file located at 'path/to/config.json'
+//
+nconf.argv()
+  .env()
+  .file({ file: 'path/to/config.json' });
+
+nconf.defaults({
+  'PORT': 2333, // 默认端口号
+});
+
+// Get port from environment and store in Express.
+var port = nconf.get('PORT')
+
+app.set('port', port);
+</code></pre>
+
+<p>这样之后，我们项目就成功启动了。大功告成 hooray！😊</p>
 
 <h2 id="自动化部署">自动化部署</h2>
 
@@ -475,7 +530,7 @@ server {
 
   location / {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header Host $http_host;
 
     proxy_http_version 1.1;
