@@ -8,7 +8,7 @@ category: 前端
 title:  Immutable
 date:   2018-08-14 22:50:00 GMT+0800 (CST)
 update: 2020-04-29 14:19:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/08/14/5b726b7f8d3b1.jpg
+background-image: /style/images/js.png
 tags:
 - js
 - React

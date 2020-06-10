@@ -8,7 +8,7 @@ category: 后端
 title: SSH 远程登录
 date:   2019-02-03 15:11:00 GMT+0800 (CST)
 update: 2019-03-15 14:49:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
+background-image: /style/images/smms/linux.jpg
 tags:
 - linux
 ---

@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 双向数据绑定的实现
 date: 2018-04-26 11:47:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/04/24/5ade80f820807.jpg
+background-image: /style/images/smms/angular.jpg
 tags:
 - AngularJS
 - Angular
@@ -288,7 +288,7 @@ class ApplicationRef_ extends ApplicationRef {
 
 对于 Angular，任何数据都是从顶部往底部流动，即单向数据流:
 
-![angular-data-detection.png](https://i.loli.net/2019/12/15/qJdrB5F1wXTuzUv.png)
+![angular-data-detection.png]( {{site.url}}/style/images/smms/angular-data-detection.png )
 
 ### onPush
 
@@ -355,7 +355,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 因此变化检测流程变成了下图:
 
-![angular-data-detection-onpush.png](https://i.loli.net/2019/12/15/Ej6mhPB5NAweniS.png)
+![angular-data-detection-onpush.png]( {{site.url}}/style/images/smms/angular-data-detection-onpush.png )
 
 ### Mutable / Immutable
 

@@ -8,7 +8,7 @@ category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
 update: 2019-06-14 20:05:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/06/27/5b3360100dcd3.png
+background-image: /style/images/smms/node.jpg
 
 tags:
 - NPM

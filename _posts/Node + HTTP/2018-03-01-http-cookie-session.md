@@ -7,7 +7,7 @@ background: orange
 category: 前端
 title: Cookie & Session
 date:   2018-03-02 10:10:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2019/12/14/LNeYo9fwqFruhCA.png
+background-image: /style/images/smms/http-cookie-session.png
 tags:
 - http
 ---
@@ -77,7 +77,7 @@ cookie 既可以由服务端来设置，也可以由客户端来设置。
 document.cookie = "key=name; max-age=100; secure";
 ```
 
-![cookie.png](https://i.loli.net/2018/03/01/5a976bda462c4.png)
+![cookie.png]( {{site.url}}/style/images/smms/cookie.png )
 
 > 默认情况下，在发生 CORS 跨域请求时，cookie 作为一种 credential 信息是不会被传送到服务端的。必须要进行额外设置才可以。详情请[查看 CORS 跨域一节]( {{site.url}}/2018/02/28/http-sop.html#withcredentials )。
 
@@ -98,7 +98,7 @@ document.cookie = "key=name; max-age=100; secure";
 
 session 也可设置过期时间，禁用 cookie 并不一定无法使用 session。除了 cookie，客户端还可以将发送给服务器的数据包含在请求的 URL 中:
 
-![http-cookie-session.png](https://i.loli.net/2019/12/14/LNeYo9fwqFruhCA.png)
+![http-cookie-session.png]( {{site.url}}/style/images/smms/http-cookie-session,png )
 
 ## Web Storage
 

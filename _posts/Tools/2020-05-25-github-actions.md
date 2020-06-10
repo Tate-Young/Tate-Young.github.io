@@ -165,8 +165,6 @@ jobs:
 
 当我们配置完后，将提交 push 到远端仓库时， Github 一旦发现了 workflow 文件以后，就会自动运行。并且可以在网站上实时查看运行日志，有不同的状态信息:
 
-![actions 日志](https://i.loli.net/2020/05/25/Jc8KIdvpF1staCL.png)
-
 ## Gitlab CI / CD
 
 对于日常团队开发，我们项目都是托管在 Gitlab 上，它也提供了相应的 CI / CD 功能，即 [**Gitlab CI / CD**](https://docs.gitlab.com/ee/ci/)。其配置文件位于根目录，名为 `.gitlab-ci.yml`，该文件创建一个**管道(pipeline)**，该管道运行以更改存储库中的代码。管道由一个或多个按顺序运行的阶段组成，每个阶段可以包含一个或多个并行运行的脚本。这些脚本由 `GitLab Runner` 代理执行。

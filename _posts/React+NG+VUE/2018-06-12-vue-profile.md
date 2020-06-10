@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Vue 简介
 date:   2018-06-12 20:00:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/06/12/5b1f2d120e9e6.jpg
+background-image: /style/images/smms/vue.jpg
 tags:
 - Vue
 ---

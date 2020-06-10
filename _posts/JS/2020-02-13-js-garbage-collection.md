@@ -55,7 +55,7 @@ user = null
 4. 依次反复至所有可达引用被访问和标记
 5. 所有未被标记的对象将被回收清除
 
-![js-garbage-collection.png](https://i.loli.net/2020/02/13/t1eMIpi24mHQ5gF.png)
+![js-garbage-collection.png]( {{site.url}}/style/images/smms/js-garbage-collection.png )
 
 当然 JS 引擎也做了一些优化，使其运行得更快，不至于影响正常代码的执行:
 

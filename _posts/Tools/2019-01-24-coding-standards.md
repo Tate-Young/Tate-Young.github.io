@@ -8,7 +8,7 @@ category: 前端
 title: 记各种代码规范实践
 date:   2019-01-25 20:41:00 GMT+0800 (CST)
 update: 2019-10-15 16:41:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2019/01/28/5c4ea7dbcf6f9.png
+background-image: /style/images/smms/eslint.png
 tags:
 - Other
 ---

@@ -8,7 +8,7 @@ category: 前端
 title:  Github Pages
 date:   2019-10-10 22:13:00 GMT+0800 (CST)
 update: 2019-10-12 11:04:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2019/10/10/9tMd8wKqhTeJujb.png
+background-image: /style/images/smms/github.png
 tags:
 - html
 ---

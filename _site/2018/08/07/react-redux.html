@@ -222,7 +222,7 @@
 
 <h2 id="概念">概念</h2>
 
-<p><img src="https://i.loli.net/2018/08/08/5b6a46915b789.png" alt="redux-pattern-diagram.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/redux-pattern-diagram.png" alt="redux-pattern-diagram.png" /></p>
 
 <h3 id="action">Action</h3>
 
@@ -361,7 +361,7 @@ console.log('store_0 state after action SET_NAME:', store_0.getState())
   <li>通过 subscribe(listener) 返回的函数注销监听器</li>
 </ul>
 
-<p><img src="https://i.loli.net/2019/03/11/5c85ca3492c67.png" alt="react-redux-store.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/react-redux-store.png" alt="react-redux-store.png" /></p>
 
 <pre><code class="language-JS">// 整个流程可总结为: 用户发出 Action，Reducer 函数算出新的 State，View 重新渲染
 import React from 'react'
@@ -393,7 +393,7 @@ store.subscribe(render) // 监听并修改视图
 
 <p>对上述 action、reducer 和 store 三者关系的一个整理:</p>
 
-<p><img src="https://i.loli.net/2019/03/11/5c85ca3485b3a.png" alt="react-redux-action.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/react-redux-action.png" alt="react-redux-action.png" /></p>
 
 <h3 id="异步-action--中间件">异步 Action &amp; 中间件</h3>
 
@@ -490,7 +490,7 @@ export function fetchPosts(subreddit) {
 
 <p>我们当然可以直接在 React 中使用 Redux：在最外层容器组件中初始化 store，然后将 state 上的属性作为 props 层层传递下去，最佳的方式是使用 <strong>React-Redux</strong> 提供的 <strong>Provider</strong> 和 <strong>connect</strong> 方法。React-Redux 将所有组件分成两大类：UI 组件（presentational component）和容器组件（container component）。UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。</p>
 
-<p><img src="https://i.loli.net/2019/03/06/5c7f46749d223.png" alt="react-redux.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/react-redux.png" alt="react-redux.png" /></p>
 
 <h3 id="provider">Provider</h3>
 

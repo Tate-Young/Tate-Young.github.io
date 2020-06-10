@@ -8,7 +8,7 @@ category: 前端
 title:  响应式图片设计
 date:   2019-10-15 21:47:00 GMT+0800 (CST)
 update: 2020-05-28 11:50:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/07/24/5b56b1a40824c.jpg
+background-image: /style/images/smms/html-css.png
 tags:
 - css
 ---

@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  指令 Directive
 date:   2018-04-27 15:35:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/04/24/5ade80f820807.jpg
+background-image: /style/images/smms/angular.jpg
 tags:
 - AngularJS
 - Angular

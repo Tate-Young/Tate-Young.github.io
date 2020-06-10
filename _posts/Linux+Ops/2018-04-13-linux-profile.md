@@ -8,7 +8,7 @@ category: 后端
 title:  Linux 文件属性及操作
 date:   2018-04-14 14:48:00 GMT+0800 (CST)
 update: 2019-03-20 12:03:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
+background-image: /style/images/smms/linux.jpg
 tags:
 - Linux
 ---
@@ -57,7 +57,7 @@ drwxr-xr-x    4 tate  staff    128 Jan 19 09:23 Applications
 drwxrwxrwx    2 tate  staff     64 Jan 19 09:04 Creative Cloud Files
 ```
 
-![linux-file-property.png](https://i.loli.net/2018/04/13/5ad07221ee04c.png)
+![linux-file-property.png]( {{site.url}}/style/images/smms/linux-file-property.png )
 
 针对第一部分的文件属性可查看下图:
 

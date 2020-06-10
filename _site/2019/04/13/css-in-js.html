@@ -587,7 +587,7 @@ container.shadowRoot.querySelector('shadow-root')
 &lt;/style&gt;
 </code></pre>
 
-<p><img src="https://i.loli.net/2019/04/14/5cb20b40b206e.png" alt="vue-scoped.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/vue-scoped.png" alt="vue-scoped.png" /></p>
 
 <p>当然官方还是更<a href="https://cn.vuejs.org/v2/style-guide/#为组件样式设置作用域-必要">推荐一些基于 class 的策略</a>，比如上面提到的 <a href="https://vue-loader-v14.vuejs.org/zh-cn/features/css-modules.html"><strong>CSS Modules</strong></a>，它是一个用于模块化和组合 CSS 的流行系统。<strong>vue-loader</strong> 提供了与 CSS 模块的一流集成，可以作为模拟 CSS 作用域的替代方案:</p>
 
@@ -620,7 +620,7 @@ export default {
 &lt;/script&gt;
 </code></pre>
 
-<p><img src="https://i.loli.net/2019/04/13/5cb1ff30c1374.png" alt="vue-css-module.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/vue-css-module.png" alt="vue-css-module.png" /></p>
 
 <p>当然你可以定义不止一个 &lt;style&gt;，为了避免被覆盖，你可以通过设置 module 属性来为它们定义注入后计算属性的名称:</p>
 
@@ -663,7 +663,7 @@ export class AppComponent {
 
 <p>接下来我们对比下三种设置下的 HTML，首先是设置为 None:</p>
 
-<p><img src="https://i.loli.net/2019/04/13/5cb1c54c0b16a.png" alt="ViewEncapsulation-Native.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/ViewEncapsulation-Native.png" alt="ViewEncapsulation-Native.png" /></p>
 
 <p>设置为 Emulated，注意看样式变成了:</p>
 
@@ -671,11 +671,11 @@ export class AppComponent {
 .test[_ngcontent-kty-c0] {...}
 </code></pre>
 
-<p><img src="https://i.loli.net/2019/04/13/5cb1c54c08ea9.png" alt="ViewEncapsulation-Emulated.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/ViewEncapsulation-Emulated.png" alt="ViewEncapsulation-Emulated.png" /></p>
 
 <p>设置为 Native:</p>
 
-<p><img src="https://i.loli.net/2019/04/13/5cb1c54c0d6aa.png" alt="ViewEncapsulation-None.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/ViewEncapsulation-None.png" alt="ViewEncapsulation-None.png" /></p>
 
 <h2 id="react-css-in-js">React CSS-in-JS</h2>
 
@@ -751,7 +751,7 @@ render(
 
 <p>让我们再看看它是怎么做到隔离作用域的:</p>
 
-<p><img src="https://i.loli.net/2019/05/06/5ccfb1688cf4d.png" alt="styled-components.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/styled-components.png" alt="styled-components.png" /></p>
 
 <blockquote>
   <p>styled-components 这种样式写法其实就是 ES6 里的<a href="http://localhost:2333/2018/03/15/es6-extension-previous.html#标签模板">标签模板(tagged template)</a>，更多的 API 也<a href="https://www.styled-components.com/docs/api">可以参考这里</a> 👈</p>
@@ -782,7 +782,7 @@ return {
 
 <p>我们可以从下图看到类名修改的规则为 <code class="highlighter-rouge">组件名 + 类名 + 四位随机数字</code>:</p>
 
-<p><img src="https://i.loli.net/2019/05/06/5ccfd9a2749b2.png" alt="material-ui-jss.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/material-ui-jss.png" alt="material-ui-jss.png" /></p>
 
 <h2 id="参考链接">参考链接</h2>
 

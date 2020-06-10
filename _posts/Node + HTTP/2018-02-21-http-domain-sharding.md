@@ -8,7 +8,7 @@ category: 前端
 title: 域名发散 & CDN
 date:   2018-02-22 23:42:00 GMT+0800 (CST)
 update: 2020-05-22 12:02:00 GMT+0800 (CST)
-background-image: https://camo.githubusercontent.com/d7571ae59436c10b44b8b739ae09ee043bc78bde/687474703a2f2f696d61676573323031352e636e626c6f67732e636f6d2f626c6f672f3630383738322f3230313630342f3630383738322d32303136303430373230303030353331322d323130353734363430342e706e67
+background-image: https://www.keycdn.com/img/support/domain-sharding-lg@2x.png
 tags:
 - http
 ---
@@ -36,7 +36,8 @@ tags:
 
 **CDN(Content Delivery Network)** 即内容分发网络。利用[负载均衡技术](https://zh.wikipedia.org/wiki/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1)将源站内容分发至最接近用户的节点，使用户可就近取得所需内容，提高用户访问的响应速度和成功率。解决因分布、带宽、服务器性能带来的访问延迟问题，适用于静态资源仓库、站点加速、点播、直播等场景。
 
-![CDN](https://i.loli.net/2018/02/25/5a92318a9e6e8.jpg)
+<!-- TODO: -->
+<!-- ![CDN](https://i.loli.net/2018/02/25/5a92318a9e6e8.jpg) -->
 
 工作流程:
 

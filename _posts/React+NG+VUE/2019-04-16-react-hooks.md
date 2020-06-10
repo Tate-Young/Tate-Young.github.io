@@ -8,7 +8,7 @@ category: 前端
 title:  React Hooks
 date:   2019-04-16 20:33:00 GMT+0800 (CST)
 update: 2019-07-30 10:13:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/08/03/5b63ed4d906cd.png
+background-image: /style/images/smms/react.png
 tags:
 - React
 ---

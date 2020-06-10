@@ -294,7 +294,7 @@ svgo -i products-shape.svg -o products-shape.svg
 
 > 推荐一个 [**explainshell**](https://explainshell.com) 页面，可以解释一些命令行
 
-![explain-shell.png](https://i.loli.net/2019/07/18/5d304c5add82645451.png)
+![explain-shell.png]( {{site.url}}/style/images/smms/explain-shell.png )
 
 ## 命令行光标操作
 

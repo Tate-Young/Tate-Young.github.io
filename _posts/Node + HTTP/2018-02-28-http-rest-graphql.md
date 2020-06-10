@@ -8,7 +8,7 @@ category: 后端
 title: REST or GraphQL
 date:   2018-03-01 15:33:00 GMT+0800 (CST)
 update: 2019-10-18 20:56:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/03/01/5a976732bacc2.jpg
+background-image: https://symphony.is/sites/default/files/blog/2019-02/og_image.png
 tags:
 - http
 ---
@@ -49,7 +49,7 @@ GET /users?name=tate
 | 投影 | ?whitelist=id,name,email |
 | 分页 | ?limit=10&offset=3 |
 
-![可寻址 URI](https://i.loli.net/2018/03/01/5a976732bacc2.jpg)
+<!-- ![可寻址 URI](https://i.loli.net/2018/03/01/5a976732bacc2.jpg) -->
 
 ### 统一接口
 
@@ -97,7 +97,8 @@ GET /users?name=tate
 
 RPC 调用的流程涉及到如下通信细节:
 
-![RPC](https://i.loli.net/2018/03/01/5a97a9d5e8ec6.png)
+<!-- TODO: -->
+<!-- ![RPC](https://i.loli.net/2018/03/01/5a97a9d5e8ec6.png) -->
 
 XML-RPC 只能使用有限的数据类型种类和一些简单的数据结构，之后又有了更加强大的 SOAP , 用于一些比较复杂的系统之上。
 

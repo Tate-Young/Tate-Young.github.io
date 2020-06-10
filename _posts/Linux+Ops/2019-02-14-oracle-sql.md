@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title: SQL 语法
 date: 2019-02-14 22:19:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2019/02/18/5c6a69f16338d.jpg
+background-image: /style/images/smms/sql.jpg
 tags:
 - Oracle
 - sql

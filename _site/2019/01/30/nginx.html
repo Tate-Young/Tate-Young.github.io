@@ -526,7 +526,7 @@ server {
 
 <h3 id="缓存">缓存</h3>
 
-<p><img src="https://i.loli.net/2019/01/30/5c511211064c7.png" alt="1634762da55df68a.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/nginx-cache.png" alt="nginx cache" /></p>
 
 <p><strong>Nginx 缓存</strong>，可以在一定程度上，减少源服务器的处理请求压力。因为静态文件中，很多都是不经常更新的。Nginx 使用 <code class="highlighter-rouge">proxy_cache</code> 将用户的请求缓存到本地一个目录。下一个相同请求可以直接调取缓存文件，就不用去请求服务器了。以下示例<a href="https://github.com/wall-wxk/blog/issues/3">摘自 wall-wxk 博客</a>:</p>
 

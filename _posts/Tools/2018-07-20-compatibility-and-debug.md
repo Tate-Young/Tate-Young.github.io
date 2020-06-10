@@ -30,11 +30,11 @@ tags:
 
 1、在 Charles 设置代理，端口默认为 8888
 
-[![charles-proxy.png](https://i.loli.net/2018/07/20/5b5141425a210.png)](https://i.loli.net/2018/07/20/5b5141425a210.png)
+![charles-proxy.png]( {{site.url}}/style/images/smms/charles-proxy.png )
 
 2、在 移动端 设置代理，服务器地址即是本机的 ip 地址，端口号即在步骤 1 中设置的 Charles 代理端口号
 
-[![charles-iphone-proxy.jpg](https://i.loli.net/2018/07/20/5b5141421339c.jpg)](https://i.loli.net/2018/07/20/5b5141421339c.jpg)
+![charles-iphone-proxy.jpg]( {{site.url}}/style/images/smms/charles-iphone-proxy.jpg )
 
 若针对 https 抓包:
 
@@ -42,15 +42,15 @@ tags:
 
 2、在钥匙串中选择始终信任:
 
-![debugger-charles-ssl.png](https://i.loli.net/2018/11/23/5bf7700990d1e.png)
+![debugger-charles-ssl.png]( {{site.url}}/style/images/smms/debugger-charles-ssl.png )
 
 3、其次点击`Help --> SSL Proxying --> Install Charles Root Certificate ... or Remote Browser`，按照提示在手机等设备安装证书，网址 `chls.pro/ssl`，切记安装完后，ios 一般要在 `设置 --> 通用 --> 关于本机 --> 证书信任设置` 里设置证书启用完全信任:
 
-![debugger-charles-ssl-device.png](https://i.loli.net/2018/11/23/5bf770e96b33b.png)
+![debugger-charles-ssl-device.png]( {{site.url}}/style/images/smms/debugger-charles-ssl-device.png )
 
 4、点击`Proxy --> SSL Proxying Settings`进行 SSL 代理设置，https 端口设置 443:
 
-![debugger-charles-ssl-settings.png](https://i.loli.net/2018/11/23/5bf7740529688.png)
+![debugger-charles-ssl-settings.png]( {{site.url}}/style/images/smms/debugger-charles-ssl-settings.png )
 
 ### mitmproxy
 
@@ -71,7 +71,7 @@ mitmproxy -p 8888
 
 4、在 移动端 安装 CA 证书(https 抓包)，直接在浏览器输入地址 `mitm.it` 并安装对应证书即可
 
-![debugger-mitmproxy.jpg](https://i.loli.net/2018/11/16/5bedb616ee92d.jpg)
+![debugger-mitmproxy.jpg]( {{site.url}}/style/images/smms/debugger-mitmproxy.jpg )
 
 常用的快捷键操作:
 
@@ -111,7 +111,7 @@ def request(flow):
 mitmproxy -s mitm.py
 ```
 
-![mitmproxy-py.png](https://i.loli.net/2019/05/23/5ce6186fb9af064650.png)
+![mitmproxy-py.png]( {{site.url}}/style/images/smms/mitmproxy-py.png )
 
 > 如果装了 mitmproxy 证书的话还是无效，可以试试 **-k** 参数，它可以强制忽略证书安全 😋
 
@@ -131,7 +131,7 @@ mitmproxy -s mitm.py
 
 2、在 chrome 浏览器输入 `chrome://inspect/#devices` 打开 inspect 调试器，上面会显示所连接的设备上的页面，点击 inspect 就可以调试啦。
 
-![debugger-inspect.png](https://i.loli.net/2018/11/22/5bf616017176c.png)
+![debugger-inspect.png]( {{site.url}}/style/images/smms/debugger-inspect.png )
 
 但是注意，如果安卓没有搜到开发者选项，有个方法可以启动开发者模式，参考的[解决方案在这里](https://stackoverflow.com/questions/21925992/chrome-devtools-devices-does-not-detect-device-when-plugged-in/57524521#57524521):
 

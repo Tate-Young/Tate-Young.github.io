@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  浅拷贝和深拷贝
 date:   2018-01-31 17:15:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2019/12/10/eqRtmxpCyQJS45E.png
+background-image: /style/images/js.png
 tags:
 - JavaScript
 ---

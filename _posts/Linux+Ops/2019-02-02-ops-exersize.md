@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title: 记一些运维实践
 date:   2019-02-02 17:54:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/04/13/5ad0695146748.jpg
+background-image: /style/images/smms/linux.jpg
 tags:
 - Ops
 ---
@@ -49,7 +49,7 @@ Oracle 具体安装步骤可以[参照文档](/style/files/Oracle11gInstallation
 
 两者并存的其中一种方案:
 
-![ods.png](https://i.loli.net/2019/02/03/5c564e1f55821.png)
+![ods.png]( {{site.url}}/style/images/smms/ods.png )
 
 **ETL** 分别是`Extract`、`Transform`、`Load`三个单词的首字母缩写，即"抽取"、"转换"、"装载"，由于不同原始数据库中的数据的来源、格式不一样，导致了系统实施、数据整合出现问题，ETL 就是用来解决这一问题的。ETL 包含了三方面:
 
@@ -70,7 +70,7 @@ Oracle 具体安装步骤可以[参照文档](/style/files/Oracle11gInstallation
 
 **Docker** 容器并非虚拟机，但可以比喻为更轻量级的虚拟机。使用虚拟机运行多个相互隔离的应用时(以下翻译[参考自这里](http://www.techug.com/post/comparing-virtual-machines-vs-docker-containers.html)):
 
-![virtual-machine-architecture.jpg](https://i.loli.net/2019/02/03/5c5653c5b5181.jpg)
+![virtual-machine-architecture.jpg]( {{site.url}}/style/images/smms/virtual-machine-architecture.jpg )
 
 * 基础设施(Infrastructure) - 可以是个人电脑，数据中心的服务器，或者是云主机。
 * 主操作系统(Host Operating System) - 运行的可能是 MacOS，Windows 或者某个 Linux 发行版。
@@ -81,7 +81,7 @@ Oracle 具体安装步骤可以[参照文档](/style/files/Oracle11gInstallation
 
 使用 Docker 容器运行多个相互隔离的应用时:
 
-![docker-container.jpg](https://i.loli.net/2019/02/03/5c5653c5b2a83.jpg)
+![docker-container.jpg]( {{site.url}}/style/images/smms/docker-container.jpg )
 
 * 基础设施(Infrastructure) - 同上
 * 主操作系统(Host Operating System) - 所有主流的 Linux 发行版都可以运行 Docker。对于 MacOS 和 Windows，也有一些办法"运行" Docker。

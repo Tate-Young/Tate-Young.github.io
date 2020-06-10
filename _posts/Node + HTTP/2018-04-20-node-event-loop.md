@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Node 事件循环
 date:   2018-04-21 13:01:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
+background-image: /style/images/smms/node.jpg
 tags:
 - Node
 ---

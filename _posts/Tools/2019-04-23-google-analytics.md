@@ -8,7 +8,7 @@ category: 前端
 title:  Google Analytics 埋点
 date:   2019-04-24 00:08:00 GMT+0800 (CST)
 update: 2019-07-25 17:46:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2019/04/23/5cbf2ec3702de.png
+background-image: /style/images/smms/ga.png
 tags:
 - js
 - ga
@@ -55,7 +55,7 @@ ga('send', 'pageview');
 
 > 提示：如果您不知道自己的媒体资源 ID，可使用[帐号浏览器查找](https://ga-dev-tools.appspot.com/account-explorer/?hl=zh-cn) 👈
 
-![ga-tracking-id.png](https://i.loli.net/2019/04/23/5cbefb4f30659.png)
+![ga-tracking-id.png]( {{site.url}}/style/images/smms/ga-tracking-id.png )
 
 > 另外全局变量 ga 可以修改，[详情可参考这里](https://developers.google.com/analytics/devguides/collection/analyticsjs/renaming-the-ga-object?hl=zh-cn) 👈
 
@@ -455,7 +455,7 @@ gtag('event', 'click', {
 });
 ```
 
-![ga-event-click.png](https://i.loli.net/2019/04/23/5cbf35a1885a2.png)
+![ga-event-click.png]( {{site.url}}/style/images/smms/ga-event-click.png )
 
 ### 应用/屏幕跟踪
 
@@ -676,7 +676,7 @@ ga('send', 'pageview');              // Send product impressions with initial pa
 
 ## 后台报表界面
 
-![ga-admin.png](https://i.loli.net/2019/04/23/5cbf35a12f7b5.png)
+![ga-admin.png]( {{site.url}}/style/images/smms/ga-admin.png )
 
 这里再介绍两个术语:
 

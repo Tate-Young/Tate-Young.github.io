@@ -99,7 +99,7 @@ if ('serviceWorker' in navigator) {
 
 当我们注册了 Service Worker 后，它会经历生命周期的各个阶段，同时会触发相应的事件。整个生命周期包括了: `installing --> installed --> activating --> activated --> redundant`:
 
-![service-worker-lifecycle.png](https://i.loli.net/2020/02/21/85eM9JdDHgNZQG1.png)
+![service-worker-lifecycle.png]( {{site.url}}/style/images/smms/service-worker-lifecycle.png )
 
 比如可以监听 install 事件:
 

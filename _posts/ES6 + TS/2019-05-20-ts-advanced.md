@@ -8,7 +8,7 @@ category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
 update: 2020-05-18 20:37:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
+background-image: /style/images/smms/typescript.png
 tags:
 - TS
 ---

@@ -187,7 +187,8 @@ SMTP 协议一开始是基于纯 ASCII 文本的，对于二进制文件(比如�
 <img alt="Embedded Image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA..." />
 ```
 
-![google-image](https://i.loli.net/2018/03/08/5aa0bfad88889.png)
+<!-- TODO: -->
+<!-- ![google-image](https://i.loli.net/2018/03/08/5aa0bfad88889.png) -->
 
 ## 字符引用
 

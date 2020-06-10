@@ -8,7 +8,7 @@ category: 历史
 title:  帝王篇 - 东汉
 date:   2019-11-09 11:51:00 GMT+0800 (CST)
 update: 2019-11-11 11:44:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2019/10/20/WQMrj9qZdyBvhCc.png
+background-image: /style/images/smms/history.jpg
 tags:
 - history
 ---
@@ -131,5 +131,3 @@ tags:
 ![二十八星宿](https://g.udn.com.tw/community/img/PSN_ARTICLE/oneyes/f_4441661_1.bmp)
 
 > 入云台图画中非二十八将者有四人: 横野大将军王常、大司空李通、大司空窦融、太傅卓茂
-
-![云台廿八将](https://i.loli.net/2019/11/11/zcZpo4CmrtPJ8fh.jpg)

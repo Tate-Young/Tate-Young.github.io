@@ -8,7 +8,7 @@ category: 后端
 title:  Node 常用模块
 date:   2018-04-08 10:54:00 GMT+0800 (CST)
 update: 2019-10-28 11:17:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/04/19/5ad8a8e7dce53.jpg
+background-image: /style/images/smms/node.jpg
 tags:
 - Node
 ---

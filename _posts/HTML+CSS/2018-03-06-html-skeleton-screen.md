@@ -7,7 +7,7 @@ background: purple
 category: 前端优化
 title:  Skeleton Screen
 date:   2018-03-07 00:50:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/03/07/5a9ebed4242b1.jpg
+background-image: /style/images/smms/skeleton-screen.jpg
 tags:
 - html
 ---
@@ -17,17 +17,17 @@ tags:
 
 网页加载通常的做法是采用菊花图，可以通过 CSS 来制作各种 loading 动画，用来提升用户在等待时间内的感知体验。更多可以[参见这里](https://www.qianduan.net/free-html5-css3-loaders-preloaders/) 👈👈👈:
 
-![loading](https://i.loli.net/2018/03/22/5ab386904136b.gif)
+![loading](https://i.imgur.com/W9XBuNV.gif)
 
 **骨架屏(skeleton screen)** 则体验上会比菊花图更好，在数据加载完成之前会通过"骨架"来填充页面，例如:
 
-![skeleton-screen](https://i.loli.net/2018/03/07/5a9ebed4242b1.jpg)
+![skeleton-screen]( {{site.url}}/style/images/smms/skeleton-screen.jpg )
 
 ## 骨架屏示例
 
 以 facebook 加载为例，[参见 codepen](https://codepen.io/lilugirl/pen/XNRZrJ):
 
-![skeleton-screen-facebook](https://i.loli.net/2018/03/07/5a9ec2a692173.gif)
+![skeleton-screen-facebook]( {{site.url}}/style/images/smms/skeleton-screen-facebook.gif )
 
 <script async src="//jsfiddle.net/fh5whLfd/808/embed/html,css,result/"></script>
 

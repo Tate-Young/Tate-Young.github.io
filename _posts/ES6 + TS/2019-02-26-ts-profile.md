@@ -8,7 +8,7 @@ category: 前端
 title: TypeScript 简介
 date:   2019-02-26 17:54:00 GMT+0800 (CST)
 update: 2019-12-23 19:11:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2019/02/26/5c7546f407746.png
+background-image: /style/images/smms/typescript.png
 tags:
 - TS
 ---

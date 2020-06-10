@@ -8,7 +8,7 @@ category: 历史
 title:  帝王篇 - 隋
 date:   2019-10-21 13:01:00 GMT+0800 (CST)
 update: 2019-10-31 12:03:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2019/10/20/WQMrj9qZdyBvhCc.png
+background-image: /style/images/smms/history.jpg
 tags:
 - history
 ---

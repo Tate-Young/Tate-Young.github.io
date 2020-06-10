@@ -23,7 +23,7 @@ tags:
 
 浏览器发起请求时，对于缓存的处理是根据返回的响应头来确定的，而针对首次请求，其流程如下，这就是缓存机制实现的关键:
 
-![client-cache-first-request.png](https://i.loli.net/2019/12/14/4OH8pS76cCV3djx.png)
+![client-cache-first-request.png]( {{site.url}}/style/images/smms/client-cache-first-request.png )
 
 ## 首部字段
 
@@ -115,7 +115,7 @@ Last-Modified: Tue, 27 Feb 2018 13:14:00 GMT
 ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
 ```
 
-![http-cache-control.png](https://i.loli.net/2018/02/27/5a952486e5c4e.png)
+![http-cache-control.png]( {{site.url}}/style/images/smms/http-cache-control.png )
 
 #### If-None-Match
 
@@ -138,7 +138,7 @@ ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
 
 在理想的情况下，目标应该是在客户端上缓存尽可能多的响应，缓存尽可能长的时间，并且为每个响应提供验证令牌，以实现高效的重新验证。
 
-![http-cache-decision-tree.png](https://i.loli.net/2018/02/27/5a952486ea7b1.png)
+![http-cache-decision-tree.png]( {{site.url}}/style/images/smms/http-cache-decision-tree.png )
 
 ## 刷新访问
 
@@ -220,11 +220,11 @@ Service Worker 实现缓存功能一般分为三个步骤：首先需要先注�
 
 2、关闭标签页后重新打开，可以看到基本从 `Disk Cache` 取:
 
-![client-cache-disk-cache.png](https://i.loli.net/2019/12/14/J4lW5r6NDcg1mkC.png)
+![client-cache-disk-cache.png]( {{site.url}}/style/images/smms/client-cache-disk-cache.png )
 
 3、普通刷新页面，可以看到有些从 `Memory Cache` 中取，但是值得注意的是，每次重复到该步骤，很多文件或接口并不完全规定好了在哪儿取，可能同一个文件，缓存位置都不一样:
 
-![client-cache-memory-cache.png](https://i.loli.net/2019/12/14/RjBoqn8eaxXNwuT.png)
+![client-cache-memory-cache.png]( {{site.url}}/style/images/smms/client-cache-memory-cache.png )
 
 因此总结一下：在一般情况下，整体的优先级，还是以 chrome 为例:
 

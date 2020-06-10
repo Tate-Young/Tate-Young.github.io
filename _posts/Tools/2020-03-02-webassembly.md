@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  WebAssembly
 date:   2020-03-02 17:02:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2020/03/02/GaMNXmKHgqtPdzT.png
+background-image: /style/images/smms/webassembly.png
 tags:
 - JavaScript
 ---

@@ -8,7 +8,7 @@ category: 前端
 title:  Vuex 简介
 date:   2019-08-06 16:08:00 GMT+0800 (CST)
 update: 2019-08-06 17:19:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/06/12/5b1f2d120e9e6.jpg
+background-image: /style/images/smms/vue.jpg
 tags:
 - Vue
 ---

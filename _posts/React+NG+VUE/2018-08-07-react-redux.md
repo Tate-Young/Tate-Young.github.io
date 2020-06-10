@@ -8,7 +8,7 @@ category: 前端
 title:  Redux & Redux-Saga
 date:   2018-08-07 18:15:00 GMT+0800 (CST)
 update: 2020-05-18 19:07:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/08/08/5b6a497fea578.png
+background-image: /style/images/smms/redux.png
 tags:
 - React
 ---
@@ -22,7 +22,7 @@ Redux 是 JavaScript 状态容器，提供可预测化的状态管理。和 Flux
 
 ## 概念
 
-![redux-pattern-diagram.png](https://i.loli.net/2018/08/08/5b6a46915b789.png)
+![redux-pattern-diagram.png]( {{site.url}}/style/images/smms/redux-pattern-diagram.png )
 
 ### Action
 
@@ -166,7 +166,7 @@ store 由 `createStore(reducer， defaultState)` 这个方法生成，在整个�
 * 通过 subscribe(listener) 注册监听器，一旦 state 发生变化，就自动执行这个函数;
 * 通过 subscribe(listener) 返回的函数注销监听器
 
-![react-redux-store.png](https://i.loli.net/2019/03/11/5c85ca3492c67.png)
+![react-redux-store.png]( {{site.url}}/style/images/smms/react-redux-store.png )
 
 ```JS
 // 整个流程可总结为: 用户发出 Action，Reducer 函数算出新的 State，View 重新渲染
@@ -200,7 +200,7 @@ const store = compose()(createStore)(counter)
 
 对上述 action、reducer 和 store 三者关系的一个整理:
 
-![react-redux-action.png](https://i.loli.net/2019/03/11/5c85ca3485b3a.png)
+![react-redux-action.png]( {{site.url}}/style/images/smms/react-redux-action.png )
 
 ### 异步 Action & 中间件
 
@@ -297,7 +297,7 @@ export function fetchPosts(subreddit) {
 
 我们当然可以直接在 React 中使用 Redux：在最外层容器组件中初始化 store，然后将 state 上的属性作为 props 层层传递下去，最佳的方式是使用 **React-Redux** 提供的 **Provider** 和 **connect** 方法。React-Redux 将所有组件分成两大类：UI 组件（presentational component）和容器组件（container component）。UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
 
-![react-redux.png](https://i.loli.net/2019/03/06/5c7f46749d223.png)
+![react-redux.png]( {{site.url}}/style/images/smms/react-redux.png )
 
 ### Provider
 

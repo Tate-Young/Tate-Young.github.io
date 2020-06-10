@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  CSS 选择器优先级
 date:   2018-01-29 23:23:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/07/24/5b56b1a40824c.jpg
+background-image: /style/images/smms/html-css.png
 tags:
 - css
 ---

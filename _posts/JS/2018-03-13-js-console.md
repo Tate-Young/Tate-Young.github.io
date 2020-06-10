@@ -57,7 +57,7 @@ console.log('这是 %c Tate & Snow %c 的博客', 'color: orange', 'color: blue'
 console.log('%c', 'background: url({{site.url}}/style/images/tate.png) no-repeat;padding: 20px 219px;line-height: 166px');
 ```
 
-![console.log.png](https://i.loli.net/2018/03/13/5aa75246de7c3.png)
+![console.log.png]( {{site.url}}/style/images/smms/console_log.png )
 
 > 关于 Tate 文字的打印可参考 [FIGlet](#figlet)，是基于 ASCII 字符组成的字符画。
 

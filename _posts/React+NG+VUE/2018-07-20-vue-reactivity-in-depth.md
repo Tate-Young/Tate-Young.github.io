@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Vue 深入响应式原理
 date:   2018-07-20 18:25:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/06/12/5b1f2d120e9e6.jpg
+background-image: /style/images/smms/vue.jpg
 tags:
 - Vue
 ---
@@ -523,7 +523,7 @@ export default class Watcher {
 
 依赖收集的整个流程图如下:
 
-![vue-reactive.jpg](https://i.loli.net/2018/07/20/5b51aaa9e325e.jpg)
+![vue-reactive.jpg]( {{site.url}}/style/images/smms/vue-reactive.jpg )
 
 * 模板编译过程中的指令和数据绑定、computed 属性和 watch 函数中的对象会生成 Watcher 实例，在模板编译的过程中，会执行 Watcher 实例的 expOrFn（初始化 Watcher 实例时传入的参数），进入 watcher.js 中的 get 函数 访问 expOrFn 涉及的所有属性;
 * 访问属性之前，Watcher 会设置 Dep 的静态属性 Dep.target 指向其自身，然后开始依赖收集;
@@ -533,7 +533,7 @@ export default class Watcher {
 
 ### 总流程图
 
-![vue-reactivity-full.png](https://i.loli.net/2018/07/20/5b51b7da34bbd.png)
+![vue-reactivity-full.png]( {{site.url}}/style/images/smms/vue-reactivity-full.png )
 
 总结来说就是：
 

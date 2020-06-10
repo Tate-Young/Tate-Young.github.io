@@ -8,7 +8,7 @@ category: 前端
 title:  Redux Toolkit
 date:   2020-04-28 14:11:00 GMT+0800 (CST)
 UPdate: 2020-05-27 15:04:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/08/08/5b6a497fea578.png
+background-image: /style/images/smms/redux.png
 tags:
 - React
 ---

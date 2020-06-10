@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  事件代理
 date:   2018-03-26 14:38:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/03/26/5ab8781326713.png
+background-image: /style/images/js.png
 tags:
 - JavaScript
 ---
@@ -27,7 +27,7 @@ DOM 事件流主要包括三个阶段:
 * 处于目标阶段 - 实际的目标接收到事件，但是事件处理会被看成是冒泡阶段的一部分
 * **事件冒泡(event bubbling)** - 事件的传播是从最不特定的事件目标到最特定的事件目标
 
-![event-bubbling.png](https://i.loli.net/2018/03/26/5ab8781326713.png)
+![event-bubbling.png]( {{site.url}}/style/images/smms/event-bubbling.png )
 
 然而需要注意的是:
 

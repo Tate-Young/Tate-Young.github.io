@@ -8,7 +8,7 @@ background: gray
 category: 后端
 title:  Express 中间件与路由
 date:   2018-04-10 09:55:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/04/19/5ad8a98a6133c.png
+background-image: /style/images/smms/node.jpg
 tags:
 - Node
 ---
@@ -370,7 +370,7 @@ function myFunMiddleware(req, res, next) {
 }
 ```
 
-![express-middleware.png](https://i.loli.net/2018/08/02/5b626eaba4573.png)
+![express-middleware.png]( {{site.url}}/style/images/smms/express-middleware.png )
 
 > next() 函数不是 Node.js 或 Express API 的一部分，而是传递给中间件函数的第三自变量。next() 函数可以命名为任何名称，但是按约定，始终命名为 "next"。
 

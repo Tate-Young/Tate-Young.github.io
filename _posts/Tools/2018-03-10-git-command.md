@@ -8,7 +8,7 @@ category: 前端
 title: Git 命令
 date:   2018-03-11 12:03:00 GMT+0800 (CST)
 update: 2020-05-28 14:36:00 GMT+0800 (CST)
-background-image: https://i.loli.net/2018/03/11/5aa49b6c003a8.gif
+background-image: /style/images/smms/github.png
 
 tags:
 - git
@@ -23,7 +23,7 @@ tags:
 | **Index** | 暂存区，即 Stage，是指即将被下一个提交的文件集合 |
 | **Working Copy** | 工作区 |
 
-![git-working-copy.jpg](https://i.loli.net/2018/03/11/5aa481bc4da98.jpg)
+![git-working-copy.jpg]( {{site.url}}/style/images/smms/git-working-copy.jpg )
 
 ## Git 命令
 
@@ -325,7 +325,7 @@ git clean
 git log --graph --pretty=oneline --abbrev-commit
 ```
 
-![git-merge.png](https://i.loli.net/2018/03/11/5aa481bc48cdd.png)
+![git-merge.png]( {{site.url}}/style/images/smms/git-merge.png )
 
 通常合并分支时，Git 会尽可能用 Fast forward 模式，但这种模式下，删除分支后会丢掉分支信息。如果要强制禁用该模式，Git 就会在 merge 时生成一个新的 commit，这样从分支历史上就可以看出分支信息。
 
@@ -336,7 +336,7 @@ git merge --no-ff -m "merge with no-ff" feature
 
 > Fast forward 仅仅只用做指针的移动
 
-![git-merge-no-ff.png](https://i.loli.net/2018/03/11/5aa481bc41c5a.png)
+![git-merge-no-ff.png]( {{site.url}}/style/images/smms/git-merge-no-ff.png )
 
 ### rebase
 
@@ -361,7 +361,7 @@ git checkout master
 git merge branch1
 ```
 
-![git-merge.gif](https://i.loli.net/2018/03/11/5aa49b65a03e2.gif)
+![git-merge.gif]( {{site.url}}/style/images/smms/git-merge.gif )
 
 * **rebase 的实现流程**
 
@@ -377,7 +377,7 @@ git checkout master
 git merge branch1
 ```
 
-![git-rebase.gif](https://i.loli.net/2018/03/11/5aa49b6c003a8.gif)
+![git-rebase.gif]( {{site.url}}/style/images/smms/git-rebase.gif )
 
 我们再进行图解下:
 

@@ -24,7 +24,7 @@ tags:
 
 ## 基础架构和策略
 
-![web scrawler](https://i.loli.net/2019/10/28/CfPcD1l9RQOqxbB.png)
+![web scrawler]( {{site.url}}/style/images/smms/web-scrawler.png )
 
 1. 根据提供的 URL 列表和相应的优先级，建立待抓取 URL 队列
 2. 根据待抓取 URL 队列的排序进行网页抓取
@@ -164,7 +164,7 @@ def get_track(self, distance):
 
 **反**: 采用**猫池**，简而言之就是有通信模块，可收发短信，支持多张手机卡同时使用的硬件设备，并且可以通过管理平台进行统一管理，然后通过代码直接获取接收到的验证码即可
 
-![web-scrawler-mao.png](https://i.loli.net/2019/10/28/iJrhMVjo2BWFafc.png)
+![web-scrawler-mao.png]( {{site.url}}/style/images/smms/web-scrawler-mao.png )
 
 ```PYTHON
 # 通过手机号码取短信
