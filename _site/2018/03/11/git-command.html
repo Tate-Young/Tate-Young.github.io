@@ -175,7 +175,7 @@
                       发布时间：2018-03-11 12:03:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2020-05-28 14:36:00
+                        修改时间：2020-06-16 11:01:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -533,14 +533,19 @@ git push origin --delete master
 </ul>
 
 <p>版本也可按照 commit id 进行回退，若不记得，可根据不同情况通过以下两种途径获取 commit id:</p>
+
 <ul>
   <li>版本回退 - <code class="highlighter-rouge">git log</code> 查看提交历史</li>
   <li>版本恢复 - <code class="highlighter-rouge">git reflog</code> 查看命令历史</li>
 </ul>
 
-<video controls="">
-  <source src="http://github.liaoxuefeng.com/sinaweibopy/video/git-reset.mp4" type="video/mp4" />&lt;/source&gt;
-</video>
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s---GveiZe---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/je5240aqa5uw9d8j3ibb.gif" alt="git reset --soft" /></p>
+
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--GqjwnYkF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/hlh0kowt3hov1xhcku38.gif" alt="git reset --hard" /></p>
+
+<h3 id="reflog">reflog</h3>
+
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--A1UMM2AH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/9z9rhtbw7mrigp0miijz.gif" alt="reflog" /></p>
 
 <h3 id="revert">revert</h3>
 
@@ -561,6 +566,8 @@ git revert xxx --no-commit
 # 回滚时采用默认提交描述
 git revert xxx --no-edit
 </code></pre>
+
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--eckmvr2M--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/3kkd2ahn41zixs12xgpf.gif" alt="git revert" /></p>
 
 <p>revert 撤销一个合并提交时，如果除了 commit id 而不加任何其他参数，git 将会提示错误:</p>
 
@@ -628,7 +635,7 @@ git revert -m 1 bb0aa8b
 git log --graph --pretty=oneline --abbrev-commit
 </code></pre>
 
-<p><img src="http://localhost:2333/style/images/smms/git-merge.png" alt="git-merge.png" /></p>
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--cT4TSe48--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/894znjv4oo9agqiz4dql.gif" alt="git-merge.png" /></p>
 
 <p>通常合并分支时，Git 会尽可能用 Fast forward 模式，但这种模式下，删除分支后会丢掉分支信息。如果要强制禁用该模式，Git 就会在 merge 时生成一个新的 commit，这样从分支历史上就可以看出分支信息。</p>
 
@@ -640,7 +647,7 @@ git merge --no-ff -m "merge with no-ff" feature
   <p>Fast forward 仅仅只用做指针的移动</p>
 </blockquote>
 
-<p><img src="http://localhost:2333/style/images/smms/git-merge-no-ff.png" alt="git-merge-no-ff.png" /></p>
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--zRZ0x2Vc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/rf1o2b6eduboqwkigg3w.gif" alt="git-merge-no-ff.png" /></p>
 
 <h3 id="rebase">rebase</h3>
 
@@ -859,6 +866,8 @@ feat: third commit
 # * 3672ae7 - test: first commit (52 seconds ago) &lt;Tate&gt;
 </code></pre>
 
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--VSQt4g1V--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bc1r460xx1i0blu0lnnm.gif" alt="git rebase -i" /></p>
+
 <h3 id="cherry-pick">cherry-pick</h3>
 
 <p><strong>cherry-pick</strong> 可以选择某一个分支中的一个或几个 commit 来进行操作，rebase 实质上就是线性的自动的 cherry-pick 操作:</p>
@@ -881,7 +890,7 @@ git cherry-pick --quit // 退出，不会影响冲突之前所处理的提交
 git cherry-pick --abort // 停止本次操作，回到解放前
 </code></pre>
 
-<p><img src="https://marklodato.github.io/visual-git-guide/cherry-pick.svg" alt="cherry-pick" /></p>
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--9vWP_K4S--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/2dkjx4yeaal10xyvj29v.gif" alt="cherry-pick" /></p>
 
 <blockquote>
   <p>注意，当处理多个提交时，期间有一个若有冲突，解决完后必须执行 <code class="highlighter-rouge">--continue</code> 才能自动处理下一个提交。</p>
@@ -1069,18 +1078,7 @@ git diff --stat # 仅仅比较统计信息
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://git-scm.com/book/zh/v2">Git - book</a></li>
-  <li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Git 教程</a> By 廖雪峰</li>
-  <li><a href="https://juejin.im/book/5a124b29f265da431d3c472e">掘金 - Git 原理详解及实用指南</a> By 抛物线</li>
-  <li><a href="https://marklodato.github.io/visual-git-guide/index-zh-cn.html">图解 Git</a> By marklodato</li>
-  <li><a href="https://www.atlassian.com/git/tutorials/resetting-checking-out-and-reverting">atlassian - Resetting, Checking Out &amp; Reverting</a></li>
-  <li><a href="https://www.yiibai.com/git/git_pull.html">易百教程 - Git</a> By 初生不惑</li>
-  <li><a href="https://github.com/geeeeeeeeek/git-recipes/wiki">Github - git-recipes</a> By geeeeeeeeek</li>
-  <li><a href="http://blog.psjay.com/posts/git-revert-merge-commit/">Git 撤销合并</a> By PSJay</li>
-  <li><a href="https://drprincess.github.io/2018/03/05/Git-%E7%94%A8%20cherry-pick%20%E6%8C%91%E5%A5%BD%E7%9C%8B%E7%9A%84%E5%B0%8F%E6%A8%B1%E6%A1%83/">Git-用 cherry-pick 挑好看的小樱桃</a> By DRPrincess</li>
-  <li><a href="http://jartto.wang/2018/12/11/git-rebase/">彻底搞懂 Git-Rebase</a> By jartto</li>
-  <li><a href="https://github.com/zuopf769/how_to_use_git/blob/master/使用git%20rebase合并多次commit.md">使用 git rebase 合并多次 commit</a> By zuopf769</li>
-  <li><a href="https://segmentfault.com/a/1190000005937408">Git Rebase 原理以及黄金准则详解</a> By 王下邀月熊_Chevalier</li>
+  <li><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1">CS Visualized: Useful Git Commands</a> By Lydia Hallie</li>
 </ol>
  
 <div id="gitalk-container"></div>
