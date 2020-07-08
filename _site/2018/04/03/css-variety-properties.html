@@ -817,6 +817,36 @@ input::-moz-placeholder { // Firefox 19+
 <p class="user-select-none"><strong>none</strong> --&gt; 我猜你们根本就选择不到我</p>
 <p class="user-select-all"><strong>all</strong> --&gt; 你只需要点我试一试</p>
 
+<h2 id="子元素-fisrt-child--first-of-type">子元素 :fisrt-child / :first-of-type</h2>
+
+<p><strong>:first-child</strong> 选择器是 CSS2 中定义的，即第一个子元素:</p>
+
+<pre><code class="language-HTML">&lt;div&gt;
+  &lt;p&gt;第一个子元素&lt;/p&gt;
+  &lt;a&gt;第二个子元素&lt;/a&gt;
+  &lt;span&gt;第三个子元素&lt;/span&gt;
+  &lt;span&gt;第四个子元素&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<ol>
+  <li><code class="highlighter-rouge">p:first-child</code> - 匹配到的是 p 元素,因为 p 元素是 div 的第一个子元素 ✅</li>
+  <li><code class="highlighter-rouge">a:first-child</code> - 匹配不到任何元素，因为在这里 a 是 div 的第二个子元素</li>
+  <li><code class="highlighter-rouge">span:first-child</code> - 匹配不到任何元素，同上</li>
+</ol>
+
+<p>在 CSS3 中又定义了 <code class="highlighter-rouge">:first-of-type</code> 这个选择器，这个有什么区别呢？还是看上面那个栗子:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">p:first-of-type</code> - 匹配到的是 p 元素,因为 p 元素是 div 里所有元素类型为 p 的第一个 ✅</li>
+  <li><code class="highlighter-rouge">a:first-of-type</code> - 匹配到的是 a 元素,因为 a 元素是 div 里所有元素类型为 a 的第一个 ✅</li>
+  <li><code class="highlighter-rouge">span:first-of-type</code> - 匹配到的是 span 第三个子元素,因为它是 div 里所有元素类型为 span 的第一个 ✅</li>
+</ol>
+
+<blockquote>
+  <p>其他同样类型的选择器 <code class="highlighter-rouge">:last-child</code> 和 <code class="highlighter-rouge">:last-of-type</code>，<code class="highlighter-rouge">:nth-child(n)</code> 和 <code class="highlighter-rouge">:nth-of-type(n)</code> 同上 👈</p>
+</blockquote>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>

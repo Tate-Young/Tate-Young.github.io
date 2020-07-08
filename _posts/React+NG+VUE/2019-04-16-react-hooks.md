@@ -555,7 +555,7 @@ const memoizedCallback = useCallback(
 );
 ```
 
-举个栗子，每次修改 count，set.size 就会 +1，这说明 useCallback 依赖变量 count，count 变更时会返回新的函数；而 val变 更时，set.size 不会变，说明返回的是缓存的旧版本函数:
+举个栗子，每次修改 count，set.size 就会 +1，这说明 useCallback 依赖变量 count，count 变更时会返回新的函数；而 val 变更时，set.size 不会变，说明返回的是缓存的旧版本函数:
 
 ```JSX
 import React, { useState, useCallback } from 'react';
