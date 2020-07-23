@@ -605,7 +605,7 @@ module.exports = {
 };
 ```
 
-最后一步，我们把生成的 `vendor.js` 嵌入到 html 中即可:
+最后一步，我们把生成的 `vendor.js` 嵌入到 html 中即可，我们项目中引用模块的方式还是保持不变:
 
 ```HTML
 <!-- index.html -->
