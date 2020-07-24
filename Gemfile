@@ -10,8 +10,9 @@ gem "jekyll", "~> 3.8.5"
 gem "nokogiri", ">= 1.8.5"
 gem 'jekyll-admin', group: :jekyll_plugins
 gem 'jekyll-seo-tag'
-group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.6"
-  # gem "jekyll-strapi", "~> 0.1"
-  gem 'jekyll-strapi', github: 'strapi/jekyll-strapi'
-end
+gem "commonmarker", ">= 0.17.13"
+# group :jekyll_plugins do
+#   gem "jekyll-feed", "~> 0.6"
+#   # gem "jekyll-strapi", "~> 0.1"
+#   gem 'jekyll-strapi', github: 'strapi/jekyll-strapi'
+# end
