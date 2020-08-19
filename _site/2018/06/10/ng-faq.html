@@ -58,7 +58,7 @@
 <meta content="" property="fb:app_id" />
 <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Angular FAQ | Tate &amp; Snow</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="Angular FAQ" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Angular FAQ" />
@@ -433,7 +433,7 @@
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">Person</span> <span class="p">{</span>
   <span class="nx">readonly</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
-  <span class="nx">age</span><span class="p">?:</span> <span class="nx">number</span><span class="p">;</span>
+  <span class="nl">age</span><span class="p">?:</span> <span class="nx">number</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -830,26 +830,26 @@ let sum = add(3, 4);
   <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span> 
   <span class="nl">useClass</span><span class="p">:</span> <span class="nx">Type</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
   <span class="c1">// 用于标识是否multiple providers，若是multiple类型，则返回与Token关联的依赖对象列表</span>
-  <span class="nx">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span> 
+  <span class="nl">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span> 
 <span class="p">}</span>
   
 <span class="k">export</span> <span class="kr">interface</span> <span class="nx">ValueProvider</span> <span class="p">{</span>
   <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
   <span class="nl">useValue</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
-  <span class="nx">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span>
+  <span class="nl">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span>
 <span class="p">}</span>
   
 <span class="k">export</span> <span class="kr">interface</span> <span class="nx">ExistingProvider</span> <span class="p">{</span>
   <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
   <span class="nl">useExisting</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
-  <span class="nx">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span>
+  <span class="nl">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span>
 <span class="p">}</span>
   
 <span class="k">export</span> <span class="kr">interface</span> <span class="nx">FactoryProvider</span> <span class="p">{</span>
   <span class="nl">provide</span><span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
   <span class="nl">useFactory</span><span class="p">:</span> <span class="nb">Function</span><span class="p">;</span>
-  <span class="nx">deps</span><span class="p">?:</span> <span class="nx">any</span><span class="p">[];</span> <span class="c1">// 用于设置工厂函数的依赖对象</span>
-  <span class="nx">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span>
+  <span class="nl">deps</span><span class="p">?:</span> <span class="nx">any</span><span class="p">[];</span> <span class="c1">// 用于设置工厂函数的依赖对象</span>
+  <span class="nl">multi</span><span class="p">?:</span> <span class="nx">boolean</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -1645,8 +1645,8 @@ let sum = add(3, 4);
 
 <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
   <span class="nl">nameGroup</span><span class="p">:</span> <span class="p">{</span>
-	<span class="nl">firstname</span><span class="p">:</span> <span class="dl">''</span><span class="err">，</span>
-	<span class="nx">lastname</span><span class="p">:</span> <span class="dl">''</span><span class="err">，</span>
+	<span class="na">firstname</span><span class="p">:</span> <span class="dl">''</span><span class="err">，</span>
+	<span class="na">lastname</span><span class="p">:</span> <span class="dl">''</span><span class="err">，</span>
   <span class="p">}</span><span class="err">，</span>
   <span class="nx">addressGroup</span><span class="p">:</span> <span class="p">{</span> 
     <span class="nl">street</span><span class="p">:</span> <span class="dl">''</span><span class="err">，</span> 

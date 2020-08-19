@@ -95,7 +95,7 @@ for (let myCode of '𠮷') { // for...of循环会正确识别 32 位的 UTF-16 �
 
 ### String.fromCodePoint()
 
-ES5 提供了 **String.fromCharCode()**，但不能识别大于0xFFFF的码点。ES6 提供的 **String.fromCodePoint()** 能正确返回对应字符:
+ES5 提供了 **String.fromCharCode()**，但不能识别大于 0xFFFF 的码点。ES6 提供的 **String.fromCodePoint()** 能正确返回对应字符:
 
 ```JS
 String.fromCharCode(0x20BB7); //"ஷ"

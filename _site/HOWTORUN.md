@@ -50,3 +50,7 @@ yaml /ˈjæməl/
 - Dog
 - Goldfish
 ```
+
+## warning
+
+1. commonmarker 安装失败 - 尝试用 rvm 换一个更高的 ruby 版本，比如 `rvm use ruby-2.4.6`
