@@ -7,7 +7,7 @@ background: orange
 category: 前端
 title: Unicode
 date:   2018-03-08 14:43:00 GMT+0800 (CST)
-update: 2020-08-19 15:30:00 GMT+0800 (CST)
+update: 2020-08-19 16:24:00 GMT+0800 (CST)
 background-image: http://www.ruanyifeng.com/blogimg/asset/2014/bg2014121103.jpg
 tags:
 - http
@@ -58,7 +58,7 @@ UTF-8 和 UTF-16 及 UTF-32 的区别:
 
 在 1991 年 Unicode 团队与 UCS 团队合并字符集之前，UCS 已于 1990 年公布了第一套编码方法 **UCS-2**，即使用 2 个字节表示已经有码点的字符。UTF-16 编码迟至 1996 年才公布，明确宣布是 UCS-2 的超集，即基本平面字符沿用 UCS-2 编码，辅助平面字符定义了 4 个字节的表示方法。而 JS 是于 1995 年诞生的，因此采用的是 UCS-2 字符编码，如果是 4 个字节的字符，会当作两个双字节的字符处理。
 
-JS 允许采用 **\uxxxx** 形式表示一个字符，其中 xxxx 表示字符的 Unicode 十六进制码点。这种表示法只限于码点在 \u0000~\uFFFF 之间的字符。超出这个范围的字符，必须用两个双字节的形式表示:
+**JS 允许采用 `\uxxxx` 形式表示一个字符，其中 xxxx 表示字符的 Unicode 十六进制码点。这种表示法只限于码点在 \u0000~\uFFFF 之间的字符。超出这个范围的字符，必须用两个双字节的形式表示**:
 
 ```JS
 // 例如汉字"𠮷"的码点是 0x20BB7，UTF-16 编码为0xD842 0xDFB7(十进制为55362 57271)，需要4个字节储存
@@ -195,9 +195,9 @@ SMTP 协议一开始是基于纯 ASCII 文本的，对于二进制文件(比如�
 
 在 HTML 或 XML 文档里，如果某些 Unicode 字符在文档的当前编码方式(如ISO-8859-1)中不能直接表示，那么可以通过 [字符值引用(NCR)](https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E5%80%BC%E5%BC%95%E7%94%A8) 或者 [字符实体引用](https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E5%AE%9E%E4%BD%93%E5%BC%95%E7%94%A8) 两种转义序列来表示这些不能直接编码的字符。
 
-### NCR
+### 字符值引用 NCR
 
-**字符值引用(Numeric Character Reference)** 组成结构为 `&#" + Unicode 码点 + ";`:
+**字符值引用(Numeric Character Reference)** 组成结构为 `&# + Unicode 码点 + ;`:
 
 ```TEXT
 <!-- 「中国」二字分别是 Unicode 字符 U+4E2D 和 U+56FD，十六进制表示的码点数值「4E2D」和「56FD」就是十进制的「20013」和「22269」 -->
@@ -217,9 +217,9 @@ str = str.replace(regex_num_set, function(match, p1) {
 // str --> "Tate: 佘孟都"
 ```
 
-### Character Entity Reference
+### 字符实体引用 CER
 
-**字符实体引用(Character Entity Reference)** 组成结构为 *"&" + name + ";"*
+**字符实体引用(Character Entity Reference)** 组成结构为 `&# + name + ;`
 
 | 名字 |  字符值引用 | 字符 | 十进制编码 | 含义 |
 |:--------------|:---------|:---------|:---------|:---------|
@@ -231,6 +231,8 @@ str = str.replace(regex_num_set, function(match, p1) {
 
 ## Emoji 表情
 
+### 使用方式汇总
+
 Emoji 在上个世纪九十年代，由日本电信商引入服务，最早用于在短消息之中插入表情。2007 年，苹果公司的 iPhone 支持了 Emoji，导致它在全世界范围的流行。早期的 Emoji 是将一些特定的符号组合替换成图片，比如将 :) 替换成 😀。这种方法很难标准化，能够表达的范围也有限。2010 年，Unicode 开始为 Emoji 分配码点。也就是说，现在的 Emoji 符号就是一个文字，它会被渲染为图形。
 
 Unicode 只是规定了 Emoji 的码点和含义，并没有规定它的样式。举例来说，码点 U+1F600 表示一张微笑的脸，但是这张脸长什么样，则**由各个系统自己实现，所以一定要注意兼容性**。
@@ -240,15 +242,68 @@ Unicode 只是规定了 Emoji 的码点和含义，并没有规定它的样式�
 Emoji 的具体使用方式可以分为以下几点:
 
 1. **复制粘贴** - 从其他 Emoji 汇总网站上复制过来，粘贴到需要使用的地方即可。如 [getemoji.com](http://getemoji.com)
-2. **码点输入** - 以 HTML 网页为例，将码点 U+1F600 写成 HTML NCR 的形式 `&#128512;`（十进制）或 `&#x1F600;`（十六进制）。在线转换地址为 [ifreesite](https://www.ifreesite.com/unicode/) 或者 [Amp What](http://www.amp-what.com/unicode/search/emoticon)
-3. **JavaScript 输入** - 可以使用 [node-emoji](https://www.npmjs.com/package/node-emoji) 库实现，如 `emoji.get('coffee')`
-4. **CSS 插入** - 引入样式文件即可，如下
+2. **直接输入字元** - 类似 👋 🤚 🖐 ✋
+3. **码点输入** - 以 HTML 网页为例，将码点 U+1F600 写成 HTML NCR 的形式 `&#128512;`（十进制）或 `&#x1F600;`（十六进制）。在线转换地址为 [ifreesite](https://www.ifreesite.com/unicode/) 或者 [Amp What](http://www.amp-what.com/unicode/search/emoticon)
+4. **JavaScript 输入** - 可以使用 [node-emoji](https://www.npmjs.com/package/node-emoji) 库实现，如 `emoji.get('coffee')`
+5. **CSS 插入** - 引入样式文件即可，如下
 
 ```HTML
 <!-- CSS 插入 Emoji -->
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 <i class="em em-baby"></i>
 ```
+
+### 组合 - U+200D 零宽连字
+
+[**零宽连字(Zero-width joiner)**](https://zh.wikipedia.org/wiki/零宽连字) 是一个控制字符，放在某些需要复杂排版语言（如阿拉伯语、印地语）的两个字符之间，使得这两个本不会发生连字的字符产生了连字效果，零宽连字符的 Unicode 码位是 `U+200D` (HTML: `&#8205;`,`&zwj;`）:
+
+```JS
+const man = '👨'
+const woman = '👩'
+const child = '👧'
+// 注意要转换为 js 支持的 \uxxxx 形式
+const zwj = '\u200D'
+
+console.log(man + zwj + woman + zwj + child) // 👨‍👩‍👧 温馨的三口之家
+// 不支持的系统则会顺序显示这三个绘文字(👨👩👧)
+```
+
+> 😂前綴 "\u"（\u1F602）更改為 "U+"（U+1F602）即可完成 Emoji 与 Unicode 的转换，反之亦然
+
+### 肤色 - 菲茨帕特里克修饰符
+
+Unicode 8.0 中加入了 5 个修饰符，用来调节人形表情的肤色。这些叫做绘文字**菲茨帕特里克修饰符（Emoji Modifier Fitzpatrick）**:
+
+| 字元名称 | 码点(code point) | 字元 | UTF-16 (使用 JavaScript 字串) | UTF-8 |
+| ------------ | ------- | --- | --- | --- |
+| FITZ-1-2 | U+1F3FB | 🏻 | 0xD83C 0xDFFB ('\uD83C\uDFFB') | 0xF0 0x9F 0x8F 0xBB |
+| FITZ-3 | U+1F3FC | 🏼 | 0xD83C 0xDFFC ('\uD83C\uDFFC') | 0xF0 0x9F 0x8F 0xBC |
+| FITZ-4 | U+1F3FD | 🏽 | 0xD83C 0xDFFD ('\uD83C\uDFFD') | 0xF0 0x9F 0x8F 0xBD |
+| FITZ-5 | U+1F3FE | 🏾 | 0xD83C 0xDFFE ('\uD83C\uDFFE') | 0xF0 0x9F 0x8F 0xBE |
+| FITZ-6 | U+1F3FF | 🟿(黑) | 0xD83C 0xDFFF ('\uD83C\uDFFF') | 0xF0 0x9F 0x8F 0xBF |
+
+以下是不同的 Emoji 在加上菲茨帕特里克修饰符之后的比较表:
+
+| 码点 | 默认 | 菲茨-1-2 | 菲茨-3 | 菲茨-4 | 菲茨-5 | 菲茨-6 |
+| ------------ | ------- | --- | --- | --- | --- | --- |
+| U+1F466: 男孩 | 👦 | 👦🏻 | 👦🏼 | 👦🏽 | 👦🏾 | 👦🏿 |
+| U+1F467: 女孩 | 👧 | 👧🏻 | 👧🏼 | 👧🏽 | 👧🏾 | 👧🏿 |
+| U+1F468: 男人 | 👨 | 👨🏻 | 👨🏼 | 👨🏽 | 👨🏾 | 👨🏿 |
+| U+1F469: 女人 | 👩 | 👩🏻 | 👩🏼 | 👩🏽 | 👩🏾 | 👩🏿 |
+
+> 由于菲茨 1 和 2 类型颜色太相近，不易区分，索性合并到一起
+
+```JS
+const adult = '🧑'
+const fitz6 = '\uD83C\uDFFF'
+const black = adult + fitz6 // 直接加上对应的菲茨类型
+
+console.log(black) // 🧑🏿 surprise
+```
+
+> 不是所有 Emoji 都能加上肤色，只有跟「人类」有关的 Emoji 才能这样用，例如 Emoji 中有出现脸、手、脚、身体的，都可以这样用
+
+### React 动态显示 Emoji 的问题
 
 React 使用 Emoji 遇到的问题，场景是需要通过变量来显示 Emoji，如下:
 

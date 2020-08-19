@@ -175,7 +175,7 @@
                       发布时间：2018-03-08 14:43:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2020-08-19 15:30:00
+                        修改时间：2020-08-19 16:24:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -296,7 +296,7 @@ U+0000 = null
 
 <p>在 1991 年 Unicode 团队与 UCS 团队合并字符集之前，UCS 已于 1990 年公布了第一套编码方法 <strong>UCS-2</strong>，即使用 2 个字节表示已经有码点的字符。UTF-16 编码迟至 1996 年才公布，明确宣布是 UCS-2 的超集，即基本平面字符沿用 UCS-2 编码，辅助平面字符定义了 4 个字节的表示方法。而 JS 是于 1995 年诞生的，因此采用的是 UCS-2 字符编码，如果是 4 个字节的字符，会当作两个双字节的字符处理。</p>
 
-<p>JS 允许采用 <strong>\uxxxx</strong> 形式表示一个字符，其中 xxxx 表示字符的 Unicode 十六进制码点。这种表示法只限于码点在 \u0000~\uFFFF 之间的字符。超出这个范围的字符，必须用两个双字节的形式表示:</p>
+<p><strong>JS 允许采用 <code class="highlighter-rouge">\uxxxx</code> 形式表示一个字符，其中 xxxx 表示字符的 Unicode 十六进制码点。这种表示法只限于码点在 \u0000~\uFFFF 之间的字符。超出这个范围的字符，必须用两个双字节的形式表示</strong>:</p>
 
 <pre><code class="language-JS">// 例如汉字"𠮷"的码点是 0x20BB7，UTF-16 编码为0xD842 0xDFB7(十进制为55362 57271)，需要4个字节储存
 
@@ -428,9 +428,9 @@ encodeURIComponent("https://tate-young.github.io/README?hello Tate")
 
 <p>在 HTML 或 XML 文档里，如果某些 Unicode 字符在文档的当前编码方式(如ISO-8859-1)中不能直接表示，那么可以通过 <a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E5%80%BC%E5%BC%95%E7%94%A8">字符值引用(NCR)</a> 或者 <a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E5%AE%9E%E4%BD%93%E5%BC%95%E7%94%A8">字符实体引用</a> 两种转义序列来表示这些不能直接编码的字符。</p>
 
-<h3 id="ncr">NCR</h3>
+<h3 id="字符值引用-ncr">字符值引用 NCR</h3>
 
-<p><strong>字符值引用(Numeric Character Reference)</strong> 组成结构为 <code class="highlighter-rouge">&amp;#" + Unicode 码点 + ";</code>:</p>
+<p><strong>字符值引用(Numeric Character Reference)</strong> 组成结构为 <code class="highlighter-rouge">&amp;# + Unicode 码点 + ;</code>:</p>
 
 <pre><code class="language-TEXT">&lt;!-- 「中国」二字分别是 Unicode 字符 U+4E2D 和 U+56FD，十六进制表示的码点数值「4E2D」和「56FD」就是十进制的「20013」和「22269」 --&gt;
 &amp;#x4e2d;&amp;#x56fd;
@@ -448,9 +448,9 @@ str = str.replace(regex_num_set, function(match, p1) {
 // str --&gt; "Tate: 佘孟都"
 </code></pre>
 
-<h3 id="character-entity-reference">Character Entity Reference</h3>
+<h3 id="字符实体引用-cer">字符实体引用 CER</h3>
 
-<p><strong>字符实体引用(Character Entity Reference)</strong> 组成结构为 <em>“&amp;” + name + “;”</em></p>
+<p><strong>字符实体引用(Character Entity Reference)</strong> 组成结构为 <code class="highlighter-rouge">&amp;# + name + ;</code></p>
 
 <table>
   <thead>
@@ -503,6 +503,8 @@ str = str.replace(regex_num_set, function(match, p1) {
 
 <h2 id="emoji-表情">Emoji 表情</h2>
 
+<h3 id="使用方式汇总">使用方式汇总</h3>
+
 <p>Emoji 在上个世纪九十年代，由日本电信商引入服务，最早用于在短消息之中插入表情。2007 年，苹果公司的 iPhone 支持了 Emoji，导致它在全世界范围的流行。早期的 Emoji 是将一些特定的符号组合替换成图片，比如将 :) 替换成 😀。这种方法很难标准化，能够表达的范围也有限。2010 年，Unicode 开始为 Emoji 分配码点。也就是说，现在的 Emoji 符号就是一个文字，它会被渲染为图形。</p>
 
 <p>Unicode 只是规定了 Emoji 的码点和含义，并没有规定它的样式。举例来说，码点 U+1F600 表示一张微笑的脸，但是这张脸长什么样，则<strong>由各个系统自己实现，所以一定要注意兼容性</strong>。</p>
@@ -515,6 +517,7 @@ str = str.replace(regex_num_set, function(match, p1) {
 
 <ol>
   <li><strong>复制粘贴</strong> - 从其他 Emoji 汇总网站上复制过来，粘贴到需要使用的地方即可。如 <a href="http://getemoji.com">getemoji.com</a></li>
+  <li><strong>直接输入字元</strong> - 类似 👋 🤚 🖐 ✋</li>
   <li><strong>码点输入</strong> - 以 HTML 网页为例，将码点 U+1F600 写成 HTML NCR 的形式 <code class="highlighter-rouge">&amp;#128512;</code>（十进制）或 <code class="highlighter-rouge">&amp;#x1F600;</code>（十六进制）。在线转换地址为 <a href="https://www.ifreesite.com/unicode/">ifreesite</a> 或者 <a href="http://www.amp-what.com/unicode/search/emoticon">Amp What</a></li>
   <li><strong>JavaScript 输入</strong> - 可以使用 <a href="https://www.npmjs.com/package/node-emoji">node-emoji</a> 库实现，如 <code class="highlighter-rouge">emoji.get('coffee')</code></li>
   <li><strong>CSS 插入</strong> - 引入样式文件即可，如下</li>
@@ -524,6 +527,148 @@ str = str.replace(regex_num_set, function(match, p1) {
 &lt;link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"&gt;
 &lt;i class="em em-baby"&gt;&lt;/i&gt;
 </code></pre>
+
+<h3 id="组合---u200d-零宽连字">组合 - U+200D 零宽连字</h3>
+
+<p><a href="https://zh.wikipedia.org/wiki/零宽连字"><strong>零宽连字(Zero-width joiner)</strong></a> 是一个控制字符，放在某些需要复杂排版语言（如阿拉伯语、印地语）的两个字符之间，使得这两个本不会发生连字的字符产生了连字效果，零宽连字符的 Unicode 码位是 <code class="highlighter-rouge">U+200D</code> (HTML: <code class="highlighter-rouge">&amp;#8205;</code>,<code class="highlighter-rouge">&amp;zwj;</code>）:</p>
+
+<pre><code class="language-JS">const man = '👨'
+const woman = '👩'
+const child = '👧'
+// 注意要转换为 js 支持的 \uxxxx 形式
+const zwj = '\u200D'
+
+console.log(man + zwj + woman + zwj + child) // 👨‍👩‍👧 温馨的三口之家
+// 不支持的系统则会顺序显示这三个绘文字(👨👩👧)
+</code></pre>
+
+<blockquote>
+  <p>😂前綴 “\u”（\u1F602）更改為 “U+”（U+1F602）即可完成 Emoji 与 Unicode 的转换，反之亦然</p>
+</blockquote>
+
+<h3 id="肤色---菲茨帕特里克修饰符">肤色 - 菲茨帕特里克修饰符</h3>
+
+<p>Unicode 8.0 中加入了 5 个修饰符，用来调节人形表情的肤色。这些叫做绘文字<strong>菲茨帕特里克修饰符（Emoji Modifier Fitzpatrick）</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>字元名称</th>
+      <th>码点(code point)</th>
+      <th>字元</th>
+      <th>UTF-16 (使用 JavaScript 字串)</th>
+      <th>UTF-8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FITZ-1-2</td>
+      <td>U+1F3FB</td>
+      <td>🏻</td>
+      <td>0xD83C 0xDFFB (‘\uD83C\uDFFB’)</td>
+      <td>0xF0 0x9F 0x8F 0xBB</td>
+    </tr>
+    <tr>
+      <td>FITZ-3</td>
+      <td>U+1F3FC</td>
+      <td>🏼</td>
+      <td>0xD83C 0xDFFC (‘\uD83C\uDFFC’)</td>
+      <td>0xF0 0x9F 0x8F 0xBC</td>
+    </tr>
+    <tr>
+      <td>FITZ-4</td>
+      <td>U+1F3FD</td>
+      <td>🏽</td>
+      <td>0xD83C 0xDFFD (‘\uD83C\uDFFD’)</td>
+      <td>0xF0 0x9F 0x8F 0xBD</td>
+    </tr>
+    <tr>
+      <td>FITZ-5</td>
+      <td>U+1F3FE</td>
+      <td>🏾</td>
+      <td>0xD83C 0xDFFE (‘\uD83C\uDFFE’)</td>
+      <td>0xF0 0x9F 0x8F 0xBE</td>
+    </tr>
+    <tr>
+      <td>FITZ-6</td>
+      <td>U+1F3FF</td>
+      <td>🟿(黑)</td>
+      <td>0xD83C 0xDFFF (‘\uD83C\uDFFF’)</td>
+      <td>0xF0 0x9F 0x8F 0xBF</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>以下是不同的 Emoji 在加上菲茨帕特里克修饰符之后的比较表:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>码点</th>
+      <th>默认</th>
+      <th>菲茨-1-2</th>
+      <th>菲茨-3</th>
+      <th>菲茨-4</th>
+      <th>菲茨-5</th>
+      <th>菲茨-6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>U+1F466: 男孩</td>
+      <td>👦</td>
+      <td>👦🏻</td>
+      <td>👦🏼</td>
+      <td>👦🏽</td>
+      <td>👦🏾</td>
+      <td>👦🏿</td>
+    </tr>
+    <tr>
+      <td>U+1F467: 女孩</td>
+      <td>👧</td>
+      <td>👧🏻</td>
+      <td>👧🏼</td>
+      <td>👧🏽</td>
+      <td>👧🏾</td>
+      <td>👧🏿</td>
+    </tr>
+    <tr>
+      <td>U+1F468: 男人</td>
+      <td>👨</td>
+      <td>👨🏻</td>
+      <td>👨🏼</td>
+      <td>👨🏽</td>
+      <td>👨🏾</td>
+      <td>👨🏿</td>
+    </tr>
+    <tr>
+      <td>U+1F469: 女人</td>
+      <td>👩</td>
+      <td>👩🏻</td>
+      <td>👩🏼</td>
+      <td>👩🏽</td>
+      <td>👩🏾</td>
+      <td>👩🏿</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>由于菲茨 1 和 2 类型颜色太相近，不易区分，索性合并到一起</p>
+</blockquote>
+
+<pre><code class="language-JS">const adult = '🧑'
+const fitz6 = '\uD83C\uDFFF'
+const black = adult + fitz6 // 直接加上对应的菲茨类型
+
+console.log(black) // 🧑🏿 surprise
+</code></pre>
+
+<blockquote>
+  <p>不是所有 Emoji 都能加上肤色，只有跟「人类」有关的 Emoji 才能这样用，例如 Emoji 中有出现脸、手、脚、身体的，都可以这样用</p>
+</blockquote>
+
+<h3 id="react-动态显示-emoji-的问题">React 动态显示 Emoji 的问题</h3>
 
 <p>React 使用 Emoji 遇到的问题，场景是需要通过变量来显示 Emoji，如下:</p>
 
