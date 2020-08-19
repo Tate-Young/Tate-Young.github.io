@@ -7,6 +7,7 @@ background: orange
 category: 前端
 title: Unicode
 date:   2018-03-08 14:43:00 GMT+0800 (CST)
+update: 2020-08-19 15:30:00 GMT+0800 (CST)
 background-image: http://www.ruanyifeng.com/blogimg/asset/2014/bg2014121103.jpg
 tags:
 - http
@@ -15,7 +16,7 @@ tags:
 
 ## ASCII
 
-**[ASCII(American Standard Code for Information Interchange)](http://www.theasciicode.com.ar/ascii-control-characters/null-character-ascii-code-0.html)** 发音 /ˈæski/，是基于拉丁字母的一套电脑编码系统，标准 ASCII 至今为止使用 7 bits 共定义了 128 个字符，而扩展 ASCII 使用 8 bits 定义了 256 个字符，主要用于显示现代英语和其他西欧语言。
+**[ASCII(American Standard Code for Information Interchange)](http://www.theasciicode.com.ar/ascii-control-characters/null-character-ascii-code-0.html)** 发音 /ˈæski/，是基于拉丁字母的一套电脑编码系统，标准 ASCII 至今为止使用 7 bits 共定义了 128 个字符，而扩展 ASCII 使用 8 bits 定义了 256 个字符，**主要用于显示现代英语和其他西欧语言**。
 
 在计算机中，所有的数据在存储和运算时都要使用二进制数表示。一个**字节(byte)**等于 8 个比特，即**二进制位(bit)**，每一个二进制位有 0 和 1 两种状态，因此一个字节可以对应 256 个不同状态，而每一个状态对应一个符号，从 00000000 到 11111111。例如字母 A 对应十进制为 65，二进制则为 0100 0001。
 
@@ -30,11 +31,11 @@ tags:
 U+0000 = null
 ```
 
-目前的 Unicode 字符分为 17 组编排，每组称为**[平面(Plane)](https://zh.wikipedia.org/wiki/Unicode%E5%AD%97%E7%AC%A6%E5%B9%B3%E9%9D%A2%E6%98%A0%E5%B0%84#%E5%9F%BA%E6%9C%AC%E5%A4%9A%E6%96%87%E7%A7%8D%E5%B9%B3%E9%9D%A2)**，而每平面拥有 65536(即 2^16) 个代码点。然而目前只用了少数平面。Unicode 只是一个字符集，它只规定了字符的二进制代码，UTF-8、UTF-16、UTF-32 都是字符编码，是具体的实现。
+目前的 Unicode 字符分为 17 组编排，每组称为**[平面(Plane)](https://zh.wikipedia.org/wiki/Unicode%E5%AD%97%E7%AC%A6%E5%B9%B3%E9%9D%A2%E6%98%A0%E5%B0%84#%E5%9F%BA%E6%9C%AC%E5%A4%9A%E6%96%87%E7%A7%8D%E5%B9%B3%E9%9D%A2)**，而每平面拥有 65536(即 2^16) 个代码点。然而目前只用了少数平面。**Unicode 只是一个字符集，它只规定了字符的二进制代码，UTF-8、UTF-16、UTF-32 都是字符编码，是具体的实现。**
 
 ## UTF-8
 
-**UTF-8(8-bit Unicode Transformation Format)**是一种针对 Unicode 的可变长度字符编码，它可以使用 1 ~ 4 个字节表示一个符号，根据不同的符号而变化字节长度。
+**UTF-8(8-bit Unicode Transformation Format)**是一种针对 Unicode 的**可变长度字符编码**，它可以使用 1 ~ 4 个字节表示一个符号，根据不同的符号而变化字节长度。
 
 | Unicode 编码(十六进制) | UTF-8 字节流(二进制) |
 |:--------------|:---------|
@@ -130,7 +131,7 @@ ES5 对字符串对象提供 **charAt()**，用来返回字符串指定位置的
 '\u01D1'==='\u004F\u030C'; // false
 ```
 
-因此为了符合 [Unicode等价性](https://zh.wikipedia.org/wiki/Unicode%E7%AD%89%E5%83%B9%E6%80%A7)，ES6 提供了 **normalize()** 转为同样的序列:
+因此为了符合 [Unicode 等价性](https://zh.wikipedia.org/wiki/Unicode%E7%AD%89%E5%83%B9%E6%80%A7)，ES6 提供了 **normalize()** 转为同样的序列:
 
 ```JS
 '\u01D1'.normalize() === '\u004F\u030C'.normalize(); // true
@@ -196,7 +197,7 @@ SMTP 协议一开始是基于纯 ASCII 文本的，对于二进制文件(比如�
 
 ### NCR
 
-**字符值引用(Numeric Character Reference)** 组成结构为 *"&#" + Unicode 码点 + ";"*
+**字符值引用(Numeric Character Reference)** 组成结构为 `&#" + Unicode 码点 + ";`:
 
 ```TEXT
 <!-- 「中国」二字分别是 Unicode 字符 U+4E2D 和 U+56FD，十六进制表示的码点数值「4E2D」和「56FD」就是十进制的「20013」和「22269」 -->
@@ -211,8 +212,9 @@ var regex_num_set = /&#(\d+);/g;
 var str = "Tate: &#20312;&#23391;&#37117;"
 
 str = str.replace(regex_num_set, function(match, p1) {
-  return String.fromCharCode(p1);
-});
+  return String.fromCharCode(p1)
+})
+// str --> "Tate: 佘孟都"
 ```
 
 ### Character Entity Reference
@@ -227,6 +229,48 @@ str = str.replace(regex_num_set, function(match, p1) {
 | lt | `&#60`; | < | x3C (60) | 小于号 |
 | gt | `&#62`; | > | x3E (62) | 大于号 |
 
+## Emoji 表情
+
+Emoji 在上个世纪九十年代，由日本电信商引入服务，最早用于在短消息之中插入表情。2007 年，苹果公司的 iPhone 支持了 Emoji，导致它在全世界范围的流行。早期的 Emoji 是将一些特定的符号组合替换成图片，比如将 :) 替换成 😀。这种方法很难标准化，能够表达的范围也有限。2010 年，Unicode 开始为 Emoji 分配码点。也就是说，现在的 Emoji 符号就是一个文字，它会被渲染为图形。
+
+Unicode 只是规定了 Emoji 的码点和含义，并没有规定它的样式。举例来说，码点 U+1F600 表示一张微笑的脸，但是这张脸长什么样，则**由各个系统自己实现，所以一定要注意兼容性**。
+
+> 😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 ... 查看各种表情在不同系统的显示情况和对应的 Unicode，可以前往 [Full Emoji List](http://www.unicode.org/emoji/charts/full-emoji-list.html) 👈
+
+Emoji 的具体使用方式可以分为以下几点:
+
+1. **复制粘贴** - 从其他 Emoji 汇总网站上复制过来，粘贴到需要使用的地方即可。如 [getemoji.com](http://getemoji.com)
+2. **码点输入** - 以 HTML 网页为例，将码点 U+1F600 写成 HTML NCR 的形式 `&#128512;`（十进制）或 `&#x1F600;`（十六进制）。在线转换地址为 [ifreesite](https://www.ifreesite.com/unicode/) 或者 [Amp What](http://www.amp-what.com/unicode/search/emoticon)
+3. **JavaScript 输入** - 可以使用 [node-emoji](https://www.npmjs.com/package/node-emoji) 库实现，如 `emoji.get('coffee')`
+4. **CSS 插入** - 引入样式文件即可，如下
+
+```HTML
+<!-- CSS 插入 Emoji -->
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+<i class="em em-baby"></i>
+```
+
+React 使用 Emoji 遇到的问题，场景是需要通过变量来显示 Emoji，如下:
+
+```JSX
+const emoji = '&#128512;'
+
+function ReactComponent(props) {
+  return (
+    <div>
+      {/* 正常显示 😀，直接采用 NCR */}
+      <h1>Copy & paste: &#128512;</h1>
+      {/* 错误显示，会直接显示为字符串 &#128512; */}
+      <span>{emoji}</span>
+      {/* 正常显示 😀，通过 dangerouslySetInnerHTML */}
+      <span dangerouslySetInnerHTML={{ __html: emoji }} />
+    </div>
+  )
+}
+```
+
+> [**Amp What**](http://www.amp-what.com/unicode/search/emoticon) is a quick, interactive reference of 33,212 HTML character entities and common Unicode characters
+
 ## 参考链接
 
 1. [字符编码笔记：ASCII，Unicode 和 UTF-8](http://www.ruanyifeng.com/blog/2007/10/ascii_Unicode_and_utf-8.html) By 阮一峰
@@ -237,4 +281,3 @@ str = str.replace(regex_num_set, function(match, p1) {
 1. [Base64 编码原理与应用](http://blog.xiayf.cn/2016/01/24/base64-encoding/) By youngsterxyf
 1. [stackoverflow - What's the difference between ASCII and Unicode?](https://stackoverflow.com/questions/19212306/whats-the-difference-between-ascii-and-Unicode)
 1. [Our Code World - Encode and Decode HTML entities using pure Javascript](https://ourcodeworld.com/articles/read/188/encode-and-decode-html-entities-using-pure-javascript)
-1. [MDN - String.prototype.replace()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace)

@@ -175,6 +175,8 @@
                       发布时间：2018-03-08 14:43:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2020-08-19 15:30:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -212,7 +214,7 @@
 
 <h2 id="ascii">ASCII</h2>
 
-<p><strong><a href="http://www.theasciicode.com.ar/ascii-control-characters/null-character-ascii-code-0.html">ASCII(American Standard Code for Information Interchange)</a></strong> 发音 /ˈæski/，是基于拉丁字母的一套电脑编码系统，标准 ASCII 至今为止使用 7 bits 共定义了 128 个字符，而扩展 ASCII 使用 8 bits 定义了 256 个字符，主要用于显示现代英语和其他西欧语言。</p>
+<p><strong><a href="http://www.theasciicode.com.ar/ascii-control-characters/null-character-ascii-code-0.html">ASCII(American Standard Code for Information Interchange)</a></strong> 发音 /ˈæski/，是基于拉丁字母的一套电脑编码系统，标准 ASCII 至今为止使用 7 bits 共定义了 128 个字符，而扩展 ASCII 使用 8 bits 定义了 256 个字符，<strong>主要用于显示现代英语和其他西欧语言</strong>。</p>
 
 <p>在计算机中，所有的数据在存储和运算时都要使用二进制数表示。一个<strong>字节(byte)</strong>等于 8 个比特，即<strong>二进制位(bit)</strong>，每一个二进制位有 0 和 1 两种状态，因此一个字节可以对应 256 个不同状态，而每一个状态对应一个符号，从 00000000 到 11111111。例如字母 A 对应十进制为 65，二进制则为 0100 0001。</p>
 
@@ -226,11 +228,11 @@
 U+0000 = null
 </code></pre>
 
-<p>目前的 Unicode 字符分为 17 组编排，每组称为<strong><a href="https://zh.wikipedia.org/wiki/Unicode%E5%AD%97%E7%AC%A6%E5%B9%B3%E9%9D%A2%E6%98%A0%E5%B0%84#%E5%9F%BA%E6%9C%AC%E5%A4%9A%E6%96%87%E7%A7%8D%E5%B9%B3%E9%9D%A2">平面(Plane)</a></strong>，而每平面拥有 65536(即 2^16) 个代码点。然而目前只用了少数平面。Unicode 只是一个字符集，它只规定了字符的二进制代码，UTF-8、UTF-16、UTF-32 都是字符编码，是具体的实现。</p>
+<p>目前的 Unicode 字符分为 17 组编排，每组称为<strong><a href="https://zh.wikipedia.org/wiki/Unicode%E5%AD%97%E7%AC%A6%E5%B9%B3%E9%9D%A2%E6%98%A0%E5%B0%84#%E5%9F%BA%E6%9C%AC%E5%A4%9A%E6%96%87%E7%A7%8D%E5%B9%B3%E9%9D%A2">平面(Plane)</a></strong>，而每平面拥有 65536(即 2^16) 个代码点。然而目前只用了少数平面。<strong>Unicode 只是一个字符集，它只规定了字符的二进制代码，UTF-8、UTF-16、UTF-32 都是字符编码，是具体的实现。</strong></p>
 
 <h2 id="utf-8">UTF-8</h2>
 
-<p><strong>UTF-8(8-bit Unicode Transformation Format)</strong>是一种针对 Unicode 的可变长度字符编码，它可以使用 1 ~ 4 个字节表示一个符号，根据不同的符号而变化字节长度。</p>
+<p><strong>UTF-8(8-bit Unicode Transformation Format)</strong>是一种针对 Unicode 的<strong>可变长度字符编码</strong>，它可以使用 1 ~ 4 个字节表示一个符号，根据不同的符号而变化字节长度。</p>
 
 <table>
   <thead>
@@ -362,7 +364,7 @@ String.fromCodePoint(0x20BB7) === '𠮷'; // true
 '\u01D1'==='\u004F\u030C'; // false
 </code></pre>
 
-<p>因此为了符合 <a href="https://zh.wikipedia.org/wiki/Unicode%E7%AD%89%E5%83%B9%E6%80%A7">Unicode等价性</a>，ES6 提供了 <strong>normalize()</strong> 转为同样的序列:</p>
+<p>因此为了符合 <a href="https://zh.wikipedia.org/wiki/Unicode%E7%AD%89%E5%83%B9%E6%80%A7">Unicode 等价性</a>，ES6 提供了 <strong>normalize()</strong> 转为同样的序列:</p>
 
 <pre><code class="language-JS">'\u01D1'.normalize() === '\u004F\u030C'.normalize(); // true
 </code></pre>
@@ -428,7 +430,7 @@ encodeURIComponent("https://tate-young.github.io/README?hello Tate")
 
 <h3 id="ncr">NCR</h3>
 
-<p><strong>字符值引用(Numeric Character Reference)</strong> 组成结构为 <em>“&amp;#” + Unicode 码点 + “;”</em></p>
+<p><strong>字符值引用(Numeric Character Reference)</strong> 组成结构为 <code class="highlighter-rouge">&amp;#" + Unicode 码点 + ";</code>:</p>
 
 <pre><code class="language-TEXT">&lt;!-- 「中国」二字分别是 Unicode 字符 U+4E2D 和 U+56FD，十六进制表示的码点数值「4E2D」和「56FD」就是十进制的「20013」和「22269」 --&gt;
 &amp;#x4e2d;&amp;#x56fd;
@@ -441,8 +443,9 @@ encodeURIComponent("https://tate-young.github.io/README?hello Tate")
 var str = "Tate: &amp;#20312;&amp;#23391;&amp;#37117;"
 
 str = str.replace(regex_num_set, function(match, p1) {
-  return String.fromCharCode(p1);
-});
+  return String.fromCharCode(p1)
+})
+// str --&gt; "Tate: 佘孟都"
 </code></pre>
 
 <h3 id="character-entity-reference">Character Entity Reference</h3>
@@ -498,6 +501,52 @@ str = str.replace(regex_num_set, function(match, p1) {
   </tbody>
 </table>
 
+<h2 id="emoji-表情">Emoji 表情</h2>
+
+<p>Emoji 在上个世纪九十年代，由日本电信商引入服务，最早用于在短消息之中插入表情。2007 年，苹果公司的 iPhone 支持了 Emoji，导致它在全世界范围的流行。早期的 Emoji 是将一些特定的符号组合替换成图片，比如将 :) 替换成 😀。这种方法很难标准化，能够表达的范围也有限。2010 年，Unicode 开始为 Emoji 分配码点。也就是说，现在的 Emoji 符号就是一个文字，它会被渲染为图形。</p>
+
+<p>Unicode 只是规定了 Emoji 的码点和含义，并没有规定它的样式。举例来说，码点 U+1F600 表示一张微笑的脸，但是这张脸长什么样，则<strong>由各个系统自己实现，所以一定要注意兼容性</strong>。</p>
+
+<blockquote>
+  <p>😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 … 查看各种表情在不同系统的显示情况和对应的 Unicode，可以前往 <a href="http://www.unicode.org/emoji/charts/full-emoji-list.html">Full Emoji List</a> 👈</p>
+</blockquote>
+
+<p>Emoji 的具体使用方式可以分为以下几点:</p>
+
+<ol>
+  <li><strong>复制粘贴</strong> - 从其他 Emoji 汇总网站上复制过来，粘贴到需要使用的地方即可。如 <a href="http://getemoji.com">getemoji.com</a></li>
+  <li><strong>码点输入</strong> - 以 HTML 网页为例，将码点 U+1F600 写成 HTML NCR 的形式 <code class="highlighter-rouge">&amp;#128512;</code>（十进制）或 <code class="highlighter-rouge">&amp;#x1F600;</code>（十六进制）。在线转换地址为 <a href="https://www.ifreesite.com/unicode/">ifreesite</a> 或者 <a href="http://www.amp-what.com/unicode/search/emoticon">Amp What</a></li>
+  <li><strong>JavaScript 输入</strong> - 可以使用 <a href="https://www.npmjs.com/package/node-emoji">node-emoji</a> 库实现，如 <code class="highlighter-rouge">emoji.get('coffee')</code></li>
+  <li><strong>CSS 插入</strong> - 引入样式文件即可，如下</li>
+</ol>
+
+<pre><code class="language-HTML">&lt;!-- CSS 插入 Emoji --&gt;
+&lt;link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"&gt;
+&lt;i class="em em-baby"&gt;&lt;/i&gt;
+</code></pre>
+
+<p>React 使用 Emoji 遇到的问题，场景是需要通过变量来显示 Emoji，如下:</p>
+
+<pre><code class="language-JSX">const emoji = '&amp;#128512;'
+
+function ReactComponent(props) {
+  return (
+    &lt;div&gt;
+      {/* 正常显示 😀，直接采用 NCR */}
+      &lt;h1&gt;Copy &amp; paste: &amp;#128512;&lt;/h1&gt;
+      {/* 错误显示，会直接显示为字符串 &amp;#128512; */}
+      &lt;span&gt;{emoji}&lt;/span&gt;
+      {/* 正常显示 😀，通过 dangerouslySetInnerHTML */}
+      &lt;span dangerouslySetInnerHTML= /&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+
+<blockquote>
+  <p><a href="http://www.amp-what.com/unicode/search/emoticon"><strong>Amp What</strong></a> is a quick, interactive reference of 33,212 HTML character entities and common Unicode characters</p>
+</blockquote>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
@@ -509,7 +558,6 @@ str = str.replace(regex_num_set, function(match, p1) {
   <li><a href="http://blog.xiayf.cn/2016/01/24/base64-encoding/">Base64 编码原理与应用</a> By youngsterxyf</li>
   <li><a href="https://stackoverflow.com/questions/19212306/whats-the-difference-between-ascii-and-Unicode">stackoverflow - What’s the difference between ASCII and Unicode?</a></li>
   <li><a href="https://ourcodeworld.com/articles/read/188/encode-and-decode-html-entities-using-pure-javascript">Our Code World - Encode and Decode HTML entities using pure Javascript</a></li>
-  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace">MDN - String.prototype.replace()</a></li>
 </ol>
  
 <div id="gitalk-container"></div>
