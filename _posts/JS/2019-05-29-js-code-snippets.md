@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title:  记一些小技巧和代码块
 date:   2018-07-20 11:01:00 GMT+0800 (CST)
-update: 2020-05-29 11:56:00 GMT+0800 (CST)
+update: 2020-08-24 11:56:00 GMT+0800 (CST)
 background-image: /style/images/js.png
 tags:
 - JavaScript
@@ -380,6 +380,41 @@ const execCopyText: (node: HTMLElement) => void = node => {
 
   if (!canUserSelect) {
     node.style.userSelect = 'none'
+  }
+}
+```
+
+### 节流和防抖
+
+```JS
+// 节流 - 规定函数在某时间段内最多执行一次
+function throttle(func,interval){
+  let timeout
+  let startTime = new Date()
+  return function() {
+    clearTimeout(timeout)
+    let curTime = new Date()
+    if (curTime - startTime <= interval) {
+      // 小于规定时间间隔时，用 setTimeout 在指定时间后再执行
+      timeout = setTimeout(()=>{
+        func()
+      }, interval)
+    } else {
+      // 重新计时并执行函数
+      startTime = curTime
+      func()
+    }
+  }
+}
+```
+
+```JS
+// 防抖 - 规定函数至少间隔多久执行
+function debounce(func, wait) {
+  let timeout  // 定时器变量
+  return function() {
+    clearTimeout(timeout)  // 每次触发时先清除上一次的定时器,然后重新计时
+    timeout = setTimeout(func, wait)
   }
 }
 ```

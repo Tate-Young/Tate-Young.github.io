@@ -382,9 +382,9 @@ Null -&gt; LC # Prev 树没有该节点，所以添加 C 到该位置
 
 <p><img src="http://localhost:2333/style/images/smms/react-requestIdelCallback.png" alt="react-requestIdelCallback.png" /></p>
 
-<p>通过将协调过程，分解成小的工作单元的方式，可以让页面对于浏览器事件的响应更加及时。但是另外一个问题还是没有解决，就是如果当前在处理的 react 渲染耗时较长，仍然会阻塞后面的渲染。这就是为什么 fiber reconciler 增加了优先级策略:</p>
+<p>通过将协调过程，分解成小的工作单元的方式，可以让页面对于浏览器事件的响应更加及时。但是另外一个问题还是没有解决，就是如果当前在处理的 react 渲染耗时较长，仍然会阻塞后面的渲染。这就是为什么 <code class="highlighter-rouge">fiber reconciler</code> 增加了优先级策略:</p>
 
-<pre><code class="language-JSON">module.exports = {
+<pre><code class="language-JS">module.exports = {
   NoWork: 0, // No work is pending.
   SynchronousPriority: 1, // For controlled text inputs. Synchronous side-effects.
   AnimationPriority: 2, // Needs to complete before the next frame.
@@ -396,7 +396,7 @@ Null -&gt; LC # Prev 树没有该节点，所以添加 C 到该位置
 
 <p>另一方面由于协调阶段会被打断，可能会导致 commit 前的这些生命周期函数多次执行。react 官方目前已经把 <code class="highlighter-rouge">componentWillMount</code>、<code class="highlighter-rouge">componentWillReceiveProps</code> 和 <code class="highlighter-rouge">componetWillUpdate</code> 标记为 <code class="highlighter-rouge">unsafe</code>，并使用新的生命周期函数 <code class="highlighter-rouge">getDerivedStateFromProps</code> 和 <code class="highlighter-rouge">getSnapshotBeforeUpdate</code> 进行替换。</p>
 
-<p><img src="http://localhost:2333/style/images/smms/[react-fiber-phase.png" alt="react-fiber-phase.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/react-fiber-phase.png" alt="react-fiber-phase.png" /></p>
 
 <blockquote>
   <p>我们可以看下 youtube 发布的 stack 与 fiber 对比视频，<a href="https://www.youtube.com/watch?v=Qu_6ItnlDQg">戳这里</a> 👈。完整<a href="https://www.youtube.com/watch?v=ZCuYPiUIONs">视频戳这里</a> 👈</p>

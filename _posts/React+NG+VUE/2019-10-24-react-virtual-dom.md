@@ -174,9 +174,9 @@ React 主要使用 [**requestIdelCallback**](https://developer.mozilla.org/zh-CN
 
 ![react-requestIdelCallback.png]( {{site.url}}/style/images/smms/react-requestIdelCallback.png )
 
-通过将协调过程，分解成小的工作单元的方式，可以让页面对于浏览器事件的响应更加及时。但是另外一个问题还是没有解决，就是如果当前在处理的 react 渲染耗时较长，仍然会阻塞后面的渲染。这就是为什么 fiber reconciler 增加了优先级策略:
+通过将协调过程，分解成小的工作单元的方式，可以让页面对于浏览器事件的响应更加及时。但是另外一个问题还是没有解决，就是如果当前在处理的 react 渲染耗时较长，仍然会阻塞后面的渲染。这就是为什么 `fiber reconciler` 增加了优先级策略:
 
-```JSON
+```JS
 module.exports = {
   NoWork: 0, // No work is pending.
   SynchronousPriority: 1, // For controlled text inputs. Synchronous side-effects.
@@ -189,7 +189,7 @@ module.exports = {
 
 另一方面由于协调阶段会被打断，可能会导致 commit 前的这些生命周期函数多次执行。react 官方目前已经把 `componentWillMount`、`componentWillReceiveProps` 和 `componetWillUpdate` 标记为 `unsafe`，并使用新的生命周期函数 `getDerivedStateFromProps` 和 `getSnapshotBeforeUpdate` 进行替换。
 
-![react-fiber-phase.png]( {{site.url}}/style/images/smms/[react-fiber-phase.png )
+![react-fiber-phase.png]( {{site.url}}/style/images/smms/react-fiber-phase.png )
 
 > 我们可以看下 youtube 发布的 stack 与 fiber 对比视频，[戳这里](https://www.youtube.com/watch?v=Qu_6ItnlDQg) 👈。完整[视频戳这里](https://www.youtube.com/watch?v=ZCuYPiUIONs) 👈
 
