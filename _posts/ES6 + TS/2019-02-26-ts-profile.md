@@ -163,14 +163,14 @@ function warnUser(): void {
   console.log('This is my warning message')
 }
 
-// 声明一个void类型的变量没有什么大用，因为你只能为它赋予 undefined 和 null
+// 声明一个 void 类型的变量没有什么大用，因为你只能为它赋予 undefined 和 null
 const unusable: void = undefined
 ```
 
 **never** 类型表示的是那些永不存在的值的类型。比如那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型:
 
 ```JS
-// 返回never的函数必须存在无法达到的终点
+// 返回 never 的函数必须存在无法达到的终点
 function error(message: string): never {
   throw new Error(message)
 }

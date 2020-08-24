@@ -513,21 +513,82 @@ Reflect.apply(Math.max, null, [1, 2, 3]);
 
 <p>Reflect 对象一有共 13 种静态方法，大部分与 Object 对象的同名方法的作用都是相同的，而且它与 Proxy 对象的方法是一一对应的。</p>
 
-<p>| 方法 | 描述 | 栗子 |
-|:————–|:———|:———|
-| Reflect.apply(target, thisArg, args) | Function.prototype.apply.call(func, thisArg, args)，用于绑定 this 对象后执行给定函数 | <code class="highlighter-rouge">Reflect.apply(Math.min, Math, ages)</code> |
-| Reflect.construct(target, args) | new target(…args)，调用构造函数 | <code class="highlighter-rouge">const person = Reflect.construct(Person, ['tate', 18])</code> |
-| Reflect.get(target, name, receiver) | 查找并返回 target 对象的 name 属性 | <code class="highlighter-rouge">Reflect.get(obj, 'foo')</code> |
-| Reflect.set(target, name, value, receiver) | 设置 target 对象的 name 属性等于 value | <code class="highlighter-rouge">Reflect.set(obj, 'foo', 'bar')</code> |
-| Reflect.defineProperty(target, name, desc) | 同 Object.defineProperty，但返回布尔值 | <code class="highlighter-rouge">Reflect.defineProperty(obj, 'foo', {value: 'bar'})</code> |
-| Reflect.deleteProperty(target, name) | delete obj[name]，用于删除对象的属性 | <code class="highlighter-rouge">Reflect.deleteProperty(obj, 'foo')</code> |
-| Reflect.has(target, name) | 对应 name in obj 里面的 in 运算符 | <code class="highlighter-rouge">Reflect.has(obj, 'foo')</code> |
-| Reflect.ownKeys(target) | 返回对象的所有属性 | <code class="highlighter-rouge">Reflect.ownKeys(obj)</code> |
-| Reflect.isExtensible(target) | 同 Object.isExtensible | <code class="highlighter-rouge">Reflect.isExtensible(obj)</code> |
-| Reflect.preventExtensions(target) | 同 Object.preventExtensions | <code class="highlighter-rouge">Reflect.preventExtensions(obj)</code> |
-| Reflect.getOwnPropertyDescriptor(target, name) | 同 Object.getOwnPropertyDescriptor | ` Reflect.getOwnPropertyDescriptor(obj, ‘foo’);<code class="highlighter-rouge"> |
-| Reflect.getPrototypeOf(target) | 同 Object.getPrototypeOf(obj) | </code>Reflect.getPrototypeOf(obj)<code class="highlighter-rouge"> |
-| Reflect.setPrototypeOf(target, prototype) | 同 Object.setPrototypeOf(obj, newProto) | </code>Reflect.setPrototypeOf(obj, newProto)` |</p>
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>描述</th>
+      <th>栗子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Reflect.apply(target, thisArg, args)</td>
+      <td>Function.prototype.apply.call(func, thisArg, args)，用于绑定 this 对象后执行给定函数</td>
+      <td><code class="highlighter-rouge">Reflect.apply(Math.min, Math, ages)</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.construct(target, args)</td>
+      <td>new target(…args)，调用构造函数</td>
+      <td><code class="highlighter-rouge">const person = Reflect.construct(Person, ['tate', 18])</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.get(target, name, receiver)</td>
+      <td>查找并返回 target 对象的 name 属性</td>
+      <td><code class="highlighter-rouge">Reflect.get(obj, 'foo')</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.set(target, name, value, receiver)</td>
+      <td>设置 target 对象的 name 属性等于 value</td>
+      <td><code class="highlighter-rouge">Reflect.set(obj, 'foo', 'bar')</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.defineProperty(target, name, desc)</td>
+      <td>同 Object.defineProperty，但返回布尔值</td>
+      <td><code class="highlighter-rouge">Reflect.defineProperty(obj, 'foo', {value: 'bar'})</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.deleteProperty(target, name)</td>
+      <td>用于删除对象的属性</td>
+      <td><code class="highlighter-rouge">Reflect.deleteProperty(obj, 'foo')</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.has(target, name)</td>
+      <td>对应 name in obj 里面的 in 运算符</td>
+      <td><code class="highlighter-rouge">Reflect.has(obj, 'foo')</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.ownKeys(target)</td>
+      <td>返回对象的所有属性</td>
+      <td><code class="highlighter-rouge">Reflect.ownKeys(obj)</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.isExtensible(target)</td>
+      <td>同 Object.isExtensible</td>
+      <td><code class="highlighter-rouge">Reflect.isExtensible(obj)</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.preventExtensions(target)</td>
+      <td>同 Object.preventExtensions</td>
+      <td><code class="highlighter-rouge">Reflect.preventExtensions(obj)</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.getOwnPropertyDescriptor(target, name)</td>
+      <td>同 Object.getOwnPropertyDescriptor</td>
+      <td><code class="highlighter-rouge">Reflect.getOwnPropertyDescriptor(obj, 'foo');</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.getPrototypeOf(target)</td>
+      <td>同 Object.getPrototypeOf(obj)</td>
+      <td><code class="highlighter-rouge">Reflect.getPrototypeOf(obj)</code></td>
+    </tr>
+    <tr>
+      <td>Reflect.setPrototypeOf(target, prototype)</td>
+      <td>同 Object.setPrototypeOf(obj, newProto)</td>
+      <td><code class="highlighter-rouge">Reflect.setPrototypeOf(obj, newProto)</code></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="参考链接">参考链接</h2>
 

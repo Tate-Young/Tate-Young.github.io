@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2020-05-18 20:37:00 GMT+0800 (CST)
+update: 2020-08-24 12:20:00 GMT+0800 (CST)
 background-image: /style/images/smms/typescript.png
 tags:
 - TS
@@ -289,7 +289,7 @@ function arrayify<T>(data: T): T[] {
 1. `interface Arrayify { <T>(data: T): T[] }`
 1. `interface Arrayify<T> { (data: T): T[] }`
 
-例 1 很简单，class 在 JavaScript 中本质上还是函数，所以泛型的使用跟普通函数一致;2、 3 一眼看上去非常类似，只是泛型定义的位置不同。2 中的泛型参数定义在调用签名 (call signature) 前面，而 3 的泛型参数紧跟在 type alias 后面。就这个 Arrayify 例子而言，虽然泛型位置不同，但是 2 跟 3 的效果是一样的，那么这两种定义方式有什么区别？简单来讲，泛型定义的位置决定了它涵盖的作用域。再举个例子:
+例 1 很简单，class 在 JavaScript 中本质上还是函数，所以泛型的使用跟普通函数一致;2、 3 一眼看上去非常类似，只是泛型定义的位置不同。2 中的泛型参数定义在调用签名 (call signature) 前面，而 3 的泛型参数紧跟在 type alias 后面。就这个 Arrayify 例子而言，虽然泛型位置不同，但是 2 跟 3 的效果是一样的，那么这两种定义方式有什么区别？**简单来讲，泛型定义的位置决定了它涵盖的作用域**。再举个例子:
 
 ```JS
 type Arrayify = {
@@ -672,10 +672,50 @@ If you know from external means that an expression is not null or undefined, you
 
 ```JS
 // Error, some.expr may be null or undefined
-const x = some.expr.thing;
+const x = some.expr.thing
 // OK
-const y = some.expr!.thing;
+const y = some.expr!.thing
 ```
+
+> 但是如果运行时 `expr` 真的为 null，那么程序就崩了，所以非空断言只是跳过校验，否则要用下面提到的 `Optional Channing` 👈
+
+### ?. - Optional Channing
+
+At its core, optional chaining lets us write code where TypeScript can immediately stop running some expressions if we run into a null or undefined. The star of the show in optional chaining is the new ?. operator for optional property accesses. When we write code like:
+
+```JS
+let x = foo?.bar.baz()
+
+// code snippet is the same as writing the following.
+let x = (foo === null || foo === undefined) ? undefined : foo.bar.baz();
+```
+
+因此以下场景我们可以进行进一步优化，可以避免造成 null 无法解构的问题:
+
+```JS
+// Before
+if (foo && foo.bar && foo.bar.baz) {
+  // ...
+}
+
+// After-ish
+if (foo?.bar?.baz) {
+  // ...
+}
+```
+
+### ?? - Nullish Coalescing
+
+You can think of this feature - the ?? operator - as a way to “fall back” to a default value when dealing with null or undefined. When we write code like:
+
+```JS
+let x = foo ?? bar()
+
+// Again, the above code is equivalent to the following.
+let x = (foo !== null && foo !== undefined) ? foo : bar()
+```
+
+> 在某些场景下，我们也可以通过 `??` 操作符替换常用的 `||` 操作符
 
 ### 箭头函数的类型注解
 

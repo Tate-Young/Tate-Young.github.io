@@ -474,7 +474,7 @@ Object.getOwnPropertyDescriptors(target); // 获取一个对象的所有自身�
 <p>目前，有四个操作会忽略 enumerable:false 的属性。</p>
 
 <ul>
-  <li>for…in循环 - 只遍历对象自身的和继承的可枚举的属性。</li>
+  <li>for…in 循环 - 只遍历对象自身的和继承的可枚举的属性。</li>
   <li>Object.keys() - 返回对象自身的所有可枚举的属性的键名。</li>
   <li>JSON.stringify() - 只串行化对象自身的可枚举的属性。</li>
   <li>Object.assign() - 忽略不可枚举的属性，只拷贝对象自身的可枚举的属性。</li>
@@ -489,7 +489,7 @@ Object.getOwnPropertyDescriptor([], 'length').enumerable； // false 数组的 l
 
 <h3 id="遍历">遍历</h3>
 
-<p>目前一共有 5 种方法可以遍历对象的属性。</p>
+<p>目前一共有 5 种方法可以遍历对象的属性:</p>
 
 <table>
   <thead>
@@ -593,7 +593,7 @@ anotherPerson.sayName(); // 'tate'
 
 <pre><code class="language-JS">let a = Symbol();
 let b = Symbol();
-// Symbol函数的参数只是表示对当前 Symbol 值的描述
+// Symbol 函数的参数只是表示对当前 Symbol 值的描述
 let c = Symbol('tate');
 
 typeof a; // 'symbol'
@@ -640,7 +640,7 @@ a === b; // true
   <li>Symbol.hasInstance</li>
 </ul>
 
-<pre><code class="language-JS">// foo instanceof Foo在语言内部，实际调用的是Foo[Symbol.hasInstance](foo)
+<pre><code class="language-JS">// foo instanceof Foo 在语言内部，实际调用的是 Foo[Symbol.hasInstance](foo)
 class MyClass {
   [Symbol.hasInstance](foo) {
     return foo instanceof Array;

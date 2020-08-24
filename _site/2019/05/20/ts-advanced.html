@@ -175,7 +175,7 @@
                       发布时间：2019-05-20 18:36:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2020-05-18 20:37:00
+                        修改时间：2020-08-24 12:20:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -482,7 +482,7 @@ const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
   <li><code class="highlighter-rouge">interface Arrayify&lt;T&gt; { (data: T): T[] }</code></li>
 </ol>
 
-<p>例 1 很简单，class 在 JavaScript 中本质上还是函数，所以泛型的使用跟普通函数一致;2、 3 一眼看上去非常类似，只是泛型定义的位置不同。2 中的泛型参数定义在调用签名 (call signature) 前面，而 3 的泛型参数紧跟在 type alias 后面。就这个 Arrayify 例子而言，虽然泛型位置不同，但是 2 跟 3 的效果是一样的，那么这两种定义方式有什么区别？简单来讲，泛型定义的位置决定了它涵盖的作用域。再举个例子:</p>
+<p>例 1 很简单，class 在 JavaScript 中本质上还是函数，所以泛型的使用跟普通函数一致;2、 3 一眼看上去非常类似，只是泛型定义的位置不同。2 中的泛型参数定义在调用签名 (call signature) 前面，而 3 的泛型参数紧跟在 type alias 后面。就这个 Arrayify 例子而言，虽然泛型位置不同，但是 2 跟 3 的效果是一样的，那么这两种定义方式有什么区别？<strong>简单来讲，泛型定义的位置决定了它涵盖的作用域</strong>。再举个例子:</p>
 
 <pre><code class="language-JS">type Arrayify = {
   &lt;T&gt;(data: T): T[]
@@ -841,10 +841,51 @@ type style = typeof styleMap
 <p>If you know from external means that an expression is not null or undefined, you can use the non-null assertion operator <code class="highlighter-rouge">!</code> to coerce away those types:</p>
 
 <pre><code class="language-JS">// Error, some.expr may be null or undefined
-const x = some.expr.thing;
+const x = some.expr.thing
 // OK
-const y = some.expr!.thing;
+const y = some.expr!.thing
 </code></pre>
+
+<blockquote>
+  <p>但是如果运行时 <code class="highlighter-rouge">expr</code> 真的为 null，那么程序就崩了，所以非空断言只是跳过校验，否则要用下面提到的 <code class="highlighter-rouge">Optional Channing</code> 👈</p>
+</blockquote>
+
+<h3 id="---optional-channing">?. - Optional Channing</h3>
+
+<p>At its core, optional chaining lets us write code where TypeScript can immediately stop running some expressions if we run into a null or undefined. The star of the show in optional chaining is the new ?. operator for optional property accesses. When we write code like:</p>
+
+<pre><code class="language-JS">let x = foo?.bar.baz()
+
+// code snippet is the same as writing the following.
+let x = (foo === null || foo === undefined) ? undefined : foo.bar.baz();
+</code></pre>
+
+<p>因此以下场景我们可以进行进一步优化，可以避免造成 null 无法解构的问题:</p>
+
+<pre><code class="language-JS">// Before
+if (foo &amp;&amp; foo.bar &amp;&amp; foo.bar.baz) {
+  // ...
+}
+
+// After-ish
+if (foo?.bar?.baz) {
+  // ...
+}
+</code></pre>
+
+<h3 id="---nullish-coalescing">?? - Nullish Coalescing</h3>
+
+<p>You can think of this feature - the ?? operator - as a way to “fall back” to a default value when dealing with null or undefined. When we write code like:</p>
+
+<pre><code class="language-JS">let x = foo ?? bar()
+
+// Again, the above code is equivalent to the following.
+let x = (foo !== null &amp;&amp; foo !== undefined) ? foo : bar()
+</code></pre>
+
+<blockquote>
+  <p>在某些场景下，我们也可以通过 <code class="highlighter-rouge">??</code> 操作符替换常用的 <code class="highlighter-rouge">||</code> 操作符</p>
+</blockquote>
 
 <h3 id="箭头函数的类型注解">箭头函数的类型注解</h3>
 

@@ -77,7 +77,7 @@ tags:
 
 [**Service Worker**](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers) 可以简单理解为一个独立于前端页面，在后台运行的进程。它有一个非常重要的特性：你可以在 Service Worker 中监听所有客户端(Web)发出的请求，然后通过它来代理，向后端服务发起请求。通过监听用户请求信息，Service Worker 可以决定是否使用缓存来作为 Web 请求的返回。因此它是实现离线访问的核心，下图展示普通 Web App 与添加了 Service Worker 的 Web App 在网络请求上的差异:
 
-![service worker](https://user-gold-cdn.xitu.io/2018/4/8/162a560d0bdb6ed1?w=567&h=271&f=png&s=14952)
+![service worker]( {{site.url}}/style/images/smms/service-worker-01.png )
 
 > Service Worker 是一个特殊类型的 woker 上下文运行环境，与主运行线程（执行脚本）相独立，同时也没有访问 DOM 的能力。
 
@@ -152,11 +152,11 @@ self.addEventListener('install', function (e) {
 
 * 有缓存
 
-![cached](https://user-gold-cdn.xitu.io/2018/4/8/162a560d2d6b1798?w=567&h=284&f=png&s=19408)
+![cached]( {{site.url}}/style/images/smms/service-worker-02.png )
 
 * 无缓存
 
-![noCache](https://user-gold-cdn.xitu.io/2018/4/8/162a560d30b47136?w=567&h=284&f=png&s=13705)
+![noCache]( {{site.url}}/style/images/smms/service-worker-03.png )
 
 1. 浏览器发起请求，请求各类静态资源
 2. Service Worker 拦截浏览器请求，并查询当前 cache
@@ -198,7 +198,7 @@ self.addEventListener('activate', function (e) {
 
 另一方面 Web App 也会把 XHR 请求的数据缓存一份。而再次请求时，我们会优先使用本地缓存，然后向服务端请求数据，服务端返回数据后，基于该数据替换展示:
 
-![fetch](https://user-gold-cdn.xitu.io/2018/4/8/162a560d35c15a67?w=567&h=266&f=png&s=16946)
+![fetch]( {{site.url}}/style/images/smms/service-worker-04.png )
 
 同时我们也可以改造下 `fetch`:
 
@@ -615,19 +615,19 @@ self.addEventListener('push', function (e) {
 });
 ```
 
-![web-push](https://user-gold-cdn.xitu.io/2018/4/13/162bc954b09d78cf?w=1277&h=774&f=gif&s=2877596)
+![web-push]( {{site.url}}/style/images/smms/service-worker-05.gif )
 
 我们还可以在控制台对 SW 进行调试，同时也可以看到 cache 中所存储的一些脚本和请求信息:
 
-![console](https://user-gold-cdn.xitu.io/2018/4/29/16310a142d0c794d?w=1197&h=503&f=png&s=116464)
+![console]( {{site.url}}/style/images/smms/service-worker-06.png )
 
 ## Notification 提醒
 
-![Notification](https://user-gold-cdn.xitu.io/2018/5/1/1631a562ba773ddd?w=1275&h=762&f=gif&s=384884)
+![Notification]( {{site.url}}/style/images/smms/service-worker-07.gif )
 
 即使当你切换到其他页签，也可以通过提醒交互来快速让用户回到你的网站，甚至当用户离开当前网站，仍然可以收到系统的提醒消息，并且可以通过消息提醒快速打开你的网站:
 
-![Notification-back](https://user-gold-cdn.xitu.io/2018/5/1/1631b52052cccb59?w=1270&h=676&f=gif&s=2317289)
+![Notification-back]( {{site.url}}/style/images/smms/service-worker-08.gif )
 
 ### requestPermission 获取授权
 
@@ -709,7 +709,7 @@ options 支持以下字段:
 * tag - 相当于是 ID，通过该 ID 标识可以操作特定的 notification
 * renotify - 是否允许重复提醒，默认为 false。当不允许重复提醒时，同一个 tag 的 notification 只会显示一次
 
-![options](https://user-gold-cdn.xitu.io/2018/5/1/1631a6c6007ffec9?w=800&h=300&f=jpeg&s=114296)
+![options]( {{site.url}}/style/images/smms/service-worker-09.jpeg )
 
 ### notificationclick 事件监听
 
@@ -878,7 +878,7 @@ self.addEventListener('sync', function (e) {
 });
 ```
 
-![Background Sync](https://user-gold-cdn.xitu.io/2018/5/13/163598ca174364ed?w=800&h=499&f=gif&s=2269837)
+![Background Sync]( {{site.url}}/style/images/smms/service-worker-10.png )
 
 ## TWA
 

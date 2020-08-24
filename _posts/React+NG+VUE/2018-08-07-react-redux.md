@@ -931,7 +931,7 @@ user/
 |_ actions
 ```
 
-改用鸭子后就会变成只有两个目录，也就是说把constants, reducers, actions都合并为模组就是:
+改用鸭子后就会变成只有两个目录，也就是说把 constants, reducers, actions 都合并为模组就是:
 
 ```TEXT
 |_ containers

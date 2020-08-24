@@ -20,17 +20,17 @@ tags:
 
 ```js
 function foo(x){
-  return bar(x);
+  return bar(x)
 }
 
 // 以下均不属于尾调用
 function foo(x){
-  return bar(x) + 1;
+  return bar(x) + 1
 }
 
 function foo(x){
-  var b = bar(x);
-  return b;
+  var b = bar(x)
+  return b
 }
 ```
 
@@ -38,7 +38,7 @@ function foo(x){
 
 [上一篇事件循环]( {{ site.url }}/2018/02/05/js-event-loop.html )有介绍栈帧和调用栈。使用尾调用优化后由于不会用到外层函数栈帧里的调用位置、内部变量等信息，所以不会在调用栈上增加新的栈帧，而是更新它，如同迭代一般。既节省了内存，又避免了爆栈的可能性。
 
-> 尾调用优化是在支持 ES6 的解释器里添加的，只在ES6严格模式下生效。
+> 尾调用优化是在支持 ES6 的解释器里添加的，只在 ES6 严格模式下生效。
 
 ## 尾递归优化
 
@@ -47,20 +47,20 @@ function foo(x){
 ```js
 // Bad
 function factorial(n) {
-  if (n === 1) return 1; // 基准条件，停止递归调用
-  return n * factorial(n - 1);
+  if (n === 1) return 1 // 基准条件，停止递归调用
+  return n * factorial(n - 1)
 }
 
 factorial(5) // 120
 ```
 
-上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 [O(n)](https://zh.wikipedia.org/wiki/%E5%A4%A7O%E7%AC%A6%E5%8F%B7)。如果改写成尾递归，只保留一个调用记录，复杂度降至 O(1) 。
+上面代码是一个阶乘函数，计算 n 的阶乘，最多需要保存 n 个调用记录，复杂度 [O(n)](https://zh.wikipedia.org/wiki/%E5%A4%A7O%E7%AC%A6%E5%8F%B7)。如果改写成尾递归，只保留一个调用记录，复杂度降至 O(1) 。
 
 ```js
 // Good
 function factorial(n, m) {
-  if (n === 1) return m;
-  return factorial(n - 1, n * m);
+  if (n === 1) return m
+  return factorial(n - 1, n * m)
 }
 
 factorial(5, 1) // 120
@@ -71,16 +71,16 @@ factorial(5, 1) // 120
 ```js
 function currying(fn, n) {
   return function (m) {
-    return fn.call(this, m, n);
-  };
+    return fn.call(this, m, n)
+  }
 }
 
 function tailFactorial(n, total) {
-  if (n === 1) return total;
-  return tailFactorial(n - 1, n * total);
+  if (n === 1) return total
+  return tailFactorial(n - 1, n * total)
 }
 
-const factorial = currying(tailFactorial, 1);
+const factorial = currying(tailFactorial, 1)
 
 factorial(5) // 120
 ```
@@ -90,22 +90,22 @@ factorial(5) // 120
 ```js
 // Best
 function factorial(n, total = 1) {
-  if (n === 1) return total;
-  return factorial(n - 1, n * total);
+  if (n === 1) return total
+  return factorial(n - 1, n * total)
 }
 
 factorial(5) // 120
 ```
 
-## ES5替代方案
+## ES5 替代方案
 
 ```js
 // 堆栈溢出示例
 function sum(x, y) {
   if (y > 0) {
-    return sum(x + 1, y - 1);
+    return sum(x + 1, y - 1)
   } else {
-    return x;
+    return x
   }
 }
 
@@ -118,23 +118,23 @@ sum(1, 100000) // Uncaught RangeError: Maximum call stack size exceeded
 //放入trampoline中的函数将被转换为函数的输出结果
 function trampoline(f) {
   while (f && f instanceof Function) {
-    f = f();
+    f = f()
   }
-  return f;
+  return f
 }
 
 function sum(x, y) {
   function recur(x, y) {
     if (y > 0) {
-      return recur.bind(null, x + 1, y - 1); // recur函数的每次执行，都会返回自身的另一个版本
+      return recur.bind(null, x + 1, y - 1) // recur函数的每次执行，都会返回自身的另一个版本
     } else {
-      return x;
+      return x
     }
   }
-  return trampoline(recur.bind(null, x, y));
+  return trampoline(recur.bind(null, x, y))
 }
 
-sum(1, 100000); // => 100001
+sum(1, 100000) // => 100001
 ```
 
 > 以上替代方案实际改变了递归函数本身，是属于“入侵式”的。关于如何实现“非入侵式”，可以参考更多以下链接。

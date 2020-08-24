@@ -94,11 +94,11 @@ document.cookie = "key=name; max-age=100; secure";
 
 常见的购物车案例:
 
-![session - cookie](https://img.ken.io/blog/session/session-workingprinciple.png?v1)
+![session - cookie]( {{site.url}}/style/images/smms/session-workingprinciple.png )
 
 session 也可设置过期时间，禁用 cookie 并不一定无法使用 session。除了 cookie，客户端还可以将发送给服务器的数据包含在请求的 URL 中:
 
-![http-cookie-session.png]( {{site.url}}/style/images/smms/http-cookie-session,png )
+![http-cookie-session.png]( {{site.url}}/style/images/smms/http-cookie-session.png )
 
 ## Web Storage
 

@@ -226,17 +226,17 @@
 <p><strong>尾调用(Tail Call)</strong> 是指一个函数里的最后一个动作是一个函数调用，这种情形下称该调用位置为尾位置。若这个函数在尾位置调用本身（或是一个尾调用本身的其他函数等等），则称这种情况为 <strong>尾递归</strong>。</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1">// 以下均不属于尾调用</span>
 <span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">x</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
-  <span class="k">return</span> <span class="nx">b</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nx">b</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -245,7 +245,7 @@
 <p><a href="http://localhost:2333/2018/02/05/js-event-loop.html">上一篇事件循环</a>有介绍栈帧和调用栈。使用尾调用优化后由于不会用到外层函数栈帧里的调用位置、内部变量等信息，所以不会在调用栈上增加新的栈帧，而是更新它，如同迭代一般。既节省了内存，又避免了爆栈的可能性。</p>
 
 <blockquote>
-  <p>尾调用优化是在支持 ES6 的解释器里添加的，只在ES6严格模式下生效。</p>
+  <p>尾调用优化是在支持 ES6 的解释器里添加的，只在 ES6 严格模式下生效。</p>
 </blockquote>
 
 <h2 id="尾递归优化">尾递归优化</h2>
@@ -254,19 +254,19 @@
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Bad</span>
 <span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 基准条件，停止递归调用</span>
-  <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span> <span class="c1">// 基准条件，停止递归调用</span>
+  <span class="k">return</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
 </code></pre></div></div>
 
-<p>上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 <a href="https://zh.wikipedia.org/wiki/%E5%A4%A7O%E7%AC%A6%E5%8F%B7">O(n)</a>。如果改写成尾递归，只保留一个调用记录，复杂度降至 O(1) 。</p>
+<p>上面代码是一个阶乘函数，计算 n 的阶乘，最多需要保存 n 个调用记录，复杂度 <a href="https://zh.wikipedia.org/wiki/%E5%A4%A7O%E7%AC%A6%E5%8F%B7">O(n)</a>。如果改写成尾递归，只保留一个调用记录，复杂度降至 O(1) 。</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Good</span>
 <span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">m</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">m</span>
+  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">m</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// 120</span>
@@ -276,16 +276,16 @@
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">);</span>
-  <span class="p">};</span>
+    <span class="k">return</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">total</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span>
+  <span class="k">return</span> <span class="nx">tailFactorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="kd">const</span> <span class="nx">factorial</span> <span class="o">=</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">tailFactorial</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">factorial</span> <span class="o">=</span> <span class="nx">currying</span><span class="p">(</span><span class="nx">tailFactorial</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
 </code></pre></div></div>
@@ -294,21 +294,21 @@
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Best</span>
 <span class="kd">function</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">total</span>
+  <span class="k">return</span> <span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">total</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="nx">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// 120</span>
 </code></pre></div></div>
 
-<h2 id="es5替代方案">ES5替代方案</h2>
+<h2 id="es5-替代方案">ES5 替代方案</h2>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 堆栈溢出示例</span>
 <span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">x</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -320,23 +320,23 @@
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//放入trampoline中的函数将被转换为函数的输出结果</span>
 <span class="kd">function</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">while</span> <span class="p">(</span><span class="nx">f</span> <span class="o">&amp;&amp;</span> <span class="nx">f</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">f</span> <span class="o">=</span> <span class="nx">f</span><span class="p">();</span>
+    <span class="nx">f</span> <span class="o">=</span> <span class="nx">f</span><span class="p">()</span>
   <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">f</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">f</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">function</span> <span class="nx">recur</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// recur函数的每次执行，都会返回自身的另一个版本</span>
+      <span class="k">return</span> <span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// recur函数的每次执行，都会返回自身的另一个版本</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nx">x</span>
     <span class="p">}</span>
   <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">));</span>
+  <span class="k">return</span> <span class="nx">trampoline</span><span class="p">(</span><span class="nx">recur</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">))</span>
 <span class="p">}</span>
 
-<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">);</span> <span class="c1">// =&gt; 100001</span>
+<span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span> <span class="c1">// =&gt; 100001</span>
 </code></pre></div></div>
 
 <blockquote>

@@ -137,6 +137,8 @@ second print
 
 > 延迟和异步脚本一定会在 load 事件前执行，但可能在 DOMContentLoaded 事件触发之前或之后执行。
 
+> 延迟脚本最终还是按照 js 顺序加载；异步脚本最终执行顺序不定。
+
 ## 动态插入
 
 参考[异步脚本载入提高页面性能](http://harttle.land/2016/05/18/async-javascript-loading.html)一文的摘要:

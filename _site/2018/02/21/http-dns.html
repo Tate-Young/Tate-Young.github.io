@@ -270,8 +270,8 @@
 
 <ol>
   <li>检查浏览器缓存，命中则解析过程结束。浏览器缓存有大小和时间限制，缓存时间可通过 <strong>TTL(time to live)</strong> 属性来配置;</li>
-  <li>若 1 未命中，则浏览器会查找操作系统缓存中是否有这个域名对应的 DNS 解析结果。Windows 可以通过 “C:\Windows\System32\drivers\etc\hosts” 文件来配置，Linux 则为 “/etc/hosts” 文件来配置，用户可以将任何域名解析到任何能够访问的 IP 地址;</li>
-  <li>发送至本地域名服务器(LDNS)。LDNS 一般都会缓存域名解析结果，当然缓存时间是受到域名的失效时间控制的。Windows 下通过命令行输入 “ipconfig”，Linux环境下通过 “cat /etc/resolv.conf 就可以查询配置的 DNS 服务器;</li>
+  <li>若 1 未命中，则浏览器会查找操作系统缓存中是否有这个域名对应的 DNS 解析结果。Windows 可以通过 <code class="highlighter-rouge">C:\Windows\System32\drivers\etc\hosts</code> 文件来配置，Linux 则为 <code class="highlighter-rouge">/etc/hosts</code> 文件来配置，用户可以将任何域名解析到任何能够访问的 IP 地址;</li>
+  <li>发送至本地域名服务器(LDNS)。LDNS 一般都会缓存域名解析结果，当然缓存时间是受到域名的失效时间控制的。Windows 下通过命令行输入 <code class="highlighter-rouge">ipconfig</code>，Linux 环境下通过 <code class="highlighter-rouge">cat /etc/resolv.conf</code> 就可以查询配置的 DNS 服务器;</li>
   <li>若 3 未命中，则直接到<a href="https://zh.wikipedia.org/wiki/%E6%A0%B9%E7%B6%B2%E5%9F%9F%E5%90%8D%E7%A8%B1%E4%BC%BA%E6%9C%8D%E5%99%A8">根域名服务器(root name server)</a>请求解析。根域名服务器是最高级别的域名服务器，负责返回顶级域的权威域名服务器地址；</li>
   <li>根域名服务器返回给本地域名服务器一个所查询的<strong>主域名服务器(gTLD server)</strong>地址。gTLD 是通用顶级域，如 .com、.cn、.org 等;</li>
   <li>LDNS 再向上一步返回的 gTLD 服务器发送请求;</li>
@@ -313,7 +313,7 @@
 <p>针对用户本机，针对不同系统环境可以采用以下命令清除缓存:</p>
 
 <ul>
-  <li>Windows - ipconfig /flushdns</li>
+  <li>Windows - ipconfig / flushdns</li>
   <li>Linux - /etc/init.d/nscd restart</li>
   <li><a href="https://support.apple.com/en-us/HT202516">macOS</a> - dscacheutil -flushcache 或  killall -HUP mDNSResponder</li>
 </ul>

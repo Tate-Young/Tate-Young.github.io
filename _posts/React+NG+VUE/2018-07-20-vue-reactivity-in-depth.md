@@ -297,7 +297,7 @@ export function defineReactive (
   if (property && property.configurable === false) {
     return
   }
-  /* 如果之前该对象已经预设了 getter 以及 setter 函数则将其取出来，新定义的 getter/setter 中会将其执行，保证不会覆盖之前已经定义的getter/setter */
+  /* 如果之前该对象已经预设了 getter 以及 setter 函数则将其取出来，新定义的 getter/setter 中会将其执行，保证不会覆盖之前已经定义的 getter/setter */
   // cater for pre-defined getter/setters
   const getter = property && property.get
   const setter = property && property.set
@@ -431,12 +431,12 @@ export default class Watcher {
     pushTarget(this)
     let value
     const vm = this.vm
-    /*执行了getter操作，看似执行了渲染操作，其实是执行了依赖收集。
-      在将Dep.target设置为自生观察者实例以后，执行getter操作。
-      譬如说现在的的data中可能有a、b、c三个数据，getter渲染需要依赖a跟c，
-      那么在执行getter的时候就会触发a跟c两个数据的getter函数，
-      在getter函数中即可判断Dep.target是否存在然后完成依赖收集，
-      将该观察者对象放入闭包中的Dep的subs中去。*/
+    /* 执行了 getter 操作，看似执行了渲染操作，其实是执行了依赖收集。
+      在将 Dep.target 设置为自生观察者实例以后，执行 getter 操作。
+      譬如说现在的的 data 中可能有 a、b、c 三个数据，getter 渲染需要依赖 a 跟 c，
+      那么在执行 getter 的时候就会触发 a 跟 c 两个数据的 getter 函数，
+      在 getter 函数中即可判断 Dep.target 是否存在然后完成依赖收集，
+      将该观察者对象放入闭包中的 Dep 的 subs 中去。*/
     if (this.user) {
       try {
         value = this.getter.call(vm, vm)
