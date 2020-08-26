@@ -2,20 +2,20 @@
 <!DOCTYPE>
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 <head>
-    <meta content='事件代理 - Tate & Snow' name='title' />
-    <meta content='事件代理 - Tate & Snow' name='og:title' />
+    <meta content='动态加载字体 - Tate & Snow' name='title' />
+    <meta content='动态加载字体 - Tate & Snow' name='og:title' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-    <title>事件代理 - Tate & Snow</title>
+    <title>动态加载字体 - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>事件代理 - Tate & Snow</title>
+<title>动态加载字体 - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="事件代理 - Tate & Snow">
-<meta name="twitter:keywords" content="事件代理 - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="动态加载字体 - Tate & Snow">
+<meta name="twitter:keywords" content="动态加载字体 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="事件代理 - Tate & Snow">
-<meta name="og:keywords" content="事件代理 - Tate & Snow|事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..."
+<meta property="og:title" content="动态加载字体 - Tate & Snow">
+<meta name="og:keywords" content="动态加载字体 - Tate & Snow|动态加载字体现在是这么一个情况，后台有个富文本组件，可以配置很多字体，前台渲染的话要根据这些配置的字体动态去加载。如何用最优雅的方式去处理呢，这就是下面要讨论的，当然可能有更好地方式 🤔️@font-face首先我们要了解的是 @fo..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..." property='og:description'
+<meta name="keywords" content="动态加载字体现在是这么一个情况，后台有个富文本组件，可以配置很多字体，前台渲染的话要根据这些配置的字体动态去加载。如何用最优雅的方式去处理呢，这就是下面要讨论的，当然可能有更好地方式 🤔️@font-face首先我们要了解的是 @fo..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
-<meta content='http://localhost:2333/2018/03/26/js-event-delegate.html' property='og:url' />
-<meta content="http://localhost:2333/2018/03/26/js-event-delegate.html|事件代理事件流几个重要的事件定义:  事件流 - 描述的是从页面中接收事件的顺序  事件 - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等  事件处理程序 - 响应某个事件的函数就叫事件处理程序(..." property='og:description'
+<meta content='http://localhost:2333/2020/08/26/html-font-face.html' property='og:url' />
+<meta content="http://localhost:2333/2020/08/26/html-font-face.html|动态加载字体现在是这么一个情况，后台有个富文本组件，可以配置很多字体，前台渲染的话要根据这些配置的字体动态去加载。如何用最优雅的方式去处理呢，这就是下面要讨论的，当然可能有更好地方式 🤔️@font-face首先我们要了解的是 @fo..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -57,19 +57,19 @@
 </script>
 <meta content="" property="fb:app_id" />
 <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>事件代理 | Tate &amp; Snow</title>
+<title>动态加载字体 | Tate &amp; Snow</title>
 <meta name="generator" content="Jekyll v3.8.7" />
-<meta property="og:title" content="事件代理" />
+<meta property="og:title" content="动态加载字体" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="事件代理" />
-<meta property="og:description" content="事件代理" />
-<link rel="canonical" href="http://localhost:2333/2018/03/26/js-event-delegate.html" />
-<meta property="og:url" content="http://localhost:2333/2018/03/26/js-event-delegate.html" />
+<meta name="description" content="动态加载字体" />
+<meta property="og:description" content="动态加载字体" />
+<link rel="canonical" href="http://localhost:2333/2020/08/26/html-font-face.html" />
+<meta property="og:url" content="http://localhost:2333/2020/08/26/html-font-face.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-03-26T14:38:00+08:00" />
+<meta property="article:published_time" content="2020-08-26T18:03:00+08:00" />
 <script type="application/ld+json">
-{"description":"事件代理","@type":"BlogPosting","url":"http://localhost:2333/2018/03/26/js-event-delegate.html","headline":"事件代理","dateModified":"2018-03-26T14:38:00+08:00","datePublished":"2018-03-26T14:38:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/03/26/js-event-delegate.html"},"@context":"https://schema.org"}</script>
+{"description":"动态加载字体","@type":"BlogPosting","url":"http://localhost:2333/2020/08/26/html-font-face.html","headline":"动态加载字体","dateModified":"2020-08-26T18:03:00+08:00","datePublished":"2020-08-26T18:03:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/08/26/html-font-face.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -163,16 +163,16 @@
             </div>
         </div>
     </header>
-    <a href="#header" class="back-to-top" onclick="onClickTop('事件代理')">⤴Top⤴</a>
+    <a href="#header" class="back-to-top" onclick="onClickTop('动态加载字体')">⤴Top⤴</a>
     <div class="post-header-thumb bg-white}">
         <div class="post-header-thumb-op"></div>
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    事件代理</h1>
+                    动态加载字体</h1>
                 <div class="post-data">
-                    <time datetime="2018-03-26 14:38:00" itemprop="datePublished">
-                      发布时间：2018-03-26 14:38:00
+                    <time datetime="2020-08-26 18:03:00" itemprop="datePublished">
+                      发布时间：2020-08-26 18:03:00
                       &nbsp;&nbsp;&nbsp;
                       
                     </time>
@@ -181,6 +181,18 @@
                 </div>
                 <div class="post-tags">
                        
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('HTML')" title="访问HTML" data-hover="HTML">
+                        HTML
+                        <span>(2)</span>
+                        
+                    </a>
+                    
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('CSS')" title="访问CSS" data-hover="CSS">
+                        CSS
+                        <span>(1)</span>
+                        
+                    </a>
+                    
                     <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
                         JavaScript
                         <span>(31)</span>
@@ -194,360 +206,263 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                事件代理</h1>
+                动态加载字体</h1>
             <div class="post-data">
-                <time datetime="2018-03-26 14:38:00" itemprop="datePublished">2018-03-26 14:38:00</time>
+                <time datetime="2020-08-26 18:03:00" itemprop="datePublished">2020-08-26 18:03:00</time>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
             <p class="post-tags">
                    
+                <a href="Javascript:;" onclick="onClickTag('HTML')" title="访问HTML" data-hover="HTML">
+                    HTML
+                    <span>(2)</span>
+                    </a>
+                
+                <a href="Javascript:;" onclick="onClickTag('CSS')" title="访问CSS" data-hover="CSS">
+                    CSS
+                    <span>(1)</span>
+                    </a>
+                
                 <a href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
                     JavaScript
                     <span>(31)</span>
                     </a>
                    
             </p>
-            <h1 id="事件代理">事件代理</h1>
+            <h1 id="动态加载字体">动态加载字体</h1>
 
-<h2 id="事件流">事件流</h2>
+<p>现在是这么一个情况，后台有个富文本组件，可以配置很多字体，前台渲染的话要根据这些配置的字体动态去加载。如何用最优雅的方式去处理呢，这就是下面要讨论的，当然可能有更好地方式 🤔️</p>
 
-<p>几个重要的事件定义:</p>
+<h2 id="font-face">@font-face</h2>
 
-<ul>
-  <li><strong>事件流</strong> - 描述的是从页面中接收事件的顺序</li>
-  <li><strong>事件</strong> - 用户或浏览器自身执行的某种动作。比如 click、load、mouseover 等</li>
-  <li><strong>事件处理程序</strong> - 响应某个事件的函数就叫事件处理程序(或事件侦听器)</li>
-</ul>
-
-<p>DOM 事件流主要包括三个阶段:</p>
+<p>首先我们要了解的是 <code class="highlighter-rouge">@font-face</code>，它指定了一个用于显示文本的自定义字体，<strong>字体能从远程服务器或者用户本地安装的字体加载</strong>:</p>
 
 <ul>
-  <li><strong>事件捕获(event capturing)</strong> - 事件的传播是从最特定的事件目标到最不特定的事件目标。实际目标(<code class="highlighter-rouge">&lt;div&gt;</code>)在捕获阶段不会接收事件</li>
-  <li>处于目标阶段 - 实际的目标接收到事件，但是事件处理会被看成是冒泡阶段的一部分</li>
-  <li><strong>事件冒泡(event bubbling)</strong> - 事件的传播是从最不特定的事件目标到最特定的事件目标</li>
+  <li><strong>local()</strong> - 取用户本地安装的字体</li>
+  <li><strong>url()</strong> - 取远程服务器的字体</li>
 </ul>
 
-<p><img src="http://localhost:2333/style/images/smms/event-bubbling.png" alt="event-bubbling.png" /></p>
+<p><code class="highlighter-rouge">@font-face</code> 规则不仅仅使用在 CSS 的顶层，还可以用在任何 CSS <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/At-rule#Conditional_Group_Rules"><strong>条件组规则</strong></a> 中:</p>
 
-<p>然而需要注意的是:</p>
-
-<ul>
-  <li>尽管 “DOM2级事件” 标准规范明确规定事件捕获阶段不会涉及事件目标，但是在 IE9、Safari、Chrome、Firefox 和 Opera9.5 及更高版本都会在捕获阶段触发事件对象上的事件。即在实际目标上可能会触发两次事件操作。</li>
-  <li>并非所有的事件都会经过冒泡阶段 。所有的事件都要经过捕获阶段和处于目标阶段，但是有些事件会跳过冒泡阶段，如 focus 和 blur。</li>
-</ul>
-
-<h2 id="事件模型">事件模型</h2>
-
-<h3 id="dom0-级事件">DOM0 级事件</h3>
-
-<p><strong>DOM0 级事件</strong>又称为原始事件模型，在该模型中，事件不会传播，即没有事件流的概念。事件绑定监听函数比较简单, 有两种方式:</p>
-
-<ul>
-  <li>内联事件 - 标签中的事件</li>
-  <li>动态绑定 - on + 事件名</li>
-</ul>
-
-<pre><code class="language-HTML">&lt;!-- 内联 --&gt;
-&lt;button id="myBtn" onclick="sayName()"&gt;click&lt;/button&gt;
+<pre><code class="language-CSS">@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/font/cairo-v5-latin_arabic-regular.eot'); /* IE9 Compat Modes */
+  src: local('Cairo'), local('Cairo-Regular'),
+    url('/font/cairo-v5-latin_arabic-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/font/cairo-v5-latin_arabic-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('/font/cairo-v5-latin_arabic-regular.woff') format('woff'), /* Modern Browsers */
+    url('/font/cairo-v5-latin_arabic-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('/font/cairo-v5-latin_arabic-regular.svg#Cairo') format('svg'); /* Legacy iOS */
+  }
 </code></pre>
 
-<pre><code class="language-JS">// 动态绑定
-// 一个 DOM 对象只能注册一个类型的事件，否则覆盖
-// 事件处理程序在当前元素的作用域中运行，this 指向当前元素
-var btn = document.getElementById('myBtn')[];
-btn.onclick = _ =&gt; console.log(this.id); // 'myBtn'
+<p>我们可以看到，不同浏览器可能支持的字体格式不一样，大家可以看自己需要。如果 cdn 上需要存放这些格式的字体包，这里推荐一下 <a href="https://google-webfonts-helper.herokuapp.com/fonts/abel?subsets=latin"><strong>google-webfonts-helper</strong></a>，可以下到各种不同格式的字体文件，并且自动生成上面的 <code class="highlighter-rouge">@font-face</code> 样式供拷贝。</p>
 
-// 移除绑定事件
-btn.onclick = null;
+<blockquote>
+  <p>常用的开源字体库网站有 <a href="https://fonts.google.com">Google Fonts</a>, <a href="https://fonts.adobe.com">Typekit</a>, <a href="http://fontdeck.com">fontdeck</a>, <a href="https://www.fonts.com">fonts.com</a>, <a href="https://www.webtype.com">webtype</a> 等 👈</p>
+</blockquote>
+
+<p>ok 有了 <code class="highlighter-rouge">@font-face</code> 的帮忙，而且兼容性超棒，浏览器现在可以获取对应的字体了。但是不同浏览器对于处理字体又各有不同，具体可以分为以下两类:</p>
+
+<h2 id="foit---flash-of-invisible-text">FOIT - Flash Of Invisible Text</h2>
+
+<p><strong>FOIT</strong> 即 <code class="highlighter-rouge">Flash Of Invisible Text</code>，缺点是文字长时间被隐藏，体验不是很好:</p>
+
+<ol>
+  <li>字体开始下载；</li>
+  <li>请求网络字体时字体不可见；</li>
+  <li>网络字体下载完毕；</li>
+  <li>字体呈现。</li>
+</ol>
+
+<h2 id="fout---flash-of-unstyled-text">FOUT - Flash of Unstyled Text</h2>
+
+<p><strong>FOUT</strong> 即 <code class="highlighter-rouge">Flash of Unstyled Text</code>，缺点是字体替换时可能会抖动:</p>
+
+<ol>
+  <li>字体开始下载；</li>
+  <li>字体呈现，并采用配置的备份字体；</li>
+  <li>网络字体下载完毕；</li>
+  <li>字体替换为网络字体。</li>
+</ol>
+
+<h2 id="方案一---监听字体加载">方案一 - 监听字体加载</h2>
+
+<p>此方案目的就是让所有浏览器都表现为 FOUT，提升用户体验，即在自定义字体加载完成之前，先显示降级字体。那么问题就是如何监听字体加载完成。这里可以用 <code class="highlighter-rouge">@font-face loader</code>: <a href="https://github.com/bramstein/fontfaceobserver">fontfaceobserver</a>，用法很简单:</p>
+
+<pre><code class="language-JS">// 下载并监听字体，字体来源可以是 Google Fonts, Typekit, and Webtype or be self-hosted
+const font = new FontFaceObserver('My Family', {
+  weight: 400
+})
+
+font.load().then(function () {
+  document.documentElement.classList.add('font-loaded')
+})
+</code></pre>
+
+<pre><code class="language-less">@fallback: Georgia, serif;
+
+h1, .h1 {
+  // 备份字体
+  font-family: @fallback;
+
+  .font-loaded &amp; {
+    font-family: "My Family";
+  }
+}
+</code></pre>
+
+<p>注意上述 less 的写法，之前没这么用过，这么好用的功能竟然现在才知道 🤦‍♂️，它相当于:</p>
+
+<pre><code class="language-CSS">h1, .h1 {
+  font-family: Georgia, serif;
+}
+.font-loaded h1, .font-loaded .h1 {
+  font-family: "My Family";
+}
 </code></pre>
 
 <blockquote>
-  <p>为什么木有 DOM1 级事件 ? 是因为 DOM1 标准中并没有定义事件相关的内容 😳。</p>
+  <p>由于 fontfaceobserver api 使用了 Promise，对于不支持 Promise 的则需要 polyfill，或者直接引用 <code class="highlighter-rouge">fontfaceobserver.js</code>，否则引用 <code class="highlighter-rouge">fontfaceobserver.standalone.js</code></p>
 </blockquote>
 
-<h3 id="dom2-级事件">DOM2 级事件</h3>
+<blockquote>
+  <p>使用原生的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FontFaceSet"><strong>FontFaceSet</strong></a> API 可以用来管理字体下载的状态，但是目前兼容性不太好。</p>
+</blockquote>
 
-<h4 id="addeventlistener">addEventListener</h4>
+<h2 id="方案二---字体子集化">方案二 - 字体子集化</h2>
 
-<p><strong>DOM2 级事件</strong> 新增两个方法用来添加和移除事件处理程序，第三个参数表示采取哪种事件流处理程序，默认为 false，即冒泡；true 为捕获:</p>
+<p>方案一还是不能解决一些字体库太大的问题，特别是弱网下，全量加载这个等待时间是很长的。因此我们可以想到采用字体子集化，服务器接受到客户端发来的请求后，去截取并只下载我们需要用到的文字。这里也推荐一个第三方库：<a href="https://github.com/ecomfe/fontmin">fontmin</a>:</p>
+
+<pre><code class="language-JS">const Fontmin = require('fontmin')
+const Promise = require('bluebird')
+
+async function extractFontData(fontPath) {
+  const fontmin = new Fontmin()
+    .src('./font/senty.ttf')
+    .use(Fontmin.glyph({
+      text: '字体预览'
+    }))
+    .use(Fontmin.ttf2woff2())
+    .dest('./dist')
+
+  await Promise.promisify(fontmin.run, { context: fontmin })()
+}
+extractFontData()
+</code></pre>
+
+<h2 id="方案三---web-font-loader">方案三 - Web Font Loader</h2>
+
+<p><a href="https://github.com/typekit/webfontloader"><strong>Web Font Loader</strong></a> 可以让你在使用 <code class="highlighter-rouge">@font-face</code> 的时候去控制它的状态，同样它支持的字体数据源也很多，是由 Google 和 Typekit 联合推出的，和方案一类似:</p>
+
+<pre><code class="language-JS">&lt;script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  WebFont.load({
+    google: {
+      families: ['Droid Sans', 'Droid Serif']
+    }
+  })
+&lt;/script&gt;
+</code></pre>
+
+<p>上面是最简单的方式，但是有个问题就是影响 DOM 的解析和渲染，因此我们也可以采用创建动态链接的方式，当然这样做存在一个问题就是可能文字内容先渲染了，会造成上述的 FOUT:</p>
+
+<pre><code class="language-JS">&lt;script&gt;
+  window.WebFontConfig = {
+    google: { families: ['Droid Sans', 'Droid Serif:bold'] }
+  }
+
+  (function(d) {
+    var wf = d.createElement('script'), s = d.scripts[0]
+    wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
+    wf.async = true
+    s.parentNode.insertBefore(wf, s)
+  })(document)
+&lt;/script&gt;
+</code></pre>
+
+<p><code class="highlighter-rouge">WebFontConfig</code> 包含了全局的配置，我们可以在里面定义数据源，比如:</p>
+
+<pre><code class="language-JS">// You can find the Kit ID within Typekit's Kit Editor interface
+WebFontConfig = {
+  typekit: { id: 'xxxxxx' }
+}
+</code></pre>
+
+<p>还可以定义一些事件钩子，方便我们进行监听和操作:</p>
 
 <ul>
-  <li><strong>addEventListener()</strong></li>
-  <li><strong>removeEventListener()</strong></li>
+  <li><strong>loading</strong> - This event is triggered when all fonts have been requested.</li>
+  <li><strong>active</strong> - This event is triggered when the fonts have rendered.</li>
+  <li><strong>inactive</strong> - This event is triggered when the browser does not support linked fonts or if none of the fonts could be loaded.</li>
+  <li><strong>fontloading</strong> - This event is triggered once for each font that’s loaded.</li>
+  <li><strong>fontactive</strong> - This event is triggered once for each font that renders.</li>
+  <li><strong>fontinactive</strong> - This event is triggered if the font can’t be loaded.</li>
 </ul>
 
-<pre><code class="language-JS">// 一个 DOM 对象能够注册一个类型的多个事件，依次触发
-btn.addEventListener('click', handler, false); // 冒泡
+<p>不同状态，html 上也会添加不同的 CSS 类名:</p>
 
-btn.addEventListener('click', function() {
-  alert(this.id);
-}, false);
+<pre><code class="language-TEXT">.wf-loading
+.wf-active
+.wf-inactive
+.wf-&lt;familyname&gt;-&lt;fvd&gt;-loading
+.wf-&lt;familyname&gt;-&lt;fvd&gt;-active
+.wf-&lt;familyname&gt;-&lt;fvd&gt;-inactive
 </code></pre>
 
-<pre><code class="language-JS">// 移除事件监听，注意要对应同一个事件才有效。若直接采用匿名函数表示，则会识别成不同函数，此时移除无效
-btn.removeEventListener('click', handler, false); // 有效
+<p>The <code class="highlighter-rouge">&lt;familyname&gt;</code> placeholder will be replaced by a sanitized version of the name of each font family. Spaces and underscores are removed from the name, and all characters are converted to lower case. For example, Droid Sans becomes droidsans.</p>
 
-btn.removeEventListener('click', function() {
-  alert(this.id);
-}, false); // 无效
+<p>The <code class="highlighter-rouge">&lt;fvd&gt;</code> placeholder is a Font Variation Description. Put simply, it’s a shorthand for describing the style and weight of a particular font:</p>
+
+<pre><code class="language-CSS">/* n4 */
+@font-face { font-style: normal; font-weight: normal; }
+
+/* i7 */
+@font-face { font-style: italic; font-weight: bold; }
 </code></pre>
 
-<h4 id="attachevent">attachEvent</h4>
+<p>当然我们也可以去掉这些默认行为，那它啥都不会监听，就只是单纯的插入 <code class="highlighter-rouge">@font-face</code> 到文档中:</p>
 
-<p>IE 事件处理程序实现了与 DOM 中类似的两个方法:</p>
-
-<ul>
-  <li><strong>attachEvent()</strong></li>
-  <li><strong>detachEvent()</strong></li>
-</ul>
-
-<p>由于 IE8 及更早版本只支持冒泡事件，因此只能将添加的事件程序添加到冒泡阶段，且与 DOM0 级的主要区别是事件处理程序的作用域，皆为全局作用域:</p>
-
-<pre><code class="language-JS">// 和 DOM0 一样采用 on + 事件名
-// attachEvent 方法也可对一个 DOM 对象注册一个类型的多个事件，但会反向触发
-btn.attachEvent('onclick', _ =&gt; console.log(this === window)); // true
-
-btn.attachEvent('onclick', _ =&gt; console.log('tate'); // 'tate' 先触发
+<pre><code class="language-JS">WebFontConfig = {
+  events: false,
+  classes: false,
+};
 </code></pre>
 
-<h4 id="兼容写法">兼容写法</h4>
+<p>方案三一般情况下我们都会采用异步去加载文件的方式，那么我们还是可以尽可能地去优化 FOUT，我们可以在配置项中监听字体渲染完的事件:</p>
 
-<p>跨浏览器的事件处理的兼容性写法:</p>
-
-<pre><code class="language-JS">var EventUtil = {
-  // 添加句柄
-  addHandler(ele, type, handler) {
-    if (ele.addEventListener) {
-      ele.addEventListener(type, handler, false);
-    } else if (ele.attachEvent) { // 兼容 IE8 及以下
-      ele.attachEvent('on' + type, handler);
-    } else {
-      ele['on' + type] = handler;
-    }
-  },
-  // 删除句柄
-  removeHandler(ele, type, handler) {
-    if (ele.removeEventListener) {
-      ele.removeEventListener(type, handler, false);
-    } else if (ele.detachEvent) {
-      ele.detachEvent('on' + type, handler);
-    } else {
-      ele['on' + type] = null;
-    }
+<pre><code class="language-JS">WebFontConfig = {
+  // other options and settings
+  active: function() {
+    sessionStorage.fonts = true // 表示字体已经渲染完
   }
 }
 </code></pre>
 
-<h2 id="事件对象">事件对象</h2>
+<p>然后我们可以在 <code class="highlighter-rouge">head</code> 中插入以下脚本，可以及时判断 <code class="highlighter-rouge">sessionStorage</code> 是否存在这个 key，并尽快给 html 上添加样式:</p>
 
-<p>当一个事件被触发时，会产生一个<strong>事件对象(event)</strong>, 这个对象里面包含了与该事件相关的属性或者方法。DOM 和 IE 中的事件常用对象相比较:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">作用</th>
-      <th style="text-align: left">DOM</th>
-      <th style="text-align: left">IE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">获取事件类型</td>
-      <td style="text-align: left"><code class="highlighter-rouge">event.type</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">event.type</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">获取事件源</td>
-      <td style="text-align: left"><code class="highlighter-rouge">event.target</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">event.srcElement</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">阻止默认行为</td>
-      <td style="text-align: left"><code class="highlighter-rouge">event.preventDefault()</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">event.returnValue = false</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">阻止冒泡行为</td>
-      <td style="text-align: left"><code class="highlighter-rouge">event.stopPropagation()</code></td>
-      <td style="text-align: left"><code class="highlighter-rouge">event.cancelBubble = true</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>DOM 事件中还有个 <code class="highlighter-rouge">currentTarget</code> 属性，与 <code class="highlighter-rouge">target</code> 的区别是:</p>
-
-<ul>
-  <li><strong>target</strong> - 实际触发事件的目标</li>
-  <li><strong>currentTarget</strong> - 事件绑定的元素，总是与 this 指向一致</li>
-</ul>
-
-<p>DOM 事件中还可以通过 <code class="highlighter-rouge">stopPropagation</code> 阻止冒泡行为，与 <code class="highlighter-rouge">stopImmediatePropagation</code> 的区别是:</p>
-
-<ul>
-  <li><strong>stopPropagation()</strong> - 阻止冒泡行为</li>
-  <li><strong>stopImmediatePropagation()</strong> - 同上，且当一个事件有多个事件处理程序时，该方法可以阻止之后事件处理程序被调用</li>
-</ul>
-
-<p>在 DOM 事件中，兼容 DOM 的浏览器都会将一个 event 对象作为参数传入到事件处理程序中，而 IE 事件中的 event 是一个 window 全局对象:</p>
-
-<pre><code class="language-JS">// DOM 事件
-btn.addEventListener('click', (event) =&gt; {
-  console.log(event.type); // 'click'
-}, false);
-
-// IE 事件
-btn.attachEvent('onclick', _ =&gt; console.log(window.event.type)); // 'click'
+<pre><code class="language-HTML">&lt;head&gt;
+  &lt;script&gt;
+    (function() {
+      if (sessionStorage.fonts) {
+        console.log("Fonts installed.");
+        document.documentElement.classList.add('wf-active');
+      } else {
+        console.log("No fonts installed.");
+      }
+    })();
+  &lt;/script&gt;
+&lt;/head&gt;
 </code></pre>
-
-<p>跨浏览器的事件对象的兼容性写法:</p>
-
-<pre><code class="language-JS">var EventUtil = {
-  // 获取事件对象
-  // IE 模型中 event 是一个全局唯一的对象绑定在 window 对象上
-  getEvent(event) {
-    return event ? event : window.event;
-  },
-  // 获取类型
-  getType(event) {
-    return event.type;
-  },
-  getElement(event) {
-    return event.target || event.srcElement;
-  },
-  // 阻止默认事件
-  preventDefault(event) {
-    if (event.preventDefault) {
-      event.preventDefault();
-    } else {
-      event.returnValue = false;
-    }
-  },
-  // 阻止冒泡
-  stopPropagation(event) {
-    if (event.stopPropagation) {
-      event.stopPropagation();
-    } else {
-      event.cancelBubble = true;
-    }
-  }
-}
-</code></pre>
-
-<h2 id="事件代理-1">事件代理</h2>
-
-<p>事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为<strong>事件代理(Event delegation)</strong>。事件代理利用了事件冒泡，只指定一个事件处理程序，便可以管理某一类型的所有事件。</p>
-
-<script async="" src="//jsfiddle.net/4eyhd7zy/10/embed/js,html,result/"></script>
-
-<pre><code class="language-HTML">&lt;ul id="color-list"&gt;
-  &lt;li&gt;red&lt;/li&gt;
-  &lt;li&gt;yellow&lt;/li&gt;
-  &lt;li&gt;green&lt;/li&gt;
-  &lt;li&gt;orange&lt;/li&gt;
-  &lt;!-- ...动态扩展 --&gt;
-&lt;/ul&gt;
-</code></pre>
-
-<pre><code class="language-JS">var colorList = document.getElementById('color-list');
-var liArr = colorList.querySelectorAll('ul li');
-
-colorList.addEventListener('click', showColor, false);
-
-function showColor(ev) {
-  var event = ev || window.event;
-  var targetElement = event.target || event.srcElement;
-
-  var content = targetElement.innerHTML; // 获取标签内容
-  var index = [].indexOf.call(liArr, targetElement); // 获取索引值
-
-  if (targetElement.nodeName.toLowerCase() === 'li') {
-    alert(index + ' : ' + content);
-  }
-}
-</code></pre>
-
-<h2 id="事件模拟">事件模拟</h2>
-
-<p><strong>createEvent()</strong> - 生成一个事件对象，参数是事件类型，比如:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">事件类型</th>
-      <th style="text-align: left">事件初始化方法</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">UIEvents</td>
-      <td style="text-align: left">event.initUIEvent</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">MouseEvents</td>
-      <td style="text-align: left">event.initMouseEvent</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">MutationEvents</td>
-      <td style="text-align: left">event.initMutationEvent</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">HTMLEvents</td>
-      <td style="text-align: left">event.initEvent</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Event</td>
-      <td style="text-align: left">event.initEvent</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">CustomEvent</td>
-      <td style="text-align: left">event.initCustomEvent</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">KeyboardEvent</td>
-      <td style="text-align: left">event.initKeyEvent</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>dispatchEvent()</strong> - 当前节点上触发指定事件，从而触发监听函数的执行，参数是一个 Event 对象的实例，如果在事件传播过程中调用了 event.preventDefault 方法，则返回 false，否则返回 true。IE 用 fireEvent()</p>
-
-<pre><code class="language-JS">document.addEventListener('myEvent', function (event) {
-  console.log('Name: %s, Age: %d', event.name, event.age); // Name: tate, Age: 18
-}, false);
-
-//创建 event 的对象实例。
-var event = document.createEvent('HTMLEvents');
-// 3个参数：事件类型，是否冒泡，是否阻止浏览器的默认行为
-event.initEvent('myEvent', true, true);
-// 自定义事件属性，只要你开心
-event.name = 'tate';
-event.age = 18;
-
-//触发自定义事件
-document.dispatchEvent(event);
-</code></pre>
-
-<p>IE 为 <strong>createEventObject()</strong>，不接受参数，返回通用 event 对象:</p>
-
-<pre><code class="language-JS">var event = document.createEventObject();
-event.bubbles = true;
-event.cancelable = true;
-event.name = 'tate';
-targetElement.fireEvent('onmouseover', event); // 触发事件
-</code></pre>
-
-<p>模拟事件示例如下:</p>
-
-<script async="" src="//jsfiddle.net/Tate_Young/ysmr0vLq/1/embed/js,html,result/"></script>
 
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://www.cnblogs.com/starof/p/4066381.html">javaScript事件(一) 事件流</a> By starof</li>
-  <li><a href="https://segmentfault.com/a/1190000006934031">JS 事件模型</a> By simon_woo</li>
-  <li><a href="https://blog.csdn.net/magic__man/article/details/51831227">事件触发器 - dispatchEvent</a> By magic__man</li>
-  <li><a href="https://www.cnblogs.com/xiaohuochai/p/5880851.html">深入理解 DOM 事件机制系列第四篇 —— 事件模拟</a> By 小火柴的蓝色理想</li>
+  <li><a href="https://css-tricks.com/loading-web-fonts-with-the-web-font-loader/">Loading Web Fonts with the Web Font Loader</a> by Robin Rendle</li>
+  <li><a href="https://aotu.io/notes/2020/02/28/webfont-processing/index.html">Web 中文字体处理总结 - 凹凸实验室</a></li>
 </ol>
  
 <div id="gitalk-container"></div>
@@ -574,9 +489,9 @@ targetElement.fireEvent('onmouseover', event); // 触发事件
      */
 
     var disqus_config = function () {
-        this.page.url = 'https://tate-young.github.io/2018/03/26/js-event-delegate.html';
-        this.page.identifier = '/2018/03/26/js-event-delegate';
-        this.page.title = '事件代理';
+        this.page.url = 'https://tate-young.github.io/2020/08/26/html-font-face.html';
+        this.page.identifier = '/2020/08/26/html-font-face';
+        this.page.title = '动态加载字体';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
@@ -595,7 +510,7 @@ targetElement.fireEvent('onmouseover', event); // 触发事件
 
 
             <!-- <p class="post-info">
-			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-03-26 14:38:00</p> -->
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2020-08-26 18:03:00</p> -->
         </div>
     </article>
 
