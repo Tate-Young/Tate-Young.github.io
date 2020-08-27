@@ -60,7 +60,7 @@ tags:
 
 若想要了解如果透过一些工具协助让你的公司拥有良好的 DevOps 文化，你可以参考以下的图:
 
-![devops tools](https://media-exp1.licdn.com/dms/image/C4E12AQFDq_8TR87Mgg/article-inline_image-shrink_1000_1488/0?e=1596067200&v=beta&t=V4WviaiTdOL5TFHZj3PTjZzDlpKL0H-ftTpsu8bu-9U)
+![devops tools](http://www.jamesbowman.me/post/cdlandscape/ContinuousDeliveryToolLandscape-fullsize.jpeg)
 
 ### 与敏捷开发的关系
 

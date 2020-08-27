@@ -7,9 +7,9 @@ background: purple
 category: 前端
 title:  动态加载字体
 date:   2020-08-26 18:03:00 GMT+0800 (CST)
+update: 2020-08-26 12:13:00 GMT+0800 (CST)
 background-image: https://www.gstatic.com/images/icons/material/apps/fonts/1x/opengraph_color_blue_1200dp.png
 tags:
-- HTML
 - CSS
 - JavaScript
 ---
@@ -18,6 +18,8 @@ tags:
 现在是这么一个情况，后台有个富文本组件，可以配置很多字体，前台渲染的话要根据这些配置的字体动态去加载。如何用最优雅的方式去处理呢，这就是下面要讨论的，当然可能有更好地方式 🤔️
 
 ## @font-face
+
+### local() / url()
 
 首先我们要了解的是 `@font-face`，它指定了一个用于显示文本的自定义字体，**字体能从远程服务器或者用户本地安装的字体加载**:
 
@@ -40,6 +42,60 @@ tags:
     url('/font/cairo-v5-latin_arabic-regular.svg#Cairo') format('svg'); /* Legacy iOS */
   }
 ```
+
+### font-family
+
+这里的 `font-family` 可以自定义字体的名称，方便后续去使用，特别是字体名字较长或者处理字体优先级的时候:
+
+```CSS
+@font-face {
+  font-family: 'Tate';
+  src: local('PingFang SC'), local("Francois One");
+}
+
+/* ...使用 */
+.font {
+  font-family: 'Tate';
+}
+```
+
+### unicode-range
+
+[**unicode-range**](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/unicode-range) 设置了 `@font-face` 定义的字体中要使用的特定字符范围:
+
+```CSS
+/* latin */
+@font-face {
+  font-family: 'Francois One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Francois One Regular'), local('FrancoisOne-Regular'), url(http://fonts.gstatic.com/s/francoisone/v14/_Xmr-H4zszafZw3A-KPSZut9wQiRmfW_Aw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+```
+
+如果页面在此范围内未使用任何字符，则不会下载字体；如果使用至少一种，则将下载整个字体:
+
+```TEXT
+Font Face: Hey HTML, do any of the following characters match what is on the page?
+HTML: Yep, a bunch of them do.
+Font-Face: Great, here is a font file you should download to display those characters.
+```
+
+`unicode-range` 的取值如下，具体对应字符可以查看 [**unicode-table**](https://unicode-table.com/en/#basic-latin) 映射表:
+
+```CSS
+/* <unicode-range> values */
+unicode-range: U+26;               /* single codepoint */
+unicode-range: U+0-7F;
+unicode-range: U+0025-00FF;        /* codepoint range */
+unicode-range: U+4??;              /* wildcard range - 表示从 U+400 到 U+4FF */
+unicode-range: U+0025-00FF, U+4??; /* multiple values */
+```
+
+那么利用 `unicode-range` 可以实现一些什么功能呢，我们可以参考下[这篇文章](https://www.zhangxinxu.com/wordpress/2016/11/css-unicode-range-character-font-face/)，对于一些特定的字符，我们可以提前生成只包含这些字符的字体，然后通过 `unicode-range` 指向它即可，最终这些字符都会被替换掉为特定的字体。
+
+### 格式 ttf / woff / eot
 
 我们可以看到，不同浏览器可能支持的字体格式不一样，大家可以看自己需要。如果 cdn 上需要存放这些格式的字体包，这里推荐一下 [**google-webfonts-helper**](https://google-webfonts-helper.herokuapp.com/fonts/abel?subsets=latin)，可以下到各种不同格式的字体文件，并且自动生成上面的 `@font-face` 样式供拷贝。
 
