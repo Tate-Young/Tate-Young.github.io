@@ -1,3 +1,6 @@
+# Multiple top level headings in the same document
 MD025: false
+# no inline html
+MD033: false
 MD013:
   line_length: 500
