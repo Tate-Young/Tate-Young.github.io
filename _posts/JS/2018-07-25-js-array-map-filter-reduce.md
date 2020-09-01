@@ -7,6 +7,7 @@ background: blue
 category: 前端
 title:  数组 map filter reduce
 date:   2018-07-27 11:15:00 GMT+0800 (CST)
+update: 2020-09-01 14:07:00 GMT+0800 (CST)
 background-image: /style/images/js.png
 tags:
 - JavaScript
@@ -76,6 +77,15 @@ var r,
 r = arr.filter(function (element, index, self) {
   return self.indexOf(element) === index;
 });
+```
+
+我们经常还可以看到一种写法，简写的遍历移除所有转布尔值为 false 的元素 :
+
+```JS
+// 简写
+arr.filter(Boolean)
+// 等价于
+arr.filter(a => Boolean(a))
 ```
 
 ### reduce

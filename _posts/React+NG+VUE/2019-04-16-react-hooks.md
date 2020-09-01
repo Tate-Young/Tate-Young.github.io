@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  React Hooks
 date:   2019-04-16 20:33:00 GMT+0800 (CST)
-update: 2019-07-30 10:13:00 GMT+0800 (CST)
+update: 2020-09-01 14:15:00 GMT+0800 (CST)
 background-image: /style/images/smms/react.png
 tags:
 - React
@@ -292,6 +292,27 @@ function Counter({initialCount}) {
 ```
 
 > useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values. It also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks
+
+在日常使用中，我们可能要定义很多个 `useState` 钩子，有关联性的话我们可以整合成一个，比如:
+
+```JS
+const [count, setCount] = useState({
+  prevCount: 0,
+  nextCount: 0,
+})
+
+// 修改其中一个的时候可能会麻烦点，不像之前类组件 setState 方法一样可以浅拷贝
+// this.setState({ prevCount: 1 })
+setCount({ ...count, prevCount: 1 })
+```
+
+还有一种写法，比较适用于一起改动的，比如:
+
+```JS
+const [[page, direction], setPage] = useState([0, 0])
+
+setPage([newPage, newDirection])
+```
 
 ## useEffect
 

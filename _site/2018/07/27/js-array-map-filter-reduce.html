@@ -175,6 +175,8 @@
                       发布时间：2018-07-27 11:15:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2020-09-01 14:07:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -272,6 +274,14 @@ var r,
 r = arr.filter(function (element, index, self) {
   return self.indexOf(element) === index;
 });
+</code></pre>
+
+<p>我们经常还可以看到一种写法，简写的遍历移除所有转布尔值为 false 的元素 :</p>
+
+<pre><code class="language-JS">// 简写
+arr.filter(Boolean)
+// 等价于
+arr.filter(a =&gt; Boolean(a))
 </code></pre>
 
 <h3 id="reduce">reduce</h3>
