@@ -117,6 +117,27 @@ perspective：none | <length>
   * cubic-bezier()：特定的贝塞尔曲线类型，接受 4 个 [0, 1] 区间内数值参数
 * **transition-delay** - 检索或设置对象延迟过渡的时间
 
+```CSS
+/* here’s a handy-dandy reference to the defaults and their matching cubic-bezier in case you want to start with one of them and customize from there:
+*/
+transition-timing-function: linear;
+transition-timing-function: cubic-bezier(0, 0, 1, 1);
+
+transition-timing-function: ease;
+transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+transition-timing-function: ease-in-out;
+transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+
+transition-timing-function: ease-in;
+transition-timing-function: cubic-bezier(0.42, 0, 1, 1);
+
+transition-timing-function: ease-out;
+transition-timing-function: cubic-bezier(0, 0, 0.58, 1);
+```
+
+![ease](https://i2.wp.com/css-tricks.com/wp-content/uploads/2016/05/ease-in-out.gif)
+
 [查看 cubic-bezier 在线生成器](http://yisibl.github.io/cubic-bezier/#.17,.67,.91,.43)
 
 ```CSS

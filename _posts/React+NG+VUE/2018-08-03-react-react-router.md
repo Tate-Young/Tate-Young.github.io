@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  React & React Router
 date:   2018-08-06 20:47:00 GMT+0800 (CST)
-update: 2019-05-24 19:41:00 GMT+0800 (CST)
+update: 2020-09-03 11:22:00 GMT+0800 (CST)
 background-image: /style/images/smms/react.png
 tags:
 - React
@@ -555,49 +555,53 @@ function MyComponent() {
 }
 ```
 
-## React-hot-loader
+## react-refresh 热更新
 
-[**React-hot-loader**](https://gaearon.github.io/react-hot-loader/) 可以在不刷新浏览器的情况下进行热更新，有两种使用方式:
+之前一直用的是[**React-hot-loader**](https://gaearon.github.io/react-hot-loader/) 可以在不刷新浏览器的情况下进行热更新，但是有个问题就是不能监听样式修改，而且有其它一些小毛病。现在推荐使用 [**react-refresh**](https://github.com/pmmmwh/react-refresh-webpack-plugin)，配置很简单:
 
-```JSX
-// 根组件 Counter.js
-import { hot } from 'react-hot-loader';
+```JS
+// webpack.config.js
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const webpack = require('webpack');
+// ... your other imports
 
-class Counter extends Component {...}
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
-export default hot(module)(Counter)
-```
-
-第二种方式在入口文件使用 **AppContainer**:
-
-```JSX
-// index.js
-import { AppContainer } from 'react-hot-loader';
-import Counter from './container'
-
-const myRender = Component => {
-  render(
-    <Provider store={store}>
-      <AppContainer>
-        <Component />
-      </AppContainer>
-    </Provider>,
-    rootEl
-  );
-}
-
-myRender(Counter)
-if (module.hot) module.hot.accept('./container', () => myRender(Counter));
-```
-
-针对 react-router 4.x 以上，可能会出现热更新失效的问题，可以采用以下方法解决:
-
-```JSX
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
-const App = () => ( // 根 Router，在 key 值上加一个随机数
-  <Router key={process.env.NODE_ENV === 'development' ? Math.random() : ''} />
-);
+module.exports = {
+  // It is suggested to run both `react-refresh/babel` and the plugin in the `development` mode only,
+  // even though both of them have optimisations in place to do nothing in the `production` mode.
+  // If you would like to override Webpack's defaults for modes, you can also use the `none` mode -
+  // you then will need to set `forceEnable: true` in the plugin's options.
+  mode: isDevelopment ? 'development' : 'production',
+  module: {
+    rules: [
+      // ... other rules
+      {
+        test: /\.[jt]sx?$/,
+        exclude: /node_modules/,
+        use: [
+          // ... other loaders
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              // ... other options
+              plugins: [
+                // ... other plugins
+                isDevelopment && require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    // ... other plugins
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
+  // ... other configuration options
+};
 ```
 
 ## React-loadable

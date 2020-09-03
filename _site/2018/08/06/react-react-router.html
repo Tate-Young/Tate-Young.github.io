@@ -175,7 +175,7 @@
                       发布时间：2018-08-06 20:47:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-05-24 19:41:00
+                        修改时间：2020-09-03 11:22:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -773,46 +773,52 @@ function MyComponent() {
 }
 </code></pre>
 
-<h2 id="react-hot-loader">React-hot-loader</h2>
+<h2 id="react-refresh-热更新">react-refresh 热更新</h2>
 
-<p><a href="https://gaearon.github.io/react-hot-loader/"><strong>React-hot-loader</strong></a> 可以在不刷新浏览器的情况下进行热更新，有两种使用方式:</p>
+<p>之前一直用的是<a href="https://gaearon.github.io/react-hot-loader/"><strong>React-hot-loader</strong></a> 可以在不刷新浏览器的情况下进行热更新，但是有个问题就是不能监听样式修改，而且有其它一些小毛病。现在推荐使用 <a href="https://github.com/pmmmwh/react-refresh-webpack-plugin"><strong>react-refresh</strong></a>，配置很简单:</p>
 
-<pre><code class="language-JSX">// 根组件 Counter.js
-import { hot } from 'react-hot-loader';
+<pre><code class="language-JS">// webpack.config.js
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const webpack = require('webpack');
+// ... your other imports
 
-class Counter extends Component {...}
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
-export default hot(module)(Counter)
-</code></pre>
-
-<p>第二种方式在入口文件使用 <strong>AppContainer</strong>:</p>
-
-<pre><code class="language-JSX">// index.js
-import { AppContainer } from 'react-hot-loader';
-import Counter from './container'
-
-const myRender = Component =&gt; {
-  render(
-    &lt;Provider store={store}&gt;
-      &lt;AppContainer&gt;
-        &lt;Component /&gt;
-      &lt;/AppContainer&gt;
-    &lt;/Provider&gt;,
-    rootEl
-  );
-}
-
-myRender(Counter)
-if (module.hot) module.hot.accept('./container', () =&gt; myRender(Counter));
-</code></pre>
-
-<p>针对 react-router 4.x 以上，可能会出现热更新失效的问题，可以采用以下方法解决:</p>
-
-<pre><code class="language-JSX">import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
-const App = () =&gt; ( // 根 Router，在 key 值上加一个随机数
-  &lt;Router key={process.env.NODE_ENV === 'development' ? Math.random() : ''} /&gt;
-);
+module.exports = {
+  // It is suggested to run both `react-refresh/babel` and the plugin in the `development` mode only,
+  // even though both of them have optimisations in place to do nothing in the `production` mode.
+  // If you would like to override Webpack's defaults for modes, you can also use the `none` mode -
+  // you then will need to set `forceEnable: true` in the plugin's options.
+  mode: isDevelopment ? 'development' : 'production',
+  module: {
+    rules: [
+      // ... other rules
+      {
+        test: /\.[jt]sx?$/,
+        exclude: /node_modules/,
+        use: [
+          // ... other loaders
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              // ... other options
+              plugins: [
+                // ... other plugins
+                isDevelopment &amp;&amp; require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    // ... other plugins
+    isDevelopment &amp;&amp; new webpack.HotModuleReplacementPlugin(),
+    isDevelopment &amp;&amp; new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
+  // ... other configuration options
+};
 </code></pre>
 
 <h2 id="react-loadable">React-loadable</h2>
