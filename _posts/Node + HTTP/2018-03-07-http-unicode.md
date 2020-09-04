@@ -318,7 +318,7 @@ function ReactComponent(props) {
       {/* 错误显示，会直接显示为字符串 &#128512; */}
       <span>{emoji}</span>
       {/* 正常显示 😀，通过 dangerouslySetInnerHTML */}
-      <span dangerouslySetInnerHTML={{ __html: emoji }} />
+      <span dangerouslySetInnerHTML={\{ __html: emoji }\} />
     </div>
   )
 }
