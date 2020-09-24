@@ -175,6 +175,8 @@
                       发布时间：2018-02-04 01:18:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2020-09-24 14:13:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -352,6 +354,30 @@
 <span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="nb">window</span><span class="p">)</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">;</span>
 </code></pre></div></div>
+
+<h2 id="想等比较">想等比较</h2>
+
+<p>我们都知道 JavasSript 是弱类型的，并且当我们使用 <code class="highlighter-rouge">==</code> 作比较时，在一些情况下由于类型转换或者说“把两个操作数中的一个转换成另一个，然后在比较”，会出现意想不到的结果:</p>
+
+<pre><code class="language-JS">0 == ' ' //true
+null == undefined //true
+[1] == true //true
+</code></pre>
+
+<p>因此 JavaScript 中给我们提供了全等操作符 <code class="highlighter-rouge">===</code>, 它比不全等操作符更加严格并且不会发生类型转换。但是用 <code class="highlighter-rouge">=== </code>来进行比较并不是最好的解决方案。你可能会得到:</p>
+
+<pre><code class="language-JS">NaN === NaN //false
+</code></pre>
+
+<p>好消息是 ES6 中提供了新的 <code class="highlighter-rouge">Object.is()</code> 方法，它具有 === 的一些特点，而且更好、更精确，在一些特殊案例中表现的很好:</p>
+
+<pre><code class="language-JS">Object.is(0 , ' '); //false
+Object.is(null, undefined); //false
+Object.is([1], true); //false
+Object.is(NaN, NaN); //true
+</code></pre>
+
+<p><img src="https://i.imgur.com/pCyqkLc.png" alt="Object.is" /></p>
 
 <h2 id="参考链接">参考链接</h2>
 
