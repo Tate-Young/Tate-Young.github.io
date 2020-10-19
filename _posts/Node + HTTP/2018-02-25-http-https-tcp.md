@@ -267,6 +267,28 @@ name1=value1&name2=value2
 | 安全性 | 与 POST 相比，GET 的安全性较差，因为所发送的数据是 URL 的一部分。在发送密码或其他敏感信息时绝不要使用 GET | POST 比 GET 更安全，因为参数不会被保存在浏览器历史或 web 服务器日志中 |
 | 可见性 | 数据在 URL 中对所有人都是可见的 | 数据不会显示在 URL 中 |
 
+## http 迁移至 https 的一些问题
+
+### HSTS
+
+**HTTP Strict Transport Security**（通常简称为 HSTS）是一个安全功能，它告诉浏览器只能通过 HTTPS 访问当前资源，而不是 HTTP。那么问题来了，如果我们本地开发的确有需要用到 http 的场景呢，一般情况下浏览器会自动给我们重定向到 https，那这样就面临一个是否允许跨域的问题。要想解决这个问题，可以先查下下 MDN 看它是怎么工作的:
+
+当你的网站第一次通过 HTTPS 请求，服务器响应 `Strict-Transport-Security` 头，浏览器记录下这些信息，然后后面尝试访问这个网站的请求都会自动把 HTTP 替换为 HTTPS。每次浏览器接收到 `Strict-Transport-Security` 头，它都会更新这个网站的过期时间，当 HSTS 头设置的过期时间到了，后面通过 HTTP 的访问才恢复到正常模式，不会再自动跳转到 HTTPS。所以在 Chrome、Firefox 等浏览器里，当您尝试访问该域名下的内容时，会产生一个 **307  Internal Redirect**（内部跳转），自动跳转到 HTTPS 请求。
+
+那么我们接下来就知道了，只要清除浏览器的 HSTS 记录即可:
+
+* Safari
+  * 完全关闭 Safari
+  * 删除 `~/Library/Cookies/HSTS.plist` 这个文件
+  * 重新打开 Safari 即可
+  * 极少数情况下，需要重启系统
+* Chrome
+  * 地址栏中输入 `chrome://net-internals/#hsts`
+  * 在 Delete domain 中输入 api 域名，并 Delete 删除
+  * 可以在 `Query HSTS/PKP domain` 测试是否删除成功
+
+> 当然需要注意的是，清除工作只是临时的，因为下次请求过来，浏览器仍然会继续记录 `Strict-Transport-Security` 这些信息
+
 ## 参考链接
 
 1. [HTTP、HTTP2.0、SPDY、HTTPS 你应该知道的一些事](http://www.alloyteam.com/2016/07/httphttp2-0spdyhttps-reading-this-is-enough/) By  TAT.tennylv
