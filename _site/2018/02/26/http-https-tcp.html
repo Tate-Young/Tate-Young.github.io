@@ -736,6 +736,16 @@ name1=value1&amp;name2=value2
   <p>当然需要注意的是，清除工作只是临时的，因为下次请求过来，浏览器仍然会继续记录 <code class="highlighter-rouge">Strict-Transport-Security</code> 这些信息</p>
 </blockquote>
 
+<h3 id="本地启动-https-服务">本地启动 https 服务</h3>
+
+<p>迁移后，如果本地还是要启动 https 服务，这时候访问的话页面直接会抛出 <code class="highlighter-rouge">This site can’t be reached</code>，拿 <code class="highlighter-rouge">Create React App</code> 项目来说，可以参考 <a href="https://create-react-app.dev/docs/using-https-in-development/">Using HTTPS in Development</a>，我们需要做的是：</p>
+
+<ol>
+  <li>在启动脚本中增加 <code class="highlighter-rouge">HTTPS=true</code> 环境变量，如 <code class="highlighter-rouge">HTTPS=true npm start</code>;</li>
+  <li>在启动服务默认端口那里将 80 改为 443;</li>
+  <li>此时访问页面时，还是会跳往提示不安全的页面，这时候可以直接在页面里(切记不是窗口输入框 😺)输入 <strong>thisisunsafe</strong> 来忽略并继续访问。这是针对每个站点的。因此，如果您键入一次，则只能访问该站点，而所有其他站点都需要进行类似的键入。</li>
+</ol>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>

@@ -289,6 +289,14 @@ name1=value1&name2=value2
 
 > 当然需要注意的是，清除工作只是临时的，因为下次请求过来，浏览器仍然会继续记录 `Strict-Transport-Security` 这些信息
 
+### 本地启动 https 服务
+
+迁移后，如果本地还是要启动 https 服务，这时候访问的话页面直接会抛出 `This site can’t be reached`，拿 `Create React App` 项目来说，可以参考 [Using HTTPS in Development](https://create-react-app.dev/docs/using-https-in-development/)，我们需要做的是：
+
+1. 在启动脚本中增加 `HTTPS=true` 环境变量，如 `HTTPS=true npm start`;
+2. 在启动服务默认端口那里将 80 改为 443;
+3. 此时访问页面时，还是会跳往提示不安全的页面，这时候可以直接在页面里(切记不是窗口输入框 😺)输入 **thisisunsafe** 来忽略并继续访问。这是针对每个站点的。因此，如果您键入一次，则只能访问该站点，而所有其他站点都需要进行类似的键入。
+
 ## 参考链接
 
 1. [HTTP、HTTP2.0、SPDY、HTTPS 你应该知道的一些事](http://www.alloyteam.com/2016/07/httphttp2-0spdyhttps-reading-this-is-enough/) By  TAT.tennylv
