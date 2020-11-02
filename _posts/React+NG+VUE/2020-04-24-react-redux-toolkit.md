@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Redux Toolkit
 date:   2020-04-28 14:11:00 GMT+0800 (CST)
-UPdate: 2020-05-27 15:04:00 GMT+0800 (CST)
+update: 2020-11-02 15:22:00 GMT+0800 (CST)
 background-image: /style/images/smms/redux.png
 tags:
 - React
@@ -420,7 +420,7 @@ createSlice({
 })
 ```
 
-### createSelector
+### createSelector / reselect
 
 [**createSelector**](https://github.com/reduxjs/reselect) 其实是 re-export 自 **Reselect** 库，用来创建 `memoized selectors`。它带来的好处有以下几点:
 
@@ -464,6 +464,92 @@ let exampleState = {
 console.log(subtotalSelector(exampleState)) // 2.15
 console.log(taxSelector(exampleState))      // 0.172
 console.log(totalSelector(exampleState))    // { total: 2.322 }
+```
+
+**在使用 reselect 的时候，一定要注意多个组件实例且需要获取组件 props 的场景**，可以参考[官方文档](https://github.com/reduxjs/reselect#accessing-react-props-in-selectors)。假设有多个 VisibleTodoList 组件，而公共组件内部又使用了 reselect，并且依赖不同的 props 值，那么 selector 的值将无法正确被缓存:
+
+```JS
+// components/App.js
+import React from 'react'
+import Footer from './Footer'
+import AddTodo from '../containers/AddTodo'
+import VisibleTodoList from '../containers/VisibleTodoList'
+
+// 依赖不同的 listId props
+const App = () => (
+  <div>
+    <VisibleTodoList listId="1" />
+    <VisibleTodoList listId="2" />
+    <VisibleTodoList listId="3" />
+  </div>
+)
+```
+
+```JS
+// containers/VisibleTodoList.js
+import { connect } from 'react-redux'
+import { onTodoClick } from '../actions'
+import TodoList from '../components/TodoList'
+import { getVisibleTodos } from '../selectors'
+
+const mapStateToProps = (state, ownProps) => ({
+  // WARNING: THE FOLLOWING SELECTOR DOES NOT CORRECTLY MEMOIZE
+  todos: getVisibleTodos(state, ownProps)
+})
+
+const mapDispatchToProps = {
+  onTodoClick,
+}
+
+const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList)
+
+export default VisibleTodoList
+```
+
+为了解决这个问题，每个组件实例必须要有自己的一份 selector 拷贝:
+
+```JS
+// containers/VisibleTodoList.js
+import { createSelector } from 'reselect'
+
+const getVisibilityFilter = (state, props) =>
+  state.todoLists[props.listId].visibilityFilter
+
+const getTodos = (state, props) =>
+  state.todoLists[props.listId].todos
+
+// getVisibleTodos 重构
+const makeGetVisibleTodos = () => {
+  return createSelector(
+    [ getVisibilityFilter, getTodos ],
+    (visibilityFilter, todos) => {
+      switch (visibilityFilter) {
+        case 'SHOW_COMPLETED':
+          return todos.filter(todo => todo.completed)
+        case 'SHOW_ACTIVE':
+          return todos.filter(todo => !todo.completed)
+        default:
+          return todos
+      }
+    }
+  )
+}
+
+export default makeGetVisibleTodos
+```
+
+相应的我们在 `containers/VisibleTodoList.js` 文件里调用上述方法即可拿到各自的 selector:
+
+```JS
+const makeMapStateToProps = () => {
+  const getVisibleTodos = makeGetVisibleTodos()
+  const mapStateToProps = (state, props) => {
+    return {
+      todos: getVisibleTodos(state, props)
+    }
+  }
+  return mapStateToProps
+}
 ```
 
 ## 接入 Typescript

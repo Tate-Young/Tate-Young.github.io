@@ -605,7 +605,7 @@ const mapDispatchToProps = (dispatch, ownProps) =&gt; ({
 
 class MyComp extends Component {
   render(){
-    // //从组件的 props 属性中导入两个方法和一个变量 count
+    // 从组件的 props 属性中导入两个方法和一个变量 count
     const {count, increase, decrease} = this.props;
 
     return (&lt;div&gt;
@@ -626,6 +626,23 @@ import { combineReducers } from 'redux';
 export default combineReducers({
   counter, // 通过 state.counter 访问
 })
+</code></pre>
+
+<h3 id="useselector">useSelector</h3>
+
+<p>好消息好消息，在 React hooks 火遍大江南北之后，React Redux 也终于抛弃了 HOC connect，提供了几个实用的钩子，下面就来简单介绍下，详细可以<a href="https://react-redux.js.org/api/hooks#useselector-examples">参考下文档</a> 👈</p>
+
+<p>这个 selector 方法类似于上述的 connect 的 mapStateToProps 参数的概念，并且 useSelector 会订阅 store, 当 action 被 dispatched 的时候，会运行 selector。两者有以下的一些差异:</p>
+
+<ul>
+  <li>selector 会返回任何值作为结果，并不仅限于对象</li>
+  <li>当 action 被 dispatched 的时候，useSelector 将对前一个 selector 结果值和当前结果值进行比较。如果不同，则重新渲染。useSelector 默认使用 === (严格相等)进行相等性检查，而不是 ==。connect 使用的是浅比较</li>
+  <li>selector 不会接收 ownProps 参数，但是，可以通过闭包或使用柯里化 selector 来使用 props</li>
+</ul>
+
+<p>如果我们要用多个 selector 值，没关系，多次调用 useSelector 都会创建 redux store 的单个订阅。由于 react-redux v7 版本使用的 react 的批量(batching)更新行为，同个组件中，多次 useSelector 返回的值只会重新渲染一次。或者我们也可以借助之前讲到的 reselect 库，可以将数据一并处理并统一返回单个 selector。使用记忆(memoize) selector 时必须考虑多个组件实例的情况，具体可以参考 <a href="( http://localhost:2333/2020/04/28/react-redux-toolkit.html#createselector--reselect )">reselect 小节</a>。这里也举个例子:</p>
+
+<pre><code class="language-JS">
 </code></pre>
 
 <h2 id="redux-saga">Redux-Saga</h2>

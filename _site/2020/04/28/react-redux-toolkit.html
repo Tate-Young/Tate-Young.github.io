@@ -175,6 +175,8 @@
                       发布时间：2020-04-28 14:11:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2020-11-02 15:22:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -607,7 +609,7 @@ createSlice({
 })
 </code></pre>
 
-<h3 id="createselector">createSelector</h3>
+<h3 id="createselector--reselect">createSelector / reselect</h3>
 
 <p><a href="https://github.com/reduxjs/reselect"><strong>createSelector</strong></a> 其实是 re-export 自 <strong>Reselect</strong> 库，用来创建 <code class="highlighter-rouge">memoized selectors</code>。它带来的好处有以下几点:</p>
 
@@ -652,6 +654,88 @@ let exampleState = {
 console.log(subtotalSelector(exampleState)) // 2.15
 console.log(taxSelector(exampleState))      // 0.172
 console.log(totalSelector(exampleState))    // { total: 2.322 }
+</code></pre>
+
+<p><strong>在使用 reselect 的时候，一定要注意多个组件实例且需要获取组件 props 的场景</strong>，可以参考<a href="https://github.com/reduxjs/reselect#accessing-react-props-in-selectors">官方文档</a>。假设有多个 VisibleTodoList 组件，而公共组件内部又使用了 reselect，并且依赖不同的 props 值，那么 selector 的值将无法正确被缓存:</p>
+
+<pre><code class="language-JS">// components/App.js
+import React from 'react'
+import Footer from './Footer'
+import AddTodo from '../containers/AddTodo'
+import VisibleTodoList from '../containers/VisibleTodoList'
+
+// 依赖不同的 listId props
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;VisibleTodoList listId="1" /&gt;
+    &lt;VisibleTodoList listId="2" /&gt;
+    &lt;VisibleTodoList listId="3" /&gt;
+  &lt;/div&gt;
+)
+</code></pre>
+
+<pre><code class="language-JS">// containers/VisibleTodoList.js
+import { connect } from 'react-redux'
+import { onTodoClick } from '../actions'
+import TodoList from '../components/TodoList'
+import { getVisibleTodos } from '../selectors'
+
+const mapStateToProps = (state, ownProps) =&gt; ({
+  // WARNING: THE FOLLOWING SELECTOR DOES NOT CORRECTLY MEMOIZE
+  todos: getVisibleTodos(state, ownProps)
+})
+
+const mapDispatchToProps = {
+  onTodoClick,
+}
+
+const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList)
+
+export default VisibleTodoList
+</code></pre>
+
+<p>为了解决这个问题，每个组件实例必须要有自己的一份 selector 拷贝:</p>
+
+<pre><code class="language-JS">// containers/VisibleTodoList.js
+import { createSelector } from 'reselect'
+
+const getVisibilityFilter = (state, props) =&gt;
+  state.todoLists[props.listId].visibilityFilter
+
+const getTodos = (state, props) =&gt;
+  state.todoLists[props.listId].todos
+
+// getVisibleTodos 重构
+const makeGetVisibleTodos = () =&gt; {
+  return createSelector(
+    [ getVisibilityFilter, getTodos ],
+    (visibilityFilter, todos) =&gt; {
+      switch (visibilityFilter) {
+        case 'SHOW_COMPLETED':
+          return todos.filter(todo =&gt; todo.completed)
+        case 'SHOW_ACTIVE':
+          return todos.filter(todo =&gt; !todo.completed)
+        default:
+          return todos
+      }
+    }
+  )
+}
+
+export default makeGetVisibleTodos
+</code></pre>
+
+<p>相应的我们在 <code class="highlighter-rouge">containers/VisibleTodoList.js</code> 文件里调用上述方法即可拿到各自的 selector:</p>
+
+<pre><code class="language-JS">const makeMapStateToProps = () =&gt; {
+  const getVisibleTodos = makeGetVisibleTodos()
+  const mapStateToProps = (state, props) =&gt; {
+    return {
+      todos: getVisibleTodos(state, props)
+    }
+  }
+  return mapStateToProps
+}
 </code></pre>
 
 <h2 id="接入-typescript">接入 Typescript</h2>
