@@ -175,7 +175,7 @@
                       发布时间：2019-05-20 18:36:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2020-08-24 12:20:00
+                        修改时间：2020-10-03 18:06:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -896,6 +896,25 @@ const simple: (foo: number) =&gt; string = foo =&gt; foo.toString();
 function simple(foo: number): string {
   return foo.toString()
 }
+</code></pre>
+
+<h3 id="解构的类型注解">解构的类型注解</h3>
+
+<pre><code class="language-JS">const person = {
+  name: 'tate',
+  age: 18,
+}
+
+function getPerson({ name: pn, age }: { name: string; age: number }) {
+  console.log(pn, age)
+}
+</code></pre>
+
+<p>请注意对比以下几种写法，否则类型注解会错误:</p>
+
+<pre><code class="language-JS">✅   { name: pn, age }: { name: string; age: number }
+❌   { name: pn, age }: { name: string, age: number } // 不能用逗号隔开
+❌   { name: pn, age }: { p: string, age: number } // Property 'name' does not exist on type '{ p: string; age: number; }'.ts(2339)
 </code></pre>
 
 <h2 id="参考链接">参考链接</h2>

@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2020-08-24 12:20:00 GMT+0800 (CST)
+update: 2020-10-03 18:06:00 GMT+0800 (CST)
 background-image: /style/images/smms/typescript.png
 tags:
 - TS
@@ -727,6 +727,27 @@ const simple: (foo: number) => string = foo => foo.toString();
 function simple(foo: number): string {
   return foo.toString()
 }
+```
+
+### 解构的类型注解
+
+```JS
+const person = {
+  name: 'tate',
+  age: 18,
+}
+
+function getPerson({ name: pn, age }: { name: string; age: number }) {
+  console.log(pn, age)
+}
+```
+
+请注意对比以下几种写法，否则类型注解会错误:
+
+```JS
+✅   { name: pn, age }: { name: string; age: number }
+❌   { name: pn, age }: { name: string, age: number } // 不能用逗号隔开
+❌   { name: pn, age }: { p: string, age: number } // Property 'name' does not exist on type '{ p: string; age: number; }'.ts(2339)
 ```
 
 ## 参考链接

@@ -628,7 +628,9 @@ export default combineReducers({
 })
 </code></pre>
 
-<h3 id="useselector">useSelector</h3>
+<h3 id="hooks">hooks</h3>
+
+<h4 id="useselector">useSelector</h4>
 
 <p>好消息好消息，在 React hooks 火遍大江南北之后，React Redux 也终于抛弃了 HOC connect，提供了几个实用的钩子，下面就来简单介绍下，详细可以<a href="https://react-redux.js.org/api/hooks#useselector-examples">参考下文档</a> 👈</p>
 
@@ -640,9 +642,96 @@ export default combineReducers({
   <li>selector 不会接收 ownProps 参数，但是，可以通过闭包或使用柯里化 selector 来使用 props</li>
 </ul>
 
-<p>如果我们要用多个 selector 值，没关系，多次调用 useSelector 都会创建 redux store 的单个订阅。由于 react-redux v7 版本使用的 react 的批量(batching)更新行为，同个组件中，多次 useSelector 返回的值只会重新渲染一次。或者我们也可以借助之前讲到的 reselect 库，可以将数据一并处理并统一返回单个 selector。使用记忆(memoize) selector 时必须考虑多个组件实例的情况，具体可以参考 <a href="( http://localhost:2333/2020/04/28/react-redux-toolkit.html#createselector--reselect )">reselect 小节</a>。这里也举个例子:</p>
+<p>如果我们要用多个 selector 值，没关系，多次调用 useSelector 都会创建 redux store 的单个订阅。由于 react-redux v7 版本使用的 react 的批量(batching)更新行为，同个组件中，多次 useSelector 返回的值只会重新渲染一次。或者我们也可以借助之前讲到的 reselect 库，可以将数据一并处理并统一返回单个 selector。使用 memoize selector 时必须考虑多个组件实例且需要获取组件 props 的情况，具体可以参考 <a href="( http://localhost:2333/2020/04/28/react-redux-toolkit.html#createselector--reselect )">reselect 小节</a>。这里也举个例子:</p>
 
-<pre><code class="language-JS">
+<pre><code class="language-JS">import React from 'react'
+import { useSelector } from 'react-redux'
+import { createSelector } from 'reselect'
+
+const selectNumOfTodosWithIsDoneValue = createSelector(
+  state =&gt; state.todos,
+  (_, isDone) =&gt; isDone, // 依赖于组件 props
+  (todos, isDone) =&gt; todos.filter(todo =&gt; todo.isDone === isDone).length
+)
+
+export const TodoCounterForIsDoneValue = ({ isDone }) =&gt; {
+  const NumOfTodosWithIsDoneValue = useSelector(state =&gt;
+    selectNumOfTodosWithIsDoneValue(state, isDone)
+  )
+
+  return &lt;div&gt;{NumOfTodosWithIsDoneValue}&lt;/div&gt;
+}
+
+export const App = () =&gt; {
+  return (
+    &lt;&gt;
+      &lt;span&gt;Number of done todos:&lt;/span&gt;
+      &lt;TodoCounterForIsDoneValue isDone={true} /&gt;
+    &lt;/&gt;
+  )
+}
+</code></pre>
+
+<p>当这个 selector 在多个组件实例内运行的时候，我们必须要保证在每个组件实例中获取自己的 selector 实例，改造如下:</p>
+
+<pre><code class="language-JS">import React, { useMemo } from 'react'
+import { useSelector } from 'react-redux'
+import { createSelector } from 'reselect'
+
+const makeNumOfTodosWithIsDoneSelector = () =&gt;
+  createSelector(
+    state =&gt; state.todos,
+    (_, isDone) =&gt; isDone,
+    (todos, isDone) =&gt; todos.filter(todo =&gt; todo.isDone === isDone).length
+  )
+
+export const TodoCounterForIsDoneValue = ({ isDone }) =&gt; {
+  const selectNumOfTodosWithIsDone = useMemo(makeNumOfTodosWithIsDoneSelector, [])
+
+  const numOfTodosWithIsDoneValue = useSelector(state =&gt;
+    selectNumOfTodosWithIsDone(state, isDone)
+  )
+
+  return &lt;div&gt;{numOfTodosWithIsDoneValue}&lt;/div&gt;
+}
+
+export const App = () =&gt; {
+  return (
+    &lt;&gt;
+      &lt;span&gt;Number of done todos:&lt;/span&gt;
+      &lt;TodoCounterForIsDoneValue isDone={true} /&gt;
+      &lt;span&gt;Number of unfinished todos:&lt;/span&gt;
+      &lt;TodoCounterForIsDoneValue isDone={false} /&gt;
+    &lt;/&gt;
+  )
+}
+</code></pre>
+
+<h4 id="usedispatch">useDispatch</h4>
+
+<p>我们同样可以利用 useDispatch 来分发 action，在使用的时候注意利用 <code class="highlighter-rouge">useCallback</code> 来避免不必要的渲染:</p>
+
+<pre><code class="language-JS">import React, { useCallback } from 'react'
+import { useDispatch } from 'react-redux'
+
+export const CounterComponent = ({ value }) =&gt; {
+  const dispatch = useDispatch()
+  const incrementCounter = useCallback(
+    () =&gt; dispatch({ type: 'increment-counter' }),
+    [dispatch]
+  )
+
+  return (
+    &lt;div&gt;
+      &lt;span&gt;{value}&lt;/span&gt;
+      &lt;MyIncrementButton onIncrement={incrementCounter} /&gt;
+    &lt;/div&gt;
+  )
+}
+
+export const MyIncrementButton = React.memo(({ onIncrement }) =&gt; (
+  &lt;button onClick={onIncrement}&gt;Increment counter&lt;/button&gt;
+))
 </code></pre>
 
 <h2 id="redux-saga">Redux-Saga</h2>
