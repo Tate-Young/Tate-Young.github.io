@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Redux & Redux-Saga
 date:   2018-08-07 18:15:00 GMT+0800 (CST)
-update: 2020-05-18 19:07:00 GMT+0800 (CST)
+update: 2020-11-05 17:09:00 GMT+0800 (CST)
 background-image: /style/images/smms/redux.png
 tags:
 - React
@@ -83,7 +83,7 @@ export default (state = 0, action) => { // 首次执行时，state 为 undefined
 }
 ```
 
-**切记不能修改 state**，否则会报错。此时应当采用拷贝或者直接使用 immutable 库:
+**切记不能修改 state**，否则会报错。此时应当采用拷贝或者直接使用 immutable 库或 rtk 的 immer 库:
 
 ```JSX
 // 不能修改 state
@@ -140,7 +140,7 @@ var reducer = combineReducers({
 var store_0 = createStore(reducer)
 
 // 创建并发送一个 action
-var setNameActionCreator = function (name) {
+var setNameActionCreator = function(name) {
   return {
     type: 'SET_NAME',
     name: name
@@ -440,19 +440,71 @@ export default combineReducers({
 })
 ```
 
-### hooks
+#### QA
+
+> [参考至这里](https://www.cntofu.com/book/4/docs/faq/ReactRedux.md) 👈
+
+##### 为何组件没有被重新渲染
+
+目前来看，**导致组件在 action 分发后却没有被重新渲染，最常见的原因是对 state 进行了直接修改。Redux 期望 reducer 以 “不可变的方式” 更新 state，实际使用中则意味着复制数据，然后更新数据副本**。如果直接返回同一对象，即使你改变了数据内容，Redux 也会认为没有变化。类似的，React Redux 会在 **shouldComponentUpdate** 中对新的 state/props 进行浅层的判等检查，以期提升性能。如果所有的引用都是相同的，则返回 false 从而跳过此次对组件的更新。函数组件已经替换为 **memo**，具体事例可以[参考 react hooks 章节]( {{site.url}}/2019/04/16/react-hooks.html#usecallback--usememo )
+
+需要注意的是，不管何时更新了一个嵌套的值，都必须同时返回上层的任何数据副本给 state 树。如果数据是 state.a.b.c.d，你想更新 d，你也必须返回 c、b、a 以及 state 的拷贝。state 树变化图展示了树的深层变化为何需要改变途经的结点:
+
+![state tree](http://arqex.com/wp-content/uploads/2015/02/trees.png)
+
+“以不可变的方式更新数据” 并不代表你必须使用 immutable.js，我们可以使用类似于 Object.assign() 或者 _.extend() 的方法复制对象， slice() 和 concat() 方法复制数组。当然目前为止，RTK 内置的 immer.js 是更好的选择，具体可以[参考 RTK 章节]( {{site.url}}/2020/04/28/react-redux-toolkit.html#immer )
+
+##### 为何组件频繁的重新渲染
+
+React Redux 采取了很多的优化手段，保证组件直到必要时才执行重新渲染。一种是对 mapStateToProps 和 mapDispatchToProps 生成后传入 connect 的 props 对象进行浅层的判等检查。遗憾的是，如果当 mapStateToProps 调用时都生成新的数组或对象实例的话，此种情况下的浅层判等不会起任何作用。因为 **shallowEqual** 会比较 Object.keys(state \| props) 的长度是否一致，每一个 key 是否两者都有，并且是否是同一个引用。如果不是同一个引用的话，自然是判断失效，所以浅层判等的检查结果会导致 React Redux 重新渲染包装的组件。
+
+这种额外的重新渲染也可以避免，使用 reducer 将对象数组保存到 state，**利用 reselect 缓存映射的数组**，或者在组件的 shouldComponentUpdate 方法中，采用 `_.isEqual` 等对 props 进行更深层次的比较。注意在自定义的 shouldComponentUpdate() 方法中不要采用了比重新渲染本身更为昂贵的实现。可以使用分析器评估方案的性能。
+
+对于独立的组件，也许你想检查传入的 props。一个普遍存在的问题就是在 render 方法中绑定父组件的回调，比如 `<Child onClick={this.handleClick.bind(this)} />`。这样就会在每次父组件重新渲染时重新生成一个函数的引用。所以只在父组件的构造函数中绑定一次回调是更好的做法，可以使用 **useCallback** 等，具体也可以[参考 react hooks 章节]( {{site.url}}/2019/04/16/react-hooks.html#usecallback--usememo )。
+
+### Hooks
 
 #### useSelector
 
-好消息好消息，在 React hooks 火遍大江南北之后，React Redux 也终于抛弃了 HOC connect，提供了几个实用的钩子，下面就来简单介绍下，详细可以[参考下文档](https://react-redux.js.org/api/hooks#useselector-examples) 👈
+> 好消息好消息，在 React hooks 火遍大江南北之后，React Redux 也终于抛弃了 HOC connect，提供了几个实用的钩子，下面就来简单介绍下，详细可以[参考下文档](https://react-redux.js.org/api/hooks#useselector-examples) 👈
 
 这个 selector 方法类似于上述的 connect 的 mapStateToProps 参数的概念，并且 useSelector 会订阅 store, 当 action 被 dispatched 的时候，会运行 selector。两者有以下的一些差异:
 
-* selector 会返回任何值作为结果，并不仅限于对象
-* 当 action 被 dispatched 的时候，useSelector 将对前一个 selector 结果值和当前结果值进行比较。如果不同，则重新渲染。useSelector 默认使用 === (严格相等)进行相等性检查，而不是 ==。connect 使用的是浅比较
+* selector 会返回任何值作为结果，并不仅限于对象，这对于决定是否重新渲染有很大的帮助
+* 当 action 被 dispatched 的时候，useSelector 将对前一个 selector 结果值和当前结果值进行比较。如果不同，则重新渲染。useSelector 默认使用 === (严格相等)进行相等性检查，而 connect 使用的是浅比较。当然如果要使用浅比较的话，可以传入第二个参数: `useSelector(selector, shallowEqual)`
 * selector 不会接收 ownProps 参数，但是，可以通过闭包或使用柯里化 selector 来使用 props
 
-如果我们要用多个 selector 值，没关系，多次调用 useSelector 都会创建 redux store 的单个订阅。由于 react-redux v7 版本使用的 react 的批量(batching)更新行为，同个组件中，多次 useSelector 返回的值只会重新渲染一次。或者我们也可以借助之前讲到的 reselect 库，可以将数据一并处理并统一返回单个 selector。使用 memoize selector 时必须考虑多个组件实例且需要获取组件 props 的情况，具体可以参考 [reselect 小节](( {{site.url}}/2020/04/28/react-redux-toolkit.html#createselector--reselect ))。这里也举个例子:
+```JS
+const result: any = useSelector(selector: Function, equalityFn?: Function)
+```
+
+我们不妨来做个组件渲染的对比:
+
+```JS
+// https://stackoverflow.com/questions/58212159/strict-equality-versus-shallow-equality-checks-in-react-redux
+// old
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => ({
+  keyA: state.reducerA.keyA, // string
+  keyB: state.reducerB.keyB,
+})
+export default connect(mapStateToProps)(MyComponent)
+```
+
+我们可以看到，mapStateToProps 返回了一组拼接的对象，基于上面讲到的 connect 会做浅比较，因为无论怎么修改 keyA 或 keyB，都会引发重新渲染，我们改造下:
+
+```JS
+import { useSelector } from 'react-redux'
+
+function MyComponent(props) {
+  const keyA = useSelector(state => state.reducerA.keyA)
+  const keyB = useSelector(sate => state.reducerB.keyB)
+  // ...
+}
+```
+
+我们可以看到，如果 keyA 或 keyB 没有更改的话，useSelector 默认用 === 来比较，因此就不会触发重复渲染。就像上面展示的，如果我们要用多个 selector 值，没关系，多次调用 useSelector 都会创建 redux store 的单个订阅。由于 react-redux v7 版本使用的 react 的批量(batching)更新行为，同个组件中，多次 useSelector 返回的值只会重新渲染一次。或者我们也可以借助之前讲到的 reselect 库，可以将数据一并处理并统一返回单个 memoized selector。使用时必须考虑多个组件实例且需要获取组件 props 的情况，具体可以参考 [reselect 章节]( {{site.url}}/2020/04/28/react-redux-toolkit.html#createselector--reselect )。这里也举个例子:
 
 ```JS
 import React from 'react'

@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  React Hooks
 date:   2019-04-16 20:33:00 GMT+0800 (CST)
-update: 2020-09-01 14:15:00 GMT+0800 (CST)
+update: 2020-10-05 17:41:00 GMT+0800 (CST)
 background-image: /style/images/smms/react.png
 tags:
 - React
@@ -25,7 +25,6 @@ tags:
 #### 高阶函数 HOC
 
 高阶函数用来重用组件逻辑，本质就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件:
-
 
 ```JSX
 // Our HOC
@@ -661,7 +660,7 @@ function Child({ callback }) {
 
 ### shouldComponentUpdate
 
-为了优化组件的性能，我们应当组织不必要的渲染。对于上面举的场景栗子，以往的解决方案则是用 `shouldComponentUpdate` 或 `PureComponent`:
+为了优化组件的性能，我们应当阻止不必要的渲染。对于上面举的场景栗子，以往的解决方案则是用 `shouldComponentUpdate` 或 `PureComponent`:
 
 ```JSX
 // 利用 shouldComponentUpdate 生命周期
@@ -683,11 +682,58 @@ React v15.5 中新加了一个 **PureComponent** 类，可以让我们避免写�
 + class TestC extends React.PureComponent {
 ```
 
-它的原理是当组件更新时，如果组件的 props 和 state 都没发生改变，render 方法就不会触发，省去 Virtual DOM 的生成和比对过程，达到提升性能的目的。具体就是 React 自动帮我们做了一层浅比较，**shallowEqual** 会比较 Object.keys(state \| props) 的长度是否一致，每一个 key是否两者都有，并且是否是同一个引用:
+它的原理是当组件更新时，如果组件的 props 和 state 都没发生改变，render 方法就不会触发，省去 Virtual DOM 的生成和比对过程，达到提升性能的目的。具体就是 React 自动帮我们做了一层浅比较，**shallowEqual** 会比较 Object.keys(state \| props) 的长度是否一致，每一个 key 是否两者都有，并且是否是同一个引用:
 
 ```JS
 if (this._compositeType === CompositeTypes.PureClass) {
   shouldUpdate = !shallowEqual(prevProps, nextProps) || !shallowEqual(inst.state, nextState)
+}
+```
+
+其实现如下:
+
+```JS
+// https://github.com/reduxjs/react-redux/blob/master/src/utils/shallowEqual.js
+function is(x, y) {
+  if (x === y) {
+    return x !== 0 || y !== 0 || 1 / x === 1 / y
+  } else {
+    return x !== x && y !== y
+  }
+}
+
+/**
+ * Performs equality by iterating through keys on an object and returning false
+ * when any key has values which are not strictly equal between the arguments.
+ * Returns true when the values of all keys are strictly equal.
+ */
+export default function shallowEqual(objA, objB) {
+  if (is(objA, objB)) return true
+
+  if (
+    typeof objA !== 'object' ||
+    objA === null ||
+    typeof objB !== 'object' ||
+    objB === null
+  ) {
+    return false
+  }
+
+  const keysA = Object.keys(objA)
+  const keysB = Object.keys(objB)
+
+  if (keysA.length !== keysB.length) return false
+
+  for (let i = 0; i < keysA.length; i++) {
+    if (
+      !Object.prototype.hasOwnProperty.call(objB, keysA[i]) ||
+      !is(objA[keysA[i]], objB[keysA[i]])
+    ) {
+      return false
+    }
+  }
+
+  return true
 }
 ```
 
@@ -802,6 +848,8 @@ export function Home() {
 <iframe src="https://codesandbox.io/embed/kw864l6l07?fontsize=14" title="List of Users with shortcuts custom effect" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 > React Hooks 不仅仅是这些，还有很多其他的，详情可以[参考 API](https://react.docschina.org/docs/hooks-reference.html) 👈
+
+> 其他钩子，比如 React Redux Hooks 可以[参考这里]( {{site.url}}/2018/08/07/react-redux.html#hooks )，还有 React Router 可以[参考这里]( {{site.url}}/2018/08/06/react-react-router.html#hooks )
 
 ## 参考链接
 

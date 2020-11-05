@@ -175,7 +175,7 @@
                       发布时间：2020-04-28 14:11:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2020-11-02 15:22:00
+                        修改时间：2020-11-05 17:09:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -619,6 +619,27 @@ createSlice({
   <li>Selectors are composable. They can be used as input to other selectors.</li>
 </ul>
 
+<pre><code class="language-JS">createSelector(...inputSelectors | [inputSelectors], resultFunc)
+</code></pre>
+
+<pre><code class="language-JS">const mySelector = createSelector(
+  state =&gt; state.values.value1,
+  state =&gt; state.values.value2,
+  (value1, value2) =&gt; value1 + value2
+)
+
+// You can also pass an array of selectors
+const totalSelector = createSelector(
+  [
+    state =&gt; state.values.value1,
+    state =&gt; state.values.value2
+  ],
+  (value1, value2) =&gt; value1 + value2
+)
+</code></pre>
+
+<p>Reselect provides a function createSelector for creating memoized selectors. <strong>createSelector takes an array of input-selectors and a transform function as its arguments. If the Redux state tree is changed in a way that causes the value of an input-selector to change, the selector will call its transform function with the values of the input-selectors as arguments and return the result</strong>. If the values of the input-selectors are the same as the previous call to the selector, it will return the previously computed value instead of calling the transform function:</p>
+
 <pre><code class="language-JS">import { createSelector } from 'reselect'
 
 const shopItemsSelector = state =&gt; state.shop.items
@@ -635,6 +656,7 @@ const taxSelector = createSelector(
   (subtotal, taxPercent) =&gt; subtotal * (taxPercent / 100)
 )
 
+// A memoized selector can itself be an input-selector to another memoized selector.
 export const totalSelector = createSelector(
   subtotalSelector,
   taxSelector,
@@ -654,6 +676,26 @@ let exampleState = {
 console.log(subtotalSelector(exampleState)) // 2.15
 console.log(taxSelector(exampleState))      // 0.172
 console.log(totalSelector(exampleState))    // { total: 2.322 }
+</code></pre>
+
+<p>createSelector determines if the value returned by an input-selector has changed between calls using <strong>reference equality (===)</strong>. <strong>Inputs to selectors created with createSelector should be immutable</strong>，mutating an existing object will not trigger the selector to recompute because mutating an object does not change its identity.so returning a new object on each update means that the selector will recompute on each update.Alternatively, the default <code class="highlighter-rouge">equalityCheck</code> function in the selector can be replaced by a deep equality check:</p>
+
+<pre><code class="language-JS">import isEqual from 'lodash.isequal'
+
+// create a "selector creator" that uses lodash.isequal instead of ===
+const createDeepEqualSelector = createSelectorCreator(
+  defaultMemoize,
+  isEqual
+)
+</code></pre>
+
+<pre><code class="language-JS">// https://lodash.com/docs/#isEqual
+const object = { 'a': 1 }
+const other = { 'a': 1 }
+
+_.isEqual(object, other) // =&gt; true
+
+object === other // =&gt; false
 </code></pre>
 
 <p><strong>在使用 reselect 的时候，一定要注意多个组件实例且需要获取组件 props 的场景</strong>，可以参考<a href="https://github.com/reduxjs/reselect#accessing-react-props-in-selectors">官方文档</a>。假设有多个 VisibleTodoList 组件，而公共组件内部又使用了 reselect，并且依赖不同的 props 值，那么 selector 的值将无法正确被缓存:</p>
@@ -737,6 +779,10 @@ export default makeGetVisibleTodos
   return mapStateToProps
 }
 </code></pre>
+
+<blockquote>
+  <p>更多 reselect 可以参考 <a href="https://redux.js.org/recipes/computing-derived-data">Computing Derived Data</a> 👈</p>
+</blockquote>
 
 <h2 id="接入-typescript">接入 Typescript</h2>
 

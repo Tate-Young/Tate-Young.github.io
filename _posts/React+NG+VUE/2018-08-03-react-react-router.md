@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  React & React Router
 date:   2018-08-06 20:47:00 GMT+0800 (CST)
-update: 2020-09-03 11:22:00 GMT+0800 (CST)
+update: 2020-11-05 17:41:00 GMT+0800 (CST)
 background-image: /style/images/smms/react.png
 tags:
 - React
@@ -717,9 +717,11 @@ React Router 提供了以下三种组件用于在应用中创建链接:
 <Redirect to="/login" />
 ```
 
-### WithRouters
+### WithRouters (Deprecated)
 
-可通过 **withRouter** 高阶组件来获取 history 对象的属性和 \<Route\> 中的 match， withRouter 会将已更新的 **match**, **location**, 和 **history** 属性传递到被包裹的组件当中，无论它在哪儿渲染.
+> 不如用钩子 😊
+
+可通过 **withRouter** 高阶组件来获取 history 对象的属性和 \<Route\> 中的 match， withRouter 会将已更新的 **match**, **location**, 和 **history** 属性传递到被包裹的组件当中，无论它在哪儿渲染:
 
 ```JSX
 import { withRouter } from "react-router";
@@ -740,6 +742,21 @@ function ComponentWithRegex({ match }) {
 
 ...
 const ShowTheLocationWithRouter = withRouter(ShowTheLocation);
+```
+
+### Hooks
+
+喜大普奔，React Router 也更新提供了钩子，目前有这四个，我们可以愉快地扔掉高阶函数 withRouter 了:
+
+* useHistory - 获取 history 事例，`history.push("/home")`
+* useLocation - 获取 location 对象，`ga.send(["pageview", location.pathname])`
+* useParams - 获取 `match.params` 路由参数
+* useRouteMatch - It’s mostly useful for getting access to the match data without actually rendering a `<Route>`.
+
+```JS
+import { useParams } from 'react-router-dom'
+
+const { client = '' } = useParams<IRouterParams>()
 ```
 
 ## 参考链接

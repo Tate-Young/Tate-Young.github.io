@@ -175,7 +175,7 @@
                       发布时间：2018-08-06 20:47:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2020-09-03 11:22:00
+                        修改时间：2020-11-05 17:41:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -952,9 +952,13 @@ const App = () =&gt; {
 &lt;Redirect to="/login" /&gt;
 </code></pre>
 
-<h3 id="withrouters">WithRouters</h3>
+<h3 id="withrouters-deprecated">WithRouters (Deprecated)</h3>
 
-<p>可通过 <strong>withRouter</strong> 高阶组件来获取 history 对象的属性和 &lt;Route&gt; 中的 match， withRouter 会将已更新的 <strong>match</strong>, <strong>location</strong>, 和 <strong>history</strong> 属性传递到被包裹的组件当中，无论它在哪儿渲染.</p>
+<blockquote>
+  <p>不如用钩子 😊</p>
+</blockquote>
+
+<p>可通过 <strong>withRouter</strong> 高阶组件来获取 history 对象的属性和 &lt;Route&gt; 中的 match， withRouter 会将已更新的 <strong>match</strong>, <strong>location</strong>, 和 <strong>history</strong> 属性传递到被包裹的组件当中，无论它在哪儿渲染:</p>
 
 <pre><code class="language-JSX">import { withRouter } from "react-router";
 ...
@@ -974,6 +978,22 @@ function ComponentWithRegex({ match }) {
 
 ...
 const ShowTheLocationWithRouter = withRouter(ShowTheLocation);
+</code></pre>
+
+<h3 id="hooks">Hooks</h3>
+
+<p>喜大普奔，React Router 也更新提供了钩子，目前有这四个，我们可以愉快地扔掉高阶函数 withRouter 了:</p>
+
+<ul>
+  <li>useHistory - 获取 history 事例，<code class="highlighter-rouge">history.push("/home")</code></li>
+  <li>useLocation - 获取 location 对象，<code class="highlighter-rouge">ga.send(["pageview", location.pathname])</code></li>
+  <li>useParams - 获取 <code class="highlighter-rouge">match.params</code> 路由参数</li>
+  <li>useRouteMatch - It’s mostly useful for getting access to the match data without actually rendering a <code class="highlighter-rouge">&lt;Route&gt;</code>.</li>
+</ul>
+
+<pre><code class="language-JS">import { useParams } from 'react-router-dom'
+
+const { client = '' } = useParams&lt;IRouterParams&gt;()
 </code></pre>
 
 <h2 id="参考链接">参考链接</h2>
