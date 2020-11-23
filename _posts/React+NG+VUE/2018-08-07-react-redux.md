@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Redux & Redux-Saga
 date:   2018-08-07 18:15:00 GMT+0800 (CST)
-update: 2020-11-05 17:09:00 GMT+0800 (CST)
+update: 2020-11-23 15:32:00 GMT+0800 (CST)
 background-image: /style/images/smms/redux.png
 tags:
 - React
@@ -456,7 +456,22 @@ export default combineReducers({
 
 ##### 为何组件频繁的重新渲染
 
-React Redux 采取了很多的优化手段，保证组件直到必要时才执行重新渲染。一种是对 mapStateToProps 和 mapDispatchToProps 生成后传入 connect 的 props 对象进行浅层的判等检查。遗憾的是，如果当 mapStateToProps 调用时都生成新的数组或对象实例的话，此种情况下的浅层判等不会起任何作用。因为 **shallowEqual** 会比较 Object.keys(state \| props) 的长度是否一致，每一个 key 是否两者都有，并且是否是同一个引用。如果不是同一个引用的话，自然是判断失效，所以浅层判等的检查结果会导致 React Redux 重新渲染包装的组件。
+React Redux 采取了很多的优化手段，保证组件直到必要时才执行重新渲染。一种是对 mapStateToProps 和 mapDispatchToProps 生成后传入 connect 的 props 对象进行浅层的判等检查。默认情况下，React Redux 使用 === 比较（“浅相等性”检查），在返回对象的每个字段上确定从 mapStateToProps 返回的对象的内容是否不同。如果任何字段已更改，则将重新渲染您的组件，以便它可以将更新的值作为 prop 接收。请注意，修改并返回相同引用的对象是一个常见错误，它可能导致组件在预期时无法重新呈现。总结如下:
+
+|  | `(state) => stateProps` | `(state, ownProps) => stateProps` |
+| ------------ | ------- | ----- |
+| mapStateToProps runs when: | store state changes | store state changes or any field of ownProps is different |
+| component re-renders when: | any field of stateProps is different | any field of stateProps is different or any field of ownProps is different |
+
+> it calls `store.getState()` and checks to see if `lastState === currentState`. If the two state values are identical by reference, then it will not re-run your mapStateToProps function
+
+**shallowEqual** 会比较 `Object.keys(state \| props)` 的长度是否一致，每一个 key 是否两者都有，并且是否是同一个引用。如果不是同一个引用的话，自然是判断失效。但是如果返回新的对象或数组引用，即使数据实际上相同，这也会导致组件重新渲染。常见的一些会导致创建新的对象或数组引用的方式:
+
+1. Creating new arrays with `someArray.map()` or `someArray.filter()`
+1. Merging arrays with `array.concat`
+1. Selecting portion of an array with `array.slice`
+1. Copying values with `Object.assign`
+1. Copying values with the spread operator `{ ...oldState, ...newData }`
 
 这种额外的重新渲染也可以避免，使用 reducer 将对象数组保存到 state，**利用 reselect 缓存映射的数组**，或者在组件的 shouldComponentUpdate 方法中，采用 `_.isEqual` 等对 props 进行更深层次的比较。注意在自定义的 shouldComponentUpdate() 方法中不要采用了比重新渲染本身更为昂贵的实现。可以使用分析器评估方案的性能。
 
@@ -470,19 +485,19 @@ React Redux 采取了很多的优化手段，保证组件直到必要时才执�
 
 这个 selector 方法类似于上述的 connect 的 mapStateToProps 参数的概念，并且 useSelector 会订阅 store, 当 action 被 dispatched 的时候，会运行 selector。两者有以下的一些差异:
 
-* selector 会返回任何值作为结果，并不仅限于对象，这对于决定是否重新渲染有很大的帮助
-* 当 action 被 dispatched 的时候，useSelector 将对前一个 selector 结果值和当前结果值进行比较。如果不同，则重新渲染。useSelector 默认使用 === (严格相等)进行相等性检查，而 connect 使用的是浅比较。当然如果要使用浅比较的话，可以传入第二个参数: `useSelector(selector, shallowEqual)`
+* selector 会返回任何值作为结果，并不仅限于对象
+* 对于 mapState 而言，所有值都会合并成一个对象进行返回，这个对象无所谓是新引用还是旧引用，因为 connect 都会一一做比较；而对于 useSelector 默认使用 === (严格相等)进行相等性检查，每次返回新的对象都会触发新的渲染，当然如果要使用浅比较的话，可以传入第二个参数: `useSelector(selector, shallowEqual)`
 * selector 不会接收 ownProps 参数，但是，可以通过闭包或使用柯里化 selector 来使用 props
+* 每次组件渲染都会生成一个 selector 实例，只要是不用维护组件内部 state，都是 ok 的。否则推荐使用 `memoizing selectors` （如 reselect）
 
 ```JS
 const result: any = useSelector(selector: Function, equalityFn?: Function)
 ```
 
-我们不妨来做个组件渲染的对比:
+为啥默认使用 ===，而不是 shallowEqual，我们不妨来做个组件渲染的对比:
 
 ```JS
 // https://stackoverflow.com/questions/58212159/strict-equality-versus-shallow-equality-checks-in-react-redux
-// old
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => ({
@@ -492,7 +507,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(MyComponent)
 ```
 
-我们可以看到，mapStateToProps 返回了一组拼接的对象，基于上面讲到的 connect 会做浅比较，因为无论怎么修改 keyA 或 keyB，都会引发重新渲染，我们改造下:
+我们可以看到，mapStateToProps 返回了一组拼接的对象，只要 store 变化就会触发，无论是否修改 keyA 或 keyB，都需要通过浅比较来判断是否需要渲染（当然如果 keyA 和 keyB 都没改变的话，不用触发重新渲染，但是浅比较还是依然执行的），我们改造下:
 
 ```JS
 import { useSelector } from 'react-redux'
@@ -504,7 +519,13 @@ function MyComponent(props) {
 }
 ```
 
-我们可以看到，如果 keyA 或 keyB 没有更改的话，useSelector 默认用 === 来比较，因此就不会触发重复渲染。就像上面展示的，如果我们要用多个 selector 值，没关系，多次调用 useSelector 都会创建 redux store 的单个订阅。由于 react-redux v7 版本使用的 react 的批量(batching)更新行为，同个组件中，多次 useSelector 返回的值只会重新渲染一次。或者我们也可以借助之前讲到的 reselect 库，可以将数据一并处理并统一返回单个 memoized selector。使用时必须考虑多个组件实例且需要获取组件 props 的情况，具体可以参考 [reselect 章节]( {{site.url}}/2020/04/28/react-redux-toolkit.html#createselector--reselect )。这里也举个例子:
+我们可以看到，keyA 和 keyB 都可以写成独立的，不再是一个拼接的对象，从这一角度来讲，useSelector 默认用 === 来比较的话更适合。如果我们需要引入多个 selector 怎么办，目前有以下三种方式:
+
+* **多次调用 useSeletor** - 就像上面展示的，如果我们要用多个 selector 值，没关系，多次调用 useSelector 都会创建 redux store 的单个订阅。由于 react-redux v7 版本使用的 react 的批量(batching)更新行为，同个组件中，多次 useSelector 返回的值只会重新渲染一次。
+* **使用 memoized selector** - 我们也可以借助之前讲到的 reselect 库，可以将数据一并处理并统一返回单个 memoized selector。使用时必须考虑多个组件实例且需要获取组件 props 的情况，具体可以参考 [reselect 章节]( {{site.url}}/2020/04/28/react-redux-toolkit.html#createselector--reselect )
+* **使用 shallowEqual** - 仍旧返回一个合并对象，但是可以传入第二个参数: `useSelector(selector, shallowEqual)`
+
+这里也举个例子:
 
 ```JS
 import React from 'react'
