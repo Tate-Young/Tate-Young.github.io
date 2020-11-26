@@ -38,6 +38,7 @@ const name: string = 'tate'
 // 数组
 const list: number[] = [1, 2, 3]
 const list: Array<number> = [1, 2, 3] // 第二种方式是使用数组泛型，Array<元素类型>
+const values: (string | number)[] = ['Apple', 2, 'Orange', 3, 4, 'Banana']
 ```
 
 #### 元组
