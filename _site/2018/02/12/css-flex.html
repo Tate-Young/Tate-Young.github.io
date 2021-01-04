@@ -175,6 +175,8 @@
                       发布时间：2018-02-12 11:35:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2021-01-04 17:13:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -214,7 +216,7 @@
 
 <p><strong>伸缩盒(Flexible Box)</strong> 模型如下，flex 布局由父级容器 flex container 及其下一级子元素 flex items 构成。</p>
 
-<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/CSS3-Flexbox-Model.jpg" alt="flex-container" /></p>
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/10/01-container.svg" alt="flex-container" /></p>
 
 <pre><code class="language-CSS">/* To use flexbox layout just set the display property on the parent HTML element */
 .flex-container {
@@ -277,13 +279,15 @@
 flex-direction：row | row-reverse | column | column-reverse
 </code></pre>
 
-<p><img src="https://css-tricks.com/wp-content/uploads/2013/04/flex-direction2.svg" alt="flex-direction" /></p>
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/10/flex-direction.svg" alt="flex-direction" /></p>
 
 <h3 id="flex-wrap">flex-wrap</h3>
 
 <pre><code class="language-CSS">/* 定义是否换行显示，主轴默认为一排显示 */
 flex-wrap：nowrap | wrap | wrap-reverse
 </code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/10/flex-wrap.svg" alt="flex-wrap" /></p>
 
 <h3 id="flex-flow">flex-flow</h3>
 
@@ -297,19 +301,23 @@ flex-flow：&lt;' flex-direction '&gt; || &lt;' flex-wrap '&gt;
 justify-content：flex-start | flex-end | center | space-between | space-around | space-evenly
 </code></pre>
 
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/10/justify-content.svg" alt="justify-content" /></p>
+
 <h3 id="align-items">align-items</h3>
 
 <pre><code class="language-CSS">/* 定义项目在交叉轴(cross axis)上的对齐方式 */
 align-items: flex-start | flex-end | center | baseline | stretch;
 </code></pre>
 
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png" alt="align-items.png" /></p>
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/10/align-items.svg" alt="align-items.png" /></p>
 
 <h3 id="align-content">align-content</h3>
 
 <pre><code class="language-CSS">/* 多根轴线的对齐方式，布局思路同上。如果项目只有一根轴线(非换行)，该属性不起作用 */
 align-content: flex-start | flex-end | center | space-between | space-around | stretch;
 </code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/10/align-content.svg" alt="align-content" /></p>
 
 <h2 id="item-属性">item 属性</h2>
 
@@ -352,11 +360,11 @@ align-content: flex-start | flex-end | center | space-between | space-around | s
 
 <h3 id="order">order</h3>
 
-<pre><code class="language-CSS">/* 定义项目的排列顺序。数值越小，排列越靠前，默认为0 */
+<pre><code class="language-CSS">/* 定义项目的排列顺序。数值越小，排列越靠前，默认为 0 */
 order：&lt;integer&gt;
 </code></pre>
 
-<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-order.jpg" alt="order" /></p>
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/10/order.svg" alt="order" /></p>
 
 <h3 id="flex-grow">flex-grow</h3>
 
@@ -365,23 +373,19 @@ order：&lt;integer&gt;
 flex-grow：&lt;number&gt;
 </code></pre>
 
-<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-flex-grow-2.jpg" alt="flex-grow" /></p>
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/10/flex-grow.svg" alt="flex-grow" /></p>
 
 <h3 id="flex-shrink">flex-shrink</h3>
 
-<pre><code class="language-CSS">/* 定义了项目的缩小比例。不允许为负值，默认为1，即如果空间不足，该项目将缩小 */
+<pre><code class="language-CSS">/* 定义了项目的缩小比例。不允许为负值，默认为 1，即如果空间不足，该项目将缩小 */
 flex-shrink：&lt;number&gt;
 </code></pre>
-
-<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-flex-shrink.jpg" alt="flex-shrink" /></p>
 
 <h3 id="flex-basis">flex-basis</h3>
 
 <pre><code class="language-CSS">/* 定义了在分配多余空间之前，项目占据的主轴空间(main size) */
 flex-basis: &lt;length&gt; | auto; /* default auto */
 </code></pre>
-
-<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-flex-basis.jpg" alt="flex-basis" /></p>
 
 <h3 id="flex">flex</h3>
 
@@ -396,7 +400,7 @@ flex：none | &lt;' flex-grow '&gt; &lt;' flex-shrink &gt;'? || &lt;' flex-basis
 align-self：auto | flex-start | flex-end | center | baseline | stretch
 </code></pre>
 
-<p><img src="https://cdn.scotch.io/scotchy-uploads/2015/04/flexbox-align-self.jpg" alt="align-self" /></p>
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/10/align-self.svg" alt="align-self" /></p>
 
 <blockquote>
   <p>flex / grid 网页布局 <a href="https://demo.tutorialzine.com/2017/03/css-grid-vs-flexbox/">demo</a> 👈👈👈</p>
