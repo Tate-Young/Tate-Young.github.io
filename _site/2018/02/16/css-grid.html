@@ -175,6 +175,8 @@
                       发布时间：2018-02-16 23:24:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2021-01-04 17:03:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -247,7 +249,7 @@
   <tbody>
     <tr>
       <td style="text-align: left">grid-template-columns/rows</td>
-      <td style="text-align: left">定义网格的列和行</td>
+      <td style="text-align: left">定义网格的列宽和行高</td>
     </tr>
     <tr>
       <td style="text-align: left">grid-template-areas</td>
@@ -292,47 +294,73 @@
   </tbody>
 </table>
 
-<h3 id="grid-template-columns">grid-template-columns</h3>
+<h3 id="grid-template">grid-template</h3>
 
-<p>和 grid-template-rows 一起，使用空格分隔的值列表，用来定义网格的列和行。这些值表示<strong>网格轨道(Grid Track)</strong>大小，它们之间的空格表示网格线。</p>
+<p><code class="highlighter-rouge">grid-template</code> 属于 <code class="highlighter-rouge">grid-template-rows</code>、<code class="highlighter-rouge">grid-template-columns</code> 和 <code class="highlighter-rouge">grid-template-areas</code> 的复合属性，可以使用空格分隔的值列表，用来定义网格的列和行以及区域。这些值表示<strong>网格轨道(Grid Track)</strong>大小，它们之间的空格表示网格线。</p>
 
-<h4 id="网格轨道">网格轨道</h4>
+<h4 id="grid-template-columns">grid-template-columns</h4>
 
-<p>两条相邻网格线之间的空间，你可以把它们想象成网格的列或行。</p>
+<p>两条相邻网格线之间的空间，你可以把它们想象成网格的<strong>列高</strong>或<strong>行宽</strong>:</p>
 
-<pre><code class="language-CSS">/* &lt;track-size&gt;： 可以是长度值，百分比，或者等份网格容器中可用空间（使用 fr 单位） */
-grid-template-columns: &lt;track-size&gt; ... | &lt;line-name&gt; &lt;track-size&gt; ...;
-grid-template-rows: &lt;track-size&gt; ... | &lt;line-name&gt; &lt;track-size&gt; ...;
+<pre><code class="language-CSS">.item {
+  /* &lt;track-size&gt;： 可以是长度值，百分比，或者等份网格容器中可用空间（使用 fr 单位） */
+  grid-template-columns: &lt;track-size&gt; ... | &lt;line-name&gt; &lt;track-size&gt; ...;
+  grid-template-rows: &lt;track-size&gt; ... | &lt;line-name&gt; &lt;track-size&gt; ...;
+}
 </code></pre>
 
 <pre><code class="language-CSS">.grid-container {
+  /* 列宽 */
   grid-template-columns: 40px 50px auto 50px 40px;
+  /* 行高 */
   grid-template-rows: 25% 100px auto;
 }
 </code></pre>
 
-<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-numbers.png" alt="grid-template-columns" /></p>
+<p><img src="http://localhost:2333/style/images/smms/grid-template-rows-columns.png" alt="grid-template-rows-columns" /></p>
+
+<p>你还可以对网线进行命名，方便引用:</p>
+
+<pre><code class="language-CSS">/* 指定网格布局为 3行 x 3列，因此有 4 根垂直网格线和 4 根水平网格线。方括号里面依次是这八根线的名字 */
+.container {
+  display: grid;
+  grid-template-columns: [c1] 100px [c2] 100px [c3] auto [c4];
+  grid-template-rows: [r1] 100px [r2] 100px [r3] auto [r4];
+}
+</code></pre>
 
 <h4 id="repeat">repeat()</h4>
 
-<p>如果你的定义包含多个重复值，则可以使用 repeat() 表示法来简化定义：</p>
+<p>如果你的定义包含多个重复值，则可以使用 <strong>repeat()</strong> 表示法来简化定义:</p>
 
-<pre><code class="language-CSS">grid-template-columns: repeat(3, 20px [col-start]) 5%;
-/* 等同于 */
-grid-template-columns: 20px [col-start] 20px [col-start] 20px [col-start] 5%;
+<pre><code class="language-CSS">.item {
+  grid-template-columns: repeat(3, 20px) 5%;
+  /* 等同于 */
+  grid-template-columns: 20px 20px 20px 5%;
+}
 </code></pre>
 
 <h4 id="fr-可用空间">fr 可用空间</h4>
 
-<p>fr 单元允许你用等分网格容器剩余可用空间来设置网格轨道的大小。剩余可用空间是除去所有非灵活网格项之后计算得到的。</p>
+<p><strong>fr</strong> 单元允许你用等分网格容器剩余可用空间来设置网格轨道的大小。剩余可用空间是除去所有非灵活网格项之后计算得到的:</p>
 
-<pre><code class="language-CSS">/* 可用空间总量除去50px，再均分为三等分 */
-grid-template-columns: 1fr 50px 1fr 1fr;
+<pre><code class="language-CSS">/* 可用空间总量除去 50px，再均分为三等分 */
+.item {
+  grid-template-columns: 1fr 50px 1fr 1fr;
+}
 </code></pre>
 
-<h3 id="grid-template-areas">grid-template-areas</h3>
+<h4 id="minmax">minmax()</h4>
 
-<p>通过引用 grid-area 属性指定的<strong>网格区域(Grid Area)</strong>名称来定义网格模板。一个点号（.）代表一个空的网格单元。</p>
+<p><strong>minmax()</strong> 函数产生一个长度范围，表示长度就在这个范围之中。它接受两个参数，分别为最小值和最大值:</p>
+
+<pre><code class="language-CSS">/* minmax(100px, 1fr) 表示列宽不小于 100px，不大于 1fr */
+grid-template-columns: 1fr 1fr minmax(100px, 1fr);
+</code></pre>
+
+<h4 id="grid-template-areas">grid-template-areas</h4>
+
+<p>通过引用 <code class="highlighter-rouge">grid-area</code> 属性指定的<strong>网格区域(Grid Area)</strong>名称来定义网格模板。一个点号（.）代表一个空的网格单元:</p>
 
 <pre><code class="language-CSS">/* 创建一个 4 列 3 行的网格。 */
 /* 整个顶行将由 header 区域组成。 */
@@ -361,60 +389,25 @@ grid-template-columns: 1fr 50px 1fr 1fr;
 }
 </code></pre>
 
-<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/grid-template-areas.png" alt="grid-template-areas" /></p>
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/dddgrid-template-areas.svg" alt="grid-template-areas" /></p>
 
-<h3 id="grid-template">grid-template</h3>
+<h4 id="grid-gap">grid-gap</h4>
 
-<p>属于 grid-template-rows、grid-template-columns 和 grid-template-areas 的复合属性。</p>
+<p><code class="highlighter-rouge">grid-row-gap</code> 和 <code class="highlighter-rouge">grid-column-gap</code> 一样，指定<strong>网格线(grid lines)</strong>的大小，即设置列/行之间的间距:</p>
 
-<h3 id="grid-gap">grid-gap</h3>
+<pre><code class="language-CSS">.item {
+  /* grid-gap 为复合属性 */
+  /* 如果 grid-row-gap 没有定义，那么就会被设置为等同于 grid-column-gap 的值 */
+  grid-gap: &lt;grid-row-gap&gt; &lt;grid-column-gap&gt;;
 
-<p>grid-row-gap 和 grid-column-gap 一样，指定<strong>网格线(grid lines)</strong>的大小，即设置列/行之间的间距。</p>
-
-<pre><code class="language-CSS">/* grid-gap 为复合属性 */
-/* 如果 grid-row-gap 没有定义，那么就会被设置为等同于 grid-column-gap 的值 */
-grid-gap: &lt;grid-row-gap&gt; &lt;grid-column-gap&gt;;
-grid-column-gap: &lt;line-size&gt;;
-grid-row-gap: &lt;line-size&gt;;
+  grid-column-gap: &lt;line-size&gt;;
+  grid-row-gap: &lt;line-size&gt;;
+}
 </code></pre>
 
-<h3 id="justify-items">justify-items</h3>
+<h4 id="grid-auto-columns">grid-auto-columns</h4>
 
-<p>沿着 行轴线(row axis) 对齐 网格项(grid items) 内的内容。</p>
-
-<pre><code class="language-CSS">justify-items: start | end | center | stretch;
-</code></pre>
-
-<p><img src="http://localhost:2333/style/images/justify-items.png" alt="justify-items" /></p>
-
-<h3 id="align-items">align-items</h3>
-
-<p>沿着 列轴线(column axis) 对齐 网格项(grid items) 内的内容。</p>
-
-<pre><code class="language-CSS">align-items: start | end | center | stretch;
-</code></pre>
-
-<p><img src="http://localhost:2333/style/images/align-items.png" alt="align-items" /></p>
-
-<h3 id="justify-content">justify-content</h3>
-
-<p>设置网格容器内的网格的对齐方式。 此属性沿着 行轴线(row axis) 对齐网格</p>
-
-<pre><code class="language-CSS">/* 针对网格合计大小可能小于其 网格容器(grid container) 大小 */
-justify-content: start | end | center | stretch | space-around | space-between | space-evenly;
-</code></pre>
-
-<h3 id="align-content">align-content</h3>
-
-<p>设置网格容器内的网格的对齐方式。 此属性沿着 列轴线(column axis) 对齐网格</p>
-
-<pre><code class="language-CSS">/* 针对网格合计大小可能小于其 网格容器(grid container) 大小 */
-align-content: start | end | center | stretch | space-around | space-between | space-evenly;
-</code></pre>
-
-<h3 id="grid-auto-columns">grid-auto-columns</h3>
-
-<p>和 grid-auto-rows 指定任何自动生成的网格轨道(grid tracks)的大小，又称<strong>隐式网格轨道</strong>。在你明确定位的行或列（通过  grid-template-rows / grid-template-columns）超出定义的网格范围时，隐式网格轨道将被创建。</p>
+<p>和 <code class="highlighter-rouge">grid-auto-rows</code> 指定任何自动生成的网格轨道(grid tracks)的大小，又称<strong>隐式网格轨道</strong>。在你明确定位的行或列（通过  <code class="highlighter-rouge">grid-template-rows</code> / <code class="highlighter-rouge">grid-template-columns</code>）超出定义的网格范围时，隐式网格轨道将被创建:</p>
 
 <pre><code class="language-CSS">/* 第五和第六列网格线未被定义 */
 .item-a {
@@ -432,7 +425,7 @@ align-content: start | end | center | stretch | space-around | space-between | s
 }
 </code></pre>
 
-<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/implicit-tracks.png" alt="grid-tracks" /></p>
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/grid-auto-columns-rows-02.svg" alt="grid-tracks" /></p>
 
 <pre><code class="language-CSS">/* 指定这些隐式轨道的大小 */
 .grid-container {
@@ -440,18 +433,126 @@ align-content: start | end | center | stretch | space-around | space-between | s
 }
 </code></pre>
 
-<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2016/03/implicit-tracks-with-widths.png" alt="grid-auto-columns" /></p>
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/grid-auto-columns-rows-03.svg" alt="grid-auto-columns" /></p>
 
-<h3 id="grid-auto-flow">grid-auto-flow</h3>
+<h4 id="grid-auto-flow">grid-auto-flow</h4>
 
-<p>如果存在一些没有明确放置在网格上的网格项(grid items)，自动放置算法会自动放置这些网格项。该属性控制自动布局算法如何工作。</p>
+<p>如果存在一些没有明确放置在网格上的网格项(grid items)，自动放置算法会自动放置这些网格项。该属性控制自动布局算法如何工作:</p>
 
-<pre><code class="language-CSS">grid-auto-flow: row | column | row dense | column dense
+<pre><code class="language-CSS">.item {
+  grid-auto-flow: row | column | row dense | column dense
+}
+</code></pre>
+
+<h3 id="网格项对齐">网格项对齐</h3>
+
+<h4 id="justify-items">justify-items</h4>
+
+<p>沿着 行轴线(row axis) 对齐 网格项(grid items) 内的内容:</p>
+
+<pre><code class="language-CSS">.item {
+  justify-items: start | end | center | stretch;
+}
+</code></pre>
+
+<pre><code class="language-CSS">.item {
+  justify-items: start;
+}
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/justify-items-start.svg" alt="justify-items" /></p>
+
+<h4 id="align-items">align-items</h4>
+
+<p>沿着 列轴线(column axis) 对齐 网格项(grid items) 内的内容:</p>
+
+<pre><code class="language-CSS">.item {
+  align-items: start | end | center | stretch;
+}
+</code></pre>
+
+<pre><code class="language-CSS">.item {
+  align-items: start;
+}
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/align-items-start.svg" alt="align-items" /></p>
+
+<h4 id="place-items">place-items</h4>
+
+<p>属于 <code class="highlighter-rouge">align-items</code> 和  <code class="highlighter-rouge">justify-items</code> 的复合属性:</p>
+
+<pre><code class="language-CSS">.item {
+  /* 如果省略第二个值，则浏览器认为与第一个值相等 */
+  place-items: &lt;align-items&gt; &lt;justify-items&gt;
+  /* 例如 */
+  place-items: center;
+}
+</code></pre>
+
+<h3 id="网格容器对齐">网格容器对齐</h3>
+
+<h4 id="justify-content">justify-content</h4>
+
+<p>设置网格容器内的网格的对齐方式。此属性沿着 行轴线(row axis) 对齐网格:</p>
+
+<pre><code class="language-CSS">/* 针对网格合计大小可能小于其 网格容器(grid container) 大小 */
+.item {
+  justify-content: start | end | center | stretch | space-around | space-between | space-evenly;
+}
+</code></pre>
+
+<pre><code class="language-CSS">.item {
+  justify-content: start;
+}
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/justify-content-start.svg" alt="justify-content" /></p>
+
+<h4 id="align-content">align-content</h4>
+
+<p>设置网格容器内的网格的对齐方式。 此属性沿着 列轴线(column axis) 对齐网格</p>
+
+<pre><code class="language-CSS">/* 针对网格合计大小可能小于其 网格容器(grid container) 大小 */
+.item {
+  align-content: start | end | center | stretch | space-around | space-between | space-evenly;
+}
+</code></pre>
+
+<pre><code class="language-CSS">.item {
+  align-content: start;
+}
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/align-content-start.svg" alt="align-content" /></p>
+
+<h4 id="place-content">place-content</h4>
+
+<p>属于 <code class="highlighter-rouge">align-content</code> 和 <code class="highlighter-rouge">justify-content</code> 的复合属性:</p>
+
+<pre><code class="language-CSS">.item {
+  /* 同样如果省略第二个值，则浏览器认为与第一个值相等 */
+  place-content: &lt;align-content&gt; &lt;justify-content&gt;
+  /* 例如 */
+  place-content: center;
+}
 </code></pre>
 
 <h3 id="grid">grid</h3>
 
-<p>属于 grid-template-rows、grid-template-columns、grid-template-areas、grid-auto-rows、grid-auto-columns 和 grid-auto-flow 的复合属性。它还将 grid-column-gap 和 grid-column-gap 设置为初始值，即使它们不可以通过 grid 属性显式地设置。</p>
+<p>属于 <code class="highlighter-rouge">grid-template-rows、grid-template-columns、grid-template-areas、grid-auto-rows、grid-auto-columns 和 grid-auto-flow</code> 的复合属性:</p>
+
+<pre><code class="language-CSS">.container {
+  grid: 100px 300px / 3fr 1fr;
+}
+
+/* 等价于 */
+
+.container {
+  grid-template-rows: 100px 300px;
+  grid-template-columns: 3fr 1fr;
+}
+</code></pre>
 
 <pre><code class="language-CSS">/* 此用例的grid属性相当于grid-template */
 .grid-container {
@@ -474,8 +575,130 @@ align-content: start | end | center | stretch | space-around | space-between | s
 <h2 id="item-属性">item 属性</h2>
 
 <blockquote>
-  <p>未完待续</p>
+  <p>注意：<code class="highlighter-rouge">float，display: inline-block，display: table-cell，vertical-align 和 column-*</code> 属性对网格项无效。</p>
 </blockquote>
+
+<h3 id="grid-column-start--grid-row-start">grid-column-start / grid-row-start</h3>
+
+<p>通过引用特定网格线(grid lines) 来确定 网格项(grid item) 在网格内的位置。 <code class="highlighter-rouge">grid-column-start / grid-row-start</code> 是网格项开始的网格线，<code class="highlighter-rouge">grid-column-end / grid-row-end</code> 是网格项结束的网格线:</p>
+
+<ul>
+  <li>&lt;line&gt; - 可以是一个数字引用一个编号的网格线，或者一个名字来引用一个命名的网格线</li>
+  <li>span &lt;number&gt; - 该网格项将跨越所提供的网格轨道数量</li>
+  <li>span &lt;name&gt; - 该网格项将跨越到它与提供的名称位置</li>
+  <li>auto - 表示自动放置，自动跨度，默认会扩展一个网格轨道的宽度或者高度</li>
+</ul>
+
+<pre><code class="language-CSS">.item {
+  grid-column-start: &lt;number&gt; | &lt;name&gt; | span &lt;number&gt; | span &lt;name&gt; | auto;
+  grid-column-end: &lt;number&gt; | &lt;name&gt; | span &lt;number&gt; | span &lt;name&gt; | auto;
+  grid-row-start: &lt;number&gt; | &lt;name&gt; | span &lt;number&gt; | span &lt;name&gt; | auto;
+  grid-row-end: &lt;number&gt; | &lt;name&gt; | span &lt;number&gt; | span &lt;name&gt; | auto;
+}
+</code></pre>
+
+<pre><code class="language-CSS">.item-a {
+  grid-column-start: 2;
+  grid-column-end: five;
+  grid-row-start: row1-start;
+  grid-row-end: 3;
+}
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/grid-column-row-start-end-01.svg" alt="grid-column-start" /></p>
+
+<pre><code class="language-CSS">/* span 2 表示跨越两个网格，即 grid-row-end 相当于 4 */
+.item-b {
+  grid-column-start: 1;
+  grid-column-end: span col4-start;
+  grid-row-start: 2;
+  grid-row-end: span 2;
+}
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/grid-column-row-start-end-02.svg" alt="grid-column-start span" /></p>
+
+<blockquote>
+  <p>若 <code class="highlighter-rouge">grid-column-end/grid-row-end</code> 没有定义, 则默认跨越一个网格 👈</p>
+</blockquote>
+
+<h3 id="grid-column--grid-row">grid-column / grid-row</h3>
+
+<p>分别为 <code class="highlighter-rouge">grid-column-start / grid-column-end</code> 和 <code class="highlighter-rouge">grid-row-start / grid-row-end</code> 的简写形式:</p>
+
+<pre><code class="language-CSS">.item {
+  grid-column: &lt;start-line&gt; / &lt;end-line&gt; | &lt;start-line&gt; / span &lt;value&gt;;
+  grid-row: &lt;start-line&gt; / &lt;end-line&gt; | &lt;start-line&gt; / span &lt;value&gt;;
+}
+</code></pre>
+
+<pre><code class="language-CSS">.item-c {
+  grid-column: 3 / span 2;
+  grid-row: third-line / 4;
+}
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/grid-column-row.svg" alt="grid-column" /></p>
+
+<h3 id="grid-area">grid-area</h3>
+
+<p><code class="highlighter-rouge">grid-area</code> 为网格项提供一个名称，以便可以 被使用网格容器 <code class="highlighter-rouge">grid-template-areas</code> 属性创建的模板进行引用，上面已经有栗子了。不过它还有另外一个用法，这个属性可以用作 <code class="highlighter-rouge">grid-row-start / grid-column-start / grid-row-end / grid-column-end</code> 的简写:</p>
+
+<pre><code class="language-CSS">.item {
+  grid-area: &lt;name&gt; | &lt;row-start&gt; / &lt;column-start&gt; / &lt;row-end&gt; / &lt;column-end&gt;;
+}
+</code></pre>
+
+<pre><code class="language-CSS">.item-d {
+  grid-area: 1 / col4-start / last-line / 6;
+}
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/grid-area.svg" alt="grid-area" /></p>
+
+<h3 id="justify-self">justify-self</h3>
+
+<p>沿着 inline（行）轴线对齐网格项（ 相反的属性是 <code class="highlighter-rouge">align-self</code> ，沿着 block（列）轴线对齐）。此值适用于单个网格项内的内容:</p>
+
+<pre><code class="language-CSS">.item {
+  justify-self: start | end | center | stretch;
+}
+</code></pre>
+
+<pre><code class="language-CSS">.item {
+  justify-self: start;
+}
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/justify-self-start.svg" alt="justify-self" /></p>
+
+<h3 id="align-self">align-self</h3>
+
+<p>沿着 block（列）轴线对齐网格项(grid items)（ 相反的属性是 <code class="highlighter-rouge">justify-self</code> ，沿着 inline（行）轴线对齐）。此值适用于单个网格项内的内容:</p>
+
+<pre><code class="language-CSS">.item {
+  align-self: start | end | center | stretch;
+}
+</code></pre>
+
+<pre><code class="language-CSS">.item {
+  align-self: start;
+}
+</code></pre>
+
+<p><img src="https://css-tricks.com/wp-content/uploads/2018/11/align-self-start.svg" alt="align-self" /></p>
+
+<h3 id="place-self">place-self</h3>
+
+<p>属于 <code class="highlighter-rouge">align-self</code> 和 <code class="highlighter-rouge">justify-self</code> 的复合属性:</p>
+
+<pre><code class="language-CSS">.item {
+  /* 同样如果省略第二个值，则浏览器认为与第一个值相等 */
+  place-self: &lt;align-self&gt; &lt;justify-self&gt;
+  /* 例如 */
+  place-self: center;
+}
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
