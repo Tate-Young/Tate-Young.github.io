@@ -7,6 +7,7 @@ background: purple
 category: 前端
 title:  CSS 换行与断词
 date:   2018-04-13 09:59:00 GMT+0800 (CST)
+update: 2021-01-06 14:40:00 GMT+0800 (CST)
 background-image: /style/images/smms/html-css.png
 tags:
 - css
@@ -45,26 +46,26 @@ li,.post-content p{word-wrap:normal !important;word-break:normal !important;}
 </style>
 
 <ul class="test">
-	<li class="normal">
-		<strong>normal：</strong>
-		<p>iamalonglonglonglonglonglonglonglonglongword</p>
-	</li>
-	<li class="keep-all">
-		<strong>keep-all：</strong>
-		<p>iamalonglonglonglonglonglonglonglonglongword</p>
-	</li>
-	<li class="keep-all">
-		<strong>keep-all：</strong>
-		<p>This is a very looooooooooooooooooooooooog word</p>
-	</li>
-	<li class="break-all">
-		<strong>break-word：</strong>
-		<p>iamalonglonglonglonglonglonglonglonglongword</p>
-	</li>
-	<li class="break-all">
-		<strong>break-word：</strong>
-		<p>This is a very looooooooooooooooooooooooog word</p>
-	</li>
+  <li class="normal">
+    <strong>normal：</strong>
+    <p>iamalonglonglonglonglonglonglonglonglongword</p>
+  </li>
+  <li class="keep-all">
+    <strong>keep-all：</strong>
+    <p>iamalonglonglonglonglonglonglonglonglongword</p>
+  </li>
+  <li class="keep-all">
+    <strong>keep-all：</strong>
+    <p>This is a very looooooooooooooooooooooooog word</p>
+  </li>
+  <li class="break-all">
+    <strong>break-word：</strong>
+    <p>iamalonglonglonglonglonglonglonglonglongword</p>
+  </li>
+  <li class="break-all">
+    <strong>break-word：</strong>
+    <p>This is a very looooooooooooooooooooooooog word</p>
+  </li>
 </ul>
 
 ### word-wrap
@@ -79,14 +80,14 @@ word-wrap：normal | break-word
 * **break-word** - 单词太长，换行 + 断词
 
 <ul class="test">
-	<li class="wrap-normal">
-		<strong>normal：</strong>
-		<p>This is a very looooooooooooooooooooooooog word</p>
-	</li>
-	<li class="break-word">
-		<strong>break-word：</strong>
-		<p>This is a very looooooooooooooooooooooooog word</p>
-	</li>
+  <li class="wrap-normal">
+    <strong>normal：</strong>
+    <p>This is a very looooooooooooooooooooooooog word</p>
+  </li>
+  <li class="break-word">
+    <strong>break-word：</strong>
+    <p>This is a very looooooooooooooooooooooooog word</p>
+  </li>
 </ul>
 
 ### white-space
@@ -113,31 +114,31 @@ white-space：normal | pre | pre-wrap | pre-line  | nowrap
 </style>
 
 <ul class="test">
-	<li class="normal">
-		<strong>normal：</strong>
-		<p>轻轻地我走了
-	正如我轻轻地来</p>
-	</li>
-	<li class="pre">
-		<strong>pre：</strong>
-		<p>轻轻地我走了（这里接很多测试文字）
-	正如我轻轻地来</p>
-	</li>
-	<li class="pre-wrap">
-		<strong>pre-wrap：</strong>
-		<p>轻轻地    我走了（这里接很多测试文字）
-	正如我轻轻地来</p>
-	</li>
-	<li class="pre-line">
-		<strong>pre-line</strong>
-		<p>轻轻地    我走了（这里接很多测试文字）
-	正如我轻轻地来</p>
-	</li>
-	<li class="nowrap">
-		<strong>nowrap：</strong>
-		<p>轻轻地我走了
-	正如我轻轻地来</p>
-	</li>
+  <li class="normal">
+    <strong>normal：</strong>
+    <p>轻轻地我走了
+  正如我轻轻地来</p>
+  </li>
+  <li class="pre">
+    <strong>pre：</strong>
+    <p>轻轻地我走了（这里接很多测试文字）
+  正如我轻轻地来</p>
+  </li>
+  <li class="pre-wrap">
+    <strong>pre-wrap：</strong>
+    <p>轻轻地    我走了（这里接很多测试文字）
+  正如我轻轻地来</p>
+  </li>
+  <li class="pre-line">
+    <strong>pre-line</strong>
+    <p>轻轻地    我走了（这里接很多测试文字）
+  正如我轻轻地来</p>
+  </li>
+  <li class="nowrap">
+    <strong>nowrap：</strong>
+    <p>轻轻地我走了
+  正如我轻轻地来</p>
+  </li>
 </ul>
 
 配合 **text-overflow** 样式，取值为:
@@ -146,16 +147,16 @@ white-space：normal | pre | pre-wrap | pre-line  | nowrap
 * **ellipsis** - 当内联内容溢出块容器时，将溢出部分替换为(...)
 
 <ul class="test">
-	<li class="nowrap-clip">
-		<strong>clip：</strong>
-		<p>轻轻地我走了
-	正如我轻轻地来</p>
-	</li>
-	<li class="nowrap-ellipsis">
-		<strong>ellipsis：</strong>
-		<p>轻轻地我走了
-	正如我轻轻地来</p>
-	</li>
+  <li class="nowrap-clip">
+    <strong>clip：</strong>
+    <p>轻轻地我走了
+  正如我轻轻地来</p>
+  </li>
+  <li class="nowrap-ellipsis">
+    <strong>ellipsis：</strong>
+    <p>轻轻地我走了
+  正如我轻轻地来</p>
+  </li>
 </ul>
 
 ```CSS
@@ -163,6 +164,22 @@ white-space：normal | pre | pre-wrap | pre-line  | nowrap
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+```
+
+### -webkit-line-clamp
+
+`-webkit-line-clamp` 属性可以把块容器中的内容限制为指定的行数，它只有在 display 属性设置成 `-webkit-box/-webkit-inline-box` 并且 `-webkit-box-orient: vertical` 时才有效果。在大部分情况下，也需要设置 `overflow: hidden`, 否则，里面的内容不会被裁减，并且在内容显示为指定行数后还会显示省略号(ellipsis):
+
+强制两行省略的话，可以这样写:
+
+```CSS
+.item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 ```
 

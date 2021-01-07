@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Linux 常用命令
 date:   2018-04-15 14:15:00 GMT+0800 (CST)
-update: 2020-01-31 20:42:00 GMT+0800 (CST)
+update: 2021-01-07 11:54:00 GMT+0800 (CST)
 background-image: /style/images/smms/linux.jpg
 tags:
 - Linux
@@ -153,11 +153,11 @@ http [flags] [METHOD] URL [ITEM [ITEM]]
 
 | Item Type   | Description |
 | ------------ | ------- |
-| HTTP Headers Name:Value | Arbitrary HTTP header, e.g. X-API-Token:123. |
-| URL parameters name==value | Appends the given name/value pair as a query string parameter to the URL. The == separator is used. |
-| Data Fields field=value, field=@file.txt | Request data fields to be serialized as a JSON object (default), or to be form-encoded (--form, -f). |
-| Raw JSON fields field:=json, field:=@file.json | Useful when sending JSON and one or more fields need to be a Boolean, Number, nested Object, or an Array, e.g., meals:='["ham","spam"]' or pies:=[1,2,3] (note the quotes). |
-| Form File Fields field@/dir/file | Only available with --form, -f. For example screenshot@~/Pictures/img.png. The presence of a file field results in a multipart/form-data request. |
+| HTTP Headers `Name:Value` | Arbitrary HTTP header, e.g. `X-API-Token:123`. |
+| URL parameters `name==value` | Appends the given name/value pair as a query string parameter to the URL. `The == separator` is used. |
+| Data Fields `field=value`, `field=@file.txt` | Request data fields to be serialized as a JSON object (default), or to be form-encoded (`--form, -f`). |
+| Raw JSON fields `field:=json`, `field:=@file.json` | Useful when sending JSON and one or more fields need to be a Boolean, Number, nested Object, or an Array, e.g., `meals:='["ham","spam"]'` or `pies:=[1,2,3]` (**note the quotes**). |
+| Form File Fields `field@/dir/file` | Only available with --form, -f. For example screenshot@~/Pictures/img.png. The presence of a file field results in a multipart/form-data request. |
 
 > HTTPie is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.
 
@@ -170,12 +170,13 @@ http [flags] [METHOD] URL [ITEM [ITEM]]
 
 ![httpie](https://httpie.org/static/img/httpie2.png?v=1f6219a5a07bb6e99aa7afd98d0e67ec)
 
-简单的运用一下，如果 JSON 数据存在不是字符串则用 **:=** 符号分隔:
-
 ```SHELL
 # 省略 GET
 http https://jsonplaceholder.typicode.com/posts/1
 curl https://jsonplaceholder.typicode.com/posts/1 -i
+
+# GET
+ http https://example.com/api token:xx id==1 page==1 limit==5
 
 # PUT
 # Custom HTTP method, HTTP headers and JSON data
@@ -184,50 +185,74 @@ http PUT https://jsonplaceholder.typicode.com/posts/1 title=tate age:=100 X-API-
 # 当然也支持下载文件 -d === --download
 http -d www.example.com/my_file.zip
 
-# localhost 的简写
+# form
+http --form POST httpbin.org/post name='John Smith'
+http --multipart POST https://example.com/login token:xxx email=smd.tate@gmail.com password=123 ids='[1765549]' arr:='["dress198"]'
+
+# localhost 的简写，相当于 http localhost:4000
 http :4000
 ```
 
 ```SHELL
-http PUT api.example.com/person/1 \
-  name=John \
-  age:=29 married:=false hobbies:='["http", "pies"]' \  # Raw JSON
-  description=@about-john.txt \   # Embed text file
-  bookmarks:=@bookmarks.json      # Embed JSON file
+http PUT httpbin.org/put \
+    name=John \                        # String (default)
+    age:=29 \                          # Raw JSON — Number
+    married:=false \                   # Raw JSON — Boolean
+    hobbies:='["http", "pies"]' \      # Raw JSON — Array
+    favorite:='{"tool": "HTTPie"}' \   # Raw JSON — Object
+    bookmarks:=@files/data.json \      # Embed JSON file
+    description=@files/text.txt        # Embed text file
+
+# output
 PUT /person/1 HTTP/1.1
-Accept: application/json, */*
+Accept: application/json, */*;q=0.5
 Content-Type: application/json
-Host: api.example.com
+Host: httpbin.org
 
 {
   "age": 29,
   "hobbies": [
-    "http",
-    "pies"
-  ],
-  "description": "John is a nice guy who likes pies.",
-  "married": false,
-  "name": "John",
+  "http",
+  "pies"
+],
+"description": "John is a nice guy who likes pies.",
+"married": false,
+"name": "John",
+"favorite": {
+    "tool": "HTTPie"
+  },
   "bookmarks": {
-    "HTTPie": "http://httpie.org",
+    "HTTPie": "https://httpie.org",
   }
 }
 ```
 
-再看看两者用法上的一些对比:
+如果要添加请求头参数，则需要遵循 `Header:Value` 的拼接规则:
 
 ```SHELL
-# cURL POST Example
-curl -d "param1=value1&param2=value2" -H "Content-Type: application/json" -X POST http://localhost:3000/data
+http httpbin.org/headers  User-Agent:Bacon/1.0  'Cookie:valued-visitor=yes;foo=bar' X-Foo:Bar  Referer:https://httpie.org/
 
-# HTTPie POST Example:
-http POST http://localhost:3000/data 'param1=value1 value2' 'param2=value3'
+GET /headers HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Cookie: valued-visitor=yes;foo=bar
+Host: httpbin.org
+Referer: https://httpie.org/
+User-Agent: Bacon/1.0
+X-Foo: Bar
+```
 
-# cURL GET Example:
-curl -i -H "Accept: application/json" -X GET http://hostname/resource
+对比于 curl 给个栗子:
 
-# HTTPie GET Example:
-http http://hostname/resource
+```SHELL
+curl --location --request POST 'http://exmample-api.com/user' \
+--header 'token: xxxxxx' \
+--header 'Content-Type: application/json' \
+# --data-raw '["516329"]'
+--data-raw '[
+  {"fieldA": "swblouse00200409568","fieldB": 1106567}
+]'
+# --form 'goods_ids=[510285,470598]'
 ```
 
 ## grep
