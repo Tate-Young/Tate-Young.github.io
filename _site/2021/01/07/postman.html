@@ -175,6 +175,8 @@
                       发布时间：2021-01-07 21:54:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2021-01-14 15:24:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -223,6 +225,10 @@
   <li><strong>collection</strong> - 集合</li>
   <li><strong>environment</strong>  - 环境</li>
 </ul>
+
+<blockquote>
+  <p>三者的优先级反之，谁影响的范围最小，谁优先级最高，即<strong>本地变量 &gt; 环境变量 &gt; 集合变量 &gt; 全局变量</strong></p>
+</blockquote>
 
 <p><img src="https://assets.postman.com/postman-docs/env-quick-look.jpg" alt="variables" /></p>
 
@@ -290,7 +296,7 @@ pm.variables.replaceIn('\{\{$randomFirstName}}') // Julian
 
 <h4 id="请求前置脚本">请求前置脚本</h4>
 
-<p>前置脚本其实就是在 <code class="highlighter-rouge">Pre-requests Script</code> 中编写的 JS 脚本，当一个请求在发送之前，会先去执行前置脚本中的代码，因此有几个场景很适用，比如登录接口的密码，在发送前需要做加密处理，那么就可以在前置脚本中做加密处理；再比如说，有的接口的输入参数有一些随机数，每请求一次接口参数值都会发送变化，就可以在前置脚本中编写生成随机数的代码。总体来说，就是在请求接口之前对我们的请求数据进行进一步加工处理的都可以使用前置脚本这个功能:</p>
+<p>前置脚本其实就是在 <code class="highlighter-rouge">Pre-requests Script</code> 中编写的 JS 脚本，当一个请求在发送之前，会先去执行前置脚本中的代码，因此有几个场景很适用，比如登录接口的密码，在发送前需要做加密处理，那么就可以在前置脚本中做加密处理；再比如说，有的接口的输入参数有一些随机数，每请求一次接口参数值都会发送变化，就可以在前置脚本中编写生成随机数的代码。总体来说，就是在请求接口之前对我们的请求数据进行进一步加工处理的都可以使用前置脚本这个功能。</p>
 
 <p>比如下图，在请求 posts 时可以带上 id 参数，如果 id 是随机数的话，则可以在请求前先保存到变量中，然后请求的时候再从变量中去获取该值:</p>
 
@@ -313,9 +319,239 @@ pm.collectionVariables.set('touristToken', info)
 pm.globals.set('token', token)
 </code></pre>
 
+<h2 id="快捷功能">快捷功能</h2>
+
+<h3 id="新增请求的三个方法">新增请求的三个方法</h3>
+
+<p>正常情况下，我们添加一个请求需要打开一个窗口，选择请求方法，地址，以及相对应的参数，或者我们也可以复制已存在的接口然后进行修改。但是如果请求过多，难免会觉得添加起来麻烦，那么就需要用到导入功能，它可以导入相关的请求。比较常用的是如下这三种，入口都在左上角的 <code class="highlighter-rouge">import</code> 按钮，分别是:</p>
+
+<ul>
+  <li>从抓包工具中导入请求</li>
+  <li>从浏览器中导入请求</li>
+  <li>导入其他 postman 分享的请求数据 - 分享后可以生成一个链接，复制后直接粘贴到 <code class="highlighter-rouge">Link</code> 即可</li>
+</ul>
+
+<p>以浏览器导入为例，直接在当前请求中右键选择 copy 出 curl 的数据包，然后粘贴到 postman 里的 <code class="highlighter-rouge">Raw Text</code> 即可:</p>
+
+<p><img src="http://localhost:2333/style/images/smms/postman-copy-curl.png" alt="copy curl" /></p>
+
+<p><img src="http://localhost:2333/style/images/smms/postman-raw-text.png" alt="raw text" /></p>
+
+<p>反之，我们也可以利用 <code class="highlighter-rouge">code</code> 功能去生成对应语言的客户端代，比如 curl 或 httpie 等:</p>
+
+<p><img src="https://assets.postman.com/postman-docs/generate-code-snippets.jpg" alt="code" /></p>
+
+<h3 id="请求头信息预设">请求头信息预设</h3>
+
+<p>一般情况下我们做接口调试的话，很多接口请求头都差不多，为了方便添加公共参数，我们可以在 headers tab 下设置请求头预设信息，方便一次性添加预设的所有请求头，具体位置为 <code class="highlighter-rouge">Presets --&gt; Manage Presets</code>，在设置完预设名称保存后，则可以在 Presets 下拉框中看到所命名的选项，单击就可以快速添加请求头啦:</p>
+
+<p><img src="https://assets.postman.com/postman-docs/header-preset.jpg" alt="header preset" /></p>
+
+<h3 id="继承集合认证">继承集合认证</h3>
+
+<p>如果需要处理登陆认证的情况，如果不用 <code class="highlighter-rouge">Authorization</code> 功能其实也能解决认证的问题，无非就是把要认证的数据按照要求在指定位置传入参数即可。即把登录后返回的 token 要在每个请求接口的 headers 中传入 。这时就需要在每个 headers 中都填写一个认证参数传入，但是这样做的话太过繁琐，如果使用认证(Authorization)功能的话，就会大大简化了我们的认证过程。</p>
+
+<p>首先我们还是在预设脚本的标签中去请求登陆接口，获取到认证 token 后可以设置到集合变量中；然后切换到 <code class="highlighter-rouge">Authorization</code> 标签中设置获取 token，使其 token 在集合中有效；集合中每个请求的 <code class="highlighter-rouge">Authorization</code> 标签保持默认的 <code class="highlighter-rouge">inherit auth from parent</code> 即可。这样该集合下的所有请求都会自动获取到这个 token，也就省略了我们对每个 token 进行处理了:</p>
+
+<pre><code class="language-JS">// 发送 json 请求
+const PostJsonRequest = {
+  url: 'http://test.itheima.net/api/sys/login',
+  method: 'POST',
+  header: 'Content-Type:application/json',
+  body: {
+    mode: 'raw',
+    raw: JSON.stringify({ 'mobile': '13110001002', 'password':'123456' })
+  }
+  // body: { // 表单数据
+  //   mode: 'x-www-form-urlencoded',
+  //   raw: 'username=13088888888&amp;password=123456&amp;verify_code=8888'
+  // }
+};
+pm.sendRequest(PostJsonRequest, function (err, res) {
+  console.log(err ? err : res.json());
+});
+</code></pre>
+
+<p><img src="https://p3-tt.byteimg.com/origin/pgc-image/033287291c6e4715b1218f7982c2b2d9?from=pc" alt="Authorization" /></p>
+
+<h3 id="快速查找和替换">快速查找和替换</h3>
+
+<p>有时候我们常会遇到这样一种问题，系统中有太多的用例，环境变量和系统变量的值也太多，查找其中的某个值太不方便；或者有的值想要修改，但苦于修改的地方太多，修改起来太费劲。那么，针对这样的困扰，是否有办法解决呢？答案是有的，那就是快速查询与批量替换，该功能位于左下角。搜索的内容还可以使用正则表达式，比如 <code class="highlighter-rouge">^\d{7}$</code> 搜索出 7 位的数字等等，也可以限定搜索范围:</p>
+
+<p><img src="http://localhost:2333/style/images/smms/postman-find-and-replace.png" alt="find and replace" /></p>
+
+<h2 id="接口测试">接口测试</h2>
+
+<h3 id="编写和运行测试脚本">编写和运行测试脚本</h3>
+
+<p>在 postman 中，我们可以针对接口来做自动化测试，位置即为 <code class="highlighter-rouge">Tests</code> 标签。测试的结果将会在下面的 <code class="highlighter-rouge">Test Results</code> 标签展示出来:</p>
+
+<p><img src="https://assets.postman.com/postman-docs/11-autocomplete.gif" alt="tests" /></p>
+
+<p>我们可以看到，其实输入框右边给出了很多代码片段，我们直接点击代码片段就可以直接生成相应的代码，比如点击 <code class="highlighter-rouge">Response time is less than 200ms</code>，则会自动添加:</p>
+
+<pre><code class="language-JS">pm.test("Response time is less than 200ms", function () {
+  pm.expect(pm.response.responseTime).to.be.below(200);
+});
+</code></pre>
+
+<pre><code class="language-JS">// Response body: Contains string
+pm.test("Body matches string", function () {
+  pm.expect(pm.response.text()).to.include("string_you_want_to_search");
+});  
+
+// Response body : JSON value check
+pm.test("Your test name", function () {
+  var jsonData = pm.response.json(); // 获取响应数据
+  pm.expect(jsonData.code).to.eql(1000);
+});
+</code></pre>
+
 <blockquote>
-  <p>to be continued</p>
+  <p>如果要学习更多关于编写测试脚本的知识，可以<a href="https://learning.postman.com/docs/writing-scripts/script-references/test-examples/">移步官网</a> 👈</p>
 </blockquote>
+
+<p>相较于请求前置脚本，这里的脚本<strong>执行时间为响应体数据返回之后</strong>，从下图就可以看到他们执行的优先级:</p>
+
+<p><img src="https://assets.postman.com/postman-docs/execOrder.png" alt="exec order" /></p>
+
+<p>所以如果我们要对集合中所有请求来做统一测试的话，则可以把脚本写在集合中，这样子集合下每个请求执行的时候，都会去执行集合中的测试。我们还可以统一用 <code class="highlighter-rouge">Collection Runner</code> 来跑一次集合里的所有测试，并且可以很直观的看出哪些有问题:</p>
+
+<p><img src="https://assets.postman.com/postman-docs/collection-tests-run.jpg" alt="collection tests run" /></p>
+
+<h3 id="newman-生成测试报告">newman 生成测试报告</h3>
+
+<p><strong>newman</strong> 其实就是命令行的 <code class="highlighter-rouge">Collection Runner</code>，它可以很方便地集成到你的系统服务当中。主要有下面两种使用方式:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. 在 postman 中导出结果 json 文件</span>
+newman run examples/sample-collection.json
+<span class="c"># 2. 在 postman 中获取该集合的分享链接</span>
+newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv
+</code></pre></div></div>
+
+<p>当然也可以当作 node 的模块引入到文件中:</p>
+
+<pre><code class="language-JS">const newman = require('newman');
+
+// call newman.run to pass `options` object and wait for callback
+newman.run({
+  collection: require('./sample-collection.json'),
+  reporters: 'cli'
+}, function (err) {
+  if (err) { throw err; }
+  console.log('collection run complete!');
+});
+</code></pre>
+
+<p>newman 的 options 参数解析可以直接<a href="https://github.com/postmanlabs/newman#command-line-options">参考文档</a>:</p>
+
+<ul>
+  <li>-e - 可选，指定一个 URL 或者 postman 的环境变量脚本文件。如果集合中指定了环境变量，则需要添加这个参数</li>
+  <li>-g - 可选，指定一个 URL 或者 postman的全局变量脚本文件，如果集合中指定了全局变量，则需要加这个参数</li>
+  <li><strong>-r</strong> - 可选，指定测试报告的类型，如果想生成对应的报告类型，需要添加这个参数，典型的有 html、json、cli，若不添加，默认为 cli</li>
+  <li>-d - 可选，指定一个数据参数化文件，如果有参数化文件，需要添加这个选项</li>
+  <li><strong>–reporter-html-export</strong> - 可选，指定生成报告的路径和文件名，如果不添加该参数，默认会生成一个 newman 的文件夹，里面存放着生成的测试报告。需要安装插件 <a href="https://github.com/postmanlabs/newman-reporter-html">newman-reporter-html</a></li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 其中 [] 内的参数是可选的。</span>
+newman run collect_a.json <span class="o">[</span><span class="nt">-e</span> environment_b.json] <span class="o">[</span><span class="nt">-r</span> html] <span class="o">[</span><span class="nt">--reporter-html-export</span> report.html]
+</code></pre></div></div>
+
+<pre><code class="language-TEXT">→ Status Code Test
+  GET https://echo.getpostman.com/status/404 [404 Not Found, 534B, 1551ms]
+  1\. response code is 200
+
+┌─────────────────────────┬──────────┬──────────┐
+│                         │ executed │   failed │
+├─────────────────────────┼──────────┼──────────┤
+│              iterations │        1 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│                requests │        1 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│            test-scripts │        1 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│      prerequest-scripts │        0 │        0 │
+├─────────────────────────┼──────────┼──────────┤
+│              assertions │        1 │        1 │
+├─────────────────────────┴──────────┴──────────┤
+│ total run duration: 1917ms                    │
+├───────────────────────────────────────────────┤
+│ total data received: 14B (approx)             │
+├───────────────────────────────────────────────┤
+│ average response time: 1411ms                 │
+└───────────────────────────────────────────────┘
+
+  #  failure        detail
+
+ 1\.  AssertionFai…  response code is 200
+                    at assertion:1 in test-script
+                    inside "Status Code Test" of "Example Collection with
+                    Failing Tests"
+</code></pre>
+
+<p>有个插件 <a href="https://github.com/DannyDainton/newman-reporter-htmlextra">newman-reporter-htmlextra</a> 可以生成更美观的仪表盘形式的报表:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -r 指定的测试报告类型为 htmlextra</span>
+newman run collect_a.json <span class="nt">-r</span> htmlextra <span class="nt">--reporter-html-export</span> report.html
+</code></pre></div></div>
+
+<p><img src="http://localhost:2333/style/images/smms/postman-htmlextra.gif" alt="htmlextra" /></p>
+
+<h2 id="mock-数据">mock 数据</h2>
+
+<h3 id="创建-mock-服务">创建 mock 服务</h3>
+
+<p>倘若后端接口若不能准时提供给前端人员，则可以通过 postman mock 来进行数据模拟。那么第一步就是创建 mock 服务，可以直接在左上角 <code class="highlighter-rouge">New --&gt; Mock Server</code> 或者集合面板里 <code class="highlighter-rouge">Mocks</code>，跟着步骤走，最终结果都会在 mock 标签中生成一个 mock 服务器的链接，即下图的 <code class="highlighter-rouge">Mock assignments</code>:</p>
+
+<p><img src="https://assets.postman.com/postman-docs/new-mock-in-collection.jpg" alt="mock server" /></p>
+
+<h3 id="创建-example">创建 example</h3>
+
+<p>接下来模拟的时候需要用到 <code class="highlighter-rouge">example</code> 功能，详情可以<a href="https://blog.postman.com/mock-responses-in-postman-by-using-examples/">参考官方文档</a>，我们以一个请求为例:</p>
+
+<p><img src="https://blog.postman.com/wp-content/uploads/2017/05/Adding-example-with-a-new-response.png" alt="add example" /></p>
+
+<p>我们直接在 example 下拉框就可以切换到已经建好的栗子上。在填写完成了 example 里的信息并保存后，我们就可以新建个请求，把请求地址改为 <code class="highlighter-rouge">mock 服务器地址 + 请求路径</code>:</p>
+
+<pre><code class="language-TEXT">https://&lt;mock-id&gt;.mock.pstmn.io/&lt;request-path&gt;
+
+&lt;!-- 栗子 --&gt;
+https://3589dfde-f398-45cd-88eb-b0fa0192fc3f.mock.pstmn.io/matches
+</code></pre>
+
+<p>当你再次发送请求时，便会根据你的请求路径返回一个你所编写的符合条件的 mock 数据。当然我们还可以创建多个 example，只需要在 example 里改下各自的请求路径就行，然后在做 mock 请求的时候，想要数据返回哪种状态，就只要把请求路径改成对应 example 的路径即可:</p>
+
+<blockquote>
+  <p>If there is no exact match found, Postman will return the best matching response based on <a href="https://learning.postman.com/docs/designing-and-developing-your-api/mocking-data/matching-algorithm/">its algorithm</a>.</p>
+</blockquote>
+
+<p><img src="https://blog.postman.com/wp-content/uploads/2017/05/accessing-saved-examples-1.jpg" alt="examples" /></p>
+
+<p>另外，在 mock response 数据里，我们也可以添加一些上面讲过的动态变量:</p>
+
+<pre><code class="language-JS">{
+  "name": "\{\{$randomFullName}}",
+  "userName": "\{\{$randomUserName}}",
+  "location": "\{\{$randomCity}}",
+  "company": "\{\{$randomCompanyName}}",
+  "jobTitle": "\{\{$randomJobTitle}}",
+  "updatedAt": "\{\{$timestamp}}"
+}
+</code></pre>
+
+<h2 id="monitor-监控">Monitor 监控</h2>
+
+<p>postman 的监控，和 Jenkins 中设置的定时任务差不多，用于监控接口的运行情况和性能。同样的这个功能用于集合。你可以配置多长时间运行一次，到了时间点将自动遍历集合中的每个请求。那么很明显通过这个功能，真正地帮我们实现了自动化。创建监视器的方法仍然是通过 <code class="highlighter-rouge">New</code> 或者集合面板的 <code class="highlighter-rouge">Monitors</code> 来创建。在这之后，我们便可以定期的在 postman 或者邮件中接收到监控总结:</p>
+
+<p><img src="https://assets.postman.com/postman-docs/create-monitor-1.jpg" alt="monitors" /></p>
+
+<p>经过一段时间，最终我们在 web 端看到的效果就是:</p>
+
+<p><img src="https://assets.postman.com/postman-docs/monitor-summary-view.jpg" alt="monitor view" /></p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<p>1.<a href="https://www.toutiao.com/i6915675572198851075/">一文带你全面解析 postman 工具的使用</a> By 雨滴测试</p>
  
 <div id="gitalk-container"></div>
 <script>
