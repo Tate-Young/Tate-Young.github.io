@@ -232,12 +232,14 @@ TRUNCATE [TABLE] 表名称
 
 由于 delete 语句删除记录时候，记录是逐条删除的，而 truncate 语句删除数据时不产生回退信息。所以如果需要删除大量数据的时候使用 delete 则占用较多的系统资源，而如果使用 truncate 则会快的多。
 
-3、**insert into** 可以向数据库表中插入数据:
+3、**insert into** 可以向数据库表中插入一行或多行数据:
 
 ```SQL
 INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)
 
-INSERT INTO Persons (LastName, Address) VALUES ('Wilson', 'Champs-Elysees')
+INSERT INTO Persons (LastName, Address) VALUES
+('Wilson', 'Champs-Elysees'),
+('Tate', 'Champs-Elysees'),
 ```
 
 ## SQL 函数

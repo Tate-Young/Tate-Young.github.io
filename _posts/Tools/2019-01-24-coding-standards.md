@@ -143,6 +143,8 @@ brand = brand_role[0] // eslint-disable-line prefer-destructuring, max-len
 
 ## TSLint
 
+> 可以用 [**typescript-eslint**](https://github.com/typescript-eslint/typescript-eslint) 代替 👈
+
 **TSLint** 是 TypeScript 代码风格检查器，它能够在可读性、可维护性、代码正确性等方面为开发者提供帮助。其配置可[参考官方文档](https://palantir.github.io/tslint/usage/configuration/)，配置文件 `tslint.json` 参考:
 
 ```JSON

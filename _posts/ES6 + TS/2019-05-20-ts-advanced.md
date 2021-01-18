@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2020-10-03 18:06:00 GMT+0800 (CST)
+update: 2021-01-18 18:06:00 GMT+0800 (CST)
 background-image: /style/images/smms/typescript.png
 tags:
 - TS
@@ -177,9 +177,11 @@ import { test } from 'appConfig'
 }
 ```
 
-## TSLint
+## typescript-eslint
 
 **TSLint** 是 TypeScript 代码风格检查器，它能够在可读性、可维护性、代码正确性等方面为开发者提供帮助。其配置可[参考官方文档](https://palantir.github.io/tslint/usage/configuration/)，配置文件一般为 `tslint.json`。具体[参考这篇博客]( {{site.url}}/2019/01/25/coding-standards.html#tslint ) 👈
+
+但是使用 TSLint 的一个最大的缺点是无法复用 ESLint 里所定义的规则，你必须又要去重新定义一套，原因是 ESLint 和 Typescript 将源码转换的 AST 并不相同。因此我们需要创建一个能够解析 TypeScript 源代码的解析器，并提供与 ESLint 期望的兼容的 AST。谢天谢地，我们现在可以用 [**typescript-eslint**](https://github.com/typescript-eslint/typescript-eslint) 👈
 
 ## DefinitelyTyped
 

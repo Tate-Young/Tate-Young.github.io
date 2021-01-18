@@ -175,7 +175,7 @@
                       发布时间：2021-01-07 21:54:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-01-14 15:24:00
+                        修改时间：2021-01-18 11:29:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -539,6 +539,154 @@ https://3589dfde-f398-45cd-88eb-b0fa0192fc3f.mock.pstmn.io/matches
 }
 </code></pre>
 
+<h2 id="连接数据库">连接数据库</h2>
+
+<h3 id="xmysql">xmysql</h3>
+
+<p>这里其实不是真正意义上的直连，而是通过接口访问和修改数据库表里面的内容。这里以 mysql 为例，假设数据库 RUNOOB 有这样一张表 animation:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>author</th>
+      <th>publishDate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>罪恶王冠</td>
+      <td>小明</td>
+      <td>Fri Jan 15 2021 00:00:00 GMT+0800 (China Standard Time)</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>进击的巨人</td>
+      <td>小李</td>
+      <td>Fri Jan 15 2021 00:00:00 GMT+0800 (China Standard Time)</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>未闻花名</td>
+      <td>小马</td>
+      <td>Fri Jan 15 2021 00:00:00 GMT+0800 (China Standard Time)</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>双斩少女</td>
+      <td>小鹅</td>
+      <td>Fri Jan 15 2021 00:00:00 GMT+0800 (China Standard Time)</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>境界的彼方</td>
+      <td>小静</td>
+      <td>Fri Jan 15 2021 00:00:00 GMT+0800 (China Standard Time)</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>宝石王国</td>
+      <td>小包</td>
+      <td>Fri Jan 15 2021 00:00:00 GMT+0800 (China Standard Time)</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>刀语</td>
+      <td>小红</td>
+      <td>Fri Jan 15 2021 00:00:00 GMT+0800 (China Standard Time)</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>鬼灭之刃</td>
+      <td>小蓝</td>
+      <td>Fri Jan 15 2021 00:00:00 GMT+0800 (China Standard Time)</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>overload</td>
+      <td>小白</td>
+      <td>Sat Jul 07 2018 00:00:00 GMT+0800 (China Standard Time)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>接下来我们需要借助一个工具 <a href="https://github.com/o1lab/xmysql"><strong>xmysql</strong></a>，通过 xmysql 连库后，xmysql 会将数据库中所有表以 REST 风格的接口形式生成，所以后续访问某张表其实就是访问的某个接口，那么对于 postman 而言，其实也就是相当于访问了某个接口而已。xmysql 命令参数介绍：</p>
+
+<ul>
+  <li>-h - 连接数据库主机名</li>
+  <li>-u - 连接数据库用户名</li>
+  <li>-p - 连接数据库密码</li>
+  <li>-d - 连接数据库名</li>
+  <li>-r - 连接数据库输入的主机名，无这个选项默认为 localhost</li>
+  <li>-n - 连接这个服务设置的端口，无这个选项默认为 3000</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xmysql <span class="nt">-u</span> username <span class="nt">-p</span> password <span class="nt">-d</span> databasename
+</code></pre></div></div>
+
+<p>我们需要做的就是先启动本地的 mysql 服务，然后通过 xmysql 来连接并自动生成 restful apis:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 开启本地 mysql 服务，注意这里是 macOS 的命令</span>
+<span class="c"># mysql.server stop 关闭服务</span>
+<span class="c"># mysql.server restart 重启服务</span>
+mysql.server start
+<span class="c"># 账号登陆</span>
+mysql <span class="nt">-u</span> root <span class="nt">-p</span> 
+<span class="c"># Enter password</span>
+<span class="c"># ------ link start -------</span>
+
+<span class="c"># 通过 xmysql 连接</span>
+xmysql <span class="nt">-h</span> localhost <span class="nt">-u</span> root <span class="nt">-p</span> MyNewPass <span class="nt">-d</span> RUNOOB
+</code></pre></div></div>
+
+<pre><code class="language-TEXT">  Generating REST APIs at the speed of your thought.. 
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+                                                            
+          Database              :    RUNOOB
+          Number of Tables      :    1
+                                                            
+          REST APIs Generated   :    28
+                                                            
+          Xmysql took           :    0 seconds
+          API's base URL        :    localhost:3000
+                                                            
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+</code></pre>
+
+<p>我们可以看到通过 xmysql 连接后，暴露出 3000 端口，我们直接 <code class="highlighter-rouge">http :3000</code> 测试以下，就可以看到可以打印出所有生成的 api 列表。接下来我们可以在 postman 添加该请求，参照文档 API Overview 我们就可以对表里面的内容进行增删查改:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># GET localhost:3000/api/animation</span>
+<span class="c"># GET localhost:3000/api/animation?_where=(author,eq,小红)</span>
+</code></pre></div></div>
+
+<p>我们可以通过 POST 请求来新增一条数据，或是通过 PUT 请求来修改，DELETE 请求来删除等等:</p>
+
+<p><img src="http://localhost:2333/style/images/smms/postman-xmysql.png" alt="xmysql" /></p>
+
+<p>执行上述 POST 请求后，我们刷新下表数据，则会发现新增了一行:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>author</th>
+      <th>publishDate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10</td>
+      <td>小象佩奇</td>
+      <td>小智</td>
+      <td>Fri Jan 01 2021 00:00:00 GMT+0800 (China Standard Time)</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="monitor-监控">Monitor 监控</h2>
 
 <p>postman 的监控，和 Jenkins 中设置的定时任务差不多，用于监控接口的运行情况和性能。同样的这个功能用于集合。你可以配置多长时间运行一次，到了时间点将自动遍历集合中的每个请求。那么很明显通过这个功能，真正地帮我们实现了自动化。创建监视器的方法仍然是通过 <code class="highlighter-rouge">New</code> 或者集合面板的 <code class="highlighter-rouge">Monitors</code> 来创建。在这之后，我们便可以定期的在 postman 或者邮件中接收到监控总结:</p>
@@ -548,6 +696,15 @@ https://3589dfde-f398-45cd-88eb-b0fa0192fc3f.mock.pstmn.io/matches
 <p>经过一段时间，最终我们在 web 端看到的效果就是:</p>
 
 <p><img src="https://assets.postman.com/postman-docs/monitor-summary-view.jpg" alt="monitor view" /></p>
+
+<h2 id="其他问题">其他问题</h2>
+
+<h3 id="date-类型参数">Date 类型参数</h3>
+
+<p>有些请求参数可能涉及到 Date 日期类型，我们直接按以下这种格式写就行了:</p>
+
+<pre><code class="language-TEXT">2021/1/15 19:34:00
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 
