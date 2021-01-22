@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2021-01-18 18:06:00 GMT+0800 (CST)
+update: 2021-01-21 21:31:00 GMT+0800 (CST)
 background-image: /style/images/smms/typescript.png
 tags:
 - TS
@@ -83,7 +83,7 @@ tags:
     /* Experimental Options */
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths":{
       "appConfig": ["./src/config"],
     }
@@ -575,6 +575,9 @@ export type PowerPartial<T> = {
 
 ```JS
 export type TPickPartial<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>> & Partial<Pick<T, K>>
+
+// 例如
+type TTest = TPickPartial<TAnotherTest, 'canSort' | 'scenes'>
 ```
 
 三、readonly 全部移除
@@ -666,9 +669,31 @@ type style = typeof styleMap
 // }
 ```
 
-## 其它
+## Uppercase / Capitalize
 
-### ! - Non-null assertion operator
+TS 提供了新的类型别名 `Uppercase, Lowercase, Capitalize, Uncapitalize`，具体提交可以[参考这里](https://github.com/microsoft/TypeScript/pull/40580):
+
+```JS
+type Uppercase<S extends string> = intrinsic;
+type Lowercase<S extends string> = intrinsic;
+type Capitalize<S extends string> = intrinsic;
+type Uncapitalize<S extends string> = intrinsic;
+```
+
+```JS
+type T10 = Uppercase<'hello'>;  // "HELLO"
+type T11 = Lowercase<'HELLO'>;  // "hello"
+type T12 = Capitalize<'hello'>;  // "Hello"
+type T13 = Uncapitalize<'Hello'>;  // "hello"
+
+type EnthusiasticGreeting<T extends string> = `${Uppercase<T>}`
+type HELLO = EnthusiasticGreeting<"hello">;
+//   ^ = type HELLO = "HELLO"
+```
+
+## 常用操作符
+
+### !. - Non-null assertion operator
 
 If you know from external means that an expression is not null or undefined, you can use the non-null assertion operator `!` to coerce away those types:
 
@@ -718,6 +743,51 @@ let x = (foo !== null && foo !== undefined) ? foo : bar()
 ```
 
 > 在某些场景下，我们也可以通过 `??` 操作符替换常用的 `||` 操作符
+
+### ??= 复合赋值运算符
+
+在 JS 等很多语言中，有一种操作符被称为**复合赋值运算符(Compound assignment operator)**，我们之前常见的如下:
+
+```JS
+// Addition
+// a = a + b
+a += b;
+
+// Subtraction
+// a = a - b
+a -= b;
+
+// Multiplication
+// a = a * b
+a *= b;
+
+// Division
+// a = a / b
+a /= b;
+
+// Exponentiation
+// a = a ** b
+a **= b;
+
+// Left Bit Shift
+// a = a << b
+a <<= b;
+```
+
+因此针对我们上面描述的操作符，[**Typescript 4.0**](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html#short-circuiting-assignment-operators) 又引入了对应的复合赋值运算符 `&&=, ||=, ??=`:
+
+```JS
+obj.prop ||= foo();
+
+// roughly equivalent to either of the following
+obj.prop || (obj.prop = foo());
+
+if (!obj.prop) {
+  obj.prop = foo();
+}
+```
+
+## 其它
 
 ### 箭头函数的类型注解
 

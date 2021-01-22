@@ -175,7 +175,7 @@
                       发布时间：2019-05-20 18:36:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-01-18 18:06:00
+                        修改时间：2021-01-21 21:31:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -185,7 +185,7 @@
                        
                     <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('TS')" title="访问TS" data-hover="TS">
                         TS
-                        <span>(2)</span>
+                        <span>(3)</span>
                         
                     </a>
                        
@@ -206,7 +206,7 @@
                    
                 <a href="Javascript:;" onclick="onClickTag('TS')" title="访问TS" data-hover="TS">
                     TS
-                    <span>(2)</span>
+                    <span>(3)</span>
                     </a>
                    
             </p>
@@ -280,7 +280,7 @@
     /* Experimental Options */
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths":{
       "appConfig": ["./src/config"],
     }
@@ -752,6 +752,9 @@ let partialState: PickedState = {
 <p>二、选取某个对象的 key，让它变成可选</p>
 
 <pre><code class="language-JS">export type TPickPartial&lt;T, K extends keyof T&gt; = Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt; &amp; Partial&lt;Pick&lt;T, K&gt;&gt;
+
+// 例如
+type TTest = TPickPartial&lt;TAnotherTest, 'canSort' | 'scenes'&gt;
 </code></pre>
 
 <p>三、readonly 全部移除</p>
@@ -836,9 +839,29 @@ type style = typeof styleMap
 // }
 </code></pre>
 
-<h2 id="其它">其它</h2>
+<h2 id="uppercase--capitalize">Uppercase / Capitalize</h2>
 
-<h3 id="---non-null-assertion-operator">! - Non-null assertion operator</h3>
+<p>TS 提供了新的类型别名 <code class="highlighter-rouge">Uppercase, Lowercase, Capitalize, Uncapitalize</code>，具体提交可以<a href="https://github.com/microsoft/TypeScript/pull/40580">参考这里</a>:</p>
+
+<pre><code class="language-JS">type Uppercase&lt;S extends string&gt; = intrinsic;
+type Lowercase&lt;S extends string&gt; = intrinsic;
+type Capitalize&lt;S extends string&gt; = intrinsic;
+type Uncapitalize&lt;S extends string&gt; = intrinsic;
+</code></pre>
+
+<pre><code class="language-JS">type T10 = Uppercase&lt;'hello'&gt;;  // "HELLO"
+type T11 = Lowercase&lt;'HELLO'&gt;;  // "hello"
+type T12 = Capitalize&lt;'hello'&gt;;  // "Hello"
+type T13 = Uncapitalize&lt;'Hello'&gt;;  // "hello"
+
+type EnthusiasticGreeting&lt;T extends string&gt; = `${Uppercase&lt;T&gt;}`
+type HELLO = EnthusiasticGreeting&lt;"hello"&gt;;
+//   ^ = type HELLO = "HELLO"
+</code></pre>
+
+<h2 id="常用操作符">常用操作符</h2>
+
+<h3 id="---non-null-assertion-operator">!. - Non-null assertion operator</h3>
 
 <p>If you know from external means that an expression is not null or undefined, you can use the non-null assertion operator <code class="highlighter-rouge">!</code> to coerce away those types:</p>
 
@@ -888,6 +911,49 @@ let x = (foo !== null &amp;&amp; foo !== undefined) ? foo : bar()
 <blockquote>
   <p>在某些场景下，我们也可以通过 <code class="highlighter-rouge">??</code> 操作符替换常用的 <code class="highlighter-rouge">||</code> 操作符</p>
 </blockquote>
+
+<h3 id="-复合赋值运算符">??= 复合赋值运算符</h3>
+
+<p>在 JS 等很多语言中，有一种操作符被称为<strong>复合赋值运算符(Compound assignment operator)</strong>，我们之前常见的如下:</p>
+
+<pre><code class="language-JS">// Addition
+// a = a + b
+a += b;
+
+// Subtraction
+// a = a - b
+a -= b;
+
+// Multiplication
+// a = a * b
+a *= b;
+
+// Division
+// a = a / b
+a /= b;
+
+// Exponentiation
+// a = a ** b
+a **= b;
+
+// Left Bit Shift
+// a = a &lt;&lt; b
+a &lt;&lt;= b;
+</code></pre>
+
+<p>因此针对我们上面描述的操作符，<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html#short-circuiting-assignment-operators"><strong>Typescript 4.0</strong></a> 又引入了对应的复合赋值运算符 <code class="highlighter-rouge">&amp;&amp;=, ||=, ??=</code>:</p>
+
+<pre><code class="language-JS">obj.prop ||= foo();
+
+// roughly equivalent to either of the following
+obj.prop || (obj.prop = foo());
+
+if (!obj.prop) {
+  obj.prop = foo();
+}
+</code></pre>
+
+<h2 id="其它">其它</h2>
 
 <h3 id="箭头函数的类型注解">箭头函数的类型注解</h3>
 
