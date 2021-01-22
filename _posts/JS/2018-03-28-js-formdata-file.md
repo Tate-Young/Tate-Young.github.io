@@ -7,6 +7,7 @@ background: blue
 category: 前端
 title:  FormData & File API
 date:   2018-03-29 13:43:00 GMT+0800 (CST)
+update: 2021-01-22 17:07:00 GMT+0800 (CST)
 background-image: /style/images/js.png
 tags:
 - JavaScript
@@ -363,7 +364,7 @@ var objectURL = window.URL.createObjectURL(fileObj);
 
 每个创建了的对象 URL 必须要释放。当文档关闭时，它们会自动被释放。如果你的网页要动态使用它们，你需要显式调用 `window.URL.revokeObjectURL()`来释放它们。
 
-### 番外篇 download
+### 下载 download
 
 这里介绍一个 **download** 下载属性[(caniuse)](https://caniuse.com/#search=download):
 
@@ -383,6 +384,74 @@ a.download = 'download.txt'; // 定义下载的文件名
 a.textContent = 'Download Me';
 
 document.body.appendChild(a);
+```
+
+### 图片转换
+
+#### 转 base64 和 md5 加密
+
+```JS
+import MD5 from 'crypto-js/md5'
+
+// 自动转 base64 并采用 md5 加密，生成唯一标识符 id
+const toBase64AndMD5 = (file, callback) => {
+  let md5 = ''
+  const reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onload = () => {
+    md5 = MD5(reader.result).toString() || '' // 拿到 base64 编码再进行 md5 加密
+    callback(md5)
+  }
+  reader.onerror = error => {
+    console.log('Upload Error: ', error)
+  }
+}
+```
+
+#### base64 转 File
+
+一共有两种方式，一个是调用 `new File()`，另一个是通过转为 blob，再转为 File。可以具体看下栗子 👇:
+
+```JS
+// 调用 new File() 来转 base64 --> File
+const dataURLtoFile = (dataurl, filename) => { 
+  const arr = dataurl.split(','),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n)
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n)
+  }
+  return new File([u8arr], filename, { type: mime })
+}
+
+const file = dataURLtoFile(base64Data, imgName)
+```
+
+```JS
+// 将 base64 转为 blob
+const dataURLtoBlob = dataurl => { 
+  const arr = dataurl.split(','),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n)
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n)
+  }
+  return new Blob([u8arr], { type: mime })
+}
+
+// 将 blob 转换为 File
+const blobToFile = (theBlob, fileName) => {
+  theBlob.lastModifiedDate = new Date()
+  theBlob.name = fileName
+  return theBlob
+}
+
+const blob = dataURLtoBlob(base64Data)
+const file = blobToFile(blob, imgName)
 ```
 
 ## 参考链接

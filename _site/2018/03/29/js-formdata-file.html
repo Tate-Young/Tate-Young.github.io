@@ -175,6 +175,8 @@
                       发布时间：2018-03-29 13:43:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2021-01-22 17:07:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -554,7 +556,7 @@ var objectURL = window.URL.createObjectURL(fileObj);
 
 <p>每个创建了的对象 URL 必须要释放。当文档关闭时，它们会自动被释放。如果你的网页要动态使用它们，你需要显式调用 <code class="highlighter-rouge">window.URL.revokeObjectURL()</code>来释放它们。</p>
 
-<h3 id="番外篇-download">番外篇 download</h3>
+<h3 id="下载-download">下载 download</h3>
 
 <p>这里介绍一个 <strong>download</strong> 下载属性<a href="https://caniuse.com/#search=download">(caniuse)</a>:</p>
 
@@ -572,6 +574,71 @@ a.download = 'download.txt'; // 定义下载的文件名
 a.textContent = 'Download Me';
 
 document.body.appendChild(a);
+</code></pre>
+
+<h3 id="图片转换">图片转换</h3>
+
+<h4 id="转-base64-和-md5-加密">转 base64 和 md5 加密</h4>
+
+<pre><code class="language-JS">import MD5 from 'crypto-js/md5'
+
+// 自动转 base64 并采用 md5 加密，生成唯一标识符 id
+const toBase64AndMD5 = (file, callback) =&gt; {
+  let md5 = ''
+  const reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onload = () =&gt; {
+    md5 = MD5(reader.result).toString() || '' // 拿到 base64 编码再进行 md5 加密
+    callback(md5)
+  }
+  reader.onerror = error =&gt; {
+    console.log('Upload Error: ', error)
+  }
+}
+</code></pre>
+
+<h4 id="base64-转-file">base64 转 File</h4>
+
+<p>一共有两种方式，一个是调用 <code class="highlighter-rouge">new File()</code>，另一个是通过转为 blob，再转为 File。可以具体看下栗子 👇:</p>
+
+<pre><code class="language-JS">// 调用 new File() 来转 base64 --&gt; File
+const dataURLtoFile = (dataurl, filename) =&gt; { 
+  const arr = dataurl.split(','),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n)
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n)
+  }
+  return new File([u8arr], filename, { type: mime })
+}
+
+const file = dataURLtoFile(base64Data, imgName)
+</code></pre>
+
+<pre><code class="language-JS">// 将 base64 转为 blob
+const dataURLtoBlob = dataurl =&gt; { 
+  const arr = dataurl.split(','),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n)
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n)
+  }
+  return new Blob([u8arr], { type: mime })
+}
+
+// 将 blob 转换为 File
+const blobToFile = (theBlob, fileName) =&gt; {
+  theBlob.lastModifiedDate = new Date()
+  theBlob.name = fileName
+  return theBlob
+}
+
+const blob = dataURLtoBlob(base64Data)
+const file = blobToFile(blob, imgName)
 </code></pre>
 
 <h2 id="参考链接">参考链接</h2>
