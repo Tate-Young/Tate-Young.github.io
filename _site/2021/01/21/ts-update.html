@@ -175,7 +175,7 @@
                       发布时间：2021-01-21 22:47:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-01-22 14:04:00
+                        修改时间：2021-01-25 15:28:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -513,6 +513,46 @@ function f(x: Thing) {
 
 // 例如
 type TTest = TPickPartial&lt;TAnotherTest, 'canSort' | 'scenes'&gt;
+</code></pre>
+
+<h3 id="objectkeys-using-numbers">Object.keys using numbers</h3>
+
+<p>调用 <strong>Object.keys</strong> 获取对象的 key 值，在类型检测时默认为 <code class="highlighter-rouge">string[]</code>，这样就会有个问题:</p>
+
+<pre><code class="language-JS">type Foo = { [key: number]: string }
+
+const foo: Foo = { 100: 'foo', 200: 'bar' }
+const sizes: number[] = Object.keys(foo) // Type 'string[]' is not assignable to type 'number[]
+</code></pre>
+
+<p>因此我们必须将字符串类型先转换为数字，最简单的方法是通过 map 来实现:</p>
+
+<pre><code class="language-JS">const sizes: number[] = Object.keys(foo).map(Number)
+</code></pre>
+
+<p>来看个完整一点的栗子:</p>
+
+<pre><code class="language-JS">const weekMapping = {
+  1: '周一',
+  2: '周二',
+  3: '周三',
+  4: '周四',
+  5: '周五',
+  6: '周六',
+  7: '周日',
+}
+
+type TWeekKey = keyof typeof weekMapping
+
+const keys = Object.keys(weekMapping).map(Number) as Array&lt;TWeekKey&gt;
+
+function WeekSelector() {
+  return (
+    keys.map(key =&gt; (
+      &lt;Button key={key}&gt;{weekMapping[key]}&lt;/Button&gt;
+    ))
+  )
+}
 </code></pre>
  
 <div id="gitalk-container"></div>

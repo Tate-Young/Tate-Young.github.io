@@ -175,6 +175,8 @@
                       发布时间：2018-04-03 16:46:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2021-01-27 11:49:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -228,39 +230,39 @@
 
 <style>
 .test li {
-	margin-top: 20px;
-	list-style: none;
-	width: 400px;
+  margin-top: 20px;
+  list-style: none;
+  width: 400px;
   color: black;
-	padding: 10px;
-	background: #eee;
+  padding: 10px;
+  background: #eee;
 }
 .test .outset {
-	box-shadow: 5px 5px rgba(0, 0, 0, .6);
+  box-shadow: 5px 5px rgba(0, 0, 0, .6);
 }
 .test .outset-blur {
-	box-shadow: 5px 5px 5px rgba(0, 0, 0, .6);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, .6);
 }
 .test .outset-extension {
-	box-shadow: 5px 5px 5px 10px rgba(0, 0, 0, .6);
+  box-shadow: 5px 5px 5px 10px rgba(0, 0, 0, .6);
 }
 .test .inset {
-	box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, .6) inset;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, .6) inset;
 }
 .test .multiple-shadow {
-	box-shadow:
-		0 0 5px 3px rgba(255, 0, 0, .6),
-		0 0 5px 6px rgba(0, 182, 0, .6),
-		0 0 5px 10px rgba(255, 255, 0, .6);
+  box-shadow:
+    0 0 5px 3px rgba(255, 0, 0, .6),
+    0 0 5px 6px rgba(0, 182, 0, .6),
+    0 0 5px 10px rgba(255, 255, 0, .6);
 }
 </style>
 
 <ul class="test">
-	<li class="outset">外阴影常规效果<br />box-shadow:5px 5px rgba(0,0,0,.6);</li>
-	<li class="outset-blur">外阴影模糊效果<br />box-shadow:5px 5px 5px rgba(0,0,0,.6);</li>
-	<li class="outset-extension">外阴影模糊外延效果<br />box-shadow:5px 5px 5px 10px rgba(0,0,0,.6);</li>
-	<li class="inset">内阴影效果<br />box-shadow:2px 2px 5px 1px rgba(0,0,0,.6) inset;</li>
-	<li class="multiple-shadow">外阴影模糊效果<br />box-shadow:5px 5px 5px rgba(0,0,0,.6);</li>
+  <li class="outset">外阴影常规效果<br />box-shadow:5px 5px rgba(0,0,0,.6);</li>
+  <li class="outset-blur">外阴影模糊效果<br />box-shadow:5px 5px 5px rgba(0,0,0,.6);</li>
+  <li class="outset-extension">外阴影模糊外延效果<br />box-shadow:5px 5px 5px 10px rgba(0,0,0,.6);</li>
+  <li class="inset">内阴影效果<br />box-shadow:2px 2px 5px 1px rgba(0,0,0,.6) inset;</li>
+  <li class="multiple-shadow">外阴影模糊效果<br />box-shadow:5px 5px 5px rgba(0,0,0,.6);</li>
 </ul>
 
 <h3 id="示例">示例</h3>
@@ -846,6 +848,13 @@ input::-moz-placeholder { // Firefox 19+
 <blockquote>
   <p>其他同样类型的选择器 <code class="highlighter-rouge">:last-child</code> 和 <code class="highlighter-rouge">:last-of-type</code>，<code class="highlighter-rouge">:nth-child(n)</code> 和 <code class="highlighter-rouge">:nth-of-type(n)</code> 同上 👈</p>
 </blockquote>
+
+<h2 id="prefer-color-scheme">prefer-color-scheme</h2>
+
+<p>严格来讲这不属于 CSS 的范畴，我们可以通过 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/matchMedia"><strong>matchMedia</strong></a> 来查询用户系统中设置的主题偏好模式，比如 light 或 dark，从而使用我们默认的模式来进行匹配:</p>
+
+<pre><code class="language-JS">const isDark = matchMedia('(prefers-color-scheme: dark)').matches
+</code></pre>
 
 <h2 id="参考链接">参考链接</h2>
 

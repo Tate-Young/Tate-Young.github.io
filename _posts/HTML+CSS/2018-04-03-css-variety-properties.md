@@ -7,6 +7,7 @@ background: purple
 category: 前端
 title:  CSS 属性集合
 date:   2018-04-03 16:46:00 GMT+0800 (CST)
+update: 2021-01-27 11:49:00 GMT+0800 (CST)
 background-image: /style/images/smms/html-css.png
 tags:
 - css
@@ -29,39 +30,39 @@ tags:
 
 <style>
 .test li {
-	margin-top: 20px;
-	list-style: none;
-	width: 400px;
+  margin-top: 20px;
+  list-style: none;
+  width: 400px;
   color: black;
-	padding: 10px;
-	background: #eee;
+  padding: 10px;
+  background: #eee;
 }
 .test .outset {
-	box-shadow: 5px 5px rgba(0, 0, 0, .6);
+  box-shadow: 5px 5px rgba(0, 0, 0, .6);
 }
 .test .outset-blur {
-	box-shadow: 5px 5px 5px rgba(0, 0, 0, .6);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, .6);
 }
 .test .outset-extension {
-	box-shadow: 5px 5px 5px 10px rgba(0, 0, 0, .6);
+  box-shadow: 5px 5px 5px 10px rgba(0, 0, 0, .6);
 }
 .test .inset {
-	box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, .6) inset;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, .6) inset;
 }
 .test .multiple-shadow {
-	box-shadow:
-		0 0 5px 3px rgba(255, 0, 0, .6),
-		0 0 5px 6px rgba(0, 182, 0, .6),
-		0 0 5px 10px rgba(255, 255, 0, .6);
+  box-shadow:
+    0 0 5px 3px rgba(255, 0, 0, .6),
+    0 0 5px 6px rgba(0, 182, 0, .6),
+    0 0 5px 10px rgba(255, 255, 0, .6);
 }
 </style>
 
 <ul class="test">
-	<li class="outset">外阴影常规效果<br />box-shadow:5px 5px rgba(0,0,0,.6);</li>
-	<li class="outset-blur">外阴影模糊效果<br />box-shadow:5px 5px 5px rgba(0,0,0,.6);</li>
-	<li class="outset-extension">外阴影模糊外延效果<br />box-shadow:5px 5px 5px 10px rgba(0,0,0,.6);</li>
-	<li class="inset">内阴影效果<br />box-shadow:2px 2px 5px 1px rgba(0,0,0,.6) inset;</li>
-	<li class="multiple-shadow">外阴影模糊效果<br />box-shadow:5px 5px 5px rgba(0,0,0,.6);</li>
+  <li class="outset">外阴影常规效果<br />box-shadow:5px 5px rgba(0,0,0,.6);</li>
+  <li class="outset-blur">外阴影模糊效果<br />box-shadow:5px 5px 5px rgba(0,0,0,.6);</li>
+  <li class="outset-extension">外阴影模糊外延效果<br />box-shadow:5px 5px 5px 10px rgba(0,0,0,.6);</li>
+  <li class="inset">内阴影效果<br />box-shadow:2px 2px 5px 1px rgba(0,0,0,.6) inset;</li>
+  <li class="multiple-shadow">外阴影模糊效果<br />box-shadow:5px 5px 5px rgba(0,0,0,.6);</li>
 </ul>
 
 ### 示例
@@ -600,6 +601,14 @@ user-select：none | text | all | element
 3. `span:first-of-type` - 匹配到的是 span 第三个子元素,因为它是 div 里所有元素类型为 span 的第一个 ✅
 
 > 其他同样类型的选择器 `:last-child` 和 `:last-of-type`，`:nth-child(n)` 和 `:nth-of-type(n)` 同上 👈
+
+## prefer-color-scheme
+
+严格来讲这不属于 CSS 的范畴，我们可以通过 [**matchMedia**](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/matchMedia) 来查询用户系统中设置的主题偏好模式，比如 light 或 dark，从而使用我们默认的模式来进行匹配:
+
+```JS
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches
+```
 
 ## 参考链接
 
