@@ -23,6 +23,8 @@ tags:
 1. [webpack bundle optimize helper](https://webpack.jakoblind.no/optimize/) - This tool will analyze your bundle and give you actionable suggestions on what to improve to reduce your bundle size.
 1. [bundle-stats](https://github.com/relative-ci/bundle-stats) - Generate a bundle report(bundle size, assets, modules) and compare the results between different builds.
 
+> 这里推荐一个在线网页 - [**BundlePhobia**](https://bundlephobia.com) 👈
+
 > 部分在线分析工具，需要先在项目中运行 `webpack --profile --json > stats.json`，然后将生成的 json 文件上传即可 👈
 
 ## webpack-bundle-analyzer
