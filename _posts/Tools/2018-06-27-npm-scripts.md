@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
-update: 2019-06-14 20:05:00 GMT+0800 (CST)
+update: 2021-03-17 16:57:00 GMT+0800 (CST)
 background-image: /style/images/smms/node.jpg
 
 tags:
@@ -28,12 +28,17 @@ npm init
 npm init -f
 ```
 
-当然也可以在初始化前通过`npm config set`命令去修改默认配置，之后通过初始化时都会套用此配置项:
+当然也可以在初始化前通过`npm config`命令去修改默认配置，之后通过初始化时都会套用此配置项:
 
 ```SHELL
 npm config set init.author.name "tate"
 npm config set init.author.email "smd.tate@gmail.com"
 npm config set init.license "MIT"
+```
+
+```SHELL
+# 查看所有 npm 配置
+npm config list
 ```
 
 创建的 package.json 文件大致如下:
@@ -116,7 +121,7 @@ package.json 文件里的 scripts 属性下可以自定义执行命令，可以�
 "prepush": "npm test"
 ```
 
-在执行`git commit`命令时，precommit 钩子会自动生效。
+在执行`git commit`命令时，precommit 钩子会自动生效。利用钩子我们可以完成很多事情，比如规范校验、检测冲突阻止提交等。具体栗子可以参考下面 [git hooks 实践示例](#git-hooks-实践示例) 👇
 
 ### 变量 $npm_package
 
@@ -246,6 +251,8 @@ ENV3=THE FISH
   "connect": "1.30.2 - 2.30.2",
 }
 ```
+
+> 如何做版本控制可以[参考下面](#版本控制实践) 👇
 
 ## scripty
 
@@ -451,6 +458,355 @@ v11.14.0
 下图是 n 的使用示例，`n <version>` 就能安装:
 
 ![n](https://camo.githubusercontent.com/e3c6ac1ad2a69e2e969597b69d794658cb64df88/687474703a2f2f6e696d69742e696f2f696d616765732f6e2f6e2e676966)
+
+## nrm
+
+[**nrm**](https://github.com/Pana/nrm) 可以方便管理 npm 源:
+
+```SHELL
+nrm ls
+
+# npm -----  https://registry.npmjs.org/
+# yarn ----- https://registry.yarnpkg.com
+# cnpm ----  http://r.cnpmjs.org/
+# taobao --  https://registry.npm.taobao.org/
+# nj ------  https://registry.nodejitsu.com/
+# skimdb -- https://skimdb.npmjs.com/registry
+```
+
+```SHELL
+# switch registry to cnpm
+nrm use cnpm
+# Registry has been set to: http://r.cnpmjs.org/
+```
+
+我们还可以添加和删除私服的 npm 镜像地址:
+
+```SHELL
+# 具体可以查看 nrm help
+nrm add test http://XXX:4873/
+nrm del test
+```
+
+## git hooks 实践示例
+
+```JSON
+// package.json
+{
+   "husky": {
+    "hooks": {
+      "pre-merge-commit": "node build/bin/pre-merge-commit.js",
+      "pre-commit": "node build/bin/pre-commit.js",
+      "pre-push": "node build/bin/pre-push.js",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
+```
+
+### pre-commit
+
+```JS
+const shell = require('shelljs')
+const fs = require('fs')
+const path = require('path')
+
+const STARTCOLOR = '\033[31m'
+const ENDCOLOR = '\033[0m'
+const CYAN_COLOR = '\x1B[36m'
+shell.config.silent = true
+
+/**
+ * 判断是否安装了 Git
+ */
+function checkGit() {
+  if (!shell.which('git')) {
+    shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}当前环境没有安装 Git，请安装后再试！${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+    shell.exit(1)
+  }
+}
+
+/**
+ * 校验当前用户邮箱是否符合公司规范
+ */
+function checkEmail() {
+  const VALID_EMAIL_SUFFIX = '@xxx.com'
+  const CURRENT_EMAIL = shell.exec('git config --get user.email', { silent: true }).trim()
+
+  if (!CURRENT_EMAIL.endsWith(VALID_EMAIL_SUFFIX)) {
+    shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}当前邮箱格式不正确，请配置为 @xxx.com 邮箱！${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}git config --local user.name 名字${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}git config --local user.email 邮箱${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+    shell.exit(1)
+  }
+}
+
+/**
+ * 校验是否存在冲突文件
+ */
+function checkConflict() {
+  const REG = /(^|\r|\n|\r\n)<{7,8} HEAD|^={7,8}(\r|\n|\r\n|$)|>{7,8}.*(\r|\n|\r\n|$)/gm
+  const CHANGED = shell.exec('git diff --cached --name-only --relative', { silent: true }).stdout.trim().split('\n')
+  const EXCLUDE = /node_modules/g
+
+  if (CHANGED) {
+    const filter = CHANGED.filter(file => {
+      if (!EXCLUDE.test(file)) return file
+    })
+    const existsFiles = []
+
+    for (const file of filter) {
+      try {
+        fs.accessSync(file, fs.constants.F_OK)
+        existsFiles.push(file)
+      } catch (err) {}
+    }
+
+    const conflict = shell.grep('-l', REG, existsFiles).stdout.trim()
+    if (conflict) {
+      shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+      shell.echo(`${STARTCOLOR}${conflict}${ENDCOLOR}\n`)
+      shell.echo(`${STARTCOLOR}以上文件存在冲突未处理，请处理后再提交！${ENDCOLOR}`)
+      shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+      shell.exit(1)
+    }
+  }
+}
+
+function checkCode(isFix = false) {
+  const ESLINT_PATH = path.resolve(__dirname, '../../node_modules/.bin/eslint')
+  const ESLINTRC_PATH = path.resolve(__dirname, '../../.eslintrc.js')
+  const CHECK_TIME = '2020/01/01'
+  const SUFFIX_FILE_REG = /\.vue?$|\.js?$/ // 文件后缀
+  const CHECK_FOLDER = ['examples/', 'packages/', 'src/'] // 只检查这些目录
+  // const EXCLUDE_FOLDER_REG = // // 过滤掉的目录
+
+  function getStatusFile() {
+    return new Promise((resolve, reject) => {
+      shell.exec(`git status -s ${CHECK_FOLDER.join(' ')}`, { silent: true }, (code, stdout, stderr) => {
+        let files = stdout
+        files = files
+          .split('\n')
+          .filter(file => {
+            const head = file.charAt(0)
+            return /[ACMR]/.test(head) && SUFFIX_FILE_REG.test(file)
+          })
+          .map(str => {
+            const length = str.split(' ').length - 1                       
+            return str.split(' ')[length]
+          })
+
+        files.length ? resolve(files) : isFix ? reject('> Git 暂存区没有符合文件，无法执行修复命令') : reject('> Git 暂存区没有需要校验的文件，跳过执行')
+      })
+    })
+  }
+
+  function getNewFiles(files) {
+    return files.map(file => {
+      return new Promise((resolve, reject) => {
+        shell.exec(`git log --all --before=${CHECK_TIME} -n1 -- ${file}`, { silent: true }, (code, stdout, stderr) => {
+          resolve({
+            newFile: stdout === '' ? true : false,
+            file,
+          })
+        })
+      }) 
+    })
+  }
+
+  function doEsLint(filenames) {
+    return Promise.all(filenames).then(res => {
+      const checkFiles = []
+
+      for (const item of res) {
+        if (item.newFile) checkFiles.push(item.file)
+      }
+
+      if (checkFiles.length) {
+        return new Promise((resolve, reject) => {
+          shell.exec(`${ESLINT_PATH} -c ${ESLINTRC_PATH} ${checkFiles.join(' ')} ${isFix ? '--fix': ''}`, { silent: true }, (code, stdout, stderr) => {
+            resolve({
+              content: stdout || stderr,
+            })
+          })
+        })
+      } else {
+        isFix ? reject('> Git 暂存区没有符合文件，无法执行修复命令') : reject('> Git 暂存区没有需要校验的文件，跳过校验')
+      }
+    })
+  }
+
+  getStatusFile()
+    .then(getNewFiles)
+    .then(doEsLint)
+    .then((res) => {
+      if (isFix) {
+        shell.echo('> 已修复 ES Lint「 代码风格 」警告，请再次检查代码后执行 git add & git commit\n')
+      } else if (res && res.content) {
+          shell.echo(`${CYAN_COLOR}${res.content}${CYAN_COLOR}`)
+          shell.echo(`${STARTCOLOR}以上代码不符合代码风格，请处理后再提交！\n${ENDCOLOR}`)
+          shell.echo('ES Lint 检测到代码风格不统一，可参考：')
+          shell.echo('1. 前端代码文档：http://wiki.dotfashion.cn/pages/viewpage.action?pageId=319162067')
+          shell.echo('2. ES Lint 官方文档：https://cn.eslint.org/docs/rules/')
+          // shell.echo('注1：一键修复可执行 `npm run eslint-fix`（建议尝试手动修复，养成代码风格再使用）')
+          shell.echo('注2：如有规则未覆盖到的情况，请联系 lintianhao 处理\n')
+          shell.exit(1)
+      } else {
+          shell.echo('> ES Lint 校验通过！')
+      }
+    })
+    .catch((msg) => {
+      shell.echo(msg)
+    })
+}
+
+if (process.argv.includes('--fix')) {
+  shell.echo('> ES Lint 执行修复命令，请稍等...')
+  checkCode(true)
+} else {
+  checkGit()
+  checkEmail()
+  checkConflict()
+
+  shell.echo('> ES Lint 校验中，请稍等...')
+  checkCode()
+}
+```
+
+### pre-merge-commit / pre-push
+
+```JS
+const shell = require('shelljs')
+
+/**
+ * 校验合并的分支，不能向 master 和 dev 分支合并代码
+ */
+function checkCommitBranch() {
+  let branch = shell.exec('git rev-parse --symbolic --abbrev-ref HEAD', { silent: true }).stdout.trim()
+  let forBiddenBranch = ['master', 'dev']
+  if (forBiddenBranch.includes(branch)) {
+    shell.echo(`> 禁止往${forBiddenBranch.join(', ')} merge 代码，请使用merge requests`)
+    shell.exit(1)
+  }
+}
+
+checkCommitBranch()
+```
+
+## 版本控制实践
+
+```JSON
+// package.json
+{
+  "scripts": {
+    "pub": "npm run test && sh path/git.sh && sh path/release.sh",
+  }
+}
+```
+
+### git.sh
+
+```SHELL
+git checkout dev
+
+check () {
+  if test -n "$(git status --porcelain)"; then
+    echo 'Unclean working tree. Commit or stash changes first.' >&2;
+    exit 128;
+  fi
+
+  if ! git fetch --quiet 2>/dev/null; then
+    echo 'There was a problem fetching your branch. Run `git fetch` to see more...' >&2;
+    exit 128;
+  fi
+
+  if test "0" != "$(git rev-list --count --left-only @'{u}'...HEAD)"; then
+    echo 'Remote history differ. Please pull changes.' >&2;
+    exit 128;
+  fi
+}
+
+
+check
+echo 'No conflicts.' >&2
+
+git checkout master
+git pull
+git merge dev
+git push --no-verify
+
+check
+echo 'merge dev to master.' >&2
+```
+
+### release.sh
+
+```SHELL
+VERSION_TYPE=('major' 'minor' 'patch')
+
+# package.json version
+PACKVERSION=''
+PACKVERSIONARR=''
+
+re="\"(version)\": \"([^\"]*)\""
+# get package.json version
+while read -r l; do
+  if [[ $l =~ $re ]]; then
+    value="${BASH_REMATCH[2]}"
+    PACKVERSION="$value"
+  fi
+done < package.json
+
+PACKVERSIONARR=(${PACKVERSION//./ })
+
+# version
+VERSION=`npx select-version-cli`
+read -p "Releasing $VERSION - are you sure? (y/n)" -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]] && [[ ! $VERSION =~ '-' ]]; then
+
+  PUBLISHARR=(${VERSION//./ })
+
+  # patch, minor, major
+  PUBLISH_TYPE=
+  i=0
+  while [[ $PUBLISH_TYPE == "" ]]; do
+    if [ ${PACKVERSIONARR[i]} -ne ${PUBLISHARR[i]} ]; then
+      PUBLISH_TYPE=${VERSION_TYPE[i]}
+    fi
+    let i+=1
+  done
+  
+  echo "Releasing $VERSION ...$PUBLISH_TYPE"
+  
+  # 更新 package.json 版本号
+  npm version $VERSION --message "feat: version $VERSION"
+
+  # build
+  VERSION=$VERSION npm run build
+
+  # tag
+  if [ $PUBLISH_TYPE == 'minor' ] || [ $PUBLISH_TYPE == 'major' ]; then
+    git tag "v$VERSION"
+    git push origin refs/tags/"v$VERSION" --no-verify
+  fi
+  
+  # commit 
+  git add .
+  git commit -m "feat: build $VERSION"
+  git push --no-verify
+
+  # publish
+  npm publish
+else
+  echo 'please select patch, minor, major'
+fi
+```
 
 ## 参考链接
 
