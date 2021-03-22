@@ -1,0 +1,790 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+<head>
+    <meta content='NPM 私有仓库搭建 - Tate & Snow' name='title' />
+    <meta content='NPM 私有仓库搭建 - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>NPM 私有仓库搭建 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>NPM 私有仓库搭建 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NPM 私有仓库搭建 - Tate & Snow">
+<meta name="twitter:keywords" content="NPM 私有仓库搭建 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="NPM 私有仓库搭建 - Tate & Snow">
+<meta name="og:keywords" content="NPM 私有仓库搭建 - Tate & Snow|NPM 私有仓库搭建  目前文章主要摘自npm 私有仓库工具 Verdaccio 搭建 - 匠心博客，后续会补上自己的实践为什么需要 npm 私有仓库在构建前端项目的过程中，核心包、开发脚手架、前端组件库等 JS SDK 依赖资源需要..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="NPM 私有仓库搭建  目前文章主要摘自npm 私有仓库工具 Verdaccio 搭建 - 匠心博客，后续会补上自己的实践为什么需要 npm 私有仓库在构建前端项目的过程中，核心包、开发脚手架、前端组件库等 JS SDK 依赖资源需要..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2021/03/22/npm-registry.html' property='og:url' />
+<meta content="http://localhost:2333/2021/03/22/npm-registry.html|NPM 私有仓库搭建  目前文章主要摘自npm 私有仓库工具 Verdaccio 搭建 - 匠心博客，后续会补上自己的实践为什么需要 npm 私有仓库在构建前端项目的过程中，核心包、开发脚手架、前端组件库等 JS SDK 依赖资源需要..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<!-- <script async src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>NPM 私有仓库搭建 | Tate &amp; Snow</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="NPM 私有仓库搭建" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="NPM 私有仓库搭建" />
+<meta property="og:description" content="NPM 私有仓库搭建" />
+<link rel="canonical" href="http://localhost:2333/2021/03/22/npm-registry.html" />
+<meta property="og:url" content="http://localhost:2333/2021/03/22/npm-registry.html" />
+<meta property="og:site_name" content="Tate &amp; Snow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-22T16:56:00+08:00" />
+<script type="application/ld+json">
+{"description":"NPM 私有仓库搭建","@type":"BlogPosting","url":"http://localhost:2333/2021/03/22/npm-registry.html","headline":"NPM 私有仓库搭建","dateModified":"2021-03-22T16:56:00+08:00","datePublished":"2021-03-22T16:56:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/03/22/npm-registry.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
+                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('历史', '/history')" title="访问 历史" data-hover="历史">历史</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('其他', '/other')" title="访问 其他" data-hover="其他">其他</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:2333/">首页</a>
+                
+                <a href="http://localhost:2333/front">前端</a>
+                
+                <a href="http://localhost:2333/history">历史</a>
+                
+                <a href="http://localhost:2333/other">其他</a>
+                
+                <a href="http://localhost:2333/tags">标签</a>
+                
+                <a href="http://localhost:2333/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('历史', 'http://localhost:2333/history')">历史</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('其他', 'http://localhost:2333/other')">其他</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('NPM 私有仓库搭建')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    NPM 私有仓库搭建</h1>
+                <div class="post-data">
+                    <time datetime="2021-03-22 16:56:00" itemprop="datePublished">
+                      发布时间：2021-03-22 16:56:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('NPM')" title="访问NPM" data-hover="NPM">
+                        NPM
+                        <span>(2)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                NPM 私有仓库搭建</h1>
+            <div class="post-data">
+                <time datetime="2021-03-22 16:56:00" itemprop="datePublished">2021-03-22 16:56:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="Javascript:;" onclick="onClickTag('NPM')" title="访问NPM" data-hover="NPM">
+                    NPM
+                    <span>(2)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="npm-私有仓库搭建">NPM 私有仓库搭建</h1>
+
+<blockquote>
+  <p>目前文章主要摘自<a href="https://zhaomenghuan.js.org/blog/npm-private-repository-verdaccio.html">npm 私有仓库工具 Verdaccio 搭建 - 匠心博客</a>，后续会补上自己的实践</p>
+</blockquote>
+
+<h2 id="为什么需要-npm-私有仓库">为什么需要 npm 私有仓库</h2>
+
+<p>在构建前端项目的过程中，核心包、开发脚手架、前端组件库等 JS SDK 依赖资源需要依托于 npm 去管理。而对于企业开发来说，不能将核心代码上传到完全开放的公网环境，所以一般会搭建企业内部 npm 私有仓库。</p>
+
+<p><img src="https://zhaomenghuan.js.org/assets/img/private-npm.f27dab4e.jpg" alt="npm registry" /></p>
+
+<p>用户 install 后向私有 npm 发起请求，服务器会先查询所请求的这个模块是否是我们自己的私有模块或已经缓存过的公共模块，如果是则直接返回给用户；如果请求的是一个还没有被缓存的公共模块，那么则会向上游源请求模块并进行缓存后返回给用户。上游的源可以是 npm 仓库，也可以是淘宝镜像。</p>
+
+<h2 id="如何搭建">如何搭建</h2>
+
+<p>npm 私有仓库搭建有以下几种方式:</p>
+
+<ol>
+  <li>付费购买 npm 企业私有仓库</li>
+  <li>使用 git + ssh 这种方式直接引用到 GitHub 项目地址</li>
+  <li>开源代码源代码方式或者 docker 化构建</li>
+</ol>
+
+<p>常用的 npm 私有仓库框架:</p>
+
+<ul>
+  <li><a href="https://www.sonatype.com/nexus-repository-oss">Nexus</a> - Java 社区的一个方案，可以用于 Maven、npm 多种类型的仓库，界面比较丑，配置相对于复杂</li>
+  <li><a href="https://github.com/rlidwka/sinopia">Sinopia</a> - 基于 Node.js 构建的，已经年久失修不维护了。替代者是下面的 Verdaccio</li>
+  <li><a href="https://verdaccio.org"><strong>Verdaccio</strong></a> - 通过 fork Sinopia 进行改造的；比较偏向于一个零配置、轻量型的私有 npm 模块管理工具，不需要额外的数据库配置，它内部自带小型数据库，支持私有模块管理的同时也支持缓存使用过的公共模块，发布及缓存的模块以静态资源形式本地存储</li>
+  <li><a href="https://cnpmjs.org"><strong>cnpm</strong></a> - cnpm 支持静态配置型用户管理机制，以及分层模块权限设置，可以实现公共模块镜像更新以及私有模块管理，支持拓展多种存储形式，相对的数据库的配置较多，部署过程略复杂，是淘宝及多家大型公司搭建内部私有 npm 仓库选择的方案</li>
+  <li><a href="https://github.com/cevio/cpm">cpm</a></li>
+  <li><a href="https://github.com/dmstern/npmfrog">npmfrog</a></li>
+</ul>
+
+<p>常用的仓库地址:</p>
+
+<ol>
+  <li><a href="https://registry.npmjs.org">npm</a></li>
+  <li><a href="http://r.cnpmjs.org">cnpm</a></li>
+  <li><a href="https://registry.npm.taobao.org">taobao</a></li>
+  <li><a href="https://registry.nodejitsu.com">nj</a></li>
+  <li><a href="http://registry.mirror.cqupt.edu.cn">rednpm</a></li>
+  <li><a href="https://skimdb.npmjs.com/registry">npmMirror</a></li>
+  <li><a href="http://registry.enpmjs.org">edunpm</a></li>
+</ol>
+
+<h3 id="verdaccio">Verdaccio</h3>
+
+<p><a href="https://verdaccio.org"><strong>Verdaccio</strong></a> 是一个 Node.js 创建的轻量的私有 npm proxy registry。提供 Docker 和 Kubernetes 支持；与 yarn, npm 和 pnpm 100% 兼容；forked 于 sinopia@1.4.0 并且 100% 向后兼容:</p>
+
+<p><img src="https://zhaomenghuan.js.org/assets/img/verdaccio.1ea892c6.png" alt="verdaccio" /></p>
+
+<p>要想在本地体验一下的话十分方便，只用全局装上依赖并启动服务即可:</p>
+
+<pre><code class="language-SHELL"># 安装
+npm install -g verdaccio
+yarn global add verdaccio
+pnpm install -g verdaccio
+
+# 安装完毕后，启动
+$&gt; verdaccio
+warn --- config file  - /home/.config/verdaccio/config.yaml
+warn --- http address - http://localhost:4873/ - verdaccio/4.8.1
+</code></pre>
+
+<p>打开 <code class="highlighter-rouge">http://localhost:4873</code> 就可以看到已经启动起来了:</p>
+
+<p><img src="https://zhaomenghuan.js.org/assets/img/verdaccio-docker.4f5f3a9a.png" alt="verdaccio page" /></p>
+
+<p>下面介绍一下 docker 部署方式，当然还有其他的方式，这里就不做介绍了:</p>
+
+<pre><code class="language-SHELL"># 拉取 Verdaccio 的 docker 镜像：
+docker pull verdaccio/verdaccio
+# 在根目录下创建 docker 文件
+mkdir -p ~/docker/data
+cd ~/docker/data
+# 从 git 拉取示例到 data 到目录下
+git clone https://github.com/verdaccio/docker-examples
+cd ~/docker/data/docker-examples
+# 移动配置文件
+mv docker-local-storage-volume ~/docker/verdaccio
+# 设置文件夹权限
+chown -R 100:101 ~/docker/verdaccio
+# 启动镜像 - 使用 docker-compose 启动:
+cd ~/docker/verdaccio
+docker-compose build
+docker-compose up
+
+# 或者使用 docker run 命令启动:
+V_PATH=~/docker/verdaccio; docker run -it --rm --name verdaccio \
+  -p 4873:4873 \
+  -v $V_PATH/conf:/verdaccio/conf \
+  -v $V_PATH/storage:/verdaccio/storage \
+  -v $V_PATH/plugins:/verdaccio/plugins \
+  verdaccio/verdaccio
+</code></pre>
+
+<h3 id="cnpmjsorg">cnpmjs.org</h3>
+
+<p><a href="https://github.com/cnpm/cnpmjs.org/wiki/Deploy"><strong>cmpjs.org</strong></a> 服务搭建是需要数据库支撑的，官方提供了 <code class="highlighter-rouge">mysql、sqlite、postgres、mariadb</code> 等数据库的支持，在这里我们选用 mysql 来提供数据服务。具体搭建方式官方文档已经很详细了，这里只是带过一下:</p>
+
+<pre><code class="language-SHELL"># clone from github
+git clone git://github.com/cnpm/cnpmjs.org.git $HOME/cnpmjs.org
+cd $HOME/cnpmjs.org
+
+# create mysql tables
+mysql -u yourname -p # 登陆
+mysql&gt; create database cnpmjs # 创建数据库
+mysql&gt; use cnpmjs; # 切换到 cnpmjs 数据库
+mysql&gt; source docs/db.sql # 导入 cnpm 数据库配置文件，生成 tables
+</code></pre>
+
+<p><img src="https://static001.infoq.cn/resource/image/fe/38/fe14be5e55782b6a25fb5b70dee42538.png" alt="tables" /></p>
+
+<p>设置 <code class="highlighter-rouge">config/config.js</code>:</p>
+
+<pre><code class="language-JS">module.exports = {
+  debug: false,
+  enableCluster: true, // enable cluster mode
+  enablePrivate: true, // enable private mode, only admin can publish, other user just can sync package from source npm
+  database: {
+    db: 'cnpmjstest',
+    host: 'localhost',
+    port: 3306,unknown database cnpmjs
+    username: 'cnpmjs',
+    password: 'cnpmjs123'  
+  },
+  admins: {
+    admin: 'admin@cnpmjs.org',
+  },
+  syncModel: 'exist' // 'none', 'all', 'exist'
+}
+</code></pre>
+
+<p>安装所有依赖和启动，服务启动后会监听两个端口，分别是:</p>
+
+<ul>
+  <li>7001 - registry 端口，用来在命令行发布，下载包等对用的远程 registry 地址</li>
+  <li>7002 - web 端口，用来在 web 端查看仓库信息，搜索包，包信息等</li>
+</ul>
+
+<pre><code class="language-SHELL"># 安装依赖
+npm install --build-from-source --registry=https://registry.npm.taobao.org --disturl=https://npm.taobao.org/mirrors/node
+
+# 启动服务
+npm start
+</code></pre>
+
+<h2 id="私有包管理">私有包管理</h2>
+
+<h3 id="发布-publish">发布 publish</h3>
+
+<p>我们成功启动服务后，便可以进行发布 npm 包，并在上面进行管理和查看，一般我们有以下几种发布方式:</p>
+
+<h4 id="指定-registry">指定 registry</h4>
+
+<pre><code class="language-SHELL"># 添加用户 - 输入 username、password 以及 Email 即可
+npm adduser --registry http://localhost:4873
+
+# 登录
+npm login --registry http://localhost:4873
+# 上传私有包
+npm publish --registry http://localhost:4873
+</code></pre>
+
+<h4 id="配置-npmrcyarnrc">配置 .npmrc/.yarnrc</h4>
+
+<pre><code class="language-SHELL"># .npmrc
+registry=http://localhost:4873
+
+# .yarnrc
+registry "http://localhost:4873/"
+</code></pre>
+
+<p>关于 <code class="highlighter-rouge">.yarnrc</code> 的配置，详情可以<a href="https://gemfury.com/help/private-yarn/">参考这里</a>，我们还可以去定义 scope 包，需要注意的是 scope 名字要与 package.json 里的 name 字段保持一致:</p>
+
+<pre><code class="language-SHELL"># .npmrc
+@username:registry=http://localhost:4873
+
+# .yarnrc
+"@username:registry" "http://localhost:4873/"
+</code></pre>
+
+<h4 id="配置-publishconfig">配置 publishConfig</h4>
+
+<pre><code class="language-JSON">// package.json
+{
+  "publishConfig": {
+    "registry": "http://localhost:4873"
+  }
+}
+</code></pre>
+
+<pre><code class="language-SHELL">[GetColors] npm publish
+# npm notice 
+# npm notice 📦  @image-process-library/get-colors@1.0.0
+# npm notice === Tarball Contents === 
+# npm notice 518B  package.json           
+# npm notice 1.2kB README.md              
+# npm notice 1.8kB __tests__/index.spec.ts
+# npm notice 1.6kB src/index.ts           
+# npm notice === Tarball Details === 
+# npm notice name:          @image-process-library/get-colors       
+# npm notice version:       1.0.0                                   
+# npm notice package size:  2.1 kB                                  
+# npm notice unpacked size: 5.1 kB                                  
+# npm notice shasum:        58c078a5258de6df3c75fa58f953aa4006b49bb0
+# npm notice integrity:     sha512-VIiqpQD45lpjB[...]lOwgKyP1YKAgA==
+# npm notice total files:   4                                       
+# npm notice 
+# + @image-process-library/get-colors@1.0.0
+</code></pre>
+
+<blockquote>
+  <p>每次发布时版本号不能相同，否则无法发布成功</p>
+</blockquote>
+
+<h3 id="安装-install">安装 install</h3>
+
+<p>同样，从 npm 私有仓库下载依赖，我们也有几种方式:</p>
+
+<h4 id="nrm-指定-registry">nrm 指定 registry</h4>
+
+<pre><code class="language-SHELL"># 设置仓库源
+npm set registry http://localhost:4873
+# 安装
+npm install
+
+# 或者
+npm install &lt;packagename&gt; --registry=http://localhost:4873
+</code></pre>
+
+<p>上面切换 registry 显然不推荐，需要指定和切换不同的 npm 源，当然我们可以通过管理工具 <strong>nrm</strong> 来稍微减少点工作量，具体可以<a href="http://localhost:2333/2018/06/27/npm-scripts.html#nrm">参考这篇博客</a> 👈</p>
+
+<h4 id="配置-npmrcyarnrc-1">配置 .npmrc/.yarnrc</h4>
+
+<p>配置同发布，都需要在项目根目录下创建。</p>
+
+<h3 id="撤回-unpublish">撤回 unpublish</h3>
+
+<pre><code class="language-SHELL"># 彻底移除一个包:
+npm unpublish &lt;packagename&gt; --force
+
+# 移除指定个一个版本：
+npm unpublish &lt;packagename&gt;@1.0.0
+</code></pre>
+
+<h3 id="scope-管理发布包">scope 管理发布包</h3>
+
+<p>经常有看到 <code class="highlighter-rouge">@xxx/yyy</code> 类型的开源 npm 包，原因是包名称难免会有重名，如果已经有人在 npm 上注册该包名，再次 npm publish 同名包时会告知发布失败，这时可以通过 scope 作用域来解决:</p>
+
+<pre><code class="language-JSON">// package.json
+{
+  "name": "@username/project-name"
+}
+</code></pre>
+
+<blockquote>
+  <p>需要注意的是，如果是发布到官方 registry，scope 一定要是自己注册的用户名，而如果是发布到自己的 npm 私服，scope 可以不是用户名</p>
+</blockquote>
+
+<p>作用域模块默认发布是私有的，发布到官方 registry 时，直接 npm publish 会报错，原因是只有付费用户才能发布私有 scope 包，免费用户只能发布公用包，因此需要添加 <code class="highlighter-rouge">access=public</code> 参数。npm 私服则不用加该参数:</p>
+
+<pre><code class="language-SHELL"># 安装
+npm install @username/project-name
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://zhaomenghuan.js.org/blog/npm-private-repository-verdaccio.html">npm 私有仓库工具 Verdaccio 搭建 - 匠心博客</a></li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2021/03/22/npm-registry.html';
+        this.page.identifier = '/2021/03/22/npm-registry';
+        this.page.title = 'NPM 私有仓库搭建';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2021-03-22 16:56:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<script async src="/search/live2d/autoload.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
