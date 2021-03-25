@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "pnpm - ",
+		"url" : "/2021/03/25/pnpm.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "NPM 私有仓库搭建 - ",
 		"url" : "/2021/03/22/npm-registry.html"
 	}

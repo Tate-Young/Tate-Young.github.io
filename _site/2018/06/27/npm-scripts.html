@@ -15,7 +15,7 @@
 <meta name="twitter:keywords" content="NPM Scripts - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="NPM Scripts - Tate & Snow">
-<meta name="og:keywords" content="NPM Scripts - Tate & Snow|NPM ScriptsNPM Scriptspackage.jsonpackage.json 文件定义了项目所需要的依赖模块和配置信息。可以通过npm init命令来创建 package.json 文件，使用参数 -f 可跳过此问答环..."
+<meta name="og:keywords" content="NPM Scripts - Tate & Snow|NPM ScriptsNPM Scriptspackage.jsonpackage.json 文件定义了项目所需要的依赖模块和配置信息。可以通过 npm init 命令来创建 package.json 文件，使用参数 -f 可跳过此问..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="NPM ScriptsNPM Scriptspackage.jsonpackage.json 文件定义了项目所需要的依赖模块和配置信息。可以通过npm init命令来创建 package.json 文件，使用参数 -f 可跳过此问答环..." property='og:description'
+<meta name="keywords" content="NPM ScriptsNPM Scriptspackage.jsonpackage.json 文件定义了项目所需要的依赖模块和配置信息。可以通过 npm init 命令来创建 package.json 文件，使用参数 -f 可跳过此问..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:2333/2018/06/27/npm-scripts.html' property='og:url' />
-<meta content="http://localhost:2333/2018/06/27/npm-scripts.html|NPM ScriptsNPM Scriptspackage.jsonpackage.json 文件定义了项目所需要的依赖模块和配置信息。可以通过npm init命令来创建 package.json 文件，使用参数 -f 可跳过此问答环..." property='og:description'
+<meta content="http://localhost:2333/2018/06/27/npm-scripts.html|NPM ScriptsNPM Scriptspackage.jsonpackage.json 文件定义了项目所需要的依赖模块和配置信息。可以通过 npm init 命令来创建 package.json 文件，使用参数 -f 可跳过此问..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -175,7 +175,7 @@
                       发布时间：2018-06-27 17:57:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-03-17 16:57:00
+                        修改时间：2021-03-25 17:42:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -185,7 +185,7 @@
                        
                     <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('NPM')" title="访问NPM" data-hover="NPM">
                         NPM
-                        <span>(2)</span>
+                        <span>(3)</span>
                         
                     </a>
                        
@@ -206,7 +206,7 @@
                    
                 <a href="Javascript:;" onclick="onClickTag('NPM')" title="访问NPM" data-hover="NPM">
                     NPM
-                    <span>(2)</span>
+                    <span>(3)</span>
                     </a>
                    
             </p>
@@ -216,7 +216,7 @@
 
 <h3 id="packagejson">package.json</h3>
 
-<p><strong>package.json</strong> 文件定义了项目所需要的依赖模块和配置信息。可以通过<code class="highlighter-rouge">npm init</code>命令来创建 package.json 文件，使用参数 <strong>-f</strong> 可跳过此问答环节:</p>
+<p><strong>package.json</strong> 文件定义了项目所需要的依赖模块和配置信息。可以通过 <code class="highlighter-rouge">npm init</code> 命令来创建 package.json 文件，使用参数 <strong>-f</strong> 可跳过此问答环节:</p>
 
 <pre><code class="language-SHELL">npm init
 
@@ -224,7 +224,7 @@
 npm init -f
 </code></pre>
 
-<p>当然也可以在初始化前通过<code class="highlighter-rouge">npm config</code>命令去修改默认配置，之后通过初始化时都会套用此配置项:</p>
+<p>当然也可以在初始化前通过 <code class="highlighter-rouge">npm config</code> 命令去修改默认配置，之后通过初始化时都会套用此配置项:</p>
 
 <pre><code class="language-SHELL">npm config set init.author.name "tate"
 npm config set init.author.email "smd.tate@gmail.com"
@@ -252,7 +252,7 @@ npm config list
 
 <h3 id="脚本命令-scripts">脚本命令 scripts</h3>
 
-<p>package.json 文件里的 scripts 属性下可以自定义执行命令，可以通过命令<code class="highlighter-rouge">npm run</code>进行查看:</p>
+<p>package.json 文件里的 scripts 属性下可以自定义执行命令，可以通过命令 <code class="highlighter-rouge">npm run</code> 进行查看:</p>
 
 <pre><code class="language-JSON">"scripts": {
   "call:tate": "echo tate",
@@ -302,13 +302,13 @@ npm config list
 "posttest": "echo post-tate"
 </code></pre>
 
-<p>当执行命令<code class="highlighter-rouge">npm test</code>时，实际执行了 “pretest ==&gt; test ==&gt; posttest”。自定义命令也适用。配合 git hooks 可以在提交代码前后进行一些校验输出，这里推荐使用 <a href="https://www.npmjs.com/package/husky">husky</a>。</p>
+<p>当执行命令 <code class="highlighter-rouge">npm test</code> 时，实际执行了 “pretest ==&gt; test ==&gt; posttest”。自定义命令也适用。配合 git hooks 可以在提交代码前后进行一些校验输出，这里推荐使用 <a href="https://www.npmjs.com/package/husky">husky</a>。</p>
 
 <pre><code class="language-JSON">"precommit": "npm test",
 "prepush": "npm test"
 </code></pre>
 
-<p>在执行<code class="highlighter-rouge">git commit</code>命令时，precommit 钩子会自动生效。利用钩子我们可以完成很多事情，比如规范校验、检测冲突阻止提交等。具体栗子可以参考下面 <a href="#git-hooks-实践示例">git hooks 实践示例</a> 👇</p>
+<p>在执行 <code class="highlighter-rouge">git commit</code> 命令时，precommit 钩子会自动生效。利用钩子我们可以完成很多事情，比如规范校验、检测冲突阻止提交等。具体栗子可以参考下面 <a href="#git-hooks-实践示例">git hooks 实践示例</a> 👇</p>
 
 <h3 id="变量-npm_package">变量 $npm_package</h3>
 
@@ -402,9 +402,9 @@ ENV3=THE FISH
 ./node_modules/.bin/env-cmd test,production node index.js
 </code></pre>
 
-<h3 id="版本号">版本号</h3>
+<h3 id="版本号与-semver-规范">版本号与 SemVer 规范</h3>
 
-<p>这里对版本号做一些解释，主要格式为 <code class="highlighter-rouge">major.minor.patch</code> ，即<code class="highlighter-rouge">主版本号.次版本号.修补版本号</code>，语义化规范可以<a href="https://semver.org/lang/zh-CN/">参考这里</a>:</p>
+<p>这里对版本号做一些解释，主要格式为 <code class="highlighter-rouge">major.minor.patch</code> ，即<code class="highlighter-rouge">主版本号.次版本号.修补版本号</code>，<strong>SemVer(Semantic Version)</strong> 语义化规范可以<a href="https://semver.org/lang/zh-CN/">参考这里</a>:</p>
 
 <ul>
   <li>波浪符号(<strong>~</strong>) - 会更新到当前 minor version(中间数字)中最新的版本，例如更新 ~1.10.0，这个库会去匹配更新到 1.10.x 的最新版本</li>
@@ -435,21 +435,62 @@ ENV3=THE FISH
   </tbody>
 </table>
 
+<p>当某个版本改动比较大、并非稳定而且可能无法满足预期的兼容性需求时，你可能要先发布一个先行版本。先行版本号可以加到 <code class="highlighter-rouge">主版本号.次版本号.修订号</code> 的后面，先加上一个连接号再加上一连串以句点分隔的标识符和版本编译信息:</p>
+
+<ol>
+  <li>内部版本(alpha)</li>
+  <li>公测版本(beta)</li>
+  <li>正式版本的候选版本 rc: 即 Release candiate</li>
+</ol>
+
 <pre><code class="language-JSON">"dependencies": {
-  "async": "1.2.1",
+  "async": "1.2.1", # 固定版本
   "chokidar": "^1.0.0",
   "vizion": "latest", # 当前发布版本
   "babel": "^5.x",
   "pm2-logs": "~0.1.1",
   "ikt": "git+http://ikt.pm2.io/ikt.git#master", # Git URL 形式的依赖
-  "punt": "*",
+  "punt": "*", # 任意版本
   "express": "&gt;=3.0.0",
   "connect": "1.30.2 - 2.30.2",
 }
 </code></pre>
 
+<p>在开发中肯定少不了对一些版本号的操作，如果这些版本号符合 SemVer 规范 ，我们可以借助用于操作版本的 npm 包 <a href="https://github.com/semver/semver">semver</a> 来帮助我们进行比较版本大小、提取版本信息等操作:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 比较版本号大小</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">gt</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.2.3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">9.8.7</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// false</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">lt</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.2.3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">9.8.7</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// true</span>
+
+<span class="c1">// 判断版本号是否符合规范，返回解析后符合规范的版本号。</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">valid</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.2.3</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// '1.2.3'</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">valid</span><span class="p">(</span><span class="dl">'</span><span class="s1">a.b.c</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// null</span>
+
+<span class="c1">// 将其他版本号强制转换成 semver 版本号</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">valid</span><span class="p">(</span><span class="nx">semver</span><span class="p">.</span><span class="nx">coerce</span><span class="p">(</span><span class="dl">'</span><span class="s1">v2</span><span class="dl">'</span><span class="p">))</span> <span class="c1">// '2.0.0'</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">valid</span><span class="p">(</span><span class="nx">semver</span><span class="p">.</span><span class="nx">coerce</span><span class="p">(</span><span class="dl">'</span><span class="s1">42.6.7.9.3-alpha</span><span class="dl">'</span><span class="p">))</span> <span class="c1">// '42.6.7'</span>
+
+<span class="c1">// 一些其他用法</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">clean</span><span class="p">(</span><span class="dl">'</span><span class="s1">  =v1.2.3   </span><span class="dl">'</span><span class="p">)</span> <span class="c1">// '1.2.3'</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">satisfies</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.2.3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">1.x || &gt;=2.5.0 || 5.0.0 - 7.2.3</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// true</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">minVersion</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt;=1.0.0</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// '1.0.0'</span>
+</code></pre></div></div>
+
+<p>我们的目的是保证团队中使用的依赖一致或者稳定，而不是永远不去更新这些依赖。实际开发场景下，我们虽然不需要每次都去安装新的版本，仍然需要定时去升级依赖版本，来让我们享受依赖包升级带来的问题修复、性能提升、新特性更新。使用 <code class="highlighter-rouge">npm outdated</code> 可以帮助我们列出有哪些还没有升级到最新版本的依赖:</p>
+
+<ol>
+  <li>Red means there’s a newer version matching your semver requirements, so you should update now. - 执行 <code class="highlighter-rouge">npm update</code> 将会安装此部分依赖</li>
+  <li>Yellow indicates that there’s a newer version above your semver requirements (<strong>usually new major, or new 0.x minor</strong>) so proceed with caution.</li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/smms/npm-outdated.png" alt="npm outdated" /></p>
+
 <blockquote>
-  <p>如何做版本控制可以<a href="#版本控制实践">参考下面</a> 👇</p>
+  <p>这里也推荐一个 vscode 插件 - <a href="https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens&amp;wt.mc_id=vscode-versionlens-gitlab">Version Lens</a></p>
+</blockquote>
+
+<blockquote>
+  <p>通过脚本进行版本控制可以<a href="#版本控制实践">参考下面</a> 👇</p>
 </blockquote>
 
 <h2 id="scripty">scripty</h2>
@@ -495,7 +536,7 @@ Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
 
 <h2 id="yarn--npm">yarn &amp; npm</h2>
 
-<p><strong>包管理器</strong>: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的 <code class="highlighter-rouge">package-lock.json</code>锁文件类似，通过<code class="highlighter-rouge">yarn.lock</code>记录每一个依赖项的确切版本信息。</p>
+<p><strong>包管理器</strong>: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的  <code class="highlighter-rouge">package-lock.json</code> 锁文件类似，通过 <code class="highlighter-rouge">yarn.lock</code> 记录每一个依赖项的确切版本信息。</p>
 
 <table>
   <thead>
@@ -600,6 +641,14 @@ yarn global add yarn
   ...
   '2.6.1' ]
 </code></pre>
+
+<p>这里再介绍下关于 <code class="highlighter-rouge">npm install</code> 的原理，具体<a href="https://cloud.tencent.com/developer/article/1555982">参考这篇文章</a>:</p>
+
+<p><img src="http://localhost:2333/style/images/smms/npm-install.png" alt="npm install" /></p>
+
+<blockquote>
+  <p>关于 <strong>pnpm</strong> 可以参考<a href="http://localhost:23332021/03/24/pnpm.html">这篇博客</a> 👈</p>
+</blockquote>
 
 <h2 id="npx">npx</h2>
 
@@ -1045,6 +1094,7 @@ fi
   <li><a href="https://github.com/ragingDream/blog/issues/32">Package.json 中库的版本号详解</a> By ragingDream</li>
   <li><a href="https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference">npm install vs. update - what’s the difference? - stackoverflow</a></li>
   <li><a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b">Introducing npx: an npm package runner</a> By Kat Marchán</li>
+  <li><a href="https://cloud.tencent.com/developer/article/1555982">npm install 原理分析</a> by ConardLi</li>
 </ol>
  
 <div id="gitalk-container"></div>

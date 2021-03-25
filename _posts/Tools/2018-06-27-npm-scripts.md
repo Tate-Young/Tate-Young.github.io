@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
-update: 2021-03-17 16:57:00 GMT+0800 (CST)
+update: 2021-03-25 17:42:00 GMT+0800 (CST)
 background-image: /style/images/smms/node.jpg
 
 tags:
@@ -19,7 +19,7 @@ tags:
 
 ### package.json
 
-**package.json** 文件定义了项目所需要的依赖模块和配置信息。可以通过`npm init`命令来创建 package.json 文件，使用参数 **-f** 可跳过此问答环节:
+**package.json** 文件定义了项目所需要的依赖模块和配置信息。可以通过 `npm init` 命令来创建 package.json 文件，使用参数 **-f** 可跳过此问答环节:
 
 ```SHELL
 npm init
@@ -28,7 +28,7 @@ npm init
 npm init -f
 ```
 
-当然也可以在初始化前通过`npm config`命令去修改默认配置，之后通过初始化时都会套用此配置项:
+当然也可以在初始化前通过 `npm config` 命令去修改默认配置，之后通过初始化时都会套用此配置项:
 
 ```SHELL
 npm config set init.author.name "tate"
@@ -59,7 +59,7 @@ npm config list
 
 ### 脚本命令 scripts
 
-package.json 文件里的 scripts 属性下可以自定义执行命令，可以通过命令`npm run`进行查看:
+package.json 文件里的 scripts 属性下可以自定义执行命令，可以通过命令 `npm run` 进行查看:
 
 ```JSON
 "scripts": {
@@ -114,14 +114,14 @@ package.json 文件里的 scripts 属性下可以自定义执行命令，可以�
 "posttest": "echo post-tate"
 ```
 
-当执行命令`npm test`时，实际执行了 "pretest ==> test ==> posttest"。自定义命令也适用。配合 git hooks 可以在提交代码前后进行一些校验输出，这里推荐使用 [husky](https://www.npmjs.com/package/husky)。
+当执行命令 `npm test` 时，实际执行了 "pretest ==> test ==> posttest"。自定义命令也适用。配合 git hooks 可以在提交代码前后进行一些校验输出，这里推荐使用 [husky](https://www.npmjs.com/package/husky)。
 
 ```JSON
 "precommit": "npm test",
 "prepush": "npm test"
 ```
 
-在执行`git commit`命令时，precommit 钩子会自动生效。利用钩子我们可以完成很多事情，比如规范校验、检测冲突阻止提交等。具体栗子可以参考下面 [git hooks 实践示例](#git-hooks-实践示例) 👇
+在执行 `git commit` 命令时，precommit 钩子会自动生效。利用钩子我们可以完成很多事情，比如规范校验、检测冲突阻止提交等。具体栗子可以参考下面 [git hooks 实践示例](#git-hooks-实践示例) 👇
 
 ### 变量 $npm_package
 
@@ -224,9 +224,9 @@ ENV3=THE FISH
 ./node_modules/.bin/env-cmd test,production node index.js
 ```
 
-### 版本号
+### 版本号与 SemVer 规范
 
-这里对版本号做一些解释，主要格式为 `major.minor.patch` ，即`主版本号.次版本号.修补版本号`，语义化规范可以[参考这里](https://semver.org/lang/zh-CN/):
+这里对版本号做一些解释，主要格式为 `major.minor.patch` ，即`主版本号.次版本号.修补版本号`，**SemVer(Semantic Version)** 语义化规范可以[参考这里](https://semver.org/lang/zh-CN/):
 
 * 波浪符号(**~**) - 会更新到当前 minor version(中间数字)中最新的版本，例如更新 ~1.10.0，这个库会去匹配更新到 1.10.x 的最新版本
 * 插入符号(**^**) - 会更新到当前 major version(首位数字)中最新的版本，例如更新 ^1.10.0，这个库会去匹配更新到 1.x.x 的最新版本
@@ -238,21 +238,57 @@ ENV3=THE FISH
 | **minor** | 保持向下兼容,新增特性时，递增次版本号 |
 | **patch** | 保持向下兼容,修复问题但不影响特性时，递增修订号 |
 
+当某个版本改动比较大、并非稳定而且可能无法满足预期的兼容性需求时，你可能要先发布一个先行版本。先行版本号可以加到 `主版本号.次版本号.修订号` 的后面，先加上一个连接号再加上一连串以句点分隔的标识符和版本编译信息:
+
+1. 内部版本(alpha)
+1. 公测版本(beta)
+1. 正式版本的候选版本 rc: 即 Release candiate
+
 ```JSON
 "dependencies": {
-  "async": "1.2.1",
+  "async": "1.2.1", # 固定版本
   "chokidar": "^1.0.0",
   "vizion": "latest", # 当前发布版本
   "babel": "^5.x",
   "pm2-logs": "~0.1.1",
   "ikt": "git+http://ikt.pm2.io/ikt.git#master", # Git URL 形式的依赖
-  "punt": "*",
+  "punt": "*", # 任意版本
   "express": ">=3.0.0",
   "connect": "1.30.2 - 2.30.2",
 }
 ```
 
-> 如何做版本控制可以[参考下面](#版本控制实践) 👇
+在开发中肯定少不了对一些版本号的操作，如果这些版本号符合 SemVer 规范 ，我们可以借助用于操作版本的 npm 包 [semver](https://github.com/semver/semver) 来帮助我们进行比较版本大小、提取版本信息等操作:
+
+```js
+// 比较版本号大小
+semver.gt('1.2.3', '9.8.7') // false
+semver.lt('1.2.3', '9.8.7') // true
+
+// 判断版本号是否符合规范，返回解析后符合规范的版本号。
+semver.valid('1.2.3') // '1.2.3'
+semver.valid('a.b.c') // null
+
+// 将其他版本号强制转换成 semver 版本号
+semver.valid(semver.coerce('v2')) // '2.0.0'
+semver.valid(semver.coerce('42.6.7.9.3-alpha')) // '42.6.7'
+
+// 一些其他用法
+semver.clean('  =v1.2.3   ') // '1.2.3'
+semver.satisfies('1.2.3', '1.x || >=2.5.0 || 5.0.0 - 7.2.3') // true
+semver.minVersion('>=1.0.0') // '1.0.0'
+```
+
+我们的目的是保证团队中使用的依赖一致或者稳定，而不是永远不去更新这些依赖。实际开发场景下，我们虽然不需要每次都去安装新的版本，仍然需要定时去升级依赖版本，来让我们享受依赖包升级带来的问题修复、性能提升、新特性更新。使用 `npm outdated` 可以帮助我们列出有哪些还没有升级到最新版本的依赖:
+
+1. Red means there's a newer version matching your semver requirements, so you should update now. - 执行 `npm update` 将会安装此部分依赖
+2. Yellow indicates that there's a newer version above your semver requirements (**usually new major, or new 0.x minor**) so proceed with caution.
+
+![npm outdated]( {{site.url}}/style/images/smms/npm-outdated.png )
+
+> 这里也推荐一个 vscode 插件 - [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens&wt.mc_id=vscode-versionlens-gitlab)
+
+> 通过脚本进行版本控制可以[参考下面](#版本控制实践) 👇
 
 ## scripty
 
@@ -299,7 +335,7 @@ Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
 
 ## yarn & npm
 
-**包管理器**: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的 `package-lock.json`锁文件类似，通过`yarn.lock`记录每一个依赖项的确切版本信息。
+**包管理器**: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的  `package-lock.json` 锁文件类似，通过 `yarn.lock` 记录每一个依赖项的确切版本信息。
 
 | npm 命令 | yarn 命令 | 功能描述 |
 |:--------------|:---------|:---------|
@@ -365,6 +401,12 @@ $npm view @date-io/date-fns versions
   ...
   '2.6.1' ]
 ```
+
+这里再介绍下关于 `npm install` 的原理，具体[参考这篇文章](https://cloud.tencent.com/developer/article/1555982):
+
+![npm install]( {{site.url}}/style/images/smms/npm-install.png )
+
+> 关于 **pnpm** 可以参考[这篇博客]( {{site.url}}2021/03/24/pnpm.html ) 👈
 
 ## npx
 
@@ -819,3 +861,4 @@ fi
 7. [Package.json 中库的版本号详解](https://github.com/ragingDream/blog/issues/32) By ragingDream
 8. [npm install vs. update - what's the difference? - stackoverflow](https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
 9. [Introducing npx: an npm package runner](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) By Kat Marchán
+10. [npm install 原理分析](https://cloud.tencent.com/developer/article/1555982) by ConardLi

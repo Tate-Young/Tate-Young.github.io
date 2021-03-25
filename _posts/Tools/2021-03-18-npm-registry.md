@@ -275,6 +275,15 @@ npm unpublish <packagename>@1.0.0
 
 作用域模块默认发布是私有的，发布到官方 registry 时，直接 npm publish 会报错，原因是只有付费用户才能发布私有 scope 包，免费用户只能发布公用包，因此需要添加 `access=public` 参数。npm 私服则不用加该参数:
 
+```JSON
+// package.json
+{
+  "publishConfig": {
+    "access": "public"
+  }
+}
+```
+
 ```SHELL
 # 安装
 npm install @username/project-name

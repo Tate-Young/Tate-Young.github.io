@@ -183,7 +183,7 @@
                        
                     <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('NPM')" title="访问NPM" data-hover="NPM">
                         NPM
-                        <span>(2)</span>
+                        <span>(3)</span>
                         
                     </a>
                        
@@ -204,7 +204,7 @@
                    
                 <a href="Javascript:;" onclick="onClickTag('NPM')" title="访问NPM" data-hover="NPM">
                     NPM
-                    <span>(2)</span>
+                    <span>(3)</span>
                     </a>
                    
             </p>
@@ -471,6 +471,14 @@ npm unpublish &lt;packagename&gt;@1.0.0
 </blockquote>
 
 <p>作用域模块默认发布是私有的，发布到官方 registry 时，直接 npm publish 会报错，原因是只有付费用户才能发布私有 scope 包，免费用户只能发布公用包，因此需要添加 <code class="highlighter-rouge">access=public</code> 参数。npm 私服则不用加该参数:</p>
+
+<pre><code class="language-JSON">// package.json
+{
+  "publishConfig": {
+    "access": "public"
+  }
+}
+</code></pre>
 
 <pre><code class="language-SHELL"># 安装
 npm install @username/project-name
