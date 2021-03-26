@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
-update: 2021-03-25 17:42:00 GMT+0800 (CST)
+update: 2021-03-26 16:42:00 GMT+0800 (CST)
 background-image: /style/images/smms/node.jpg
 
 tags:
@@ -290,9 +290,48 @@ semver.minVersion('>=1.0.0') // '1.0.0'
 
 > 通过脚本进行版本控制可以[参考下面](#版本控制实践) 👇
 
+### 依赖 dependencies
+
+package.json 里配置依赖的地方有很多，比如 dependencies、devDependencies、peerDependencies 等，接下来会介绍下一些区别:
+
+一、**dependencies / devDependencies**
+
+dependencies 指定了项目运行所依赖的模块，开发环境和生产环境的依赖模块都可以配置到这里。
+
+有一些包有可能你只是在开发环境中用到，例如你用于检测代码规范的 eslint，用于进行测试的 jest，用户使用你的包时即使不安装这些依赖也可以正常运行，反而安装他们会耗费更多的时间和资源，所以你可以把这些依赖添加到 devDependencies 中，这些依赖照样会在你本地进行 npm install 时被安装和管理，但是一般生产环境安装都会添加 `--production` 参数。只会安装 dependencies 里的依赖。
+
+二、**peerDependencies**
+
+peerDependencies 用于指定你正在开发的模块所依赖的版本以及用户安装的依赖包版本的兼容性。我们直接拿 antD 来举个例子，package.json 中有如下配置:
+
+```JSON
+{
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  }
+}
+```
+
+这里的意思是如果要接入 antD 并保证项目稳定的话，React 版本需要保持 16.0.0 以上，而当你开发时依赖的 React 版本是 15.x 的话，npm@2 则强制宿主环境安装对应版本的 react，npm@3 以上会给用户打印警告提示。
+
+三、**optionalDependencies**
+
+某些场景下，依赖包可能不是强依赖的，这个依赖包的功能可有可无，当这个依赖包无法被获取到时，你希望 npm install 继续运行，而不会导致失败，你可以将这个依赖放到 optionalDependencies 中，注意 optionalDependencies 中的配置将会覆盖掉 dependencies，所以只需在一个地方进行配置。当然，引用 optionalDependencies 中安装的依赖时，一定要做好异常处理，否则在模块获取不到时会导致报错。
+
+四、**bundledDependencies**
+
+和以上几个不同，bundledDependencies 的值是一个数组，数组里可以指定一些模块，这些模块将在这个包发布时被一起打包:
+
+```JSON
+{
+  "bundledDependencies": ["package1" , "package2"]
+}
+```
+
 ## scripty
 
-当脚本命令比较多的时候，可以通过 [scripty](https://github.com/testdouble/scripty) 可以从将 scripts 剥离到单独文件中管理，还是看最初的栗子:
+当脚本命令比较多的时候，可以通过 [scripty](https://github.com/testdouble/scripty) 将 scripts 剥离到单独文件中管理，还是看最初的栗子:
 
 ```SHELL
 "call:tate": "echo tate",
