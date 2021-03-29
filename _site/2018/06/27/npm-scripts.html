@@ -1,0 +1,1441 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+<head>
+    <meta content='NPM Scripts - Tate & Snow' name='title' />
+    <meta content='NPM Scripts - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>NPM Scripts - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>NPM Scripts - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NPM Scripts - Tate & Snow">
+<meta name="twitter:keywords" content="NPM Scripts - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="NPM Scripts - Tate & Snow">
+<meta name="og:keywords" content="NPM Scripts - Tate & Snow|NPM ScriptsNPM Scriptspackage.jsonpackage.json 文件定义了项目所需要的依赖模块和配置信息。可以通过 npm init 命令来创建 package.json 文件，使用参数 -f 可跳过此问..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="NPM ScriptsNPM Scriptspackage.jsonpackage.json 文件定义了项目所需要的依赖模块和配置信息。可以通过 npm init 命令来创建 package.json 文件，使用参数 -f 可跳过此问..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2018/06/27/npm-scripts.html' property='og:url' />
+<meta content="http://localhost:2333/2018/06/27/npm-scripts.html|NPM ScriptsNPM Scriptspackage.jsonpackage.json 文件定义了项目所需要的依赖模块和配置信息。可以通过 npm init 命令来创建 package.json 文件，使用参数 -f 可跳过此问..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<!-- <script async src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>NPM Scripts | Tate &amp; Snow</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="NPM Scripts" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="NPM Scripts" />
+<meta property="og:description" content="NPM Scripts" />
+<link rel="canonical" href="http://localhost:2333/2018/06/27/npm-scripts.html" />
+<meta property="og:url" content="http://localhost:2333/2018/06/27/npm-scripts.html" />
+<meta property="og:site_name" content="Tate &amp; Snow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-06-27T17:57:00+08:00" />
+<script type="application/ld+json">
+{"description":"NPM Scripts","@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
+                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('历史', '/history')" title="访问 历史" data-hover="历史">历史</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('其他', '/other')" title="访问 其他" data-hover="其他">其他</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:2333/">首页</a>
+                
+                <a href="http://localhost:2333/front">前端</a>
+                
+                <a href="http://localhost:2333/history">历史</a>
+                
+                <a href="http://localhost:2333/other">其他</a>
+                
+                <a href="http://localhost:2333/tags">标签</a>
+                
+                <a href="http://localhost:2333/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('历史', 'http://localhost:2333/history')">历史</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('其他', 'http://localhost:2333/other')">其他</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('NPM Scripts')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    NPM Scripts</h1>
+                <div class="post-data">
+                    <time datetime="2018-06-27 17:57:00" itemprop="datePublished">
+                      发布时间：2018-06-27 17:57:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                        修改时间：2021-03-26 16:42:00
+                      
+                    </time>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                <div class="post-tags">
+                       
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('NPM')" title="访问NPM" data-hover="NPM">
+                        NPM
+                        <span>(3)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                NPM Scripts</h1>
+            <div class="post-data">
+                <time datetime="2018-06-27 17:57:00" itemprop="datePublished">2018-06-27 17:57:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="Javascript:;" onclick="onClickTag('NPM')" title="访问NPM" data-hover="NPM">
+                    NPM
+                    <span>(3)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="npm-scripts">NPM Scripts</h1>
+
+<h2 id="npm-scripts-1">NPM Scripts</h2>
+
+<h3 id="packagejson">package.json</h3>
+
+<p><strong>package.json</strong> 文件定义了项目所需要的依赖模块和配置信息。可以通过 <code class="highlighter-rouge">npm init</code> 命令来创建 package.json 文件，使用参数 <strong>-f</strong> 可跳过此问答环节:</p>
+
+<pre><code class="language-SHELL">npm init
+
+# 跳过问答环节，快速创建
+npm init -f
+</code></pre>
+
+<p>当然也可以在初始化前通过 <code class="highlighter-rouge">npm config</code> 命令去修改默认配置，之后通过初始化时都会套用此配置项:</p>
+
+<pre><code class="language-SHELL">npm config set init.author.name "tate"
+npm config set init.author.email "smd.tate@gmail.com"
+npm config set init.license "MIT"
+</code></pre>
+
+<pre><code class="language-SHELL"># 查看所有 npm 配置
+npm config list
+</code></pre>
+
+<p>创建的 package.json 文件大致如下:</p>
+
+<pre><code class="language-JSON">{
+  "name": "npm_scripts",
+  "version": "1.0.0",
+  "description": "tate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
+  },
+  "author": "tate &lt;smd.tate@gmail.com&gt;",
+  "license": "MIT"
+}
+</code></pre>
+
+<h3 id="脚本命令-scripts">脚本命令 scripts</h3>
+
+<p>package.json 文件里的 scripts 属性下可以自定义执行命令，可以通过命令 <code class="highlighter-rouge">npm run</code> 进行查看:</p>
+
+<pre><code class="language-JSON">"scripts": {
+  "call:tate": "echo tate",
+  "call:snow": "echo snow",
+}
+</code></pre>
+
+<p>可以通过符号 <strong>&amp;&amp;</strong> 和 <strong>&amp;</strong> 实现串行和并行脚本:</p>
+
+<pre><code class="language-JSON">// 串行脚本 &amp;&amp;
+"test": "npm run call:tate &amp;&amp; npm run call:snow &amp;&amp; ..."
+
+// 并行脚本 &amp;
+"test": "npm run call:tate &amp; npm run call:snow &amp; ..."
+</code></pre>
+
+<p>运行的脚本比较多的话可以采用 <strong><a href="https://www.npmjs.com/package/npm-run-all">npm-run-all</a></strong> 实现更轻量和简洁的多命令运行:</p>
+
+<pre><code class="language-JSON">// 串行脚本
+"test": "npm-run-all call:tate call:snow ..."
+// 优化
+"test": "npm-run-all call:*"
+
+// 并行脚本 --parallel
+"test": "npm-run-all call:* --parallel"
+</code></pre>
+
+<h3 id="传递参数-">传递参数 –</h3>
+
+<p>“<strong>–</strong>” 分隔符用来给实际运行的指令传递额外的参数，举个栗子 🌰:</p>
+
+<pre><code class="language-JSON">// 假设要传入一个 watch 参数
+"call:tate": "echo tate",
+"call:tate:watch": "echo tate --watch",
+
+// 优化。通过 -- 分隔符传参数
+// 实际执行的即是 echo tate --watch
+"call:tate:watch": "npm run call:tate -- --watch",
+</code></pre>
+
+<h3 id="钩子-hooks">钩子 hooks</h3>
+
+<p>内置的钩子可分为 <strong>pre</strong> 和 <strong>post</strong> 钩子脚本，如下:</p>
+
+<pre><code class="language-JSON">"test": "echo tate",
+"pretest": "echo pre-tate",
+"posttest": "echo post-tate"
+</code></pre>
+
+<p>当执行命令 <code class="highlighter-rouge">npm test</code> 时，实际执行了 “pretest ==&gt; test ==&gt; posttest”。自定义命令也适用。配合 git hooks 可以在提交代码前后进行一些校验输出，这里推荐使用 <a href="https://www.npmjs.com/package/husky">husky</a>。</p>
+
+<pre><code class="language-JSON">"precommit": "npm test",
+"prepush": "npm test"
+</code></pre>
+
+<p>在执行 <code class="highlighter-rouge">git commit</code> 命令时，precommit 钩子会自动生效。利用钩子我们可以完成很多事情，比如规范校验、检测冲突阻止提交等。具体栗子可以参考下面 <a href="#git-hooks-实践示例">git hooks 实践示例</a> 👇</p>
+
+<h3 id="变量-npm_package">变量 $npm_package</h3>
+
+<p>通过命令<code class="highlighter-rouge">npm run env</code>即可查看所有变量列表:</p>
+
+<pre><code class="language-SHELL">npm run env | grep npm_package | sort
+</code></pre>
+
+<p>要想在 scripts 内使用变量，不同环境下有两种访问方式，比如访问项目名称 name:</p>
+
+<pre><code class="language-JSON">// The following only works on Mac OS X/Linux (bash)
+"bash-script": "echo Hello $npm_package_name",
+// The following only works on a Windows machine
+"win-script": "echo Hello %npm_package_name%"
+</code></pre>
+
+<p>跨平台使用的话可以使用 <a href="https://www.npmjs.com/package/cross-var">cross-var</a> 或更轻量的 cross-var-no-babel:</p>
+
+<pre><code class="language-JSON">// 单命令写法
+"script": "cross-var echo Hello $npm_package_name"
+// 多命令写法
+"build:css": "cross-var \"node-sass src/index.scss | postcss -c .postcssrc.json | cssmin &gt; public/$npm_package_version/index.min.css\"",
+</code></pre>
+
+<h3 id="跨平台兼容">跨平台兼容</h3>
+
+<p>除了上述的变量，还有文件系统的操作也需要考虑跨平台兼容，比如:</p>
+
+<ul>
+  <li>rimraf 或 del-cli: 用来删除文件和目录，实现类似于 <code class="highlighter-rouge">rm -rf</code> 的功能；</li>
+  <li>cpr: 用于拷贝、复制文件和目录，实现类似于 <code class="highlighter-rouge">cp -r</code> 的功能；</li>
+  <li>make-dir-cli: 用于创建目录，实现类似于 <code class="highlighter-rouge">mkdir -p</code> 的功能</li>
+</ul>
+
+<pre><code class="language-JSON">"cover:cleanup": "rm -rf coverage &amp;&amp; rm -rf .nyc_output",
+// 跨平台转换
+"cover:cleanup": "rimraf coverage &amp;&amp; rimraf .nyc_output"
+</code></pre>
+
+<p>设置环境变量时可以采用 <a href="https://www.npmjs.com/package/cross-env"><strong>cross-env</strong></a>:</p>
+
+<pre><code class="language-JSON">"test": "NODE_ENV=test mocha tests/",
+// 跨平台转换
+"test": "cross-env NODE_ENV=test mocha tests/",
+</code></pre>
+
+<p>但是 cross-env 并不能解决大型项目中自定义环境变量的持久化问题，这里再推荐一个 <a href="https://github.com/toddbluhm/env-cmd"><strong>env-cmd</strong></a>，其缺点是不支持在命令行中自定义环境变量:</p>
+
+<pre><code class="language-TEXT"># 文件 ./test/.env
+ENV1=THANKS
+ENV2=FOR ALL
+ENV3=THE FISH
+</code></pre>
+
+<pre><code class="language-JSON">{
+  "scripts": {
+    "test": "env-cmd ./test/.env mocha -R spec"
+  }
+}
+</code></pre>
+
+<pre><code class="language-SHELL"># 命令行
+./node_modules/.bin/env-cmd ./test/.env node index.js
+</code></pre>
+
+<p>对于更复杂的环境，我们在配置文件 <code class="highlighter-rouge">.env-cmdrc</code> 中定义环境变量:</p>
+
+<pre><code class="language-JSON">{
+  "dev": {
+    "ENV1": "Thanks",
+    "ENV2": "For All"
+  },
+  "test": {
+    "ENV1": "No Thanks",
+    "ENV3": "!"
+  },
+  "prod": {
+    "ENV1": "The Fish"
+  }
+}
+</code></pre>
+
+<pre><code class="language-JSON">{
+  "scripts": {
+    "test": "env-cmd dev mocha -R spec"
+  }
+}
+</code></pre>
+
+<pre><code class="language-SHELL"># 命令行同时传输多个配置
+./node_modules/.bin/env-cmd test,production node index.js
+</code></pre>
+
+<h3 id="版本号与-semver-规范">版本号与 SemVer 规范</h3>
+
+<p>这里对版本号做一些解释，主要格式为 <code class="highlighter-rouge">major.minor.patch</code> ，即<code class="highlighter-rouge">主版本号.次版本号.修补版本号</code>，<strong>SemVer(Semantic Version)</strong> 语义化规范可以<a href="https://semver.org/lang/zh-CN/">参考这里</a>:</p>
+
+<ul>
+  <li>波浪符号(<strong>~</strong>) - 会更新到当前 minor version(中间数字)中最新的版本，例如更新 ~1.10.0，这个库会去匹配更新到 1.10.x 的最新版本</li>
+  <li>插入符号(<strong>^</strong>) - 会更新到当前 major version(首位数字)中最新的版本，例如更新 ^1.10.0，这个库会去匹配更新到 1.x.x 的最新版本</li>
+  <li>不带符号 - 匹配具体版本号</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">序号</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>major</strong></td>
+      <td style="text-align: left">进行不向下兼容的修改时，递增主版本号</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>minor</strong></td>
+      <td style="text-align: left">保持向下兼容,新增特性时，递增次版本号</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>patch</strong></td>
+      <td style="text-align: left">保持向下兼容,修复问题但不影响特性时，递增修订号</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>当某个版本改动比较大、并非稳定而且可能无法满足预期的兼容性需求时，你可能要先发布一个先行版本。先行版本号可以加到 <code class="highlighter-rouge">主版本号.次版本号.修订号</code> 的后面，先加上一个连接号再加上一连串以句点分隔的标识符和版本编译信息:</p>
+
+<ol>
+  <li>内部版本(alpha)</li>
+  <li>公测版本(beta)</li>
+  <li>正式版本的候选版本 rc: 即 Release candiate</li>
+</ol>
+
+<pre><code class="language-JSON">"dependencies": {
+  "async": "1.2.1", # 固定版本
+  "chokidar": "^1.0.0",
+  "vizion": "latest", # 当前发布版本
+  "babel": "^5.x",
+  "pm2-logs": "~0.1.1",
+  "ikt": "git+http://ikt.pm2.io/ikt.git#master", # Git URL 形式的依赖
+  "punt": "*", # 任意版本
+  "express": "&gt;=3.0.0",
+  "connect": "1.30.2 - 2.30.2",
+}
+</code></pre>
+
+<p>在开发中肯定少不了对一些版本号的操作，如果这些版本号符合 SemVer 规范 ，我们可以借助用于操作版本的 npm 包 <a href="https://github.com/semver/semver">semver</a> 来帮助我们进行比较版本大小、提取版本信息等操作:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 比较版本号大小</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">gt</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.2.3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">9.8.7</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// false</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">lt</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.2.3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">9.8.7</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// true</span>
+
+<span class="c1">// 判断版本号是否符合规范，返回解析后符合规范的版本号。</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">valid</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.2.3</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// '1.2.3'</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">valid</span><span class="p">(</span><span class="dl">'</span><span class="s1">a.b.c</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// null</span>
+
+<span class="c1">// 将其他版本号强制转换成 semver 版本号</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">valid</span><span class="p">(</span><span class="nx">semver</span><span class="p">.</span><span class="nx">coerce</span><span class="p">(</span><span class="dl">'</span><span class="s1">v2</span><span class="dl">'</span><span class="p">))</span> <span class="c1">// '2.0.0'</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">valid</span><span class="p">(</span><span class="nx">semver</span><span class="p">.</span><span class="nx">coerce</span><span class="p">(</span><span class="dl">'</span><span class="s1">42.6.7.9.3-alpha</span><span class="dl">'</span><span class="p">))</span> <span class="c1">// '42.6.7'</span>
+
+<span class="c1">// 一些其他用法</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">clean</span><span class="p">(</span><span class="dl">'</span><span class="s1">  =v1.2.3   </span><span class="dl">'</span><span class="p">)</span> <span class="c1">// '1.2.3'</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">satisfies</span><span class="p">(</span><span class="dl">'</span><span class="s1">1.2.3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">1.x || &gt;=2.5.0 || 5.0.0 - 7.2.3</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// true</span>
+<span class="nx">semver</span><span class="p">.</span><span class="nx">minVersion</span><span class="p">(</span><span class="dl">'</span><span class="s1">&gt;=1.0.0</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// '1.0.0'</span>
+</code></pre></div></div>
+
+<p>我们的目的是保证团队中使用的依赖一致或者稳定，而不是永远不去更新这些依赖。实际开发场景下，我们虽然不需要每次都去安装新的版本，仍然需要定时去升级依赖版本，来让我们享受依赖包升级带来的问题修复、性能提升、新特性更新。使用 <code class="highlighter-rouge">npm outdated</code> 可以帮助我们列出有哪些还没有升级到最新版本的依赖:</p>
+
+<ol>
+  <li>Red means there’s a newer version matching your semver requirements, so you should update now. - 执行 <code class="highlighter-rouge">npm update</code> 将会安装此部分依赖</li>
+  <li>Yellow indicates that there’s a newer version above your semver requirements (<strong>usually new major, or new 0.x minor</strong>) so proceed with caution.</li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/smms/npm-outdated.png" alt="npm outdated" /></p>
+
+<blockquote>
+  <p>这里也推荐一个 vscode 插件 - <a href="https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens&amp;wt.mc_id=vscode-versionlens-gitlab">Version Lens</a></p>
+</blockquote>
+
+<blockquote>
+  <p>通过脚本进行版本控制可以<a href="#版本控制实践">参考下面</a> 👇</p>
+</blockquote>
+
+<h3 id="依赖-dependencies">依赖 dependencies</h3>
+
+<p>package.json 里配置依赖的地方有很多，比如 dependencies、devDependencies、peerDependencies 等，接下来会介绍下一些区别:</p>
+
+<p>一、<strong>dependencies / devDependencies</strong></p>
+
+<p>dependencies 指定了项目运行所依赖的模块，开发环境和生产环境的依赖模块都可以配置到这里。</p>
+
+<p>有一些包有可能你只是在开发环境中用到，例如你用于检测代码规范的 eslint，用于进行测试的 jest，用户使用你的包时即使不安装这些依赖也可以正常运行，反而安装他们会耗费更多的时间和资源，所以你可以把这些依赖添加到 devDependencies 中，这些依赖照样会在你本地进行 npm install 时被安装和管理，但是一般生产环境安装都会添加 <code class="highlighter-rouge">--production</code> 参数。只会安装 dependencies 里的依赖。</p>
+
+<p>二、<strong>peerDependencies</strong></p>
+
+<p>peerDependencies 用于指定你正在开发的模块所依赖的版本以及用户安装的依赖包版本的兼容性。我们直接拿 antD 来举个例子，package.json 中有如下配置:</p>
+
+<pre><code class="language-JSON">{
+  "peerDependencies": {
+    "react": "&gt;=16.0.0",
+    "react-dom": "&gt;=16.0.0"
+  }
+}
+</code></pre>
+
+<p>这里的意思是如果要接入 antD 并保证项目稳定的话，React 版本需要保持 16.0.0 以上，而当你开发时依赖的 React 版本是 15.x 的话，npm@2 则强制宿主环境安装对应版本的 react，npm@3 以上会给用户打印警告提示。</p>
+
+<p>三、<strong>optionalDependencies</strong></p>
+
+<p>某些场景下，依赖包可能不是强依赖的，这个依赖包的功能可有可无，当这个依赖包无法被获取到时，你希望 npm install 继续运行，而不会导致失败，你可以将这个依赖放到 optionalDependencies 中，注意 optionalDependencies 中的配置将会覆盖掉 dependencies，所以只需在一个地方进行配置。当然，引用 optionalDependencies 中安装的依赖时，一定要做好异常处理，否则在模块获取不到时会导致报错。</p>
+
+<p>四、<strong>bundledDependencies</strong></p>
+
+<p>和以上几个不同，bundledDependencies 的值是一个数组，数组里可以指定一些模块，这些模块将在这个包发布时被一起打包:</p>
+
+<pre><code class="language-JSON">{
+  "bundledDependencies": ["package1" , "package2"]
+}
+</code></pre>
+
+<h2 id="scripty">scripty</h2>
+
+<p>当脚本命令比较多的时候，可以通过 <a href="https://github.com/testdouble/scripty">scripty</a> 将 scripts 剥离到单独文件中管理，还是看最初的栗子:</p>
+
+<pre><code class="language-SHELL">"call:tate": "echo tate",
+"call:snow": "echo snow",
+</code></pre>
+
+<p>对应根目录下创建脚本文件，注意在执行脚本时必须拥有可执行权限:</p>
+
+<pre><code class="language-SHELL">touch scripts/call/tate.sh # 内容为 echo 'tate in scripty'
+touch scripts/call/snow.sh
+
+# 添加可执行权限
+chmod -R a+x scripts/**/*.sh
+</code></pre>
+
+<p>然后将 scripts 做修改:</p>
+
+<pre><code class="language-SHELL">"call:tate": "scripty",
+"call:snow": "scripty",
+</code></pre>
+
+<p>执行命令<code class="highlighter-rouge">npm run call:tate</code>后，会打印如下信息:</p>
+
+<pre><code class="language-SHELL">&gt; npm_scripts@1.0.0 call:tate /Users/tate/Desktop/lazyload-test
+&gt; scripty
+
+Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
+
+&gt; echo 'tate in scripty'
+</code></pre>
+
+<blockquote>
+  <p>当然也可以直接通过 node 来管理，将 shell 脚本改为 node 脚本并执行，<a href="https://www.npmjs.com/package/shelljs">shelljs</a> 可以在 node 中使用 shell 命令。</p>
+</blockquote>
+
+<h2 id="构建流水线">构建流水线</h2>
+
+<p>由于目前没有实战，关于如何构建流水线可直接<a href="https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1214e3f265da432b4a6ad2">参考小册这里</a>。</p>
+
+<h2 id="yarn--npm">yarn &amp; npm</h2>
+
+<p><strong>包管理器</strong>: 代码通过包(package)或者称为模块(module)的方式来共享。一个包里包含所有需要共享的代码，以及描述包信息的文件，称为 package.json。和 NPM 5 的  <code class="highlighter-rouge">package-lock.json</code> 锁文件类似，通过 <code class="highlighter-rouge">yarn.lock</code> 记录每一个依赖项的确切版本信息。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">npm 命令</th>
+      <th style="text-align: left">yarn 命令</th>
+      <th style="text-align: left">功能描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">npm i</td>
+      <td style="text-align: left">yarn (install)</td>
+      <td style="text-align: left">根据 package.json 安装所有依赖</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm i (–save/-S) [package]</td>
+      <td style="text-align: left">yarn add [package]</td>
+      <td style="text-align: left">添加依赖包至 dependencies</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm i [–save-dev/-D] [package]</td>
+      <td style="text-align: left">yarn add [–dev/-D] [package]</td>
+      <td style="text-align: left">添加依赖包至 devDependencies</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm i [–global/-g]</td>
+      <td style="text-align: left">yarn global add</td>
+      <td style="text-align: left">全局安装依赖包</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm uninstall [package]</td>
+      <td style="text-align: left">yarn remove [package]</td>
+      <td style="text-align: left">移除依赖包</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm update</td>
+      <td style="text-align: left">yarn upgrade</td>
+      <td style="text-align: left">升级依赖包</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm init</td>
+      <td style="text-align: left">yarn init</td>
+      <td style="text-align: left">互动式创建 package.json 文件</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">npm run</td>
+      <td style="text-align: left">yarn run</td>
+      <td style="text-align: left">运行 package.json 中预定义的脚本</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>yarn 在 mac 的两种安装方式:</p>
+
+<pre><code class="language-SHELL"># 通过 npm 安装
+npm install --global yarn
+
+# 通过 homebrew 安装
+brew install yarn
+</code></pre>
+
+<p>更新方式:</p>
+
+<pre><code class="language-SHELL"># 通过 Homebrew 更新
+brew upgrade yarn
+
+# 通过 yarn 更新
+yarn global add yarn
+</code></pre>
+
+<p>那么再简单对比下 <code class="highlighter-rouge">npm install</code> 和 <code class="highlighter-rouge">update</code> 的区别，即对于已经安装的包，没有明确版本号的，前者会忽略:</p>
+
+<pre><code class="language-TEXT">{
+  "name":          "my-project",
+  "version":       "1.0",                             // install   update
+  "dependencies":  {                                  // ------------------
+    "already-installed-versionless-module":  "*",     // ignores   "1.0" -&gt; "1.1"
+    "already-installed-semver-module":       "^1.4.3" // ignores   "1.4.3" -&gt; "1.5.2"
+    "already-installed-versioned-module":    "3.4.1"  // ignores   ignores
+    "not-yet-installed-versionless-module":  "*",     // installs  installs
+    "not-yet-installed-semver-module":       "^4.2.1" // installs  installs
+    "not-yet-installed-versioned-module":    "2.7.8"  // installs  installs
+  }
+}
+</code></pre>
+
+<p>另外对于安装 <code class="highlighter-rouge">devDependecies</code> 中的依赖还有一些区别:</p>
+
+<ul>
+  <li>npm install 默认会安装，除非添加 <code class="highlighter-rouge">--production</code> 参数</li>
+  <li>npm update 不会默认安装，除非添加 <code class="highlighter-rouge">--dev</code> 参数</li>
+</ul>
+
+<p>如果要用 npm 查看指定库的所有历史版本信息，可以使用 <code class="highlighter-rouge">npm view xxx versions</code> 命令:</p>
+
+<pre><code class="language-SHELL">$npm view @date-io/date-fns versions
+
+[ '0.0.1',
+  '0.0.2',
+  '1.0.0',
+  ...
+  '2.6.1' ]
+</code></pre>
+
+<p>这里再介绍下关于 <code class="highlighter-rouge">npm install</code> 的原理，具体<a href="https://cloud.tencent.com/developer/article/1555982">参考这篇文章</a>:</p>
+
+<p><img src="http://localhost:2333/style/images/smms/npm-install.png" alt="npm install" /></p>
+
+<blockquote>
+  <p>关于 <strong>pnpm</strong> 可以参考<a href="http://localhost:23332021/03/24/pnpm.html">这篇博客</a> 👈</p>
+</blockquote>
+
+<h2 id="npx">npx</h2>
+
+<p><a href="https://github.com/zkat/npx"><strong>npx</strong></a> 是 <a href="https://github.com/npm/npm/releases/tag/v5.2.0">npm@5.2.0</a> 引入的一个命令，那么它是用来干嘛的呢？采用官方的说法就是:</p>
+
+<blockquote>
+  <p>npx is a tool intended to help round out the experience of using packages from the npm registry — the same way npm makes it super easy to install and manage dependencies hosted on the registry, npx makes it easy to use CLI tools and other executables hosted on the registry. It greatly simplifies a number of things that, until now, required a bit of ceremony to do with plain npm</p>
+</blockquote>
+
+<h3 id="抛弃-run-script">抛弃 run-script</h3>
+
+<p>在这之前，npm 生态越来越倾向于将 devDependencies 安装包作为项目本地(project-local)依赖安装，而不是全局安装，这样就更加方便去管理像 gulp、webpack 这些工具的版本，比如 webpack 本地安装时就推荐局部安装:</p>
+
+<blockquote>
+  <p>对于大多数项目，我们建议本地安装。这可以在引入突破式变更(breaking change)版本时，更容易分别升级项目。通常会通过运行一个或多个 npm scripts 以在本地 node_modules 目录中查找安装的 webpack，想要运行本地安装的 webpack，你可以通过 node_modules/.bin/webpack 来访问它的 bin 版本。<a href="https://webpack.docschina.org/guides/installation/">详见这里</a> 👈</p>
+</blockquote>
+
+<p>辣么此前要这么做的话，有以下两种方法:</p>
+
+<p>1、在 run-script 中申明，并执行 <code class="highlighter-rouge">npm build</code></p>
+
+<pre><code class="language-JSON">"scripts": {
+  "build": "webpack --config webpack.config.js"
+}
+</code></pre>
+
+<p>2、直接找到项目本地的位置并执行</p>
+
+<pre><code class="language-SHELL">./node_modules/.bin/webpack --config webpack.config.js
+</code></pre>
+
+<p>抛开以上两种写法而使用 npx 的话，只用输入下面命令即可:</p>
+
+<pre><code class="language-SHELL">npx webpack --config webpack.config.js
+</code></pre>
+
+<h3 id="executing-one-off-commands">Executing one-off commands</h3>
+
+<p>npx 可以让你去执行 npm 包里的二进制文件而不用去全局安装他们，因此利用 npx 还可以实现 Executing one-off commands，即执行一次性命令。npx is the last thing you need to globally install: &gt; <code class="highlighter-rouge">npm i -g npx</code> (this command also updates npx)。</p>
+
+<p>下面举个 <code class="highlighter-rouge">create-react-app</code> 栗子，<code class="highlighter-rouge">$ npx create-react-app my-cool-new-app</code> 安装了一个临时的包并运行, 没有污染全局安装而且命令简单:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*OlIRsvVO5aK7ja9HmwXz_Q.gif" alt="create-react-app" /></p>
+
+<p>下列是一些比较有趣的包，可以用 npx 尝试一番 😜，更多命令可以参考 <a href="https://github.com/junosuarez/awesome-npx">awesome-npx</a>:</p>
+
+<pre><code class="language-TEXT">[~] npx cowsay Tate
+npx: 10 安装成功，用时 1.223 秒
+ _____
+&lt; Tate &gt;
+ -----
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+</code></pre>
+
+<pre><code class="language-TEXT">[~] npx happy-birthday -u snow
+npx: 2 安装成功，用时 0.776 秒
+
+🎂
+お誕生日おめでとう、snow！
+🎉
+</code></pre>
+
+<p>npx 还支持一些其他的参数:</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*JqCC1irC-XxXAWiThpOUiw.gif" alt="npx-options" /></p>
+
+<blockquote>
+  <p><code class="highlighter-rouge">$ npx -p cowsay -p lolcatjs -c 'echo "$npm_package_name@$npm_package_version" | cowsay | lolcatjs'</code> installs both cowsay and lolcatjs, and gives the script access to a slew of <code class="highlighter-rouge">$npm_</code> variables from run scripts.</p>
+</blockquote>
+
+<h3 id="控制-node-版本">控制 node 版本</h3>
+
+<p>node 版本的控制之前一般都采用 <a href="https://github.com/nvm-sh/nvm"><strong>nvm</strong></a>、<a href="https://github.com/tj/n"><strong>n</strong></a> 等版本管理工具，现在的话 npx 就能做到，不过只是临时地去用指定 node 版本:</p>
+
+<pre><code class="language-SHELL">npx -p node@&lt;version&gt;
+</code></pre>
+
+<pre><code class="language-SHELL">[~] npx node@6 -v
+v6.17.1
+[~] npx -p node@7 -- node -v
+v7.10.1
+[~] node -v
+v11.14.0
+</code></pre>
+
+<p>下图是 n 的使用示例，<code class="highlighter-rouge">n &lt;version&gt;</code> 就能安装:</p>
+
+<p><img src="https://camo.githubusercontent.com/e3c6ac1ad2a69e2e969597b69d794658cb64df88/687474703a2f2f6e696d69742e696f2f696d616765732f6e2f6e2e676966" alt="n" /></p>
+
+<h2 id="nrm">nrm</h2>
+
+<p><a href="https://github.com/Pana/nrm"><strong>nrm</strong></a> 可以方便管理 npm 源:</p>
+
+<pre><code class="language-SHELL">nrm ls
+
+# npm -----  https://registry.npmjs.org/
+# yarn ----- https://registry.yarnpkg.com
+# cnpm ----  http://r.cnpmjs.org/
+# taobao --  https://registry.npm.taobao.org/
+# nj ------  https://registry.nodejitsu.com/
+# skimdb -- https://skimdb.npmjs.com/registry
+</code></pre>
+
+<pre><code class="language-SHELL"># switch registry to cnpm
+nrm use cnpm
+# Registry has been set to: http://r.cnpmjs.org/
+</code></pre>
+
+<p>我们还可以添加和删除私服的 npm 镜像地址:</p>
+
+<pre><code class="language-SHELL"># 具体可以查看 nrm help
+nrm add test http://XXX:4873/
+nrm del test
+</code></pre>
+
+<h2 id="git-hooks-实践示例">git hooks 实践示例</h2>
+
+<pre><code class="language-JSON">// package.json
+{
+   "husky": {
+    "hooks": {
+      "pre-merge-commit": "node build/bin/pre-merge-commit.js",
+      "pre-commit": "node build/bin/pre-commit.js",
+      "pre-push": "node build/bin/pre-push.js",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
+</code></pre>
+
+<h3 id="pre-commit">pre-commit</h3>
+
+<pre><code class="language-JS">const shell = require('shelljs')
+const fs = require('fs')
+const path = require('path')
+
+const STARTCOLOR = '\033[31m'
+const ENDCOLOR = '\033[0m'
+const CYAN_COLOR = '\x1B[36m'
+shell.config.silent = true
+
+/**
+ * 判断是否安装了 Git
+ */
+function checkGit() {
+  if (!shell.which('git')) {
+    shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}当前环境没有安装 Git，请安装后再试！${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+    shell.exit(1)
+  }
+}
+
+/**
+ * 校验当前用户邮箱是否符合公司规范
+ */
+function checkEmail() {
+  const VALID_EMAIL_SUFFIX = '@xxx.com'
+  const CURRENT_EMAIL = shell.exec('git config --get user.email', { silent: true }).trim()
+
+  if (!CURRENT_EMAIL.endsWith(VALID_EMAIL_SUFFIX)) {
+    shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}当前邮箱格式不正确，请配置为 @xxx.com 邮箱！${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}git config --local user.name 名字${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}git config --local user.email 邮箱${ENDCOLOR}`)
+    shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+    shell.exit(1)
+  }
+}
+
+/**
+ * 校验是否存在冲突文件
+ */
+function checkConflict() {
+  const REG = /(^|\r|\n|\r\n)&lt;{7,8} HEAD|^={7,8}(\r|\n|\r\n|$)|&gt;{7,8}.*(\r|\n|\r\n|$)/gm
+  const CHANGED = shell.exec('git diff --cached --name-only --relative', { silent: true }).stdout.trim().split('\n')
+  const EXCLUDE = /node_modules/g
+
+  if (CHANGED) {
+    const filter = CHANGED.filter(file =&gt; {
+      if (!EXCLUDE.test(file)) return file
+    })
+    const existsFiles = []
+
+    for (const file of filter) {
+      try {
+        fs.accessSync(file, fs.constants.F_OK)
+        existsFiles.push(file)
+      } catch (err) {}
+    }
+
+    const conflict = shell.grep('-l', REG, existsFiles).stdout.trim()
+    if (conflict) {
+      shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+      shell.echo(`${STARTCOLOR}${conflict}${ENDCOLOR}\n`)
+      shell.echo(`${STARTCOLOR}以上文件存在冲突未处理，请处理后再提交！${ENDCOLOR}`)
+      shell.echo(`${STARTCOLOR}==================================================${ENDCOLOR}`)
+      shell.exit(1)
+    }
+  }
+}
+
+function checkCode(isFix = false) {
+  const ESLINT_PATH = path.resolve(__dirname, '../../node_modules/.bin/eslint')
+  const ESLINTRC_PATH = path.resolve(__dirname, '../../.eslintrc.js')
+  const CHECK_TIME = '2020/01/01'
+  const SUFFIX_FILE_REG = /\.vue?$|\.js?$/ // 文件后缀
+  const CHECK_FOLDER = ['examples/', 'packages/', 'src/'] // 只检查这些目录
+  // const EXCLUDE_FOLDER_REG = // // 过滤掉的目录
+
+  function getStatusFile() {
+    return new Promise((resolve, reject) =&gt; {
+      shell.exec(`git status -s ${CHECK_FOLDER.join(' ')}`, { silent: true }, (code, stdout, stderr) =&gt; {
+        let files = stdout
+        files = files
+          .split('\n')
+          .filter(file =&gt; {
+            const head = file.charAt(0)
+            return /[ACMR]/.test(head) &amp;&amp; SUFFIX_FILE_REG.test(file)
+          })
+          .map(str =&gt; {
+            const length = str.split(' ').length - 1                       
+            return str.split(' ')[length]
+          })
+
+        files.length ? resolve(files) : isFix ? reject('&gt; Git 暂存区没有符合文件，无法执行修复命令') : reject('&gt; Git 暂存区没有需要校验的文件，跳过执行')
+      })
+    })
+  }
+
+  function getNewFiles(files) {
+    return files.map(file =&gt; {
+      return new Promise((resolve, reject) =&gt; {
+        shell.exec(`git log --all --before=${CHECK_TIME} -n1 -- ${file}`, { silent: true }, (code, stdout, stderr) =&gt; {
+          resolve({
+            newFile: stdout === '' ? true : false,
+            file,
+          })
+        })
+      }) 
+    })
+  }
+
+  function doEsLint(filenames) {
+    return Promise.all(filenames).then(res =&gt; {
+      const checkFiles = []
+
+      for (const item of res) {
+        if (item.newFile) checkFiles.push(item.file)
+      }
+
+      if (checkFiles.length) {
+        return new Promise((resolve, reject) =&gt; {
+          shell.exec(`${ESLINT_PATH} -c ${ESLINTRC_PATH} ${checkFiles.join(' ')} ${isFix ? '--fix': ''}`, { silent: true }, (code, stdout, stderr) =&gt; {
+            resolve({
+              content: stdout || stderr,
+            })
+          })
+        })
+      } else {
+        isFix ? reject('&gt; Git 暂存区没有符合文件，无法执行修复命令') : reject('&gt; Git 暂存区没有需要校验的文件，跳过校验')
+      }
+    })
+  }
+
+  getStatusFile()
+    .then(getNewFiles)
+    .then(doEsLint)
+    .then((res) =&gt; {
+      if (isFix) {
+        shell.echo('&gt; 已修复 ES Lint「 代码风格 」警告，请再次检查代码后执行 git add &amp; git commit\n')
+      } else if (res &amp;&amp; res.content) {
+          shell.echo(`${CYAN_COLOR}${res.content}${CYAN_COLOR}`)
+          shell.echo(`${STARTCOLOR}以上代码不符合代码风格，请处理后再提交！\n${ENDCOLOR}`)
+          shell.echo('ES Lint 检测到代码风格不统一，可参考：')
+          shell.echo('ES Lint 官方文档：https://cn.eslint.org/docs/rules/')
+          // shell.echo('注1：一键修复可执行 `npm run eslint-fix`（建议尝试手动修复，养成代码风格再使用）')
+          shell.echo('注2：如有规则未覆盖到的情况，请联系 lintianhao 处理\n')
+          shell.exit(1)
+      } else {
+          shell.echo('&gt; ES Lint 校验通过！')
+      }
+    })
+    .catch((msg) =&gt; {
+      shell.echo(msg)
+    })
+}
+
+if (process.argv.includes('--fix')) {
+  shell.echo('&gt; ES Lint 执行修复命令，请稍等...')
+  checkCode(true)
+} else {
+  checkGit()
+  checkEmail()
+  checkConflict()
+
+  shell.echo('&gt; ES Lint 校验中，请稍等...')
+  checkCode()
+}
+</code></pre>
+
+<h3 id="pre-merge-commit--pre-push">pre-merge-commit / pre-push</h3>
+
+<pre><code class="language-JS">const shell = require('shelljs')
+
+/**
+ * 校验合并的分支，不能向 master 和 dev 分支合并代码
+ */
+function checkCommitBranch() {
+  let branch = shell.exec('git rev-parse --symbolic --abbrev-ref HEAD', { silent: true }).stdout.trim()
+  let forBiddenBranch = ['master', 'dev']
+  if (forBiddenBranch.includes(branch)) {
+    shell.echo(`&gt; 禁止往${forBiddenBranch.join(', ')} merge 代码，请使用merge requests`)
+    shell.exit(1)
+  }
+}
+
+checkCommitBranch()
+</code></pre>
+
+<h2 id="版本控制实践">版本控制实践</h2>
+
+<pre><code class="language-JSON">// package.json
+{
+  "scripts": {
+    "pub": "npm run test &amp;&amp; sh path/git.sh &amp;&amp; sh path/release.sh",
+  }
+}
+</code></pre>
+
+<h3 id="gitsh">git.sh</h3>
+
+<pre><code class="language-SHELL">git checkout dev
+
+check () {
+  if test -n "$(git status --porcelain)"; then
+    echo 'Unclean working tree. Commit or stash changes first.' &gt;&amp;2;
+    exit 128;
+  fi
+
+  if ! git fetch --quiet 2&gt;/dev/null; then
+    echo 'There was a problem fetching your branch. Run `git fetch` to see more...' &gt;&amp;2;
+    exit 128;
+  fi
+
+  if test "0" != "$(git rev-list --count --left-only @'{u}'...HEAD)"; then
+    echo 'Remote history differ. Please pull changes.' &gt;&amp;2;
+    exit 128;
+  fi
+}
+
+
+check
+echo 'No conflicts.' &gt;&amp;2
+
+git checkout master
+git pull
+git merge dev
+git push --no-verify
+
+check
+echo 'merge dev to master.' &gt;&amp;2
+</code></pre>
+
+<h3 id="releasesh">release.sh</h3>
+
+<pre><code class="language-SHELL">VERSION_TYPE=('major' 'minor' 'patch')
+
+# package.json version
+PACKVERSION=''
+PACKVERSIONARR=''
+
+re="\"(version)\": \"([^\"]*)\""
+# get package.json version
+while read -r l; do
+  if [[ $l =~ $re ]]; then
+    value="${BASH_REMATCH[2]}"
+    PACKVERSION="$value"
+  fi
+done &lt; package.json
+
+PACKVERSIONARR=(${PACKVERSION//./ })
+
+# version
+VERSION=`npx select-version-cli`
+read -p "Releasing $VERSION - are you sure? (y/n)" -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]] &amp;&amp; [[ ! $VERSION =~ '-' ]]; then
+
+  PUBLISHARR=(${VERSION//./ })
+
+  # patch, minor, major
+  PUBLISH_TYPE=
+  i=0
+  while [[ $PUBLISH_TYPE == "" ]]; do
+    if [ ${PACKVERSIONARR[i]} -ne ${PUBLISHARR[i]} ]; then
+      PUBLISH_TYPE=${VERSION_TYPE[i]}
+    fi
+    let i+=1
+  done
+  
+  echo "Releasing $VERSION ...$PUBLISH_TYPE"
+  
+  # 更新 package.json 版本号
+  npm version $VERSION --message "feat: version $VERSION"
+
+  # build
+  VERSION=$VERSION npm run build
+
+  # tag
+  if [ $PUBLISH_TYPE == 'minor' ] || [ $PUBLISH_TYPE == 'major' ]; then
+    git tag "v$VERSION"
+    git push origin refs/tags/"v$VERSION" --no-verify
+  fi
+  
+  # commit 
+  git add .
+  git commit -m "feat: build $VERSION"
+  git push --no-verify
+
+  # publish
+  npm publish
+else
+  echo 'please select patch, minor, major'
+fi
+</code></pre>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1212bcf265da431c6fe677">掘金小册 - 用 npm script 打造超溜的前端工作流</a> By 王仕军</li>
+  <li><a href="http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html">npm scripts 使用指南</a> By 阮一峰</li>
+  <li><a href="http://www.qcyoung.com/2016/02/28/%E4%BD%BF%E7%94%A8npm%20scripts%E6%9E%84%E5%BB%BA%E9%A1%B9%E7%9B%AE/#bei-jing">使用 npm scripts 构建项目</a> By 青春样</li>
+  <li><a href="https://yarnpkg.com/zh-Hans/docs">yarn 官网</a></li>
+  <li><a href="https://jeffjade.com/2017/12/30/135-npm-vs-yarn-detial-memo/">Npm vs Yarn 之备忘详单</a> By 晚晴幽草轩轩主</li>
+  <li><a href="https://cloud.tencent.com/developer/article/1020507">npm5 新版功能特性解析及与 yarn 评测对比</a> By 马铖</li>
+  <li><a href="https://github.com/ragingDream/blog/issues/32">Package.json 中库的版本号详解</a> By ragingDream</li>
+  <li><a href="https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference">npm install vs. update - what’s the difference? - stackoverflow</a></li>
+  <li><a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b">Introducing npx: an npm package runner</a> By Kat Marchán</li>
+  <li><a href="https://cloud.tencent.com/developer/article/1555982">npm install 原理分析</a> by ConardLi</li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2018/06/27/npm-scripts.html';
+        this.page.identifier = '/2018/06/27/npm-scripts';
+        this.page.title = 'NPM Scripts';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2018-06-27 17:57:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<script async src="/search/live2d/autoload.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
