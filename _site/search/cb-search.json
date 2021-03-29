@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "帝王篇 - 明 - ",
+		"url" : "/2021/03/28/history-ming.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "pnpm - ",
 		"url" : "/2021/03/25/pnpm.html"
 	}
@@ -597,14 +605,6 @@
 	{
 		"title" : "记一些小技巧和代码块 - ",
 		"url" : "/2018/07/20/js-code-snippets.html"
-	}
-	
-	,
-	
-    
-	{
-		"title" : "NPM Scripts - ",
-		"url" : "/2018/06/27/npm-scripts.html"
 	}
 	
 	,
