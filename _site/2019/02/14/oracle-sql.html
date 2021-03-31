@@ -788,7 +788,7 @@ SELECT trunc(123.458,1) FROM dual --123.4
 
 <pre><code class="language-SQL">-- 该查询的结果是当前时间半年前的时间
 -- dual 表示 Oracle 提供的最小的工作表，只有一行一列，具有某些特殊功用
-SELECT ADD_MONTHS(sysdate,-6) FROM dual
+SELECT ADD_MONTHS(sysdate, -6) FROM dual
 -- 找出今年的天数
 SELECT ADD_MONTHS(TRUNC(sysdate,'year'), 12) - TRUNC(sysdate,'year') FROM dual
 </code></pre>

@@ -175,7 +175,7 @@
                       发布时间：2021-03-25 16:16:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-03-29 18:06:00
+                        修改时间：2021-03-30 12:56:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -735,7 +735,7 @@ lerna bootstrap --hoist
   <p>这里再推荐一些好用的 <a href="https://github.com/korfuri/awesome-monorepo">monorepo 工具集合</a> 👈</p>
 </blockquote>
 
-<h4 id="yarn-workspace">yarn workspace</h4>
+<h4 id="yarn-workspace-vs-pnpm-workspace">yarn workspace vs pnpm workspace</h4>
 
 <p>上述提到，<code class="highlighter-rouge">lerna bootstrap --hoist</code> 虽然可以将子项目的依赖提升到顶层，但是他的方式比较粗暴：先在每个子项目运行 npm install，等所有依赖都安装好后，将他们移动到顶层的node_modules。这会导致一个问题，如果多个子项目依赖同一个第三方库，但是版本不同怎么办？官方的解释是:</p>
 
@@ -760,11 +760,54 @@ lerna bootstrap --hoist
 }
 </code></pre>
 
-<p>使用了 yarn workspace 后，我们就不用 <code class="highlighter-rouge">lerna bootstrap</code> 来安装依赖了，而是像以前一样 <code class="highlighter-rouge">yarn install</code> 就行了，他会自动帮我们提升依赖，无论在顶层运行还是在任意一个子项目运行效果都是一样的。</p>
+<p>使用了 yarn workspace 后，我们就不用 <code class="highlighter-rouge">lerna bootstrap</code> 来安装依赖了，而是像以前一样 <code class="highlighter-rouge">yarn install</code> 就行了，他会自动帮我们提升依赖，无论在顶层运行还是在任意一个子项目运行效果都是一样的。但是随之而来的还是一些安全问题，详细的<a href="#一些安全问题">可见上一节</a>。</p>
 
-<blockquote>
-  <p><strong>pnpm workspace</strong> 可以<a href="https://pnpm.js.org/zh/workspaces/">参考这里</a> 👈</p>
-</blockquote>
+<p>好消息是 <a href="https://pnpm.js.org/zh/workspaces/"><strong>pnpm workspace</strong></a> 已经内置实现对 monorepo 的支持，我们不妨举个例子，假设:</p>
+
+<ol>
+  <li>有个 monorepo 项目，存在两个子项目，分别是 foo 和 bar</li>
+  <li>foo 依赖 is-negative@1.0.0</li>
+  <li>bar 依赖 is-positive@1.0.0</li>
+</ol>
+
+<p>首先我们按照上述步骤配置 yarn workspace，生成的文件结构如下，可以<a href="https://github.com/zkochan/comparing-monorepo-node-modules/tree/master/yarn-example">参考这里</a>:</p>
+
+<pre><code class="language-TEXT">├─ foo
+├─ bar
+├─ node_modules
+|  ├─ is-negative
+|  └─  is-positive
+└─  package.json
+</code></pre>
+
+<p>显而易见，foo 和 bar 都能访问 is-negative 和 is-positive。接下来我们看 pnpm workspace 的配置。首先我们要在根目录下创建一个空的 <code class="highlighter-rouge">pnpm-workspace.yaml</code> 和一个 <code class="highlighter-rouge">.npmrc</code> 文件:</p>
+
+<pre><code class="language-TEXT">&lt;!-- .npmrc --&gt;
+shared-workspace-shrinkwrap = true
+link-workspace-packages = true
+</code></pre>
+
+<p>接下来输入命令行 <code class="highlighter-rouge">pnpm multi install</code> 进行工作区依赖的安装。生成的文件结构如下，可以<a href="https://github.com/zkochan/comparing-monorepo-node-modules/tree/master/pnpm-example">参考这里</a>:</p>
+
+<pre><code class="language-TEXT">├─ foo
+|  ├─ node_modules
+|  | └─  is-negative(symlink)
+├─ bar
+|  ├─ node_modules
+|  | └─  is-positive(symlink)
+├─ bar
+├─ node_modules
+|  ├─ .registry.npmjs.org
+|  | ├─ is-negative/1.0.0/node_modules/is-negative
+|  | └─ is-positive/1.0.0/node_modules/is-positive
+|  ├─ .modules.yaml
+|  └─  .shrinkwrap.yaml
+├─ .npmrc
+├─ pnpm-workspace.yaml
+└─  shrinkwrap.yaml
+</code></pre>
+
+<p>pnpm 这里和 yarn 一样都生成了 node_modules 文件，但是不一样的是，这里的依赖都隐藏在 <code class="highlighter-rouge">.registry.npmjs.org</code> 中，node 的查询机制将无法找到。而 foo 的 node_modules 下有个 is-negative 的软链接，指向 <code class="highlighter-rouge">../../node_modules/.registry.npmjs.org/is-negative/1.0.0/node_modules/is-negative</code>，同理 bar 也是。这样子也解决了 yarn workspace 带来的安全问题。</p>
 
 <h4 id="lerna-runadd">lerna run/add</h4>
 
