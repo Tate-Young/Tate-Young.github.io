@@ -386,7 +386,7 @@ a.textContent = 'Download Me';
 document.body.appendChild(a);
 ```
 
-### 图片转换
+### 图片操作
 
 #### 转 base64 和 md5 加密
 
