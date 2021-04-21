@@ -150,7 +150,7 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
 
-出现这种问题的原因基本上是主机上的公钥变动了，比如 gitlab 服务器迁移了或者怎么。这种情况下无法跟本地 `$HOME/.ssh/known_hosts` 进行匹配，此时有两种方式去解决:
+出现这种问题的原因基本上是主机上的公钥变动了，比如 gitlab 服务器迁移了或者怎么。这种情况下无法跟本地 `~/.ssh/known_hosts` 进行匹配，此时有两种方式去解决:
 
 1. 手动删掉文件 `known_hosts`
 2. 替换掉 `known_hosts` 记载的旧公钥数据
@@ -166,7 +166,7 @@ ssh-keygen -F gitlab.xxx.com
 # 2. 直接通过 -R 删除
 ssh-keygen -R gitlab.xxx.com
 # 倘若还不行的话，可以重新生成公钥追加到 known_hosts 中:
-ssh-keyscan -t ECDSA gitlab.xxx.com >> .ssh/known/hosts
+ssh-keyscan -t ECDSA gitlab.xxx.com >> ~/.ssh/known_hosts
 ```
 
 [**ssh-keyscan**](https://linux.die.net/man/1/ssh-keyscan) 是一个实用程序，用于收集许多主机的公共 ssh 主机公钥。它旨在帮助构建和验证 `ssh_known_hosts` 文件。`-t` 参数指定了密钥类型。其次 ssh-keyscan 使用无阻塞套接字 I / O 来并行联系尽可能多的主机，因此它非常有效。即使其中一些主机已关闭或未运行 ssh，也可以在数十秒内收集来自 1000 个主机的域中的密钥。对于扫描，不需要登录名即可访问正在扫描的计算机，扫描过程也不需要任何加密。
