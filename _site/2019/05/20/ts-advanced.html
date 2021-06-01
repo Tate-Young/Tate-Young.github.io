@@ -175,7 +175,7 @@
                       发布时间：2019-05-20 18:36:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-01-21 21:31:00
+                        修改时间：2021-06-01 19:36:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -869,6 +869,15 @@ type HELLO = EnthusiasticGreeting&lt;"hello"&gt;;
 const x = some.expr.thing
 // OK
 const y = some.expr!.thing
+</code></pre>
+
+<p>还有一个骚操作:</p>
+
+<pre><code class="language-JS">const x = some.expr
+const y = some.expr! // 👈
+
+x.thing // Object is possibly 'null' or 'undefined'
+y.thing
 </code></pre>
 
 <blockquote>

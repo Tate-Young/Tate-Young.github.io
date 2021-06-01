@@ -7,7 +7,7 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2021-01-21 21:31:00 GMT+0800 (CST)
+update: 2021-06-01 19:36:00 GMT+0800 (CST)
 background-image: /style/images/smms/typescript.png
 tags:
 - TS
@@ -702,6 +702,16 @@ If you know from external means that an expression is not null or undefined, you
 const x = some.expr.thing
 // OK
 const y = some.expr!.thing
+```
+
+还有一个骚操作:
+
+```JS
+const x = some.expr
+const y = some.expr! // 👈
+
+x.thing // Object is possibly 'null' or 'undefined'
+y.thing
 ```
 
 > 但是如果运行时 `expr` 真的为 null，那么程序就崩了，所以非空断言只是跳过校验，否则要用下面提到的 `Optional Channing` 👈

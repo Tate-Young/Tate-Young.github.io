@@ -851,6 +851,8 @@ export function Home() {
 
 > 其他钩子，比如 React Redux Hooks 可以[参考这里]( {{site.url}}/2018/08/07/react-redux.html#hooks )，还有 React Router 可以[参考这里]( {{site.url}}/2018/08/06/react-react-router.html#hooks )
 
+> 目前也有很多 React Hooks 开源项目，可以参考 [**react-use**](https://github.com/streamich/react-use)、[**alibaba/hooks**](https://github.com/alibaba/hooks)、[**usehooks**](https://github.com/uidotdev/usehooks) 等
+
 ## 参考链接
 
 1. [React Hooks — Why and How](https://medium.com/frontmen/react-hooks-why-and-how-e4d2a5f0347) By Sebastiaan van Arkens
