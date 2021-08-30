@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="动态加载字体" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="动态加载字体" />
-<meta property="og:description" content="动态加载字体" />
+<meta name="description" content="新增 FontFace API 介绍" />
+<meta property="og:description" content="新增 FontFace API 介绍" />
 <link rel="canonical" href="http://localhost:2333/2020/08/26/css-font-face.html" />
 <meta property="og:url" content="http://localhost:2333/2020/08/26/css-font-face.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-08-26T18:03:00+08:00" />
 <script type="application/ld+json">
-{"description":"动态加载字体","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/08/26/css-font-face.html"},"@type":"BlogPosting","url":"http://localhost:2333/2020/08/26/css-font-face.html","headline":"动态加载字体","dateModified":"2020-08-26T18:03:00+08:00","datePublished":"2020-08-26T18:03:00+08:00","@context":"https://schema.org"}</script>
+{"description":"新增 FontFace API 介绍","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/08/26/css-font-face.html"},"@type":"BlogPosting","url":"http://localhost:2333/2020/08/26/css-font-face.html","headline":"动态加载字体","dateModified":"2020-08-26T18:03:00+08:00","datePublished":"2020-08-26T18:03:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,12 +175,16 @@
                       发布时间：2020-08-26 18:03:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2020-08-26 12:13:00
+                        修改时间：2021-08-30 16:15:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：新增 FontFace API 介绍
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -335,6 +339,8 @@ unicode-range: U+0025-00FF, U+4??; /* multiple values */
 
 <h2 id="方案一---监听字体加载">方案一 - 监听字体加载</h2>
 
+<h3 id="fontfaceobserver">fontfaceobserver</h3>
+
 <p>此方案目的就是让所有浏览器都表现为 FOUT，提升用户体验，即在自定义字体加载完成之前，先显示降级字体。那么问题就是如何监听字体加载完成。这里可以用 <code class="highlighter-rouge">@font-face loader</code>: <a href="https://github.com/bramstein/fontfaceobserver">fontfaceobserver</a>，用法很简单:</p>
 
 <pre><code class="language-JS">// 下载并监听字体，字体来源可以是 Google Fonts, Typekit, and Webtype or be self-hosted
@@ -373,9 +379,31 @@ h1, .h1 {
   <p>由于 fontfaceobserver api 使用了 Promise，对于不支持 Promise 的则需要 polyfill，或者直接引用 <code class="highlighter-rouge">fontfaceobserver.js</code>，否则引用 <code class="highlighter-rouge">fontfaceobserver.standalone.js</code></p>
 </blockquote>
 
-<blockquote>
-  <p>使用原生的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FontFaceSet"><strong>FontFaceSet</strong></a> API 可以用来管理字体下载的状态，但是目前兼容性不太好。</p>
-</blockquote>
+<h3 id="css-font-loading-api">CSS Font Loading API</h3>
+
+<p>使用原生的 <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API"><strong>CSS Font Loading API</strong></a> 也可以用来管理字体下载的状态。我们可以通过 <strong>Font Face API</strong> 来看看如何使用:</p>
+
+<ul>
+  <li><strong>family</strong> - 字符串，表示字体名，写法与 CSS 的 @font-face 的 font-family 属性相同</li>
+  <li><strong>source</strong> - 字体文件的 URL（必须包括 CSS 的 url() 方法），或者是一个字体的 ArrayBuffer 对象</li>
+  <li><strong>descriptors</strong> - 对象，用来定制字体文件。该参数可选</li>
+</ul>
+
+<pre><code class="language-JS">// FontFace() 返回的是一个字体对象，这个对象包含字体信息。此时字体文件还没有开始加载
+new FontFace(family, source, descriptors)
+</code></pre>
+
+<p>字体对象的方法，只有一个 <strong>FontFace.load()</strong>，该方法会真正开始加载字体。它返回一个 Promise 对象，状态由字体加载的结果决定:</p>
+
+<pre><code class="language-JS">const font = new window.FontFace('new font', 'url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2)')
+document.fonts.add(font)
+
+font.load().then(info =&gt; {
+  console.log('字体加载完成')
+}).catch(err =&gt; {
+  console.log(err)
+})
+</code></pre>
 
 <h2 id="方案二---字体子集化">方案二 - 字体子集化</h2>
 

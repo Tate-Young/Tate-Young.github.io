@@ -7,7 +7,8 @@ background: purple
 category: 前端
 title:  动态加载字体
 date:   2020-08-26 18:03:00 GMT+0800 (CST)
-update: 2020-08-26 12:13:00 GMT+0800 (CST)
+update: 2021-08-30 16:15:00 GMT+0800 (CST)
+description: 新增 FontFace API 介绍
 background-image: https://www.gstatic.com/images/icons/material/apps/fonts/1x/opengraph_color_blue_1200dp.png
 tags:
 - CSS
@@ -123,6 +124,8 @@ ok 有了 `@font-face` 的帮忙，而且兼容性超棒，浏览器现在可以
 
 ## 方案一 - 监听字体加载
 
+### fontfaceobserver
+
 此方案目的就是让所有浏览器都表现为 FOUT，提升用户体验，即在自定义字体加载完成之前，先显示降级字体。那么问题就是如何监听字体加载完成。这里可以用 `@font-face loader`: [fontfaceobserver](https://github.com/bramstein/fontfaceobserver)，用法很简单:
 
 ```JS
@@ -162,7 +165,31 @@ h1, .h1 {
 
 > 由于 fontfaceobserver api 使用了 Promise，对于不支持 Promise 的则需要 polyfill，或者直接引用 `fontfaceobserver.js`，否则引用 `fontfaceobserver.standalone.js`
 
-> 使用原生的 [**FontFaceSet**](https://developer.mozilla.org/zh-CN/docs/Web/API/FontFaceSet) API 可以用来管理字体下载的状态，但是目前兼容性不太好。
+### CSS Font Loading API
+
+使用原生的 [**CSS Font Loading API**](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API) 也可以用来管理字体下载的状态。我们可以通过 **Font Face API** 来看看如何使用:
+
+* **family** - 字符串，表示字体名，写法与 CSS 的 @font-face 的 font-family 属性相同
+* **source** - 字体文件的 URL（必须包括 CSS 的 url() 方法），或者是一个字体的 ArrayBuffer 对象
+* **descriptors** - 对象，用来定制字体文件。该参数可选
+
+```JS
+// FontFace() 返回的是一个字体对象，这个对象包含字体信息。此时字体文件还没有开始加载
+new FontFace(family, source, descriptors)
+```
+
+字体对象的方法，只有一个 **FontFace.load()**，该方法会真正开始加载字体。它返回一个 Promise 对象，状态由字体加载的结果决定:
+
+```JS
+const font = new window.FontFace('new font', 'url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2)')
+document.fonts.add(font)
+
+font.load().then(info => {
+  console.log('字体加载完成')
+}).catch(err => {
+  console.log(err)
+})
+```
 
 ## 方案二 - 字体子集化
 
