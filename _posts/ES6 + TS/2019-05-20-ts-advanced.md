@@ -7,7 +7,8 @@ background: blue
 category: 前端
 title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
-update: 2021-06-01 19:36:00 GMT+0800 (CST)
+update: 2021-08-30 15:32:00 GMT+0800 (CST)
+description: 修改了 Record 使用 demo
 background-image: /style/images/smms/typescript.png
 tags:
 - TS
@@ -510,6 +511,16 @@ type Pick<T, K extends keyof T> = {
 // 将 K 中所有的属性的值转化为 T 类型
 type Record<K extends keyof any, T> = {
   [P in K]: T
+}
+
+type TObj = { [name: string]: number }
+type TObj = Record<string, number> // 同上
+
+type TEnv = 'test' | 'grey' | 'prod'
+const stuff = Record<TEnv, number> = {
+  test: 2,
+  grey: 8,
+  prod: 1,
 }
 
 type TRecordDemo = Record<'a' | 'b' | 'c', Person> // -> { a: Person; b: Person; c: Person; }

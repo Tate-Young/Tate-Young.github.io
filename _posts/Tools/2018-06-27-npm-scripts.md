@@ -7,7 +7,8 @@ background: green
 category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
-update: 2021-03-26 16:42:00 GMT+0800 (CST)
+update: 2021-08-30 15:37:00 GMT+0800 (CST)
+description: 新增字段 bin 的释义
 background-image: /style/images/smms/node.jpg
 
 tags:
@@ -329,6 +330,39 @@ peerDependencies 用于指定你正在开发的模块所依赖的版本以及用
 }
 ```
 
+### bin
+
+**bin** 字段用来指定各个内部命令对应的可执行文件的位置。可以参考 `create-react-app`、`angular-cli`、`material-ui codemod` 这些工具库:
+
+```JSON
+{
+  "bin": {
+    "myapp": "./cli.js"
+  }
+}
+```
+
+当安装项目的时候，会建立 cli.js 的软链接到 `/usr/local/bin/myapp`。如果你仅有一个可执行文件，名字必须跟 package name 一致，写法上有如下两种方式:
+
+```JSON
+{
+  "name": "my-program",
+  "version": "1.2.5",
+  "bin": "./path/to/program"
+}
+
+// same as
+{
+  "name": "my-program",
+  "version": "1.2.5",
+  "bin": {
+    "my-program": "./path/to/program"
+  }
+}
+```
+
+> 需要注意的是，脚本文件必须以 `#!/usr/bin/env node` 开头，不然没办法以 node 执行。
+
 ## scripty
 
 当脚本命令比较多的时候，可以通过 [scripty](https://github.com/testdouble/scripty) 将 scripts 剥离到单独文件中管理，还是看最初的栗子:
@@ -368,9 +402,7 @@ Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
 
 > 当然也可以直接通过 node 来管理，将 shell 脚本改为 node 脚本并执行，[shelljs](https://www.npmjs.com/package/shelljs) 可以在 node 中使用 shell 命令。
 
-## 构建流水线
-
-由于目前没有实战，关于如何构建流水线可直接[参考小册这里](https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1214e3f265da432b4a6ad2)。
+> 由于目前没有实战，关于如何构建流水线可直接[参考小册这里](https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1214e3f265da432b4a6ad2)。
 
 ## yarn & npm
 

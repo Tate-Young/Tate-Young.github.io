@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="NPM Scripts" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="NPM Scripts" />
-<meta property="og:description" content="NPM Scripts" />
+<meta name="description" content="新增字段 bin 的释义" />
+<meta property="og:description" content="新增字段 bin 的释义" />
 <link rel="canonical" href="http://localhost:2333/2018/06/27/npm-scripts.html" />
 <meta property="og:url" content="http://localhost:2333/2018/06/27/npm-scripts.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-06-27T17:57:00+08:00" />
 <script type="application/ld+json">
-{"description":"NPM Scripts","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","@context":"https://schema.org"}</script>
+{"description":"新增字段 bin 的释义","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,12 +175,17 @@
                       发布时间：2018-06-27 17:57:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-03-26 16:42:00
+                        修改时间：2021-08-30 15:37:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：新增字段 bin 的释义
+                  </div>
+                
                 <div class="post-tags">
                        
                     <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('NPM')" title="访问NPM" data-hover="NPM">
@@ -530,6 +535,39 @@ ENV3=THE FISH
 }
 </code></pre>
 
+<h3 id="bin">bin</h3>
+
+<p><strong>bin</strong> 字段用来指定各个内部命令对应的可执行文件的位置。可以参考 <code class="highlighter-rouge">create-react-app</code>、<code class="highlighter-rouge">angular-cli</code>、<code class="highlighter-rouge">material-ui codemod</code> 这些工具库:</p>
+
+<pre><code class="language-JSON">{
+  "bin": {
+    "myapp": "./cli.js"
+  }
+}
+</code></pre>
+
+<p>当安装项目的时候，会建立 cli.js 的软链接到 <code class="highlighter-rouge">/usr/local/bin/myapp</code>。如果你仅有一个可执行文件，名字必须跟 package name 一致，写法上有如下两种方式:</p>
+
+<pre><code class="language-JSON">{
+  "name": "my-program",
+  "version": "1.2.5",
+  "bin": "./path/to/program"
+}
+
+// same as
+{
+  "name": "my-program",
+  "version": "1.2.5",
+  "bin": {
+    "my-program": "./path/to/program"
+  }
+}
+</code></pre>
+
+<blockquote>
+  <p>需要注意的是，脚本文件必须以 <code class="highlighter-rouge"><span class="err">#</span><span class="o">!</span><span class="sr">/usr/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">env</span> <span class="nx">node</span></code> 开头，不然没办法以 node 执行。</p>
+</blockquote>
+
 <h2 id="scripty">scripty</h2>
 
 <p>当脚本命令比较多的时候，可以通过 <a href="https://github.com/testdouble/scripty">scripty</a> 将 scripts 剥离到单独文件中管理，还是看最初的栗子:</p>
@@ -567,9 +605,9 @@ Executing "/Users/tate/Desktop/lazyload-test/scripts/call/tate.sh":
   <p>当然也可以直接通过 node 来管理，将 shell 脚本改为 node 脚本并执行，<a href="https://www.npmjs.com/package/shelljs">shelljs</a> 可以在 node 中使用 shell 命令。</p>
 </blockquote>
 
-<h2 id="构建流水线">构建流水线</h2>
-
-<p>由于目前没有实战，关于如何构建流水线可直接<a href="https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1214e3f265da432b4a6ad2">参考小册这里</a>。</p>
+<blockquote>
+  <p>由于目前没有实战，关于如何构建流水线可直接<a href="https://juejin.im/book/5a1212bc51882531ea64df07/section/5a1214e3f265da432b4a6ad2">参考小册这里</a>。</p>
+</blockquote>
 
 <h2 id="yarn--npm">yarn &amp; npm</h2>
 

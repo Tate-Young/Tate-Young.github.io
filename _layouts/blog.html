@@ -66,6 +66,11 @@
                     <a onclick="onClickCategory('{{ page.category }}')" href="Javascript:;" title="访问 {{ page.category }}" data-hover="博客分类: {{ page.category }}">博客分类: {{ page.category }}</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                {% if page.description %}
+                  <div role='update-description' class="post-data">
+                    修改内容：{{ page.description }}
+                  </div>
+                {% endif %}
                 <div class="post-tags">
                     {% unless page.tags == empty %} {% assign tags_list = page.tags %} {% if tags_list.first[0] == null %} {% for tag in tags_list
                     %}
