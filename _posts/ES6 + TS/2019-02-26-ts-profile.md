@@ -7,7 +7,8 @@ background: blue
 category: 前端
 title: TypeScript 简介
 date:   2019-02-26 17:54:00 GMT+0800 (CST)
-update: 2019-12-23 19:11:00 GMT+0800 (CST)
+update: 2021-08-31 14:25:00 GMT+0800 (CST)
+description: 新增内联类型注解
 background-image: /style/images/smms/typescript.png
 tags:
 - TS
@@ -24,7 +25,7 @@ tags:
 
 ### 特殊类型
 
-#### 基础类型
+一、**基础类型**
 
 TypeScript 支持与 JavaScript 几乎相同的数据类型，**类型注解**使用 `:TypeAnnotation` 语法:
 
@@ -41,7 +42,7 @@ const list: Array<number> = [1, 2, 3] // 第二种方式是使用数组泛型，
 const values: (string | number)[] = ['Apple', 2, 'Orange', 3, 4, 'Banana']
 ```
 
-#### 元组
+二、**元组**
 
 **元组**类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同:
 
@@ -54,19 +55,19 @@ x = ['hello', 10] // OK
 x = [10, 'hello'] // Error
 ```
 
-#### 枚举
+三、**枚举**
 
 **enum** 类型是对 JavaScript 标准数据类型的一个补充:
 
 ```JS
-enum Color {Red, Green, Blue}
+enum Color { Red, Green, Blue }
 const c: Color = Color.Green
 ```
 
 默认情况下，从 0 开始为元素编号。 当然也可以手动的指定成员的数值:
 
 ```JS
-enum Color {Red = 1, Green, Blue}
+enum Color { Red = 1, Green, Blue }
 const colorName: string = Color[2] // 'Green'
 ```
 
@@ -104,7 +105,7 @@ console.log(Weekday.isBusinessDay(mon)) // true
 console.log(Weekday.isBusinessDay(sun))
 ```
 
-#### Any / Unknown
+四、**Any / Unknown**
 
 **Any** 类型是指定那些在编程阶段还不清楚类型的变量，这些值可能来自于动态的内容，例子[来源于这里](https://mariusschulz.com/blog/the-unknown-type-in-typescript):
 
@@ -155,7 +156,7 @@ const someString: string = value as string // 若不断言的话则会报错，�
 const otherString = someString.toUpperCase()  // 'HELLO WORLD'
 ```
 
-#### Void / Never
+五、**Void / Never**
 
 当一个函数没有返回值时，其类型可以用 **void**:
 
@@ -181,7 +182,7 @@ function error(message: string): never {
 
 > void 与 never 的区别 - void return void, never never return
 
-#### Object / object / {}
+六、**Object / object / {}**
 
 首先，这三种类型都表示你的值是一个没有任何自定义属性的对象，只从 `Object.prototype` 继承了基本的方法。意味着 TypeScript 会有以下限制：
 
@@ -371,8 +372,6 @@ let myObj = {size: 10, label: 'Size 10 Object'}
 printLabel(myObj)
 ```
 
-### readonly
-
 一些对象属性只能在对象刚刚创建的时候修改其值。可以在属性名前用 **readonly** 来指定只读属性:
 
 ```JS
@@ -455,7 +454,7 @@ class Clock implements IClockInterface {
 }
 ```
 
-类是具有两个类型的：静态部分的类型和实例的类型。我们应该直接操作类的静态部分。 看下面的例子，我们定义了两个接口，`ClockConstructor` 为构造函数所用和 `ClockInterface` 为实例方法所用:
+类是具有两个类型的：静态部分的类型和实例的类型。我们应该直接操作类的静态部分。看下面的例子，我们定义了两个接口，`ClockConstructor` 为构造函数所用和 `ClockInterface` 为实例方法所用:
 
 ```JS
 interface IClockConstructor {
@@ -486,7 +485,7 @@ let digital = createClock(DigitalClock, 12, 17)
 let analog = createClock(AnalogClock, 7, 32)
 ```
 
-### 接口继承
+### 接口继承 extends
 
 和类一样，接口也可以相互继承:
 
@@ -549,32 +548,61 @@ type alias 和 interface 在很多时候都可以相互替换使用，具体什�
 
 了解了这几个重要的差异之后，我们再回到 type alias 和 interface 的使用场景。一般来讲，使用哪种更多的是个人偏好，不过 type alias 似乎比 interface 要简洁通用一些 (type alias 支持类型表达式比如条件判断)。而如果你准备编写一个公共库，可能还需要仔细考虑库中定义的类型是否允许使用者扩展 (declaration merging)。
 
+### 内联类型注解
+
+与创建一个接口不同，你可以使用**内联注解**语法注解任何内容 `:{ /*Structure*/ }`。内联类型能为你快速的提供一个类型注解。它可以帮助你省去为类型起名的麻烦。然而，如果你发现需要多次使用相同的内联注解时，最好是使用 interface 或 type alias:
+
+```JS
+let name: {
+  first: string
+  second: string
+}
+
+name = {
+  first: 'John',
+  second: 'Doe',
+}
+
+name = {
+  // Error: 'Second is missing'
+  first: 'John',
+}
+
+name = {
+  // Error: 'Second is the wrong type'
+  first: 'John',
+  second: 1337,
+}
+```
+
 ## 泛型 Generics
 
-### 类型变量
+### 类型变量 T
 
 **泛型**支持多种类型的数据，增强了组件的可复用性。我们需要一种方法使返回值的类型与传入参数的类型是相同的:
 
 ```JS
 // 类型变量 T 帮助我们捕获用户传入的类型，之后我们再次使用了 T 当做返回值类型
-// 此时函数 identity 即叫做泛型，类型变量 T 代表的是任意类型
-function identity<T>(arg: T): T {
-  console.log(arg.length)  // Error: T doesn't have .length
-  return arg
+// 此时函数 reverse 即叫做泛型，类型变量 T 代表的是任意类型
+function reverse<T>(items: T[]): T[] {
+  const toreturn = []
+  for (let i = items.length - 1; i >= 0; i--) {
+    toreturn.push(items[i])
+  }
+  return toreturn
 }
-```
 
-```JS
-// 如果我们传入数字数组，将返回一个数字数组
-function loggingIdentity<T>(arg: T[]): T[] {
-  console.log(arg.length) // Array has a .length, so no more error
-  return arg
-}
-// or
-function loggingIdentity<T>(arg: Array<T>): Array<T> {
-  console.log(arg.length)  // Array has a .length, so no more error
-  return arg
-}
+const sample = [1, 2, 3]
+let reversed = reverse(sample)
+
+console.log(reversed) // 3, 2, 1
+
+// Safety
+reversed[0] = '1' // Error
+reversed = ['1', '2'] // Error
+
+reversed[0] = 1 // ok
+reversed = [1, 2] // ok
 ```
 
 当然我们也可以使用不同的泛型参数名，只要在数量上和使用方式上能对应上就可以:
@@ -626,9 +654,7 @@ function identity<T>(arg: T): T {
 let myIdentity: GenericIdentityFn<number> = identity
 ```
 
-### 泛型类
-
-泛型类指的是实例部分的类型，类的静态属性不能使用这个泛型类型:
+**泛型类**指的是实例部分的类型，类的静态属性不能使用这个泛型类型:
 
 ```JS
 class GenericNumber<T> {
@@ -699,6 +725,62 @@ function createInstance<A extends Animal>(c: new () => A): A {
 
 createInstance(Lion).keeper.nametag  // typechecks!
 createInstance(Bee).keeper.hasMask   // typechecks!
+```
+
+最后再举一个 axios 的例子:
+
+```JS
+// 通常情况下，我们会把后端返回数据格式单独放入一个 interface 里
+export interface ResponseData<T = any> {
+  /**
+   * 状态码
+   * @type { number }
+   */
+  code: number
+
+  /**
+   * 数据
+   * @type { T }
+   */
+  result: T
+
+  /**
+   * 消息
+   * @type { string }
+   */
+  message: string
+}
+```
+
+```JS
+// 在 axios.ts 文件中对 axios 进行了处理，例如添加通用配置、拦截器等
+import Ax from './axios'
+
+import { ResponseData } from './interface.ts'
+
+export function getUser<T>() {
+  return Ax.get<ResponseData<T>>('/somepath')
+    .then(res => res.data)
+    .catch(err => console.error(err))
+}
+```
+
+```JS
+// 接着我们写入返回的数据类型 User，这可以让 TypeScript 顺利推断出我们想要的类型
+interface User {
+  name: string
+  age: number
+}
+
+async function test() {
+  // user 被推断出为
+  // {
+  //  code: number,
+  //  result: { name: string, age: number },
+  //  message: string
+  // }
+  const user = await getUser<User>()
+}
 ```
 
 ## 命名空间 namespace

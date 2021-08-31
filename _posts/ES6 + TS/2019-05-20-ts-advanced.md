@@ -239,6 +239,8 @@ import * as $ from 'jquery';
 }
 ```
 
+> types 不做任何配置时，默认包含所有 `@types` 包。做了配置后，只包含引入的包 👈
+
 ## lib.d.ts
 
 安装 TypeScript 时，会顺带安装 `lib.d.ts` 等声明文件。此文件包含了 JavaScript 运行时以及 DOM 中存在各种常见的环境声明，主要是一些变量声明(如：window、document、math)和一些类似的接口声明(如：Window、Document、Math)。但我们可以通过指定 `--noLib` 的编译器命令行标志(或者在 tsconfig.json 中指定选项 `noLib: true`)从上下文中排除此文件。这个文件有什么作用呢，我们从一个简单的栗子来看:
