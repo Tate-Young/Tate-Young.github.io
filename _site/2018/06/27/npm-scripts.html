@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="NPM Scripts" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="新增字段 bin 的释义" />
-<meta property="og:description" content="新增字段 bin 的释义" />
+<meta name="description" content="新增 npm link 使用" />
+<meta property="og:description" content="新增 npm link 使用" />
 <link rel="canonical" href="http://localhost:2333/2018/06/27/npm-scripts.html" />
 <meta property="og:url" content="http://localhost:2333/2018/06/27/npm-scripts.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-06-27T17:57:00+08:00" />
 <script type="application/ld+json">
-{"description":"新增字段 bin 的释义","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","@context":"https://schema.org"}</script>
+{"description":"新增 npm link 使用","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,7 +175,7 @@
                       发布时间：2018-06-27 17:57:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-08-30 15:37:00
+                        修改时间：2021-09-13 11:27:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -183,7 +183,7 @@
                 </div>
                 
                   <div role='update-description' class="post-data">
-                    修改内容：新增字段 bin 的释义
+                    修改内容：新增 npm link 使用
                   </div>
                 
                 <div class="post-tags">
@@ -731,6 +731,28 @@ yarn global add yarn
 
 <blockquote>
   <p>npx is a tool intended to help round out the experience of using packages from the npm registry — the same way npm makes it super easy to install and manage dependencies hosted on the registry, npx makes it easy to use CLI tools and other executables hosted on the registry. It greatly simplifies a number of things that, until now, required a bit of ceremony to do with plain npm</p>
+</blockquote>
+
+<h2 id="npm-link">npm link</h2>
+
+<pre><code class="language-SHELL">npm link (in package dir)
+npm link [&lt;@scope&gt;/]&lt;pkg&gt;[@&lt;version&gt;]
+
+alias: npm ln
+</code></pre>
+
+<p>First, <code class="highlighter-rouge">npm link</code> in a package folder will create a symlink in the global folder <code class="highlighter-rouge">{prefix}/lib/node_modules/&lt;package&gt;</code> that links to the package where the npm link command was executed. It will also link any bins in the package to <code class="highlighter-rouge">{prefix}/bin/{name}</code>. Note that npm link uses the global prefix (see npm prefix -g for its value).</p>
+
+<p>Next, in some other location, <code class="highlighter-rouge">npm link &lt;package-name&gt;</code> will create a symbolic link from globally-installed package-name to <code class="highlighter-rouge">node_modules/</code> of the current folder.</p>
+
+<pre><code class="language-SHELL">cd ~/projects/node-redis    # go into the package directory
+npm link                    # creates global link
+cd ~/projects/node-bloggy   # go into some other package directory.
+npm link redis              # link-install the package
+</code></pre>
+
+<blockquote>
+  <p>Now, any changes to <em>~/projects/node-redis</em> will be reflected in <em>~/projects/node-bloggy/node_modules/node-redis/</em>. <strong>Note that the link should be to the package name, not the directory name for that package</strong>.</p>
 </blockquote>
 
 <h3 id="抛弃-run-script">抛弃 run-script</h3>

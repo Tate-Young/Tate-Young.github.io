@@ -7,8 +7,8 @@ background: green
 category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
-update: 2021-08-30 15:37:00 GMT+0800 (CST)
-description: 新增字段 bin 的释义
+update: 2021-09-13 11:27:00 GMT+0800 (CST)
+description: 新增 npm link 使用
 background-image: /style/images/smms/node.jpg
 
 tags:
@@ -484,6 +484,28 @@ $npm view @date-io/date-fns versions
 [**npx**](https://github.com/zkat/npx) 是 [npm@5.2.0](https://github.com/npm/npm/releases/tag/v5.2.0) 引入的一个命令，那么它是用来干嘛的呢？采用官方的说法就是:
 
 > npx is a tool intended to help round out the experience of using packages from the npm registry — the same way npm makes it super easy to install and manage dependencies hosted on the registry, npx makes it easy to use CLI tools and other executables hosted on the registry. It greatly simplifies a number of things that, until now, required a bit of ceremony to do with plain npm
+
+## npm link
+
+```SHELL
+npm link (in package dir)
+npm link [<@scope>/]<pkg>[@<version>]
+
+alias: npm ln
+```
+
+First, `npm link` in a package folder will create a symlink in the global folder `{prefix}/lib/node_modules/<package>` that links to the package where the npm link command was executed. It will also link any bins in the package to `{prefix}/bin/{name}`. Note that npm link uses the global prefix (see npm prefix -g for its value).
+
+Next, in some other location, `npm link <package-name>` will create a symbolic link from globally-installed package-name to `node_modules/` of the current folder.
+
+```SHELL
+cd ~/projects/node-redis    # go into the package directory
+npm link                    # creates global link
+cd ~/projects/node-bloggy   # go into some other package directory.
+npm link redis              # link-install the package
+```
+
+> Now, any changes to *~/projects/node-redis* will be reflected in *~/projects/node-bloggy/node_modules/node-redis/*. **Note that the link should be to the package name, not the directory name for that package**.
 
 ### 抛弃 run-script
 
