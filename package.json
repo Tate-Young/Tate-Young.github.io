@@ -24,7 +24,7 @@
     "scripty": "^1.7.2"
   },
   "dependencies": {
-    "npm": "^5.8.0"
+    "npm": "^6.14.6"
   },
   "husky": {
     "hooks": {
