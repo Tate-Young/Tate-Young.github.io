@@ -251,8 +251,6 @@ yarn add cypress --dev
 yarn run cypress open
 ```
 
-<video style="width:100%;" src="https://docs.cypress.io/img/snippets/first-test-30fps.18fecab5.mp4" controls="controls"></video>
-
 > 简单用法可以[查看视频](https://vimeo.com/237115455) 👈
 
 ## 参考链接
@@ -260,6 +258,5 @@ yarn run cypress open
 1. [单元测试](https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/00140137128705556022982cfd844b38d050add8565dcb9000) By 廖雪峰
 2. [单元测试和测试驱动开发 TDD 是怎么回事 - 译文](https://www.oschina.net/translate/tdd-unit-testing?lang=chs&p=2) By 班纳睿
 3. [What is TDD? What is Unit Testing?](https://simpleprogrammer.com/tdd-unit-testing/) By John Sonmez
-4. [TDD 及单元测试最佳实践](https://juejin.im/post/5c2ecf28e51d4552090d7d72) By JavaDog
-5. [【软件测试】白盒测试方法与黑盒测试方法的区别](https://blog.csdn.net/qq_33642117/article/details/54571302) By 飘走的我
-6. [如何使用 Jest 测试 React 组件 - 译文](https://www.oschina.net/translate/test-react-components-jest) By oschina
+4. [【软件测试】白盒测试方法与黑盒测试方法的区别](https://blog.csdn.net/qq_33642117/article/details/54571302) By 飘走的我
+5. [如何使用 Jest 测试 React 组件 - 译文](https://www.oschina.net/translate/test-react-components-jest) By oschina
