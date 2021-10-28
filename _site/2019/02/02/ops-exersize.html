@@ -175,6 +175,8 @@
                       发布时间：2019-02-02 17:54:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2021-10-28 20:59:00
+                      
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
@@ -259,9 +261,43 @@
   <li>装载 - 将转换完的数据按计划增量或全部导入到数据仓库中</li>
 </ul>
 
+<h2 id="elasticsearch">Elasticsearch</h2>
+
+<h3 id="全文检索">全文检索</h3>
+
+<p><a href="https://github.com/elastic/elasticsearch"><strong>Elasticsearch</strong></a> 是一个实时的分布式搜索分析引擎，底层是开源库 Apache Lucene。它屏蔽了 Lucene 各种复杂的设置，为开发人员提供了很友好的便利，很多传统的关系型数据库也提供全文检索，有的是基于 Lucene 内嵌，有的是基于自研，与 Elasticsearch 比较起来，功能单一，性能也表现不是很好，扩展性几乎没有。ES 能让你以前所未有的速度和规模，去探索你的数据。它被用作<strong>全文检索</strong>、结构化搜索、分析以及这三个功能的组合。GitHub 也是使用 Elasticsearch 对海量代码进行查询。</p>
+
+<blockquote>
+  <p>另一个比较流行的搜索引擎也是基于 Lucene 开发的 <a href="https://solr.apache.org">Apache Solr</a>，读作 “solar”。</p>
+</blockquote>
+
+<p><strong>Elasticsearch 本质是一个数据库</strong>，也需要有专门的 DBA 运维，只是更偏重应用层面，所以运维职责相对传统 DBA 没有那么严苛。对于集群层面必须掌握集群搭建，集群扩容、集群升级、集群安全、集群监控告警等；另外对于数据层面运维，必须掌握数据备份与还原、数据的生命周期管理，还有一些日常问题诊断等。</p>
+
+<blockquote>
+  <p>详细教程可以<a href="https://www.sojson.com/blog/81.html">查看这里</a> 👈</p>
+</blockquote>
+
+<h3 id="elk-之-kibana">ELK 之 Kibana</h3>
+
+<p>著名的 <strong>ELK</strong> 三件套，讲的就是 <strong>Elasticsearch，Logstash，Kibana</strong>，专门针对日志采集、存储、查询设计的产品组合。当然现在已经发展成了 <a href="https://www.elastic.co/what-is/elk-stack"><strong>Elastic Stack</strong></a>。</p>
+
+<p>Logstash 是一个开源的服务器端数据处理管道，可以同时从多个数据源获取数据，并对其进行转换，然后将其发送到你最喜欢的“存储”（当然可以就是 Elasticsearch）。</p>
+
+<p>Kibana is a data visualization and exploration tool used for log and time-series analytics, application monitoring, and operational intelligence use cases. It offers powerful and easy-to-use features such as histograms, line graphs, pie charts, heat maps, and built-in geospatial support. Also, it provides tight integration with Elasticsearch, a popular analytics and search engine, which makes Kibana the default choice for visualizing data stored in Elasticsearch.</p>
+
+<h2 id="zookeeper">ZooKeeper</h2>
+
+<p><a href="https://github.com/apache/zookeeper"><strong>ZooKeeper</strong></a> 是开源的分布式应用程序协调服务。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。已经作为核心组件被广泛应用在很多大型分布式系统中，包括 Hadoop、Hbase、Storm、Kafka、Dubbo 等。</p>
+
+<p>Zookeeper 是一个由多个 server 组成的集群，一个 leader，多个 follower（这个不同于我们常见的 Master/Slave 模式）。leader 为客户端服务器提供读写服务，除了 leader 外其他的机器只能提供读服务。每个 server 保存一份数据副本全数据一致，分布式读 follower，写由 leader 实施更新请求转发，由 leader 实施更新请求顺序进行，来自同一个 client 的更新请求按其发送顺序依次执行数据更新原子性，一次数据更新要么成功，要么失败。全局唯一数据视图，client 无论连接到哪个 server，数据视图都是一致的实时性，在一定事件范围内，client 能读到最新数据。</p>
+
+<p><img src="https://zookeeper.apache.org/doc/r3.7.0/images/zkservice.jpg" alt="zookeeper" /></p>
+
+<h2 id="kafka">Kafka</h2>
+
 <h2 id="zabbix">Zabbix</h2>
 
-<p><strong>Zabbix</strong> 是一个基于 WEB 界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案，基于 <code class="highlighter-rouge">Server-Client</code> 架构。主要由两部分组成:</p>
+<p><strong>Zabbix</strong> 是一个基于 web 界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案，基于 <code class="highlighter-rouge">Server-Client</code> 架构。主要由两部分组成:</p>
 
 <ul>
   <li><strong>zabbix server</strong> - 通过 SNMP、zabbix agent、ping，端口监视等方法提供对远程服务器/网络状态的监视，数据收集等功能</li>
@@ -321,6 +357,132 @@
   <p>端口映射只是映射指定的端口，DMZ 相当于映射所有的端口，并且直接把主机暴露在网关中，比端口映射方便但是不安全。且当设置了 DMZ 主机后，所有端口的映射都将指向 DMZ 主机，指向其他电脑的端口映射将无效。</p>
 </blockquote>
 
+<h2 id="全链路压测">全链路压测</h2>
+
+<h3 id="压测指标及工具">压测指标及工具</h3>
+
+<p><strong>全链路压测</strong>是基于线上真实环境和实际业务场景，通过模拟海量的用户请求，来对整个系统进行压力测试。相对于比较简单的压测，比如只对线上的单机或集群发起服务调用；将线上流量进行录制，然后在单台机器上进行回放等。能够更全面地进行链路覆盖。以下是我们需要关注的一些指标：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>指标</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>qps</strong>(query per second)</td>
+      <td>每秒处理请求数</td>
+    </tr>
+    <tr>
+      <td><strong>tps</strong>(transactions per second)</td>
+      <td>每秒处理的事务</td>
+    </tr>
+    <tr>
+      <td><strong>hps</strong>(hits per second)</td>
+      <td>每秒点击次数</td>
+    </tr>
+    <tr>
+      <td><strong>rt</strong>(response time)</td>
+      <td>响应时间，相当于 latency</td>
+    </tr>
+    <tr>
+      <td>CPU 使用率</td>
+      <td>出于节点宕机后负载均衡的考虑，一般 CPU 使用率小于 75% 比较合适</td>
+    </tr>
+    <tr>
+      <td>内存使用率</td>
+      <td>内存占用情况，一般观察内存是否有尖刺或泄露</td>
+    </tr>
+    <tr>
+      <td>缓存命中率</td>
+      <td>多少流量能命中缓存层（redis、memcached 等）</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>tps 一个完整事务可能包含一些列的请求过程。比如访问一个网页，可以当做一个事务，但是访问一个网页可能会对多个服务器发起多次请求，这些请求会当做多次 qps 计算在内。</p>
+</blockquote>
+
+<blockquote>
+  <p>一般情况下用 tps 来衡量整个业务流程，用 qps 来衡量接口查询次数，用 hps 来表示对服务器单击请求。</p>
+</blockquote>
+
+<p>压测工具的选择也有很多，比如 <a href="https://httpd.apache.org/docs/2.4/programs/ab.html"><strong>Apache ab</strong></a>、<a href="https://jmeter.apache.org"><strong>Apache JMeter</strong></a>、<a href="https://locust.io"><strong>locust</strong></a> 等。也有一些轻量级的工具，如 <a href="https://github.com/wg/wrk"><strong>wrk</strong></a> 等，我们简单看下 wrk 的输出：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># This runs a benchmark for 30 seconds, using 12 threads, and keeping 400 HTTP connections open.</span>
+<span class="nv">$ </span>wrk <span class="nt">-t12</span> <span class="nt">-c400</span> <span class="nt">-d30s</span> http://127.0.0.1:8080/index.html
+
+Running 30s <span class="nb">test</span> @ http://127.0.0.1:8080/index.html
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   635.91us    0.89ms  12.92ms   93.69%
+    Req/Sec    56.20k     8.07k   62.00k    86.54%
+  22464657 requests <span class="k">in </span>30.00s, 17.76GB <span class="nb">read
+</span>Requests/sec: 748868.53
+Transfer/sec:    606.33MB
+</code></pre></div></div>
+
+<h3 id="流量录制及回放">流量录制及回放</h3>
+
+<p>一般针对比较大型的项目，容易出现漏测或者有很多没评估到的地方，如果用线上流量做一次回归测试，可以进一步减少 bug 的风险，同时大大节省构造测试数据的时间，提高测试效率。</p>
+
+<p><img src="http://localhost:2333/style/images/smms/stress-testing.png" alt="stress-testing" /></p>
+
+<blockquote>
+  <p>一般流量回放只回放 get 请求，因为其他请求可能会对用户数据进行操作，有风险需要排除掉。</p>
+</blockquote>
+
+<h2 id="api-网关">API 网关</h2>
+
+<h3 id="网关的作用">网关的作用</h3>
+
+<p><a href="https://www.zhihu.com/question/309582197/answer/2077037990">摘自知乎</a>。假设你正在开发一个电商网站，那么这里会涉及到很多后端的微服务，比如会员、商品、推荐服务等等。那么这里就会遇到一个问题，APP/Browser 怎么去访问这些后端的服务? 如果业务比较简单的话，可以给每个业务都分配一个独立的域名(https://service.api.company.com)，但这种方式会有几个问题:</p>
+
+<ol>
+  <li>每个业务都会需要鉴权、限流、权限校验等逻辑，需要进行剥离</li>
+  <li>比如淘宝、亚马逊打开一个页面可能会涉及到数百个微服务协同工作，如果每一个微服务都分配一个域名的话，一方面客户端代码会很难维护，另一方面是连接数的瓶颈。而且每上线一个新的服务，都需要运维参与，申请域名、配置 Nginx 等，当上线、下线服务器时，同样也需要运维参与，另外采用域名这种方式，对于环境的隔离也不太友好，调用者需要根据域名自己进行判断。</li>
+  <li>后端每个微服务可能是由不同语言编写的、采用了不同的协议，比如 HTTP、Dubbo、GRPC 等，但是你不可能要求客户端去适配这么多种协议，这是一项非常有挑战的工作，项目会变的非常复杂且很难维护。后期如果需要对微服务进行重构的话，也会变的非常麻烦，需要客户端配合你一起进行改造，比如商品服务，随着业务变的越来越复杂，后期需要进行拆分成多个微服务，这个时候对外提供的服务也需要拆分成多个，同时需要客户端配合你进行改造，非常蛋疼。</li>
+</ol>
+
+<p><img src="https://pic1.zhimg.com/80/v2-0903a05306217b52effca6ebb80b45ea_1440w.jpg?source=1940ef5c" alt="api gateway" /></p>
+
+<p>因此可以实现一个 <strong>API 网关(API Gateway)</strong>接管所有的入口流量，类似 Nginx 的作用，将所有用户的请求转发给后端的服务器，但网关做的不仅仅只是简单的转发，也会针对流量做一些扩展，比如鉴权、限流、权限、熔断、协议转换、错误码统一、缓存、日志、监控、告警等，这样将通用的逻辑抽出来，由网关统一去做，业务方也能够更专注于业务逻辑，提升迭代的效率。通过引入 API 网关，客户端只需要与 API 网关交互，而不用与各个业务方的接口分别通讯。</p>
+
+<p>服务调用方（内部和外部）同时通过 nginx 和 API 网关访问服务提供方示意图如下：</p>
+
+<p><img src="http://localhost:2333/style/images/smms/api-gateway-consul-nginx.png" alt="api-gateway-consul-nginx" /></p>
+
+<p>调用方到提供方经过 API 网关的整个链路的各个环节示意图如下：</p>
+
+<p><img src="http://localhost:2333/style/images/smms/api-gateway-consul.png" alt="api-gateway-consul" /></p>
+
+<h3 id="consul-服务发现">consul 服务发现</h3>
+
+<p><a href="https://cloud.tencent.com/developer/article/1444664">参考这里</a>。微服务的框架体系中，<strong>服务发现</strong>是不能不提的一个模块。我们看看以前的方案。客户端的一个接口，需要调用服务 A-N。客户端必须要知道所有服务的网络位置的，以往的做法是配置是配置文件中，或者有些配置在数据库中。这里就带出几个问题：</p>
+
+<ol>
+  <li>需要配置 N 个服务的网络位置，加大配置的复杂性</li>
+  <li>服务的网络位置变化，都需要改变每个调用者的配置</li>
+  <li>集群的情况下，难以做负载（反向代理的方式除外）</li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/smms/consul-before.png" alt="consul-before" /></p>
+
+<p>我们再对比下加了服务发现的效果。服务 A-N 把当前自己的网络位置注册到服务发现模块，服务发现就以 K-V 的方式记录下，K 一般是服务名，V 就是 IP:PORT。服务发现模块会定时轮询查看这些服务是否能够正常访问（健康检查）。客户端在调用服务 A-N 的时候，就跑去服务发现模块问下它们的网络位置，然后再调用它们的服务。客户端完全不需要记录这些服务网络位置，客户端和服务端完全解耦！</p>
+
+<p><img src="http://localhost:2333/style/images/smms/consul-after.png" alt="consul-after" /></p>
+
+<blockquote>
+  <p>做服务发现的框架除了 consul 外，常用的还有 zookeeper、eureka、etcd 等。</p>
+</blockquote>
+
+<h2 id="开源许可证对比">开源许可证对比</h2>
+
+<p><img src="http://localhost:2333/style/images/smms/mit.jpg" alt="mit" /></p>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
@@ -328,6 +490,7 @@
   <li><a href="https://www.cnblogs.com/clsn/p/7885990.html">Zabbix 3.0 从入门到精通(zabbix 使用详解)</a> By 惨绿少年</li>
   <li><a href="https://nickjanetakis.com/blog/comparing-virtual-machines-vs-docker-containers">Comparing Virtual Machines vs Docker Containers</a> By Nick Janetakis</li>
   <li><a href="https://blog.csdn.net/shaochat/article/details/40583937">端口映射和 dmz</a> By 吾心安处方是家</li>
+  <li><a href="https://testerhome.com/topics/25641">录制线上流量做回归测试的正确打开方式</a> By 少年</li>
 </ol>
  
 <div id="gitalk-container"></div>
