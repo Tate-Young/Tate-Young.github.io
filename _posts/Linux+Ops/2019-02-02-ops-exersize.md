@@ -7,7 +7,8 @@ background: gray
 category: 后端
 title: 记一些运维实践
 date:   2019-02-02 17:54:00 GMT+0800 (CST)
-update: 2021-10-28 20:59:00 GMT+0800 (CST)
+update: 2021-11-02 18:04:00 GMT+0800 (CST)
+description: add apollo and kafka and so on
 background-image: /style/images/smms/linux.jpg
 tags:
 - Ops
@@ -88,7 +89,69 @@ Zookeeper 是一个由多个 server 组成的集群，一个 leader，多个 fol
 
 ![zookeeper](https://zookeeper.apache.org/doc/r3.7.0/images/zkservice.jpg)
 
+## Apollo
+
+当前我们 Node.js 项目相关的配置要么是硬编码在项目代码里，要么是通过环境变量来进行控制。对于变动不频繁的配置数据，这两种方法非常适合，但是对于一些需要经常变动，或者变动时效性要求较高的配置，每次都要经过修改代码再发布版本，才能使变动生效这样的流程就显得比较繁琐了（环境变量的修改也需要重启 pm2 进程）。
+
+[**Apollo**](https://www.apolloconfig.com/#/zh/README) 是一款可靠的分布式配置管理中心，诞生于携程框架研发部，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。在 Apollo 后台新建或者更新了配置，我们的代码会立即生效吗？不会，更新数据采取的是应用主动拉取（轮询）机制，所以在 Apollo 更改了配置，应用并不能立即更新。对于我们的 Node.js 应用来讲，为了分散获取 Apollo 服务的压力，有意错开了每个进程的拉取时间间隔。当前我们实际设置是，从在 Apollo 后台更新完数据开始算起，每个进程都获取到最新配置数据的时间应该不会超过 3 分钟。
+
+
+![apollo](https://cdn.jsdelivr.net/gh/apolloconfig/apollo@master/doc/images/apollo-home-screenshot.jpg)
+
+如下即是 Apollo 的基础模型:
+
+1. 用户在配置中心对配置进行修改并发布
+2. 配置中心通知 Apollo 客户端有配置更新
+3. Apollo 客户端从配置中心拉取最新的配置、更新本地配置并通知到应用
+4. 同时会保存在内存中，在遇到服务不可用，或网络不通的时候，依然能从本地恢复配置
+5. 应用程序可以从 Apollo 客户端获取最新的配置、订阅配置更新通知
+
+![apollo 基础模型](https://cdn.jsdelivr.net/gh/apolloconfig/apollo@master/doc/images/client-architecture.png)
+
+里面涉及到的 [**namespace**](https://github.com/apolloconfig/apollo/wiki/Apollo核心概念之“Namespace”) 是配置项的集合，类似于一个配置文件的概念。Apollo 在创建项目的时候，都会默认创建一个名为 “application” 的 Namespace。顾名思义，“application” 是给应用自身使用的，熟悉 Spring Boot 的同学都知道，Spring Boot 项目都有一个默认配置文件 application.yml。在这里 application.yml 就等同于 “application” 的 Namespace。对于 90% 的应用来说，“application” 的 Namespace 已经满足日常配置使用场景了。上面图示中的 FX.apollo 就是 namespace。
+
+以 node 为例，我们使用第三方仓库 [ctrip-apollo](https://github.com/kaelzhang/ctrip-apollo):
+
+```JS
+const apollo = require('ctrip-apollo')
+
+const ns = apollo({
+  host: 'http://localhost:8070',
+  appId: '100004458',
+  enableUpdateNotification: false, // set to false to disable update notification
+  enableFetch: true,
+  cachePath: path.join(__dirname, '../config'), // path specify this option to enable the feature to save configurations to the disk
+  fetchInterval: createInterval(), // interval in milliseconds to pull the new configurations. Defaults to 5 minutes. Setting this option to 0 will disable the feature.
+  fetchTimeout: 5000,
+})
+
+const start = async () => {
+  // We can also use async/await
+  await ns.ready()
+
+  console.log(ns.config())
+  // {
+  //   'portal.elastic.document.type': 'biz',
+  //   'portal.elastic.cluster.name': 'hermes-es-fws'
+  // }
+}
+
+start()
+```
+
 ## Kafka
+
+**Kafka** 是最初由 Linkedin 公司开发，是一个分布式、分区的、多副本的、多订阅者，基于 zookeeper 协调的分布式日志系统（也可以当做 MQ 系统），常见可以用于 web/nginx 日志、访问日志，消息服务等等，Linkedin 于 2010 年贡献给了 Apache 基金会并成为顶级开源项目。主要应用场景是：日志收集系统和消息系统。采用的是发布订阅模式。
+
+![kafka](https://images2018.cnblogs.com/blog/1228818/201805/1228818-20180507190731172-1317551019.png)
+
+* **broker** - Kafka 集群包含一个或多个服务器，服务器节点即称为 broker
+* **topic** - 主题，由用户定义并配置在 Kafka 服务器，用于建立 Producer 和 Consumer 之间的订阅关系。生产者发送消息到指定的 Topic 下，消息者从这个 Topic 下消费消息
+* **partition** - 消息分区，一个 topic 可以分为多个 partition，每个 partition 是一个有序的队列。partition 中的每条消息都会被分配一个有序的 id，即 offset
+* **producer** - 生产者即数据的发布者，该角色将消息发布到 Kafka 的 topic 中
+* **consumer** - 消费者可以从 broker 中读取数据。消费者可以消费多个 topic 中的数据
+* **cosumer group** - 消费者分组，用于归组同类消费者。每个 consumer 属于一个特定的 consumer group，多个消费者可以共同消费一个 Topic 下的消息
+* **offset** - 消息在 partition 中的偏移量。每一条消息在 partition 都有唯一的偏移量，消息者可以指定偏移量来指定要消费的消息
 
 ## Zabbix
 

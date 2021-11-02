@@ -479,6 +479,8 @@ $npm view @date-io/date-fns versions
 
 > 关于 **pnpm** 可以参考[这篇博客]( {{site.url}}2021/03/24/pnpm.html ) 👈
 
+> npm 包还有评分机制，包括 popularity、Quality、Maintenance，[如何提升指标可以具体查看这里](https://itnext.io/increasing-an-npm-packages-search-score-fb557f859300) 👈
+
 ## npx
 
 [**npx**](https://github.com/zkat/npx) 是 [npm@5.2.0](https://github.com/npm/npm/releases/tag/v5.2.0) 引入的一个命令，那么它是用来干嘛的呢？采用官方的说法就是:

@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="pnpm" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="pnpm" />
-<meta property="og:description" content="pnpm" />
+<meta name="description" content="run lifecycle scripts during lerna version" />
+<meta property="og:description" content="run lifecycle scripts during lerna version" />
 <link rel="canonical" href="http://localhost:2333/2021/03/25/pnpm.html" />
 <meta property="og:url" content="http://localhost:2333/2021/03/25/pnpm.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-03-25T16:16:00+08:00" />
 <script type="application/ld+json">
-{"description":"pnpm","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/03/25/pnpm.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/03/25/pnpm.html","headline":"pnpm","dateModified":"2021-03-25T16:16:00+08:00","datePublished":"2021-03-25T16:16:00+08:00","@context":"https://schema.org"}</script>
+{"description":"run lifecycle scripts during lerna version","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/03/25/pnpm.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/03/25/pnpm.html","headline":"pnpm","dateModified":"2021-03-25T16:16:00+08:00","datePublished":"2021-03-25T16:16:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,12 +175,16 @@
                       发布时间：2021-03-25 16:16:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-03-30 12:56:00
+                        修改时间：2021-11-02 18:02:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：run lifecycle scripts during lerna version
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -916,6 +920,33 @@ npm ERR! Remove the 'private' field from the package.json to publish it.
 <blockquote>
   <p>完整 demo 可以<a href="https://github.com/dennis-jiang/mono-repo-demo">参考下这里</a> 👈</p>
 </blockquote>
+
+<h4 id="lifecycle-scripts">lifecycle scripts</h4>
+
+<p>Lerna will run npm lifecycle scripts during lerna version in the following order:</p>
+
+<ol>
+  <li>Detect changed packages, choose version bump(s)</li>
+  <li>Run preversion lifecycle in root</li>
+  <li>For each changed package, in topological order (all dependencies before dependents):
+    <ol>
+      <li>Run preversion lifecycle</li>
+      <li>Update version in package.json</li>
+      <li>Run version lifecycle</li>
+    </ol>
+  </li>
+  <li>Run version lifecycle in root</li>
+  <li>Add changed files to index, if enabled</li>
+  <li>Create commit and tag(s), if enabled</li>
+  <li>For each changed package, in lexical order (alphabetical according to directory structure):
+    <ol>
+      <li>Run postversion lifecycle</li>
+    </ol>
+  </li>
+  <li>Run postversion lifecycle in root</li>
+  <li>Push commit and tag(s) to remote, if enabled</li>
+  <li>Create release, if enabled</li>
+</ol>
 
 <h2 id="参考链接">参考链接</h2>
 
