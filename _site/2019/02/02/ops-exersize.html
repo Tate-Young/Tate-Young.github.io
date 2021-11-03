@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="记一些运维实践" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="add apollo and kafka and so on" />
-<meta property="og:description" content="add apollo and kafka and so on" />
+<meta name="description" content="add prometheus and grafana and so on" />
+<meta property="og:description" content="add prometheus and grafana and so on" />
 <link rel="canonical" href="http://localhost:2333/2019/02/02/ops-exersize.html" />
 <meta property="og:url" content="http://localhost:2333/2019/02/02/ops-exersize.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-02-02T17:54:00+08:00" />
 <script type="application/ld+json">
-{"description":"add apollo and kafka and so on","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/02/02/ops-exersize.html"},"@type":"BlogPosting","url":"http://localhost:2333/2019/02/02/ops-exersize.html","headline":"记一些运维实践","dateModified":"2019-02-02T17:54:00+08:00","datePublished":"2019-02-02T17:54:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add prometheus and grafana and so on","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/02/02/ops-exersize.html"},"@type":"BlogPosting","url":"http://localhost:2333/2019/02/02/ops-exersize.html","headline":"记一些运维实践","dateModified":"2019-02-02T17:54:00+08:00","datePublished":"2019-02-02T17:54:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,7 +175,7 @@
                       发布时间：2019-02-02 17:54:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-11-02 18:04:00
+                        修改时间：2021-11-03 19:45:00
                       
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
@@ -183,7 +183,7 @@
                 </div>
                 
                   <div role='update-description' class="post-data">
-                    修改内容：add apollo and kafka and so on
+                    修改内容：add prometheus and grafana and so on
                   </div>
                 
                 <div class="post-tags">
@@ -265,42 +265,6 @@
   <li>装载 - 将转换完的数据按计划增量或全部导入到数据仓库中</li>
 </ul>
 
-<h2 id="elasticsearch">Elasticsearch</h2>
-
-<h3 id="全文检索">全文检索</h3>
-
-<p><a href="https://github.com/elastic/elasticsearch"><strong>Elasticsearch</strong></a> 是一个实时的分布式搜索分析引擎，底层是开源库 Apache Lucene。它屏蔽了 Lucene 各种复杂的设置，为开发人员提供了很友好的便利，很多传统的关系型数据库也提供全文检索，有的是基于 Lucene 内嵌，有的是基于自研，与 Elasticsearch 比较起来，功能单一，性能也表现不是很好，扩展性几乎没有。ES 能让你以前所未有的速度和规模，去探索你的数据。它被用作<strong>全文检索</strong>、结构化搜索、分析以及这三个功能的组合。GitHub 也是使用 Elasticsearch 对海量代码进行查询。</p>
-
-<blockquote>
-  <p>另一个比较流行的搜索引擎也是基于 Lucene 开发的 <a href="https://solr.apache.org">Apache Solr</a>，读作 “solar”。</p>
-</blockquote>
-
-<blockquote>
-  <p>Elasticsearch 采用的是<a href="https://www.cnblogs.com/dreamroute/p/8484457.html"><strong>倒排索引算法</strong></a> 👈</p>
-</blockquote>
-
-<p><strong>Elasticsearch 本质是一个数据库</strong>，也需要有专门的 DBA 运维，只是更偏重应用层面，所以运维职责相对传统 DBA 没有那么严苛。对于集群层面必须掌握集群搭建，集群扩容、集群升级、集群安全、集群监控告警等；另外对于数据层面运维，必须掌握数据备份与还原、数据的生命周期管理，还有一些日常问题诊断等。</p>
-
-<blockquote>
-  <p>详细教程可以<a href="https://www.sojson.com/blog/81.html">查看这里</a> 👈</p>
-</blockquote>
-
-<h3 id="elk-之-kibana">ELK 之 Kibana</h3>
-
-<p>著名的 <strong>ELK</strong> 三件套，讲的就是 <strong>Elasticsearch，Logstash，Kibana</strong>，专门针对日志采集、存储、查询设计的产品组合。当然现在已经发展成了 <a href="https://www.elastic.co/what-is/elk-stack"><strong>Elastic Stack</strong></a>。</p>
-
-<p>Logstash 是一个开源的服务器端数据处理管道，可以同时从多个数据源获取数据，并对其进行转换，然后将其发送到你最喜欢的“存储”（当然可以就是 Elasticsearch）。</p>
-
-<p>Kibana 是一种数据可视化和挖掘工具，可以用于日志和时间序列分析、应用程序监控和运营智能使用案例。它提供了强大且易用的功能，例如直方图、线形图、饼图、热图和内置的地理空间支持。此外，它还提供了与 Elasticsearch 的紧密集成，这使得 Kibana 成为了可视化 Elasticsearch 中存储数据的默认之选。</p>
-
-<h2 id="zookeeper">ZooKeeper</h2>
-
-<p><a href="https://github.com/apache/zookeeper"><strong>ZooKeeper</strong></a> 是开源的分布式应用程序协调服务。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。已经作为核心组件被广泛应用在很多大型分布式系统中，包括 Hadoop、Hbase、Storm、Kafka、Dubbo 等。</p>
-
-<p>Zookeeper 是一个由多个 server 组成的集群，一个 leader，多个 follower（这个不同于我们常见的 Master/Slave 模式）。leader 为客户端服务器提供读写服务，除了 leader 外其他的机器只能提供读服务。每个 server 保存一份数据副本全数据一致，分布式读 follower，写由 leader 实施更新请求转发，由 leader 实施更新请求顺序进行，来自同一个 client 的更新请求按其发送顺序依次执行数据更新原子性，一次数据更新要么成功，要么失败。全局唯一数据视图，client 无论连接到哪个 server，数据视图都是一致的实时性，在一定事件范围内，client 能读到最新数据。</p>
-
-<p><img src="https://zookeeper.apache.org/doc/r3.7.0/images/zkservice.jpg" alt="zookeeper" /></p>
-
 <h2 id="apollo">Apollo</h2>
 
 <p>当前我们 Node.js 项目相关的配置要么是硬编码在项目代码里，要么是通过环境变量来进行控制。对于变动不频繁的配置数据，这两种方法非常适合，但是对于一些需要经常变动，或者变动时效性要求较高的配置，每次都要经过修改代码再发布版本，才能使变动生效这样的流程就显得比较繁琐了（环境变量的修改也需要重启 pm2 进程）。</p>
@@ -355,7 +319,7 @@ start()
 
 <p><strong>Kafka</strong> 是最初由 Linkedin 公司开发，是一个分布式、分区的、多副本的、多订阅者，基于 zookeeper 协调的分布式日志系统（也可以当做 MQ 系统），常见可以用于 web/nginx 日志、访问日志，消息服务等等，Linkedin 于 2010 年贡献给了 Apache 基金会并成为顶级开源项目。主要应用场景是：日志收集系统和消息系统。采用的是发布订阅模式。</p>
 
-<p><img src="https://images2018.cnblogs.com/blog/1228818/201805/1228818-20180507190731172-1317551019.png" alt="kafka" /></p>
+<p><img src="http://localhost:2333/style/images/smms/kafka.png" alt="kafka" /></p>
 
 <ul>
   <li><strong>broker</strong> - Kafka 集群包含一个或多个服务器，服务器节点即称为 broker</li>
@@ -367,6 +331,123 @@ start()
   <li><strong>offset</strong> - 消息在 partition 中的偏移量。每一条消息在 partition 都有唯一的偏移量，消息者可以指定偏移量来指定要消费的消息</li>
 </ul>
 
+<h2 id="opentracing--jaeger">OpenTracing &amp; jaeger</h2>
+
+<p>本节主要<a href="https://developer.aliyun.com/article/514488">摘自 开放分布式追踪（OpenTracing）入门与 Jaeger 实现</a>。</p>
+
+<p><img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/9e95e41a2fa724dc66b2f49a967845c6.png" alt="架构演进" /></p>
+
+<p>从上图我们可以看到，应用架构开始从单体系统逐步转变为<strong>微服务</strong>，其中的业务逻辑随之而来就会变成微服务之间的调用与请求。资源角度来看，传统服务器这个物理单位也逐渐淡化，变成了看不见摸不到的虚拟资源模式。从以上两个变化可以看到这种弹性、标准化的架构背后，原先运维与诊断的需求也变得越来越复杂。为了应对这种变化趋势，诞生一系列面向 DevOps 的诊断与分析系统，包括<strong>集中式日志系统（Logging），集中式度量系统（Metrics）和分布式追踪系统（Tracing）</strong>：</p>
+
+<ul>
+  <li><strong>Logging</strong> - 用于记录离散的事件。例如，应用程序的调试信息或错误信息。它是我们诊断问题的依据。</li>
+  <li><strong>Metrics</strong> - 用于记录可聚合的数据。例如，队列的当前深度可被定义为一个度量值，在元素入队或出队时被更新；HTTP 请求个数可被定义为一个计数器，新请求到来时进行累加。</li>
+  <li><strong>Tracing</strong> - 用于记录请求范围内的信息。例如，一次远程方法调用的执行过程和耗时。它是我们排查系统性能问题的利器。</li>
+</ul>
+
+<p>通过上述信息，我们可以对已有系统进行分类。例如，Zipkin 专注于 tracing 领域；Prometheus 开始专注于 metrics；ELK，阿里云日志服务这样的系统开始专注于 logging 领域。</p>
+
+<p>分布式追踪系统发展很快，种类繁多，比如 Google 的 Dapper，Twitter 的 Zipkin 等，但核心步骤一般有三个：<strong>代码埋点，数据存储、查询展示</strong>。下图是一个分布式调用的例子，客户端发起请求，请求首先到达负载均衡器，接着经过认证服务，计费服务，然后请求资源，最后返回结果：</p>
+
+<p><img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/9e30ca9d4ac0f76502e1be2f87d2a2df.png" alt="分布式调用" /></p>
+
+<p>数据被采集存储后，分布式追踪系统一般会选择使用包含时间轴的时序图来呈现这个 Trace。但在数据采集过程中，由于需要侵入用户代码，并且不同系统的 API 并不兼容，这就导致了如果您希望切换追踪系统，往往会带来较大改动：</p>
+
+<p><img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/e8813c5c6d2bf7cdc4780ad7fe477245.png" alt="数据呈现" /></p>
+
+<p>于是为了解决不同的分布式追踪系统 API 不兼容的问题，诞生了 <strong>OpenTracing</strong> 规范。OpenTracing 是一个轻量级的标准化层，它位于应用程序/类库和追踪或日志分析程序之间。</p>
+
+<pre><code class="language-TEXT">+-------------+  +---------+  +----------+  +------------+
+| Application |  | Library |  |   OSS    |  |  RPC/IPC   |
+|    Code     |  |  Code   |  | Services |  | Frameworks |
++-------------+  +---------+  +----------+  +------------+
+       |              |             |             |
+       |              |             |             |
+       v              v             v             v
+  +------------------------------------------------------+
+  |                     OpenTracing                      |
+  +------------------------------------------------------+
+     |                |                |               |
+     |                |                |               |
+     v                v                v               v
++-----------+  +-------------+  +-------------+  +-----------+
+|  Tracing  |  |   Logging   |  |   Metrics   |  |  Tracing  |
+| System A  |  | Framework B |  | Framework C |  | System D  |
++-----------+  +-------------+  +-------------+  +-----------+
+</code></pre>
+
+<p>大多数分布式追踪系统的思想模型都来自Google’s Dapper论文，OpenTracing也使用相似的术语：</p>
+
+<ul>
+  <li><strong>Trace</strong> - 事物在分布式系统中移动时的描述</li>
+  <li><strong>Span</strong> -  一种命名的、定时的操作，表示工作流的一部分。Spans 接受 key:value 标签以及附加到特定 Span 实例的细粒度、带时间戳的结构化日志</li>
+  <li><strong>Span Contenxt</strong> - 携带分布式事务的跟踪信息，包括当它通过网络或消息总线将服务传递给服务时。SPAN 上下文包含 Trace 标识符、SPAN 标识符和跟踪系统需要传播到下游服务的任何其他数据</li>
+</ul>
+
+<p><img src="https://pic1.zhimg.com/80/v2-3c0a8b91c21c84ce802790149effd1fc_1440w.jpg" alt="opentracing api" /></p>
+
+<p><a href="https://github.com/jaegertracing/jaeger"><strong>Jaeger</strong></a> 受 Dapper 和 OpenZipkin 的启发, 是由 Uber Technologies 作为开源发布的分布式跟踪系统，兼容 OpenTracing API。它用于监视和诊断基于微服务的分布式系统，包括分布式上下文传播、分布式交易监控、根本原因分析、服务依赖性分析和性能/延迟优化等。</p>
+
+<blockquote>
+  <p>具体历程可以参考 uber <a href="https://eng.uber.com/distributed-tracing/">发布的文章</a> 👈</p>
+</blockquote>
+
+<p><img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/f671cb89ab5946b181443c53962cfa2f.png" alt="jager" /></p>
+
+<p>如上图所示，Jaeger 主要由以下几部分组成：</p>
+
+<ul>
+  <li><strong>Jaeger Client</strong> - 为不同语言实现了符合 OpenTracing 标准的 SDK。应用程序通过 API 写入数据，client library 把 trace 信息按照应用程序指定的采样策略传递给 jaeger-agent。</li>
+  <li><strong>Agent</strong> - 它是一个监听在 UDP 端口上接收 span 数据的网络守护进程，它会将数据批量发送给 collector。它被设计成一个基础组件，部署到所有的宿主机上。Agent 将 client library 和 collector 解耦，为 client library 屏蔽了路由和发现 collector 的细节。</li>
+  <li><strong>Collector</strong> - 接收 jaeger-agent 发送来的数据，然后将数据写入后端存储。Collector 被设计成无状态的组件，因此您可以同时运行任意数量的 jaeger-collector。</li>
+  <li><strong>Data Store</strong> - 后端存储被设计成一个可插拔的组件，支持将数据写入 cassandra、elasticsearch。</li>
+  <li><strong>Query</strong> - 接收查询请求，然后从后端存储系统中检索 trace 并通过 UI 进行展示。Query 是无状态的，您可以启动多个实例，把它们部署在 nginx 这样的负载均衡器后面。</li>
+</ul>
+
+<h2 id="elasticsearch">Elasticsearch</h2>
+
+<h3 id="全文检索">全文检索</h3>
+
+<p><a href="https://github.com/elastic/elasticsearch"><strong>Elasticsearch</strong></a> 是一个实时的分布式搜索分析引擎，底层是开源库 Apache Lucene。它屏蔽了 Lucene 各种复杂的设置，为开发人员提供了很友好的便利，很多传统的关系型数据库也提供全文检索，有的是基于 Lucene 内嵌，有的是基于自研，与 Elasticsearch 比较起来，功能单一，性能也表现不是很好，扩展性几乎没有。ES 能让你以前所未有的速度和规模，去探索你的数据。它被用作<strong>全文检索</strong>、结构化搜索、分析以及这三个功能的组合。GitHub 也是使用 Elasticsearch 对海量代码进行查询。</p>
+
+<blockquote>
+  <p>另一个比较流行的搜索引擎也是基于 Lucene 开发的 <a href="https://solr.apache.org">Apache Solr</a>，读作 “solar”。</p>
+</blockquote>
+
+<blockquote>
+  <p>Elasticsearch 采用的是<a href="https://www.cnblogs.com/dreamroute/p/8484457.html"><strong>倒排索引算法</strong></a> 👈</p>
+</blockquote>
+
+<p><strong>Elasticsearch 本质是一个数据库</strong>，也需要有专门的 DBA 运维，只是更偏重应用层面，所以运维职责相对传统 DBA 没有那么严苛。对于集群层面必须掌握集群搭建，集群扩容、集群升级、集群安全、集群监控告警等；另外对于数据层面运维，必须掌握数据备份与还原、数据的生命周期管理，还有一些日常问题诊断等。</p>
+
+<blockquote>
+  <p>详细教程可以<a href="https://www.sojson.com/blog/81.html">查看这里</a> 👈</p>
+</blockquote>
+
+<h3 id="elk-之-kibana">ELK 之 Kibana</h3>
+
+<p>著名的 <strong>ELK</strong> 三件套，讲的就是 <strong>Elasticsearch，Logstash，Kibana</strong>，专门针对日志采集、存储、查询设计的产品组合。当然现在已经发展成了 <a href="https://www.elastic.co/what-is/elk-stack"><strong>Elastic Stack</strong></a>。</p>
+
+<p>Logstash 是一个开源的服务器端数据处理管道，可以同时从多个数据源获取数据，并对其进行转换，然后将其发送到你最喜欢的“存储”（当然可以就是 Elasticsearch）。</p>
+
+<p>Kibana 是一种数据可视化和挖掘工具，可以用于日志和时间序列分析、应用程序监控和运营智能使用案例。它提供了强大且易用的功能，例如直方图、线形图、饼图、热图和内置的地理空间支持。此外，它还提供了与 Elasticsearch 的紧密集成，这使得 Kibana 成为了可视化 Elasticsearch 中存储数据的默认之选。</p>
+
+<p><img src="https://static-www.elastic.co/v3/assets/bltefdd0b53724fa2ce/blt47b86adba2f459aa/5fa31e03bfc5dd7188659491/screenshot-kibana-dashboard-webtraffic2-710-547x308.jpg" alt="kibana" /></p>
+
+<h2 id="grafana">Grafana</h2>
+
+<p><a href="https://grafana.com"><strong>Grafana</strong></a> 是一款用 Go 语言开发的开源数据可视化工具，可以做数据监控和数据统计，并带有告警功能:</p>
+
+<blockquote>
+  <p>The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more.</p>
+</blockquote>
+
+<p><img src="https://grafana.com/static/img/screenshots/Modal_dashboards.png" alt="grafana" /></p>
+
+<blockquote>
+  <p>Kibana 和 Grafana 都是强大的可视化工具。然而，Grafana 和 InfluxDB 组合是用于度量数据的，反之，Kibana 是流行的 ELK 栈的一部分，它可以更为灵活地浏览日志数据。这两个平台都是好的选择，甚至有时还可以互补。首先，用 Kibana 去分析你的日志。然后，把数据导入到 Grafana 作为可视化层。</p>
+</blockquote>
+
 <h2 id="zabbix">Zabbix</h2>
 
 <p><strong>Zabbix</strong> 是一个基于 web 界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案，基于 <code class="highlighter-rouge">Server-Client</code> 架构。主要由两部分组成:</p>
@@ -376,7 +457,53 @@ start()
   <li><strong>zabbix agent</strong> - 安装在被监视的目标服务器上，它主要完成对硬件信息或与操作系统有关的内存、CPU 等信息的收集</li>
 </ul>
 
-<p>具体安装方法可以<a href="https://www.jianshu.com/p/49ef09f6d8db">参考这篇文章</a></p>
+<p>另外 grafana 平台也可以接入 zabbix 数据进行展示，替换掉 zabbix 自带的出图界面：</p>
+
+<ol>
+  <li>在任意一台电脑上安装 zabbix-server，然后再在被测试的性能服务器上安装 zabbix-agent，这样，就可以把性能测试过程中，性能服务器各种监控数据给 zabbix-server</li>
+  <li>在任意一台电脑上安装 grafana，然后再安装 zabbix 插件，这样，就可以让 grafana 支持 zabbix</li>
+  <li>在 grafana 中，配置 zabbix-server 作为数据源，再添加展示面板，这样，就能把用 zabbix 监控的被测试的性能服务器的数据在 grafana 中展示了</li>
+</ol>
+
+<p>更多文章可以参考：</p>
+
+<ol>
+  <li>具体安装方法可以<a href="https://www.jianshu.com/p/49ef09f6d8db">参考这篇文章</a></li>
+  <li><a href="https://www.jianshu.com/p/49ef09f6d8db">zabbix 从听说到学会</a> By JokerW</li>
+  <li><a href="https://www.cnblogs.com/clsn/p/7885990.html">Zabbix 3.0 从入门到精通(zabbix 使用详解)</a> By 惨绿少年</li>
+</ol>
+
+<h2 id="prometheus">Prometheus</h2>
+
+<p><a href="https://github.com/prometheus/prometheus"><strong>Prometheus</strong></a> 是由前 Google 工程师从 2012 年开始在 Soundcloud 以开源软件的形式进行研发的系统监控和告警工具包，自此以后，许多公司和组织都采用了 Prometheus 作为监控告警工具。Prometheus 的开发者和用户社区非常活跃，它现在是一个独立的开源项目，可以独立于任何公司进行维护。为了证明这一点，Prometheus 于 2016 年 5 月加入 CNCF 基金会，成为继 Kubernetes 之后的第二个 CNCF 托管项目。详情可以参考<a href="https://prometheus.fuckcloudnative.io/di-yi-zhang-jie-shao/overview">中文文档</a> 👈</p>
+
+<p>Prometheus Server 直接从监控目标中或者间接通过推送网关来拉取监控指标，它在本地存储所有抓取到的样本数据，并对此数据执行一系列规则，以汇总和记录现有数据的新时间序列或生成告警。可以通过 Grafana 或者其他工具来实现监控数据的可视化：</p>
+
+<p><img src="https://camo.githubusercontent.com/f14ac82eda765733a5f2b5200d78b4ca84b62559d17c9835068423b223588939/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f70726f6d6574686575732f70726f6d65746865757340633334323537643036396336333036383564613335626365663038343633326666643564363230392f646f63756d656e746174696f6e2f696d616765732f6172636869746563747572652e737667" alt="Prometheus" /></p>
+
+<p>Prometheus 适用于记录文本格式的时间序列，它既适用于以机器为中心的监控，也适用于高度动态的面向服务架构的监控。在微服务的世界中，它对多维数据收集和查询的支持有特殊优势。Prometheus 是专为提高系统可靠性而设计的，它可以在断电期间快速诊断问题，每个 Prometheus Server 都是相互独立的，不依赖于网络存储或其他远程服务。当基础架构出现故障时，你可以通过 Prometheus 快速定位故障点，而且不会消耗大量的基础架构资源。</p>
+
+<p>Prometheus 非常重视可靠性，即使在出现故障的情况下，你也可以随时查看有关系统的可用统计信息。如果你需要百分之百的准确度，例如按请求数量计费，那么 Prometheus 不太适合你，因为它收集的数据可能不够详细完整。这种情况下，你最好使用其他系统来收集和分析数据以进行计费，并使用 Prometheus 来监控系统的其余部分。</p>
+
+<p>Prometheus 与 zabbix 的对比可以<a href="https://www.cnblogs.com/xiaoyuxixi/p/12235979.html">参考这篇文章</a>。总结一下就是：如果监控的是物理机，用 Zabbix 没毛病，Zabbix 在传统监控系统中，尤其是在服务器相关监控方面，占据绝对优势。甚至环境变动不会很频繁的情况下，Zabbix 也会比 Prometheus 好使；但如果是云环境的话，除非是 Zabbix 玩的非常溜，可以做各种定制，否则还是 Prometheus 吧，毕竟人家就是干这个的。Prometheus 开始成为主导及容器监控方面的标配，并且在未来可见的时间内被广泛应用。如果是刚刚要上监控系统的话，不用犹豫了，Prometheus 准没错。</p>
+
+<p><img src="http://dockone.io/uploads/article/20200613/88a28e93ed9f9f649d121c561dbf5347.png" alt="diff-prometheus-zabbix" /></p>
+
+<h2 id="sonarqube">SonarQube</h2>
+
+<p><strong>SonarQube</strong> 是管理代码质量一个开放平台，可以快速的定位代码中潜在的或者明显的错误。可通过安装不同的插件，sonar 可以集成测试工具、代码质量分析工具、持续集成等多种功能。SonarQube 架构主要由：SonarQube 服务器、sonar 数据库、插件、SonarQube scanners 四部分组成。</p>
+
+<p><img src="https://www.sonarqube.org/features/enhance-your-workflow/index/flow-header@2x.png" alt="sonarqube" /></p>
+
+<p>Sonar 实际上是一个 Web 系统，展现了静态代码扫描的结果，真正实现代码扫描的是 SonarQube Scanner 这个工具，可以支持多种开发语言。SonarQube 需要数据库的支持，用于存储检测项目后的分析数据，同时为了实现可持续监测，还需要持续集成工具（如 Jenkins）的支持，在构建版本前，通过 Jenkins + Sonar 插件执行项目分析指令，最终的结果会通过 SonarQube 服务器的 Web 页面展示。下图是使用 SonarQube 做代码持续审查的简易流程图：</p>
+
+<p><img src="https://docs.sonarqube.org/latest/images/dev-cycle.png" alt="sonar-dev-cycle" /></p>
+
+<ol>
+  <li>Developers develop and merge code in an IDE (preferably using <em>SonarLint</em> to receive immediate feedback in the editor) and check-in their code to their DevOps Platform.</li>
+  <li>An organization’s <em>continuous integration (CI)</em> tool checks out, builds, and runs unit tests, and an integrated SonarQube scanner analyzes the results.</li>
+  <li>The scanner posts the results to the SonarQube server which provides feedback to developers through the SonarQube interface, email, in-IDE notifications (through SonarLint), and decoration on pull or merge requests (when using Developer Edition and above).</li>
+</ol>
 
 <h2 id="docker">Docker</h2>
 
@@ -410,6 +537,35 @@ start()
 <p>Docker 守护进程可以直接与主操作系统进行通信，为各个 Docker 容器分配资源；它还可以将容器与主操作系统隔离，并将各个容器互相隔离。虚拟机启动需要数分钟，而 Docker 容器可以在数毫秒内启动。由于没有臃肿的从操作系统，Docker 可以节省大量的磁盘空间以及其他系统资源。</p>
 
 <p>但并不是说虚拟机就被取代了，因为两者有不同的使用场景。虚拟机更擅长于彻底隔离整个运行环境。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而 Docker 通常用于隔离不同的应用，例如前端，后端以及数据库。</p>
+
+<h2 id="zookeeper">ZooKeeper</h2>
+
+<p><a href="https://github.com/apache/zookeeper"><strong>ZooKeeper</strong></a> 是开源的分布式应用程序协调服务。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。已经作为核心组件被广泛应用在很多大型分布式系统中，包括 Hadoop、Hbase、Storm、Kafka、Dubbo 等。</p>
+
+<p>Zookeeper 是一个由多个 server 组成的集群，一个 leader，多个 follower（这个不同于我们常见的 Master/Slave 模式）。leader 为客户端服务器提供读写服务，除了 leader 外其他的机器只能提供读服务。每个 server 保存一份数据副本全数据一致，分布式读 follower，写由 leader 实施更新请求转发，由 leader 实施更新请求顺序进行，来自同一个 client 的更新请求按其发送顺序依次执行数据更新原子性，一次数据更新要么成功，要么失败。全局唯一数据视图，client 无论连接到哪个 server，数据视图都是一致的实时性，在一定事件范围内，client 能读到最新数据。</p>
+
+<p><img src="https://zookeeper.apache.org/doc/r3.7.0/images/zkservice.jpg" alt="zookeeper" /></p>
+
+<p>由于 ZooKeeper 集群选举 leader 需要遵循过半机制：“<strong>存活的节点数 &gt; 总节点数 / 2</strong>”。一般采用奇数个的节点主要是出于两方面的考虑：</p>
+
+<p>1、防止由<strong>脑裂</strong>造成的集群不可用。</p>
+
+<p>首先，什么是脑裂？集群的脑裂通常是发生在节点之间通信不可达的情况下，集群会分裂成不同的小集群，小集群各自选出自己的 master 节点，导致原有的集群出现多个 master 节点的情况，这就是脑裂。</p>
+
+<p>假如 ZooKeeper 集群有 5 个节点，脑裂成了 A、B 两个小集群，要么 (2、3)，要么 (1、4)，满足上述的过半机制；如果集群有 4 个节点，则要么 (2、2)，要么 (1、3)。显然 (2、2) 是没办法提供服务的。因此针对脑裂成 2 个集群的情况下，推荐使用奇数台服务器。</p>
+
+<p>2、容灾能力的角度。</p>
+
+<pre><code class="language-TEXT">根据过半机制验证：
+1）假设集群有 3 台服务器，1 台 Leader，2 台 Follower。
+Leader 挂掉，那么剩下 2 台服务器，即 2&gt;(3/2=1) 条件成立，那么可以选举出 1 个 Leader
+2）假设集群有 4 台服务器，1 台 Leader，3 台 Follower。
+Leader 挂掉，那么剩下 3 台服务器，即 3&gt;(4/2=2) 条件成立，那么可以选举出 1 个 Leader
+3）假设集群有 4 台服务器，1 台Leader，3 台 Follower。
+Leader 和一台 Follower 挂掉，那么剩下 2 台服务器，即 2&gt;(4/2=2) 条件不成立，那么不可以选举出 Leader
+依次类推.......
+结论: 2n-1 台和 2n 台服务器容灾能力一样，大可不必多花一台服务器部署
+</code></pre>
 
 <h2 id="aws-云对象存储">AWS 云对象存储</h2>
 
@@ -551,6 +707,10 @@ Transfer/sec:    606.33MB
   <p>做服务发现的框架除了 consul 外，常用的还有 zookeeper、eureka、etcd 等。</p>
 </blockquote>
 
+<p>以下是 consul 的 ui 界面：</p>
+
+<p><img src="https://learn.hashicorp.com/img/consul/1.9/ui-services.png" alt="consul-ui" /></p>
+
 <h2 id="开源许可证对比">开源许可证对比</h2>
 
 <p><img src="http://localhost:2333/style/images/smms/mit.jpg" alt="mit" /></p>
@@ -558,11 +718,10 @@ Transfer/sec:    606.33MB
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
-  <li><a href="https://www.jianshu.com/p/49ef09f6d8db">zabbix 从听说到学会</a> By JokerW</li>
-  <li><a href="https://www.cnblogs.com/clsn/p/7885990.html">Zabbix 3.0 从入门到精通(zabbix 使用详解)</a> By 惨绿少年</li>
   <li><a href="https://nickjanetakis.com/blog/comparing-virtual-machines-vs-docker-containers">Comparing Virtual Machines vs Docker Containers</a> By Nick Janetakis</li>
   <li><a href="https://blog.csdn.net/shaochat/article/details/40583937">端口映射和 dmz</a> By 吾心安处方是家</li>
   <li><a href="https://testerhome.com/topics/25641">录制线上流量做回归测试的正确打开方式</a> By 少年</li>
+  <li><a href="https://developer.aliyun.com/article/514488">开放分布式追踪（OpenTracing）入门与 Jaeger 实现</a> By 吴波bruce_wu</li>
 </ol>
  
 <div id="gitalk-container"></div>
