@@ -7,8 +7,8 @@ background: gray
 category: 后端
 title: 记一些运维实践
 date:   2019-02-02 17:54:00 GMT+0800 (CST)
-update: 2021-11-03 19:45:00 GMT+0800 (CST)
-description: add prometheus and grafana and so on
+update: 2021-11-05 18:06:00 GMT+0800 (CST)
+description: add LDAP and xxl-job
 background-image: /style/images/smms/linux.jpg
 tags:
 - Ops
@@ -271,35 +271,6 @@ Sonar 实际上是一个 Web 系统，展现了静态代码扫描的结果，真
 2. An organization’s *continuous integration (CI)* tool checks out, builds, and runs unit tests, and an integrated SonarQube scanner analyzes the results.
 3. The scanner posts the results to the SonarQube server which provides feedback to developers through the SonarQube interface, email, in-IDE notifications (through SonarLint), and decoration on pull or merge requests (when using Developer Edition and above).
 
-## Docker
-
-**Docker** 容器并非虚拟机，但可以比喻为更轻量级的虚拟机。使用虚拟机运行多个相互隔离的应用时(以下翻译[参考自这里](http://www.techug.com/post/comparing-virtual-machines-vs-docker-containers.html)):
-
-![virtual-machine-architecture.jpg]( {{site.url}}/style/images/smms/virtual-machine-architecture.jpg )
-
-* 基础设施(Infrastructure) - 可以是个人电脑，数据中心的服务器，或者是云主机。
-* 主操作系统(Host Operating System) - 运行的可能是 MacOS，Windows 或者某个 Linux 发行版。
-* 虚拟机管理系统(Hypervisor) - 利用 Hypervisor(即上述的 ESXI)，可以在主操作系统之上运行多个不同的从操作系统。
-* 从操作系统(Guest Operating System) - 假设你需要运行 3 个相互隔离的应用，则需要使用 Hypervisor 启动 3 个从操作系统，也就是 3 个虚拟机。这些虚拟机都非常大，也许有 700MB，这就意味着它们将占用 2.1GB 的磁盘空间。更糟糕的是，它们还会消耗很多 CPU 和内存。
-* 各种依赖 - 每一个从操作系统都需要安装许多依赖。如果你使用 Ruby 的话，应该需要安装 gems；如果使用其他编程语言，比如 Python 或者 Node.js，都会需要安装对应的依赖库。
-* 应用 - 安装依赖之后，就可以在各个从操作系统分别运行应用了，这样各个应用就是相互隔离的。
-
-使用 Docker 容器运行多个相互隔离的应用时:
-
-![docker-container.jpg]( {{site.url}}/style/images/smms/docker-container.jpg )
-
-* 基础设施(Infrastructure) - 同上
-* 主操作系统(Host Operating System) - 所有主流的 Linux 发行版都可以运行 Docker。对于 MacOS 和 Windows，也有一些办法"运行" Docker。
-* Docker守护进程(Docker Daemon) - Docker 守护进程取代了 Hypervisor，它是运行在操作系统之上的后台进程，负责管理 Docker 容器。
-* 各种依赖 - 对于 Docker，应用的所有依赖都打包在 Docker 镜像中，Docker 容器是基于 Docker 镜像创建的。
-* 应用 - 应用的源代码与它的依赖都打包在 Docker 镜像中，不同的应用需要不同的 Docker 镜像。不同的应用运行在不同的 Docker 容器中，它们是相互隔离的。
-
-虚拟机和 Docker 的一些对比:
-
-Docker 守护进程可以直接与主操作系统进行通信，为各个 Docker 容器分配资源；它还可以将容器与主操作系统隔离，并将各个容器互相隔离。虚拟机启动需要数分钟，而 Docker 容器可以在数毫秒内启动。由于没有臃肿的从操作系统，Docker 可以节省大量的磁盘空间以及其他系统资源。
-
-但并不是说虚拟机就被取代了，因为两者有不同的使用场景。虚拟机更擅长于彻底隔离整个运行环境。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而 Docker 通常用于隔离不同的应用，例如前端，后端以及数据库。
-
 ## ZooKeeper
 
 [**ZooKeeper**](https://github.com/apache/zookeeper) 是开源的分布式应用程序协调服务。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。已经作为核心组件被广泛应用在很多大型分布式系统中，包括 Hadoop、Hbase、Storm、Kafka、Dubbo 等。
@@ -330,11 +301,153 @@ Leader 和一台 Follower 挂掉，那么剩下 2 台服务器，即 2>(4/2=2) �
 结论: 2n-1 台和 2n 台服务器容灾能力一样，大可不必多花一台服务器部署
 ```
 
+## xxl-job
+
+项目开发中，常常以下场景需要分布式任务调度：
+
+1. 同一服务多个实例的任务存在互斥时，需要统一协调
+2. 定时任务的执行需要支持高可用、监控运维、故障告警
+3. 需要统一管理和追踪各个服务节点定时任务的运行情况，以及任务属性信息，例如任务所属服务、所属责任人
+
+因此，XXL-JOB 应运而生： XXL-JOB 是一个开源的轻量级分布式任务调度平台，其核心设计目标是开发迅速、学习简单、轻量级、易扩展、开箱即用，其中“XXL”是主要作者，大众点评许雪里名字的缩写。主要功能特性如下：
+
+1. 简单灵活
+   1. 提供 Web 页面对任务进行管理，管理系统支持用户管理、权限控制；
+   2. 支持容器部署；
+   3. 支持通过通用 HTTP 提供跨平台任务调度；
+2. 丰富的任务管理功能
+   1. 支持页面对任务 CRUD 操作；
+   2. 支持在页面编写脚本任务、命令行任务、Java 代码任务并执行；
+   3. 支持任务级联编排，父任务执行结束后触发子任务执行；
+   4. 支持设置任务优先级；
+   5. 支持设置指定任务执行节点路由策略，包括轮询、随机、广播、故障转移、忙碌转移等；
+   6. 支持 Cron 方式、任务依赖、调度中心 API 接口方式触发任务执行
+3. 高性能
+   1. 调度中心基于线程池多线程触发调度任务，快任务、慢任务基于线程池隔离调度，提供系统性能和稳定性；
+   2. 任务调度流程全异步化设计实现，如异步调度、异步运行、异步回调等，有效对密集调度进行流量削峰；
+4. 高可用
+   1. 任务调度中心、任务执行节点均 集群部署，支持动态扩展、故障转移；
+   2. 支持任务配置路由故障转移策略，执行器节点不可用是自动转移到其他节点执行；
+   3. 支持任务超时控制、失败重试配置；
+   4. 支持任务处理阻塞策略：调度当任务执行节点忙碌时来不及执行任务的处理策略，包括：串行、抛弃、覆盖策略；
+5. 易于监控运维
+   1. 支持设置任务失败邮件告警，预留接口支持短信、钉钉告警；
+   2. 支持实时查看任务执行运行数据统计图表、任务进度监控数据、任务完整执行日志；
+
+系统组成：
+
+1. 调度模块（调度中心）：
+   1. 负责管理调度信息，按照调度配置发出调度请求，自身不承担业务代码。调度系统与任务解耦，提高了系统可用性和稳定性，同时调度系统性能不再受限于任务模块；
+   2. 支持可视化、简单且动态的管理调度信息，包括任务新建，更新，删除，GLUE 开发和任务报警等，所有上述操作都会实时生效，同时支持监控调度结果以及执行日志，支持执行器 Failover。
+2. 执行模块（执行器）：
+   1. 负责接收调度请求并执行任务逻辑。任务模块专注于任务的执行等操作，开发和维护更加简单和高效；
+   2. 接收 “调度中心” 的执行请求、终止请求和日志请求等。
+
+![xxl-job](https://www.xuxueli.com/doc/static/xxl-job/images/img_Qohm.png)
+
+工作原理：
+
+1. 任务执行器根据配置的调度中心的地址，自动注册到调度中心
+2. 达到任务触发条件，调度中心下发任务
+3. 执行器基于线程池执行任务，并把执行结果放入内存队列中、把执行日志写入日志文件中
+4. 执行器的回调线程消费内存队列中的执行结果，主动上报给调度中心
+5. 当用户在调度中心查看任务日志，调度中心请求任务执行器，任务执行器读取任务日志文件并返回日志详情
+
+![xxl-job 工作原理](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/25/16d68c61be9b40cb~tplv-t2oaga2asx-watermark.image)
+
+## Docker
+
+### 与虚拟机的对比
+
+**Docker** 容器并非虚拟机，但可以比喻为更轻量级的虚拟机。使用虚拟机运行多个相互隔离的应用时(以下翻译[参考自这里](http://www.techug.com/post/comparing-virtual-machines-vs-docker-containers.html)):
+
+![virtual-machine-architecture.jpg]( {{site.url}}/style/images/smms/virtual-machine-architecture.jpg )
+
+* 基础设施(Infrastructure) - 可以是个人电脑，数据中心的服务器，或者是云主机。
+* 主操作系统(Host Operating System) - 运行的可能是 MacOS，Windows 或者某个 Linux 发行版。
+* 虚拟机管理系统(Hypervisor) - 利用 Hypervisor(即上述的 ESXI)，可以在主操作系统之上运行多个不同的从操作系统。
+* 从操作系统(Guest Operating System) - 假设你需要运行 3 个相互隔离的应用，则需要使用 Hypervisor 启动 3 个从操作系统，也就是 3 个虚拟机。这些虚拟机都非常大，也许有 700MB，这就意味着它们将占用 2.1GB 的磁盘空间。更糟糕的是，它们还会消耗很多 CPU 和内存。
+* 各种依赖 - 每一个从操作系统都需要安装许多依赖。如果你使用 Ruby 的话，应该需要安装 gems；如果使用其他编程语言，比如 Python 或者 Node.js，都会需要安装对应的依赖库。
+* 应用 - 安装依赖之后，就可以在各个从操作系统分别运行应用了，这样各个应用就是相互隔离的。
+
+使用 Docker 容器运行多个相互隔离的应用时:
+
+![docker-container.jpg]( {{site.url}}/style/images/smms/docker-container.jpg )
+
+* 基础设施(Infrastructure) - 同上
+* 主操作系统(Host Operating System) - 所有主流的 Linux 发行版都可以运行 Docker。对于 MacOS 和 Windows，也有一些办法"运行" Docker。
+* Docker守护进程(Docker Daemon) - Docker 守护进程取代了 Hypervisor，它是运行在操作系统之上的后台进程，负责管理 Docker 容器。
+* 各种依赖 - 对于 Docker，应用的所有依赖都打包在 Docker 镜像中，Docker 容器是基于 Docker 镜像创建的。
+* 应用 - 应用的源代码与它的依赖都打包在 Docker 镜像中，不同的应用需要不同的 Docker 镜像。不同的应用运行在不同的 Docker 容器中，它们是相互隔离的。
+
+虚拟机和 Docker 的一些对比:
+
+Docker 守护进程可以直接与主操作系统进行通信，为各个 Docker 容器分配资源；它还可以将容器与主操作系统隔离，并将各个容器互相隔离。虚拟机启动需要数分钟，而 Docker 容器可以在数毫秒内启动。由于没有臃肿的从操作系统，Docker 可以节省大量的磁盘空间以及其他系统资源。
+
+但并不是说虚拟机就被取代了，因为两者有不同的使用场景。虚拟机更擅长于彻底隔离整个运行环境。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而 Docker 通常用于隔离不同的应用，例如前端，后端以及数据库。
+
+TODO: docker-compose & k8s
+
+### PaaS
+
+**PaaS** 平台是一个通用的、基于 Web 的 Kubernetes 管理平台。通过可视化 Kubernetes 对象模板编辑的方式集成 CI/CD，降低业务接入成本，拥有完整的权限管理系统，适应多租户场景，是一款适合企业级集群使用的发布平台。更是整合了告警、日志、服务治理和分布式存储等强大功能，是一套完整的解决方案！
+
+Kubernetes 一般简称 k8s。要解释 k8s 的话，首先需要了解一下 `镜像 (Image)、Pod、Node、容器 (Container)` 这几个概念。镜像类似于虚拟机的镜像，包含了完整的操作系统环境信息，通常镜像一旦构成，里面的内容是不无法改变的。容器运行环境可以加载运行镜像，例如 Docker 就是一种容器运行环境。运行起来的镜像可以被称为容器 。容器 Pod 是 k8s 中基本单位，负责装一个或多个容器。Node 实际上是对集群中服务器资源的抽象，一个 Node 可以是一台服务器 (实体的或者虚拟机)，Node 上可以运行多个 Pod。 总的来说通过将应用容器化，服务器资源抽象成 Node，k8s 负责将我的应用部署到 Node 上，并且能够在应用崩溃时自动重启等功能。
+
+本身 k8s 是不提供 UI 界面的，PaaS 实际上是提供了一套 UI 界面让用户使用更加便利，并且提供了额外的功能。前端的应用部署在 PaaS 主要是执行了个 Nginx 服务，这个 Nginx 服务器存放了构建好的 html：
+
+```dockerfile
+FROM harbor.paas.xxx.io/helper/compile:latest AS clone
+ARG REPO
+ARG BRANCHNAME
+ARG DEPLOY_NAMESPACE
+ENV COMMIT_ID VERSION
+RUN mkdir -p /data/www
+RUN url=VERSION && wget ${url} -q -O "/app.${url##*.}" && if [ "${url##*.}" = "gz"
+];then mkdir -p /app && tar -xzvf  /app.gz -C /app;fi
+FROM harbor.paas.xxx.io/dev/centos7-openresty1158-dev:v1
+RUN mkdir /data/log/nginx -p \
+         && chown www -R /data/log/nginx
+COPY --from=clone /app /data/www
+EXPOSE 80
+CMD [ "/opt/openresty/nginx/sbin/nginx", "-g", "daemon off;" ]
+```
+
+这是一个实际应用的 Dockerfile，可以看到里面逻辑实际上是从远程获取一个压缩包，然后把压缩包解压出来，并拷⻉到 nginx 的资源目录下，最后启动 nginx。随后我们会在 PaaS 平台里选择构建，这里会触发 PaaS 里的 Jenkins，根据 Dockerfile 构建生成镜像，并且上传镜像。当我们选择发布的时候，k8s 会根据我们选中的镜像，将其发布到集群中。这个过程概括下是对应的机器去拉取镜像，并且在本地启动实例 (一般用 Docker 去启动)。
+
+![paas]( {{site.url}}/style/images/smms/paas.png )
+
+> 关于 CICD 平台的内容可以查看[这一章节]( {{site.url}}/2020/05/25/github-actions.html#cubesats ) 👈
+
 ## AWS 云对象存储
 
 随着业务的发展，需要管理急剧增加并且孤立的大量数据，这些数据来自很多被任意数量的应用程序和业务流程使用的来源。现在，很多公司都面临着碎片化存储产品带来的挑战。这些产品不仅增加了业务应用程序的复杂性，还减缓了其创新速度。对象存储能够提供可以大规模扩展并且经济高效的存储来以原生格式存储任何类型的数据，从而打破这些限制。
 
-**AWS(Amazon Web Services)** 是 Amazon 公司旗下云计算服务平台，为全世界范围内的客户提供云解决方案。面向用户提供包括弹性计算、存储、数据库、应用程序在内的一整套云计算服务，帮助企业降低 IT 投入成本和维护成本。同类型的还可以了解下 [Azure](https://zh.wikipedia.org/wiki/Microsoft_Azure)、阿里云、腾讯云等。
+**AWS(Amazon Web Services)** 是 Amazon 公司旗下云计算服务平台，为全世界范围内的客户提供云解决方案。面向用户提供包括弹性计算、存储、数据库、应用程序在内的一整套云计算服务，帮助企业降低 IT 投入成本和维护成本。同类型的还可以了解下 [Azure](https://zh.wikipedia.org/wiki/Microsoft_Azure)、阿里云、腾讯云、首都在线等。
+
+TODO: s3/OSS
+
+## 单点登录
+
+### 登录与登出
+
+**单点登录**指用户只需输入一次账密，在一处完成登录，之后可以直接进入所有业务系统。想要完成单点登录的效果，必须有一个唯一身份源，其他业务系统必须配合完成改造和对接。**单点登出**指用户点击一次登出就能退出他登录的所有系统。
+
+### LDAP 与 Active Directory
+
+**LDAP(Light Directory Access Portocol)** 是基于 `X.500 标准`(网络中目录服务的标准)的轻量级目录访问协议，约定了 Client 与 Server 之间的信息交互格式、使用的端口号、认证方式等内容。**目录**是一个为查询、浏览和搜索而优化的数据库，它成树状结构组织数据，类似文件目录一样。目录数据库和关系数据库不同，它有优异的读性能，但写性能差，并且没有事务处理、回滚等复杂功能，不适于存储修改频繁的数据。所以目录天生是用来查询的，就好象它的名字一样。LDAP 目录服务是由目录数据库和一套访问协议组成的系统。
+
+LDAP 的常见用途是为身份验证提供中心位置 —— 意味着它存储用户名和密码。然后，可以将 LDAP 用于不同的应用程序或服务中，以通过插件验证用户。例如，LDAP 可用于 Docker，Jenkins，Kubernetes，Open VPN 和 Linux Samba 服务器验证用户名和密码。系统管理员还可以使用 LDAP 单一登录来控制对 LDAP 数据库的访问。LDAP 还可以用于将操作添加到目录服务器数据库中，对会话进行身份验证或绑定，删除 LDAP 条目，使用不同的命令搜索和比较条目，修改现有条目，扩展条目，放弃请求或取消绑定操作。
+
+LDAP 也可用于 Microsoft 的 Active Directory 中，但也可以用于其他工具中，例如 Open LDAP，Red Hat Directory Server 和 IBM Tivoli Directory Server。Open LDAP 是一个开源 LDAP 应用程序。它是为 LDAP 数据库控制开发的 Windows LDAP 客户端和管理工具。该工具应允许用户浏览，查找，删除，创建和更改 LDAP 服务器上显示的数据。Open LDAP 还允许用户管理密码和按架构浏览。
+
+LDAP 是一个历史悠久的协议，诞生时间早于万维网。在当时商业数据库并不发达，而且当时商业数据库的驱动在多语言支持上也不友好——有可能这个数据库在你使用的编程语言上根本没有相关的开发包。LDAP 一直沿用至今，有很多的历史原因，因此许多应用都会支持通过 LDAP 登录。LDAP 协议的用户目录是树形结构，天然与组织机构契合，而且在查询上速度非常快，比任何其他数据库都要快。
+
+**Active Directory** 是一种目录服务，用于管理域，用户和分布式资源（例如 Windows 操作系统的对象），是基于 LDAP 协议的一套解决方案，解决了细粒度的权限控制。目录服务背后的意义是它在管理域和对象的同时控制哪些用户可以访问每个资源，核心：**「谁 以什么权限 访问什么」**。
+
+AD 可以管理用户的域账号、用户信息、企业通信录（与电子邮箱系统集成）、用户组管理、用户身份认证、用户授权管理、按需实施组管理策略等。在 Windows 下，有组策略管理器，如果启用域用户认证，那么这些组策略可以统一管理，方便地限制用户的权限。也可以管理服务器及客户端计算机账户、所有服务器及客户端计算机加入域管理并按需实施组策略，甚至可以控制计算机禁止修改壁纸、禁止使用 u 盘等。
+
+> 计算机要通过 AD 管理的前提是**加域**。
 
 ## 端口映射和 DMZ 主机
 
