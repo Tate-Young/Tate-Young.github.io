@@ -117,6 +117,10 @@ mitmproxy -s mitm.py
 
 > window 操作系统不支持使用 mitmproxy 命令，而是使用 mitmdump 或 mitmweb，虽然他们也支持同样的参数，但功能上还是比较弱一点(吐槽 🤮)
 
+### ngrok
+
+**ngrok** 是一个反向代理工具，通过在公共的端点和本地运行的 Web 服务器之间建立一个安全的通道。ngrok 可捕获和分析所有通道上的流量，便于后期分析和重放。详情可以[查看另一篇文章]( {{site.url}}/2020/05/25/github-actions.html#ngrok ) 👈
+
 ## 手机网页调试
 
 ### IOS

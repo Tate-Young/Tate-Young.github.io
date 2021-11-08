@@ -175,7 +175,7 @@
                       发布时间：2020-05-25 18:05:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-11-05 17:32:00
+                        修改时间：2021-11-08 15:09:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -474,8 +474,8 @@ deploy:
   <li>代码化：流水线是在代码中实现的，通常会存放到源代码控制，使团队具有编辑、审查和更新他们项目的交付流水线的能力。</li>
   <li>耐用性：流水线可以从 Jenkins 的 master 节点重启后继续运行。</li>
   <li>可暂停的：流水线可以由人功输入或批准继续执行流水线。</li>
-  <li>解决复杂发布： 支持复杂的交付流程。例如循环、并行执行。</li>
-  <li>可扩展性： 支持扩展 DSL 和其他插件集成。</li>
+  <li>解决复杂发布：支持复杂的交付流程。例如循环、并行执行。</li>
+  <li>可扩展性：支持扩展 DSL 和其他插件集成。</li>
 </ol>
 
 <p>流水线好比地铁，我们需要设计地铁的运行线路图（Jenkinsfile），在线路图中指定要经过的站点（stages）。<strong>Jenkinsfile</strong> 使用两种语法进行编写，分别是声明式和脚本式。声明式和脚本式的流水线从根本上是不同的，声明式流水线使编写和读取流水线代码更容易设计；脚本式的流水线语法，提供更丰富的语法特性。</p>
@@ -483,11 +483,11 @@ deploy:
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 声明式语法</span>
 <span class="nx">pipeline</span> <span class="p">{</span>
   <span class="c1">// 指定运行此流水线的节点</span>
-  <span class="nx">agent</span> <span class="p">{</span> <span class="nx">node</span> <span class="p">{</span> <span class="nx">label</span> <span class="dl">"</span><span class="s2">build</span><span class="dl">"</span><span class="p">}</span> <span class="p">}</span>
+  <span class="nx">agent</span> <span class="p">{</span> <span class="nx">node</span> <span class="p">{</span> <span class="nx">label</span> <span class="dl">"</span><span class="s2">build</span><span class="dl">"</span> <span class="p">}</span> <span class="p">}</span>
 
   <span class="c1">// 流水线的阶段</span>
   <span class="nx">stages</span> <span class="p">{</span>
-    <span class="c1">// 阶段1 获取代码</span>
+    <span class="c1">// 阶段 1 获取代码</span>
     <span class="nx">stage</span><span class="p">(</span><span class="dl">"</span><span class="s2">CheckOut</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">steps</span><span class="p">{</span>
         <span class="nx">script</span><span class="p">{</span>
@@ -585,7 +585,7 @@ deploy:
       <li>当 Gitlab 中触发 push 操作，则触发相对应的 Jenkins 流水线构建。实现快速反馈与验证。
         <ol>
           <li>方式 1： 使用 <strong>Gitlab CI</strong>, 当有 push 请求，在 CI 脚本中远程触发 Jenkins 项目构建。需要准备 Gitlab runner。编写触发 Jenkins 脚本</li>
-          <li>方式 2： 使用 <strong>Gitlab WebHook</strong>, 当有 push 请求，直接触发 jenkins 项目构建。需要配置 Gitlab webHook。需要配置 Jenkins 项目 Hook</li>
+          <li>方式 2： 使用 <strong>Gitlab Webhook</strong>, 当有 push 请求，直接触发 jenkins 项目构建。需要配置 Gitlab webhook。需要配置 Jenkins 项目 Hook</li>
         </ol>
       </li>
     </ol>
@@ -747,7 +747,66 @@ deploy:
 
 <h3 id="webhook">Webhook</h3>
 
-<p>TODO: Webhook</p>
+<p><strong>Webhook</strong> 是一个 API 概念，是微服务 API 的使用范式之一，也被成为反向 API，实质就是一个接收 HTTP POST（或 GET，PUT，DELETE）的 URL。不像传统的 APIs 方式，你需要用轮询的方式来获得尽可能实时的数据。一个实现了 Webhook 的 API 提供方就是在当事件发生的时候会向这个配置好的 URL 发送一条信息，与请求 - 响应式不同，使用 Webhook 你可以实时接收到变化。举个例子：</p>
+
+<ol>
+  <li>传统做法 - 项目 A 需要不停轮询去拉取项目 B 的最新数据</li>
+  <li>webhook 机制 - 项目 A 提供一个 webhook url, 每次项目 B 创建新数据时，便会向项目 A 的 hook 地址进行请求，项目 A 收到项目 B 的请求，然后对数据进行处理</li>
+</ol>
+
+<p>我们再以 <a href="https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks">Github Webhook</a> 为例，GitHub 允许为自己创建的仓库注册 Webhook，之后无论是 pull 拉取代码、push 推送代码还是填写 issues，我们都可以收到通知和详情。比如可以触发 CI 构建、更新备份镜像和自动化部署等。</p>
+
+<p>我们在仓库下的 settings 即可设置 Webhook，里面包含了几个重要的信息：</p>
+
+<ol>
+  <li><strong>Playload URL</strong> - 接收 Webhook 请求的服务器的地址</li>
+  <li><strong>Content type</strong> - Webhooks can be delivered using different content types:
+    <ol>
+      <li>The <code class="highlighter-rouge">application/json</code> content type will deliver the JSON payload directly as the body of the POST request.</li>
+      <li>The <code class="highlighter-rouge">application/x-www-form-urlencoded</code> content type will send the JSON payload as a form parameter called payload.</li>
+    </ol>
+  </li>
+  <li><strong>secret</strong> - Setting a webhook secret allows you to ensure that POST requests sent to the payload URL are from GitHub. When you set a secret, you’ll receive the <code class="highlighter-rouge">X-Hub-Signature</code> and <code class="highlighter-rouge">X-Hub-Signature-256</code> headers in the webhook POST request. For more information on how to use a secret with a signature header to secure your webhook payloads, see “<a href="https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks">Securing your webhooks</a>.”</li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/smms/github-webhook.png" alt="github-webhook" /></p>
+
+<blockquote>
+  <p>Github 官方也提供了教程，需要搭建一个本地服务器来接收 Webhook 讯息，这里推荐的是 ngrok，下面会讲到。</p>
+</blockquote>
+
+<h3 id="ngrok">ngrok</h3>
+
+<p><strong>ngrok</strong> 是一个反向代理工具，通过在公共的端点和本地运行的 Web 服务器之间建立一个安全的通道。ngrok 可捕获和分析所有通道上的流量，便于后期分析和重放。简单来说，<strong>利用 ngrok 可以通过外网来访问部署在本地服务器的网站</strong>，它还提供一个 Web 管理页来监控 HTTP 通信报文，方便程序员开发和调试。另外 ngrok 还支持 TCP 层端口映射，不局限于某一特定的服务。支持 Mac OS X，Linux，Windows 等平台。</p>
+
+<p><img src="https://camo.githubusercontent.com/c38e5f8cf24e62a3a2482897d4653b70e7d42649549b48cea4d90e873c5480c3/68747470733a2f2f6e67726f6b2e636f6d2f7374617469632f696d672f6f766572766965772e706e67" alt="ngrok" /></p>
+
+<blockquote>
+  <p>传统的做法是利用花生壳等动态域名或自行搭建 VPN 做端口映射，而利用 ngrok 几条命令就搞定。</p>
+</blockquote>
+
+<p>ngrok 使用方式很简单，以 macOS 为例，下载之后执行：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./ngrok http 80
+</code></pre></div></div>
+
+<p>之后会自动开启终端 UI 界面:</p>
+
+<pre><code class="language-TEXT">ngrok by @inconshreveable
+
+Tunnel Status                 online
+Version                       2.0/2.0
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    http://92832de0.ngrok.io -&gt; localhost:80
+Forwarding                    https://92832de0.ngrok.io -&gt; localhost:80
+
+Connnections                  ttl     opn     rt1     rt5     p50     p90
+                              0       0       0.00    0.00    0.00    0.00
+</code></pre>
+
+<p>打开 <code class="highlighter-rouge">localhost:4040</code> 页面可以监测请求详情：</p>
+
+<p><img src="https://ngrok.com/static/img/inspect2.png" alt="ngrok inspect" /></p>
 
 <h2 id="参考链接">参考链接</h2>
 

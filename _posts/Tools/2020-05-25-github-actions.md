@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Github Actions
 date:   2020-05-25 18:05:00 GMT+0800 (CST)
-update: 2021-11-05 17:32:00 GMT+0800 (CST)
+update: 2021-11-08 15:09:00 GMT+0800 (CST)
 description: add Jenkins and Artifactory
 background-image: https://www.wangbase.com/blogimg/asset/201909/bg2019091201.jpg
 tags:
@@ -252,8 +252,8 @@ deploy:
 1. 代码化：流水线是在代码中实现的，通常会存放到源代码控制，使团队具有编辑、审查和更新他们项目的交付流水线的能力。
 1. 耐用性：流水线可以从 Jenkins 的 master 节点重启后继续运行。
 1. 可暂停的：流水线可以由人功输入或批准继续执行流水线。
-1. 解决复杂发布： 支持复杂的交付流程。例如循环、并行执行。
-1. 可扩展性： 支持扩展 DSL 和其他插件集成。
+1. 解决复杂发布：支持复杂的交付流程。例如循环、并行执行。
+1. 可扩展性：支持扩展 DSL 和其他插件集成。
 
 流水线好比地铁，我们需要设计地铁的运行线路图（Jenkinsfile），在线路图中指定要经过的站点（stages）。**Jenkinsfile** 使用两种语法进行编写，分别是声明式和脚本式。声明式和脚本式的流水线从根本上是不同的，声明式流水线使编写和读取流水线代码更容易设计；脚本式的流水线语法，提供更丰富的语法特性。
 
@@ -261,11 +261,11 @@ deploy:
 // 声明式语法
 pipeline {
   // 指定运行此流水线的节点
-  agent { node { label "build"} }
+  agent { node { label "build" } }
 
   // 流水线的阶段
   stages {
-    // 阶段1 获取代码
+    // 阶段 1 获取代码
     stage("CheckOut") {
       steps{
         script{
@@ -355,7 +355,7 @@ Jenkins 流水线可以与以下工具进行集成：
 4. 版本控制工具 - Gitlab
    1. 当 Gitlab 中触发 push 操作，则触发相对应的 Jenkins 流水线构建。实现快速反馈与验证。
       1. 方式 1： 使用 **Gitlab CI**, 当有 push 请求，在 CI 脚本中远程触发 Jenkins 项目构建。需要准备 Gitlab runner。编写触发 Jenkins 脚本
-      2. 方式 2： 使用 **Gitlab WebHook**, 当有 push 请求，直接触发 jenkins 项目构建。需要配置 Gitlab webHook。需要配置 Jenkins 项目 Hook
+      2. 方式 2： 使用 **Gitlab Webhook**, 当有 push 请求，直接触发 jenkins 项目构建。需要配置 Gitlab webhook。需要配置 Jenkins 项目 Hook
 5. 代码质量管理平台 - Sonarqube
    1. 开发人员在 IDE 开发代码，可以安装 **SonarLint** 插件进行提交前代码扫描，当开发人员提交代码到版本控制系统中，自动触发 jenkins 进行代码扫描
 6. 制品仓库 - 如 nexus、artiifactory
@@ -485,7 +485,57 @@ a-maven-project
 
 ### Webhook
 
-TODO: Webhook
+**Webhook** 是一个 API 概念，是微服务 API 的使用范式之一，也被成为反向 API，实质就是一个接收 HTTP POST（或 GET，PUT，DELETE）的 URL。不像传统的 APIs 方式，你需要用轮询的方式来获得尽可能实时的数据。一个实现了 Webhook 的 API 提供方就是在当事件发生的时候会向这个配置好的 URL 发送一条信息，与请求 - 响应式不同，使用 Webhook 你可以实时接收到变化。举个例子：
+
+1. 传统做法 - 项目 A 需要不停轮询去拉取项目 B 的最新数据
+2. webhook 机制 - 项目 A 提供一个 webhook url, 每次项目 B 创建新数据时，便会向项目 A 的 hook 地址进行请求，项目 A 收到项目 B 的请求，然后对数据进行处理
+
+我们再以 [Github Webhook](https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks) 为例，GitHub 允许为自己创建的仓库注册 Webhook，之后无论是 pull 拉取代码、push 推送代码还是填写 issues，我们都可以收到通知和详情。比如可以触发 CI 构建、更新备份镜像和自动化部署等。
+
+我们在仓库下的 settings 即可设置 Webhook，里面包含了几个重要的信息：
+
+1. **Playload URL** - 接收 Webhook 请求的服务器的地址
+2. **Content type** - Webhooks can be delivered using different content types:
+   1. The `application/json` content type will deliver the JSON payload directly as the body of the POST request.
+   2. The `application/x-www-form-urlencoded` content type will send the JSON payload as a form parameter called payload.
+3. **secret** - Setting a webhook secret allows you to ensure that POST requests sent to the payload URL are from GitHub. When you set a secret, you'll receive the `X-Hub-Signature` and `X-Hub-Signature-256` headers in the webhook POST request. For more information on how to use a secret with a signature header to secure your webhook payloads, see "[Securing your webhooks](https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks)."
+
+![github-webhook]( {{site.url}}/style/images/smms/github-webhook.png )
+
+> Github 官方也提供了教程，需要搭建一个本地服务器来接收 Webhook 讯息，这里推荐的是 ngrok，下面会讲到。
+
+### ngrok
+
+**ngrok** 是一个反向代理工具，通过在公共的端点和本地运行的 Web 服务器之间建立一个安全的通道。ngrok 可捕获和分析所有通道上的流量，便于后期分析和重放。简单来说，**利用 ngrok 可以通过外网来访问部署在本地服务器的网站**，它还提供一个 Web 管理页来监控 HTTP 通信报文，方便程序员开发和调试。另外 ngrok 还支持 TCP 层端口映射，不局限于某一特定的服务。支持 Mac OS X，Linux，Windows 等平台。
+
+![ngrok](https://camo.githubusercontent.com/c38e5f8cf24e62a3a2482897d4653b70e7d42649549b48cea4d90e873c5480c3/68747470733a2f2f6e67726f6b2e636f6d2f7374617469632f696d672f6f766572766965772e706e67)
+
+> 传统的做法是利用花生壳等动态域名或自行搭建 VPN 做端口映射，而利用 ngrok 几条命令就搞定。
+
+ngrok 使用方式很简单，以 macOS 为例，下载之后执行：
+
+```shell
+./ngrok http 80
+```
+
+之后会自动开启终端 UI 界面:
+
+```TEXT
+ngrok by @inconshreveable
+
+Tunnel Status                 online
+Version                       2.0/2.0
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    http://92832de0.ngrok.io -> localhost:80
+Forwarding                    https://92832de0.ngrok.io -> localhost:80
+
+Connnections                  ttl     opn     rt1     rt5     p50     p90
+                              0       0       0.00    0.00    0.00    0.00
+```
+
+打开 `localhost:4040` 页面可以监测请求详情：
+
+![ngrok inspect](https://ngrok.com/static/img/inspect2.png)
 
 ## 参考链接
 

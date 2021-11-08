@@ -115,6 +115,8 @@ bubu='bubo && bubc'
 
 > 命令中的 repo_name 其实是 `brew tap <github_userid/homebrew-repo_name>` 的简写，我们可以看到多了个 homebrew 的前缀，这个是和仓库名一致的
 
+> ⚠️ brew cast 命令已经改成了 `brew install --cask` 👈
+
 ```SHELL
 brew tap
 # homebrew/cask
