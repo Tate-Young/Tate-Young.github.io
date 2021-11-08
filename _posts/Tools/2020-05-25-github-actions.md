@@ -7,8 +7,8 @@ background: green
 category: 前端
 title:  Github Actions
 date:   2020-05-25 18:05:00 GMT+0800 (CST)
-update: 2021-11-08 15:09:00 GMT+0800 (CST)
-description: add Jenkins and Artifactory
+update: 2021-11-08 15:44:00 GMT+0800 (CST)
+description: add Travis CI
 background-image: https://www.wangbase.com/blogimg/asset/201909/bg2019091201.jpg
 tags:
 - html
@@ -382,6 +382,19 @@ Jenkins 流水线可以与以下工具进行集成：
 ![cd]( {{site.url}}/style/images/smms/cicd-cd.png )
 
 > 关于 PaaS 平台的内容可以查看[这一章节]( {{site.url}}/2019/02/02/ops-exersize.html#paas ) 👈
+
+### Travis CI
+
+[**Travis CI**](https://travis-ci.org) 也是提供的持续集成服务，但它只支持 Github/Bitbucket 代码托管平台。Travis 要求项目的根目录下面，必须有一个 `.travis.yml` 文件。这是配置文件，指定了 Travis 的行为。一旦代码仓库有新的 Commit，Travis 就会去找这个文件并执行里面的命令。
+
+它提供了许多自动 CI 选项，由于 Travis CI 服务器托管在云中，因此无需专用服务器，可以在运行于不同操作系统上的不同计算机上的不同环境中进行测试。相反 Jenkins 则需要搭建专用服务器，但其本身是免费的；Travis CI 对于开源项目是免费的，而对于商业项目则需要购买企业计划。
+
+总结下两者的区别 - **小型开源项目最适合 Travis CI，因为它易于运行且设置迅速。大型企业最适合 Jenkins，因为它为私人项目提供免费许可并具有广泛的可定制功能**：
+
+1. Travis CI 是商业 CI 工具，而 Jenkins 是开源工具。
+2. Jenkins 需要精心设置时，Travis CI 花费的时间很少。
+3. Travis CI 提供较少的自定义选项，而 Jenkins 提供大量的自定义选项。
+4. Travis CI 有一个 YAML 配置文件，而 Jenkins 为用户提供了完整的配置选项。
 
 ## 其他相关知识
 
