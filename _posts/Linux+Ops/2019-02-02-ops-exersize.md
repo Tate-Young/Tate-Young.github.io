@@ -7,8 +7,8 @@ background: gray
 category: 后端
 title: 记一些运维实践
 date:   2019-02-02 17:54:00 GMT+0800 (CST)
-update: 2021-11-08 10:46:00 GMT+0800 (CST)
-description: add cron expressions to xxl-job
+update: 2021-11-08 17:46:00 GMT+0800 (CST)
+description: add firebase and S3/OSS
 background-image: /style/images/smms/linux.jpg
 tags:
 - Ops
@@ -464,9 +464,50 @@ CMD [ "/opt/openresty/nginx/sbin/nginx", "-g", "daemon off;" ]
 
 **AWS(Amazon Web Services)** 是 Amazon 公司旗下云计算服务平台，为全世界范围内的客户提供云解决方案。面向用户提供包括弹性计算、存储、数据库、应用程序在内的一整套云计算服务，帮助企业降低 IT 投入成本和维护成本。同类型的还可以了解下 [Azure](https://zh.wikipedia.org/wiki/Microsoft_Azure)、阿里云、腾讯云、首都在线等。
 
-TODO: s3/OSS
+### S3 / OSS
 
-### LDAP 与 Active Directory
+[**Amazon Simple Storage Service(Amazon S3)**](https://aws.amazon.com/cn/what-is-cloud-object-storage/) 提供高持久性、高扩展性且安全的目标，用于备份和存档关键数据。S3 可以存储任意大小的内容，并且允许用户从任意位置访问。是唯一一个允许您直接在静态数据上运行复杂大数据分析的云存储平台，无需您提取数据以及将其加载到单独的分析系统。您可以使用 Amazon Athena 或 Amazon Redshift Spectrum 查询 S3 数据，而不占用任何其他基础设施，并仅需为您运行的查询付费。这样便可对使用 SQL 的所有人都能访问的大量非结构化数据进行分析，与传统提取、转换和加载 (ETL) 过程相比更为经济高效。
+
+S3 的数据都是存储在 AWS 的存储桶中，我们可以把桶理解为磁盘分区，不过它是由一个桶名（字符串）唯一标识，即你不能创建别人已经创建过的桶。S3 能够实现卓越的数据保护，跨区域复制 (CRR) 将把每个 S3 对象自动复制到位于不同 AWS 区域的一个目标存储桶。除此之外还可以定义生命周期规则，从而将非频繁访问数据自动迁移到 S3 Standard – Infrequent Access，并将对象集合存档到 Amazon Glacier 中。
+
+**Amazon Glacier** 也是 Amazon 提供的存储解决方案，适用于数据存档和长期备份。它们能够提供 99.999999999% 的持久性以及全面的安全与合规功能，可以帮助满足最严格的监管要求。客户能以每月每 TB 低至 1 USD 的价格存储数据，与本地解决方案相比，显著降低了成本。为了保持低廉成本，同时满足各种检索需求，Amazon S3 Glacier 提供了三种访问存档的选项，检索时间从数分钟到数小时不等；S3 Glacier Deep Archive 提供了两种访问选项，检索时间从 12 小时到 48 小时不等。
+
+**阿里云对象存储服务（Object Storage Service，即 OSS**）是阿里云提供的海量、安全、低成本、高可靠的云存储服务。可以使用阿里云提供的 API、SDK 接口或者 OSS 迁移工具轻松地将海量数据移入或移出阿里云 OSS。数据存储到阿里云 OSS 以后，您可以选择标准存储（Standard）作为移动应用、大型网站、图片分享或热点音视频的主要存储方式，也可以选择成本更低、存储期限更长的低频访问存储（Infrequent Access）和归档存储（Archive）作为不经常访问数据的存储方式。
+
+## Firebase
+
+[**Firebase**](https://firebase.google.com) 是一个来自 Google 的基于云托管的移动应用程序开发平台，具有强大的开发、处理和增强应用程序的功能。本质上是一个开发人员可以依赖的工具集合，可以根据需求创建应用程序并对其进行扩展。Google Firebase 平台的一些突出特性包括数据库、身份验证、推送消息、分析、文件存储等等。旨在为开发者解决三大问题：
+
+1. 快速开发应用
+1. 充满信心地发布和监控应用程序
+1. 吸引用户
+
+![firebase](https://firebase.google.cn/images/products/analytics/analytics-3.png)
+
+Firebase 的优势：
+
+1. 免费开始 - Firebase 的 Spark 套餐是免费的，提供了许多功能来帮助开发者入门。基于不断增长的需求，后期可以换到 Blaze 套餐。
+2. 开发速度 - 提供了多种随时可用的服务，这些服务可以避免开发人员使用样板代码、重造轮子以及从头开始创建后端。包括通知、单点登录和分析。
+3. 无需服务器 - Firebase 提供了一个无服务器架构，用户只有在需要使用服务器的情况下才需要支付费用。不需要管理或担心服务器基础设施。
+4. 机器学习 - 提供了一个机器学习工具包，该工具包包含针对不同移动平台的 api，如文本识别、人脸检测、图像标签、条形码扫描等。
+5. 带来流量 - Firebase 通过在 Search 上提供应用程序链接，促进应用程序索引，让用户重新与 Google 搜索用户建立联系。应用程序的排名也可以通过索引一个应用程序来提高一次，这有助于你的应用程序获得可以安装它的新用户的曝光率。
+6. 错误监控 - Firebase 的 **Crashlytics** 特性是一个非常棒的工具，可以快速查找和修复问题。Firebase 可以监控非致命性和致命性错误，并根据错误如何影响用户体验生成报告。
+7. 备份 - Firebase 通过定期备份确保数据的最佳安全性和可用性，Blaze 套餐的用户可以轻松地配置 firebaserealtimedatabase 以进行自动备份
+8. Cloud Messaging 云消息传递 - 跨各种平台（Android、iOS 和网页）免费向用户发送消息和通知。消息可以发送到单个设备、设备组、订阅了特定主题的用户或细分用户群。FCM 可以根据应用进行扩展，即使是规模最大的应用也能处理，每天可传送数千亿条消息。
+9. A/B 测试 - 通过运行产品和营销实验来改进您的应用，而无需费心设置运行 A/B 测试的基础架构。自定义实验以满足您的目标。测试应用的各种更新，例如消息副本或新功能。然后，只发布证明可以对改善关键指标起到作用的更改。
+
+Firebase 的局限性：
+
+1. 它不是开源的 - 具有很大的限制，虽然这个平台不是开源的，但是需要强调的是很多[库和 sdk](https://github.com/firebase/) 都可以在 GitHub 上使用
+1. 部分国家都不能正常使用 - 部分国家谷歌服务屏蔽，具体查看 [Transparency Report](https://transparencyreport.google.com/traffic/overview)
+1. 只有 NoSQL 数据库可用 - Firebase 的数据库类别 Firestore 数据库和 Firebase Realtime 数据库都提供了 NoSQL 结构，而且没有使用关系数据库的选项。
+1. 查询缓慢
+1. 并非所有服务都可以免费开始使用 - 比如上面提到的机器学习
+1. 它并不便宜，价格也难以预测 - 这就是为什么许多开发者最终选择自主托管应用程序，比如 Digital Ocean，AWS，或者 Google Cloud。
+1. 只能在谷歌云上运行 - Firebase 现在是 Google 的一部分，它的基础设施完全在 Google Cloud 上运行。在 AWS、 Azure 或 Digital Ocean 等其他云提供商上运行 Firebase 是没有选择的
+1. 不提供 GraphQL api - Firebase 不提供 GraphQL api 作为标准设置的一部分。尽管使用 Firebase 实现 GraphQL 有一些变通方法，REST 仍然是平台的默认选项。
+
+## LDAP 与 Active Directory
 
 **LDAP(Light Directory Access Portocol)** 是基于 `X.500 标准`(网络中目录服务的标准)的轻量级目录访问协议，约定了 Client 与 Server 之间的信息交互格式、使用的端口号、认证方式等内容。**目录**是一个为查询、浏览和搜索而优化的数据库，它成树状结构组织数据，类似文件目录一样。目录数据库和关系数据库不同，它有优异的读性能，但写性能差，并且没有事务处理、回滚等复杂功能，不适于存储修改频繁的数据。所以目录天生是用来查询的，就好象它的名字一样。LDAP 目录服务是由目录数据库和一套访问协议组成的系统。
 
