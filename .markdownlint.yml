@@ -1,6 +1,7 @@
 # Multiple top level headings in the same document
 MD024: false
 MD025: false
+MD028: false
 # no inline html
 MD033: false
 MD047: false

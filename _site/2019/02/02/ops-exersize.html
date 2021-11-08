@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="记一些运维实践" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="add LDAP and xxl-job" />
-<meta property="og:description" content="add LDAP and xxl-job" />
+<meta name="description" content="add cron expressions to xxl-job" />
+<meta property="og:description" content="add cron expressions to xxl-job" />
 <link rel="canonical" href="http://localhost:2333/2019/02/02/ops-exersize.html" />
 <meta property="og:url" content="http://localhost:2333/2019/02/02/ops-exersize.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-02-02T17:54:00+08:00" />
 <script type="application/ld+json">
-{"description":"add LDAP and xxl-job","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/02/02/ops-exersize.html"},"@type":"BlogPosting","url":"http://localhost:2333/2019/02/02/ops-exersize.html","headline":"记一些运维实践","dateModified":"2019-02-02T17:54:00+08:00","datePublished":"2019-02-02T17:54:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add cron expressions to xxl-job","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/02/02/ops-exersize.html"},"@type":"BlogPosting","url":"http://localhost:2333/2019/02/02/ops-exersize.html","headline":"记一些运维实践","dateModified":"2019-02-02T17:54:00+08:00","datePublished":"2019-02-02T17:54:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,7 +175,7 @@
                       发布时间：2019-02-02 17:54:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-11-05 18:06:00
+                        修改时间：2021-11-08 10:46:00
                       
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
@@ -183,7 +183,7 @@
                 </div>
                 
                   <div role='update-description' class="post-data">
-                    修改内容：add LDAP and xxl-job
+                    修改内容：add cron expressions to xxl-job
                   </div>
                 
                 <div class="post-tags">
@@ -536,6 +536,8 @@ Leader 和一台 Follower 挂掉，那么剩下 2 台服务器，即 2&gt;(4/2=2
 
 <h2 id="xxl-job">xxl-job</h2>
 
+<h3 id="定时任务调度与执行">定时任务调度与执行</h3>
+
 <p>项目开发中，常常以下场景需要分布式任务调度：</p>
 
 <ol>
@@ -544,7 +546,7 @@ Leader 和一台 Follower 挂掉，那么剩下 2 台服务器，即 2&gt;(4/2=2
   <li>需要统一管理和追踪各个服务节点定时任务的运行情况，以及任务属性信息，例如任务所属服务、所属责任人</li>
 </ol>
 
-<p>因此，XXL-JOB 应运而生： XXL-JOB 是一个开源的轻量级分布式任务调度平台，其核心设计目标是开发迅速、学习简单、轻量级、易扩展、开箱即用，其中“XXL”是主要作者，大众点评许雪里名字的缩写。主要功能特性如下：</p>
+<p>因此，XXL-JOB 应运而生： XXL-JOB 是一个开源的轻量级分布式任务调度平台，其核心设计目标是开发迅速、学习简单、轻量级、易扩展、开箱即用，其中 XXL 是主要作者大众点评许雪里名字的缩写。主要功能特性如下：</p>
 
 <ol>
   <li>简单灵活
@@ -616,6 +618,87 @@ Leader 和一台 Follower 挂掉，那么剩下 2 台服务器，即 2&gt;(4/2=2
 </ol>
 
 <p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/25/16d68c61be9b40cb~tplv-t2oaga2asx-watermark.image" alt="xxl-job 工作原理" /></p>
+
+<h3 id="cron-表达式">cron 表达式</h3>
+
+<p>定时任务的执行策略通常是通过 <strong>cron 表达式</strong>来完成。cron 表达式是一个字符串，该字符串由 6 个空格分为 7 个域，每一个域代表一个时间含义。 格式如下。 cron 表达式的难点即在于通配符的使用：</p>
+
+<pre><code class="language-TEXT">[秒] [分] [时] [日] [月] [周] [年]
+</code></pre>
+
+<table>
+  <tbody>
+    <tr>
+      <td>域</td>
+      <td>是否必填</td>
+      <td>值以及范围</td>
+      <td>通配符</td>
+    </tr>
+    <tr>
+      <td>秒</td>
+      <td>是</td>
+      <td>0-59</td>
+      <td>, - * /</td>
+    </tr>
+    <tr>
+      <td>分</td>
+      <td>是</td>
+      <td>0-59</td>
+      <td>, - * /</td>
+    </tr>
+    <tr>
+      <td>时</td>
+      <td>是</td>
+      <td>0-23</td>
+      <td>, - * /</td>
+    </tr>
+    <tr>
+      <td>日</td>
+      <td>是</td>
+      <td>1-31</td>
+      <td>, - * ? / L W</td>
+    </tr>
+    <tr>
+      <td>月</td>
+      <td>是</td>
+      <td>1-12 或 JAN-DEC</td>
+      <td>, - * /</td>
+    </tr>
+    <tr>
+      <td>周</td>
+      <td>是</td>
+      <td>1-7 或 SUN-SAT</td>
+      <td>, - * ? / L #</td>
+    </tr>
+    <tr>
+      <td>年</td>
+      <td>否</td>
+      <td>1970-2099</td>
+      <td>, - * /</td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li>, - 这里指的是在两个以上的时间点中都执行，如果我们在 “分” 这个域中定义为 8,12,35 ，则表示分别在第 8 分，第 12 分 第 35 分执行该定时任务。</li>
+  <li>- - 这个比较好理解就是指定在某个域的连续范围，如果我们在 “时” 这个域中定义 1-6，则表示在 1 到 6 点之间每小时都触发一次，用，表示 1,2,3,4,5,6</li>
+  <li>* - 表示所有值，可解读为 “每”。 如果在 “日” 这个域中设置 *, 表示每一天都会触发。</li>
+  <li>? - 表示不指定值。使用的场景为不需要关心当前设置这个字段的值。例如：要在每月的 8 号触发一个操作，但不关心是周几，我们可以这么设置 0 0 0 8 * ?</li>
+  <li>/- 在某个域上周期性触发，该符号将其所在域中的表达式分为两个部分，其中第一部分是起始值，除了秒以外都会降低一个单位，比如 在 “秒” 上定义 5/10 表示从 第 5 秒开始 每 10 秒执行一次，而在 “分” 上则表示从 第 5 秒开始 每 10 分钟执行一次。</li>
+  <li>L - 表示英文中的 LAST 的意思，只能在 “日” 和 “周” 中使用。在 “日” 中设置，表示当月的最后一天 (依据当前月份，如果是二月还会依据是否是润年), 在 “周” 上表示周六，相当于”7” 或”SAT”。如果在”L” 前加上数字，则表示该数据的最后一个。例如在 “周” 上设置”7L” 这样的格式，则表示 “本月最后一个周六”</li>
+  <li>W -  表示离指定日期的最近那个工作日 (周一至周五) 触发，只能在 “日” 中使用且只能用在具体的数字之后。若在 “日” 上置”15W”，表示离每月 15 号最近的那个工作日触发。假如 15 号正好是周六，则找最近的周五 (14 号) 触发，如果 15 号是周未，则找最近的下周一 (16 号) 触发。如果 15 号正好在工作日 (周一至周五)，则就在该天触发。如果是 “1W” 就只能往本月的下一个最近的工作日推不能跨月往上一个月推。</li>
+  <li># - 表示每月的第几个周几，只能作用于 “周” 上。例如 ”2#3” 表示在每月的第三个周二。</li>
+</ol>
+
+<p>举几个示例，以上摘自<a href="https://segmentfault.com/a/1190000021574315">文章 - 详解定时任务中的 cron 表达式</a> 👈：</p>
+
+<pre><code class="language-TEXT">每隔 1 分钟执行一次：0 */1 * * * ?
+每天 22 点执行一次：0 0 22 * * ?
+每月 1 号凌晨 1 点执行一次：0 0 1 1 * ?
+每月最后一天 23 点执行一次：0 0 23 L * ?
+每周周六凌晨 3 点实行一次：0 0 3 ? * L
+在 24 分、30 分执行一次：0 24,30 * * * ?
+</code></pre>
 
 <h2 id="docker">Docker</h2>
 
@@ -693,12 +776,6 @@ Leader 和一台 Follower 挂掉，那么剩下 2 台服务器，即 2&gt;(4/2=2
 <p><strong>AWS(Amazon Web Services)</strong> 是 Amazon 公司旗下云计算服务平台，为全世界范围内的客户提供云解决方案。面向用户提供包括弹性计算、存储、数据库、应用程序在内的一整套云计算服务，帮助企业降低 IT 投入成本和维护成本。同类型的还可以了解下 <a href="https://zh.wikipedia.org/wiki/Microsoft_Azure">Azure</a>、阿里云、腾讯云、首都在线等。</p>
 
 <p>TODO: s3/OSS</p>
-
-<h2 id="单点登录">单点登录</h2>
-
-<h3 id="登录与登出">登录与登出</h3>
-
-<p><strong>单点登录</strong>指用户只需输入一次账密，在一处完成登录，之后可以直接进入所有业务系统。想要完成单点登录的效果，必须有一个唯一身份源，其他业务系统必须配合完成改造和对接。<strong>单点登出</strong>指用户点击一次登出就能退出他登录的所有系统。</p>
 
 <h3 id="ldap-与-active-directory">LDAP 与 Active Directory</h3>
 
@@ -812,7 +889,7 @@ Transfer/sec:    606.33MB
 
 <h3 id="网关的作用">网关的作用</h3>
 
-<p><a href="https://www.zhihu.com/question/309582197/answer/2077037990">摘自知乎</a>。假设你正在开发一个电商网站，那么这里会涉及到很多后端的微服务，比如会员、商品、推荐服务等等。那么这里就会遇到一个问题，APP/Browser 怎么去访问这些后端的服务? 如果业务比较简单的话，可以给每个业务都分配一个独立的域名(https://service.api.company.com)，但这种方式会有几个问题:</p>
+<p><a href="https://www.zhihu.com/question/309582197/answer/2077037990">摘自知乎</a>。假设你正在开发一个电商网站，那么这里会涉及到很多后端的微服务，比如会员、商品、推荐服务等等。那么这里就会遇到一个问题，APP/Browser 怎么去访问这些后端的服务? 如果业务比较简单的话，可以给每个业务都分配一个独立的域名(如 service.api.company.com)，但这种方式会有几个问题:</p>
 
 <ol>
   <li>每个业务都会需要鉴权、限流、权限校验等逻辑，需要进行剥离</li>
