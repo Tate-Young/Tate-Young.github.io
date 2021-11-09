@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="NPM 私有仓库搭建" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="NPM 私有仓库搭建" />
-<meta property="og:description" content="NPM 私有仓库搭建" />
+<meta name="description" content="add unpkg to be continued" />
+<meta property="og:description" content="add unpkg to be continued" />
 <link rel="canonical" href="http://localhost:2333/2021/03/22/npm-registry.html" />
 <meta property="og:url" content="http://localhost:2333/2021/03/22/npm-registry.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-03-22T16:56:00+08:00" />
 <script type="application/ld+json">
-{"description":"NPM 私有仓库搭建","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/03/22/npm-registry.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/03/22/npm-registry.html","headline":"NPM 私有仓库搭建","dateModified":"2021-03-22T16:56:00+08:00","datePublished":"2021-03-22T16:56:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add unpkg to be continued","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/03/22/npm-registry.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/03/22/npm-registry.html","headline":"NPM 私有仓库搭建","dateModified":"2021-03-22T16:56:00+08:00","datePublished":"2021-03-22T16:56:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,10 +175,16 @@
                       发布时间：2021-03-22 16:56:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2021-11-09 22:43:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：add unpkg to be continued
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -236,7 +242,7 @@
 <p>常用的 npm 私有仓库框架:</p>
 
 <ul>
-  <li><a href="https://www.sonatype.com/nexus-repository-oss">Nexus</a> - Java 社区的一个方案，可以用于 Maven、npm 多种类型的仓库，界面比较丑，配置相对于复杂</li>
+  <li><a href="https://www.sonatype.com/nexus-repository-oss"><strong>Nexus</strong></a> - Java 社区的一个方案，可以用于 Maven、npm 多种类型的仓库，界面比较丑，配置相对于复杂</li>
   <li><a href="https://github.com/rlidwka/sinopia">Sinopia</a> - 基于 Node.js 构建的，已经年久失修不维护了。替代者是下面的 Verdaccio</li>
   <li><a href="https://verdaccio.org"><strong>Verdaccio</strong></a> - 通过 fork Sinopia 进行改造的；比较偏向于一个零配置、轻量型的私有 npm 模块管理工具，不需要额外的数据库配置，它内部自带小型数据库，支持私有模块管理的同时也支持缓存使用过的公共模块，发布及缓存的模块以静态资源形式本地存储</li>
   <li><a href="https://cnpmjs.org"><strong>cnpm</strong></a> - cnpm 支持静态配置型用户管理机制，以及分层模块权限设置，可以实现公共模块镜像更新以及私有模块管理，支持拓展多种存储形式，相对的数据库的配置较多，部署过程略复杂，是淘宝及多家大型公司搭建内部私有 npm 仓库选择的方案</li>
@@ -485,10 +491,47 @@ npm unpublish &lt;packagename&gt;@1.0.0
 npm install @username/project-name
 </code></pre>
 
+<h2 id="unpkg">unpkg</h2>
+
+<h3 id="什么是-unpkg">什么是 unpkg</h3>
+
+<p><a href="https://github.com/mjackson/unpkg"><strong>unpkg</strong></a> 是一个内容源自 npm 的全球快速 CDN。它部署在 cloudflare 上，在大陆地区访问到的是香港节点。它支持 h/2 和很多新特性。</p>
+
+<pre><code class="language-TEXT">unpkg.com/:package@:version/:file
+
+&lt;!-- 使用固定版本号 --&gt;
+&lt;!-- unpkg.com/react@16.7.0/umd/react.production.min.js --&gt;
+&lt;!-- unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js --&gt;
+
+&lt;!-- 使用语义化版本范围，亦可忽略版本和标签，直接使用最新的版本 --&gt;
+&lt;!-- unpkg.com/react@^16/umd/react.production.min.js --&gt;
+&lt;!-- unpkg.com/react/umd/react.production.min.js --&gt;
+
+&lt;!-- 如果忽略了文件的路径，unpkg 会提供 package.json 里指定的文件，或降级到 main --&gt;
+&lt;!-- unpkg.com/jquery --&gt;
+</code></pre>
+
+<blockquote>
+  <p>在网址最后添加斜线 <code class="highlighter-rouge">/</code>，可以查看一个包内的所有文件列表。如访问 <a href="https://unpkg.com/react/">https://unpkg.com/react/</a> 👈</p>
+</blockquote>
+
+<p>那么 unpkg 上的发布流程是怎样的？如果你是 npm 包作者，只需要通过 <code class="highlighter-rouge">npm publish</code> 发布到 npm 仓库即可，减少了发布到 CDN 的麻烦。仅需 npm 包中包含 <a href="https://github.com/umdjs/umd"><strong>UMD</strong></a> 构建：</p>
+
+<ol>
+  <li>添加 umd（或 dist）目录到 .gitignore 文件中</li>
+  <li>添加 umd 目录到 package.json 文件数组(files)中</li>
+  <li>发布的时候，使用脚本构建 UMD 打包文件到 umd 目录</li>
+</ol>
+
+<h3 id="搭建-unpkg-服务">搭建 unpkg 服务</h3>
+
+<p>unpkg 是不能直接读取私服的包的，所以我们需要本地架设 unpkg 服务器。</p>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://zhaomenghuan.js.org/blog/npm-private-repository-verdaccio.html">npm 私有仓库工具 Verdaccio 搭建 - 匠心博客</a></li>
+  <li><a href="https://zhuanlan.zhihu.com/p/84119287">使用 unpkg 来读取我们的私有库的包</a> By 弦奏</li>
 </ol>
  
 <div id="gitalk-container"></div>
