@@ -1,0 +1,917 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+<head>
+    <meta content='Docker & Kubernetes - Tate & Snow' name='title' />
+    <meta content='Docker & Kubernetes - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>Docker & Kubernetes - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Docker & Kubernetes - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker & Kubernetes - Tate & Snow">
+<meta name="twitter:keywords" content="Docker & Kubernetes - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker & Kubernetes - Tate & Snow">
+<meta name="og:keywords" content="Docker & Kubernetes - Tate & Snow|Docker &amp; KubernetesDocker与虚拟机的对比Docker 容器并非虚拟机，但可以比喻为更轻量级的虚拟机。使用虚拟机运行多个相互隔离的应用时(以下翻译参考自这里):  基础设施(Infrastructure)..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="Docker &amp; KubernetesDocker与虚拟机的对比Docker 容器并非虚拟机，但可以比喻为更轻量级的虚拟机。使用虚拟机运行多个相互隔离的应用时(以下翻译参考自这里):  基础设施(Infrastructure)..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2021/11/09/docker-k8s.html' property='og:url' />
+<meta content="http://localhost:2333/2021/11/09/docker-k8s.html|Docker &amp; KubernetesDocker与虚拟机的对比Docker 容器并非虚拟机，但可以比喻为更轻量级的虚拟机。使用虚拟机运行多个相互隔离的应用时(以下翻译参考自这里):  基础设施(Infrastructure)..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<!-- <script async src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Docker &amp; Kubernetes | Tate &amp; Snow</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Docker &amp; Kubernetes" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Docker &amp; Kubernetes" />
+<meta property="og:description" content="Docker &amp; Kubernetes" />
+<link rel="canonical" href="http://localhost:2333/2021/11/09/docker-k8s.html" />
+<meta property="og:url" content="http://localhost:2333/2021/11/09/docker-k8s.html" />
+<meta property="og:site_name" content="Tate &amp; Snow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-11-09T16:27:00+08:00" />
+<script type="application/ld+json">
+{"description":"Docker &amp; Kubernetes","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/11/09/docker-k8s.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/11/09/docker-k8s.html","headline":"Docker &amp; Kubernetes","dateModified":"2021-11-09T16:27:00+08:00","datePublished":"2021-11-09T16:27:00+08:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
+                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('历史', '/history')" title="访问 历史" data-hover="历史">历史</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('其他', '/other')" title="访问 其他" data-hover="其他">其他</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:2333/">首页</a>
+                
+                <a href="http://localhost:2333/front">前端</a>
+                
+                <a href="http://localhost:2333/history">历史</a>
+                
+                <a href="http://localhost:2333/other">其他</a>
+                
+                <a href="http://localhost:2333/tags">标签</a>
+                
+                <a href="http://localhost:2333/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('历史', 'http://localhost:2333/history')">历史</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('其他', 'http://localhost:2333/other')">其他</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('Docker & Kubernetes')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Docker & Kubernetes</h1>
+                <div class="post-data">
+                    <time datetime="2021-11-09 16:27:00" itemprop="datePublished">
+                      发布时间：2021-11-09 16:27:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                
+                <div class="post-tags">
+                       
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('docker')" title="访问docker" data-hover="docker">
+                        docker
+                        <span>(1)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Docker & Kubernetes</h1>
+            <div class="post-data">
+                <time datetime="2021-11-09 16:27:00" itemprop="datePublished">2021-11-09 16:27:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="Javascript:;" onclick="onClickTag('docker')" title="访问docker" data-hover="docker">
+                    docker
+                    <span>(1)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="docker--kubernetes">Docker &amp; Kubernetes</h1>
+
+<h2 id="docker">Docker</h2>
+
+<h3 id="与虚拟机的对比">与虚拟机的对比</h3>
+
+<p><strong>Docker</strong> 容器并非虚拟机，但可以比喻为更轻量级的虚拟机。使用虚拟机运行多个相互隔离的应用时(以下翻译<a href="http://www.techug.com/post/comparing-virtual-machines-vs-docker-containers.html">参考自这里</a>):</p>
+
+<p><img src="http://localhost:2333/style/images/smms/virtual-machine-architecture.jpg" alt="virtual-machine-architecture.jpg" /></p>
+
+<ol>
+  <li>基础设施(Infrastructure) - 可以是个人电脑，数据中心的服务器，或者是云主机。</li>
+  <li>主操作系统(Host Operating System) - 运行的可能是 MacOS，Windows 或者某个 Linux 发行版。</li>
+  <li>虚拟机管理系统(Hypervisor) - 利用 <strong>Hypervisor(即上述的 ESXI)</strong>，可以在主操作系统之上运行多个不同的从操作系统。</li>
+  <li>从操作系统(Guest Operating System) - 假设你需要运行 3 个相互隔离的应用，则需要使用 Hypervisor 启动 3 个从操作系统，也就是 3 个虚拟机。这些虚拟机都非常大，也许有 700MB，这就意味着它们将占用 2.1GB 的磁盘空间。更糟糕的是，它们还会消耗很多 CPU 和内存。</li>
+  <li>各种依赖 - 每一个从操作系统都需要安装许多依赖。如果你使用 Ruby 的话，应该需要安装 gems；如果使用其他编程语言，比如 Python 或者 Node.js，都会需要安装对应的依赖库。</li>
+  <li>应用 - 安装依赖之后，就可以在各个从操作系统分别运行应用了，这样各个应用就是相互隔离的。</li>
+</ol>
+
+<p>使用 Docker 容器运行多个相互隔离的应用时:</p>
+
+<p><img src="http://localhost:2333/style/images/smms/docker-container.jpg" alt="docker-container.jpg" /></p>
+
+<ol>
+  <li>基础设施(Infrastructure) - 同上</li>
+  <li>主操作系统(Host Operating System) - 所有主流的 Linux 发行版都可以运行 Docker。对于 MacOS 和 Windows，也有一些办法”运行” Docker。</li>
+  <li><strong>Docker 守护进程(Docker Daemon)</strong> - Docker 守护进程取代了 Hypervisor，它是运行在操作系统之上的后台进程，负责管理 Docker 容器。</li>
+  <li>各种依赖 - 对于 Docker，应用的所有依赖都打包在 Docker 镜像中，Docker 容器是基于 Docker 镜像创建的。</li>
+  <li>应用 - 应用的源代码与它的依赖都打包在 Docker 镜像中，不同的应用需要不同的 Docker 镜像。不同的应用运行在不同的 Docker 容器中，它们是相互隔离的。</li>
+</ol>
+
+<p>虚拟机和 Docker 的一些对比:</p>
+
+<p>Docker 守护进程可以直接与主操作系统进行通信，为各个 Docker 容器分配资源；它还可以将容器与主操作系统隔离，并将各个容器互相隔离。虚拟机启动需要数分钟，而 Docker 容器可以在数毫秒内启动。由于没有臃肿的从操作系统，Docker 可以节省大量的磁盘空间以及其他系统资源。但并不是说虚拟机就被取代了，因为两者有不同的使用场景。虚拟机更擅长于彻底隔离整个运行环境。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而 Docker 通常用于隔离不同的应用，例如前端，后端以及数据库。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>概念</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Docker 镜像 (Images)</strong></td>
+      <td>Docker 镜像是用于创建 Docker 容器的模板，比如 Ubuntu 系统镜像。</td>
+    </tr>
+    <tr>
+      <td><strong>Docker 容器 (Container)</strong></td>
+      <td>容器是独立运行的一个或一组应用，是镜像运行时的实体。</td>
+    </tr>
+    <tr>
+      <td>Docker 客户端 (Client)</td>
+      <td>Docker 客户端通过命令行或者其他工具使用 <a href="https://docs.docker.com/develop/sdk/">Docker SDK</a> 与 Docker 的守护进程通信。</td>
+    </tr>
+    <tr>
+      <td>Docker 主机 (Host)</td>
+      <td>一个物理或者虚拟的机器用于执行 Docker 守护进程和容器。</td>
+    </tr>
+    <tr>
+      <td>Docker Registry</td>
+      <td>Docker 仓库用来保存镜像，可以理解为代码控制中的代码仓库。<a href="https://hub.docker.com"><strong>Docker Hub</strong></a> 提供了庞大的镜像集合供使用。一个 Docker Registry 中可以包含多个仓库（Repository）；每个仓库可以包含多个标签（Tag）；每个标签对应一个镜像。通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版本。我们可以通过 &lt; 仓库名 &gt;:&lt; 标签 &gt; 的格式来指定具体是这个软件哪个版本的镜像。如果不给出标签，将以 latest 作为默认标签。</td>
+    </tr>
+    <tr>
+      <td>Docker Machine</td>
+      <td>Docker Machine 是一个简化 Docker 安装的命令行工具，通过一个简单的命令行即可在相应的平台上安装 Docker，比如 VirtualBox、 Digital Ocean、Microsoft Azure。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="docker-指令">Docker 指令</h3>
+
+<p>Docker 允许你在容器内运行应用程序， 使用 <code class="highlighter-rouge">docker run</code> 命令来在容器内运行一个应用程序:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># docker - Docker 的二进制执行文件。</span>
+<span class="c"># run - 与前面的 docker 组合来运行一个容器。</span>
+<span class="c"># ubuntu:15.10 - 指定要运行的镜像，Docker 首先从本地主机上查找镜像是否存在，如果不存在，Docker 就会从镜像仓库 Docker Hub 下载公共镜像。</span>
+<span class="c"># /bin/echo "Hello world" - 在启动的容器里执行的命令</span>
+
+<span class="c"># Docker 以 ubuntu15.10 镜像创建一个新容器，然后在容器里执行 bin/echo "Hello world"，然后输出结果</span>
+<span class="nv">$ </span>docker run ubuntu:15.10 /bin/echo <span class="s2">"Hello world"</span>
+</code></pre></div></div>
+
+<p>也可以通过 docker 的两个参数 <code class="highlighter-rouge">-i -t</code>(也可以写成 <code class="highlighter-rouge">-it</code>)，来实现命令行交互式运行，通过 <code class="highlighter-rouge">exit</code> 来退出容器。</p>
+
+<ol>
+  <li>-t - 在新容器内指定一个伪终端或终端。</li>
+  <li>-i - 允许你对容器内的标准输入 (STDIN) 进行交互</li>
+</ol>
+
+<p><code class="highlighter-rouge">docker ps</code> 可以来查看容器状态:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker ps
+CONTAINER ID        IMAGE                  COMMAND              ...  
+5917eac21c36        ubuntu:15.10           <span class="s2">"/bin/sh -c 'while t…"</span>    ...
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">docker images</code> 可以列出本地主机上的镜像:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 同一仓库源可以有多个 TAG，代表这个仓库源的不同个版本</span>
+<span class="c"># 如 ubuntu 仓库源里，有 15.10、14.04 等多个不同的版本，我们使用 REPOSITORY:TAG 来定义不同的镜像。如 ubuntu:15.10</span>
+<span class="nv">$ </span>docker images           
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              14.04               90d5884b1ee0        5 days ago          188 MB
+php                 5.6                 f40e9e0f10c8        9 days ago          444.8 MB
+nginx               latest              6f8d099c3adc        12 days ago         182.7 MB
+mysql               5.6                 f2e8d6c772c0        3 weeks ago         324.6 MB
+</code></pre></div></div>
+
+<p>当我们在本地主机上使用一个不存在的镜像时 Docker 就会自动下载这个镜像。如果我们想预先下载这个镜像，我们可以使用 <code class="highlighter-rouge">docker pull</code> 命令来下载它。可以使用 <code class="highlighter-rouge">docker search</code> 命令来搜索镜像：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker pull ubuntu:13.10
+13.10: Pulling from library/ubuntu
+6599cadaf950: Pull <span class="nb">complete 
+</span>23eda618d451: Pull <span class="nb">complete 
+</span>f0be3084efe9: Pull <span class="nb">complete 
+</span>52de432f084b: Pull <span class="nb">complete 
+</span>a3ed95caeb02: Pull <span class="nb">complete 
+</span>Digest: sha256:15b79a6654811c8d992ebacdfbd5152fcf3d165e374e264076aa435214a947a3
+Status: Downloaded newer image <span class="k">for </span>ubuntu:13.10
+</code></pre></div></div>
+
+<blockquote>
+  <p>我们也可以自己通过 Dockerfile 创建适用的镜像，<code class="highlighter-rouge">docker push</code> 可以推送到 Docker Hub。</p>
+</blockquote>
+
+<p>容器中可以运行一些网络应用，要让外部也可以访问这些应用，可以通过 <code class="highlighter-rouge">-P</code> 或 <code class="highlighter-rouge">-p</code> 参数来指定端口映射：</p>
+
+<ol>
+  <li>-P - 容器内部端口随机映射到主机的高端口。</li>
+  <li>-p - 容器内部端口绑定到指定的主机端口。</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 可以看到容器端口 5000 绑定主机端口 32768</span>
+<span class="nv">$ </span>docker run <span class="nt">-d</span> <span class="nt">-P</span> training/webapp python app.py
+<span class="nv">$ </span>docker run <span class="nt">-d</span> <span class="nt">-p</span> 5000:5000 training/webapp python app.py
+
+<span class="nv">$ </span>docker ps
+CONTAINER ID        IMAGE               COMMAND           ...           PORTS                     NAMES
+33e4523d30aa        training/webapp     <span class="s2">"python app.py"</span>   ...   0.0.0.0:5000-&gt;5000/tcp    berserk_bartik
+fce072cc88ce        training/webapp     <span class="s2">"python app.py"</span>   ...   0.0.0.0:32768-&gt;5000/tcp   grave_hopper
+</code></pre></div></div>
+
+<h3 id="dockerfile">Dockerfile</h3>
+
+<p><strong>Dockerfile</strong> 是一个用来构建镜像的文本文件，文本内容包含了一条条构建镜像所需的指令和说明。下面以定制一个 nginx 镜像为例，在一个空目录下，新建一个名为 <code class="highlighter-rouge">Dockerfile</code> 文件，并在文件内添加以下内容：</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> nginx</span>
+<span class="k">RUN </span><span class="nb">echo</span> <span class="s1">'这是一个本地构建的 nginx 镜像'</span> <span class="o">&gt;</span> /usr/share/nginx/html/index.html
+</code></pre></div></div>
+
+<p>我们先来看看 Dockerfile 支持的一些常用指令：</p>
+
+<ul>
+  <li><strong>FROM</strong> - 定制的镜像都是基于 FROM 的镜像，这里的 nginx 就是定制需要的基础镜像。后续的操作都是基于 nginx。</li>
+  <li><strong>RUN</strong> - 用于执行后面跟着的命令行命令。有以下俩种格式
+    <ul>
+      <li>shell 格式 - <code class="highlighter-rouge">RUN &lt;命令行命令&gt;</code>，等同于在终端操作的 shell 命令</li>
+      <li>exec 格式 - <code class="highlighter-rouge">RUN ["可执行文件", "参数1", "参数2"]</code>，如 RUN [”./test.php”, “dev”, “offline”] 等价于 RUN ./test.php dev offline</li>
+    </ul>
+  </li>
+  <li><strong>COPY</strong> - 从上下文目录中复制文件或者目录到容器里指定路径，路径不存在的话，会自动创建。</li>
+  <li>ADD - 和 COPY 类似，可以支持自动解压，比如在执行 <源文件> 为 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，会自动复制并解压到 <目标路径>。但缺点是在不解压的前提下，无法复制 tar 压缩文件。</目标路径></源文件></li>
+  <li><strong>CMD</strong> - 和 RUN 类似，用于运行程序，但二者运行的时间点不同。CMD 指令指定的程序可被 docker run 命令行参数中指定要运行的程序所覆盖。如果 Dockerfile 中如果存在多个 CMD 指令，仅最后一个生效。
+    <ul>
+      <li>CMD 在 docker run 时运行</li>
+      <li>RUN 是在 docker build 时运行</li>
+    </ul>
+  </li>
+  <li><strong>ENV</strong> - 设置环境变量，在后续的指令中可以使用这个环境变量。<strong>ARG</strong> 构建参数与 ENV 作用一致，不过作用域不一样，后者作用于 build 过程。构建好的镜像内不存在此环境变量。</li>
+  <li><strong>VOLUME</strong> - 定义匿名数据卷。在启动容器时忘记挂载数据卷，会自动挂载到匿名卷。可以避免重要的数据，因容器重启而丢失，这是非常致命的。同时避免容器不断变大。</li>
+  <li><strong>WORKDIR</strong> - 指定提前创建好的工作目录。docker build 构建镜像过程中，每一个 RUN 命令都是新建的一层。只有通过 WORKDIR 创建的目录才会一直存在。</li>
+</ul>
+
+<blockquote>
+  <p><strong>数据卷</strong>是一个可供一个或多个容器使用的特殊目录，特点是可以共享；修改会立马生效；更新不会影响镜像；默认会一直存在，即使容器被删除。数据卷的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会复制到数据卷中。创建数据卷命令 <code class="highlighter-rouge">docker volume create my-vol</code> 👈</p>
+</blockquote>
+
+<p>注意：Dockerfile 的指令每执行一次都会在 docker 上新建一层。所以过多无意义的层，会造成镜像膨胀过大。例如：</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> centos</span>
+<span class="k">RUN </span>yum <span class="nt">-y</span> <span class="nb">install </span>wget
+<span class="k">RUN </span>wget <span class="nt">-O</span> redis.tar.gz <span class="s2">"http://download.redis.io/releases/redis-5.0.3.tar.gz"</span>
+<span class="k">RUN </span><span class="nb">tar</span> <span class="nt">-xvf</span> redis.tar.gz
+</code></pre></div></div>
+
+<p>以上执行会创建 3 层镜像。可简化为以下格式，以 <code class="highlighter-rouge">&amp;&amp;</code> 符号连接命令，这样执行后，只会创建 1 层镜像：</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> centos</span>
+<span class="k">RUN </span>yum <span class="nt">-y</span> <span class="nb">install </span>wget <span class="se">\
+</span>    <span class="o">&amp;&amp;</span> wget <span class="nt">-O</span> redis.tar.gz <span class="s2">"http://download.redis.io/releases/redis-5.0.3.tar.gz"</span> <span class="se">\
+</span>    <span class="o">&amp;&amp;</span> <span class="nb">tar</span> <span class="nt">-xvf</span> redis.tar.gz
+</code></pre></div></div>
+
+<p>然后在 Dockerfile 文件的存放目录下，执行构建动作。即通过目录下的 Dockerfile 构建一个 nginx:v3（镜像名称:镜像标签）：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># . 代表本次执行的上下文路径 - 是指 docker 在构建镜像，有时候想要使用到本机的文件（比如复制），docker build 命令得知这个路径后，会将路径下的所有内容打包。</span>
+<span class="nv">$ </span>docker build <span class="nt">-t</span> nginx:v3 <span class="nb">.</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>由于 docker 的运行模式是 C/S。我们本机是 C，docker 引擎是 S。实际的构建过程是在 docker 引擎下完成的，所以这个时候无法用到我们本机的文件。这就需要把我们本机的指定目录下的文件一起打包提供给 docker 引擎使用。如果未说明最后一个参数，那么默认上下文路径就是 Dockerfile 所在的位置。</p>
+</blockquote>
+
+<h3 id="docker-compose">Docker Compose</h3>
+
+<p><a href="https://github.com/docker/compose"><strong>Docker Compose</strong></a> 是用于定义和运行多容器 Docker 应用程序的工具，解决了容器与容器之间如何管理编排的问题。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。步骤如下：</p>
+
+<ol>
+  <li>使用 Dockerfile 定义应用程序的环境。</li>
+  <li>使用 <code class="highlighter-rouge">docker-compose.yml</code> 定义构成应用程序的服务，这样它们可以在隔离环境中一起运行。</li>
+  <li>最后，执行 <code class="highlighter-rouge">docker compose up</code> 命令来启动并运行整个应用程序。</li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># yaml 配置实例</span>
+<span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span> <span class="c1"># 指定本 yaml 依从的 compose 哪个版本制定的</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">web</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">.</span> <span class="c1"># 指定为构建镜像上下文路径</span>
+    <span class="na">ports</span><span class="pi">:</span>
+  <span class="err"> </span><span class="pi">-</span> <span class="s2">"</span><span class="s">5000:5000"</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="s">.:/code</span>
+    <span class="s">- logvolume01:/var/log</span>
+    <span class="s">links</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="s">redis</span>
+  <span class="na">redis</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">redis</span>
+<span class="na">volumes</span><span class="pi">:</span>
+  <span class="na">logvolume01</span><span class="pi">:</span> <span class="pi">{}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 来对容器进行管理。因此，只要所操作的平台支持 Docker API，就可以在其上利用 Compose 来进行编排管理。</p>
+</blockquote>
+
+<p>我们以<a href="https://yeasy.gitbook.io/docker_practice/compose/usage">这篇文章</a>示例来看以下场景，用 Python 来建立一个能够记录页面访问次数的 web 网站。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># app.py
+</span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">redis</span> <span class="kn">import</span> <span class="n">Redis</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">redis</span> <span class="o">=</span> <span class="n">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'redis'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="n">incr</span><span class="p">(</span><span class="s">'hits'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s">'Hello World! 该页面已被访问 {} 次。</span><span class="se">\n</span><span class="s">'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">"0.0.0.0"</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># dockerfile</span>
+<span class="k">FROM</span><span class="s"> python:3.6-alpine</span>
+<span class="k">ADD</span><span class="s"> . /code</span>
+<span class="k">WORKDIR</span><span class="s"> /code</span>
+<span class="k">RUN </span>pip <span class="nb">install </span>redis flask
+<span class="k">CMD</span><span class="s"> ["python", "app.py"]</span>
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># docker-compose.yml</span>
+<span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span>
+<span class="na">services</span><span class="pi">:</span>
+
+  <span class="na">web</span><span class="pi">:</span>
+    <span class="na">build</span><span class="pi">:</span> <span class="s">.</span>
+    <span class="na">ports</span><span class="pi">:</span>
+     <span class="pi">-</span> <span class="s2">"</span><span class="s">5000:5000"</span>
+
+  <span class="na">redis</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">redis:alpine"</span>
+</code></pre></div></div>
+
+<p>之后我们运行 compose 项目，此时访问本地 5000 端口，每次刷新页面，计数就会加 1：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker compose up
+</code></pre></div></div>
+
+<h3 id="docker-machine">Docker Machine</h3>
+
+<p>Docker Machine 是一种可以让您在虚拟主机上安装 Docker 的工具，并可以使用 <code class="highlighter-rouge">docker-machine</code> 命令来管理主机。Docker Machine 也可以集中管理所有的 docker 主机，比如快速的给 100 台服务器安装上 docker。Docker Machine 管理的虚拟主机可以是机上的，也可以是云供应商，如阿里云，腾讯云，AWS，或 DigitalOcean。使用 docker-machine 命令，您可以启动，检查，停止和重新启动托管主机，也可以升级 Docker 客户端和守护程序，以及配置 Docker 客户端与您的主机进行通信。</p>
+
+<p><img src="https://www.runoob.com/wp-content/uploads/2019/11/machine.png" alt="docker machine" /></p>
+
+<h3 id="docker-swarm">Docker Swarm</h3>
+
+<p><strong>Docker Swarm</strong> 是 Docker 的集群管理工具。用户可以将多个 Docker 主机封装为单个大型的虚拟 Docker 主机，快速打造一套容器云平台。运行 Docker 的主机可以主动初始化一个 Swarm 集群或者加入一个已存在的 Swarm 集群，这样这个运行 Docker 的主机就成为一个 Swarm 集群的节点。swarm 集群由管理节点（manager）和工作节点（work node）构成：</p>
+
+<ul>
+  <li><strong>mananger</strong> - 负责整个集群的管理工作包括集群配置、服务管理等所有跟集群有关的工作。一个 Swarm 集群可以有多个管理节点，但只有一个管理节点可以成为 leader，leader 通过 raft 协议实现。</li>
+  <li><strong>worker</strong> - 任务执行节点，管理节点将服务 (service) 下发至工作节点执行。管理节点默认也作为工作节点。你也可以通过配置让服务只运行在管理节点。</li>
+</ul>
+
+<p><img src="https://docs.docker.com/engine/swarm/images/swarm-diagram.png" alt="manager &amp; worker" /></p>
+
+<ol>
+  <li>任务（Task）- 是 Swarm 中的最小的调度单位，目前来说就是一个单一的容器。</li>
+  <li>服务（Services）- 是指一组任务的集合，服务定义了任务的属性。服务有两种模式：
+    <ol>
+      <li>replicated services 按照一定规则在各个工作节点上运行指定个数的任务。</li>
+      <li>global services 每个工作节点上运行一个任务</li>
+    </ol>
+  </li>
+</ol>
+
+<p><img src="https://www.runoob.com/wp-content/uploads/2019/11/services-diagram.png" alt="docker swarm" /></p>
+
+<h2 id="kubernetes">Kubernetes</h2>
+
+<h3 id="node--pod">Node &amp; Pod</h3>
+
+<p>虽然官方已经提供了 Docker Swarm 来解决集群管理，但是目前业界更流行的是 <a href="https://github.com/kubernetes/kubernetes"><strong>Kubernetes(k8s)</strong></a>。Kubernetes 是 Google 团队发起并维护的基于 Docker 的开源容器集群管理系统。真正的生产型应用会涉及多个容器，这些容器必须跨多个服务器主机进行部署，因此可能会比较复杂。但 Kubernetes 有助于解决这一问题。Kubernetes 可以提供所需的编排和管理功能，以便您针对这些工作负载大规模部署容器。可以构建跨多个容器的应用服务、跨集群调度、扩展这些容器，并长期持续管理这些容器的健康状况。</p>
+
+<p>建于 Docker 之上的 Kubernetes 可以构建一个容器的调度服务，其目的是让用户透过 Kubernetes 集群来进行云端容器集群的管理，而无需用户进行复杂的设置工作。系统会自动选取合适的工作节点来执行具体的容器集群调度处理工作。其核心概念是 <strong>Container Pod</strong>。一个 Pod 由一组工作于同一物理工作节点的容器构成。这些组容器拥有相同的网络命名空间、IP 以及存储配额，也可以根据实际情况对每一个 Pod 进行端口映射。此外，Kubernetes 工作节点会由主系统进行管理，节点包含了能够运行 Docker 容器所用到的服务。</p>
+
+<ol>
+  <li><strong>节点（Node）</strong>- 一个节点是一个运行 Kubernetes 中的主机。</li>
+  <li><strong>容器组（Pod）</strong>- 一个 Pod 对应于由若干容器组成的一个容器组，同个组内的容器共享一个存储卷(volume)。容器组是创建、调度、管理的最小单位。</li>
+  <li>容器组生命周期（pos-states）- 包含所有容器状态集合，包括容器组状态类型，容器组生命周期，事件，重启策略，以及 replication controllers。</li>
+  <li>Replication Controllers- 主要负责指定数量的 pod 在同一时间一起运行。</li>
+  <li>服务（services）- 一个 Kubernetes 服务是容器组逻辑的高级抽象，同时也对外提供访问容器组的策略。</li>
+  <li>卷（volumes）- 一个卷就是一个目录，容器对其有访问权限。</li>
+  <li>标签（labels）- 标签是用来连接一组对象的，比如容器组。标签可以被用来组织和选择子对象。</li>
+  <li>接口权限（accessing_the_api）- 端口，IP 地址和代理的防火墙规则。</li>
+  <li>web 界面（ux）- 用户可以通过 web 界面操作 Kubernetes。</li>
+  <li>命令行操作（cli）- kubectl 命令。</li>
+</ol>
+
+<h3 id="架构示意图">架构示意图</h3>
+
+<p>k8s 集群如下图：</p>
+
+<ol>
+  <li><strong>control-plane</strong> - 即控制平面。在这里，我们可以找到用于控制集群的 Kubernetes 组件以及一些有关集群状态和配置的数据。这些核心 Kubernetes 组件负责处理重要的工作，以确保容器以足够的数量和所需的资源运行。</li>
+  <li><strong>kube-apiserver</strong> - 是 Kubernetes 控制平面(control-plane)的前端，用于处理内部和外部请求。API 服务器会确定请求是否有效，如果有效，则对其进行处理。您可以通过 REST 调用、kubectl 命令行界面或其他命令行工具（例如 kubeadm）来访问 API。</li>
+  <li><strong>kube-scheduler</strong> - 调度程序会考虑容器集的资源需求（例如 CPU 或内存）以及集群的运行状况。随后，它会将容器集安排到适当的计算节点。</li>
+  <li><strong>kube-controller-manager</strong> - 控制器用于查询调度程序，并确保有正确数量的容器集在运行。如果有容器集停止运行，另一个控制器会发现并做出响应。控制器会将服务连接至容器集，以便让请求前往正确的端点。还有一些控制器用于创建帐户和 API 访问令牌。</li>
+  <li><strong>etcd</strong> - 配置数据以及有关集群状态的信息位于 etcd（一个键值存储数据库）中。etcd 采用分布式、容错设计，被视为集群的最终事实来源。</li>
+  <li><strong>kubelet</strong> - 每个计算节点(Node)中都包含一个 kubelet，这是一个与控制平面通信的微型应用。kubelet 可确保容器在容器集内运行。当控制平面需要在节点中执行某个操作时，kubelet 就会执行该操作。它是真正去运行这些 Pod 的组件。</li>
+  <li><strong>kube-proxy</strong> - 每个计算节点(Node)中还包含 kube-proxy，这是一个用于优化 Kubernetes 网络服务的网络代理。kube-proxy 负责处理集群内部或外部的网络通信——靠操作系统的数据包过滤层，或者自行转发流量。</li>
+</ol>
+
+<p><img src="https://www.redhat.com/cms/managed-files/kubernetes_diagram-v3-770x717_0.svg" alt="k8s cluster" /></p>
+
+<p>其 master 和 node 的架构示意图如下：</p>
+
+<p><img src="https://static001.infoq.cn/resource/image/e9/49/e95c765b7ac2b6802b165e03acd40849.png" alt="master" /></p>
+
+<p><img src="https://static001.infoq.cn/resource/image/5c/f8/5c9fe50067821e9e86a74cae4cbdd9f8.png" alt="node" /></p>
+
+<p>接下来看个例子，看这些组件之间是如何相互沟通相互通信，协调来完成一次 Pod 的调度执行操作的：</p>
+
+<ol>
+  <li>用户可以通过 UI 或者 CLI 提交一个 Pod 给 Kubernetes 进行部署，这个 Pod 请求首先会通过 CLI 或者 UI 提交给 Kubernetes API Server，下一步 API Server 会把这个信息写入到它的存储系统 etcd，之后 Scheduler 会通过 API Server 的 watch 或者叫做 notification 机制得到这个信息：有一个 Pod 需要被调度。</li>
+  <li>Scheduler 会根据它的内存状态进行一次调度决策，在完成这次调度之后，它会向 API Server report 说：“OK！这个 Pod 需要被调度到某一个节点上。”</li>
+  <li>API Server 接收到这次操作之后，会把这次的结果再次写到 etcd 中，然后 API Server 会通知相应的节点进行这次 Pod 真正的执行启动。相应节点的 kubelet 会得到这个通知，kubelet 就会去调 Container runtime 来真正去启动配置这个容器和这个容器的运行环境，去调度 Storage Plugin 来去配置存储，network Plugin 去配置网络。</li>
+</ol>
+
+<p><img src="https://static001.infoq.cn/resource/image/04/9b/047e4723316d6424b26341de5007329b.png" alt="demo" /></p>
+
+<h2 id="paas">PaaS</h2>
+
+<p><strong>PaaS</strong> 平台是一个通用的、基于 Web 的 Kubernetes 管理平台。通过可视化 Kubernetes 对象模板编辑的方式集成 CI/CD，降低业务接入成本，拥有完整的权限管理系统，适应多租户场景，是一款适合企业级集群使用的发布平台。更是整合了告警、日志、服务治理和分布式存储等强大功能，是一套完整的解决方案！</p>
+
+<p>容器 Pod 是 k8s 中基本单位，负责装一个或多个容器。Node 实际上是对集群中服务器资源的抽象，一个 Node 可以是一台服务器 (实体的或者虚拟机)，Node 上可以运行多个 Pod。总的来说通过将应用容器化，服务器资源抽象成 Node，k8s 负责将我的应用部署到 Node 上，并且能够在应用崩溃时自动重启等功能。</p>
+
+<p>本身 k8s 是不提供 UI 界面的，PaaS 实际上是提供了一套 UI 界面让用户使用更加便利，并且提供了额外的功能。前端的应用部署在 PaaS 主要是执行了个 Nginx 服务，这个 Nginx 服务器存放了构建好的 html：</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> harbor.paas.xxx.io/helper/compile:latest AS clone</span>
+<span class="k">ARG</span><span class="s"> REPO</span>
+<span class="k">ARG</span><span class="s"> BRANCHNAME</span>
+<span class="k">ARG</span><span class="s"> DEPLOY_NAMESPACE</span>
+<span class="k">ENV</span><span class="s"> COMMIT_ID VERSION</span>
+<span class="k">RUN </span><span class="nb">mkdir</span> <span class="nt">-p</span> /data/www
+<span class="k">RUN </span><span class="nv">url</span><span class="o">=</span>VERSION <span class="o">&amp;&amp;</span> wget <span class="k">${</span><span class="nv">url</span><span class="k">}</span> <span class="nt">-q</span> <span class="nt">-O</span> <span class="s2">"/app.</span><span class="k">${</span><span class="nv">url</span><span class="p">##*.</span><span class="k">}</span><span class="s2">"</span> <span class="o">&amp;&amp;</span> <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">${</span><span class="nv">url</span><span class="p">##*.</span><span class="k">}</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"gz"</span>
+];then mkdir -p /app &amp;&amp; tar -xzvf  /app.gz -C /app;fi
+<span class="k">FROM</span><span class="s"> harbor.paas.xxx.io/dev/centos7-openresty1158-dev:v1</span>
+<span class="k">RUN </span><span class="nb">mkdir</span> /data/log/nginx <span class="nt">-p</span> <span class="se">\
+</span>         <span class="o">&amp;&amp;</span> <span class="nb">chown </span>www <span class="nt">-R</span> /data/log/nginx
+<span class="k">COPY</span><span class="s"> --from=clone /app /data/www</span>
+<span class="k">EXPOSE</span><span class="s"> 80</span>
+<span class="k">CMD</span><span class="s"> [ "/opt/openresty/nginx/sbin/nginx", "-g", "daemon off;" ]</span>
+</code></pre></div></div>
+
+<p>这是一个实际应用的 Dockerfile，可以看到里面逻辑实际上是从远程获取一个压缩包，然后把压缩包解压出来，并拷⻉到 nginx 的资源目录下，最后启动 nginx。随后我们会在 PaaS 平台里选择构建，这里会触发 PaaS 里的 Jenkins，根据 Dockerfile 构建生成镜像，并且上传镜像。当我们选择发布的时候，k8s 会根据我们选中的镜像，将其发布到集群中。这个过程概括下是对应的机器去拉取镜像，并且在本地启动实例 (一般用 Docker 去启动)。</p>
+
+<p><img src="http://localhost:2333/style/images/smms/paas.png" alt="paas" /></p>
+
+<blockquote>
+  <p>关于 CICD 平台的内容可以查看<a href="http://localhost:2333/2020/05/25/github-actions.html#cubesats">这一章节</a> 👈</p>
+</blockquote>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://www.infoq.cn/article/knmavdo3jxs3qpkqtzbw">从零开始入门 K8s：详解 K8s 核心概念</a> By 李响</li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2021/11/09/docker-k8s.html';
+        this.page.identifier = '/2021/11/09/docker-k8s';
+        this.page.title = 'Docker & Kubernetes';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2021-11-09 16:27:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<script async src="/search/live2d/autoload.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>

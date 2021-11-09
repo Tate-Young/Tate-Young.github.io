@@ -381,7 +381,7 @@ Jenkins 流水线可以与以下工具进行集成：
 ![ci]( {{site.url}}/style/images/smms/cicd-ci.png )
 ![cd]( {{site.url}}/style/images/smms/cicd-cd.png )
 
-> 关于 PaaS 平台的内容可以查看[这一章节]( {{site.url}}/2019/02/02/ops-exersize.html#paas ) 👈
+> 关于 PaaS 平台的内容可以查看[这一章节]( {{site.url}}/2021/11/09/docker-k8s.html ) 👈
 
 ### Travis CI
 
