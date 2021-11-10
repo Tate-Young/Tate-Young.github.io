@@ -7,8 +7,8 @@ background: green
 category: 前端
 title: NPM 私有仓库搭建
 date: 2021-03-22 16:56:00 GMT+0800 (CST)
-update: 2021-11-09 22:43:00 GMT+0800 (CST)
-description: add unpkg to be continued
+update: 2021-11-10 16:37:00 GMT+0800 (CST)
+description: add unpkg and lru cache
 background-image: /style/images/smms/node.jpg
 
 tags:
@@ -322,7 +322,79 @@ unpkg.com/:package@:version/:file
 
 ### 搭建 unpkg 服务
 
-unpkg 是不能直接读取私服的包的，所以我们需要本地架设 unpkg 服务器。
+unpkg 是不能直接读取私服的包的，所以我们需要本地架设 unpkg 服务器：
+
+```TEXT
+1. 拉取[源码](https://github.com/mjackson/unpkg)
+2. 在 package.json 的script 脚本添加 start 命令 - "start": "NODE_ENV=production node server.js"
+3. npm run build 构建生成 server.js 文件
+4. npm run start 启动服务
+5. 通过访问 localhost:8080 看是否正常访问
+```
+
+接下来我们在 `modules/utils/npm.js` 里做一些修改：
+
+```diff
+# 兼容 http
++import http from 'http';
+
+function get(options) {
+  return new Promise((accept, reject) => {
++    if(options.isHttp) {
++      delete options.isHttp;
++      delete options.agent;
++      http.get(options, accept).on('error', reject);
++    } else {
+      https.get(options, accept).on('error', reject);
++    }
+  });
+}
+
+/**
+ * Returns an object of available { versions, tags }.
+ * Uses a cache to avoid over-fetching from the registry.
+ */
+export async function getVersionsAndTags(packageName, log) {
+  const cacheKey = `versions-${packageName}`;
+  const cacheValue = await cache.get(cacheKey);
+
++  /** 
++   * packages in scope which is in cache black list will not use cache
++  */
++  const blackList = (process.env.VERSION_CACHE_BLACK_LIST || '').split(',')
++  const scope = isScopedPackageName(packageName) ? packageName.split('/')[0] : null
++  if (scope && blackList.includes(scope)) return await fetchVersionsAndTags(packageName, log)
+
+# ...
+```
+
+unpkg 默认是使用 [**lru(Least Recently Used)**](https://github.com/isaacs/node-lru-cache) 做缓存机制的，当缓存满了的时候，不经常使用的就直接删除，挪出空间来缓存新的对象。也可以加个手动去除缓存的操作:
+
+```js
+export async function delPackageMetaCache(packageName) {
+  if (!packageName || typeof packageName !== 'string') return
+  const versionsKey = `versions-${packageName}`
+  await cache.del(versionsKey)
+}
+```
+
+```js
+app.use('/cleanCache/:scope?/:packageName', async (req, res) => {
+  try {
+    const {
+      scope,
+      packageName
+    } = req.params;
+    const pn = scope ? `${scope}/${packageName}` : packageName;
+    await delPackageMetaCache(pn);
+    res.send('ok');
+  } catch (e) {
+    console.log(e);
+  }
+})
+```
+
+> 最终修改的代码可以[参考这里](https://github.com/xianzou/unpkg) 👈
 
 ## 参考链接
 
