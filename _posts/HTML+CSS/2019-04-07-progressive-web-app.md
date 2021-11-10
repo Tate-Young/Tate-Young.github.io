@@ -440,8 +440,8 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
   "endpoint":"https://fcm.googleapis.com/fcm/send/dFBJcJfA0ZQ:APA91bGP1bm8aLVRVEei1IxdhqLFZXPV28z1pQK6t-5nsCEpc7_JRsr3wQYAAE-d6hPbgo0qch5aLMc2sDbZBreFmkA6thkz28c3ajfXoiU4zf5ANJWM8QLZjmWJ4MF_WbbtlaP7o21u",
   "expirationTime":null,
   "keys":{
-      "p256dh":"BGTNJ4e5-xxxPDbVpFdvM9KYHFiMTTEwCKXFbO1TOCuV7E",
-      "auth":"WBS6llMxxxDmRhiqQ"
+    "p256dh":"BGTNJ4e5-xxxPDbVpFdvM9KYHFiMTTEwCKXFbO1TOCuV7E",
+    "auth":"WBS6llMxxxDmRhiqQ"
   }
 }
 ```
@@ -880,7 +880,7 @@ self.addEventListener('sync', function (e) {
 
 ![Background Sync]( {{site.url}}/style/images/smms/service-worker-10.png )
 
-## TWA
+## TWA 打包应用
 
 [**TWA(Trusted Web Activity)**](https://developers.google.com/web/updates/2019/02/using-twa) 是一种技术，用来将 PWA 打包成安卓应用。设置 TWA 不要求开发人员编写 Java 代码，但需要 [Android Studio](https://developer.android.com/studio/)。
 
@@ -899,7 +899,7 @@ self.addEventListener('sync', function (e) {
 4. 最后，将应用部署到 Firebase： `firebase deploy`
 5. 大功告成。 操作完成！您的应用将部署到以下网域：`https://YOUR-FIREBASE-APP.firebaseapp.com`
 
-> 深入阅读：[Firebase 托管指南](https://www.firebase.com/docs/hosting/guide/) 👈
+> 深入阅读：[Firebase 托管指南](https://www.firebase.com/docs/hosting/guide/)，更多功能也可参考[另一节内容]( {{site.url}}/2019/02/02/ops-exersize.html#firebase-cloud-messaging ) 👈
 
 ## LightHouse
 

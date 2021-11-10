@@ -7,8 +7,8 @@ background: gray
 category: 后端
 title: 记一些运维实践
 date:   2019-02-02 17:54:00 GMT+0800 (CST)
-update: 2021-11-08 17:46:00 GMT+0800 (CST)
-description: add firebase and S3/OSS
+update: 2021-11-10 20:14:00 GMT+0800 (CST)
+description: add fcm & APNs & Push Kit
 background-image: /style/images/smms/linux.jpg
 tags:
 - Ops
@@ -408,7 +408,13 @@ S3 的数据都是存储在 AWS 的存储桶中，我们可以把桶理解为磁
 
 **阿里云对象存储服务（Object Storage Service，即 OSS**）是阿里云提供的海量、安全、低成本、高可靠的云存储服务。可以使用阿里云提供的 API、SDK 接口或者 OSS 迁移工具轻松地将海量数据移入或移出阿里云 OSS。数据存储到阿里云 OSS 以后，您可以选择标准存储（Standard）作为移动应用、大型网站、图片分享或热点音视频的主要存储方式，也可以选择成本更低、存储期限更长的低频访问存储（Infrequent Access）和归档存储（Archive）作为不经常访问数据的存储方式。
 
-## Firebase
+## 推送服务
+
+无论是哪种类型的通知，只有进行精细化地推送，即在合适的时候给合适的人群推送合适的内容，才能在不打扰用户、给用户带来价值的同时，有效延伸产品价值。😊
+
+> 关于推送服务的前世今生，可以参考[少数派这篇文章](https://sspai.com/post/42573) 👈
+
+### Firebase Cloud Messaging
 
 [**Firebase**](https://firebase.google.com) 是一个来自 Google 的基于云托管的移动应用程序开发平台，具有强大的开发、处理和增强应用程序的功能。本质上是一个开发人员可以依赖的工具集合，可以根据需求创建应用程序并对其进行扩展。Google Firebase 平台的一些突出特性包括数据库、身份验证、推送消息、分析、文件存储等等。旨在为开发者解决三大问题：
 
@@ -427,7 +433,7 @@ Firebase 的优势：
 5. 带来流量 - Firebase 通过在 Search 上提供应用程序链接，促进应用程序索引，让用户重新与 Google 搜索用户建立联系。应用程序的排名也可以通过索引一个应用程序来提高一次，这有助于你的应用程序获得可以安装它的新用户的曝光率。
 6. 错误监控 - Firebase 的 **Crashlytics** 特性是一个非常棒的工具，可以快速查找和修复问题。Firebase 可以监控非致命性和致命性错误，并根据错误如何影响用户体验生成报告。
 7. 备份 - Firebase 通过定期备份确保数据的最佳安全性和可用性，Blaze 套餐的用户可以轻松地配置 firebaserealtimedatabase 以进行自动备份
-8. Cloud Messaging 云消息传递 - 跨各种平台（Android、iOS 和网页）免费向用户发送消息和通知。消息可以发送到单个设备、设备组、订阅了特定主题的用户或细分用户群。FCM 可以根据应用进行扩展，即使是规模最大的应用也能处理，每天可传送数千亿条消息。
+8. **Cloud Messaging** 云消息传递 - FCM 可以跨各种平台（Android、iOS 和网页）免费向用户发送消息和通知。消息可以发送到单个设备、设备组、订阅了特定主题的用户或细分用户群。FCM 可以根据应用进行扩展，即使是规模最大的应用也能处理，每天可传送数千亿条消息。
 9. A/B 测试 - 通过运行产品和营销实验来改进您的应用，而无需费心设置运行 A/B 测试的基础架构。自定义实验以满足您的目标。测试应用的各种更新，例如消息副本或新功能。然后，只发布证明可以对改善关键指标起到作用的更改。
 
 Firebase 的局限性：
@@ -440,6 +446,95 @@ Firebase 的局限性：
 1. 它并不便宜，价格也难以预测 - 这就是为什么许多开发者最终选择自主托管应用程序，比如 Digital Ocean，AWS，或者 Google Cloud。
 1. 只能在谷歌云上运行 - Firebase 现在是 Google 的一部分，它的基础设施完全在 Google Cloud 上运行。在 AWS、 Azure 或 Digital Ocean 等其他云提供商上运行 Firebase 是没有选择的
 1. 不提供 GraphQL api - Firebase 不提供 GraphQL api 作为标准设置的一部分。尽管使用 Firebase 实现 GraphQL 有一些变通方法，REST 仍然是平台的默认选项。
+
+上面介绍了 Firebase 平台的功能，其中 **Firebase Cloud Messaging (FCM)** 是一种跨平台消息传递解决方案，可供您可靠地传递消息，且无需任何费用。在即时通讯等使用情形中，一条消息可将最多 4000 字节的载荷传送至客户端应用。FCM 实现包括用于发送和接收的两个主要组件：
+
+1. 一个受信任的环境，例如 Cloud Functions for Firebase 或用于构建、定位和发送消息的应用服务器。
+1. 一个通过针对具体平台的相应传输服务接收消息的 iOS、Android 或 Web (JavaScript) 客户端应用。
+   1. Android 传输层 (ATL)，适用于运行 Google Play 服务的 Android 设备
+   2. 适用于 iOS 设备的 Apple 推送通知服务 (APNs)
+   3. Web 应用的网络推送协议 [**Web Push**]( {{site.url}}/2019/04/07/progressive-web-app.html#web-push-消息推送 )
+
+![firebase diagram](https://firebase.google.com/docs/cloud-messaging/images/diagram-FCM.png?hl=zh-cn)
+
+如需使用 Admin SDK 或 FCM 协议以编程方式发送通知消息，可使用通知消息中用户可见部分所必需的预定义键值选项集来设置 notification 键。例如，以下是 IM 应用中的 JSON 格式的通知消息。用户可能会在设备上看到标题为 "Portugal vs. Denmark"、文本为 "great match!" 的消息。应用在后台运行时，通知消息将被传递至通知面板。应用在前台运行时，消息由回调函数处理：
+
+```json
+{
+  "message":{
+    "token": "bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1...",
+    "notification": {
+      "title": "Portugal vs. Denmark",
+      "body": "great match!"
+    }
+  }
+}
+```
+
+当然也可以针对具体平台的采取不同的通知消息：
+
+```json
+// 为 Android 和 Web 平台设置较长的存留时间，同时将 APNs (iOS) 消息设置为低优先级
+// 设置相应的键来定义 Android 和 iOS 上的用户点按通知的结果，分别为 click_action 和 category
+{
+  "message": {
+     "token": "bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1...",
+     "notification": {
+       "title": "Match update",
+       "body": "Arsenal goal in added time, score is now 3-0"
+     },
+     "android": {
+       "ttl": "86400s",
+       "notification":  {
+         "click_action": "OPEN_ACTIVITY_1"
+       }
+     },
+     "apns": {
+       "headers": {
+         "apns-priority": "5",
+       },
+       "payload": {
+         "aps": {
+           "category": "NEW_MESSAGE_CATEGORY"
+         }
+       }
+     },
+     "webpush": {
+       "headers": {
+         "TTL": "86400"
+       }
+     }
+   }
+ }
+```
+
+### APNs
+
+[**APNs(Apple Push Notification Service)**](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html#//apple_ref/doc/uid/TP40008194-CH8-SW1) 是 Apple 公司推出的针对 iOS 的推送服务，它通过**长 IP 连接推送技术**从第三方应用向苹果设备提供推送通知服务，通知中可能包括标记、声音、提醒/横幅。
+
+1. 应用程序把要发送的消息、目的 iPhone 的标识打包，发给 APNS；
+1. APNS 在自身的已注册 Push 服务的 iPhone 列表中，查找有相应标识的 iPhone，并把消息发送到 iPhone；
+1. iPhone 把发来的消息传递给相应的应用程序，并且按照设定弹出 Push 通知。
+
+![apns]( {{site.url}}/style/images/smms/apns.webp )
+
+> 对于 iOS 设备，FCM 充当通过 APNs 发送通知的代理
+
+### 华为 Push Kit
+
+由于政治问题华为不能采用 Google FCM 那一套，所以需要采用自家推出的推送服务 [**Push Kit**](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/service-introduction-0000001050040060)。推送服务支持通过 AppGallery Connect 控制台和 REST API 推送消息。
+
+非华为终端设备要使用华为推送，则需要在应用市场下载安装 `HMS Core(APK)`。由于非华为终端设备上缺少 NC 的能力，推送功能会受到系统限制，影响消息推送的**到达率**。NC 是华为终端设备上预置的系统级应用，可通过华为应用市场（名称为推送服务）进行更新，主要功能是展示终端设备上应用的通知消息。
+
+消息到达率，是衡量消息推送渠道稳定性和可靠性的关键指标。通常，应用推送消息渠道主要有两种：
+
+1. **自建推送通道** - 应用通过自建通道推送，通常需要应用的进程处于运行状态。而在大多数情况下，运营人员推送消息时，应用进程经常不在运行，除非用户主动打开应用或者授予应用某些系统级的权限。考虑到手机耗电的问题，少有用户会授予系统级别的权限给应用，这就导致了自建通道的消息到达率大大降低，从而影响推送的效果。
+2. **厂商推送通道** - 作为厂商推送通道，比如华为推送服务则建立了稳定的系统长连接，通过系统应用来统一展示应用消息。因此，应用获得用户的授权后，不需要常驻后台，也能把消息推送至通知栏，从而保证了应用消息的高到达率——在线到达率 99.8%。
+
+当然除了到达率，新闻类、社交类、交易类等应用还对消息的到达速度有较高的要求。例如：在用户完成交易的那一刻，应用需要及时将交易状态通过推送反馈；好友发送的消息，应用需要在第一时间告知用户等等。但不是所有消息都具有普适性，推送的时间或内容不合适，可能会引起用户的反感。所以，推送的精细化运营也尤为重要。
+将人群、场景进行划分，并针对性地推送个性化内容，是精细化运营的核心。
+
+除了华为的 Push Kit，还有小米的 MiPush。这些推送服务被集成在各家高度定制的 Android 系统中，享有系统级地位，推送的优先级比较高。各大互联网公司也有自己的推送服务，比如腾讯信鸽推送、百度云推送、阿里云移动推送。使用这三家公司各类 Android 应用的朋友不少都知道他们的「企鹅全家桶」「百度全家桶」和「阿里全家桶」，「全家桶效应」调侃的就是 BAT 自家应用的相互唤醒，让系统变卡变慢。你打开一个淘宝，就会唤醒闲鱼、支付宝、天猫等等应用，这种相互唤醒，目的是让共用的推送通道保持活跃，而不被系统杀死，以便消息能及时送达。除了以上提到的两种推送服务，另外还有一种专业的第三方平台提供推送服务，比如极光推送、友盟推送等等。
 
 ## LDAP 与 Active Directory
 
