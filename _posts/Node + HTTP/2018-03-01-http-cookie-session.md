@@ -146,9 +146,9 @@ https://tateyoung.github.io
 https://blog.github.io
 ```
 
-#### eTLD
+#### PSL & eTLD
 
-eTLD 的全称是 **effective Top-Level Domain**，它与我们往常理解的 Top-Level Domain 顶级域名有所区别。eTLD 记录在之前提到的 PSL 文件中。而 TLD 也有一个记录的列表，那就是 [Root Zone Database](https://www.iana.org/domains/root/db)。RZD 中记录了所有的根域列表，其中不乏一些奇奇怪怪五花八门的后缀。
+eTLD 的全称是 **effective Top-Level Domain**，它与我们往常理解的 Top-Level Domain 顶级域名有所区别。eTLD 记录在之前提到的 **PSL(Pulic Suffix List)** 文件中。而 TLD 也有一个记录的列表，那就是 [Root Zone Database](https://www.iana.org/domains/root/db)。RZD 中记录了所有的根域列表，其中不乏一些奇奇怪怪五花八门的后缀。
 
 eTLD 的出现主要是为了解决 `.com.cn, .com.hk, .co.jp` 这种看起来像是一级域名的但其实需要作为顶级域名存在的场景。这里还可以分享一个有趣的事情，2020年5月份出现了一起阿里云所有 ac.cn 后缀网站解析全部挂掉的事件。原因就是 ac.cn 是中科院申请在册的 eTLD 域名。而阿里云的检测域名备案的脚本不了解规范，没有使用 PSL 列表去查找一级域名，而是使用了.分割的形式去查找的。最终所有 *.ac.cn 的域名由于 ac.cn 这个域名没有进行备案导致解析全部挂掉。而我们现在知道 ac.cn 这个域名是 eTLD 域名，它肯定是无法备案的。
 
