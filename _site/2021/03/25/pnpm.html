@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="pnpm &amp; Monorepo" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="run lifecycle scripts during lerna version" />
-<meta property="og:description" content="run lifecycle scripts during lerna version" />
+<meta name="description" content="add lerna version description" />
+<meta property="og:description" content="add lerna version description" />
 <link rel="canonical" href="http://localhost:2333/2021/03/25/pnpm.html" />
 <meta property="og:url" content="http://localhost:2333/2021/03/25/pnpm.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-03-25T16:16:00+08:00" />
 <script type="application/ld+json">
-{"description":"run lifecycle scripts during lerna version","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/03/25/pnpm.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/03/25/pnpm.html","headline":"pnpm &amp; Monorepo","dateModified":"2021-03-25T16:16:00+08:00","datePublished":"2021-03-25T16:16:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add lerna version description","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/03/25/pnpm.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/03/25/pnpm.html","headline":"pnpm &amp; Monorepo","dateModified":"2021-03-25T16:16:00+08:00","datePublished":"2021-03-25T16:16:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,7 +175,7 @@
                       发布时间：2021-03-25 16:16:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-11-02 18:02:00
+                        修改时间：2021-12-24 15:05:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -183,7 +183,7 @@
                 </div>
                 
                   <div role='update-description' class="post-data">
-                    修改内容：run lifecycle scripts during lerna version
+                    修改内容：add lerna version description
                   </div>
                 
                 <div class="post-tags">
@@ -586,25 +586,7 @@ express
 
 <p>npm/yarn 本身去解决依赖提升的问题貌似很难完成，不过社区针对这个问题也已经有特定的解决方案: <a href="https://github.com/dependency-check-team/dependency-check">dependency-check</a>，但不可否认的是，pnpm 做的更加彻底，独创的一套依赖管理方式不仅解决了依赖提升的安全问题，还大大优化了时间和空间上的性能。</p>
 
-<h2 id="其他科普">其他科普</h2>
-
-<h3 id="硬链接软链接复制">硬链接、软链接、复制</h3>
-
-<ol>
-  <li>硬链接 - 硬链接实际上是为文件建一个别名，链接文件和原文件实际上是同一个文件。通过 ls -i 来查看的话，这两个文件的 inode 号是同一个，即属于同一个文件</li>
-  <li>软链接 - 相当于原文件的快捷方式。具体理解的话，链接文件内存储的是原文件的 inode，也就是说是用来指向原文件文件，这两个文件的 inode 是不一样的</li>
-  <li>复制 - 相当于将原文件进行一个拷贝，为另一个全新的文件。修改任何一个都不会影响另一个</li>
-</ol>
-
-<pre><code class="language-SHELL"># 硬链接
-ln source source1 
-# 软链接
-ln -s source source1 
-# 复制
-cp source source1
-</code></pre>
-
-<h3 id="monorepo-vs-multirepo">Monorepo vs Multirepo</h3>
+<h2 id="monorepo-vs-multirepo">Monorepo vs Multirepo</h2>
 
 <p><strong>multirepo</strong> 是我们目前采用最频繁的项目结构，针对于不同业务模块或功能会拆分成多个项目进行管理。但是对于一些开源项目或者工具库，<strong>monorepo</strong> 显然是一种比较好的项目管理方式，即把所有的相关项目都放在一个仓库中。业界中有很多优秀案例可以参考，比如 <a href="https://github.com/ReactTraining/react-router/tree/master/packages">react-router</a>、<a href="https://github.com/babel/babel/tree/main/packages">babel</a> 、<a href="https://github.com/facebook/jest/tree/master/packages">Jest</a>等:</p>
 
@@ -632,7 +614,7 @@ packages
   <li>不适合项目权限的分配</li>
 </ol>
 
-<h4 id="lerna-init">lerna init</h4>
+<h3 id="lerna-init">lerna init</h3>
 
 <p>在管理 monorepo 项目时，这里推荐使用 <a href="https://github.com/lerna/lerna"><strong>lerna</strong></a>。它是一种工具，可以优化使用 git 和 npm 管理多包存储库的工作流程；还可以减少开发和构建环境中大量软件包副本的时间和空间要求，这通常是将项目分成许多单独的 npm 软件包的缺点。我们先看看在项目中如何使用:</p>
 
@@ -712,7 +694,7 @@ lerna init
   <p>每个子项目的 package.json 里的 name 推荐设置为 <code class="highlighter-rouge">@scope/项目名</code> 的格式，比如 <code class="highlighter-rouge">@monorepo-test/packageA</code></p>
 </blockquote>
 
-<h4 id="lerna-bootstrap">lerna bootstrap</h4>
+<h3 id="lerna-bootstrap">lerna bootstrap</h3>
 
 <p>我们再通过 <code class="highlighter-rouge">create-react-app</code> 创建另外两个子项目，分别为 my-app 和 my-app-2，我们可以看到一个问题，<code class="highlighter-rouge">packages/</code> 下面的每个子项目有自己的 node_modules，如果将它打开，会发现很多重复的依赖包，这会占用我们大量的硬盘空间。lerna 提供了另一个强大的功能：将子项目的依赖包都提取到最顶层:</p>
 
@@ -740,7 +722,7 @@ lerna bootstrap --hoist
   <p>这里再推荐一些好用的 <a href="https://github.com/korfuri/awesome-monorepo">monorepo 工具集合</a> 👈</p>
 </blockquote>
 
-<h4 id="yarn-workspace-vs-pnpm-workspace">yarn workspace vs pnpm workspace</h4>
+<h3 id="yarn-workspace-vs-pnpm-workspace">yarn workspace vs pnpm workspace</h3>
 
 <p>上述提到，<code class="highlighter-rouge">lerna bootstrap --hoist</code> 虽然可以将子项目的依赖提升到顶层，但是他的方式比较粗暴：先在每个子项目运行 npm install，等所有依赖都安装好后，将他们移动到顶层的node_modules。这会导致一个问题，如果多个子项目依赖同一个第三方库，但是版本不同怎么办？官方的解释是:</p>
 
@@ -814,7 +796,7 @@ link-workspace-packages = true
 
 <p>pnpm 这里和 yarn 一样都生成了 node_modules 文件，但是不一样的是，这里的依赖都隐藏在 <code class="highlighter-rouge">.registry.npmjs.org</code> 中，node 的查询机制将无法找到。而 foo 的 node_modules 下有个 is-negative 的软链接，指向 <code class="highlighter-rouge">../../node_modules/.registry.npmjs.org/is-negative/1.0.0/node_modules/is-negative</code>，同理 bar 也是。这样子也解决了 yarn workspace 带来的安全问题。</p>
 
-<h4 id="lerna-runadd">lerna run/add</h4>
+<h3 id="lerna-runadd">lerna run/add</h3>
 
 <p>接下来我们要启动子项目，可以去那个目录下运行 <code class="highlighter-rouge">yarn start</code>，但是频繁切换文件夹实在是太麻烦了。我们可以直接通过 lerna 进行启动:</p>
 
@@ -830,7 +812,7 @@ lerna run --scope @monorepo-test/packageA test
 <pre><code class="language-SHELL">lerna add @a/dependence --scope @monorepo-test/packageA
 </code></pre>
 
-<h4 id="lerna-publish">lerna publish</h4>
+<h3 id="lerna-publish">lerna publish</h3>
 
 <p>我们执行发布的时候，如果模式选择的是默认，则会给你选择一个统一的版本号；如果是 independent 模式则会分别选择子项目的版本:</p>
 
@@ -921,7 +903,31 @@ npm ERR! Remove the 'private' field from the package.json to publish it.
   <p>完整 demo 可以<a href="https://github.com/dennis-jiang/mono-repo-demo">参考下这里</a> 👈</p>
 </blockquote>
 
-<h4 id="lifecycle-scripts">lifecycle scripts</h4>
+<h3 id="lerna-version">lerna version</h3>
+
+<p><a href="https://github.com/lerna/lerna/tree/main/commands/version#--conventional-commits"><strong>lerna version</strong></a> 主要的工作为标识出在上一个 tag 版本以来更新的 monorepo package，然后为这些包 prompt 出版本，在用户完成选择之后修改相关包的版本信息并且将相关的变动 commit 然后打上 tag 推送到 git remote:</p>
+
+<ol>
+  <li>Identifies packages that have been updated since the previous tagged release.</li>
+  <li>Prompts for a new version.</li>
+  <li>Modifies package metadata to reflect new release, running appropriate lifecycle scripts in root and 1. per-package.</li>
+  <li>Commits those changes and tags the commit.</li>
+  <li>Pushes to the git remote.</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lerna version 1.0.1 <span class="c"># explicit</span>
+lerna version <span class="o">[</span>major | minor | patch | premajor | preminor | prepatch | prerelease] <span class="c"># semver keyword</span>
+lerna version       <span class="c"># select from prompt(s)</span>
+</code></pre></div></div>
+
+<p>同时也支持诸多 options，具体查看<a href="https://github.com/lerna/lerna/tree/main/commands/version#--conventional-commits">官方文档</a>：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># --conventional-commits - will use the Conventional Commits Specification to determine the version bump and generate CHANGELOG.md files.</span>
+<span class="c"># --yes - will skip all confirmation prompts. </span>
+lerna version <span class="nt">--conventional-commits</span>  <span class="nt">--yes</span>
+</code></pre></div></div>
+
+<h3 id="lifecycle-scripts">lifecycle scripts</h3>
 
 <p>Lerna will run npm lifecycle scripts during lerna version in the following order:</p>
 
@@ -948,6 +954,24 @@ npm ERR! Remove the 'private' field from the package.json to publish it.
   <li>Create release, if enabled</li>
 </ol>
 
+<h2 id="其他科普">其他科普</h2>
+
+<h3 id="硬链接软链接复制">硬链接、软链接、复制</h3>
+
+<ol>
+  <li>硬链接 - 硬链接实际上是为文件建一个别名，链接文件和原文件实际上是同一个文件。通过 ls -i 来查看的话，这两个文件的 inode 号是同一个，即属于同一个文件</li>
+  <li>软链接 - 相当于原文件的快捷方式。具体理解的话，链接文件内存储的是原文件的 inode，也就是说是用来指向原文件文件，这两个文件的 inode 是不一样的</li>
+  <li>复制 - 相当于将原文件进行一个拷贝，为另一个全新的文件。修改任何一个都不会影响另一个</li>
+</ol>
+
+<pre><code class="language-SHELL"># 硬链接
+ln source source1 
+# 软链接
+ln -s source source1 
+# 复制
+cp source source1
+</code></pre>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
@@ -957,6 +981,7 @@ npm ERR! Remove the 'private' field from the package.json to publish it.
   <li><a href="https://loveky.github.io/2019/02/11/yarn-pnp/">Yarn 的 Plug’n’Play 特性</a> by loveky</li>
   <li><a href="https://juejin.cn/post/6844903814038831118">Yarn Plug’n’Play可否助你脱离node_modules苦海?</a> by 荒山</li>
   <li><a href="https://www.cnblogs.com/dennisj/p/14230178.html">使用 mono-repo 实现跨项目组件共享</a> by _蒋鹏飞</li>
+  <li><a href="https://zhuanlan.zhihu.com/p/354649322">深入 lerna 发包机制 —— lerna version</a> by zoomdong</li>
 </ol>
  
 <div id="gitalk-container"></div>

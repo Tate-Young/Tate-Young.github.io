@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="NPM Scripts" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="新增 npm link 使用" />
-<meta property="og:description" content="新增 npm link 使用" />
+<meta name="description" content="modiy npm link &amp; add yalc" />
+<meta property="og:description" content="modiy npm link &amp; add yalc" />
 <link rel="canonical" href="http://localhost:2333/2018/06/27/npm-scripts.html" />
 <meta property="og:url" content="http://localhost:2333/2018/06/27/npm-scripts.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-06-27T17:57:00+08:00" />
 <script type="application/ld+json">
-{"description":"新增 npm link 使用","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","@context":"https://schema.org"}</script>
+{"description":"modiy npm link &amp; add yalc","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,7 +175,7 @@
                       发布时间：2018-06-27 17:57:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-09-13 11:27:00
+                        修改时间：2021-11-18 15:29:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -183,7 +183,7 @@
                 </div>
                 
                   <div role='update-description' class="post-data">
-                    修改内容：新增 npm link 使用
+                    修改内容：modiy npm link & add yalc
                   </div>
                 
                 <div class="post-tags">
@@ -737,7 +737,7 @@ yarn global add yarn
   <p>npx is a tool intended to help round out the experience of using packages from the npm registry — the same way npm makes it super easy to install and manage dependencies hosted on the registry, npx makes it easy to use CLI tools and other executables hosted on the registry. It greatly simplifies a number of things that, until now, required a bit of ceremony to do with plain npm</p>
 </blockquote>
 
-<h2 id="npm-link">npm link</h2>
+<h2 id="npm-link--yalc">npm link &amp; yalc</h2>
 
 <pre><code class="language-SHELL">npm link (in package dir)
 npm link [&lt;@scope&gt;/]&lt;pkg&gt;[@&lt;version&gt;]
@@ -753,11 +753,52 @@ alias: npm ln
 npm link                    # creates global link
 cd ~/projects/node-bloggy   # go into some other package directory.
 npm link redis              # link-install the package
+
+# 取消 link
+npm unlink redis
+npm install
 </code></pre>
 
 <blockquote>
   <p>Now, any changes to <em>~/projects/node-redis</em> will be reflected in <em>~/projects/node-bloggy/node_modules/node-redis/</em>. <strong>Note that the link should be to the package name, not the directory name for that package</strong>.</p>
 </blockquote>
+
+<p>但用 npm link 引入的依赖由于资源文件不在项目下，导致实际构建或者运行时会报错，此时如果直接将文件复制进依赖目录则能正常运行，因此我们来介绍另一个工具 - <a href="https://github.com/wclr/yalc"><strong>yalc</strong></a> 👈</p>
+
+<p>yalc 可以在本地将 npm 包模拟发布，将发布后的资源存放在一个全局存储中。然后可以通过 yalc 将包添加进需要引用的项目中。这时候 package.json 的依赖表中会多出一个 <code class="highlighter-rouge">file:.yalc/...</code> 的依赖包，这就是 yalc 创建的特殊引用。同时也会在项目根目录创建一个 <code class="highlighter-rouge">yalc.lock</code> 确保引用资源的一致性。因此，测试完项目还需要执行删除 yalc 包的操作，才能正常使用。整个过程相对于 npm link 会更加繁琐一些，要经过发包、添加依赖，结束后也需要做清除操作，但也正因此才避免了 npm link 的一些问题。</p>
+
+<ol>
+  <li>发布依赖
+    <ol>
+      <li><code class="highlighter-rouge">yalc publish</code> 发布包到仓库(store)</li>
+      <li><code class="highlighter-rouge">yalc push</code> 可以快速的更新所有依赖</li>
+    </ol>
+  </li>
+  <li>添加依赖
+    <ol>
+      <li><code class="highlighter-rouge">yalc add my-package</code> 向项目里添加依赖，该步骤会把之前发布到仓库里的依赖复制到项目的 <code class="highlighter-rouge">.yalc</code> 目录中，并且会向 <code class="highlighter-rouge">package.json</code> 注入 <code class="highlighter-rouge">file:.yalc/my-package</code> 依赖</li>
+      <li>也可以使用 link 方式引用依赖包，<code class="highlighter-rouge">yalc add my-package --link</code>。use –link option to add a <code class="highlighter-rouge">link:</code> dependency instead of <code class="highlighter-rouge">file:</code></li>
+    </ol>
+  </li>
+  <li>更新依赖
+    <ol>
+      <li><code class="highlighter-rouge">yalc update my-package</code> 来更新仓库里的某个依赖</li>
+      <li><code class="highlighter-rouge">yalc update</code> 来查找 <code class="highlighter-rouge">yalc.lock</code> 更新所有依赖</li>
+    </ol>
+  </li>
+  <li>移除依赖
+    <ol>
+      <li><code class="highlighter-rouge">yalc remove my-package</code> 会移除包在 <code class="highlighter-rouge">package.json</code> 和 <code class="highlighter-rouge">yalc.lock</code> 里的信息</li>
+      <li><code class="highlighter-rouge">yalc remove --all</code> 移除项目中所有依赖</li>
+    </ol>
+  </li>
+  <li>查看仓库信息
+    <ol>
+      <li><code class="highlighter-rouge">yalc installations show my-package</code> 显示哪些包被安装</li>
+      <li><code class="highlighter-rouge">yalc installations clean my-package</code> 进行 unpublish 操作</li>
+    </ol>
+  </li>
+</ol>
 
 <h3 id="抛弃-run-script">抛弃 run-script</h3>
 

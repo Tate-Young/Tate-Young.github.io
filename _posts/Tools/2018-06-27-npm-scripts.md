@@ -7,8 +7,8 @@ background: green
 category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
-update: 2021-09-13 11:27:00 GMT+0800 (CST)
-description: 新增 npm link 使用
+update: 2021-11-18 15:29:00 GMT+0800 (CST)
+description: modiy npm link & add yalc
 background-image: /style/images/smms/node.jpg
 
 tags:
@@ -487,7 +487,7 @@ $npm view @date-io/date-fns versions
 
 > npx is a tool intended to help round out the experience of using packages from the npm registry — the same way npm makes it super easy to install and manage dependencies hosted on the registry, npx makes it easy to use CLI tools and other executables hosted on the registry. It greatly simplifies a number of things that, until now, required a bit of ceremony to do with plain npm
 
-## npm link
+## npm link & yalc
 
 ```SHELL
 npm link (in package dir)
@@ -505,9 +505,33 @@ cd ~/projects/node-redis    # go into the package directory
 npm link                    # creates global link
 cd ~/projects/node-bloggy   # go into some other package directory.
 npm link redis              # link-install the package
+
+# 取消 link
+npm unlink redis
+npm install
 ```
 
 > Now, any changes to *~/projects/node-redis* will be reflected in *~/projects/node-bloggy/node_modules/node-redis/*. **Note that the link should be to the package name, not the directory name for that package**.
+
+但用 npm link 引入的依赖由于资源文件不在项目下，导致实际构建或者运行时会报错，此时如果直接将文件复制进依赖目录则能正常运行，因此我们来介绍另一个工具 - [**yalc**](https://github.com/wclr/yalc) 👈
+
+yalc 可以在本地将 npm 包模拟发布，将发布后的资源存放在一个全局存储中。然后可以通过 yalc 将包添加进需要引用的项目中。这时候 package.json 的依赖表中会多出一个 `file:.yalc/...` 的依赖包，这就是 yalc 创建的特殊引用。同时也会在项目根目录创建一个 `yalc.lock` 确保引用资源的一致性。因此，测试完项目还需要执行删除 yalc 包的操作，才能正常使用。整个过程相对于 npm link 会更加繁琐一些，要经过发包、添加依赖，结束后也需要做清除操作，但也正因此才避免了 npm link 的一些问题。
+
+1. 发布依赖
+   1. `yalc publish` 发布包到仓库(store)
+   2. `yalc push` 可以快速的更新所有依赖
+2. 添加依赖
+   1. `yalc add my-package` 向项目里添加依赖，该步骤会把之前发布到仓库里的依赖复制到项目的 `.yalc` 目录中，并且会向 `package.json` 注入 `file:.yalc/my-package` 依赖
+   2. 也可以使用 link 方式引用依赖包，`yalc add my-package --link`。use --link option to add a `link:` dependency instead of `file:`
+3. 更新依赖
+   1. `yalc update my-package` 来更新仓库里的某个依赖
+   2. `yalc update` 来查找 `yalc.lock` 更新所有依赖
+4. 移除依赖
+   1. `yalc remove my-package` 会移除包在 `package.json` 和 `yalc.lock` 里的信息
+   2. `yalc remove --all` 移除项目中所有依赖
+5. 查看仓库信息
+   1. `yalc installations show my-package` 显示哪些包被安装
+   2. `yalc installations clean my-package` 进行 unpublish 操作
 
 ### 抛弃 run-script
 
