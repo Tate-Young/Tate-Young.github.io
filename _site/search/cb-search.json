@@ -3,6 +3,14 @@
 	"data" : [
 	 
 	{
+		"title" : "Core Web Vitals - ",
+		"url" : "/2021/12/29/cwv.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "安全漏洞与防范 - ",
 		"url" : "/2021/11/17/types-of-attacks.html"
 	}

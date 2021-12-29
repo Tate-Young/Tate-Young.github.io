@@ -1,0 +1,908 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+<head>
+    <meta content='Core Web Vitals - Tate & Snow' name='title' />
+    <meta content='Core Web Vitals - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>Core Web Vitals - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Core Web Vitals - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Core Web Vitals - Tate & Snow">
+<meta name="twitter:keywords" content="Core Web Vitals - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="Core Web Vitals - Tate & Snow">
+<meta name="og:keywords" content="Core Web Vitals - Tate & Snow|Core Web Vitals什么是 Google CWVCWV(Core Web Vitals) 即核心 web 指标，当前侧重于用户体验的三个方面 —— 加载性能、交互性和视觉稳定性：  Largest Contentful Pa..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="Core Web Vitals什么是 Google CWVCWV(Core Web Vitals) 即核心 web 指标，当前侧重于用户体验的三个方面 —— 加载性能、交互性和视觉稳定性：  Largest Contentful Pa..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2021/12/29/cwv.html' property='og:url' />
+<meta content="http://localhost:2333/2021/12/29/cwv.html|Core Web Vitals什么是 Google CWVCWV(Core Web Vitals) 即核心 web 指标，当前侧重于用户体验的三个方面 —— 加载性能、交互性和视觉稳定性：  Largest Contentful Pa..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<!-- <script async src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Core Web Vitals | Tate &amp; Snow</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Core Web Vitals" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Core Web Vitals" />
+<meta property="og:description" content="Core Web Vitals" />
+<link rel="canonical" href="http://localhost:2333/2021/12/29/cwv.html" />
+<meta property="og:url" content="http://localhost:2333/2021/12/29/cwv.html" />
+<meta property="og:site_name" content="Tate &amp; Snow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-29T11:10:00+08:00" />
+<script type="application/ld+json">
+{"description":"Core Web Vitals","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/12/29/cwv.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/12/29/cwv.html","headline":"Core Web Vitals","dateModified":"2021-12-29T11:10:00+08:00","datePublished":"2021-12-29T11:10:00+08:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
+                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('历史', '/history')" title="访问 历史" data-hover="历史">历史</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('其他', '/other')" title="访问 其他" data-hover="其他">其他</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:2333/">首页</a>
+                
+                <a href="http://localhost:2333/front">前端</a>
+                
+                <a href="http://localhost:2333/history">历史</a>
+                
+                <a href="http://localhost:2333/other">其他</a>
+                
+                <a href="http://localhost:2333/tags">标签</a>
+                
+                <a href="http://localhost:2333/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('历史', 'http://localhost:2333/history')">历史</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('其他', 'http://localhost:2333/other')">其他</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('Core Web Vitals')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    Core Web Vitals</h1>
+                <div class="post-data">
+                    <time datetime="2021-12-29 11:10:00" itemprop="datePublished">
+                      发布时间：2021-12-29 11:10:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                
+                <div class="post-tags">
+                       
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('HTML')" title="访问HTML" data-hover="HTML">
+                        HTML
+                        <span>(3)</span>
+                        
+                    </a>
+                    
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
+                        JavaScript
+                        <span>(34)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                Core Web Vitals</h1>
+            <div class="post-data">
+                <time datetime="2021-12-29 11:10:00" itemprop="datePublished">2021-12-29 11:10:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="Javascript:;" onclick="onClickTag('HTML')" title="访问HTML" data-hover="HTML">
+                    HTML
+                    <span>(3)</span>
+                    </a>
+                
+                <a href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
+                    JavaScript
+                    <span>(34)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="core-web-vitals">Core Web Vitals</h1>
+
+<h2 id="什么是-google-cwv">什么是 Google CWV</h2>
+
+<p><strong>CWV(Core Web Vitals) 即核心 web 指标</strong>，当前侧重于用户体验的三个方面 —— <strong>加载性能</strong>、<strong>交互性</strong>和<strong>视觉稳定性</strong>：</p>
+
+<ul>
+  <li><a href="https://web.dev/i18n/zh/lcp/"><strong>Largest Contentful Paint (LCP)</strong></a> - 最大内容绘制，测量加载性能。为了提供良好的用户体验，LCP 应在页面首次开始加载后的 2.5 秒内发生。</li>
+  <li><a href="https://web.dev/i18n/zh/fid/"><strong>First Input Delay (FID)</strong></a> - 首次输入延迟，测量交互性。为了提供良好的用户体验，页面的 FID 应为 100 毫秒或更短。</li>
+  <li><a href="https://web.dev/i18n/zh/cls/"><strong>Cumulative Layout Shift (CLS)</strong></a> - 累积布局偏移，测量视觉稳定性。为了提供良好的用户体验，页面的 CLS 应保持在 0.1 或更少。</li>
+</ul>
+
+<p><img src="http://localhost:2333/style/images/smms/cwv.png" alt="cwv" /></p>
+
+<h3 id="lcp">LCP</h3>
+
+<p>诸如 <strong>load（加载）</strong>或 <strong>DOMContentLoaded（DOM 内容加载完毕）</strong>这样的旧有指标并不是很好，因为这些指标不一定与用户在屏幕上看到的内容相对应。而像 <strong>First Contentful Paint 首次内容绘制 (FCP)</strong> 这类以用户为中心的较新性能指标只会捕获加载体验最开始的部分。如果某个页面显示的是一段启动画面或加载指示，那么这些时刻与用户的关联性并不大。</p>
+
+<p><strong>LCP</strong> 指标会根据页面首次开始加载的时间点来报告可视区域内可见的最大图像或文本块完成渲染的相对时间。根据当前最大内容绘制 API 中的规定，最大内容绘制考量的元素类型为：</p>
+
+<ol>
+  <li>&lt;img&gt;元素</li>
+  <li>内嵌在 &lt;svg&gt; 元素内的 &lt;image&gt; 元素</li>
+  <li>&lt;video&gt; 元素（使用封面图像）</li>
+  <li>通过 url() 函数（而非使用 CSS 渐变）加载的带有背景图像的元素</li>
+  <li>包含文本节点或其他行内级文本元素子元素的<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements">块级元素</a>。</li>
+</ol>
+
+<blockquote>
+  <p>如果有元素延伸到可视区域之外，或者任何元素被剪裁或包含不可见的溢出，则这些部分不计入元素大小。</p>
+</blockquote>
+
+<p><img src="https://web-dev.imgix.net/image/admin/uJAGswhXK3bE6Vs4I5bP.png?auto=format&amp;w=1600" alt="lcp" /></p>
+
+<p>我们可以从以上示例中看出，Instagram 标志加载得相对较早，即使其他内容随后陆续显示，但标志始终是最大元素。在 Instagram 时间轴的第一帧中，相机标志的周围没有用绿框框出。这是因为该标志是一个 &lt;svg&gt; 元素，而 &lt;svg&gt; 元素目前不被视为 LCP 候选对象。首个 LCP 候选对象是第二帧中的文本。</p>
+
+<p>要在 JavaScript 中测量 LCP，可以使用最大内容绘制 API。以下示例说明了如何创建一个 PerformanceObserver 来侦听 <strong>largest-contentful-paint</strong> 条目并记录在控制台中:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nx">PerformanceObserver</span><span class="p">((</span><span class="nx">entryList</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">entry</span> <span class="k">of</span> <span class="nx">entryList</span><span class="p">.</span><span class="nx">getEntries</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">LCP candidate:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">startTime</span><span class="p">,</span> <span class="nx">entry</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">observe</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">largest-contentful-paint</span><span class="dl">'</span><span class="p">,</span> <span class="na">buffered</span><span class="p">:</span> <span class="kc">true</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>LCP 主要受四个因素影响：</p>
+
+<ol>
+  <li>缓慢的服务器响应速度 - 可通过 TTFB 来测量服务器响应时间</li>
+  <li>JavaScript 和 CSS 渲染阻塞</li>
+  <li>资源加载时间</li>
+  <li>客户端渲染</li>
+</ol>
+
+<p>改进方案，更多细节可以<a href="https://web.dev/i18n/zh/optimize-lcp/">参考这里</a> 👈：</p>
+
+<ol>
+  <li>使用 <a href="https://web.dev/apply-instant-loading-with-prpl/"><strong>PRPL</strong></a> 模式做到即时加载</li>
+  <li>优化关键渲染路径</li>
+  <li>优化您的 CSS</li>
+  <li>优化您的图像</li>
+  <li>优化网页字体</li>
+  <li>优化您的 JavaScript（针对客户端渲染的网站）</li>
+</ol>
+
+<h3 id="fid">FID</h3>
+
+<p>用户对您的网站加载速度的第一印象可以通过 FCP 进行测量。但网站在屏幕上绘制像素的速度只是其中一部分，同样重要的还有当用户试图与这些像素进行交互时，网站是否能够及时响应！</p>
+
+<p><strong>FID</strong> 测量从用户第一次与页面交互（例如当他们单击链接、点按按钮或使用由 JavaScript 驱动的自定义控件）直到浏览器对交互作出响应，并实际能够开始处理事件处理程序所经过的时间。为什么要测试首次？是因为第一印象至关重要。</p>
+
+<blockquote>
+  <p>FID 是测量页面加载期间响应度的指标。因此，FID 只关注不连续操作对应的输入事件，如点击、轻触和按键。其他诸如滚动和缩放之类的交互属于连续操作，具有完全不同的性能约束。</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>FID 是一个只能进行实际测量的指标</strong>。但是，<strong>Total Blocking Time 总阻塞时间 (TBT)</strong> 指标不仅可以进行实验室测量，还与实际的 FID 关联性强，而且可以捕获影响交互性的问题。能够在实验室中改进 TBT 的优化也应该能为您的用户改进 FID。</p>
+</blockquote>
+
+<p>较长的首次输入延迟通常发生在 FCP 和 <strong>Time to Interactive 可交互时间 (TTI)</strong> 之间，因为在此期间，页面已经渲染出部分内容，但交互性还尚不可靠。根据以下时间轴可以看出，FCP 和 TTI 之间有相当长的一段时间（包括三段长任务），如果用户在这段时间内尝试与页面进行交互（例如单击一个链接），那么从浏览器接收到单击直至主线程能够响应之前就会有一段延迟：</p>
+
+<p><img src="https://web-dev.imgix.net/image/admin/krOoeuQ4TWCbt9t6v5Wf.svg" alt="fid" /></p>
+
+<p>要在 JavaScript 中测量 FID，您可以使用事件计时 API。以下示例说明了如何创建一个 PerformanceObserver 来侦听 first-input 条目并记录在控制台中：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nx">PerformanceObserver</span><span class="p">((</span><span class="nx">entryList</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">entry</span> <span class="k">of</span> <span class="nx">entryList</span><span class="p">.</span><span class="nx">getEntries</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">delay</span> <span class="o">=</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">processingStart</span> <span class="o">-</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">startTime</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">FID candidate:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">delay</span><span class="p">,</span> <span class="nx">entry</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">observe</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">first-input</span><span class="dl">'</span><span class="p">,</span> <span class="na">buffered</span><span class="p">:</span> <span class="kc">true</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>改进方案：</p>
+
+<ol>
+  <li>减少第三方代码的影响</li>
+  <li>减少 JavaScript 执行时间</li>
+  <li>最小化主线程工作</li>
+  <li>保持较低的请求数和较小的传输大小</li>
+</ol>
+
+<h3 id="cls">CLS</h3>
+
+<p>有没有遇到过一种情况，当你正要点击一个链接或一个按钮时，突然间移位了，结果点到了别的东西！顿时 C 语言！！页面内容的意外移动通常是由于异步加载资源，或者动态添加 DOM 元素到页面现有内容的上方。罪魁祸首可能是未知尺寸的图像或视频、实际渲染后比后备字体更大或更小的字体，或者是动态调整自身大小的第三方广告或小组件。</p>
+
+<p><strong>CLS</strong> 测量整个页面生命周期内发生的所有意外布局偏移中最大一连串的布局偏移分数。每当一个可见元素的位置从一个已渲染帧变更到下一个已渲染帧时，就发生了<strong>布局偏移</strong>。一连串的布局偏移，也叫<strong>会话窗口</strong>，是指一个或多个快速连续发生的单次布局偏移，每次偏移相隔的时间少于 1 秒，且整个窗口的最大持续时长为 5 秒。</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>布局偏移分数 = 影响分数 * 距离分数
+</code></pre></div></div>
+
+<p><strong>影响分数</strong>：测量不稳定元素对两帧之间的可视区域产生的影响，即前一帧和当前帧的所有不稳定元素的可见区域集合:</p>
+
+<p><img src="https://web-dev.imgix.net/image/tcFciHGuF3MxnTr1y5ue01OGLBn2/ASnfpVs2n9winu6mmzdk.png?auto=format" alt="影响分数" /></p>
+
+<p>在上图中，有一个元素在一帧中占据了一半的可视区域。接着，在下一帧中，元素下移了可视区域高度的 25%。红色虚线矩形框表示两帧中元素的可见区域集合，在本示例中，该集合占总可视区域的 75%，因此其影响分数为 0.75。</p>
+
+<p><strong>距离分数</strong>：测量不稳定元素相对于可视区域位移的距离（水平或垂直）。</p>
+
+<p>还是以上图为准，最大的可视区域尺寸维度是高度，不稳定元素的位移距离为可视区域高度的 25%，因此距离分数为 0.25。因此在这个示例中，影响分数是 0.75 ，距离分数是 0.25 ，所以布局偏移分数是 <code class="highlighter-rouge">0.75 * 0.25 = 0.1875</code>。</p>
+
+<p>要在 JavaScript 中测量 CLS，您可以使用布局不稳定性 API。以下示例说明了如何创建一个 PerformanceObserver 来侦听意外 layout-shift 条目、将条目按会话分组、记录最大会话值，并在最大会话值发生改变时更新记录：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">clsValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">clsEntries</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="kd">let</span> <span class="nx">sessionValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">sessionEntries</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="k">new</span> <span class="nx">PerformanceObserver</span><span class="p">((</span><span class="nx">entryList</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">entry</span> <span class="k">of</span> <span class="nx">entryList</span><span class="p">.</span><span class="nx">getEntries</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// 只将不带有最近用户输入标志的布局偏移计算在内。</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">entry</span><span class="p">.</span><span class="nx">hadRecentInput</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">firstSessionEntry</span> <span class="o">=</span> <span class="nx">sessionEntries</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+      <span class="kd">const</span> <span class="nx">lastSessionEntry</span> <span class="o">=</span> <span class="nx">sessionEntries</span><span class="p">[</span><span class="nx">sessionEntries</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+
+      <span class="c1">// 如果条目与上一条目的相隔时间小于 1 秒且与会话中第一个条目的相隔时间小于 5 秒，那么将条目</span>
+      <span class="c1">// 包含在当前会话中。否则，开始一个新会话。</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">sessionValue</span> <span class="o">&amp;&amp;</span>
+          <span class="nx">entry</span><span class="p">.</span><span class="nx">startTime</span> <span class="o">-</span> <span class="nx">lastSessionEntry</span><span class="p">.</span><span class="nx">startTime</span> <span class="o">&lt;</span> <span class="mi">1000</span> <span class="o">&amp;&amp;</span>
+          <span class="nx">entry</span><span class="p">.</span><span class="nx">startTime</span> <span class="o">-</span> <span class="nx">firstSessionEntry</span><span class="p">.</span><span class="nx">startTime</span> <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">sessionValue</span> <span class="o">+=</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+        <span class="nx">sessionEntries</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">entry</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">sessionValue</span> <span class="o">=</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+        <span class="nx">sessionEntries</span> <span class="o">=</span> <span class="p">[</span><span class="nx">entry</span><span class="p">];</span>
+      <span class="p">}</span>
+
+      <span class="c1">// 如果当前会话值大于当前 CLS 值，</span>
+      <span class="c1">// 那么更新 CLS 及其相关条目。</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">sessionValue</span> <span class="o">&gt;</span> <span class="nx">clsValue</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">clsValue</span> <span class="o">=</span> <span class="nx">sessionValue</span><span class="p">;</span>
+        <span class="nx">clsEntries</span> <span class="o">=</span> <span class="nx">sessionEntries</span><span class="p">;</span>
+
+        <span class="c1">// 将更新值（及其条目）记录在控制台中。</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">CLS:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">clsValue</span><span class="p">,</span> <span class="nx">clsEntries</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">observe</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">layout-shift</span><span class="dl">'</span><span class="p">,</span> <span class="na">buffered</span><span class="p">:</span> <span class="kc">true</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>如何改进 CLS：</p>
+
+<ol>
+  <li><strong>始终在您的图像和视频元素上包含尺寸属性，或者通过使用 CSS 长宽比容器之类的方式预留所需的空间</strong> - 这种方法可以确保浏览器能够在加载图像期间在文档中分配正确的空间大小。请注意，您还可以使用 unsized-media 功能策略在支持功能策略的浏览器中强制执行此行为。</li>
+  <li><strong>除非是对用户交互做出响应，否则切勿在现有内容的上方插入内容</strong> - 这样能够确保发生的任何布局偏移都在预期之内。</li>
+  <li><strong>首选转换动画，而不是触发布局偏移的属性动画</strong> - 动画过渡的目标是提供状态与状态之间的上下文连续性。如 CSS <strong>transform</strong> 属性使您能够在不触发布局偏移的情况下为元素设置动画：
+    <ol>
+      <li>用 <code class="highlighter-rouge">transform: scale()</code> 来替代和调整 height 和 width 属性。</li>
+      <li>如需使元素能够四处移动，可以用 <code class="highlighter-rouge">transform: translate()</code> 来替代和调整 top、right、bottom 或 left 属性。</li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="其他指标">其他指标</h2>
+
+<h3 id="fcp--fp">FCP / FP</h3>
+
+<p><a href="https://web.dev/i18n/zh/fcp/"><strong>FCP(First Contentful Paint)</strong></a> 即首次内容绘制。测量页面从开始加载到页面内容的任何部分在屏幕上完成渲染的时间。对于该指标，”内容”指的是<code class="highlighter-rouge">文本、图像（包括背景图像）、&lt;svg&gt; 元素或非白色的 &lt;canvas&gt; 元素</code>。为了提供良好的用户体验，网站应该努力将首次内容绘制控制在 1.8 秒或以内。</p>
+
+<p>要在 JavaScript 中测量 FCP，您可以使用绘制计时 API。以下示例说明了如何创建一个 PerformanceObserver 来侦听名称为 first-contentful-paint 的条目并记录在控制台中：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nx">PerformanceObserver</span><span class="p">((</span><span class="nx">entryList</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">entry</span> <span class="k">of</span> <span class="nx">entryList</span><span class="p">.</span><span class="nx">getEntriesByName</span><span class="p">(</span><span class="dl">'</span><span class="s1">first-contentful-paint</span><span class="dl">'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">FCP candidate:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">startTime</span><span class="p">,</span> <span class="nx">entry</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">observe</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">paint</span><span class="dl">'</span><span class="p">,</span> <span class="na">buffered</span><span class="p">:</span> <span class="kc">true</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>如何改进 FCP：</p>
+
+<ol>
+  <li>消除阻塞渲染的资源</li>
+  <li>缩小 CSS</li>
+  <li>移除未使用的 CSS</li>
+  <li>预连接到所需的来源</li>
+  <li>减少服务器响应时间 (TTFB)</li>
+  <li>避免多个页面重定向</li>
+  <li>预加载关键请求</li>
+  <li>避免巨大的网络负载</li>
+  <li>使用高效的缓存策略服务静态资产</li>
+  <li>避免 DOM 过大</li>
+  <li>最小化关键请求深度</li>
+  <li>确保文本在网页字体加载期间保持可见</li>
+  <li>保持较低的请求数和较小的传输大小</li>
+</ol>
+
+<blockquote>
+  <p>FP 和 FCP 通常相同，但也可能是 FP 优先</p>
+</blockquote>
+
+<h3 id="fmp">FMP</h3>
+
+<p><strong>FMP(First Meaningful Paint)</strong> 测量用户启动页面加载和页面呈现主要首屏内容之间的时间。当页面上呈现的第一位内容包括首屏内容时，FCP 和 FMP 通常是相同的。 但是，例如当 iframe 中的首屏有内容时，这些指标可能会有所不同。FMP 在 iframe 中的内容对用户可见时注册，而 FCP 不包括 iframe 内容，因此 FMP 可能打分更低。以下图片仅供参考:</p>
+
+<p><img src="http://localhost:2333/style/images/smms/cwv-tti.png" alt="FCP/FMP" /></p>
+
+<h3 id="tbt">TBT</h3>
+
+<p><a href="https://web.dev/i18n/zh/tbt/"><strong>TBT(Total Blocking Time)</strong></a> 即总阻塞时间。一个页面的总阻塞时间是在 FCP 和 TTI 之间发生的每个长任务的阻塞时间总和。每当出现<strong>长任务</strong>（在主线程上运行超过 50 毫秒的任务）时，主线程都被视作”阻塞状态”。我们说主线程处于”阻塞状态”是因为浏览器无法中断正在进行的任务。因此，如果用户在某个长任务运行期间与页面进行交互，那么浏览器必须等到任务完成后才能作出响应。</p>
+
+<p><img src="https://web-dev.imgix.net/image/tcFciHGuF3MxnTr1y5ue01OGLBn2/xKxwKagiz8RliuOI2Xtc.svg" alt="TBT" /></p>
+
+<p>如上图，虽然在主线程上运行任务的总时间为 560 毫秒，但其中只有 345 毫秒被视为阻塞时间。</p>
+
+<p>如何改进 TBT：</p>
+
+<ol>
+  <li>减少第三方代码的影响</li>
+  <li>减少 JavaScript 执行时间</li>
+  <li>最小化主线程工作</li>
+  <li>保持较低的请求数和较小的传输大小</li>
+</ol>
+
+<blockquote>
+  <p>TBT 指标应该在实验室中进行测量，与 FID、TTI 等强关联</p>
+</blockquote>
+
+<h3 id="tti">TTI</h3>
+
+<p><a href="https://web.dev/tti/"><strong>TTI(Time to Interactive)</strong></a> 即可交互时间。测量页面从开始加载到主要子资源完成渲染，并能够快速、可靠地响应用户输入所需的时间。如需根据网页的性能跟踪计算 TTI，请执行以下步骤:</p>
+
+<ol>
+  <li>先进行 FCP。</li>
+  <li>沿时间轴正向搜索时长至少为 5 秒的安静窗口，其中，安静窗口的定义为：没有长任务且不超过两个正在处理的网络 GET 请求。</li>
+  <li>沿时间轴反向搜索安静窗口之前的最后一个长任务，如果没有找到长任务，则在 FCP 步骤停止执行。</li>
+  <li>TTI 是安静窗口之前最后一个长任务的结束时间（如果没有找到长任务，则与 FCP 值相同）。</li>
+</ol>
+
+<p><img src="https://web-dev.imgix.net/image/admin/WZM0n4aXah67lEyZugOT.svg" alt="TTI" /></p>
+
+<p>需要注意的是，SSR 等技术可能会导致页面看似具备交互性（即，链接和按钮在屏幕上可见），但实际上并不能进行交互，因为主线程被阻塞或是因为控制这些元素的 JavaScript 代码尚未完成加载。为了避免这个问题，<strong>请尽一切努力将 FCP 和 TTI 之间的差值降至最低</strong>。</p>
+
+<p>如何改进 TTI：</p>
+
+<ol>
+  <li>缩小 JavaScript</li>
+  <li>预连接到所需的来源</li>
+  <li>预加载关键请求</li>
+  <li>减少第三方代码的影响</li>
+  <li>最小化关键请求深度</li>
+  <li>减少 JavaScript 执行时间</li>
+  <li>最小化主线程工作</li>
+  <li>保持较低的请求数和较小的传输大小</li>
+</ol>
+
+<h3 id="ttfb">TTFB</h3>
+
+<p><a href="https://web.dev/ttfb/"><strong>TTFB(Time to First Byte)</strong></a> 即首字节时间。以下是网络请求阶段及其相关时序图。TTFB 测量 startTime 和 responseStart 之间经过的时间。</p>
+
+<p><img src="https://web-dev.imgix.net/image/jL3OLOhcWUQDnR4XjewLBx4e3PC3/ccT8ltSPrTri3tz7AA3h.png?auto=format&amp;w=1600" alt="TTFB" /></p>
+
+<p>要在 JavaScript 中测量 TTFB，您可以使用绘制计时 API。以下示例说明了如何创建一个 PerformanceObserver 来侦听名称为 navigation 的条目并记录在控制台中：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nx">PerformanceObserver</span><span class="p">((</span><span class="nx">entryList</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">pageNav</span><span class="p">]</span> <span class="o">=</span> <span class="nx">entryList</span><span class="p">.</span><span class="nx">getEntriesByType</span><span class="p">(</span><span class="dl">'</span><span class="s1">navigation</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`TTFB: </span><span class="p">${</span><span class="nx">pageNav</span><span class="p">.</span><span class="nx">responseStart</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">}).</span><span class="nx">observe</span><span class="p">({</span>
+  <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">navigation</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">buffered</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>如何改进 TTFB：</p>
+
+<ol>
+  <li>Hosting services with inadequate infrastructure to handle high traffic loads</li>
+  <li>Web servers with insufficient memory that can lead to thrashing</li>
+  <li>Unoptimized database tables</li>
+  <li>Suboptimal database server configuration</li>
+</ol>
+
+<h3 id="speed-index">Speed Index</h3>
+
+<p><strong>Speed Index</strong> 即首屏展现平均值，衡量内容在页面加载期间可视化显示的速度。PageSpeed Insights 使用以下分数对网站的首屏展现平均值进行排名并相应地对其进行颜色编码：</p>
+
+<ol>
+  <li>绿色（良好）— 0 到 3.4 秒</li>
+  <li>橙色（中等）— 3.4 到 5.8 秒</li>
+  <li>红色（慢） – 超过 5.8 秒</li>
+</ol>
+
+<p><img src="https://imgh.xieyonghui.com/images/progressive-rendering-20190331.png" alt="Speed Index" /></p>
+
+<p>如何改进 Speed Index：</p>
+
+<ol>
+  <li>减少渲染阻塞资源 - 如延迟脚本执行</li>
+  <li>减少网站主线程工作 - 如优化第三方脚本，极简化 JS</li>
+  <li>确保在加载字体时，字体能够正常显示 - 如<a href="https://web.dev/font-display/">预加载字体</a></li>
+</ol>
+
+<h2 id="什么是-prpl">什么是 PRPL</h2>
+
+<p><a href="https://web.dev/apply-instant-loading-with-prpl/"><strong>PRPL</strong></a> 是即时加载资源的一种策略：</p>
+
+<ul>
+  <li><strong>Push (or preload)</strong> the most important resources.</li>
+  <li><strong>Render</strong> the initial route as soon as possible.</li>
+  <li><strong>Pre-cache</strong> remaining assets.</li>
+  <li><strong>Lazy load</strong> other routes and non-critical assets.</li>
+</ul>
+
+<p>一、Preload critical resources</p>
+
+<p>关键字 preload 作为元素 &lt;link&gt; 的属性 rel 的值，代表需要浏览器预先获取和缓存对应资源。</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- The path to the resource in the href attribute. --&gt;</span>
+<span class="c">&lt;!-- The type of resource in the as attribute. --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"preload"</span> <span class="na">as=</span><span class="s">"style"</span> <span class="na">href=</span><span class="s">"css/style.css"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>二、Render the initial route as soon as possible</p>
+
+<p>我们需要减少 <strong>First Paint</strong>，即第一个像素渲染到屏幕上所用的时间。目前的方案比如有使用 async/defer 来推迟 js 脚本执行时间，内联首屏使用的关键 CSS，或者 SSR。</p>
+
+<p>三、Pre-cache assets</p>
+
+<p>可以尝试使用 Service Worker 或者一些第三方库 Workbox 来制定缓存策略。</p>
+
+<p><img src="https://web-dev.imgix.net/image/admin/xv1f7ZLKeBZD83Wcw6pd.png?auto=format&amp;w=1600" alt="service worker" /></p>
+
+<p>四、Lazy load</p>
+
+<p>拆分较大的 chunks，实现按需加载。如果网页上加载了许多图像，请在加载页面时推迟所有位于首屏下方或设备视口之外的图像。</p>
+
+<h2 id="什么是关键路径渲染">什么是关键路径渲染</h2>
+
+<h2 id="什么是长任务">什么是长任务</h2>
+
+<p>时间切片</p>
+
+<h2 id="performace-面板">performace 面板</h2>
+
+<h2 id="实验室工具--实测工具">实验室工具 &amp; 实测工具</h2>
+
+<p>实测工具：</p>
+
+<ol>
+  <li>Chrome <a href="https://developers.google.com/web/tools/chrome-user-experience-report">用户体验报告</a></li>
+  <li><a href="https://pagespeed.web.dev">PageSpeed Insights</a> 网页速度测量工具</li>
+  <li><a href="https://support.google.com/webmasters/answer/9205520">搜索控制台</a>（核心 Web 指标报告）</li>
+  <li><a href="https://github.com/GoogleChrome/web-vitals">web-vitals</a> JavaScript 库</li>
+</ol>
+
+<p>实验室工具：</p>
+
+<ol>
+  <li>Chrome <a href="https://developer.chrome.com/docs/devtools/">开发者工具</a></li>
+  <li><a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a></li>
+  <li><a href="https://webpagetest.org">WebPageTest</a> 网页性能测试工具</li>
+</ol>
+
+<h2 id="参考文档">参考文档</h2>
+
+<ol>
+  <li><a href="https://web.dev/i18n/zh/vitals/">web vitals</a> by Philip Walton</li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2021/12/29/cwv.html';
+        this.page.identifier = '/2021/12/29/cwv';
+        this.page.title = 'Core Web Vitals';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2021-12-29 11:10:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<script async src="/search/live2d/autoload.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
