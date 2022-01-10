@@ -933,7 +933,7 @@ if [[ $REPLY =~ ^[Yy]$ ]] && [[ ! $VERSION =~ '-' ]]; then
   PUBLISHARR=(${VERSION//./ })
 
   # patch, minor, major
-  PUBLISH_TYPE=
+  PUBLISH_TYPE=  
   i=0
   while [[ $PUBLISH_TYPE == "" ]]; do
     if [ ${PACKVERSIONARR[i]} -ne ${PUBLISHARR[i]} ]; then

@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="Core Web Vitals" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Core Web Vitals" />
-<meta property="og:description" content="Core Web Vitals" />
+<meta name="description" content="add performance panel" />
+<meta property="og:description" content="add performance panel" />
 <link rel="canonical" href="http://localhost:2333/2021/12/29/cwv.html" />
 <meta property="og:url" content="http://localhost:2333/2021/12/29/cwv.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-12-29T11:10:00+08:00" />
 <script type="application/ld+json">
-{"description":"Core Web Vitals","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/12/29/cwv.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/12/29/cwv.html","headline":"Core Web Vitals","dateModified":"2021-12-29T11:10:00+08:00","datePublished":"2021-12-29T11:10:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add performance panel","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/12/29/cwv.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/12/29/cwv.html","headline":"Core Web Vitals","dateModified":"2021-12-29T11:10:00+08:00","datePublished":"2021-12-29T11:10:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,10 +175,16 @@
                       发布时间：2021-12-29 11:10:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2022-01-10 17:07:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：add performance panel
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -559,13 +565,13 @@
 
 <p>三、Pre-cache assets</p>
 
-<p>可以尝试使用 Service Worker 或者一些第三方库 Workbox 来制定缓存策略。</p>
+<p>可以尝试使用 Service Worker 或者一些第三方库 Workbox 来制定缓存策略，可以不直接从服务器请求数据。</p>
 
-<p><img src="https://web-dev.imgix.net/image/admin/xv1f7ZLKeBZD83Wcw6pd.png?auto=format&amp;w=1600" alt="service worker" /></p>
+<!-- ![service worker](https://web-dev.imgix.net/image/admin/xv1f7ZLKeBZD83Wcw6pd.png?auto=format&w=1600) -->
 
 <p>四、Lazy load</p>
 
-<p>拆分较大的 chunks，实现按需加载。如果网页上加载了许多图像，请在加载页面时推迟所有位于首屏下方或设备视口之外的图像。</p>
+<p>拆分较大的 chunks，实现按需加载。包括图片懒加载。</p>
 
 <h2 id="什么是关键路径渲染">什么是关键路径渲染</h2>
 
@@ -574,6 +580,74 @@
 <p>时间切片</p>
 
 <h2 id="performace-面板">performace 面板</h2>
+
+<blockquote>
+  <p>详情可以查看<a href="https://developer.chrome.com/docs/devtools/evaluate-performance/">官方文档</a> 👈</p>
+</blockquote>
+
+<p>我们通过 Chrome DevTools 录制完后，会得到下面的面板数据：</p>
+
+<p><img src="http://localhost:2333/style/images/smms/cwv-performance.png" alt="performance" /></p>
+
+<h3 id="时间线面板">时间线面板</h3>
+
+<ol>
+  <li>多条对应的竖线代表着各项指标触发的时间，FP、FCP、DCL、onload 和 LCP，相同颜色的竖线例如 LCP 可能会多次触发，是一个计算的值，以最后一次的为准</li>
+  <li>红色部分代表帧率过低，多数由 JS 执行长任务导致 iframe 以及 services/web worker 的长任务也有可能导致 FPS 下降</li>
+  <li>黄色部分代表 JS 执行，紫色部分代表页面渲染</li>
+  <li>空白部分代表页面空闲</li>
+  <li>灰色斜杠部分代表 JS 主线程空闲，其它线程正在工作，此时可响应用户操作</li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/smms/cwv-performance-timeline-panel.png" alt="performance timeline panel" /></p>
+
+<h3 id="网络请求面板">网络请求面板</h3>
+
+<p>网络请求面板记录了整个页面运行期间发出的所有请求:</p>
+
+<ol>
+  <li>蓝色代表 HTML 请求</li>
+  <li>黄色代表 JS 请求</li>
+  <li>绿色代表图片请求</li>
+  <li>紫色代表 CSS 请求</li>
+  <li>灰色代表 AJAX 请求</li>
+  <li>深灰色代表字体文件请求</li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/smms/cwv-performance-network-panel.png" alt="performance network panel" /></p>
+
+<p>所有的请求都可能出现以下图中 4 种情况：</p>
+
+<ol>
+  <li>请求前空白阶段，在此阶段 JS 代码执行已经发出了 AJAX 请求，由于各种原因导致请求会延迟，如请求过多未推出浏览器请求队列（Queueing），网络阻塞（Stalled），DNS 查询（DNS Lookup），与服务器进行 TCP 连接（Initial connection），HTTPS 验证（SSL）</li>
+  <li>此阶段为 TTFB 耗时</li>
+  <li>从 2 阶段开始到 3 阶段开头，是浏览器接收到服务器发回来的第一个字段到接收结束的耗时。此阶段如果是 HTML，即使未完全接收整个 HTML，浏览器也会进行流式解析，执行 JS，CSS 并且下载页面需要的资源</li>
+  <li>不同的资源在第 4 阶段有些细微的不同
+    <ol>
+      <li>Javascript，Img，CSS：主线程被占用，无法处理资源加载完毕时的 Finish Loading 事件，导致会多出这段时间来等待主线程处理</li>
+      <li>ajax: 同样的主线程被占用，但是 ajax 的第四段会包含 4 处理此 ajax response 的 JS 代码执行时间，所以如果在 ajax 回调里处理大量数据时，如 commit Vuex，由于依赖较多，Vue 的 Get 耗时以及后续的 patchVNode 可能会形成长任务，影响 TTI，TBT 指标</li>
+    </ol>
+  </li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/smms/cwv-performance-network.png" alt="performance network" /></p>
+
+<h3 id="线程面板">线程面板</h3>
+
+<p>线程面板包含页面运行期间，浏览器在渲染执行页面的所有任务，例如光栅（Raster）线程，合成（Compositor）线程，Service Worker 线程等等，一般来说，我们只需要关注 Main 线程，来分析页面就可以了。主线程呈现形式为火焰图，记录浏览器运行时的堆栈信息，栈底在上，栈顶在下，可以详细的看到各个 Task 的执行顺序以及时间，配合时间线面板和请求面板可以分析代码运行时可能存在的问题:</p>
+
+<p><img src="http://localhost:2333/style/images/smms/cwv-performance-thread-panel.png" alt="performance thread panel" /></p>
+
+<p>其他的面包还包含：</p>
+
+<ol>
+  <li>Summary - 显示线程面板中选定内容的详情，包含任务总耗时，任务时间占用情况环形图</li>
+  <li>Bottom-Up - 通过点击 self time 进行排序可以查看花费了最多时间的任务，Activity 下为堆栈信</li>
+  <li>Call Tree - 按执行量最多的任务进行显示，可以理解为默认 Total Time 排序</li>
+  <li>Event Log - 在 Activity 单元格中按执行顺序显示</li>
+</ol>
+
+<p><img src="http://localhost:2333/style/images/smms/cwv-performance-summary-panel.png" alt="performance panel" /></p>
 
 <h2 id="实验室工具--实测工具">实验室工具 &amp; 实测工具</h2>
 
