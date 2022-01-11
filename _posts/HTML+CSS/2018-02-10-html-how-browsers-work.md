@@ -15,7 +15,7 @@ tags:
 
 ## 渲染步骤
 
-根据 Webkit 渲染引擎工作流可总结以下五个步骤:
+根据 Webkit 渲染引擎工作流可总结以下五个步骤，即**关键渲染路径**:
 
 1. HTML Parser 将 HTML 解析成 **DOM**;
 2. CSS Parser 将 CSS 解析成 **CSSOM**;
