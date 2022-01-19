@@ -174,6 +174,8 @@ if (shell.exec('git commit -am "Auto-commit"').code !== 0) {
 }
 ```
 
+> 现在 google 又出了个 [zx](https://github.com/google/zx) 👈
+
 ### async
 
 **async** 库的所有方法可以从[官方这里查看](https://caolan.github.io/async/docs.html#auto)，这里介绍三个比较常用的方法:
