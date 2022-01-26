@@ -2,7 +2,6 @@
 layout: blog
 front: true
 comments: True
-flag: NPM
 background: green
 category: 前端
 title: 记一些单元测试
