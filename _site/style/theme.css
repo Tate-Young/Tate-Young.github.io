@@ -1797,6 +1797,10 @@ pre code::after {
     white-space: nowrap;
 }
 
+#directory ul li a:hover {
+  color: var(--red-font) !important;
+}
+
 #directory ul li ul li a {
     margin-left: 20px;
     white-space: nowrap;
@@ -1805,6 +1809,11 @@ pre code::after {
 
 #directory ul li ul li ul li a {
     margin-left: 30px;
+    color: #5f5f5f;
+}
+
+#directory ul li ul li ul li ul li a {
+    margin-left: 40px;
     color: #5f5f5f;
 }
 

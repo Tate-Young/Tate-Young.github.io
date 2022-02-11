@@ -5,15 +5,86 @@ comments: True
 flag: Node
 background: gray
 category: 后端
-title: Mongoose 驱动库
+title: ORM 框架
 date: 2018-06-03 14:39:00 GMT+0800 (CST)
+update: 2022-02-11 14:23:00 GMT+0800 (CST)
+description: add ORM & ODM
 background-image: /style/images/smms/node.jpg
 tags:
 - Node
 ---
 # {{ page.title }}
 
-## 连接 Connection
+## 什么是 ORM 和 ODM
+
+**ORM(Object-Relational Mapper)** 将对象映射到关系数据库表，如 MySql、Oracle 等。
+
+**ODM(Object-Document Mapper)** 则是将对象映射到文档，如 MongoDB。
+
+## 常用的 ORM/ODM 框架对比
+
+一、[**Mongoose**](https://mongoosejs.com/)
+
+目前比较常见的 MongoDB ODM 框架：
+
+```Text
+官网：https://mongoosejs.com/
+数据库：仅支持 MongoDB
+编程风格：
+支持 Promise/async/await
+基于 JS 内置类型的 Schema 声明
+基于链式构造的 Query Builder 查询
+周边技术：[Typegoose](https://www.npmjs.com/package/typegoose) 可以增加 TypeScript 支持，支持使用 Reflect Metadata 自动映射 TS 类型标注
+热度：周频持续更新，NPM 周下载 70W+
+```
+
+二、[**Sequelize**](http://docs.sequelizejs.com/)
+
+较老牌的 Node.js ORM 框架，相对简易：
+
+```text
+官网：http://docs.sequelizejs.com/
+数据库：支持关系型数据库（MySQL/MSSQL/PostgreSQL/SQLite）
+编程风格：
+支持 Promise/async/await
+基于自带的一套类型枚举声明
+基于 JSON 对象的查询方式
+基于自带的一套操作符描述
+热度：月频持续更新，NPM 周下载 20W+
+```
+
+三、[**Bookshelf**](http://bookshelfjs.org/)
+
+Sequelize 之后出现的 ORM 框架，风格与 Sequelize 较相似：
+
+```text
+官网：http://bookshelfjs.org/
+数据库：支持关系型数据库
+编程风格：
+基本上是 Eloquent ORM 的 JS 版本
+支持 Promise/async/await
+支持基于链式构造的 Query Builder 查询
+热度：近半年未更新，NPM 周下载 1.7W
+```
+
+四、[**TypeORM**](https://github.com/typeorm/typeorm/)
+
+基于 Decorator 的 ORM 框架，对 TypeScript 支持较好，同时支持在 JavaScript 中通过手动声明使用，以及 JSON 方式的 Entity 配置声明：
+
+```text
+官网：https://github.com/typeorm/typeorm/
+数据库：支持关系型数据库，Beta 支持 MongoDB
+编程风格：
+基本上是 Hibernate 的 JS 版本
+支持 Promise/async/await
+支持基于链式构造的 Query Builder 查询
+支持 CLI 工具
+热度：周频持续更新，NPM 周下载 2.8W
+```
+
+## Mongoose 驱动器
+
+### 连接 Connection
 
 ```JS
 mongoose.connect('mongodb://localhost/myblog');
@@ -25,7 +96,7 @@ mongoose.connect('mongodb://localhost/myblog');
 mongoose.connect(uri, options);
 ```
 
-## 模式 Schema
+### 模式 Schema
 
 Mongoose 的一切都源于 Schema。每个 schema 映射到 [MongoDB](https://docs.mongodb.com/manual/crud/) 的**集合(collection)**和定义该集合中文档的形式。
 
@@ -59,7 +130,7 @@ schema.set(option, value);
 
 > 更多 schemaTypes 可[查询这里](http://mongoosejs.com/docs/schematypes.html) 👈
 
-## 模型 Model
+### 模型 Model
 
 schema 不具备操作数据库的能力，必须通过它创建模型:
 
@@ -67,7 +138,7 @@ schema 不具备操作数据库的能力，必须通过它创建模型:
 var Blog = mongoose.model('Blog', blogSchema);
 ```
 
-### 实例方法
+#### 实例方法
 
 模型的实例是**文档(Documents)**，具有很多内置的方法，具体可[查看这里](http://mongoosejs.com/docs/api.html#document-js)，也可以自定义:
 
@@ -90,7 +161,7 @@ dog.findSimilarTypes(function(err, dogs) {
 });
 ```
 
-### 静态方法
+#### 静态方法
 
 ```JS
 // assign a function to the "statics" object of our animalSchema
@@ -104,7 +175,7 @@ Animal.findByName('fido', function(err, animals) {
 });
 ```
 
-### 虚拟属性
+#### 虚拟属性
 
 虚拟属性是文档属性，可以获取和设置但不保存到 MongoDB，用于格式化或组合字段。举个栗子:
 
@@ -153,7 +224,7 @@ console.log(mad.name.first); // Breaking
 console.log(mad.name.last);  // Bad
 ```
 
-### 构建文档
+#### 构建文档
 
 创建文档并保存到数据库的两种方式，删除则都是 **remove** 方法:
 
@@ -174,7 +245,7 @@ Tank.create({ size: 'small' }, function(err, small) {
 })
 ```
 
-## 查询 Queries
+### 查询 Queries
 
 查询的 API 可[参考这里](https://mongodb.github.io/node-mongodb-native/3.0/api/Collection.html)。
 
@@ -234,7 +305,7 @@ Person.
   exec(callback);
 ```
 
-## 验证 Validation
+### 验证 Validation
 
 验证是在 schemaType 中定义的中间件，常用的一些内置验证器有:
 
@@ -307,7 +378,7 @@ user.phone = '201-555-0123';
 // Validation succeeds! Phone number is defined
 ```
 
-## 中间件 Middleware
+### 中间件 Middleware
 
 中间件(也称为前置和后置钩子)是异步函数执行过程中传递的控制的函数。支持的主要有两种:
 
@@ -343,11 +414,11 @@ schema.pre('save', true, function(next, done) {
 });
 ```
 
-## 联表 Population
+### 联表 Population
 
-## 索引 Index
+### 索引 Index
 
-## 插件 Plugins
+### 插件 Plugins
 
 > 未完待续
 
