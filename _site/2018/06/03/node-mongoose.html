@@ -223,6 +223,49 @@
 
 <p><strong>ODM(Object-Document Mapper)</strong> 则是将对象映射到文档，如 MongoDB。</p>
 
+<h2 id="为什么要用-orm">为什么要用 ORM</h2>
+
+<p>在我们对数据库进行操作的时候，如关系型数据库，总是在代码中去编写 SQL，ORM 提供给我们另外一种选择，即通过面向对象编程来操作数据库。举例来说，下面是一行 SQL 语句：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT <span class="nb">id</span>, first_name, last_name, phone, birth_date, sex
+ FROM persons 
+ WHERE <span class="nb">id</span> <span class="o">=</span> 10
+</code></pre></div></div>
+
+<p>程序直接运行 SQL，操作数据库的写法如下：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>res <span class="o">=</span> db.execSql<span class="o">(</span>sql<span class="o">)</span><span class="p">;</span>
+name <span class="o">=</span> res[0][<span class="s2">"FIRST_NAME"</span><span class="o">]</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>改成 ORM 的写法示例如下：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p <span class="o">=</span> Person.get<span class="o">(</span>10<span class="o">)</span><span class="p">;</span>
+name <span class="o">=</span> p.first_name<span class="p">;</span>
+</code></pre></div></div>
+
+<p>一比较就可以发现，ORM 使用对象封装了数据库操作，因此可以不碰 SQL 语言，不用关心底层数据库。总结起来，ORM 有下面这些优点：</p>
+
+<ol>
+  <li>数据模型都在一个地方定义，更容易更新和维护，也利于重用代码。</li>
+  <li>ORM 有现成的工具，很多功能都可以自动完成，比如数据消毒、预处理、事务等等。</li>
+  <li>它迫使你使用 MVC 架构，ORM 就是天然的 Model，最终使代码更清晰。</li>
+  <li>基于 ORM 的业务代码比较简单，代码量少，语义性好，容易理解。</li>
+  <li>你不必编写性能不佳的 SQL。</li>
+</ol>
+
+<p>但是，ORM 也有很突出的缺点：</p>
+
+<ol>
+  <li>ORM 库不是轻量级工具，需要花很多精力学习和设置。</li>
+  <li>对于复杂的查询，ORM 要么是无法表达，要么是性能不如原生的 SQL。</li>
+  <li>ORM 抽象掉了数据库层，开发者无法了解底层的数据库操作，也无法定制一些特殊的 SQL。</li>
+</ol>
+
+<blockquote>
+  <p>摘自阮一峰 <a href="http://www.ruanyifeng.com/blog/2019/02/orm-tutorial.html">ORM 实例教程</a> 👈</p>
+</blockquote>
+
 <h2 id="常用的-ormodm-框架对比">常用的 ORM/ODM 框架对比</h2>
 
 <p>一、<a href="https://mongoosejs.com/"><strong>Mongoose</strong></a></p>
