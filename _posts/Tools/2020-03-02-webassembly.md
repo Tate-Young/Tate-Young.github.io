@@ -7,8 +7,8 @@ background: blue
 category: 前端
 title:  WebAssembly 与 JIT
 date:   2020-03-02 17:02:00 GMT+0800 (CST)
-update: 2022-02-19 15:57:00 GMT+0800 (CST)
-description: add JIT & js engine
+update: 2022-02-19 17:15:00 GMT+0800 (CST)
+description: add JS Runtime
 background-image: /style/images/smms/webassembly.png
 tags:
 - JavaScript
@@ -141,6 +141,12 @@ The optimizing compiler uses the information the monitor has gathered by watchin
 3. memory used to store baseline and optimized versions of a function
 
 > 这里有很大改进的空间：可以消除开销，使性能更可预测。 这就是上述 WebAssembly 所做的事情之一。细节请[参考这里](https://hacks.mozilla.org/2017/02/a-crash-course-in-assembly/) 👈
+
+## JS Runtime
+
+JS 在浏览器中可以调用浏览器提供的 API，如 window 对象，DOM 相关 API 等。这些接口并不是由 V8 引擎提供的，是存在与浏览器当中的。因此简单来说，对于这些相关的外部接口，可以在运行时供 JS 调用，以及 JS 的事件循环 (Event Loop) 和事件队列 (Callback Queue)，把这些称为 **RunTime**。有些地方也把 JS 所用到的 core lib 核心库也看作 RunTime 的一部分。
+
+![runtime](https://cdn-images-1.medium.com/max/1600/1*4lHHyfEhVB0LnQ3HlhSs8g.png)
 
 ## JS 引擎
 

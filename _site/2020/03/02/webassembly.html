@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="WebAssembly 与 JIT" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="add JIT &amp; js engine" />
-<meta property="og:description" content="add JIT &amp; js engine" />
+<meta name="description" content="add JS Runtime" />
+<meta property="og:description" content="add JS Runtime" />
 <link rel="canonical" href="http://localhost:2333/2020/03/02/webassembly.html" />
 <meta property="og:url" content="http://localhost:2333/2020/03/02/webassembly.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-03-02T17:02:00+08:00" />
 <script type="application/ld+json">
-{"description":"add JIT &amp; js engine","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/03/02/webassembly.html"},"@type":"BlogPosting","url":"http://localhost:2333/2020/03/02/webassembly.html","headline":"WebAssembly 与 JIT","dateModified":"2020-03-02T17:02:00+08:00","datePublished":"2020-03-02T17:02:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add JS Runtime","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/03/02/webassembly.html"},"@type":"BlogPosting","url":"http://localhost:2333/2020/03/02/webassembly.html","headline":"WebAssembly 与 JIT","dateModified":"2020-03-02T17:02:00+08:00","datePublished":"2020-03-02T17:02:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,7 +175,7 @@
                       发布时间：2020-03-02 17:02:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2022-02-19 15:57:00
+                        修改时间：2022-02-19 17:15:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -183,7 +183,7 @@
                 </div>
                 
                   <div role='update-description' class="post-data">
-                    修改内容：add JIT & js engine
+                    修改内容：add JS Runtime
                   </div>
                 
                 <div class="post-tags">
@@ -368,6 +368,12 @@
 <blockquote>
   <p>这里有很大改进的空间：可以消除开销，使性能更可预测。 这就是上述 WebAssembly 所做的事情之一。细节请<a href="https://hacks.mozilla.org/2017/02/a-crash-course-in-assembly/">参考这里</a> 👈</p>
 </blockquote>
+
+<h2 id="js-runtime">JS Runtime</h2>
+
+<p>JS 在浏览器中可以调用浏览器提供的 API，如 window 对象，DOM 相关 API 等。这些接口并不是由 V8 引擎提供的，是存在与浏览器当中的。因此简单来说，对于这些相关的外部接口，可以在运行时供 JS 调用，以及 JS 的事件循环 (Event Loop) 和事件队列 (Callback Queue)，把这些称为 <strong>RunTime</strong>。有些地方也把 JS 所用到的 core lib 核心库也看作 RunTime 的一部分。</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*4lHHyfEhVB0LnQ3HlhSs8g.png" alt="runtime" /></p>
 
 <h2 id="js-引擎">JS 引擎</h2>
 
