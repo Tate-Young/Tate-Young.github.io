@@ -2,20 +2,20 @@
 <!DOCTYPE>
 <html lang="zh-cn" data-scribe-reduced-action-queue="true">
 <head>
-    <meta content='WebAssembly - Tate & Snow' name='title' />
-    <meta content='WebAssembly - Tate & Snow' name='og:title' />
+    <meta content='WebAssembly 与 JIT - Tate & Snow' name='title' />
+    <meta content='WebAssembly 与 JIT - Tate & Snow' name='og:title' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-    <title>WebAssembly - Tate & Snow</title>
+    <title>WebAssembly 与 JIT - Tate & Snow</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>WebAssembly - Tate & Snow</title>
+<title>WebAssembly 与 JIT - Tate & Snow</title>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WebAssembly - Tate & Snow">
-<meta name="twitter:keywords" content="WebAssembly - Tate & Snow" property='og:description' />
+<meta name="twitter:title" content="WebAssembly 与 JIT - Tate & Snow">
+<meta name="twitter:keywords" content="WebAssembly 与 JIT - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
-<meta property="og:title" content="WebAssembly - Tate & Snow">
-<meta name="og:keywords" content="WebAssembly - Tate & Snow|WebAssembly什么是 WebAssemblyTLDR - 参考 MDN，我们得知 WebAssembly 是一种新的编码方式，可以在现代浏览器中运行。它是一种低级的类汇编语言，具有紧凑的二进制格式，可以接近原生的性能运行，并为..."
+<meta property="og:title" content="WebAssembly 与 JIT - Tate & Snow">
+<meta name="og:keywords" content="WebAssembly 与 JIT - Tate & Snow|WebAssembly 与 JIT什么是 WebAssemblyTLDR - 参考 MDN，我们得知 WebAssembly 是一种新的编码方式，可以在现代浏览器中运行。它是一种低级的类汇编语言，具有紧凑的二进制格式，可以接近原生的性..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="WebAssembly什么是 WebAssemblyTLDR - 参考 MDN，我们得知 WebAssembly 是一种新的编码方式，可以在现代浏览器中运行。它是一种低级的类汇编语言，具有紧凑的二进制格式，可以接近原生的性能运行，并为..." property='og:description'
+<meta name="keywords" content="WebAssembly 与 JIT什么是 WebAssemblyTLDR - 参考 MDN，我们得知 WebAssembly 是一种新的编码方式，可以在现代浏览器中运行。它是一种低级的类汇编语言，具有紧凑的二进制格式，可以接近原生的性..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:2333/2020/03/02/webassembly.html' property='og:url' />
-<meta content="http://localhost:2333/2020/03/02/webassembly.html|WebAssembly什么是 WebAssemblyTLDR - 参考 MDN，我们得知 WebAssembly 是一种新的编码方式，可以在现代浏览器中运行。它是一种低级的类汇编语言，具有紧凑的二进制格式，可以接近原生的性能运行，并为..." property='og:description'
+<meta content="http://localhost:2333/2020/03/02/webassembly.html|WebAssembly 与 JIT什么是 WebAssemblyTLDR - 参考 MDN，我们得知 WebAssembly 是一种新的编码方式，可以在现代浏览器中运行。它是一种低级的类汇编语言，具有紧凑的二进制格式，可以接近原生的性..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -57,19 +57,19 @@
 </script>
 <meta content="" property="fb:app_id" />
 <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>WebAssembly | Tate &amp; Snow</title>
+<title>WebAssembly 与 JIT | Tate &amp; Snow</title>
 <meta name="generator" content="Jekyll v3.8.7" />
-<meta property="og:title" content="WebAssembly" />
+<meta property="og:title" content="WebAssembly 与 JIT" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="WebAssembly" />
-<meta property="og:description" content="WebAssembly" />
+<meta name="description" content="add JIT &amp; js engine" />
+<meta property="og:description" content="add JIT &amp; js engine" />
 <link rel="canonical" href="http://localhost:2333/2020/03/02/webassembly.html" />
 <meta property="og:url" content="http://localhost:2333/2020/03/02/webassembly.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-03-02T17:02:00+08:00" />
 <script type="application/ld+json">
-{"description":"WebAssembly","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/03/02/webassembly.html"},"@type":"BlogPosting","url":"http://localhost:2333/2020/03/02/webassembly.html","headline":"WebAssembly","dateModified":"2020-03-02T17:02:00+08:00","datePublished":"2020-03-02T17:02:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add JIT &amp; js engine","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2020/03/02/webassembly.html"},"@type":"BlogPosting","url":"http://localhost:2333/2020/03/02/webassembly.html","headline":"WebAssembly 与 JIT","dateModified":"2020-03-02T17:02:00+08:00","datePublished":"2020-03-02T17:02:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -163,22 +163,28 @@
             </div>
         </div>
     </header>
-    <a href="#header" class="back-to-top" onclick="onClickTop('WebAssembly')">⤴Top⤴</a>
+    <a href="#header" class="back-to-top" onclick="onClickTop('WebAssembly 与 JIT')">⤴Top⤴</a>
     <div class="post-header-thumb bg-white}">
         <div class="post-header-thumb-op"></div>
         <div class="post-header-thumb">
             <div class="post-header-thumb-container">
                 <h1 class="post-title" itemprop="name headline">
-                    WebAssembly</h1>
+                    WebAssembly 与 JIT</h1>
                 <div class="post-data">
                     <time datetime="2020-03-02 17:02:00" itemprop="datePublished">
                       发布时间：2020-03-02 17:02:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2022-02-19 15:57:00
+                      
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：add JIT & js engine
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -195,7 +201,7 @@
     <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
-                WebAssembly</h1>
+                WebAssembly 与 JIT</h1>
             <div class="post-data">
                 <time datetime="2020-03-02 17:02:00" itemprop="datePublished">2020-03-02 17:02:00</time>
             </div>
@@ -209,17 +215,15 @@
                     </a>
                    
             </p>
-            <h1 id="webassembly">WebAssembly</h1>
+            <h1 id="webassembly-与-jit">WebAssembly 与 JIT</h1>
 
 <h2 id="什么是-webassembly">什么是 WebAssembly</h2>
 
 <p>TLDR - 参考 MDN，我们得知 <a href="https://developer.mozilla.org/zh-CN/docs/WebAssembly"><strong>WebAssembly</strong></a> <strong>是一种新的编码方式</strong>，可以在现代浏览器中运行。它是一种低级的类汇编语言，具有紧凑的二进制格式，可以接近原生的性能运行，并为诸如 C/C++ 等语言提供一个编译目标，以便它们可以在 Web 上运行。它也被设计为可以与 JavaScript 共存，允许两者一起工作。</p>
 
-<h2 id="asmjs--emscripten">asm.js / Emscripten</h2>
+<h3 id="asmjs--emscripten">asm.js / Emscripten</h3>
 
 <p>那么有同学就问了，为啥要编译 C/C++ 到网页上运行呢？我们知道 Web 技术发展迅猛，但是针对一些游戏或者使用该语言开发的应用，我们仍然没有办法让他们在浏览器上高效地运行。因此我们需要将编程语言转换为 JavaScript。<a href="https://github.com/kripken?tab=repositories">Alon Zakai</a> 大佬为此专门做了一个编译器项目 <a href="https://emscripten.org"><strong>Emscripten</strong></a>。这个编译器可以将 C/C++ 代码编译成一种 JavaScript 的变体，即 <a href="http://asmjs.org"><strong>asm.js</strong></a>。</p>
-
-<p><img src="https://emscripten.org/_images/EmscriptenToolchain.png" alt="Emscripten toolchain" /></p>
 
 <p>C/C++ 编译成 JS 有两个最大的难点，即:</p>
 
@@ -234,13 +238,13 @@
   <p>This specification defines asm.js, a strict subset of JavaScript that can be used as a low-level, efficient target language for compilers. This sublanguage effectively describes a sandboxed virtual machine for memory-unsafe languages like C or C++. A combination of static and dynamic validation allows JavaScript engines to employ an ahead-of-time (AOT) optimizing compilation strategy for valid asm.js code.</p>
 </blockquote>
 
-<h2 id="webassembly-1">WebAssembly</h2>
+<h3 id="webassembly">WebAssembly</h3>
 
 <p>那还有原因就是 JavaScript 自身性能瓶颈问题，我们知道编程语言与计算机的交流必须依靠“翻译官”，让计算机明白你要干嘛。而这个“翻译官”就是解释器或编译器:</p>
 
 <ul>
-  <li><strong>解释器</strong> - 一行行读取源代码，并且直接生成指令让计算机硬件执行，不会输出另外一种代码。相比下效率会较低</li>
-  <li><strong>编译器</strong> - 执行前翻译好，将源代码转换成其他的更低级的代码(例如二进制码、机器码)，但是不会执行它。执行的效率会更加高，预编译会消耗一些时间。</li>
+  <li><strong>解释器(Interpreter)</strong> - 一行行读取源代码，并且直接生成指令让计算机硬件执行，不会输出另外一种代码。相比下效率会较低</li>
+  <li><strong>编译器(Compiler)</strong> - 执行前翻译好，将源代码转换成其他的更低级的代码(例如二进制码、机器码)，但是不会执行它。执行的效率会更加高，预编译会消耗一些时间。</li>
 </ul>
 
 <blockquote>
@@ -248,6 +252,8 @@
 </blockquote>
 
 <p>而浏览器最开始使用的就是 JavaScript 解释器，在 2008 年，<strong>即时编译器(JITs)</strong> 一经推出，JavaScript 运行速度蹭蹭上涨，随着性能的改进，我们可以运用 JavaScript 做更多的事情，比如 Electron 构建跨平台应用程序等。可想而知，随着 WebAssembly 的盛行，Web 技术又将迎来一场革新，我们拭目以待。</p>
+
+<p><img src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/01-02-perf_graph10.png" alt="jits" /></p>
 
 <blockquote>
   <p>有的小伙伴可能会问了，有了 JIT，JS 还算是解释型语言吗？这里 JIT 其实只是在执行前进行编译，并没有去转换为更低级的代码</p>
@@ -275,8 +281,6 @@
 
 <p>下图是 Unity WebGL 使用 WebAssembly 和 asm.js 的评分，可以参考一下，更多对比可以<a href="https://blogs.unity3d.com/2018/09/17/webassembly-load-times-and-performance/">参考这里</a> 👈:</p>
 
-<p><img src="https://blogs.unity3d.com/wp-content/uploads/2018/09/image3-2.png" alt="WebAssembly BenchMark" /></p>
-
 <p>目前常用的能支持编译成 WebAssembly 的工具有:</p>
 
 <ul>
@@ -293,12 +297,191 @@
   <p>具体实操的话可以参考下官网的<a href="https://www.wasm.com.cn/getting-started/developers-guide/">开发者引导</a> 👈</p>
 </blockquote>
 
+<h2 id="jit">JIT</h2>
+
+<p>上面已经提到，<strong>JIT(just-in-time)</strong> 的加入使得 JS 运行速度有着质的飞跃。那么 JIT 是如何工作的呢？简单来说，浏览器在 JavaScript engine 中加入了一个 monitor，用来观察运行的代码。并记录下每段代码运行的次数和代码中的变量的类型。以下面这个方法为例子：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">arraySum</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="一warm--hot">一、warm / hot</h3>
+
+<p>先简单的使用解释器执行，当某一行代码被执行了几次，这行代码会被打上 <strong>warm</strong> 的标签；当某一行代码被执行了很多次，这行代码会被打上 <strong>hot</strong> 的标签：</p>
+
+<p><img src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-04-jit02.png" alt="jit - 1" /></p>
+
+<h3 id="二baseline-compiler---warm">二、Baseline compiler - warm</h3>
+
+<p>被打上 warm 标签的代码会被传给 <strong>Baseline Compiler</strong> 编译且储存，同时按照行数 (Line number) 和变量类型 (Variable type) 被索引（为什么会引入变量类型做索引很重要，后面会讲）。当发现执行的代码命中索引，会直接取出编译后的代码执行，从而不需要重复编译已经编译过的代码。</p>
+
+<p><img src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-05-jit06.png" alt="jit - 2" /></p>
+
+<h3 id="三optimizing-compiler---hot">三、Optimizing compiler - hot</h3>
+
+<p>被打上 hot 标签的代码会被传给 <strong>Optimizing compiler</strong>，这里会对这部分带码做更优化的编译，执行速度会更快。但只能用概率模型做一些合理的 ”<strong>假设 (Assumptions)</strong>“。优化的算法有很多，这里只提到其中一种 - <strong>type specialization</strong>。</p>
+
+<p><img src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-06-jit09.png" alt="jit - 3" /></p>
+
+<h3 id="type-specialization">Type Specialization</h3>
+
+<p>我们上面的循环中的代码 <code class="highlighter-rouge">sum += arr[i]</code>，尽管这里只是简单的 + 运算和赋值，但是因为 JavaScript 的动态类型 (Dynamic typing)，对应的编译结果有很多种可能（即动态类型的缺点）。下面的图可以看出，这么简单的一行代码对应有 2^4 = 16 种可能的编译结果：</p>
+
+<p><img src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-08-decision_tree01.png" alt="jit - 4" /></p>
+
+<p>前面第二步的 Baseline compiler 做的就是这件事，所以上面说编译后的代码需要使用 line number 和 variable type 一起做索引，因为不同的 variable type 对应不同的编译结果。如果代码是 “warm” 的，JIT 的任务也就到此为止，后面每次执行的时候，需要先判断类型，再使用对应类型的编译结果就好。</p>
+
+<p><img src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-09-jit_loop02.png" alt="jit - 5" /></p>
+
+<p>然而在每一次 loop 中如果能跳过上述那些询问的阶段岂不是更好，所以在 optimizing compiler 阶段，编译会做一些优化，即把类型检查提前到 loop 前：</p>
+
+<p><img src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2017/02/02-10-jit_loop02.png" alt="jit - 6" /></p>
+
+<blockquote>
+  <p>Some JITs optimize this even further. For example, in Firefox there’s a special classification for arrays that only contain integers. If arr is one of these arrays, then the JIT doesn’t need to check if arr[i] is an integer. This means that the JIT can do all of the type checks before it enters the loop.</p>
+</blockquote>
+
+<h3 id="反优化---deoptimization">反优化 - Deoptimization</h3>
+
+<p>通过上面过程我们可以看到，hot 代码实际上在执行前会做类型检查，看假设是否成立，如果不成立执行就会被打回 interpreter 或者 baseline compiler 的版本，这个操作叫做 “<strong>反优化 (deoptimization or bailing out)</strong>“。可以看出，只要假设的成功率足够高，那么代码的执行速度就会快。但是如果假设的成功率很低，那么会导致比没有任何优化的时候还要慢（因为要经历 optimize =&gt; deoptimize 的过程）。这里就引申出两个问题:</p>
+
+<p>一、如何做合理的假设？</p>
+
+<p>The optimizing compiler uses the information the monitor has gathered by watching code execution to make these judgments. If something has been true for all previous passes through a loop, it assumes it will continue to be true.</p>
+
+<p>二、假设失败率很高的时候怎么处理？</p>
+
+<p>大多数浏览器会加入 optimization/deoptimization 循环的限制，比如 JIT 假设 10 次还不成功的话，则会终止尝试。</p>
+
+<p>我们从中可以看到，为了让 js 执行速度更快，JIT 在运行时增加了不少的开销：</p>
+
+<ol>
+  <li>optimization and deoptimization</li>
+  <li>memory used for the monitor’s bookkeeping and recovery information for when bailouts happen</li>
+  <li>memory used to store baseline and optimized versions of a function</li>
+</ol>
+
+<blockquote>
+  <p>这里有很大改进的空间：可以消除开销，使性能更可预测。 这就是上述 WebAssembly 所做的事情之一。细节请<a href="https://hacks.mozilla.org/2017/02/a-crash-course-in-assembly/">参考这里</a> 👈</p>
+</blockquote>
+
+<h2 id="js-引擎">JS 引擎</h2>
+
+<blockquote>
+  <p>本节<a href="https://jishuin.proginn.com/p/763bfbd3c4e7">摘自这里</a> 👈</p>
+</blockquote>
+
+<p>app 原生语言在开发效率上存在一定不足，并且从 APP 版本更新到应用市场审核发布，再到用户下载更新，总会存在一定的时间差，这样就导致新的功能无法及时覆盖全量用户，也可能存在一些新旧版本兼容问题。</p>
+
+<p>为了解决这个问题，一般会引入脚本语言来提速 APP 的研发流程。在移动端应用比较广泛的脚本语言有 Lua 和 JavaScript，前者在游戏领域用的比较多，后者在应用领域用的比较多。我们从这个角度来分析下目前 JS 引擎的一个选用情况。</p>
+
+<p>JavaScript 作为世界上最热门的脚本语言，有着非常多的引擎实现：有 Apple 御用的 JavaScriptCore，有性能最强劲的 V8，还有最近热度很高的 QuickJS …… 如何从这些 JS 引擎里选出最适合的？考量点如下：</p>
+
+<ol>
+  <li>性能 - 越快越好</li>
+  <li>体积 - JS 引擎会增加一定的包体积</li>
+  <li>内存占用 - 内存占用越少越好</li>
+  <li>JavaScript 语法支持程度 - 支持的新语法越多越好</li>
+  <li>调试的便捷性 - 是否直接支持 debug？还是需要自己编译实现调试工具链</li>
+  <li>应用市场平台规范 - 主要是 iOS 平台，平台禁止应用集成带 JIT 功能的虚拟机</li>
+</ol>
+
+<p>比如说开启 JIT 的 V8 引擎，性能肯定是最好的，但它引擎体积就很大，内存占用也很高；在包体积上很占优势的 QuickJS，由于没有 JIT 加持，和有 JIT 的引擎比起来平均会有 5-10 倍的性能差距。</p>
+
+<h3 id="javascriptcore">JavaScriptCore</h3>
+
+<p><strong>JavaScriptCore</strong> 是 WebKit 默认的内嵌 JS 引擎，基本垄断了 iOS 平台的 JS 引擎份额。很多人不知道 JSC 的 JIT 功能其实比 V8 还要早，放在十几年前是最好的 JS 引擎，只不过后来被 V8 追了上来。而且 JSC 有个重大利好，在 iOS7 之后，JSC 作为一个系统级的 Framework 开放给开发者使用，也就是说，如果你的 APP 使用 JSC，只需要在项目里 import 一下，包体积是 0 开销的！这点在今天讨论的 JS 引擎中，JSC 是最能打的。</p>
+
+<p>虽然开启 JIT 的 JSC 性能很好，但是只限于苹果御用的 Safari 浏览器和 WKWebView，只有这两个地方 JIT 功能才是默认开启的，如果在项目里直接引入 JSC，JIT 功能是关闭的。解释是这样的：JIT 编译需要底层系统支持动态代码生成，对操作系统来说这意味着要支持动态分配带有“可写可执行”权限的内存页。当一个应用程序拥有请求分配可写可执行内存页的权限时，它会比较容易受到攻击从而允许任意代码动态生成并执行，这样就让恶意代码更容易有机可乘。</p>
+
+<p>在 Android 系统上，JSC 的表现就不尽人意了。JSC 并没有对 Android 机型做很好的适配，虽然可以开启 JIT，但是性能表现并不好，这也是 Facebook 决心制作 <a href="https://github.com/facebook/hermes"><strong>Hermes</strong></a> 的一个原因。最后再说说 JSC 的调试支持情况。如果是 iOS 平台，我们可以直接用 Safari 的 debbuger 功能调试，如果是 Android 平台，目前还没有找到一个很好的真机调试方法。</p>
+
+<p>综合来看，<strong>JavaScriptCore 在 iOS 平台上有非常明显的主场优势，各个指标都是很优秀的，但在 Android 上因为缺乏优化，表现并不是很好。</strong></p>
+
+<h3 id="v8">V8</h3>
+
+<p>JavaScript 能有如今的地位，<strong>V8</strong> 功不可没。不过这里讨论移动端的表现。同样是 Google 自家的 Android 可以开启 JIT，但这些优势都是有代价的：开启 JIT 后内存占用高，并且 V8 的包体积也不小（大概 7 MB 左右）。</p>
+
+<p>V8 在 2019 年推出了 <strong>JIT-less V8</strong>，也就是关闭 JIT 只使用 Ignition interpreter 解释执行 JS 文件，那么我们在 iOS 上集成 V8 就成了可能，因为 Apple 还是支持接入只有解释器功能的虚拟机引擎的。但是这样相较于 JSC 没有了比较明显的优势。</p>
+
+<p>综合来看，<strong>v8 在 Android 端使用时可以完全发挥它的威力，但是 iOS 平台因为主场劣势，并不是很推荐。</strong></p>
+
+<h3 id="hermes">Hermes</h3>
+
+<p>Hermes 是 FaceBook 2019 年中旬开源的一款 JS 引擎，这个是专为 React Native 打造的 JS 引擎，可以说从设计之初就是为 Hybrid UI 系统打造，也是为了替换 JSC。Hermes 的特点主要是两个，一个是<strong>不支持 JIT</strong>，一个是<strong>支持直接生成/加载字节码</strong>。</p>
+
+<p>Hermes 不支持 JIT 的主要原因有两个：加入 JIT 后，JS 引擎启动的预热时间会变长，一定程度上会加长首屏 TTI（页面首次加载可交互时间），现在的前端页面都讲究一个秒开，TTI 还是个挺重要的测量指标。另一个问题上 JIT 会增加包体积和内存占用，Chrome 内存占用高 V8 还是要承担一定责任的。</p>
+
+<p>因为不支持 JIT，Hermes 在一些 CPU 密集计算的领域就不占优势了，所以在 Hybrid 系统里，最优的解决方案就是充分发挥 JavaScript 胶水语言的作用，CPU 密集的计算（例如矩阵变换，参数加密等）放在 Native 里做，算好了再传递给 JS 表现在 UI 上，这样可以兼顾性能和开发效率。</p>
+
+<p>Hermes 最引人瞩目的就是支持生成字节码了。Hermes 加入 <strong>AOT</strong> 后，Babel、Minify、Parse 和 Compile 这些流程全部都在开发者电脑上完成，直接下发字节码让 Hermes 运行就行。Hermes 主要支持的是 ES6 语法，并且支持了 Chrome 的调试协议，我们可以直接用 Chrome 的 debugging 工具直接调试 Hermes 引擎。</p>
+
+<blockquote>
+  <p>AOT 即提前编译，可以生成被直接执行的二进制代码，运行速度快、执行性能表现好，但每次执行前都需要提前编译，开发测试效率低。典型代表是 C/C++，它们必须在执行前编译成机器码。</p>
+</blockquote>
+
+<p>综合来看，<strong>Hermes 是一款专为移动端 Hybrid UI System 打造的 JS 引擎</strong>。</p>
+
+<h3 id="quickjs">QuickJS</h3>
+
+<p>正式介绍 QuickJS 前我们先说说它的作者：Fabrice Bellard。</p>
+
+<p>软件界一直有个说法，一个高级程序员创造的价值可以超过 20 个平庸的程序员，但 Fabrice Bellard 不是高级程序员，他是天才，在我看来他的创造力可以超过 20 个高级程序员，我们可以顺着时间轴理一下他创造过些什么：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1997年，发布了最快速的计算圆周率的算法，此算法是 Bailey-Borwein-Plouffe 公式的变体，前者的时间复杂度是O(n^3)，他给优化成了O(n^2)，使得计算速度提高了 43%，这是他在数学上的成就
+2000 年，发布了 FFmpeg，这是他在音视频领域的一个成就
+2000，2001，2018 三年三度获得国际混淆 C 代码大赛
+2002 年，发布了 TinyGL，这是他在图形学领域的成就
+2005 年，发布了 QEMU，这是他在虚拟化领域的成就
+2011 年，他用 JavaScript 写了一个 PC 虚拟机 Jslinux，一个跑在浏览器上的 Linux 操作系统
+2019 年，发布了 QuickJS，一个支持 ES2020 规范的 JS 虚拟机
+</code></pre></div></div>
+
+<p>QuickJS 继承了 Fabrice Bellard 作品的一贯特色——小巧而又强大。只有几个 C 文件，没有乱七八糟的第三方依赖。但是他的功能又非常完善，JS 语法支持到 ES2020，Test262 的测试显示，QuickJS 的语法支持度比 V8 还要高。性能表现如下：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 开启 JIT 的 V8 综合评分差不多是 QuickJS 的 35 倍，但是在同等主打轻量的 JS 引擎中，QuickJS 的性能还是很耀眼的
+2. 在内存占用上，QuickJS 远低于 V8，毕竟 JIT 是是吃内存的大户，而且 QuickJS 的设计对嵌入式系统很友好
+3. QuickJS 和 Hermes 的跑分情况相近
+</code></pre></div></div>
+
+<p>QuickJS 也支持生成字节码，但是与 Hermes 不同，QuickJS 会先把 js 文件生成一份字节码，然后拼到一个 .c 文件里，想跑起来还得再编译一次生成二进制文件。虽然直接生成字节码可以大大减少 JS 文件的解析时间，但是 QuickJS 还是更偏嵌入式一些。</p>
+
+<p>综合来看，<strong>QuickJS 是一款潜力非常大的 JS 引擎，在 JS 语法高度支持的前提下，还把性能和体积都优化到了极致。在移动端的 Hybrid UI 架构和游戏脚本系统都可以考虑接入。</strong></p>
+
+<h3 id="选型思路与调试">选型思路与调试</h3>
+
+<p>单引擎：</p>
+
+<ol>
+  <li>统一采用 JSC：这个是 React Native 0.60 之前的方案</li>
+  <li>统一使用 Hermes：这个是 React Native 0.64 之后的设计方案</li>
+  <li>统一采用 QuickJS：QuickJS 体积很小，可以用来制作非常轻量的 Hybrid 系统</li>
+</ol>
+
+<p>双引擎：</p>
+
+<ol>
+  <li>iOS 用 JSC，Android 用 V8：Weex/NativeScript 都是这样的，可以在包体积和性能上有较好的均衡</li>
+  <li>iOS 用 JSC，Android 用 Hermes：React Natvie 现如今的方案</li>
+  <li>iOS 用 JSC，Android 用 QuickJS：如滴滴的跨端框架 <a href="https://github.com/didi/Hummer"><strong>hummer</strong></a></li>
+</ol>
+
+<p>无论是单引擎还是双引擎，集成后的业务开发体验也很重要。对于自带 debugger 功能的引擎来说一切都不在话下，但是对于没有实现调试协议的引擎来说，缺少 debugger 还是会影响体验的。但不是也没有办法，一般来说我们可以曲线救国，类似于 React Native 的 Remote JS Debugging 的思路：</p>
+
+<p>我们可以加个开关，把 JS 代码通过 websocket 传送到 Chrome 的 Web Worker，然后用 Chrome 的 V8 进行调试。这样做的优势是可以调整一些业务上的 BUG，劣势就是又会引入一个 JS 引擎，万一遇到一些引擎实现的 BUG，就很难 debug 了。</p>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="http://www.ruanyifeng.com/blog/2017/09/asmjs_emscripten.html">asm.js 和 Emscripten 入门教程</a> By 阮一峰</li>
   <li><a href="https://www.smashingmagazine.com/2017/05/abridged-cartoon-introduction-webassembly/">An Abridged Cartoon Introduction To WebAssembly</a> By Lin</li>
   <li><a href="https://www.cnblogs.com/detectiveHLH/p/9928915.html">WebAssembly 完全入门 —— 了解 wasm 的前世今身</a> By detectiveHLH</li>
+  <li><a href="https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/">A crash course in just-in-time (JIT) compilers</a> By Lin Clark</li>
+  <li><a href="https://jishuin.proginn.com/p/763bfbd3c4e7">V8、JSCore、Hermes、QuickJS，hybrid 开发 JS 引擎怎么选</a> By 魔术师卡颂</li>
 </ol>
  
 <div id="gitalk-container"></div>
@@ -327,7 +510,7 @@
     var disqus_config = function () {
         this.page.url = 'https://tate-young.github.io/2020/03/02/webassembly.html';
         this.page.identifier = '/2020/03/02/webassembly';
-        this.page.title = 'WebAssembly';
+        this.page.title = 'WebAssembly 与 JIT';
     };
 
     (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
