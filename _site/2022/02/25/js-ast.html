@@ -1,0 +1,878 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+<head>
+    <meta content='AST - Tate & Snow' name='title' />
+    <meta content='AST - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>AST - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>AST - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AST - Tate & Snow">
+<meta name="twitter:keywords" content="AST - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="AST - Tate & Snow">
+<meta name="og:keywords" content="AST - Tate & Snow|AST什么是 AST我们日常中用到的 babel、eslint 等插件，其实背后原理就涉及到 AST，即抽象语法树（Abstract Syntax Tree，AST），它是源代码语法结构的一种抽象表示。我们直接看 AST Explor..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="AST什么是 AST我们日常中用到的 babel、eslint 等插件，其实背后原理就涉及到 AST，即抽象语法树（Abstract Syntax Tree，AST），它是源代码语法结构的一种抽象表示。我们直接看 AST Explor..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2022/02/25/js-ast.html' property='og:url' />
+<meta content="http://localhost:2333/2022/02/25/js-ast.html|AST什么是 AST我们日常中用到的 babel、eslint 等插件，其实背后原理就涉及到 AST，即抽象语法树（Abstract Syntax Tree，AST），它是源代码语法结构的一种抽象表示。我们直接看 AST Explor..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<!-- <script async src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>AST | Tate &amp; Snow</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="AST" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="AST" />
+<meta property="og:description" content="AST" />
+<link rel="canonical" href="http://localhost:2333/2022/02/25/js-ast.html" />
+<meta property="og:url" content="http://localhost:2333/2022/02/25/js-ast.html" />
+<meta property="og:site_name" content="Tate &amp; Snow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-25T17:14:00+08:00" />
+<script type="application/ld+json">
+{"description":"AST","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2022/02/25/js-ast.html"},"@type":"BlogPosting","url":"http://localhost:2333/2022/02/25/js-ast.html","headline":"AST","dateModified":"2022-02-25T17:14:00+08:00","datePublished":"2022-02-25T17:14:00+08:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
+                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('历史', '/history')" title="访问 历史" data-hover="历史">历史</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('其他', '/other')" title="访问 其他" data-hover="其他">其他</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:2333/">首页</a>
+                
+                <a href="http://localhost:2333/front">前端</a>
+                
+                <a href="http://localhost:2333/history">历史</a>
+                
+                <a href="http://localhost:2333/other">其他</a>
+                
+                <a href="http://localhost:2333/tags">标签</a>
+                
+                <a href="http://localhost:2333/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('历史', 'http://localhost:2333/history')">历史</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('其他', 'http://localhost:2333/other')">其他</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('AST')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    AST</h1>
+                <div class="post-data">
+                    <time datetime="2022-02-25 17:14:00" itemprop="datePublished">
+                      发布时间：2022-02-25 17:14:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                
+                <div class="post-tags">
+                       
+                    <a class="menu-item-tags" href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
+                        JavaScript
+                        <span>(35)</span>
+                        
+                    </a>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                AST</h1>
+            <div class="post-data">
+                <time datetime="2022-02-25 17:14:00" itemprop="datePublished">2022-02-25 17:14:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                   
+                <a href="Javascript:;" onclick="onClickTag('JavaScript')" title="访问JavaScript" data-hover="JavaScript">
+                    JavaScript
+                    <span>(35)</span>
+                    </a>
+                   
+            </p>
+            <h1 id="ast">AST</h1>
+
+<h2 id="什么是-ast">什么是 AST</h2>
+
+<p>我们日常中用到的 babel、eslint 等插件，其实背后原理就涉及到 AST，即<strong>抽象语法树（Abstract Syntax Tree，AST）</strong>，它是源代码语法结构的一种抽象表示。</p>
+
+<p>我们直接看 <a href="https://astexplorer.net"><strong>AST Explorer</strong></a> 的默认栗子：</p>
+
+<p><img src="http://localhost:2333/style/images/smms/ast-jscodeshift.png" alt="ast explorer" /></p>
+
+<p>从图片右上角可以看出 AST 就是一个自上而下的树形结构，每一层有一个或多个节点组成，每个节点由一个 type 属性表示节点的类型如 <code class="highlighter-rouge">FunctionDeclaration, BlockStatement, VariableDeclaration</code>，以及其他属性组成，从而形成一种树级结构。</p>
+
+<h2 id="如何手写一个编译器">如何手写一个编译器</h2>
+
+<blockquote>
+  <p>整节内容可以参考这里 <a href="https://github.com/starkwang/the-super-tiny-compiler-cn/blob/master/super-tiny-compiler-chinese.js#L446"><strong>the-super-tiny-compiler</strong></a> 👈</p>
+</blockquote>
+
+<p>大多数编译器可以分成三个阶段：</p>
+
+<ul>
+  <li><strong>解析(Parse)</strong> - 即将源码转换为 AST</li>
+  <li><strong>转换(Transform)</strong> - 接收 AST 并对其进行遍历，在此过程中对节点进行添加、更新及移除等操作</li>
+  <li><strong>生成(Generate)</strong> - 根据最终 AST 来输出代码</li>
+</ul>
+
+<p><img src="http://localhost:2333/style/images/smms/ast-parse.png" alt="parse" /></p>
+
+<h2 id="词法分析--语法分析">词法分析 / 语法分析</h2>
+
+<p>解析一般来说会分成两个阶段：</p>
+
+<ul>
+  <li><strong>词法分析(Lexical Analysis)</strong> - 将代码转换为一个语法片段数组 <strong>Tokens</strong>。Tokens 是一个由代码语句碎片组成的数组，内部可以是数字、标签、标点符号、运算符，或者其它任何东西</li>
+  <li><strong>语法分析(Syntactic Analysis)</strong> - 把 Tokens 转换成 AST 形式</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 示例源码</span>
+<span class="p">(</span><span class="nx">add</span> <span class="mi">2</span> <span class="p">(</span><span class="nx">subtract</span> <span class="mi">4</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="c1">// 可能的 Tokens</span>
+<span class="p">[</span>
+  <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">paren</span><span class="dl">'</span><span class="p">,</span>  <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">(</span><span class="dl">'</span>        <span class="p">},</span>
+  <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">,</span>   <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">add</span><span class="dl">'</span>      <span class="p">},</span>
+  <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2</span><span class="dl">'</span>        <span class="p">},</span>
+  <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">paren</span><span class="dl">'</span><span class="p">,</span>  <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">(</span><span class="dl">'</span>        <span class="p">},</span>
+  <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">,</span>   <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">subtract</span><span class="dl">'</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">4</span><span class="dl">'</span>        <span class="p">},</span>
+  <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2</span><span class="dl">'</span>        <span class="p">},</span>
+  <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">paren</span><span class="dl">'</span><span class="p">,</span>  <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">)</span><span class="dl">'</span>        <span class="p">},</span>
+  <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">paren</span><span class="dl">'</span><span class="p">,</span>  <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">)</span><span class="dl">'</span>        <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="c1">// 可能的 AST</span>
+<span class="c1">// Program 代表的是根节点</span>
+<span class="p">{</span>
+  <span class="nl">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Program</span><span class="dl">'</span><span class="p">,</span>
+  <span class="nx">body</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">CallExpression</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">add</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">params</span><span class="p">:</span> <span class="p">[{</span>
+      <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NumberLiteral</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2</span><span class="dl">'</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">CallExpression</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">subtract</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">params</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NumberLiteral</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">4</span><span class="dl">'</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NumberLiteral</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2</span><span class="dl">'</span>
+      <span class="p">}]</span>
+    <span class="p">}]</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="如何手写一个-eslint-插件">如何手写一个 eslint 插件</h2>
+
+<p>有了 AST 就可以对它进行从上到下的递归遍历，过程中使用一种名为<strong>访问者模式</strong>的设计模式访问树里的节点。这种模式通过创建一个包含一些方法的对象 visitor，在遍历 AST 过程中匹配 visitor 里的方法名，匹配成功就调用此方法。通过访问 AST 节点可以对源码进行语法检查，ESLint 就是基于此工作的。</p>
+
+<h3 id="限制函数参数数量">限制函数参数数量</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="c1">// 访问 FunctionDeclaration 节点</span>
+    <span class="na">FunctionDeclaration</span><span class="p">:</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// 判断函数参数个数</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">report</span><span class="p">({</span>
+          <span class="nx">node</span><span class="p">,</span>
+          <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">参数最多不能超过3个</span><span class="dl">"</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>稍微修饰下：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//------------------------------------------------------------------------------</span>
+<span class="c1">// Rule Definition https://eslint.org/docs/developer-guide/working-with-rules</span>
+<span class="c1">// createRule 是引用了 @typescript-eslint/experimental-utils 里的 ESLintUtils.RuleCreator 方法</span>
+<span class="c1">//------------------------------------------------------------------------------</span>
+<span class="k">import</span> <span class="nx">createRule</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../misc/createRule</span><span class="dl">'</span>
+
+<span class="kr">interface</span> <span class="nx">IOptions</span> <span class="p">{</span>
+  <span class="nl">maxLen</span><span class="p">:</span> <span class="nx">number</span>
+<span class="p">}</span>
+
+<span class="nx">type</span> <span class="nx">TMessageIds</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">tooLong</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">rule</span> <span class="o">=</span> <span class="nx">createRule</span><span class="o">&lt;</span><span class="p">[</span><span class="nx">IOptions</span><span class="p">],</span> <span class="nx">TMessageIds</span><span class="o">&gt;</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">parametersmaxlength</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">suggestion</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">docs</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">description</span><span class="p">:</span> <span class="dl">'</span><span class="s1">parameters max length</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">recommended</span><span class="p">:</span> <span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">messages</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">tooLong</span><span class="p">:</span> <span class="dl">'</span><span class="s1">不要超过  个参数哦</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">schema</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">object</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">properties</span><span class="p">:</span> <span class="p">{</span>
+          <span class="na">maxLen</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">default</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="na">additionalProperties</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
+  <span class="na">defaultOptions</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">maxLen</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">],</span>
+  <span class="nx">create</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="p">[</span><span class="nx">options</span><span class="p">])</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">maxLen</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">options</span>
+    <span class="cm">/**
+    * 获取函数的参数的开始、结束位置
+    * @param {node} node AST Node
+    */</span>
+    <span class="kd">function</span> <span class="nx">getFunctionParamsLoc</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">paramsLength</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">length</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="na">start</span><span class="p">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">params</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">loc</span><span class="p">.</span><span class="nx">start</span><span class="p">,</span>
+        <span class="na">end</span><span class="p">:</span> <span class="nx">node</span><span class="p">.</span><span class="nx">params</span><span class="p">[</span><span class="nx">paramsLength</span> <span class="o">-</span> <span class="mi">1</span><span class="p">].</span><span class="nx">loc</span><span class="p">.</span><span class="nx">end</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">FunctionDeclaration</span><span class="p">:</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">maxLen</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">context</span><span class="p">.</span><span class="nx">report</span><span class="p">({</span>
+            <span class="c1">// loc is an object specifying the location of the problem.</span>
+            <span class="c1">// If both loc and node are specified, then the location is used from loc instead of node.</span>
+            <span class="na">loc</span><span class="p">:</span> <span class="nx">getFunctionParamsLoc</span><span class="p">(</span><span class="nx">node</span><span class="p">),</span>
+            <span class="nx">node</span><span class="p">,</span>
+            <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+              <span class="nx">maxLen</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="na">messageId</span><span class="p">:</span> <span class="dl">'</span><span class="s1">tooLong</span><span class="dl">'</span><span class="p">,</span>
+          <span class="p">})</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="p">})</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">rule</span>
+</code></pre></div></div>
+
+<h3 id="限制嵌套的条件语句">限制嵌套的条件语句</h3>
+
+<p>匹配类型为 IfStatement 的节点，如果它的第一个子节点还是 IfStatement 就进行提示：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">IfStatement</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="p">{</span> <span class="na">consequent</span><span class="p">:</span> <span class="p">{</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">}</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">node</span>
+
+      <span class="c1">// 判断第一个子节点类型是否是 IfStatement</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">body</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">body</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">IfStatement</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">report</span><span class="p">({</span>
+          <span class="na">node</span><span class="p">:</span> <span class="nx">body</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+          <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">不允许嵌套的条件语句</span><span class="dl">'</span>
+        <span class="p">})</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>当然我们也可以实现中英文之间保留空格的规范等等，这里就不展开介绍了。</p>
+
+<h2 id="如何手写一个-babel-插件">如何手写一个 babel 插件</h2>
+
+<p>Babel 就是一个通用的多功能的 JavaScript 编译器。其工作原理就是修改代码 AST 上的节点，从而到达修改代码的目的。一个 Babel 插件是一个接收 babel 对象作为参数的函数，返回一个带有 visitor 属性的对象。visitor 对象中的每个函数接受 path 和 state 参数。详情可以查阅 <a href="https://github.com/jamiebuilds/babel-handbook">babel-handbook</a> 👈</p>
+
+<h3 id="将--语法转换为-mathpow">将 ** 语法转换为 Math.pow</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Before</span>
+<span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">2</span> 
+<span class="c1">// After</span>
+<span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>找到 ** 语法所在位置</li>
+  <li>获取左右操作数</li>
+  <li>创建 Math.pow 语句，替换原节点</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">babel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="na">types</span><span class="p">:</span> <span class="nx">t</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">babel</span>
+  
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">visitor</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// 访问二元表达式</span>
+      <span class="nx">BinaryExpression</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="p">{</span> <span class="nx">node</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">path</span>
+        <span class="c1">// 如果操作符不是 ** 就退出</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">operator</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">**</span><span class="dl">'</span><span class="p">)</span> <span class="k">return</span>
+        <span class="kd">const</span> <span class="p">{</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">node</span>
+        <span class="c1">// 创建调用语句</span>
+        <span class="kd">const</span> <span class="nx">newNode</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">callExpression</span><span class="p">(</span>
+          <span class="nx">t</span><span class="p">.</span><span class="nx">memberExpression</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">identifier</span><span class="p">(</span><span class="dl">'</span><span class="s1">Math</span><span class="dl">'</span><span class="p">),</span> <span class="nx">t</span><span class="p">.</span><span class="nx">identifier</span><span class="p">(</span><span class="dl">'</span><span class="s1">pow</span><span class="dl">'</span><span class="p">)),</span>
+          <span class="p">[</span><span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="c1">// 替换原节点</span>
+        <span class="nx">path</span><span class="p">.</span><span class="nx">replaceWith</span><span class="p">(</span><span class="nx">newNode</span><span class="p">)</span>
+      <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="修改工具函数引入方式">修改工具函数引入方式</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Before</span>
+<span class="k">import</span> <span class="p">{</span> <span class="kd">get</span><span class="p">,</span> <span class="nx">isFunction</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">lodash</span><span class="dl">'</span>
+<span class="c1">// After</span>
+<span class="k">import</span> <span class="kd">get</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">lodash/get</span><span class="dl">"</span>
+<span class="k">import</span> <span class="nx">isFunction</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">lodash/isFunction</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<ol>
+  <li>找到 lodash 的 import 节点</li>
+  <li>遍历所有的引入值，获取引用的 name 属性</li>
+  <li>插入新生成的 import 节点</li>
+  <li>删除原节点</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">babel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="na">types</span><span class="p">:</span> <span class="nx">t</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">babel</span>
+  
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">visitor</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// 访问导入声明</span>
+      <span class="nx">ImportDeclaration</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="p">{</span> <span class="nx">node</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">path</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">value</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">lodash</span><span class="dl">'</span><span class="p">)</span> <span class="k">return</span>
+        <span class="kd">const</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">value</span>
+
+        <span class="nx">node</span><span class="p">.</span><span class="nx">specifiers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">spec</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">isImportSpecifier</span><span class="p">(</span><span class="nx">spec</span><span class="p">))</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="p">{</span> <span class="nx">local</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">spec</span>
+
+            <span class="c1">// 插入新的导入节点</span>
+            <span class="nx">path</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span>
+              <span class="nx">t</span><span class="p">.</span><span class="nx">importDeclaration</span><span class="p">(</span>
+                <span class="p">[</span><span class="nx">t</span><span class="p">.</span><span class="nx">importDefaultSpecifier</span><span class="p">(</span><span class="nx">local</span><span class="p">)],</span>
+                <span class="nx">t</span><span class="p">.</span><span class="nx">stringLiteral</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">val</span><span class="p">}</span><span class="s2">/</span><span class="p">${</span><span class="nx">local</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+              <span class="p">)</span>
+            <span class="p">)</span>
+          <span class="p">}</span>
+        <span class="p">})</span>
+        <span class="c1">// 删除原节点</span>
+        <span class="nx">path</span><span class="p">.</span><span class="nx">remove</span><span class="p">()</span>
+      <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="ast-工具库介绍">AST 工具库介绍</h2>
+
+<h3 id="jscodeshift">jscodeshift</h3>
+
+<p><a href="https://github.com/facebook/jscodeshift"><strong>jscodeshift</strong></a> 是一个 Facebook 开源的基于 <a href="https://github.com/benjamn/recast">recast</a> 封装的用来对 JavaScript 或者 TypeScript 文件运行转换的工具，它的目的是更方便的批量修改代码。它通过 transformer 对源码进行转换，一个 transformer 就是一个接受 <code class="highlighter-rouge">fileInfo, api, options</code> 参数并返回源码的函数。</p>
+
+<p>MUI 批量修改代码的脚本就是基于 jscode 来实现的，即 <a href="https://mui.com/zh/guides/migration-v4/#run-codemods">codemod</a>，举个例子：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// boxRenameGap</span>
+<span class="k">import</span> <span class="nx">renameProps</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./misc/renameProps</span><span class="dl">'</span>
+
+<span class="cm">/**
+ * @param {import('jscodeshift').FileInfo} file
+ * @param {import('jscodeshift').API} api
+ */</span>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">transformer</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="nx">api</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">jscodeshift</span>
+  <span class="kd">const</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">j</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">source</span><span class="p">)</span>
+
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">printOptions</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">options</span>
+
+  <span class="k">return</span> <span class="nx">renameProps</span><span class="p">({</span>
+    <span class="nx">root</span><span class="p">,</span>
+    <span class="na">componentName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Box</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">props</span><span class="p">:</span> <span class="p">{</span> <span class="na">gridGap</span><span class="p">:</span> <span class="dl">'</span><span class="s1">gap</span><span class="dl">'</span><span class="p">,</span> <span class="na">gridColumnGap</span><span class="p">:</span> <span class="dl">'</span><span class="s1">columnGap</span><span class="dl">'</span><span class="p">,</span> <span class="na">gridRowGap</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rowGap</span><span class="dl">'</span> <span class="p">},</span>
+  <span class="p">}).</span><span class="nx">toSource</span><span class="p">(</span><span class="nx">printOptions</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>具体代码可以参考 github <a href="https://github.com/mui/material-ui/tree/master/packages/mui-codemod">mui-codemod</a> 这里 👈</p>
+</blockquote>
+
+<h3 id="gogocode">GoGoCode</h3>
+
+<p>GoGoCode 号称全网最简单，易上手，可读性最强，提供类似于 jQuery 的 API 和一套和正则表达式接近的语法用来匹配和替换代码。不过确实上手难度比 jscodeshift 低很多，比如我们可以通过它进行 vue2 到 vue3 的迁移。直接看个官方例子：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// before</span>
+<span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="c1">// after</span>
+<span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">$</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">gogocode</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">script</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">source</span><span class="p">);</span>
+<span class="c1">// 按照你的意图，用 $_$ 当通配符能匹配任意位置的 AST 节点</span>
+<span class="kd">const</span> <span class="nx">aAssignment</span> <span class="o">=</span> <span class="nx">script</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="dl">'</span><span class="s1">const a = $_$</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// 获得我们匹配的 AST 节点的 value</span>
+<span class="kd">const</span> <span class="nx">aValue</span> <span class="o">=</span> <span class="nx">aAssignment</span><span class="p">.</span><span class="nx">match</span><span class="p">?.[</span><span class="mi">0</span><span class="p">]?.[</span><span class="mi">0</span><span class="p">]?.</span><span class="nx">value</span><span class="p">;</span>
+<span class="c1">// 就像替换字符串一样去替换代码</span>
+<span class="c1">// 但可以忽略空格、缩进或者换行的影响</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">'</span><span class="s1">const b = $_$</span><span class="dl">'</span><span class="p">,</span> <span class="s2">`const b = </span><span class="p">${</span><span class="nx">aValue</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="c1">// 把 ast 节点输出成字符串</span>
+<span class="kd">const</span> <span class="nx">outCode</span> <span class="o">=</span> <span class="nx">script</span><span class="p">.</span><span class="nx">generate</span><span class="p">();</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>更多关于 AST 工具可以参考 <a href="https://github.com/cowchimp/awesome-ast">awesome ast</a> 👈</p>
+</blockquote>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+  <li><a href="https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md">Babel 插件手册</a></li>
+  <li><a href="https://juejin.cn/post/6955373675637899301">学习抽象语法树 AST</a> By 西山居彭于晏</li>
+</ol>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2022/02/25/js-ast.html';
+        this.page.identifier = '/2022/02/25/js-ast';
+        this.page.title = 'AST';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2022-02-25 17:14:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<script async src="/search/live2d/autoload.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
