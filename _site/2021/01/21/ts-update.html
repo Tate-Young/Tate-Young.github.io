@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="TypeScript 问题收集" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="TypeScript 问题收集" />
-<meta property="og:description" content="TypeScript 问题收集" />
+<meta name="description" content="add type definitions isDistributive question" />
+<meta property="og:description" content="add type definitions isDistributive question" />
 <link rel="canonical" href="http://localhost:2333/2021/01/21/ts-update.html" />
 <meta property="og:url" content="http://localhost:2333/2021/01/21/ts-update.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-01-21T22:47:00+08:00" />
 <script type="application/ld+json">
-{"description":"TypeScript 问题收集","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/01/21/ts-update.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/01/21/ts-update.html","headline":"TypeScript 问题收集","dateModified":"2021-01-21T22:47:00+08:00","datePublished":"2021-01-21T22:47:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add type definitions isDistributive question","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/01/21/ts-update.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/01/21/ts-update.html","headline":"TypeScript 问题收集","dateModified":"2021-01-21T22:47:00+08:00","datePublished":"2021-01-21T22:47:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,12 +175,16 @@
                       发布时间：2021-01-21 22:47:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-01-25 15:28:00
+                        修改时间：2021-03-22 17:48:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：add type definitions isDistributive question
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -555,6 +559,108 @@ function WeekSelector() {
   )
 }
 </code></pre>
+
+<h2 id="分布式条件类型-isdistributive">分布式条件类型 isDistributive</h2>
+
+<p>这节主要<a href="https://mp.weixin.qq.com/s/zSX7xLKSb86NVGStKQfqfw">参考这里</a>，先看看以下 res 的类型都是啥：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 场景一</span>
+<span class="nx">type</span> <span class="nx">TTest</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kd">extends</span> <span class="nx">number</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="nx">type</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">TTest</span><span class="o">&lt;</span><span class="mi">1</span> <span class="o">|</span> <span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="o">&gt;</span>
+
+<span class="c1">// 场景二</span>
+<span class="nx">type</span> <span class="nx">TTest</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kd">extends</span> <span class="kc">true</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="nx">type</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">TTest</span><span class="o">&lt;</span><span class="nx">boolean</span><span class="o">&gt;</span>
+
+<span class="c1">// 场景三</span>
+<span class="nx">type</span> <span class="nx">TTest</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kd">extends</span> <span class="kc">true</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="nx">type</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">TTest</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span>
+
+<span class="c1">// 场景四</span>
+<span class="nx">type</span> <span class="nx">TTest</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kd">extends</span> <span class="kc">true</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">2</span>
+<span class="nx">type</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">TTest</span><span class="o">&lt;</span><span class="nx">never</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>问题解答如下：</p>
+
+<pre><code class="language-TEXT">&lt;!-- 场景一 --&gt;
+答案：1 | 2
+原因：对于分布式条件类型，联合类型的每个类型会单独传入求值，把每个的结果合并成联合类型
+
+&lt;!-- 场景二 --&gt;
+答案：1 | 2
+原因：boolean 其实也是联合类型，所以会把 true 和 false 分别传入求值，同上
+
+&lt;!-- 场景三 --&gt;
+答案：1 | 2
+原因：条件类型对 any 做了特殊处理，如果左边是 any，那么直接把 trueType 和 falseType 合并成联合类型返回
+
+&lt;!-- 场景四 --&gt;
+答案：never
+原因：当条件类型左边是 never 时，直接返回 never
+</code></pre>
+
+<p>我们根据源码来解释下，TypeScript 在处理到条件类型 Conditional Type 的时候，会设置一个 <strong>isDistributive</strong> 的属性，根据类型参数是不是 checkType（左边的类型）来设置：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">getTypeFromConditionalTypeNode</span><span class="p">(</span><span class="nx">node</span><span class="p">:</span> <span class="nx">ConditionalTypeNode</span><span class="p">):</span> <span class="nx">Type</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">links</span> <span class="o">=</span> <span class="nx">getNodeLinks</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">links</span><span class="p">.</span><span class="nx">resolvedType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">checkType</span> <span class="o">=</span> <span class="nx">getTypeFromTypeNode</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">checkType</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">aliasSymbol</span> <span class="o">=</span> <span class="nx">getAliasSymbolForTypeNode</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">aliasTypeArguments</span> <span class="o">=</span> <span class="nx">getTypeArgumentsForAliasSymbol</span><span class="p">(</span><span class="nx">aliasSymbol</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">allOuterTypeParameters</span> <span class="o">=</span> <span class="nx">getOuterTypeParameters</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="cm">/*includeThisTypes*/</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">outerTypeParameters</span> <span class="o">=</span> <span class="nx">aliasTypeArguments</span> <span class="p">?</span> <span class="nx">allOuterTypeParameters</span> <span class="p">:</span> <span class="nx">filter</span><span class="p">(</span><span class="nx">allOuterTypeParameters</span><span class="p">,</span> <span class="nx">tp</span> <span class="o">=&gt;</span> <span class="nx">isTypeParameterPossiblyReferenced</span><span class="p">(</span><span class="nx">tp</span><span class="p">,</span> <span class="nx">node</span><span class="p">));</span>
+    <span class="kd">const</span> <span class="nx">root</span><span class="p">:</span> <span class="nx">ConditionalRoot</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">node</span><span class="p">,</span>
+      <span class="nx">checkType</span><span class="p">,</span>
+      <span class="na">extendsType</span><span class="p">:</span> <span class="nx">getTypeFromTypeNode</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">extendsType</span><span class="p">),</span>
+      <span class="na">isDistributive</span><span class="p">:</span> <span class="o">!!</span><span class="p">(</span><span class="nx">checkType</span><span class="p">.</span><span class="nx">flags</span> <span class="o">&amp;</span> <span class="nx">TypeFlags</span><span class="p">.</span><span class="nx">TypeParameter</span><span class="p">),</span>
+      <span class="na">inferTypeParameters</span><span class="p">:</span> <span class="nx">getInferTypeParameters</span><span class="p">(</span><span class="nx">node</span><span class="p">),</span>
+      <span class="nx">outerTypeParameters</span><span class="p">,</span>
+      <span class="na">instantiations</span><span class="p">:</span> <span class="kc">undefined</span><span class="p">,</span>
+      <span class="nx">aliasSymbol</span><span class="p">,</span>
+      <span class="nx">aliasTypeArguments</span>
+    <span class="p">};</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">resolvedType</span> <span class="o">=</span> <span class="nx">getConditionalType</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="cm">/*mapper*/</span> <span class="kc">undefined</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">outerTypeParameters</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">root</span><span class="p">.</span><span class="nx">instantiations</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Map</span><span class="o">&lt;</span><span class="nx">string</span><span class="p">,</span> <span class="nx">Type</span><span class="o">&gt;</span><span class="p">();</span>
+      <span class="nx">root</span><span class="p">.</span><span class="nx">instantiations</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">getTypeListId</span><span class="p">(</span><span class="nx">outerTypeParameters</span><span class="p">),</span> <span class="nx">links</span><span class="p">.</span><span class="nx">resolvedType</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">links</span><span class="p">.</span><span class="nx">resolvedType</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>因为 T extends number 的 checkType 是 T，所以这里的 isDistributive 就是 true，也就是它是分布式条件类型。这时会在求值的时候把每个类型单独传入求值，最后把结果合并。这就是分布式条件类型遇到联合类型时的处理：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Distributive conditional types are distributed over union types. For example, when the</span>
+<span class="c1">// distributive conditional type T extends U ? X : Y is instantiated with A | B for T, the</span>
+<span class="c1">// result is (A extends U ? X : Y) | (B extends U ? X : Y). 👈</span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">distributionType</span> <span class="o">&amp;&amp;</span> <span class="nx">checkType</span> <span class="o">!==</span> <span class="nx">distributionType</span> <span class="o">&amp;&amp;</span> <span class="nx">distributionType</span><span class="p">.</span><span class="nx">flags</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nx">TypeFlags</span><span class="p">.</span><span class="nx">Union</span> <span class="o">|</span> <span class="nx">TypeFlags</span><span class="p">.</span><span class="nx">Never</span><span class="p">)</span> <span class="p">?</span>
+  <span class="nx">mapTypeWithAlias</span><span class="p">(</span><span class="nx">getReducedType</span><span class="p">(</span><span class="nx">distributionType</span><span class="p">),</span> <span class="nx">t</span> <span class="o">=&gt;</span> <span class="nx">getConditionalType</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">prependTypeMapping</span><span class="p">(</span><span class="nx">checkType</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">newMapper</span><span class="p">)),</span> <span class="nx">aliasSymbol</span><span class="p">,</span> <span class="nx">aliasTypeArguments</span><span class="p">)</span> <span class="p">:</span>
+  <span class="nx">getConditionalType</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">newMapper</span><span class="p">,</span> <span class="nx">aliasSymbol</span><span class="p">,</span> <span class="nx">aliasTypeArguments</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>场景一和二都会走 mapTypeWithAlias 这个方法。场景三的 any 会发现走了 getConditionalType 这个方法，也确定了 any 不属于 union 联合类型，继续往下看，意思就是返回 trueType 和 falseType 的联合类型，因为 any 匹配任何类型，也就得出最终答案 1 | 2：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Return union of trueType and falseType for 'any' since it matches anything</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">checkType</span><span class="p">.</span><span class="nx">flags</span> <span class="o">&amp;</span> <span class="nx">TypeFlags</span><span class="p">.</span><span class="nx">Any</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">isUnwrapped</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">(</span><span class="nx">extraTypes</span> <span class="o">||</span> <span class="p">(</span><span class="nx">extraTypes</span> <span class="o">=</span> <span class="p">[])).</span><span class="nx">push</span><span class="p">(</span><span class="nx">instantiateType</span><span class="p">(</span><span class="nx">getTypeFromTypeNode</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">trueType</span><span class="p">),</span> <span class="nx">combinedMapper</span> <span class="o">||</span> <span class="nx">mapper</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>至于 never 我们可以看到往下走了这段代码，直接返回 never 了：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">type</span><span class="p">.</span><span class="nx">flags</span> <span class="o">&amp;</span> <span class="nx">TypeFlags</span><span class="p">.</span><span class="nx">Never</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">type</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>总结一下：<strong>条件类型当 checkType（左边的类型）是类型参数的时候，会有 distributive 的性质，也就是传入联合类型时会把每个类型单独传入做计算，最后把结果合并返回。这叫做分布式条件类型。</strong></p>
+
+<blockquote>
+  <p>具体源码的解释请<a href="https://mp.weixin.qq.com/s/zSX7xLKSb86NVGStKQfqfw">参考这里</a> 👈</p>
+</blockquote>
  
 <div id="gitalk-container"></div>
 <script>
