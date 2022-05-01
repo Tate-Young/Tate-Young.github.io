@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="NPM Scripts" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="modiy npm link &amp; add yalc" />
-<meta property="og:description" content="modiy npm link &amp; add yalc" />
+<meta name="description" content="add package.json files" />
+<meta property="og:description" content="add package.json files" />
 <link rel="canonical" href="http://localhost:2333/2018/06/27/npm-scripts.html" />
 <meta property="og:url" content="http://localhost:2333/2018/06/27/npm-scripts.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-06-27T17:57:00+08:00" />
 <script type="application/ld+json">
-{"description":"modiy npm link &amp; add yalc","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add package.json files","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -183,7 +183,7 @@
                 </div>
                 
                   <div role='update-description' class="post-data">
-                    修改内容：modiy npm link & add yalc
+                    修改内容：add package.json files
                   </div>
                 
                 <div class="post-tags">
@@ -325,7 +325,7 @@ npm config list
 <p>要想在 scripts 内使用变量，不同环境下有两种访问方式，比如访问项目名称 name:</p>
 
 <pre><code class="language-JSON">// The following only works on Mac OS X/Linux (bash)
-"bash-script": "echo Hello $npm_package_name",
+"bash-script": "echo Hello $npm_package_name"
 // The following only works on a Windows machine
 "win-script": "echo Hello %npm_package_name%"
 </code></pre>
@@ -337,6 +337,16 @@ npm config list
 // 多命令写法
 "build:css": "cross-var \"node-sass src/index.scss | postcss -c .postcssrc.json | cssmin &gt; public/$npm_package_version/index.min.css\"",
 </code></pre>
+
+<p>还有一点需要注意的是，自 npm v7 之后，上述自定义的变量会返回空字符串，解决的办法是套一层 config，可<a href="https://github.com/npm/rfcs/issues/305">参考 issue 这里</a>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span><span class="w"> </span><span class="err">通过</span><span class="w"> </span><span class="err">$npm_package_config_port</span><span class="w"> </span><span class="err">访问</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2333"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 <h3 id="跨平台兼容">跨平台兼容</h3>
 
@@ -566,6 +576,34 @@ ENV3=THE FISH
 
 <blockquote>
   <p>需要注意的是，脚本文件必须以 <code class="highlighter-rouge"><span class="err">#</span><span class="o">!</span><span class="sr">/usr/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">env</span> <span class="nx">node</span></code> 开头，不然没办法以 node 执行。</p>
+</blockquote>
+
+<h3 id="files">files</h3>
+
+<p>当你的包是作为依赖提供给别人用的话，可以通过 <code class="highlighter-rouge">files</code> 去过滤文件。也可以在包的根目录或子目录中提供一个 <code class="highlighter-rouge">.npmignore</code> 文件，这样可以防止列举的文件被包含在内。注意上述 <code class="highlighter-rouge">files</code> 字段中包含的文件不能通过 <code class="highlighter-rouge">.npmignore</code> 排除。</p>
+
+<p>如果不去定义 <code class="highlighter-rouge">files</code> 的话，有些文件是默认会包含的：</p>
+
+<ol>
+  <li>package.json</li>
+  <li>README</li>
+  <li>LICENSE / LICENCE</li>
+  <li>The file in the “main” field</li>
+</ol>
+
+<p>相反，有些文件则一定是排除在外的，比如：</p>
+
+<ol>
+  <li>.git</li>
+  <li>.DS_Store</li>
+  <li>.npmrc</li>
+  <li>node_modules</li>
+  <li>package-lock.json (use npm-shrinkwrap.json if you wish it to be published)</li>
+  <li>…</li>
+</ol>
+
+<blockquote>
+  <p><code class="highlighter-rouge">.npmignore</code> 文件就像 <code class="highlighter-rouge">.gitignore</code> 一样工作。如果 <code class="highlighter-rouge">.npmignore</code> 缺失的话，则将使用 <code class="highlighter-rouge">.gitignore</code> 作为替代 👈</p>
 </blockquote>
 
 <h2 id="scripty">scripty</h2>

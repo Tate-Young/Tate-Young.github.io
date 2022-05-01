@@ -8,7 +8,7 @@ category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
 update: 2021-11-18 15:29:00 GMT+0800 (CST)
-description: modiy npm link & add yalc
+description: add package.json files
 background-image: /style/images/smms/node.jpg
 
 tags:
@@ -136,7 +136,7 @@ npm run env | grep npm_package | sort
 
 ```JSON
 // The following only works on Mac OS X/Linux (bash)
-"bash-script": "echo Hello $npm_package_name",
+"bash-script": "echo Hello $npm_package_name"
 // The following only works on a Windows machine
 "win-script": "echo Hello %npm_package_name%"
 ```
@@ -148,6 +148,17 @@ npm run env | grep npm_package | sort
 "script": "cross-var echo Hello $npm_package_name"
 // 多命令写法
 "build:css": "cross-var \"node-sass src/index.scss | postcss -c .postcssrc.json | cssmin > public/$npm_package_version/index.min.css\"",
+```
+
+还有一点需要注意的是，自 npm v7 之后，上述自定义的变量会返回空字符串，解决的办法是套一层 config，可[参考 issue 这里](https://github.com/npm/rfcs/issues/305):
+
+```json
+// 通过 $npm_package_config_port 访问
+{
+  "config": {
+    "port": "2333"
+  }
+}
 ```
 
 ### 跨平台兼容
@@ -362,6 +373,28 @@ peerDependencies 用于指定你正在开发的模块所依赖的版本以及用
 ```
 
 > 需要注意的是，脚本文件必须以 `#!/usr/bin/env node` 开头，不然没办法以 node 执行。
+
+### files
+
+当你的包是作为依赖提供给别人用的话，可以通过 `files` 去过滤文件。也可以在包的根目录或子目录中提供一个 `.npmignore` 文件，这样可以防止列举的文件被包含在内。注意上述 `files` 字段中包含的文件不能通过 `.npmignore` 排除。
+
+如果不去定义 `files` 的话，有些文件是默认会包含的：
+
+1. package.json
+2. README
+3. LICENSE / LICENCE
+4. The file in the "main" field
+
+相反，有些文件则一定是排除在外的，比如：
+
+1. .git
+2. .DS_Store
+3. .npmrc
+4. node_modules
+5. package-lock.json (use npm-shrinkwrap.json if you wish it to be published)
+6. ...
+
+> `.npmignore` 文件就像 `.gitignore` 一样工作。如果 `.npmignore` 缺失的话，则将使用 `.gitignore` 作为替代 👈
 
 ## scripty
 

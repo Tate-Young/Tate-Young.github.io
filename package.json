@@ -4,9 +4,11 @@
   "main": "index.js",
   "repository": "https://github.com/Tate-Young/Tate-Young.github.io.git",
   "author": "Tate-Young <smd_tate@163.com>",
-  "port": "2333",
+  "config": {
+    "port": "2333"
+  },
   "scripts": {
-    "start": "#jekyll serve\n yarn cowsay && cross-var bundle exec jekyll serve --port $npm_package_port",
+    "start": "#jekyll serve\n yarn cowsay && cross-var bundle exec jekyll serve --port $npm_package_config_port",
     "watch": "npm run start -- --livereload",
     "test": "cross-var echo $npm_package_version",
     "commit": "scripty $*",
