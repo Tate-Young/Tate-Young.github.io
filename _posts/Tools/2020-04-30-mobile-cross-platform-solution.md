@@ -7,6 +7,8 @@ background: blue
 category: 前端
 title:  移动端跨平台方案
 date:   2020-04-30 17:24:00 GMT+0800 (CST)
+update: 2022-05-17 14:56:00 GMT+0800 (CST)
+description: add taro & uni-app
 background-image: https://cdn.merixstudio.com/media/uploads/2019/12/12/react-native-use-cases-copy.png
 tags:
 - JavaScript
@@ -131,7 +133,7 @@ Flutter 拥有丰富的工具和库，可以帮助你轻松地同时在 iOS 和 
 
 ## Xamarin
 
-[**Xamarin**](https://dotnet.microsoft.com/apps/xamarin)['zæmərɪn] 是微软子公司提供的一个跨平台开发软件，通过使用 `C#/.NET` 共享的代码库，开发人员可以在 Xamarin 工具上，使用本地用户界面编写原生的 Android、iOS 和 Windows 应用程序，并跨多个平台（包括 Windows 和 macOS）共享代码。使用 Xamarin 生成的应用从外观上看与原生的一样，因为它们就是原生的:
+[**Xamarin**][https://dotnet.microsoft.com/apps/xamarin]('zæmərɪn) 是微软子公司提供的一个跨平台开发软件，通过使用 `C#/.NET` 共享的代码库，开发人员可以在 Xamarin 工具上，使用本地用户界面编写原生的 Android、iOS 和 Windows 应用程序，并跨多个平台（包括 Windows 和 macOS）共享代码。使用 Xamarin 生成的应用从外观上看与原生的一样，因为它们就是原生的:
 
 ![Xamarin](https://visualstudio.microsoft.com/wp-content/uploads/2019/11/CsharpdiagramXamarinpage.svg)
 
@@ -151,7 +153,19 @@ Flutter 拥有丰富的工具和库，可以帮助你轻松地同时在 iOS 和 
 
 > [微信小程序官网](https://mp.weixin.qq.com/cgi-bin/wx) 👈，[支付宝小程序官网](https://open.alipay.com/channel/miniIndex.htm) 👈
 
+## taro & uni-app
+
+![跨平台](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4fdeadbc467240c8a6c47c7ed527f7a7~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.image)
+
+[**taro**](https://github.com/NervJS/taro) 是京东开发的开放式跨端跨框架解决方案，支持使用 React/Vue/Nerv 等框架来开发微信/京东/百度/支付宝/字节跳动/QQ 小程序/H5/React Native 等应用。
+
+[**uni-app**](https://github.com/dcloudio/uni-app) 是 DCloud 开发的使用 Vue 语法开发小程序、H5、App 的统一框架。集成了 HBuilder 编辑器，对于跨平台开发十分友好，比如支持直接跳转到微信开发者工具调试，支持真机实时预览，支持直接打包小程序和App，零门槛上手。
+
+[**mpvue**](https://github.com/Meituan-Dianping/mpvue) 是美团开发的基于 Vue 的小程序开发框架。目前支持微信小程序、百度智能小程序，头条小程序和支付宝小程序。框架基于 Vue.js，修改了的运行时框架 runtime 和代码编译器 compiler 实现，使其可运行在小程序环境中，从而为小程序开发引入了 Vue.js 开发体验。
+
 ## 参考链接
 
 1. [Cross-platform mobile development 2020: trends and frameworks](https://www.merixstudio.com/blog/cross-platform-mobile-development/)
 2. [浅谈 2018 移动端跨平台开发方案](https://juejin.im/post/5b076e3af265da0dce48fe95) By 知识小集
+3. [凹凸技术揭秘 · Taro · 开放式跨端跨框架之路](https://jelly.jd.com/article/6001048e131539014c10a0a6)
+4. [小程序框架对比（Taro VS uni-app）](https://juejin.cn/post/6974584590841167879) By sherryhe
