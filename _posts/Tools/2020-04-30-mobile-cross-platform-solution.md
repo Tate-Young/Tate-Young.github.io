@@ -54,7 +54,7 @@ tags:
 | 比较内容        |   cordova/ionic | react-native/weex | flutter | native   |
 | ------------ | ------- | ------- | ------- | ------- |
 | 语言 | JS | RN：React/Weex：Vue | Dart | Android：Java/Kotlin/iOS：OC/Swift |
-| 平台实现 | JS 引擎解释执行JS代码 | JS 引擎解释执行JS代码 | 开发版本：Dart 虚拟机解释执行 发布版本：Dart 代码编译成目标机器码 | Android：安装时编译成目标机器码/iOS：构建时编译成目标机器码 |
+| 平台实现 | JS 引擎解释执行 JS 代码 | JS 引擎解释执行 JS 代码 | 开发版本：Dart 虚拟机解释执行 发布版本：Dart 代码编译成目标机器码 | Android：安装时编译成目标机器码/iOS：构建时编译成目标机器码 |
 | 绘制 | 1、Html+css 2、浏览器引擎绘制 | 1、JS 生成 DOM 树 2、Native 端解析 DOM 树，转换成原生 View 显示 | 1、使用 Dart 实现 UI 组件 2、Skia Engine 渲染 | 原生 View |
 | 控件效果 | 1、样式一致 2、交互效果和原生控件有差距 | 1、不同平台样式不一致 2、本身就是原生控件 | 1、样式一致 2、交互效果和原生控件很接近 | / |
 | 流畅度 | 一般 | 较好 | 和原生相同 | 好 |
