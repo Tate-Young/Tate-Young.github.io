@@ -247,6 +247,13 @@ class Button extends Component&lt;ButtonProps&gt; {
 }
 </code></pre>
 
+<p>号外号外，<a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-5.html#type-modifiers-on-import-names"><strong>4.5</strong></a> 版本又更新了写法：</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- import type { BaseType } from "./some-module.js"
+- import { someFunc } from "./some-module.js"
+</span><span class="gi">+ import { someFunc, type BaseType } from "./some-module.js"
+</span></code></pre></div></div>
+
 <h3 id="top-level-await">Top-Level Await</h3>
 
 <p>一般情况下我们在使用 await 语法的时候，必须包裹在 async 函数中，然后立即调用该函数来执行异步操作:</p>

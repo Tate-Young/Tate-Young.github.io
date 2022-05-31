@@ -175,7 +175,7 @@
                       发布时间：2021-12-29 11:10:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2022-02-11 10:52:00
+                        修改时间：2022-05-31 19:24:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -536,6 +536,24 @@
   <li>减少网站主线程工作 - 如优化第三方脚本，极简化 JS</li>
   <li>确保在加载字体时，字体能够正常显示 - 如<a href="https://web.dev/font-display/">预加载字体</a></li>
 </ol>
+
+<h3 id="inp">INP</h3>
+
+<p><strong>Interaction to Next Paint(INP)</strong> 是 Google 2022.5 推出的新指标。是<strong>输入延迟(input delay)</strong>、<strong>处理时间(processing time)</strong>、<strong>呈现延迟(presentation delay)</strong> 3 个时间段的总和：</p>
+
+<p><img src="https://web-dev.imgix.net/image/jL3OLOhcWUQDnR4XjewLBx4e3PC3/Ng0j5yaGYZX9Bm3VQ70c.svg" alt="inp" /></p>
+
+<p>与 CLS 类似，INP 是在用户离开页面时计算的，产生一个代表页面在整个页面生命周期内的整体响应能力的值。如果高百分比页面交互得到快速响应，这意味着所有较低百分比的交互也很快。对应评分会取 TP75 的值，如下：</p>
+
+<ol>
+  <li>绿色（良好）— 0 到 200 毫秒</li>
+  <li>橙色（中等）— 200 到 500 毫秒</li>
+  <li>红色（慢） – 超过 500 毫秒</li>
+</ol>
+
+<p>INP 涵盖了从页面开始加载到用户离开页面时可能发生的整个交互范围。通过对所有交互进行抽样，可以全面评估响应能力。这使得 INP 成为比 FID 更可靠的响应指标。</p>
+
+<p><img src="http://localhost:2333/style/images/smms/cwv-inp.gif" alt="inp" /></p>
 
 <h2 id="tp-指标">TP 指标</h2>
 
