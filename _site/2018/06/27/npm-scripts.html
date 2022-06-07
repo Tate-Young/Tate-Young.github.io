@@ -532,6 +532,8 @@ ENV3=THE FISH
 
 <p>这里的意思是如果要接入 antD 并保证项目稳定的话，React 版本需要保持 16.0.0 以上，而当你开发时依赖的 React 版本是 15.x 的话，npm@2 则强制宿主环境安装对应版本的 react，npm@3 以上会给用户打印警告提示。</p>
 
+<p>In npm versions 3 through 6, peerDependencies were not automatically installed, and would raise a warning if an invalid version of the peer dependency was found in the tree. As of npm v7, peerDependencies are installed by default.</p>
+
 <p>三、<strong>optionalDependencies</strong></p>
 
 <p>某些场景下，依赖包可能不是强依赖的，这个依赖包的功能可有可无，当这个依赖包无法被获取到时，你希望 npm install 继续运行，而不会导致失败，你可以将这个依赖放到 optionalDependencies 中，注意 optionalDependencies 中的配置将会覆盖掉 dependencies，所以只需在一个地方进行配置。当然，引用 optionalDependencies 中安装的依赖时，一定要做好异常处理，否则在模块获取不到时会导致报错。</p>
