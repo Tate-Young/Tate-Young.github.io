@@ -7,8 +7,8 @@ background: green
 category: 前端
 title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
-update: 2021-11-18 15:29:00 GMT+0800 (CST)
-description: add package.json files
+update: 2022-06-07 14:09:00 GMT+0800 (CST)
+description: add lockfile & cache & overrides
 background-image: /style/images/smms/node.jpg
 
 tags:
@@ -57,6 +57,114 @@ npm config list
   "license": "MIT"
 }
 ```
+
+### lockfile
+
+为了在多人开发中避免安装的依赖不一致而导致各种环境问题，因此会用到锁文件来锁定依赖版本。如 `package-lock.json` 或者 `yarn.lock`。`package-lock.json` 和 node_modules 目录结构是一一对应的，我们先来看下大致结构：
+
+```json
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "base64-js": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.0.1.tgz",
+      "integrity": "sha1-aSbRsZT7xze47tUTdW3i/Np+pAg="
+    },
+    "buffer": {
+      "version": "5.4.3",
+      "resolved": "https://registry.npmjs.org/buffer/-/buffer-5.4.3.tgz",
+      "integrity": "sha512-zvj65TkFeIt3i6aj5bIvJDzjjQQGs4o/sNoezg1F1kYap9Nu2jcUdpwzRSJTHMMzG0H7bZkn4rNQpImhuxWX2A==",
+      "requires": {
+        "base64-js": "^1.0.2",
+        "ieee754": "^1.1.4"
+      },
+      "dependencies": {
+        "base64-js": {
+          "version": "1.3.1",
+          "resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.3.1.tgz",
+          "integrity": "sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g=="
+        }
+      }
+    },
+    "ieee754": {
+      "version": "1.1.13",
+      "resolved": "https://registry.npmjs.org/ieee754/-/ieee754-1.1.13.tgz",
+      "integrity": "sha512-4vf7I2LYV/HaWerSo3XmlMkp5eZ83i+/CDluXi/IGTs/O1sejBNhTtnxzmRZfvOUqj7lZjqHkeTvpgSFDlWZTg=="
+    },
+    "ignore": {
+      "version": "5.1.4",
+      "resolved": "https://registry.npmjs.org/ignore/-/ignore-5.1.4.tgz",
+      "integrity": "sha512-MzbUSahkTW1u7JpKKjY7LCARd1fU5W2rLdxlM4kdkayuCwZImjkpluF9CM1aLewYJguPDqewLam18Y6AU69A8A=="
+    }
+  }
+}
+```
+
+1. resolved - 包具体的安装来源
+2. integrity - 包 hash 值，基于 [Subresource Integrity](https://w3c.github.io/webappsec-subresource-integrity/) 来验证。用户下载依赖包到本地后，需要确定在下载过程中没有出现错误，所以在下载完成之后需要在本地在计算一次文件的 hash 值，如果两个 hash 值是相同的，则确保下载的依赖是完整的，如果不同，则进行重新下载
+3. requires - 对应子依赖的依赖，与子依赖的 package.json 中 dependencies 的依赖项相同
+
+> 并不是所有的子依赖都有 dependencies 属性，只有子依赖的依赖和当前已安装在根目录的 node_modules 中的依赖冲突之后，才会有这个属性。具体可以参考 pnpm 扁平化一节
+
+npm 里锁文件还有个 **lockfileVersion** 属性，不同 npm 版本安装的版本号可能不同：
+
+1. No version provided: an "ancient" shrinkwrap file from a version of npm prior to npm v5.
+2. v1 => npm v5&v6.
+3. v2: => npm v7&v8, which is backwards compatible to v1 lockfiles.
+4. v3: => npm v7&v8 without backwards compatibility
+
+> The lockfile v2 unlocks the ability to do deterministic and reproducible builds to produce a package tree.
+
+> Running npm install with npm 7 in a project with a v1 lockfile will replace that lockfile with the new v2 format. To avoid this, you can run `npm install --no-save`
+
+我们经常会遇到一个问题，比如 a 同学用 npm v7 提交了锁文件上去，其他同学用的 npm v6，这时候就会出现以下提示。所以团队里面尽量保证 npm 版本一致：
+
+```text
+npm WARN read-shrinkwrap This version of npm is compatible with lockfileVersion@1, but package-lock.json was generated for lockfileVersion@2. I’ll try to do my best with it!
+```
+
+### 缓存
+
+在执行 npm install 或 npm update 命令下载依赖后，除了将依赖包安装在 node_modules 目录下外，还会在本地的缓存目录缓存一份。通过 `npm config get cache` 命令可以查询到：在 Linux 或 Mac 默认是用户主目录下的 `.npm/_cacache` 目录。我们简单看下这个结构：
+
+```json
+{
+  "key": "pacote:version-manifest:https://registry.npmjs.org/base64-js/-/base64-js-1.0.1.tgz:sha1-aSbRsZT7xze47tUTdW3i/Np+pAg=",
+  "integrity": "sha512-C2EkHXwXvLsbrucJTRS3xFHv7Mf/y9klmKDxPTE8yevCoH5h8Ae69Y+/lP+ahpW91crnzgO78elOk2E6APJfIQ==",
+  "time": 1575554308857,
+  "size": 1,
+  "metadata": {
+    "id": "base64-js@1.0.1",
+    "manifest": {
+      "name": "base64-js",
+      "version": "1.0.1",
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "dependencies": {},
+      "optionalDependencies": {},
+      "devDependencies": {
+        "standard": "^5.2.2",
+        "tape": "4.x"
+      },
+      "bundleDependencies": false,
+      "peerDependencies": {},
+      "deprecated": false,
+      "_resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.0.1.tgz",
+      "_integrity": "sha1-aSbRsZT7xze47tUTdW3i/Np+pAg=",
+      "_shasum": "6926d1b194fbc737b8eed513756de2fcda7ea408",
+      "_shrinkwrap": null,
+      "bin": null,
+      "_id": "base64-js@1.0.1"
+    },
+    "type": "finalized-manifest"
+  }
+}
+```
+
+上面的 _shasum 属性 6926d1b194fbc737b8eed513756de2fcda7ea408 即为 tar 包的 hash， hash 的前几位 6926 即为缓存的前两层目录，进去后就能找到压缩后的依赖包。以上的缓存策略是从 npm v5 版本开始的，在 npm v5 版本之前，每个缓存的模块在 `~/.npm` 文件夹中以模块名的形式直接存储，储存结构是 `{cache}/{name}/{version}`。
 
 ### 脚本命令 scripts
 
@@ -398,6 +506,52 @@ In npm versions 3 through 6, peerDependencies were not automatically installed, 
 
 > `.npmignore` 文件就像 `.gitignore` 一样工作。如果 `.npmignore` 缺失的话，则将使用 `.gitignore` 作为替代 👈
 
+### overrides
+
+如果需要在 npm 实现 [yarn resolutions](https://classic.yarnpkg.com/lang/en/docs/selective-version-resolutions/) 的效果，npm v8 提供了 [overrides](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#overrides) 属性：
+
+```json
+{
+  "overrides": {
+    "foo": "1.0.0"
+  }
+}
+```
+
+这样设置后，不管你项目里的依赖树需要哪个版本的 foo，都会被强制安装成 1.0.0，当然我们也可以定义一些子依赖的版本：
+
+```json
+{
+  "overrides": {
+    "baz": {
+      "bar": {
+        "foo": "1.0.0"
+      }
+    }
+  }
+}
+```
+
+我们还可以通过 **$** 前缀来更规范的制定版本：
+
+```json
+{
+  "dependencies": {
+    "foo": "^1.0.0"
+  },
+  "overrides": {
+    // BAD, will throw an EOVERRIDE error
+    // "foo": "^2.0.0"
+    // GOOD, specs match so override is allowed
+    // "foo": "^1.0.0"
+    // BEST, the override is defined as a reference to the dependency
+    "foo": "$foo",
+    // the referenced package does not need to match the overridden one
+    "bar": "$foo"
+  }
+}
+```
+
 ## scripty
 
 当脚本命令比较多的时候，可以通过 [scripty](https://github.com/testdouble/scripty) 将 scripts 剥离到单独文件中管理，还是看最初的栗子:
@@ -512,7 +666,7 @@ $npm view @date-io/date-fns versions
 
 ![npm install]( {{site.url}}/style/images/smms/npm-install.png )
 
-> 关于 **pnpm** 可以参考[这篇博客]( {{site.url}}2021/03/24/pnpm.html ) 👈
+> 关于 **pnpm** 可以参考[这篇博客]( {{site.url}}/2021/03/25/pnpm.html ) 👈
 
 > npm 包还有评分机制，包括 popularity、Quality、Maintenance，[如何提升指标可以具体查看这里](https://itnext.io/increasing-an-npm-packages-search-score-fb557f859300) 👈
 
@@ -1014,4 +1168,4 @@ fi
 7. [Package.json 中库的版本号详解](https://github.com/ragingDream/blog/issues/32) By ragingDream
 8. [npm install vs. update - what's the difference? - stackoverflow](https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
 9. [Introducing npx: an npm package runner](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) By Kat Marchán
-10. [npm install 原理分析](https://cloud.tencent.com/developer/article/1555982) by ConardLi
+10. [前端工程化 - 剖析npm的包管理机制（完整版）](https://cloud.tencent.com/developer/article/1556014) by ConardLi

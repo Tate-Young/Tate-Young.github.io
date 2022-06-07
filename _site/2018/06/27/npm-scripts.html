@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="NPM Scripts" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="add package.json files" />
-<meta property="og:description" content="add package.json files" />
+<meta name="description" content="add lockfile &amp; cache &amp; overrides" />
+<meta property="og:description" content="add lockfile &amp; cache &amp; overrides" />
 <link rel="canonical" href="http://localhost:2333/2018/06/27/npm-scripts.html" />
 <meta property="og:url" content="http://localhost:2333/2018/06/27/npm-scripts.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-06-27T17:57:00+08:00" />
 <script type="application/ld+json">
-{"description":"add package.json files","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add lockfile &amp; cache &amp; overrides","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/06/27/npm-scripts.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/06/27/npm-scripts.html","headline":"NPM Scripts","dateModified":"2018-06-27T17:57:00+08:00","datePublished":"2018-06-27T17:57:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,7 +175,7 @@
                       发布时间：2018-06-27 17:57:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-11-18 15:29:00
+                        修改时间：2022-06-07 14:09:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -183,7 +183,7 @@
                 </div>
                 
                   <div role='update-description' class="post-data">
-                    修改内容：add package.json files
+                    修改内容：add lockfile & cache & overrides
                   </div>
                 
                 <div class="post-tags">
@@ -254,6 +254,121 @@ npm config list
   "license": "MIT"
 }
 </code></pre>
+
+<h3 id="lockfile">lockfile</h3>
+
+<p>为了在多人开发中避免安装的依赖不一致而导致各种环境问题，因此会用到锁文件来锁定依赖版本。如 <code class="highlighter-rouge">package-lock.json</code> 或者 <code class="highlighter-rouge">yarn.lock</code>。<code class="highlighter-rouge">package-lock.json</code> 和 node_modules 目录结构是一一对应的，我们先来看下大致结构：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-app"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"base64-js"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"resolved"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://registry.npmjs.org/base64-js/-/base64-js-1.0.1.tgz"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"integrity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sha1-aSbRsZT7xze47tUTdW3i/Np+pAg="</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"buffer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.4.3"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"resolved"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://registry.npmjs.org/buffer/-/buffer-5.4.3.tgz"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"integrity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sha512-zvj65TkFeIt3i6aj5bIvJDzjjQQGs4o/sNoezg1F1kYap9Nu2jcUdpwzRSJTHMMzG0H7bZkn4rNQpImhuxWX2A=="</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"requires"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base64-js"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.0.2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ieee754"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.1.4"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"base64-js"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.3.1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"resolved"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://registry.npmjs.org/base64-js/-/base64-js-1.3.1.tgz"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"integrity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g=="</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"ieee754"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.1.13"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"resolved"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://registry.npmjs.org/ieee754/-/ieee754-1.1.13.tgz"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"integrity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sha512-4vf7I2LYV/HaWerSo3XmlMkp5eZ83i+/CDluXi/IGTs/O1sejBNhTtnxzmRZfvOUqj7lZjqHkeTvpgSFDlWZTg=="</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.1.4"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"resolved"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://registry.npmjs.org/ignore/-/ignore-5.1.4.tgz"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"integrity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sha512-MzbUSahkTW1u7JpKKjY7LCARd1fU5W2rLdxlM4kdkayuCwZImjkpluF9CM1aLewYJguPDqewLam18Y6AU69A8A=="</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<ol>
+  <li>resolved - 包具体的安装来源</li>
+  <li>integrity - 包 hash 值，基于 <a href="https://w3c.github.io/webappsec-subresource-integrity/">Subresource Integrity</a> 来验证。用户下载依赖包到本地后，需要确定在下载过程中没有出现错误，所以在下载完成之后需要在本地在计算一次文件的 hash 值，如果两个 hash 值是相同的，则确保下载的依赖是完整的，如果不同，则进行重新下载</li>
+  <li>requires - 对应子依赖的依赖，与子依赖的 package.json 中 dependencies 的依赖项相同</li>
+</ol>
+
+<blockquote>
+  <p>并不是所有的子依赖都有 dependencies 属性，只有子依赖的依赖和当前已安装在根目录的 node_modules 中的依赖冲突之后，才会有这个属性。具体可以参考 pnpm 扁平化一节</p>
+</blockquote>
+
+<p>npm 里锁文件还有个 <strong>lockfileVersion</strong> 属性，不同 npm 版本安装的版本号可能不同：</p>
+
+<ol>
+  <li>No version provided: an “ancient” shrinkwrap file from a version of npm prior to npm v5.</li>
+  <li>v1 =&gt; npm v5&amp;v6.</li>
+  <li>v2: =&gt; npm v7&amp;v8, which is backwards compatible to v1 lockfiles.</li>
+  <li>v3: =&gt; npm v7&amp;v8 without backwards compatibility</li>
+</ol>
+
+<blockquote>
+  <p>The lockfile v2 unlocks the ability to do deterministic and reproducible builds to produce a package tree.</p>
+</blockquote>
+
+<blockquote>
+  <p>Running npm install with npm 7 in a project with a v1 lockfile will replace that lockfile with the new v2 format. To avoid this, you can run <code class="highlighter-rouge">npm install --no-save</code></p>
+</blockquote>
+
+<p>我们经常会遇到一个问题，比如 a 同学用 npm v7 提交了锁文件上去，其他同学用的 npm v6，这时候就会出现以下提示。所以团队里面尽量保证 npm 版本一致：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm WARN read-shrinkwrap This version of npm is compatible with lockfileVersion@1, but package-lock.json was generated for lockfileVersion@2. I’ll try to do my best with it!
+</code></pre></div></div>
+
+<h3 id="缓存">缓存</h3>
+
+<p>在执行 npm install 或 npm update 命令下载依赖后，除了将依赖包安装在 node_modules 目录下外，还会在本地的缓存目录缓存一份。通过 <code class="highlighter-rouge">npm config get cache</code> 命令可以查询到：在 Linux 或 Mac 默认是用户主目录下的 <code class="highlighter-rouge">.npm/_cacache</code> 目录。我们简单看下这个结构：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pacote:version-manifest:https://registry.npmjs.org/base64-js/-/base64-js-1.0.1.tgz:sha1-aSbRsZT7xze47tUTdW3i/Np+pAg="</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"integrity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sha512-C2EkHXwXvLsbrucJTRS3xFHv7Mf/y9klmKDxPTE8yevCoH5h8Ae69Y+/lP+ahpW91crnzgO78elOk2E6APJfIQ=="</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1575554308857</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64-js@1.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"manifest"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64-js"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"engines"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"node"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&gt;= 0.4"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="nl">"optionalDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"standard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^5.2.2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tape"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.x"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"bundleDependencies"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"peerDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="nl">"deprecated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"_resolved"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://registry.npmjs.org/base64-js/-/base64-js-1.0.1.tgz"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"_integrity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sha1-aSbRsZT7xze47tUTdW3i/Np+pAg="</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"_shasum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6926d1b194fbc737b8eed513756de2fcda7ea408"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"_shrinkwrap"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"bin"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64-js@1.0.1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finalized-manifest"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>上面的 _shasum 属性 6926d1b194fbc737b8eed513756de2fcda7ea408 即为 tar 包的 hash， hash 的前几位 6926 即为缓存的前两层目录，进去后就能找到压缩后的依赖包。以上的缓存策略是从 npm v5 版本开始的，在 npm v5 版本之前，每个缓存的模块在 <code class="highlighter-rouge">~/.npm</code> 文件夹中以模块名的形式直接存储，储存结构是 <code class="highlighter-rouge">{cache}/{name}/{version}</code>。</p>
 
 <h3 id="脚本命令-scripts">脚本命令 scripts</h3>
 
@@ -608,6 +723,49 @@ ENV3=THE FISH
   <p><code class="highlighter-rouge">.npmignore</code> 文件就像 <code class="highlighter-rouge">.gitignore</code> 一样工作。如果 <code class="highlighter-rouge">.npmignore</code> 缺失的话，则将使用 <code class="highlighter-rouge">.gitignore</code> 作为替代 👈</p>
 </blockquote>
 
+<h3 id="overrides">overrides</h3>
+
+<p>如果需要在 npm 实现 <a href="https://classic.yarnpkg.com/lang/en/docs/selective-version-resolutions/">yarn resolutions</a> 的效果，npm v8 提供了 <a href="https://docs.npmjs.com/cli/v8/configuring-npm/package-json#overrides">overrides</a> 属性：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"overrides"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"foo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>这样设置后，不管你项目里的依赖树需要哪个版本的 foo，都会被强制安装成 1.0.0，当然我们也可以定义一些子依赖的版本：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"overrides"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"baz"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"bar"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"foo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>我们还可以通过 <strong>$</strong> 前缀来更规范的制定版本：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"foo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.0.0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"overrides"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">BAD</span><span class="p">,</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">throw</span><span class="w"> </span><span class="err">an</span><span class="w"> </span><span class="err">EOVERRIDE</span><span class="w"> </span><span class="err">error</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="nl">"foo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.0.0"</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">GOOD</span><span class="p">,</span><span class="w"> </span><span class="err">specs</span><span class="w"> </span><span class="err">match</span><span class="w"> </span><span class="err">so</span><span class="w"> </span><span class="err">override</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">allowed</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="nl">"foo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.0.0"</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">BEST</span><span class="p">,</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">override</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">defined</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">reference</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">dependency</span><span class="w">
+    </span><span class="nl">"foo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$foo"</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">referenced</span><span class="w"> </span><span class="err">package</span><span class="w"> </span><span class="err">does</span><span class="w"> </span><span class="err">not</span><span class="w"> </span><span class="err">need</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">match</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">overridden</span><span class="w"> </span><span class="err">one</span><span class="w">
+    </span><span class="nl">"bar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$foo"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
 <h2 id="scripty">scripty</h2>
 
 <p>当脚本命令比较多的时候，可以通过 <a href="https://github.com/testdouble/scripty">scripty</a> 将 scripts 剥离到单独文件中管理，还是看最初的栗子:</p>
@@ -762,7 +920,7 @@ yarn global add yarn
 <p><img src="http://localhost:2333/style/images/smms/npm-install.png" alt="npm install" /></p>
 
 <blockquote>
-  <p>关于 <strong>pnpm</strong> 可以参考<a href="http://localhost:23332021/03/24/pnpm.html">这篇博客</a> 👈</p>
+  <p>关于 <strong>pnpm</strong> 可以参考<a href="http://localhost:2333/2021/03/25/pnpm.html">这篇博客</a> 👈</p>
 </blockquote>
 
 <blockquote>
@@ -1275,7 +1433,7 @@ fi
   <li><a href="https://github.com/ragingDream/blog/issues/32">Package.json 中库的版本号详解</a> By ragingDream</li>
   <li><a href="https://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference">npm install vs. update - what’s the difference? - stackoverflow</a></li>
   <li><a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b">Introducing npx: an npm package runner</a> By Kat Marchán</li>
-  <li><a href="https://cloud.tencent.com/developer/article/1555982">npm install 原理分析</a> by ConardLi</li>
+  <li><a href="https://cloud.tencent.com/developer/article/1556014">前端工程化 - 剖析npm的包管理机制（完整版）</a> by ConardLi</li>
 </ol>
  
 <div id="gitalk-container"></div>
