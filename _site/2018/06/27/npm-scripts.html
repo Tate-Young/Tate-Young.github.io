@@ -257,6 +257,8 @@ npm config list
 
 <h3 id="lockfile">lockfile</h3>
 
+<h4 id="lockfileversion">lockfileVersion</h4>
+
 <p>为了在多人开发中避免安装的依赖不一致而导致各种环境问题，因此会用到锁文件来锁定依赖版本。如 <code class="highlighter-rouge">package-lock.json</code> 或者 <code class="highlighter-rouge">yarn.lock</code>。<code class="highlighter-rouge">package-lock.json</code> 和 node_modules 目录结构是一一对应的，我们先来看下大致结构：</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
@@ -329,6 +331,41 @@ npm config list
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm WARN read-shrinkwrap This version of npm is compatible with lockfileVersion@1, but package-lock.json was generated for lockfileVersion@2. I’ll try to do my best with it!
 </code></pre></div></div>
+
+<h4 id="npm-shrinkwrapjson">npm-shrinkwrap.json</h4>
+
+<p><strong>npm-shrinkwrap.json</strong> 与 pacakge-lock.json 功能类似，同时存在的情况下，前者优先级更高，后者会被忽略。不同点如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>差别</th>
+      <th>npm-shrinkwrap.json</th>
+      <th>pacakge-lock.json</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>版本</td>
+      <td>before npm v5</td>
+      <td>after npm v5</td>
+    </tr>
+    <tr>
+      <td>发布</td>
+      <td>允许</td>
+      <td>不允许</td>
+    </tr>
+    <tr>
+      <td>优先级</td>
+      <td>高</td>
+      <td>低</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>npm-shrinkwrap.json allows publication, and defines the dependency tree from the point encountered. This is not recommended unless deploying a CLI tool or otherwise using the publication process for producing production packages.</p>
+</blockquote>
 
 <h3 id="缓存">缓存</h3>
 

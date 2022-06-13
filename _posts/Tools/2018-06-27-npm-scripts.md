@@ -60,6 +60,8 @@ npm config list
 
 ### lockfile
 
+#### lockfileVersion
+
 为了在多人开发中避免安装的依赖不一致而导致各种环境问题，因此会用到锁文件来锁定依赖版本。如 `package-lock.json` 或者 `yarn.lock`。`package-lock.json` 和 node_modules 目录结构是一一对应的，我们先来看下大致结构：
 
 ```json
@@ -124,6 +126,18 @@ npm 里锁文件还有个 **lockfileVersion** 属性，不同 npm 版本安装�
 ```text
 npm WARN read-shrinkwrap This version of npm is compatible with lockfileVersion@1, but package-lock.json was generated for lockfileVersion@2. I’ll try to do my best with it!
 ```
+
+#### npm-shrinkwrap.json
+
+**npm-shrinkwrap.json** 与 pacakge-lock.json 功能类似，同时存在的情况下，前者优先级更高，后者会被忽略。不同点如下：
+
+| 差别        |   npm-shrinkwrap.json   | pacakge-lock.json |
+| ------------ | ------- | ---- |
+| 版本 | before npm v5 | after npm v5 |
+| 发布 | 允许 | 不允许 |
+| 优先级 | 高 | 低 |
+
+> npm-shrinkwrap.json allows publication, and defines the dependency tree from the point encountered. This is not recommended unless deploying a CLI tool or otherwise using the publication process for producing production packages.
 
 ### 缓存
 

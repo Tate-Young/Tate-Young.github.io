@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="TypeScript 问题收集" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="add type definitions isDistributive question" />
-<meta property="og:description" content="add type definitions isDistributive question" />
+<meta name="description" content="add infer keyword" />
+<meta property="og:description" content="add infer keyword" />
 <link rel="canonical" href="http://localhost:2333/2021/01/21/ts-update.html" />
 <meta property="og:url" content="http://localhost:2333/2021/01/21/ts-update.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-01-21T22:47:00+08:00" />
 <script type="application/ld+json">
-{"description":"add type definitions isDistributive question","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/01/21/ts-update.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/01/21/ts-update.html","headline":"TypeScript 问题收集","dateModified":"2021-01-21T22:47:00+08:00","datePublished":"2021-01-21T22:47:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add infer keyword","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2021/01/21/ts-update.html"},"@type":"BlogPosting","url":"http://localhost:2333/2021/01/21/ts-update.html","headline":"TypeScript 问题收集","dateModified":"2021-01-21T22:47:00+08:00","datePublished":"2021-01-21T22:47:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,7 +175,7 @@
                       发布时间：2021-01-21 22:47:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2021-03-22 17:48:00
+                        修改时间：2022-06-13 15:08:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
@@ -183,7 +183,7 @@
                 </div>
                 
                   <div role='update-description' class="post-data">
-                    修改内容：add type definitions isDistributive question
+                    修改内容：add infer keyword
                   </div>
                 
                 <div class="post-tags">
@@ -667,6 +667,63 @@ function WeekSelector() {
 
 <blockquote>
   <p>具体源码的解释请<a href="https://mp.weixin.qq.com/s/zSX7xLKSb86NVGStKQfqfw">参考这里</a> 👈</p>
+</blockquote>
+
+<h2 id="infer-关键字">infer 关键字</h2>
+
+<p><strong>infer</strong> 表示在 extends 条件语句中待推断的类型变量：</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">ParamType</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kd">extends</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="nx">infer</span> <span class="nx">P</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">any</span> <span class="p">?</span> <span class="nx">P</span> <span class="p">:</span> <span class="nx">T</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+  <span class="nl">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nl">age</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">type</span> <span class="nx">Func</span> <span class="o">=</span> <span class="p">(</span><span class="nx">user</span><span class="p">:</span> <span class="nx">User</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+
+<span class="nx">type</span> <span class="nx">Param</span> <span class="o">=</span> <span class="nx">ParamType</span><span class="o">&lt;</span><span class="nx">Func</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// Param = User</span>
+<span class="nx">type</span> <span class="nx">AA</span> <span class="o">=</span> <span class="nx">ParamType</span><span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// string</span>
+</code></pre></div></div>
+
+<p>在 2.8 版本中，TypeScript 内置了一些与 infer 有关的映射类型：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">ReturnType</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kd">extends</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="nx">any</span><span class="p">[])</span> <span class="o">=&gt;</span> <span class="nx">infer</span> <span class="nx">P</span> <span class="p">?</span> <span class="nx">P</span> <span class="p">:</span> <span class="nx">any</span>
+</code></pre></div></div>
+
+<p>相比于文章开始给出的示例，<code class="highlighter-rouge">ReturnType&lt;T&gt;</code> 只是将 infer P 从参数位置移动到返回值位置，因此此时 P 即是表示待推断的返回值类型：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Func</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">User</span><span class="p">;</span>
+<span class="nx">type</span> <span class="nx">Test</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="o">&lt;</span><span class="nx">Func</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// Test = User</span>
+</code></pre></div></div>
+
+<p>同样的，一个构造函数可以使用 new 来实例化，因此它的类型通常表示如下：</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">type</span> <span class="nx">Constructor</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="nx">any</span><span class="p">[])</span> <span class="o">=&gt;</span> <span class="nx">any</span>
+</code></pre></div></div>
+
+<p>当 infer 用于构造函数类型中，可用于参数位置 <code class="highlighter-rouge">new (...args: infer P) =&gt; any</code> 和返回值位置 <code class="highlighter-rouge">new (...args: any[]) =&gt; infer P</code>：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 获取参数类型</span>
+<span class="nx">type</span> <span class="nx">ConstructorParameters</span><span class="o">&lt;</span><span class="nx">T</span> <span class="kd">extends</span> <span class="k">new</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="nx">any</span><span class="p">[])</span> <span class="o">=&gt;</span> <span class="nx">any</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kd">extends</span> <span class="k">new</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="nx">infer</span> <span class="nx">P</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">any</span>
+  <span class="p">?</span> <span class="nx">P</span>
+  <span class="p">:</span> <span class="nx">never</span><span class="p">;</span>
+
+<span class="c1">// 获取实例类型</span>
+<span class="nx">type</span> <span class="nx">InstanceType</span><span class="o">&lt;</span><span class="nx">T</span> <span class="kd">extends</span> <span class="k">new</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="nx">any</span><span class="p">[])</span> <span class="o">=&gt;</span> <span class="nx">any</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kd">extends</span> <span class="k">new</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="nx">any</span><span class="p">[])</span> <span class="o">=&gt;</span> <span class="nx">infer</span> <span class="nx">R</span> <span class="p">?</span> <span class="nx">R</span> <span class="p">:</span> <span class="nx">any</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nx">TestClass</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="kr">public</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">,</span> <span class="kr">public</span> <span class="nx">age</span><span class="p">:</span> <span class="nx">number</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="nx">type</span> <span class="nx">Params</span> <span class="o">=</span> <span class="nx">ConstructorParameters</span><span class="o">&lt;</span><span class="k">typeof</span> <span class="nx">TestClass</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// [string, number]</span>
+
+<span class="nx">type</span> <span class="nx">Instance</span> <span class="o">=</span> <span class="nx">InstanceType</span><span class="o">&lt;</span><span class="k">typeof</span> <span class="nx">TestClass</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// TestClass</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>此外可参考 <a href="https://github.com/ascoders/weekly/blob/master/前沿技术/207.精读《Typescript%20infer%20关键字》.md">weekly</a> 和 <a href="https://learntypescript.dev/09/l2-conditional-infer">coditional infer</a> 👈</p>
 </blockquote>
  
 <div id="gitalk-container"></div>

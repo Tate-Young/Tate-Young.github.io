@@ -465,6 +465,12 @@ ob.c = 3 // 输出 3
 
 > 如果想通过 demo 快速上手的话，这里有一个 [mobx-react-demo](https://github.com/Tate-Young/mobx-react-demo) 👈
 
+## 其他状态哭
+
+### recoil
+
+[**recoil**](https://recoiljs.org/docs/introduction/getting-started) 可以[参考这里](https://github.com/ascoders/weekly/blob/master/前沿技术/152.%20精读《recoil》.md) 👈
+
 ## 参考链接
 
 1. [MobX 官方文档](https://mobx.js.org)
