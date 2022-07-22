@@ -7,7 +7,8 @@ background: green
 category: 前端
 title: Git 命令
 date:   2018-03-11 12:03:00 GMT+0800 (CST)
-update: 2020-06-16 11:01:00 GMT+0800 (CST)
+update: 2022-07-22 12:59:00 GMT+0800 (CST)
+description: modify git tag
 background-image: /style/images/smms/github.png
 
 tags:
@@ -625,18 +626,27 @@ git stash apply stash@{1}
 
 ### tag
 
-**tag** 一般用于发布某个版本时，在版本库中打上标签便于后续查看，类似分支，都是指向某次 commit 的指针，但分支可移动，而标签不可动，可以[参考语义化规范](https://semver.org/lang/zh-CN/)。
+[**tag**](https://git-scm.com/book/zh/v2/Git-基础-打标签) 一般用于发布某个版本时，在版本库中打上标签便于后续查看，类似分支，都是指向某次 commit 的指针，但分支可移动，而标签不可动，可以[参考语义化规范](https://semver.org/lang/zh-CN/)。
+
+Git 支持两种标签：**轻量标签（lightweight）**与**附注标签（annotated）**。轻量标签很像一个不会改变的分支——它只是某个特定提交的引用。而附注标签是存储在 Git 数据库中的一个完整对象， 它们是可以被校验的，其中包含打标签者的名字、电子邮件地址、日期时间， 此外还有一个标签信息，并且可以使用 GNU Privacy Guard （GPG）签名并验证。 通常会建议创建附注标签，这样你可以拥有以上所有信息。但是如果你只是想用一个临时的标签， 或者因为某些原因不想要保存这些信息，那么也可以用轻量标签。
 
 ```SHELL
 # 创建一个标签
+# 创建轻量标签，不需要使用 -a、-s 或 -m 选项，只需要提供标签名字
+# 如果在标签上运行 git show，你不会看到额外的标签信息。 命令只会显示出提交信息
 git tag v1.0.0
+# 创建附注标签
 git tag -a v1.0.0 -m "附注信息"
 
 # 根据 commit id 创建一个标签
 git tag v1.0.0 b9ffdcd
 
-# 删除某个标签
+# 删除本地标签
 git tag -d v1.0.0
+
+# 删除远端标签，以下两种方式都可
+git push origin --delete tag v1.0.0
+git push origin :refs/tags/v1.0.0
 ```
 
 可以使用 show 命令查看标签具体信息:
@@ -650,6 +660,12 @@ git show v1.0.0
 # commit b9ffdcdeee89de1fa349609a98c733573c98419e (HEAD -> master, tag: v1.0.0, origin/master, origin/HEAD)
 # Merge: 18b7e15 a1da33b
 # ...
+
+# 查看远端标签
+git ls-remote --tags
+# 30f4e5cdfef2539b5e156a607f365fb457f309a4        refs/tags/v0.1
+# 0efbfd03ed4b09647ef8a32db9c0a075f7d7dbeb        refs/tags/v0.2
+# 6944954ffa18df994365e53e96d3826a3953890b        refs/tags/v0.2^{}
 ```
 
 推送 tag 到远端的方法:
