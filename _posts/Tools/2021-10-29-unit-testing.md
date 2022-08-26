@@ -22,6 +22,10 @@ background-image: /style/images/js.png
 * [**@testing-library/react-hooks**](https://testing-library.com/docs/react-testing-library/intro/) - Simple and complete React hooks testing utilities.
 * [**testing-library/jest-dom**](https://github.com/testing-library/jest-dom) - Custom jest matchers to test the state of the DOM.
 
+## 如何实现 full code-coverage
+
+> 可以阅读[这篇文章](https://tsmx.net/jest-full-code-coverage/) 👈
+
 ## When testing, code that causes React state updates should be wrapped into act(...)
 
 该问题产生的背景是我们在对 React 组件做单元测试时，需要将 render 以及更新操作包裹在 act 方法中，可以参考官方文档:

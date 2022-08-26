@@ -96,7 +96,7 @@ path 标识指定了主机下的哪些路径可以接受 cookie（该 URL 路径
 
 ### SameSite
 
-**SameSite** Cookie 允许服务器要求某个 cookie 在跨站(cross-site)请求时不会被发送，从而可以阻止**跨站请求伪造攻击（CSRF）**。SameSite 可以有下面三种值：
+**SameSite** Cookie 允许服务器要求某个 cookie 在跨站(cross-site)请求时不会被发送，影响的是第三方 cookie，从而可以阻止**跨站请求伪造攻击（CSRF）**。SameSite 可以有下面三种值：
 
 * **None** - 浏览器会在同站请求、跨站请求下继续发送 cookie，不区分大小写。
 * **Strict** - 浏览器将只在访问相同站点时发送 cookie。（在原有 Cookies 的限制条件上的加强，如上文 “Cookie 的作用域” 所述）

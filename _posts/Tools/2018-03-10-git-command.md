@@ -643,6 +643,8 @@ git tag v1.0.0 b9ffdcd
 
 # 删除本地标签
 git tag -d v1.0.0
+# 删除所有本地标签
+git tag -l | xargs git tag -d
 
 # 删除远端标签，以下两种方式都可
 git push origin --delete tag v1.0.0
