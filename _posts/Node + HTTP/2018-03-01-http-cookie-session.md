@@ -130,7 +130,7 @@ path 标识指定了主机下的哪些路径可以接受 cookie（该 URL 路径
 https://developer.mozilla.org/en-US/docs/
 https://support.mozilla.org/en-US/
 
-# These are the same site because scheme and port are not relevant:
+# These are the same site authough scheme and port are not relevant:
 
 http://example.com:8080
 https://example.com
