@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="Git 命令" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Git 命令" />
-<meta property="og:description" content="Git 命令" />
+<meta name="description" content="modify git tag" />
+<meta property="og:description" content="modify git tag" />
 <link rel="canonical" href="http://localhost:2333/2018/03/11/git-command.html" />
 <meta property="og:url" content="http://localhost:2333/2018/03/11/git-command.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-03-11T12:03:00+08:00" />
 <script type="application/ld+json">
-{"description":"Git 命令","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/03/11/git-command.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/03/11/git-command.html","headline":"Git 命令","dateModified":"2018-03-11T12:03:00+08:00","datePublished":"2018-03-11T12:03:00+08:00","@context":"https://schema.org"}</script>
+{"description":"modify git tag","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/03/11/git-command.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/03/11/git-command.html","headline":"Git 命令","dateModified":"2018-03-11T12:03:00+08:00","datePublished":"2018-03-11T12:03:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,12 +175,16 @@
                       发布时间：2018-03-11 12:03:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2020-06-16 11:01:00
+                        修改时间：2022-07-22 12:59:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：modify git tag
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -925,17 +929,28 @@ git stash apply stash@{1}
 
 <h3 id="tag">tag</h3>
 
-<p><strong>tag</strong> 一般用于发布某个版本时，在版本库中打上标签便于后续查看，类似分支，都是指向某次 commit 的指针，但分支可移动，而标签不可动，可以<a href="https://semver.org/lang/zh-CN/">参考语义化规范</a>。</p>
+<p><a href="https://git-scm.com/book/zh/v2/Git-基础-打标签"><strong>tag</strong></a> 一般用于发布某个版本时，在版本库中打上标签便于后续查看，类似分支，都是指向某次 commit 的指针，但分支可移动，而标签不可动，可以<a href="https://semver.org/lang/zh-CN/">参考语义化规范</a>。</p>
+
+<p>Git 支持两种标签：<strong>轻量标签（lightweight）</strong>与<strong>附注标签（annotated）</strong>。轻量标签很像一个不会改变的分支——它只是某个特定提交的引用。而附注标签是存储在 Git 数据库中的一个完整对象， 它们是可以被校验的，其中包含打标签者的名字、电子邮件地址、日期时间， 此外还有一个标签信息，并且可以使用 GNU Privacy Guard （GPG）签名并验证。 通常会建议创建附注标签，这样你可以拥有以上所有信息。但是如果你只是想用一个临时的标签， 或者因为某些原因不想要保存这些信息，那么也可以用轻量标签。</p>
 
 <pre><code class="language-SHELL"># 创建一个标签
+# 创建轻量标签，不需要使用 -a、-s 或 -m 选项，只需要提供标签名字
+# 如果在标签上运行 git show，你不会看到额外的标签信息。 命令只会显示出提交信息
 git tag v1.0.0
+# 创建附注标签
 git tag -a v1.0.0 -m "附注信息"
 
 # 根据 commit id 创建一个标签
 git tag v1.0.0 b9ffdcd
 
-# 删除某个标签
+# 删除本地标签
 git tag -d v1.0.0
+# 删除所有本地标签
+git tag -l | xargs git tag -d
+
+# 删除远端标签，以下两种方式都可
+git push origin --delete tag v1.0.0
+git push origin :refs/tags/v1.0.0
 </code></pre>
 
 <p>可以使用 show 命令查看标签具体信息:</p>
@@ -948,6 +963,16 @@ git show v1.0.0
 # commit b9ffdcdeee89de1fa349609a98c733573c98419e (HEAD -&gt; master, tag: v1.0.0, origin/master, origin/HEAD)
 # Merge: 18b7e15 a1da33b
 # ...
+
+# 查看远端标签
+git ls-remote --tags
+# 30f4e5cdfef2539b5e156a607f365fb457f309a4        refs/tags/v0.1
+# 0efbfd03ed4b09647ef8a32db9c0a075f7d7dbeb        refs/tags/v0.2
+# 6944954ffa18df994365e53e96d3826a3953890b        refs/tags/v0.2^{}
+
+# 查看打标的日期
+git log --tags --simplify-by-decoration --pretty=\"format:%ci %d\"
+[alias]gtag = log --tags --simplify-by-decoration --pretty=format:'%Cgreen%h%Creset %C(magenta)%ci%Creset %d %C(bold blue)&lt;%an&gt;%Creset'
 </code></pre>
 
 <p>推送 tag 到远端的方法:</p>

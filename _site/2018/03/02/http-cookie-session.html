@@ -313,7 +313,7 @@ document.cookie = "key=name; max-age=-1; domain=.example.com; path=/; secure; Ht
 
 <h3 id="samesite">SameSite</h3>
 
-<p><strong>SameSite</strong> Cookie 允许服务器要求某个 cookie 在跨站(cross-site)请求时不会被发送，从而可以阻止<strong>跨站请求伪造攻击（CSRF）</strong>。SameSite 可以有下面三种值：</p>
+<p><strong>SameSite</strong> Cookie 允许服务器要求某个 cookie 在跨站(cross-site)请求时不会被发送，影响的是第三方 cookie，从而可以阻止<strong>跨站请求伪造攻击（CSRF）</strong>。SameSite 可以有下面三种值：</p>
 
 <ul>
   <li><strong>None</strong> - 浏览器会在同站请求、跨站请求下继续发送 cookie，不区分大小写。</li>

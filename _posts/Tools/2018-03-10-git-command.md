@@ -668,6 +668,10 @@ git ls-remote --tags
 # 30f4e5cdfef2539b5e156a607f365fb457f309a4        refs/tags/v0.1
 # 0efbfd03ed4b09647ef8a32db9c0a075f7d7dbeb        refs/tags/v0.2
 # 6944954ffa18df994365e53e96d3826a3953890b        refs/tags/v0.2^{}
+
+# 查看打标的日期
+git log --tags --simplify-by-decoration --pretty=\"format:%ci %d\"
+[alias]gtag = log --tags --simplify-by-decoration --pretty=format:'%Cgreen%h%Creset %C(magenta)%ci%Creset %d %C(bold blue)<%an>%Creset'
 ```
 
 推送 tag 到远端的方法:
