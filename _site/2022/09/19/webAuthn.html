@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="WebAuthn" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="WebAuthn" />
-<meta property="og:description" content="WebAuthn" />
+<meta name="description" content="add 2FA &amp; TOTP" />
+<meta property="og:description" content="add 2FA &amp; TOTP" />
 <link rel="canonical" href="http://localhost:2333/2022/09/19/webAuthn.html" />
 <meta property="og:url" content="http://localhost:2333/2022/09/19/webAuthn.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-09-19T17:52:00+08:00" />
 <script type="application/ld+json">
-{"description":"WebAuthn","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2022/09/19/webAuthn.html"},"@type":"BlogPosting","url":"http://localhost:2333/2022/09/19/webAuthn.html","headline":"WebAuthn","dateModified":"2022-09-19T17:52:00+08:00","datePublished":"2022-09-19T17:52:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add 2FA &amp; TOTP","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2022/09/19/webAuthn.html"},"@type":"BlogPosting","url":"http://localhost:2333/2022/09/19/webAuthn.html","headline":"WebAuthn","dateModified":"2022-09-19T17:52:00+08:00","datePublished":"2022-09-19T17:52:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,10 +175,16 @@
                       发布时间：2022-09-19 17:52:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2022-09-19 19:56:00
+                      
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：add 2FA & TOTP
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -354,7 +360,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>举一个稍微完整点的例子：</p>
+<p>举一个稍微完整点的例子，用的 ejs 模板：</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">navigator</span><span class="p">.</span><span class="nx">credentials</span>
   <span class="p">.</span><span class="kd">get</span><span class="p">({</span>
@@ -385,11 +391,51 @@
   <span class="p">});</span>
 </code></pre></div></div>
 
+<h2 id="双因素认证与-totp">双因素认证与 TOTP</h2>
+
+<p>一般来说，三种不同类型的证据，可以证明一个人的身份：</p>
+
+<ul>
+  <li>秘密信息：只有该用户知道、其他人不知道的某种信息，比如密码。</li>
+  <li>个人物品：该用户的私人物品，比如身份证、钥匙。</li>
+  <li>生理特征：该用户的遗传特征，比如指纹、相貌、虹膜等等。</li>
+</ul>
+
+<p>这些证据就称为三种”因素”（factor）。因素越多，证明力就越强，身份就越可靠。<strong>双因素认证（Two-factor authentication，简称 2FA）</strong>则代表同时需要两个因素的证据。银行卡就是最常见的双因素认证。用户必须同时提供银行卡和密码，才能取到现金。还有国内的很多网站要求，用户输入密码时，需要提供短消息发送的验证码，以证明用户确实拥有该手机。</p>
+
+<p>双因素认证的优点在于，比单纯的密码登录安全得多。就算密码泄露，只要手机还在，账户就是安全的。各种密码破解方法，都对双因素认证无效。但是，短消息是不安全的，容易被拦截和伪造，SIM 卡也可以克隆。已经有案例，先伪造身份证，再申请一模一样的手机号码，把钱转走。因此，安全的双因素认证不是密码 + 短消息的组合，而是下面要介绍的 TOTP。</p>
+
+<p><strong>TOTP</strong> 的全称是”基于时间的一次性密码”（Time-based One-time Password）。它是公认的可靠解决方案，已经写入国际标准 RFC6238：</p>
+
+<ol>
+  <li>用户开启双因素认证后，服务器生成一个密钥。</li>
+  <li>服务器提示用户扫描二维码（或者使用其他方式），把密钥保存到用户的手机。也就是说，服务器和用户的手机，现在都有了同一把密钥。注意，密钥必须跟手机绑定。一旦用户更换手机，就必须生成全新的密钥。</li>
+  <li>用户登录时，手机客户端使用这个密钥和当前时间戳，生成一个哈希，有效期默认为 30 秒。用户在有效期内，把这个哈希提交给服务器。</li>
+  <li>服务器也使用密钥和当前时间戳，生成一个哈希，跟用户提交的哈希比对。只要两者不一致，就拒绝登录。</li>
+</ol>
+
+<p>其实现原理也较简单：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">tfa</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">2fa</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="c1">// 生成一个 32 位字符的密钥</span>
+<span class="c1">// b5jjo0cz87d66mhwa9azplhxiao18zlx</span>
+<span class="nx">tfa</span><span class="p">.</span><span class="nx">generateKey</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1">// 生成哈希，且有效期默认为 30s</span>
+<span class="kd">var</span> <span class="nx">tc</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">30</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">totp</span> <span class="o">=</span> <span class="nx">tfa</span><span class="p">.</span><span class="nx">generateCode</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">tc</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">totp</span><span class="p">)</span> <span class="c1">// 683464</span>
+</code></pre></div></div>
+
 <h2 id="参考链接">参考链接</h2>
 
 <ol>
   <li><a href="https://flyhigher.top/develop/2160.html#deep-into-webauthn">谈谈 WebAuthn</a> By 无垠</li>
   <li><a href="https://webauthn.me/introduction">Web Authentication</a></li>
+  <li><a href="https://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html">双因素认证（2FA）教程</a> By 阮一峰</li>
 </ol>
  
 <div id="gitalk-container"></div>
