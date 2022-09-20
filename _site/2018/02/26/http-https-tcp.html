@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="HTTPS &amp; TCP" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="HTTPS &amp; TCP" />
-<meta property="og:description" content="HTTPS &amp; TCP" />
+<meta name="description" content="add signature &amp; CA" />
+<meta property="og:description" content="add signature &amp; CA" />
 <link rel="canonical" href="http://localhost:2333/2018/02/26/http-https-tcp.html" />
 <meta property="og:url" content="http://localhost:2333/2018/02/26/http-https-tcp.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-02-26T18:45:00+08:00" />
 <script type="application/ld+json">
-{"description":"HTTPS &amp; TCP","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/02/26/http-https-tcp.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/02/26/http-https-tcp.html","headline":"HTTPS &amp; TCP","dateModified":"2018-02-26T18:45:00+08:00","datePublished":"2018-02-26T18:45:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add signature &amp; CA","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/02/26/http-https-tcp.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/02/26/http-https-tcp.html","headline":"HTTPS &amp; TCP","dateModified":"2018-02-26T18:45:00+08:00","datePublished":"2018-02-26T18:45:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,12 +175,16 @@
                       发布时间：2018-02-26 18:45:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2019-12-16 12:24:00
+                        修改时间：2022-09-20 17:25:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：add signature & CA
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -312,7 +316,7 @@
   </tbody>
 </table>
 
-<h2 id="加密算法">加密算法</h2>
+<h2 id="加密算法及数字签名">加密算法及数字签名</h2>
 
 <p>HTTPS 的加密方式主要有以下几种:</p>
 
@@ -341,8 +345,8 @@
       <td style="text-align: left">MD5、SHA-1、SHA-2、SHA-256</td>
     </tr>
     <tr>
-      <td style="text-align: left"><strong>数字签名</strong></td>
-      <td style="text-align: left">用于验证传输的内容是是否为真实服务器发送的数据</td>
+      <td style="text-align: left"><strong>数字签名及证书</strong></td>
+      <td style="text-align: left">用于验证传输的内容是是否为真实服务器发送的数据，并校验数据完整性</td>
       <td style="text-align: left">先将数据给到 SSL/TLS 进行加密，然后再由 TCP 进行传输</td>
     </tr>
   </tbody>
@@ -350,9 +354,31 @@
 
 <p><strong>对称加密(Symmetric-key algorithm)</strong> 算法加密、解密效率较高，而数据发送方、数据接收方需要协商、共享同一把密钥，并确保密钥不泄露给其他人，因此密钥如何安全的发送给接收方成为了一个问题。</p>
 
-<p><strong>非对称加密(public-key cryptography)</strong> 可以解决秘钥配送的安全问题，算法性能较低，但是安全性较强，由于其加密特性，非对称加密算法能加密的数据长度也是有限的。基本过程是：甲方生成一对密钥并将公钥公开，需要向甲方发送信息的其他角色(乙方)使用该密钥(甲方的公钥)对机密信息进行加密后再发送给甲方；甲方再用自己私钥对加密后的信息进行解密。甲方想要回复乙方时正好相反，使用乙方的公钥对数据进行加密，同理，乙方使用自己的私钥来进行解密。它消除了最终用户交换密钥的需要。</p>
+<p><strong>非对称加密(public-key cryptography)</strong> 可以解决秘钥配送的安全问题，算法性能较低，但是安全性较强，由于其加密特性，非对称加密算法能加密的数据长度也是有限的。基本过程是：Alice 生成一对密钥并将公钥公开，需要向 Alice 发送信息的 Bob 使用该密钥 (Alice 给的公钥) 对机密信息进行加密后再发送给 Alice；Alice 再用自己私钥对加密后的信息进行解密。Alice 想要回复 Bob 时正好相反，使用 Bob 的公钥对数据进行加密，同理，Bob 使用自己的私钥来进行解密。它消除了最终用户交换密钥的需要。</p>
 
 <p><img src="https://foofish.net/images/public-key.jpg" alt="非对称加密" /></p>
+
+<blockquote>
+  <p>公钥和私钥理论上是可以互相推导的，但是难度太大，收益不高。</p>
+</blockquote>
+
+<p><strong>非对称加密可以保障内容安全性，而数字签名(signature)目的是为了提升解密效率和验证数据的完整性</strong>，试想一下，如果要对较大内容进行加密和解密，耗时是一个问题。操作方式是 Alice 采用 hash 算法对内容生成摘要(digest)，然后通过私钥进行加密，生成数字签名，和原本的内容一起发送出去。当 Bob 在接收信息后，通过公钥解密拿到摘要，同时通过 hash 算法对内容也生成一份摘要做对比，如果一致，说明传输内容没有被篡改。</p>
+
+<p>然而，内容没有被篡改就一定安全吗？Bob 如何识别这个信息一定是 Alice 发的呢？如果 Alice 给 Bob 的公钥已经被 David 劫持更换了呢，David 用自己的私钥给 Bob 发信息，Bob 却浑然不知。</p>
+
+<p>为了解决这个问题，保障公钥不被篡改，于是就引入了<strong>数字证书</strong>，需要找可信的第三方来帮我们签名，即<strong>证书颁布机构（CA）</strong>，CA 会将：证书的颁布机构、有效期、公钥、持有者(subject)等信息用 CA 的私钥进行签名。这样，Alice 就可以去 CA 申请一个证书，然后将自己的证书发给 Bob，那么 Bob 如何验证这个证书确实是 Alice 的呢？当然是使用 CA 的公钥进行验签。CA 的公钥也是需要使用证书来分发的，所以 Bob 的电脑必须安装 CA 的证书，证书里包含了 CA 的公钥。</p>
+
+<p>至此，Alice 发送了三部分信息，“内容 + 数字签名 + 数字证书”，Bob 使用 CA 的公钥进行验证，验证通过即证明这确实是 Alice 发的，也就可以使用证书中包含的 Alice 的公钥，之后流程不变。那么问题又来了，数字证书就一定是可信的吗？答案其实是一定的，毕竟是权威机构，如果这也存在篡改，那世界真的就塌房了。当然，我们也经常会看到证书不可信的提示，原因可能如下：</p>
+
+<ol>
+  <li>证书不是权威 CA 颁发</li>
+  <li>证书过期 - 有效期一般就是一年或者两年的时间，赶紧续签</li>
+  <li>证书部署错误 - 需要和持有人信息匹配</li>
+</ol>
+
+<blockquote>
+  <p>了解更多数字签名和数字证书，可以<a href="https://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html">参考这里</a> 👈</p>
+</blockquote>
 
 <h2 id="osi-模型">OSI 模型</h2>
 
@@ -764,6 +790,7 @@ name1=value1&amp;name2=value2
   <li><a href="https://blog.csdn.net/u010256388/article/details/68491509">HTTP 请求行、请求头、请求体详解</a> By 咚浸暖的过去</li>
   <li><a href="https://juejin.im/post/5d9c284b518825095879e7a5">面试官，不要再问我三次握手和四次挥手</a> By 猿人谷</li>
   <li><a href="https://notfalse.net/26/tcp-seq">TCP 序列號 (Sequence Number, SEQ)</a> By 鄭中勝</li>
+  <li><a href="https://segmentfault.com/a/1190000024523772">一文彻底搞懂加密、数字签名和数字证书！</a> By 编程指北</li>
 </ol>
  
 <div id="gitalk-container"></div>
