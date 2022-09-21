@@ -6,7 +6,7 @@ background: green
 category: 前端
 title: 记最近尝试的新技术
 date: 2022-09-21 15:27:00 GMT+0800 (CST)
-background-image: 
+background-image: /style/images/js.png
 ---
 
 # {{ page.title }}
@@ -46,12 +46,12 @@ Usage Error: This project is configured to use pnpm
 
 ## swc 替代 tsc
 
-[**swc(Speedy Web Compiler)**](https://github.com/swc-project/swc) 是基于 rust 开发的 js/ts 编译器，官方宣称是 babel 的替代品，编译速度要快很多。以某项目的包为例：
+[**swc(Speedy Web Compiler)**](https://github.com/swc-project/swc) 是基于 rust 开发的 js/ts 编译器，官方宣称是 babel 的替代品，编译速度要快很多。以某项目的包为例，提升效果显著：
 
 1. tsc 执行时长为 4.9s
 2. swc 执行时长为 0.7s
 
-目前为止存在的问题
+目前为止存在的问题：
 
 1. 编译 typescript 不能生成 d.ts
 2. [打包功能尚有问题](https://swc.rs/docs/configuration/bundling)
