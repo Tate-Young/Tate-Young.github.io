@@ -1,0 +1,570 @@
+
+<!DOCTYPE>
+<html lang="zh-cn" data-scribe-reduced-action-queue="true">
+<head>
+    <meta content='记最近尝试的新技术 - Tate & Snow' name='title' />
+    <meta content='记最近尝试的新技术 - Tate & Snow' name='og:title' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <title>记最近尝试的新技术 - Tate & Snow</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>记最近尝试的新技术 - Tate & Snow</title>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记最近尝试的新技术 - Tate & Snow">
+<meta name="twitter:keywords" content="记最近尝试的新技术 - Tate & Snow" property='og:description' />
+<meta property="og:type" content="article">
+<meta property="og:title" content="记最近尝试的新技术 - Tate & Snow">
+<meta name="og:keywords" content="记最近尝试的新技术 - Tate & Snow|记最近尝试的新技术corepack什么是 corepackcorepack 是跟随 nodejs v16.13 的实验性工具，简单来讲就是“包管理器的管理器”。现在 npm、yarn、pnpm、cnpm 等包管理器都有很多版本，项目中..."
+  property='og:description' />
+<link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
+<link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
+<link rel="canonical" href="http://localhost:2333/">
+<link rel="alternate" type="application/rss+xml" title="Liberxue" href="http://localhost:2333/feed.xml">
+<meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="记最近尝试的新技术corepack什么是 corepackcorepack 是跟随 nodejs v16.13 的实验性工具，简单来讲就是“包管理器的管理器”。现在 npm、yarn、pnpm、cnpm 等包管理器都有很多版本，项目中..." property='og:description'
+/>
+<meta name="description" content="Tate & Snow's Github blog" />
+<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+<link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
+<meta content='http://localhost:2333/2022/09/21/what-is-new.html' property='og:url' />
+<meta content="http://localhost:2333/2022/09/21/what-is-new.html|记最近尝试的新技术corepack什么是 corepackcorepack 是跟随 nodejs v16.13 的实验性工具，简单来讲就是“包管理器的管理器”。现在 npm、yarn、pnpm、cnpm 等包管理器都有很多版本，项目中..." property='og:description'
+/>
+<meta content="article" property="og:type" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136311746-1"></script>
+<!-- <script async src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.GA_TRACKING_ID = 'UA-136311746-1'
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('set', {
+    'country': 'US',
+    'currency': 'USD',
+    'description': 'fuck',
+  });
+  gtag('config', GA_TRACKING_ID, {
+    'custom_map': {
+      'dimension1': 'post_title',
+    },
+    'post_title': 'test',
+  });
+</script>
+<meta content="" property="fb:app_id" />
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>记最近尝试的新技术 | Tate &amp; Snow</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="记最近尝试的新技术" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="记最近尝试的新技术" />
+<meta property="og:description" content="记最近尝试的新技术" />
+<link rel="canonical" href="http://localhost:2333/2022/09/21/what-is-new.html" />
+<meta property="og:url" content="http://localhost:2333/2022/09/21/what-is-new.html" />
+<meta property="og:site_name" content="Tate &amp; Snow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-09-21T15:27:00+08:00" />
+<script type="application/ld+json">
+{"description":"记最近尝试的新技术","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2022/09/21/what-is-new.html"},"@type":"BlogPosting","url":"http://localhost:2333/2022/09/21/what-is-new.html","headline":"记最近尝试的新技术","dateModified":"2022-09-21T15:27:00+08:00","datePublished":"2022-09-21T15:27:00+08:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</head>
+
+<body class="dark-theme" gtools_scp_screen_capture_injected="true">
+    <header id="header" class="header bg-white">
+        <div class="navbar-container">
+            <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
+                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+            <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
+            <div class="navbar-menu">
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('首页', '/')" title="访问 首页" data-hover="首页">首页</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('前端', '/front')" title="访问 前端" data-hover="前端">前端</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('历史', '/history')" title="访问 历史" data-hover="历史">历史</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('其他', '/other')" title="访问 其他" data-hover="其他">其他</a>
+                
+                  <a class=" menu-item-categories " href="Javascript:;" onclick="onClickMenu('标签', '/tags')" title="访问 标签" data-hover="标签">标签</a>
+                
+                  <a class=" menu-item-about " href="Javascript:;" onclick="onClickMenu('关于', '/README')" title="访问 关于" data-hover="关于">关于</a>
+                
+            </div>
+            <!-- <div class="navbar-menu">
+                
+                <a href="http://localhost:2333/">首页</a>
+                
+                <a href="http://localhost:2333/front">前端</a>
+                
+                <a href="http://localhost:2333/history">历史</a>
+                
+                <a href="http://localhost:2333/other">其他</a>
+                
+                <a href="http://localhost:2333/tags">标签</a>
+                
+                <a href="http://localhost:2333/README">关于</a>
+                
+            </div> -->
+            <div class="navbar-search menu-item-search" onclick="onClickSearch()">
+                <span class="icon-search"></span>
+                <form id="cb-search-btn" role="search">
+                    <span class="search-box">
+                        <input type="text" class="input" id="cb-search-content" required="true" placeholder="标题 标签..." maxlength="30" autocomplete="off">
+                    </span>
+                </form>
+            </div>
+            <div class="navbar-mobile-menu" onclick="">
+                <span class="icon-menu cross">
+                    <span class="middle"></span>
+                </span>
+                <ul>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('首页', 'http://localhost:2333/')">首页</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('前端', 'http://localhost:2333/front')">前端</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('历史', 'http://localhost:2333/history')">历史</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('其他', 'http://localhost:2333/other')">其他</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('标签', 'http://localhost:2333/tags')">标签</a>
+                    </li>
+                    
+                    <li>
+                        <a class="menu-item-categories" href="Javascript:;" onclick="onClickMenu('关于', 'http://localhost:2333/README')">关于</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </header>
+    <a href="#header" class="back-to-top" onclick="onClickTop('记最近尝试的新技术')">⤴Top⤴</a>
+    <div class="post-header-thumb bg-white}">
+        <div class="post-header-thumb-op"></div>
+        <div class="post-header-thumb">
+            <div class="post-header-thumb-container">
+                <h1 class="post-title" itemprop="name headline">
+                    记最近尝试的新技术</h1>
+                <div class="post-data">
+                    <time datetime="2022-09-21 15:27:00" itemprop="datePublished">
+                      发布时间：2022-09-21 15:27:00
+                      &nbsp;&nbsp;&nbsp;
+                      
+                    </time>
+                    <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
+                    <!-- <a href="#read"> 阅读次数: comments</a>  -->
+                </div>
+                
+                <div class="post-tags">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline">
+                记最近尝试的新技术</h1>
+            <div class="post-data">
+                <time datetime="2022-09-21 15:27:00" itemprop="datePublished">2022-09-21 15:27:00</time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content" itemprop="articleBody">
+            <p class="post-tags">
+                
+            </p>
+            <h1 id="记最近尝试的新技术">记最近尝试的新技术</h1>
+
+<h2 id="corepack">corepack</h2>
+
+<h3 id="什么是-corepack">什么是 corepack</h3>
+
+<p><a href="https://github.com/nodejs/corepack"><strong>corepack</strong></a> 是跟随 nodejs v16.13 的实验性工具，简单来讲就是“<strong>包管理器的管理器</strong>”。现在 npm、yarn、pnpm、cnpm 等包管理器都有很多版本，项目中不好统一管理，而且需要全局安装。特别是不同版本的包管理器，在解析依赖树等过程中可能存在差异，导致项目构建或运行失败。</p>
+
+<blockquote>
+  <p>低版本 nodejs 是不支持 corepack 功能的</p>
+</blockquote>
+
+<h3 id="怎么启用">怎么启用</h3>
+
+<p>corepack 目前是实验性工具，默认不会启用。我们需要：</p>
+
+<ol>
+  <li>手动运行 corepack enable  进行启动</li>
+  <li>项目 package.json  中新增属性 packageManager ，并标注需要统一使用的包管理器版本</li>
+</ol>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"packageManager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pnpm@6.23.1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>之后我们在项目中首次运行 pnpm 的时候，corepack 会帮我们自动去安装 pnpm@6.23.1 这个版本，并保存在 corepack cache 下。
+如果用非申明的包管理会怎么样？会自动拦截并报错</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜ yarn             
+Usage Error: This project is configured to use pnpm
+</code></pre></div></div>
+
+<h3 id="corepack-prepare">corepack prepare</h3>
+
+<p>当在现有项目之外运行时（例如运行 yarn init 时），corepack 将默认使用与每个工具的最新稳定版本大致对应的预定义版本。 可以通过运行 corepack prepare 命令以及你希望设置的包管理器版本来覆盖这些版本。</p>
+
+<h2 id="swc-替代-tsc">swc 替代 tsc</h2>
+
+<p><a href="https://github.com/swc-project/swc"><strong>swc(Speedy Web Compiler)</strong></a> 是基于 rust 开发的 js/ts 编译器，官方宣称是 babel 的替代品，编译速度要快很多。以某项目的包为例：</p>
+
+<ol>
+  <li>tsc 执行时长为 4.9s</li>
+  <li>swc 执行时长为 0.7s</li>
+</ol>
+
+<p>目前为止存在的问题</p>
+
+<ol>
+  <li>编译 typescript 不能生成 d.ts</li>
+  <li><a href="https://swc.rs/docs/configuration/bundling">打包功能尚有问题</a></li>
+  <li>社区丰富程度较低，插件较少</li>
+</ol>
+
+<p>swc 编译 typescript 不能生成 d.ts，所以还是必须通过 tsc 来处理，所以脚本变成了：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"tsc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tsc"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"swc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tsc --emitDeclarationOnly &amp; swc src -d lib-bac --config-file ../../.swcrc"</span><span class="p">,</span><span class="w">
+ </span><span class="p">}</span><span class="err">,</span><span class="w">
+</span></code></pre></div></div>
+
+<p>这样子 swc 编译速度快的优势就体现不出来了。<a href="https://github.com/swc-project/swc/issues/657#issuecomment-1026620842">官方说是后续会加到 swc 功能中，观望……</a></p>
+ 
+<div id="gitalk-container"></div>
+<script>
+    var gitalk = new Gitalk({
+      enable: true,
+      clientID: '020f142489f80c92b097',
+      clientSecret: '1fa083372b44031cf1b8249251515c4e3d54c69d',
+      repo: 'tate-young.github.io',
+      owner: 'Tate-Young',
+      admin: ['Tate-Young'],
+      id: location.pathname,      // Ensure uniqueness and length less than 50
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+<!-- disqus -->
+<!-- <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = 'https://tate-young.github.io/2022/09/21/what-is-new.html';
+        this.page.identifier = '/2022/09/21/what-is-new';
+        this.page.title = '记最近尝试的新技术';
+    };
+
+    (function () { // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document,
+            s = d.createElement('script');
+
+        s.src = '//tate.disqus.com/embed.js'; // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript> -->
+
+
+            <!-- <p class="post-info">
+			本文由 <a href="/">liberxue</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a> 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为:2022-09-21 15:27:00</p> -->
+        </div>
+    </article>
+
+    <!-- <div class="related-post-lists">
+	<div class="post-lists">
+		<div class="post-lists-body">
+					<div class="post-list-item">
+				<div class="post-list-item-container">
+					<div class="item-label">
+						<div class="item-title"><a href="induction.html">归纳的随想</a></div>
+						<div class="item-meta clearfix">
+														<div class="item-meta-ico bg-ico-image" style="background: url('../usr/themes/pinghsu/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
+	                        							<div class="item-meta-cat"><a href="../category/thoughts/index.html">Thoughts</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+	</div>
+</div> -->
+
+    <!-- <footer class="footer bg-white">
+	<div class="footer-social">
+		<div class="footer-container clearfix">
+			<div class="social-list">
+	 <a class="social segmentfault" target="blank" href="https://segmentfault.com/u/liberxue" title="访问 LiberXue_Twitter" data-hover="Segmentfault">Segmentfault</a>
+    <a class="social github" target="blank" href="https://github.com/liberxue" title="访问 LiberXue_Twitter" data-hover="GitHub">GitHub</a>
+    <a class="social twitter" target="blank" href="http://twitter.com/liberxue" title="访问 LiberXue_Twitter" data-hover="Twitter">Twitter</a>
+     <a class="social stackoverflow" target="blank" href="https://stackoverflow.com/users/6902190/liberxue" title="访问 LiberXue_stackoverflow" data-hover="StackOverflow">StackOverflow</a>
+          <a class="social oschina" target="blank" href="https://my.oschina.net/bolanzw" title="访问 LiberXue_Oschina" data-hover="Oschina">Oschina</a>
+     <a class="social rss" target="blank" href="/feed.xml"title="访问 LiberXue_RSS" data-hover="RSS">RSS</a>
+	</div>
+		</div>
+	</div>
+	<div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a href="/" class="info-logo">
+                         <img src="http://localhost:2333/style/images/logo-liberxue.png"   title="访问 LiberXue_blog" data-hover="LiberXue_blog" alt="LiberXue_blog" /> </a>
+                    <div class="info-text">
+                        <p>Theme is <a href="http://www.liberxue.com/2017/08/03/Jekyllthemes.html" title="访问 Jekyll liberxue主题"  data-hover="Jekyll liberxue"target="_blank">Jekyll liberxue</a> by <a href="http://www.liberxue.com/about" target="_blank">liberxue</a></p>
+                        <p>Powered by <a href="http://localhost:2333/tags/#Jekyll" title="Jekyll" data-hover="Jekyll" target="_blank" rel="nofollow">Jekyll</a></p>
+                        <p>&copy; 2017 <a href="/feed.xml"  title="访问 liberxue blog RSS" data-hover="liberxue blog RSS">liberxue blog RSS</a></p>
+                        <p>总计文章：篇</p>
+                      <p>本blog已开源点击Fork</p><iframe src="http://ghbtns.com/github-btn.html?user=liberxue&repo=liberxue.github.io&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">置顶文章</h3>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+            </div>
+            <div class="meta-item meta-comments">
+                <h3 class="meta-title">最新文章</h3>
+  
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+</div>
+		</div>
+    </div>
+</footer> -->
+<script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+<script async src="/search/js/520.js"></script>
+<script async src="/search/js/gtag.js"></script>
+<script async src="/search/live2d/autoload.js"></script>
+<!-- <script src="/search/js/canvas.js"></script> -->
+
+<script>
+    $(function () {
+        setTimeout(function () {
+            $('code').removeClass('hljs');
+            $('code').removeClass('language');
+        }, 90);
+    });
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    <!--liberxueconnnet-menu-->
+    <div id="directory-content" class="directory-content">
+        <div id="directory"></div>
+    </div>
+    <!--liberxueconnnet-menu-->
+    <script>
+      const directoryContainer = document.getElementById('directory')
+      const postTitle = document.getElementsByClassName('post-title')[0]
+      var postDirectoryBuild = function () {
+        var postChildren = function children(childNodes, reg) {
+          var result = [],
+              isReg = typeof reg === 'object',
+              isStr = typeof reg === 'string',
+              node, i, len;
+          for (i = 0, len = childNodes.length; i < len; i++) {
+            node = childNodes[i];
+            if ((node.nodeType === 1 || node.nodeType === 9) &&
+              (!reg ||
+                  isReg && reg.test(node.tagName.toLowerCase()) ||
+                  isStr && node.tagName.toLowerCase() === reg)) {
+                result.push(node);
+              }
+            }
+            return result;
+          },
+          createPostDirectory = function (article, directory, isDirNum) {
+            var contentArr = [],
+                titleId = [],
+                levelArr, root, level,
+                currentList, list, li, link, i, len;
+            levelArr = (function (article, contentArr, titleId) {
+                  var titleElem = postChildren(article.childNodes, /^h\d$/),
+                      levelArr = [],
+                      lastNum = 1,
+                      lastRevNum = 1,
+                      count = 0,
+                      guid = 1,
+                      id = 'directory' + (Math.random() + '').replace(/\D/, ''),
+                      lastRevNum, num, elem;
+                  while (titleElem.length) {
+                      elem = titleElem.shift();
+                      contentArr.push(elem.innerHTML);
+                      num = +elem.tagName.match(/\d/)[0];
+                      if (num > lastNum) {
+                          levelArr.push(1);
+                          lastRevNum += 1;
+                      } else if (num === lastRevNum ||
+                          num > lastRevNum && num <= lastNum) {
+                          levelArr.push(0);
+                          lastRevNum = lastRevNum;
+                      } else if (num < lastRevNum) {
+                          levelArr.push(num - lastRevNum);
+                          lastRevNum = num;
+                      }
+                      count += levelArr[levelArr.length - 1];
+                      lastNum = num;
+                      elem.id = elem.id || (id + guid++);
+                      titleId.push(elem.id);
+                  }
+                  if (count !== 0 && levelArr[0] === 1) levelArr[0] = 0;
+
+                  return levelArr;
+              })(article, contentArr, titleId);
+              currentList = root = document.createElement('ul');
+              dirNum = [0];
+              for (i = 0, len = levelArr.length; i < len; i++) {
+                  level = levelArr[i];
+                  if (level === 1) {
+                      list = document.createElement('ul');
+                      if (!currentList.lastElementChild) {
+                          currentList.appendChild(document.createElement('li'));
+                      }
+                      currentList.lastElementChild.appendChild(list);
+                      currentList = list;
+                      dirNum.push(0);
+                  } else if (level < 0) {
+                      level *= 2;
+                      while (level++) {
+                          if (level % 2) dirNum.pop();
+                          currentList = currentList.parentNode;
+                      }
+                  }
+                  dirNum[dirNum.length - 1]++;
+                  li = document.createElement('li');
+                  link = document.createElement('a');
+                  link.name = '#' + titleId[i];
+                  link.href = 'Javascript:;'
+                  link.className = "post-aside-anchor"
+                  link.title = '访问' + titleId[i];
+                  link.innerHTML = !isDirNum ? contentArr[i] :
+                      dirNum.join('.') + ' ' + contentArr[i];
+                  li.appendChild(link);
+                  currentList.appendChild(li);
+              }
+            directory.appendChild(root);
+          };
+        createPostDirectory(document.getElementById('post-content'), directoryContainer, true);
+      };
+      postDirectoryBuild();
+    </script>
+    <script>
+      // gtag('config', GA_TRACKING_ID, {
+      //   'page_title' : 'Blog',
+      //   'page_path': window.location.pathname,
+      //   'post_title': 'watttsdfasdf',
+      // });
+
+    </script>
+    <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        lang = hljs.initHighlightingOnLoad();
+    </script>
+</body>
+
+</html>
