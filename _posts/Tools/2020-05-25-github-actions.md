@@ -169,9 +169,9 @@ jobs:
 
 ## Gitlab CI / CD
 
-对于日常团队开发，我们项目都是托管在 Gitlab 上，它也提供了相应的 CI / CD 功能，即 [**Gitlab CI / CD**](https://docs.gitlab.com/ee/ci/)。其配置文件位于根目录，名为 `.gitlab-ci.yml`，该文件创建一个**管道(pipeline)**，该管道运行以更改存储库中的代码。管道由一个或多个按顺序运行的阶段组成，每个阶段可以包含一个或多个并行运行的脚本。这些脚本由 `GitLab Runner` 代理执行。
+对于日常团队开发，我们项目都是托管在 Gitlab 上，它也提供了相应的 CI / CD 功能，即 [**Gitlab CI / CD**](https://docs.gitlab.com/ee/ci/)。其配置文件位于根目录，名为 `.gitlab-ci.yml`，该文件创建一个**管道(pipeline)**，该管道运行以更改存储库中的代码。管道由一个或多个按顺序运行的阶段组成，每个阶段可以包含一个或多个并行运行的脚本。这些脚本由 [**GitLab Runner**](https://docs.gitlab.com/runner/) 代理执行。
 
-> **GitLab Runner** is an application that works with GitLab CI/CD to run jobs in a pipeline.
+> **GitLab Runner** is an application that works with GitLab CI/CD to run jobs in a pipeline. 具体位置：“Settings --> CI/CD --> Runners”
 
 <!-- ![Gitlab CI / CD](https://about.gitlab.com/images/ci/gg_2x.png) -->
 
