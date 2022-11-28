@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Shell 脚本编写
 date:   2018-04-16 16:16:00 GMT+0800 (CST)
-background-image: /style/images/smms/linux.jpg
+background-image: /style/images/smms/linux.webp
 tags:
 - Linux
 - shell

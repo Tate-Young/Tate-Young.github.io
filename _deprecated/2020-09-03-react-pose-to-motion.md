@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  pose 迁移至 motion
 date:   2020-09-04 22:44:00 GMT+0800 (CST)
-background-image: /style/images/smms/react.png
+background-image: /style/images/smms/react.webp
 tags:
 - React
 ---

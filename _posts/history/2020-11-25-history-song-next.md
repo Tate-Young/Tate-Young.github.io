@@ -8,7 +8,7 @@ category: 历史
 title:  帝王篇 - 南宋、金
 date:   2020-11-25 15:55:00 GMT+0800 (CST)
 update: 2021-01-03 15:41:04 GMT+0800 (CST)
-background-image: /style/images/smms/history.jpg
+background-image: /style/images/smms/history.webp
 tags:
 - history
 ---

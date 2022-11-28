@@ -8,7 +8,7 @@ category: 前端优化
 title:  Skeleton Screen
 date:   2018-03-07 00:50:00 GMT+0800 (CST)
 update: 2021-11-09 17:17q:00 GMT+0800 (CST)
-background-image: /style/images/smms/skeleton-screen.jpg
+background-image: /style/images/smms/skeleton-screen.webp
 tags:
 - html
 ---
@@ -22,13 +22,13 @@ tags:
 
 **骨架屏(skeleton screen)** 则体验上会比菊花图更好，在数据加载完成之前会通过"骨架"来填充页面，例如:
 
-![skeleton-screen]( {{site.url}}/style/images/smms/skeleton-screen.jpg )
+![skeleton-screen]( {{site.url}}/style/images/smms/skeleton-screen.webp )
 
 ## 骨架屏示例
 
 以 facebook 加载为例，[参见 codepen](https://codepen.io/lilugirl/pen/XNRZrJ):
 
-![skeleton-screen-facebook]( {{site.url}}/style/images/smms/skeleton-screen-facebook.gif )
+![skeleton-screen-facebook]( {{site.url}}/style/images/smms/skeleton-screen-facebook.webp )
 
 <script async src="//jsfiddle.net/fh5whLfd/808/embed/html,css,result/"></script>
 

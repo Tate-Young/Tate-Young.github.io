@@ -9,7 +9,7 @@ title: HTTPS & TCP
 date:   2018-02-26 18:45:00 GMT+0800 (CST)
 update: 2022-09-20 17:25:00 GMT+0800 (CST)
 description: add signature & CA
-background-image: /style/images/smms/three-way-handshake.png
+background-image: /style/images/smms/three-way-handshake.webp
 tags:
 - http
 ---
@@ -107,7 +107,7 @@ HTTPS 的加密方式主要有以下几种:
 
 **TCP/IP 协议族** 并不是 TCP 和 IP 的统称，而是一个四层体系结构。而从实质上讲，TCP/IP 只有最上面三层，网络接口层并没有什么内容，因此介绍网络原理时采取上述优点，折中为一个五层体系结构。
 
-![OSI.png]( {{site.url}}/style/images/smms/OSI.png )
+![OSI]( {{site.url}}/style/images/smms/OSI.webp )
 
 ## TCP
 
@@ -131,7 +131,7 @@ HTTPS 的加密方式主要有以下几种:
 | PSH | 尽可能的将数据送往接收进程 |
 | FIN | 发送方完成数据发送 |
 
-![三次握手]( {{site.url}}/style/images/smms/three-way-handshake.png )
+![三次握手]( {{site.url}}/style/images/smms/three-way-handshake.webp )
 
 握手流程：
 

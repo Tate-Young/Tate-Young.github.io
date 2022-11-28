@@ -89,7 +89,7 @@
     <header id="header" class="header bg-white">
         <div class="navbar-container">
             <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
-                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+                <img src="http://localhost:2333/style/images/tate.webp" alt="Tate & Snow"> </a>
             <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
             <div class="navbar-menu">
                 
@@ -303,7 +303,7 @@
 
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers"><strong>Service Worker</strong></a> 可以简单理解为一个独立于前端页面，在后台运行的进程。它有一个非常重要的特性：你可以在 Service Worker 中监听所有客户端(Web)发出的请求，然后通过它来代理，向后端服务发起请求。通过监听用户请求信息，Service Worker 可以决定是否使用缓存来作为 Web 请求的返回。因此它是实现离线访问的核心，下图展示普通 Web App 与添加了 Service Worker 的 Web App 在网络请求上的差异:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/service-worker-01.png" alt="service worker" /></p>
+<p><img src="http://localhost:2333/style/images/smms/service-worker-01.webp" alt="service worker" /></p>
 
 <blockquote>
   <p>Service Worker 是一个特殊类型的 woker 上下文运行环境，与主运行线程（执行脚本）相独立，同时也没有访问 DOM 的能力。</p>
@@ -387,13 +387,13 @@ self.addEventListener('install', function (e) {
   <li>有缓存</li>
 </ul>
 
-<p><img src="http://localhost:2333/style/images/smms/service-worker-02.png" alt="cached" /></p>
+<p><img src="http://localhost:2333/style/images/smms/service-worker-02.webp" alt="cached" /></p>
 
 <ul>
   <li>无缓存</li>
 </ul>
 
-<p><img src="http://localhost:2333/style/images/smms/service-worker-03.png" alt="noCache" /></p>
+<p><img src="http://localhost:2333/style/images/smms/service-worker-03.webp" alt="noCache" /></p>
 
 <ol>
   <li>浏览器发起请求，请求各类静态资源</li>
@@ -435,7 +435,7 @@ self.addEventListener('activate', function (e) {
 
 <p>另一方面 Web App 也会把 XHR 请求的数据缓存一份。而再次请求时，我们会优先使用本地缓存，然后向服务端请求数据，服务端返回数据后，基于该数据替换展示:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/service-worker-04.png" alt="fetch" /></p>
+<p><img src="http://localhost:2333/style/images/smms/service-worker-04.webp" alt="fetch" /></p>
 
 <p>同时我们也可以改造下 <code class="highlighter-rouge">fetch</code>:</p>
 
@@ -856,19 +856,19 @@ self.addEventListener('push', function (e) {
 });
 </code></pre>
 
-<p><img src="http://localhost:2333/style/images/smms/service-worker-05.gif" alt="web-push" /></p>
+<p><img src="http://localhost:2333/style/images/smms/service-worker-05.webp" alt="web-push" /></p>
 
 <p>我们还可以在控制台对 SW 进行调试，同时也可以看到 cache 中所存储的一些脚本和请求信息:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/service-worker-06.png" alt="console" /></p>
+<p><img src="http://localhost:2333/style/images/smms/service-worker-06.webp" alt="console" /></p>
 
 <h2 id="notification-提醒">Notification 提醒</h2>
 
-<p><img src="http://localhost:2333/style/images/smms/service-worker-07.gif" alt="Notification" /></p>
+<p><img src="http://localhost:2333/style/images/smms/service-worker-07.webp" alt="Notification" /></p>
 
 <p>即使当你切换到其他页签，也可以通过提醒交互来快速让用户回到你的网站，甚至当用户离开当前网站，仍然可以收到系统的提醒消息，并且可以通过消息提醒快速打开你的网站:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/service-worker-08.gif" alt="Notification-back" /></p>
+<p><img src="http://localhost:2333/style/images/smms/service-worker-08.webp" alt="Notification-back" /></p>
 
 <h3 id="requestpermission-获取授权">requestPermission 获取授权</h3>
 
@@ -950,7 +950,7 @@ registerServiceWorker('./sw.js').then(function (registration) {
   <li>renotify - 是否允许重复提醒，默认为 false。当不允许重复提醒时，同一个 tag 的 notification 只会显示一次</li>
 </ul>
 
-<p><img src="http://localhost:2333/style/images/smms/service-worker-09.jpeg" alt="options" /></p>
+<p><img src="http://localhost:2333/style/images/smms/service-worker-09.webp" alt="options" /></p>
 
 <h3 id="notificationclick-事件监听">notificationclick 事件监听</h3>
 
@@ -1119,7 +1119,7 @@ self.addEventListener('sync', function (e) {
 });
 </code></pre>
 
-<p><img src="http://localhost:2333/style/images/smms/service-worker-10.png" alt="Background Sync" /></p>
+<p><img src="http://localhost:2333/style/images/smms/service-worker-10.webp" alt="Background Sync" /></p>
 
 <h2 id="twa-打包应用">TWA 打包应用</h2>
 

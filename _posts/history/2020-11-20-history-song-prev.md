@@ -8,7 +8,7 @@ category: 历史
 title:  帝王篇 - 北宋、辽
 date:   2020-11-25 12:50:00 GMT+0800 (CST)
 update: 2021-03-28 22:35:00 GMT+0800 (CST)
-background-image: /style/images/smms/history.jpg
+background-image: /style/images/smms/history.webp
 tags:
 - history
 ---

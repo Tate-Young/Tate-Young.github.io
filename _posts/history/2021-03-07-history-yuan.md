@@ -8,7 +8,7 @@ category: 历史
 title:  帝王篇 - 元
 date:   2021-03-07 15:22:00 GMT+0800 (CST)
 update: 2021-03-08 14:25:00 GMT+0800 (CST)
-background-image: /style/images/smms/history.jpg
+background-image: /style/images/smms/history.webp
 tags:
 - history
 ---

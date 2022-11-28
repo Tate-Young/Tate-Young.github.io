@@ -18,11 +18,11 @@ tags:
 
 借用[这篇文章](https://atendesigngroup.com/blog/array-map-filter-and-reduce-js)的图例，很方便看出来三者的区别:
 
-![array-map-filter-reduce.png]( {{site.url}}/style/images/smms/array-map-filter-reduce.png )
+![array-map-filter-reduce]( {{site.url}}/style/images/smms/array-map-filter-reduce.webp )
 
 或者 emmm... 可以参考下图:
 
-![array-map-filter-reduce-funny.png]( {{site.url}}/style/images/smms/array-map-filter-reduce-funny.png )
+![array-map-filter-reduce-funny]( {{site.url}}/style/images/smms/array-map-filter-reduce-funny.webp )
 
 ### map
 

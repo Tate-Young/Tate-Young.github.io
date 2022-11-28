@@ -89,7 +89,7 @@
     <header id="header" class="header bg-white">
         <div class="navbar-container">
             <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
-                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+                <img src="http://localhost:2333/style/images/tate.webp" alt="Tate & Snow"> </a>
             <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
             <div class="navbar-menu">
                 
@@ -232,7 +232,7 @@
 
 <h2 id="基础架构和策略">基础架构和策略</h2>
 
-<p><img src="http://localhost:2333/style/images/smms/web-scrawler.png" alt="web scrawler" /></p>
+<p><img src="http://localhost:2333/style/images/smms/web-scrawler.webp" alt="web scrawler" /></p>
 
 <ol>
   <li>根据提供的 URL 列表和相应的优先级，建立待抓取 URL 队列</li>
@@ -380,7 +380,7 @@ def get_track(self, distance):
 
 <p><strong>反</strong>: 采用<strong>猫池</strong>，简而言之就是有通信模块，可收发短信，支持多张手机卡同时使用的硬件设备，并且可以通过管理平台进行统一管理，然后通过代码直接获取接收到的验证码即可</p>
 
-<p><img src="http://localhost:2333/style/images/smms/web-scrawler-mao.png" alt="web-scrawler-mao.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/web-scrawler-mao.webp" alt="web-scrawler-mao" /></p>
 
 <pre><code class="language-PYTHON"># 通过手机号码取短信
 @app.route('/get_code', methods=['GET'])
@@ -447,7 +447,7 @@ $.html() // =&gt; &lt;h2 class="title welcome"&gt;Hello there!&lt;/h2&gt;
 
 <p>爬取方案：汽车之家里，把关键的厂商信息，做到了伪元素的 content 里。如果我们要提取里面厂商的信息，我们就要解析伪元素的 content</p>
 
-<p><img src="http://localhost:2333/style/images/smms/web-scrawler-pseudo-element.png" alt="pseudo-element" /></p>
+<p><img src="http://localhost:2333/style/images/smms/web-scrawler-pseudo-element.webp" alt="pseudo-element" /></p>
 
 <p>案例二：猫眼电影 - font-face 拼凑式。在我们进入猫眼电影，准备提取某电影的口碑信息、评分信息、票房信息等数据，会发现提取出来的数据不是网页上显示的数据。只有通过他们自定义的font-face 字符集，提取得到的数据进行映射，才能得到真实的数据</p>
 
@@ -458,13 +458,13 @@ $.html() // =&gt; &lt;h2 class="title welcome"&gt;Hello there!&lt;/h2&gt;
   <li>字形比对法 - 获取他们自定义的 font-face 字符集作为 base，生成图片，记录每个字形对应的文字信息 –&gt; 发出请求，获取他们自定义的 font-face 字符集 –&gt; 生成图片 –&gt; 和 base 的字形进行比对 –&gt; 最接近的字形作为结果输出 –&gt; 输出映射关系 –&gt; 替换原网页数据</li>
 </ol>
 
-<p><img src="http://localhost:2333/style/images/smms/web-scrawler-font-face.png" alt="font-face" /></p>
+<p><img src="http://localhost:2333/style/images/smms/web-scrawler-font-face.webp" alt="font-face" /></p>
 
 <p>案例三：去哪儿网 - 字体偏移、覆盖。在我们进入去哪儿，准备提取某机票的价格信息数据，会发现提取出来的数据不是网页上显示的数据，在 html 上提取到的数据是 8606 实际数据是 2407，其实他是在下面的两个红色方框做了字体偏移以及字体覆盖</p>
 
 <p>爬取方案：获取他们字体偏移部分的 html 源码 –&gt; 对偏移量进行生序排序 –&gt; 获取真实数据</p>
 
-<p><img src="http://localhost:2333/style/images/smms/web-scrawler-left.png" alt="left" /></p>
+<p><img src="http://localhost:2333/style/images/smms/web-scrawler-left.webp" alt="left" /></p>
 
 <h2 id="app-反爬案例">app 反爬案例</h2>
 

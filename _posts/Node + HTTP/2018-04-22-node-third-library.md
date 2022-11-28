@@ -7,7 +7,7 @@ background: gray
 category: 后端
 title:  Node 常用库
 date:   2018-04-22 15:14:00 GMT+0800 (CST)
-background-image: /style/images/smms/node.jpg
+background-image: /style/images/smms/node.webp
 tags:
 - Node
 ---

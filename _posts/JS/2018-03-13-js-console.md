@@ -8,7 +8,7 @@ category: 前端
 title:  console & FIGlet
 date:   2018-03-13 15:27:00 GMT+0800 (CST)
 update: 2019-04-01 14:35:00 GMT+0800 (CST)
-background-image: https://misc.aotu.io/youing/20161122/1.png
+background-image: /style/images/smms/console_log.webp
 tags:
 - JavaScript
 ---
@@ -54,10 +54,10 @@ console.log('这是 %c Tate & Snow %c 的博客', 'color: orange', 'color: blue'
 // 这是  [Tate & Snow](orange)  [的博客](blue)
 
 // 打印图片，不支持设置 width 和 height，只能用 padding 拉伸。但浏览器可能不支持，比如 IE、safari
-console.log('%c', 'background: url({{site.url}}/style/images/tate.png) no-repeat;padding: 20px 219px;line-height: 166px');
+console.log('%c', 'background: url({{site.url}}/style/images/tate.webp) no-repeat;padding: 20px 219px;line-height: 166px');
 ```
 
-![console.log.png]( {{site.url}}/style/images/smms/console_log.png )
+![console.log]( {{site.url}}/style/images/smms/console_log.webp )
 
 > 关于 Tate 文字的打印可参考 [FIGlet](#figlet)，是基于 ASCII 字符组成的字符画。
 

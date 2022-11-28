@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  AngularJS 启动过程
 date:   2018-04-24 16:35:00 GMT+0800 (CST)
-background-image: /style/images/smms/angular.jpg
+background-image: /style/images/smms/angular.webp
 tags:
 - AngularJS
 ---
@@ -38,7 +38,7 @@ jqLite(function() { // 初始化和启动 angular
 
 这里引用作者城池的一张图:
 
-![angularInit]( {{site.url}}/style/images/smms/angularInit.jpg )
+![angularInit]( {{site.url}}/style/images/smms/angularInit.webp )
 
 ## bindJQuery()
 

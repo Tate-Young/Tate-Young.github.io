@@ -8,7 +8,7 @@ category: 历史
 title:  帝王篇 - 西汉(下)
 date:   2019-11-19 17:57:00 GMT+0800 (CST)
 update: 2019-11-20 13:12:00 GMT+0800 (CST)
-background-image: /style/images/smms/history.jpg
+background-image: /style/images/smms/history.webp
 tags:
 - history
 ---

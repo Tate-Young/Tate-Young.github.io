@@ -42,7 +42,7 @@ dog1.eat === dog2.eat; // false 实例无法共享此方法
 dog1.bark === dog2.bark; // true 实例共享通过原型继承的此方法
 ```
 
-![prototype.png]( {{site.url}}/style/images/smms/prototype.png )
+![prototype]( {{site.url}}/style/images/smms/prototype.webp )
 
 ## 什么是原型链
 

@@ -8,7 +8,7 @@ category: 前端
 title: HTTP 缓存
 date:   2018-02-27 17:03:00 GMT+0800 (CST)
 update: 2019-12-14 09:23:00 GMT+0800 (CST)
-background-image: http://imweb-io-1251594266.file.myqcloud.com/FozLFZKB5y67NUSXLhioLseHJYbE
+background-image: /style/images/smms/client-cache-first-request.webp
 tags:
 - http
 ---
@@ -23,7 +23,7 @@ tags:
 
 浏览器发起请求时，对于缓存的处理是根据返回的响应头来确定的，而针对首次请求，其流程如下，这就是缓存机制实现的关键:
 
-![client-cache-first-request.png]( {{site.url}}/style/images/smms/client-cache-first-request.png )
+![client-cache-first-request]( {{site.url}}/style/images/smms/client-cache-first-request.webp )
 
 ## 首部字段
 
@@ -220,11 +220,11 @@ Service Worker 实现缓存功能一般分为三个步骤：首先需要先注�
 
 2、关闭标签页后重新打开，可以看到基本从 `Disk Cache` 取:
 
-![client-cache-disk-cache.png]( {{site.url}}/style/images/smms/client-cache-disk-cache.png )
+![client-cache-disk-cache]( {{site.url}}/style/images/smms/client-cache-disk-cache.webp )
 
 3、普通刷新页面，可以看到有些从 `Memory Cache` 中取，但是值得注意的是，每次重复到该步骤，很多文件或接口并不完全规定好了在哪儿取，可能同一个文件，缓存位置都不一样:
 
-![client-cache-memory-cache.png]( {{site.url}}/style/images/smms/client-cache-memory-cache.png )
+![client-cache-memory-cache]( {{site.url}}/style/images/smms/client-cache-memory-cache.webp )
 
 因此总结一下：在一般情况下，整体的优先级，还是以 chrome 为例:
 

@@ -89,7 +89,7 @@
     <header id="header" class="header bg-white">
         <div class="navbar-container">
             <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
-                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+                <img src="http://localhost:2333/style/images/tate.webp" alt="Tate & Snow"> </a>
             <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
             <div class="navbar-menu">
                 
@@ -371,7 +371,7 @@ Null -&gt; LC # Prev 树没有该节点，所以添加 C 到该位置
 
 <p>协调算法（Stack Reconciler）会一次同步处理整个组件树，来比较新旧两颗树，得到需要更新的部分。这个过程基于递归调用，一旦开始则很难去打断，而且涉及大量的计算就会堵塞整个主线程。因此我们可以根据优先级调整工作，使得大量的计算可以被拆解，异步化，浏览器主线程得以释放，保证了渲染的帧率，从而提高响应性。所以更优解是每次只做一个单元任务，然后回到主线程看下有没有什么更高优先级的任务需要处理，如果有则先处理，没有则继续执行:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/react-fiber.png" alt="react-fiber.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/react-fiber.webp" alt="react-fiber" /></p>
 
 <p>由于递归调用生成的调用栈我们本身无法控制，而 Fiber 实现了 <strong>virtual stack frame</strong>，可以去按需去手动控制。</p>
 
@@ -381,7 +381,7 @@ Null -&gt; LC # Prev 树没有该节点，所以添加 C 到该位置
 
 <p>React 主要使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback"><strong>requestIdelCallback</strong></a> API 来实现这种特性，对于不支持的会自动加上 pollyfill。通常客户端线程执行任务时会以帧的形式划分，大部分设备控制在 30-60 帧是不会影响用户体验；在两个执行帧之间，主线程通常会有一小段空闲时间，requestIdleCallback 可以在这个<strong>空闲期（Idle Period）</strong>调用<strong>空闲期回调（Idle Callback）</strong>从而执行一些任务:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/react-requestIdelCallback.png" alt="react-requestIdelCallback.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/react-requestIdelCallback.webp" alt="react-requestIdelCallback" /></p>
 
 <p>通过将协调过程，分解成小的工作单元的方式，可以让页面对于浏览器事件的响应更加及时。但是另外一个问题还是没有解决，就是如果当前在处理的 react 渲染耗时较长，仍然会阻塞后面的渲染。这就是为什么 <code class="highlighter-rouge">fiber reconciler</code> 增加了优先级策略:</p>
 
@@ -397,7 +397,7 @@ Null -&gt; LC # Prev 树没有该节点，所以添加 C 到该位置
 
 <p>另一方面由于协调阶段会被打断，可能会导致 commit 前的这些生命周期函数多次执行。react 官方目前已经把 <code class="highlighter-rouge">componentWillMount</code>、<code class="highlighter-rouge">componentWillReceiveProps</code> 和 <code class="highlighter-rouge">componetWillUpdate</code> 标记为 <code class="highlighter-rouge">unsafe</code>，并使用新的生命周期函数 <code class="highlighter-rouge">getDerivedStateFromProps</code> 和 <code class="highlighter-rouge">getSnapshotBeforeUpdate</code> 进行替换。</p>
 
-<p><img src="http://localhost:2333/style/images/smms/react-fiber-phase.png" alt="react-fiber-phase.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/react-fiber-phase.webp" alt="react-fiber-phase" /></p>
 
 <blockquote>
   <p>我们可以看下 youtube 发布的 stack 与 fiber 对比视频，<a href="https://www.youtube.com/watch?v=Qu_6ItnlDQg">戳这里</a> 👈。完整<a href="https://www.youtube.com/watch?v=ZCuYPiUIONs">视频戳这里</a> 👈</p>

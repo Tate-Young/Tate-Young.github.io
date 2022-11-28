@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  CSS 层叠上下文
 date:   2019-05-28 17:37:00 GMT+0800 (CST)
-background-image: /style/images/smms/html-css.png
+background-image: /style/images/smms/html-css.webp
 tags:
 - css
 ---

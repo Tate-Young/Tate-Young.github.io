@@ -7,7 +7,7 @@ background: green
 category: 前端
 title:  Vue 深入响应式原理
 date:   2018-07-20 18:25:00 GMT+0800 (CST)
-background-image: /style/images/smms/vue.jpg
+background-image: /style/images/smms/vue.webp
 tags:
 - Vue
 ---
@@ -533,7 +533,7 @@ export default class Watcher {
 
 ### 总流程图
 
-![vue-reactivity-full.png]( {{site.url}}/style/images/smms/vue-reactivity-full.png )
+![vue-reactivity-full]( {{site.url}}/style/images/smms/vue-reactivity-full.webp )
 
 总结来说就是：
 

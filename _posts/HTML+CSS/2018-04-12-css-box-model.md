@@ -7,7 +7,7 @@ background: purple
 category: 前端
 title:  CSS 盒子模型与定位
 date:   2018-04-12 16:00:00 GMT+0800 (CST)
-background-image: /style/images/smms/html-css.png
+background-image: /style/images/smms/html-css.webp
 tags:
 - css
 ---
@@ -22,11 +22,11 @@ tags:
 
 ### 标准盒子模型
 
-![box-model-w3c.png]( {{site.url}}/style/images/smms/box-model-w3c.png )
+![box-model-w3c]( {{site.url}}/style/images/smms/box-model-w3c.webp )
 
 ### IE 盒子模型
 
-![box-model-ie.png]( {{site.url}}/style/images/smms/box-model-ie.png )
+![box-model-ie]( {{site.url}}/style/images/smms/box-model-ie.webp )
 
 可以看出和标准 W3C 盒子模型不同的是，IE 盒子模型的 content 部分包含了 border 和 padding。
 

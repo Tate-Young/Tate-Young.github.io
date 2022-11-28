@@ -9,7 +9,7 @@ title: TypeScript 简介
 date:   2019-02-26 17:54:00 GMT+0800 (CST)
 update: 2021-08-31 14:25:00 GMT+0800 (CST)
 description: 新增内联类型注解
-background-image: /style/images/smms/typescript.png
+background-image: /style/images/smms/typescript.webp
 tags:
 - TS
 ---

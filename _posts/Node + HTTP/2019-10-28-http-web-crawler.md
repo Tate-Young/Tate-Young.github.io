@@ -28,7 +28,7 @@ tags:
 
 ## 基础架构和策略
 
-![web scrawler]( {{site.url}}/style/images/smms/web-scrawler.png )
+![web scrawler]( {{site.url}}/style/images/smms/web-scrawler.webp )
 
 1. 根据提供的 URL 列表和相应的优先级，建立待抓取 URL 队列
 2. 根据待抓取 URL 队列的排序进行网页抓取
@@ -168,7 +168,7 @@ def get_track(self, distance):
 
 **反**: 采用**猫池**，简而言之就是有通信模块，可收发短信，支持多张手机卡同时使用的硬件设备，并且可以通过管理平台进行统一管理，然后通过代码直接获取接收到的验证码即可
 
-![web-scrawler-mao.png]( {{site.url}}/style/images/smms/web-scrawler-mao.png )
+![web-scrawler-mao]( {{site.url}}/style/images/smms/web-scrawler-mao.webp )
 
 ```PYTHON
 # 通过手机号码取短信
@@ -231,7 +231,7 @@ $.html() // => <h2 class="title welcome">Hello there!</h2>
 
 爬取方案：汽车之家里，把关键的厂商信息，做到了伪元素的 content 里。如果我们要提取里面厂商的信息，我们就要解析伪元素的 content
 
-![pseudo-element]( {{site.url}}/style/images/smms/web-scrawler-pseudo-element.png )
+![pseudo-element]( {{site.url}}/style/images/smms/web-scrawler-pseudo-element.webp )
 
 案例二：猫眼电影 - font-face 拼凑式。在我们进入猫眼电影，准备提取某电影的口碑信息、评分信息、票房信息等数据，会发现提取出来的数据不是网页上显示的数据。只有通过他们自定义的font-face 字符集，提取得到的数据进行映射，才能得到真实的数据
 
@@ -240,13 +240,13 @@ $.html() // => <h2 class="title welcome">Hello there!</h2>
 1. OCR 识别法 - 获取他们自定义的 font-face 字符集 --> 生成图片 --> 使用 OCR 进行识别 --> 输出映射关系 --> 替换原网页数据
 2. 字形比对法 - 获取他们自定义的 font-face 字符集作为 base，生成图片，记录每个字形对应的文字信息 --> 发出请求，获取他们自定义的 font-face 字符集 --> 生成图片 --> 和 base 的字形进行比对 --> 最接近的字形作为结果输出 --> 输出映射关系 --> 替换原网页数据
 
-![font-face]( {{site.url}}/style/images/smms/web-scrawler-font-face.png )
+![font-face]( {{site.url}}/style/images/smms/web-scrawler-font-face.webp )
 
 案例三：去哪儿网 - 字体偏移、覆盖。在我们进入去哪儿，准备提取某机票的价格信息数据，会发现提取出来的数据不是网页上显示的数据，在 html 上提取到的数据是 8606 实际数据是 2407，其实他是在下面的两个红色方框做了字体偏移以及字体覆盖
 
 爬取方案：获取他们字体偏移部分的 html 源码 --> 对偏移量进行生序排序 --> 获取真实数据
 
-![left]( {{site.url}}/style/images/smms/web-scrawler-left.png )
+![left]( {{site.url}}/style/images/smms/web-scrawler-left.webp )
 
 ## app 反爬案例
 

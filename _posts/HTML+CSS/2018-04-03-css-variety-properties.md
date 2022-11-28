@@ -8,7 +8,7 @@ category: 前端
 title:  CSS 属性集合
 date:   2018-04-03 16:46:00 GMT+0800 (CST)
 update: 2021-01-27 11:49:00 GMT+0800 (CST)
-background-image: /style/images/smms/html-css.png
+background-image: /style/images/smms/html-css.webp
 tags:
 - css
 ---

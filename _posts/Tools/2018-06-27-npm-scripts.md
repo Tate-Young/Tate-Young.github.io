@@ -9,7 +9,7 @@ title: NPM Scripts
 date:   2018-06-27 17:57:00 GMT+0800 (CST)
 update: 2022-06-07 14:09:00 GMT+0800 (CST)
 description: add lockfile & cache & overrides
-background-image: /style/images/smms/node.jpg
+background-image: /style/images/smms/node.webp
 
 tags:
 - NPM
@@ -418,7 +418,7 @@ semver.minVersion('>=1.0.0') // '1.0.0'
 1. Red means there's a newer version matching your semver requirements, so you should update now. - 执行 `npm update` 将会安装此部分依赖
 2. Yellow indicates that there's a newer version above your semver requirements (**usually new major, or new 0.x minor**) so proceed with caution.
 
-![npm outdated]( {{site.url}}/style/images/smms/npm-outdated.png )
+![npm outdated]( {{site.url}}/style/images/smms/npm-outdated.webp )
 
 > 这里也推荐一个 vscode 插件 - [Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens&wt.mc_id=vscode-versionlens-gitlab)
 
@@ -678,7 +678,7 @@ $npm view @date-io/date-fns versions
 
 这里再介绍下关于 `npm install` 的原理，具体[参考这篇文章](https://cloud.tencent.com/developer/article/1555982):
 
-![npm install]( {{site.url}}/style/images/smms/npm-install.png )
+![npm install]( {{site.url}}/style/images/smms/npm-install.webp )
 
 > 关于 **pnpm** 可以参考[这篇博客]( {{site.url}}/2021/03/25/pnpm.html ) 👈
 

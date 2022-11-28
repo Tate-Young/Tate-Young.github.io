@@ -301,7 +301,7 @@ svgo -i products-shape.svg -o products-shape.svg
 
 > 推荐一个 [**explainshell**](https://explainshell.com) 页面，可以解释一些命令行
 
-![explain-shell.png]( {{site.url}}/style/images/smms/explain-shell.png )
+![explain-shell]( {{site.url}}/style/images/smms/explain-shell.webp )
 
 ## 命令行光标操作
 

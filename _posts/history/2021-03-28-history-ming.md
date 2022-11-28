@@ -9,7 +9,7 @@ title:  帝王篇 - 明
 date:   2021-03-28 12:22:00 GMT+0800 (CST)
 update: 2022-02-17 17:02:00 GMT+0800 (CST)
 description: 补充明朝从此无海瑞
-background-image: /style/images/smms/history.jpg
+background-image: /style/images/smms/history.webp
 tags:
 - history
 ---

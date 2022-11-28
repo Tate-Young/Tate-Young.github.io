@@ -89,7 +89,7 @@
     <header id="header" class="header bg-white">
         <div class="navbar-container">
             <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
-                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+                <img src="http://localhost:2333/style/images/tate.webp" alt="Tate & Snow"> </a>
             <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
             <div class="navbar-menu">
                 
@@ -217,7 +217,7 @@
 
 <p><strong>Docker</strong> 容器并非虚拟机，但可以比喻为更轻量级的虚拟机。使用虚拟机运行多个相互隔离的应用时(以下翻译<a href="http://www.techug.com/post/comparing-virtual-machines-vs-docker-containers.html">参考自这里</a>):</p>
 
-<p><img src="http://localhost:2333/style/images/smms/virtual-machine-architecture.jpg" alt="virtual-machine-architecture.jpg" /></p>
+<p><img src="http://localhost:2333/style/images/smms/virtual-machine-architecture.webp" alt="virtual-machine-architecture" /></p>
 
 <ol>
   <li>基础设施(Infrastructure) - 可以是个人电脑，数据中心的服务器，或者是云主机。</li>
@@ -230,7 +230,7 @@
 
 <p>使用 Docker 容器运行多个相互隔离的应用时:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/docker-container.jpg" alt="docker-container.jpg" /></p>
+<p><img src="http://localhost:2333/style/images/smms/docker-container.webp" alt="docker-container" /></p>
 
 <ol>
   <li>基础设施(Infrastructure) - 同上</li>
@@ -597,7 +597,7 @@ fce072cc88ce        training/webapp     <span class="s2">"python app.py"</span> 
 
 <p>这是一个实际应用的 Dockerfile，可以看到里面逻辑实际上是从远程获取一个压缩包，然后把压缩包解压出来，并拷⻉到 nginx 的资源目录下，最后启动 nginx。随后我们会在 PaaS 平台里选择构建，这里会触发 PaaS 里的 Jenkins，根据 Dockerfile 构建生成镜像，并且上传镜像。当我们选择发布的时候，k8s 会根据我们选中的镜像，将其发布到集群中。这个过程概括下是对应的机器去拉取镜像，并且在本地启动实例 (一般用 Docker 去启动)。</p>
 
-<p><img src="http://localhost:2333/style/images/smms/paas.png" alt="paas" /></p>
+<p><img src="http://localhost:2333/style/images/smms/paas.webp" alt="paas" /></p>
 
 <blockquote>
   <p>关于 CICD 平台的内容可以查看<a href="http://localhost:2333/2020/05/25/github-actions.html#cubesats">这一章节</a> 👈</p>

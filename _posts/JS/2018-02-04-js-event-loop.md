@@ -60,7 +60,7 @@ JavaScript 属于单线程语言，执行的任务可分为同步和异步，ES6
 
 事件循环是个进程，会持续监测调用栈是否为空(只剩下栈底的全局上下文)，若为空，则监测事件队列，将里面的事件移至调用栈执行，如此循环。
 
-![Javascript Event Loop Visual Representation](https://cdn-images-1.medium.com/max/1600/1*-MMBHKy_ZxCrouecRqvsBg.png)
+![Javascript Event Loop Visual Representation]( {{site.url}}/style/images/smms/event-loop.webp )
 
 > 事件循环在线测试地址可以[戳这里](http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D) 👈👈
 

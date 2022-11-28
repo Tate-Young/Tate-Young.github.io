@@ -8,7 +8,7 @@ category: 后端
 title: SSH 远程登录
 date:   2019-02-03 15:11:00 GMT+0800 (CST)
 update: 2021-02-01 14:09:00 GMT+0800 (CST)
-background-image: /style/images/smms/linux.jpg
+background-image: /style/images/smms/linux.webp
 tags:
 - linux
 ---
@@ -116,7 +116,7 @@ ssh-copy-id user@host
 
 远程主机将用户的公钥，保存在登录后的用户主目录的 `$HOME/.ssh/authorized_keys` 文件中。公钥就是一段字符串，只要把它追加在 `authorized_keys` 文件的末尾就行了。简单来讲，通过公钥登陆时，我们执行的步骤相当于:
 
-![ssh public key]( {{site.url}}/style/images/smms/ssh-public-key-authorization.png )
+![ssh public key]( {{site.url}}/style/images/smms/ssh-public-key-authorization.webp )
 
 ## 问题解决
 

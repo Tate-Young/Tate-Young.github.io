@@ -8,7 +8,7 @@ category: 历史
 title:  帝王篇 - 东汉
 date:   2019-11-09 11:51:00 GMT+0800 (CST)
 update: 2019-11-11 11:44:00 GMT+0800 (CST)
-background-image: /style/images/smms/history.jpg
+background-image: /style/images/smms/history.webp
 tags:
 - history
 ---

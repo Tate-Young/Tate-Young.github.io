@@ -8,7 +8,7 @@ category: 历史
 title:  帝王篇 - 五代十国
 date:   2020-08-01 01:41:00 GMT+0800 (CST)
 update: 2020-11-02 00:14:00 GMT+0800 (CST)
-background-image: /style/images/smms/history.jpg
+background-image: /style/images/smms/history.webp
 tags:
 - history
 ---

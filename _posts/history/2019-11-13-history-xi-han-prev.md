@@ -7,7 +7,7 @@ background: white
 category: 历史
 title:  帝王篇 - 西汉(上)
 date:   2019-11-14 17:19:00 GMT+0800 (CST)
-background-image: /style/images/smms/history.jpg
+background-image: /style/images/smms/history.webp
 tags:
 - history
 ---

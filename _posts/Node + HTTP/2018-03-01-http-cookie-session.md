@@ -9,7 +9,7 @@ title: Cookie & Session
 date:   2018-03-02 10:10:00 GMT+0800 (CST)
 update: 2022-06-07 17:37:00 GMT+0800 (CST)
 description: add SameParty & fenced frames
-background-image: /style/images/smms/http-cookie-session.png
+background-image: /style/images/smms/http-cookie-session.webp
 tags:
 - http
 ---
@@ -312,7 +312,7 @@ Sec-Fetch-Dest: fencedframe
 Supports-Loading-Mode: fenced-frame
 ```
 
-![fenced frames]( {{site.url}}/style/images/smms/fenced-frames.jpg )
+![fenced frames]( {{site.url}}/style/images/smms/fenced-frames.webp )
 
 有了 Fenced frames ，我们就可以在不和嵌入的广告商共享用户信息的情况下实现智能广告推荐了，相信它未来将是禁用三方 Cookie 后智能广告推荐领域的主要解决方案。
 
@@ -329,11 +329,11 @@ Supports-Loading-Mode: fenced-frame
 
 常见的购物车案例:
 
-![session - cookie]( {{site.url}}/style/images/smms/session-workingprinciple.png )
+![session - cookie]( {{site.url}}/style/images/smms/session-workingprinciple.webp )
 
 session 也可设置过期时间，禁用 cookie 并不一定无法使用 session。除了 cookie，客户端还可以将发送给服务器的数据包含在请求的 URL 中:
 
-![http-cookie-session.png]( {{site.url}}/style/images/smms/http-cookie-session.png )
+![http-cookie-session]( {{site.url}}/style/images/smms/http-cookie-session.webp )
 
 ## Web Storage
 

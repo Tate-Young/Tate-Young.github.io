@@ -89,7 +89,7 @@
     <header id="header" class="header bg-white">
         <div class="navbar-container">
             <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
-                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+                <img src="http://localhost:2333/style/images/tate.webp" alt="Tate & Snow"> </a>
             <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
             <div class="navbar-menu">
                 
@@ -215,7 +215,7 @@
 
 <p><a href="https://learning.postman.com/docs/sending-requests/requests/"><strong>postman</strong></a> 使用这么久了，但是还是有一些好用的小功能被遗忘，这次就稍微整理一下吧。对于前端而言，它最大的功能莫过于接口调试或测试，这里也提到两个命令 <strong>curl</strong> 和 <strong>httpie</strong>，有兴趣的可以去看<a href="http://localhost:2333/2018/04/15/linux-command.html#curl--httpie">这篇文章</a> 👈</p>
 
-<p><img src="http://localhost:2333/style/images/smms/postman-interface.png" alt="postman" /></p>
+<p><img src="http://localhost:2333/style/images/smms/postman-interface.webp" alt="postman" /></p>
 
 <h2 id="变量">变量</h2>
 
@@ -301,7 +301,7 @@ pm.variables.replaceIn('\{\{$randomFirstName}}') // Julian
 
 <p>比如下图，在请求 posts 时可以带上 id 参数，如果 id 是随机数的话，则可以在请求前先保存到变量中，然后请求的时候再从变量中去获取该值:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/postman-pre-request-script.png" alt="pre-request-script" /></p>
+<p><img src="http://localhost:2333/style/images/smms/postman-pre-request-script.webp" alt="pre-request-script" /></p>
 
 <h4 id="接口关联">接口关联</h4>
 
@@ -334,9 +334,9 @@ pm.globals.set('token', token)
 
 <p>以浏览器导入为例，直接在当前请求中右键选择 copy 出 curl 的数据包，然后粘贴到 postman 里的 <code class="highlighter-rouge">Raw Text</code> 即可:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/postman-copy-curl.png" alt="copy curl" /></p>
+<p><img src="http://localhost:2333/style/images/smms/postman-copy-curl.webp" alt="copy curl" /></p>
 
-<p><img src="http://localhost:2333/style/images/smms/postman-raw-text.png" alt="raw text" /></p>
+<p><img src="http://localhost:2333/style/images/smms/postman-raw-text.webp" alt="raw text" /></p>
 
 <p>反之，我们也可以利用 <code class="highlighter-rouge">code</code> 功能去生成对应语言的客户端代，比如 curl 或 httpie 等:</p>
 
@@ -379,7 +379,7 @@ pm.sendRequest(PostJsonRequest, function (err, res) {
 
 <p>有时候我们常会遇到这样一种问题，系统中有太多的用例，环境变量和系统变量的值也太多，查找其中的某个值太不方便；或者有的值想要修改，但苦于修改的地方太多，修改起来太费劲。那么，针对这样的困扰，是否有办法解决呢？答案是有的，那就是快速查询与批量替换，该功能位于左下角。搜索的内容还可以使用正则表达式，比如 <code class="highlighter-rouge">^\d{7}$</code> 搜索出 7 位的数字等等，也可以限定搜索范围:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/postman-find-and-replace.png" alt="find and replace" /></p>
+<p><img src="http://localhost:2333/style/images/smms/postman-find-and-replace.webp" alt="find and replace" /></p>
 
 <h2 id="接口测试">接口测试</h2>
 
@@ -665,7 +665,7 @@ xmysql <span class="nt">-h</span> localhost <span class="nt">-u</span> root <spa
 
 <p>我们可以通过 POST 请求来新增一条数据，或是通过 PUT 请求来修改，DELETE 请求来删除等等:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/postman-xmysql.png" alt="xmysql" /></p>
+<p><img src="http://localhost:2333/style/images/smms/postman-xmysql.webp" alt="xmysql" /></p>
 
 <p>执行上述 POST 请求后，我们刷新下表数据，则会发现新增了一行:</p>
 

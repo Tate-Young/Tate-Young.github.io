@@ -9,7 +9,7 @@ title: TypeScript 进阶
 date:   2019-05-20 18:36:00 GMT+0800 (CST)
 update: 2021-08-30 15:32:00 GMT+0800 (CST)
 description: 修改了 Record 使用 demo
-background-image: /style/images/smms/typescript.png
+background-image: /style/images/smms/typescript.webp
 tags:
 - TS
 ---

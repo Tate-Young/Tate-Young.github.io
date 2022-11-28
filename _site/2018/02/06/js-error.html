@@ -89,7 +89,7 @@
     <header id="header" class="header bg-white">
         <div class="navbar-container">
             <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
-                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+                <img src="http://localhost:2333/style/images/tate.webp" alt="Tate & Snow"> </a>
             <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
             <div class="navbar-menu">
                 
@@ -367,7 +367,7 @@
 https://f0adb1c13dd0407fa806a1a9015daccb@sentry.io/1411582
 </code></pre>
 
-<p><img src="http://localhost:2333/style/images/smms/sentry-dsn.png" alt="sentry-dsn.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/sentry-dsn.webp" alt="sentry-dsn" /></p>
 
 <p>2、在客户端安装 <strong>raven-js</strong>(Official Sentry SDKs for JavaScript):</p>
 
@@ -439,11 +439,11 @@ componentDidCatch(error, errorInfo) {
 <pre><code class="language-JS">Raven.captureMessage('sentry test from activity')
 </code></pre>
 
-<p><img src="http://localhost:2333/style/images/smms/sentry-capture-message.png" alt="sentry-capture-message.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/sentry-capture-message.webp" alt="sentry-capture-message" /></p>
 
 <p>同时默认绑定的邮箱也会收到通知:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/sentry-email.png" alt="sentry-email.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/sentry-email.webp" alt="sentry-email" /></p>
 
 <p>一般情况下，在下方的 JS 调用堆栈中，对应的是压缩后 JS 文件位置，和我们源代码无法对应上，无法直接的帮助我们排查和定位问题。这时我们需要上传对应文件的 <code class="highlighter-rouge">sourcemap</code>。</p>
 
@@ -465,7 +465,7 @@ componentDidCatch(error, errorInfo) {
 
 <p>3、登陆时会提示输入 <code class="highlighter-rouge">token</code>，可以在平台直接生成:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/sentry-auth-token.png" alt="sentry-auth-token.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/sentry-auth-token.webp" alt="sentry-auth-token" /></p>
 
 <p>4、然后会有生成文件 <code class="highlighter-rouge">.sentryclirc</code> 的提示，内容如下:</p>
 
@@ -532,17 +532,17 @@ plugins: [
 
 <p>4、运行 <code class="highlighter-rouge">yarn build</code> 打包，并自动上传对应路径下的 sourcemap:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/sentry-sourcemap.png" alt="sentry-sourcemap.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/sentry-sourcemap.png" alt="sentry-sourcemap" /></p>
 
 <blockquote>
   <p>上述两种方法上传成功后，都可以前往 <code class="highlighter-rouge">Releases --&gt; release 名称 --&gt; Artifacts</code>下查看:</p>
 </blockquote>
 
-<p><img src="http://localhost:2333/style/images/smms/sentry-release.png" alt="sentry-release.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/sentry-release.webp" alt="sentry-release" /></p>
 
 <p>上传完毕，<code class="highlighter-rouge">Full/Raw</code> 那一栏会多出 <code class="highlighter-rouge">Original</code> 按钮，切换至该按钮就可以显示具体的报错位置啦:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/sentry-original.png" alt="sentry-original.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/sentry-original.png" alt="sentry-original" /></p>
 
 <h2 id="sourcemap">sourcemap</h2>
 

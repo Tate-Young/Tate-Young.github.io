@@ -8,7 +8,7 @@ category: 历史
 title:  帝王篇 - 清
 date:   2022-05-26 17:15:00 GMT+0800 (CST)
 update: 2022-07-13 15:07:00 GMT+0800 (CST)
-background-image: /style/images/smms/history.jpg
+background-image: /style/images/smms/history.webp
 tags:
 - history
 ---

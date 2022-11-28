@@ -8,7 +8,7 @@ category: 前端
 title: TDD 测试驱动开发
 date:   2019-01-31 16:23:00 GMT+0800 (CST)
 update: 2019-11-11 16:32:00 GMT+0800 (CST)
-background-image: /style/images/smms/tdd.png
+background-image: /style/images/smms/tdd.webp
 tags:
 - Other
 ---
@@ -65,7 +65,7 @@ TDD 的另一个价值在于保持代码精简和简洁。代码维护成本是�
 
 YAGNI 是一种[极限编程(Extreme programming，即 XP)](https://zh.wikipedia.org/wiki/极限编程)实践，表示程序员不应为目前还不需要的功能编写代码，即只在真正需要某些功能的时候才去实现它，而不是仅仅因为你预见到它将出现。
 
-![TDD]( {{site.url}}/style/images/smms/tdd.png )
+![TDD]( {{site.url}}/style/images/smms/tdd.webp )
 
 TDD 的工作流总结如下，由于最初单元测试肯定会失败(红色)，因此这个流程被称为 `Red, Green, Refactor`。:
 

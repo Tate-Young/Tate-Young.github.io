@@ -9,7 +9,7 @@ title: Git 命令
 date:   2018-03-11 12:03:00 GMT+0800 (CST)
 update: 2022-07-22 12:59:00 GMT+0800 (CST)
 description: modify git tag
-background-image: /style/images/smms/github.png
+background-image: /style/images/smms/github.webp
 
 tags:
 - git
@@ -24,7 +24,7 @@ tags:
 | **Index** | 暂存区，即 Stage，是指即将被下一个提交的文件集合 |
 | **Working Copy** | 工作区 |
 
-![git-working-copy.jpg]( {{site.url}}/style/images/smms/git-working-copy.jpg )
+![git-working-copy]( {{site.url}}/style/images/smms/git-working-copy.webp )
 
 ## Git 命令
 
@@ -385,7 +385,7 @@ git checkout master
 git merge branch1
 ```
 
-![git-rebase.gif]( {{site.url}}/style/images/smms/git-rebase.gif )
+![git-rebase]( {{site.url}}/style/images/smms/git-rebase.webp )
 
 我们再进行图解下:
 

@@ -8,7 +8,7 @@ category: 后端
 title:  Linux 常用命令
 date:   2018-04-15 14:15:00 GMT+0800 (CST)
 update: 2021-01-07 11:54:00 GMT+0800 (CST)
-background-image: /style/images/smms/linux.jpg
+background-image: /style/images/smms/linux.webp
 tags:
 - Linux
 ---

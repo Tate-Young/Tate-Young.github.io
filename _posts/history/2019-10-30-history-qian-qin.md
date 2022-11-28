@@ -8,7 +8,7 @@ category: 历史
 title:  帝王篇 - 前秦
 date:   2019-10-31 00:17:00 GMT+0800 (CST)
 update: 2020-11-22 11:21:00 GMT+0800 (CST)
-background-image: /style/images/smms/history.jpg
+background-image: /style/images/smms/history.webp
 tags:
 - history
 ---

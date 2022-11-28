@@ -44,7 +44,7 @@ console.log(S.toUpperCase());
 
 上面代码中，字符串的包装对象有每个位置的值，有 length 属性，还有一个内部属性 **[[PrimitiveValue]]** 保存字符串的原始值。其内部属性，外部是无法调用，仅供valueOf() 或 toString() 这样的方法内部调用。
 
-![wrapper-obj.png]( {{site.url}}/style/images/smms/wrapper-obj.png )
+![wrapper-obj]( {{site.url}}/style/images/smms/wrapper-obj.webp )
 
 ## 参考链接
 

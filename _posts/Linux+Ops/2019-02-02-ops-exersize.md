@@ -9,7 +9,7 @@ title: 记一些运维实践
 date:   2019-02-02 17:54:00 GMT+0800 (CST)
 update: 2022-05-25 10:08:00 GMT+0800 (CST)
 description: add 蓝绿部署 & 滚动发布 & 灰度发布
-background-image: /style/images/smms/linux.jpg
+background-image: /style/images/smms/linux.webp
 tags:
 - Ops
 ---
@@ -51,7 +51,7 @@ Oracle 具体安装步骤可以[参照文档](/style/files/Oracle11gInstallation
 
 两者并存的其中一种方案:
 
-![ods.png]( {{site.url}}/style/images/smms/ods.png )
+![ods]( {{site.url}}/style/images/smms/ods.webp )
 
 **ETL** 分别是`Extract`、`Transform`、`Load`三个单词的首字母缩写，即"抽取"、"转换"、"装载"，由于不同原始数据库中的数据的来源、格式不一样，导致了系统实施、数据整合出现问题，ETL 就是用来解决这一问题的。ETL 包含了三方面:
 
@@ -112,7 +112,7 @@ start()
 
 **Kafka** 是最初由 Linkedin 公司开发，是一个分布式、分区的、多副本的、多订阅者，基于 zookeeper 协调的分布式日志系统（也可以当做 MQ 系统），常见可以用于 web/nginx 日志、访问日志，消息服务等等，Linkedin 于 2010 年贡献给了 Apache 基金会并成为顶级开源项目。主要应用场景是：日志收集系统和消息系统。采用的是发布订阅模式。
 
-![kafka]( {{site.url}}/style/images/smms/kafka.png )
+![kafka]( {{site.url}}/style/images/smms/kafka.webp )
 
 * **broker** - Kafka 集群包含一个或多个服务器，服务器节点即称为 broker
 * **topic** - 主题，由用户定义并配置在 Kafka 服务器，用于建立 Producer 和 Consumer 之间的订阅关系。生产者发送消息到指定的 Topic 下，消息者从这个 Topic 下消费消息
@@ -607,7 +607,7 @@ Transfer/sec:    606.33MB
 
 一般针对比较大型的项目，容易出现漏测或者有很多没评估到的地方，如果用线上流量做一次回归测试，可以进一步减少 bug 的风险，同时大大节省构造测试数据的时间，提高测试效率。
 
-![stress-testing]( {{site.url}}/style/images/smms/stress-testing.png )
+![stress-testing]( {{site.url}}/style/images/smms/stress-testing.webp )
 
 > 一般流量回放只回放 get 请求，因为其他请求可能会对用户数据进行操作，有风险需要排除掉。
 
@@ -627,11 +627,11 @@ Transfer/sec:    606.33MB
 
 服务调用方（内部和外部）同时通过 nginx 和 API 网关访问服务提供方示意图如下：
 
-![api-gateway-consul-nginx]( {{site.url}}/style/images/smms/api-gateway-consul-nginx.png )
+![api-gateway-consul-nginx]( {{site.url}}/style/images/smms/api-gateway-consul-nginx.webp )
 
 调用方到提供方经过 API 网关的整个链路的各个环节示意图如下：
 
-![api-gateway-consul]( {{site.url}}/style/images/smms/api-gateway-consul.png )
+![api-gateway-consul]( {{site.url}}/style/images/smms/api-gateway-consul.webp )
 
 ### consul 服务发现
 
@@ -675,7 +675,7 @@ Transfer/sec:    606.33MB
 
 ## 开源许可证对比
 
-![mit]( {{site.url}}/style/images/smms/mit.jpg )
+![mit]( {{site.url}}/style/images/smms/mit.webp )
 
 ## 参考链接
 

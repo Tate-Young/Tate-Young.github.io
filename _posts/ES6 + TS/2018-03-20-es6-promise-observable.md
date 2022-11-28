@@ -8,7 +8,7 @@ category: 前端
 title:  Promise & Observable
 date:   2018-03-21 15:07:00 GMT+0800 (CST)
 update: 2019-12-17 14:18:00 GMT+0800 (CST)
-background-image: https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2447683882,2644927629&fm=27&gp=0.jpg
+background-image: /style/images/js.png
 tags:
 - ES6
 ---

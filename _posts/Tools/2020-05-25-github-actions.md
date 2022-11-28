@@ -378,8 +378,8 @@ Jenkins 流水线可以与以下工具进行集成：
 
 我们再来看下示例图：
 
-![ci]( {{site.url}}/style/images/smms/cicd-ci.png )
-![cd]( {{site.url}}/style/images/smms/cicd-cd.png )
+![ci]( {{site.url}}/style/images/smms/cicd-ci.webp )
+![cd]( {{site.url}}/style/images/smms/cicd-cd.webp )
 
 > 关于 PaaS 平台的内容可以查看[这一章节]( {{site.url}}/2021/11/09/docker-k8s.html ) 👈
 
@@ -513,7 +513,7 @@ a-maven-project
    2. The `application/x-www-form-urlencoded` content type will send the JSON payload as a form parameter called payload.
 3. **secret** - Setting a webhook secret allows you to ensure that POST requests sent to the payload URL are from GitHub. When you set a secret, you'll receive the `X-Hub-Signature` and `X-Hub-Signature-256` headers in the webhook POST request. For more information on how to use a secret with a signature header to secure your webhook payloads, see "[Securing your webhooks](https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks)."
 
-![github-webhook]( {{site.url}}/style/images/smms/github-webhook.png )
+![github-webhook]( {{site.url}}/style/images/smms/github-webhook.webp )
 
 > Github 官方也提供了教程，需要搭建一个本地服务器来接收 Webhook 讯息，这里推荐的是 ngrok，下面会讲到。
 

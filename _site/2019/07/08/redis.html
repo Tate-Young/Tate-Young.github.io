@@ -89,7 +89,7 @@
     <header id="header" class="header bg-white">
         <div class="navbar-container">
             <a href="Javascript:;" onclick="onClickLogo()" title="访问 Tate & Snow" class="navbar-logo menu-logo">
-                <img src="http://localhost:2333/style/images/tate.png" alt="Tate & Snow"> </a>
+                <img src="http://localhost:2333/style/images/tate.webp" alt="Tate & Snow"> </a>
             <!-- <a href="/?tate" title="访问 Tate & Snow" class="navbar-logo">Tate & Snow</a>   -->
             <div class="navbar-menu">
                 
@@ -320,7 +320,7 @@ OK
 
 <p>Redis 的列表相当于 Java 语言里面的 LinkedList，注意它是链表而不是数组。这意味着 list 的插入和删除操作非常快，时间复杂度为 O(1)，但是索引定位很慢，时间复杂度为 O(n):</p>
 
-<p><img src="http://localhost:2333/style/images/smms/redis-list.gif" alt="redis-list.gif" /></p>
+<p><img src="http://localhost:2333/style/images/smms/redis-list.webp" alt="redis-list" /></p>
 
 <pre><code class="language-SHELL"># 栈: 右边进右边出
 &gt; rpush books python java golang
@@ -339,7 +339,7 @@ OK
 
 <p>Redis 的字典相当于 Java 语言里面的 HashMap，它是无序字典。内部实现结构上同 Java 的 HashMap 也是一致的，同样的数组 + 链表二维结构。第一维 hash 的数组位置碰撞时，就会将碰撞的元素使用链表串接起来。不同的是，Redis 的字典的值只能是字符串，另外它们 <strong>rehash</strong> 的方式不一样，因为 Java 的 HashMap 在字典很大时，rehash 是个耗时的操作，需要一次性全部 rehash。Redis 为了高性能，不能堵塞服务，所以采用了渐进式 rehash 策略:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/redis-hash.gif" alt="redis-hash.gif" /></p>
+<p><img src="http://localhost:2333/style/images/smms/redis-hash.webp" alt="redis-hash" /></p>
 
 <p>hash 结构也可以用来存储用户信息，不同于字符串一次性需要全部序列化整个对象，hash 可以对用户结构中的每个字段单独存储。这样当我们需要获取用户信息时可以进行部分获取。而以整个字符串的形式去保存用户信息的话就只能一次性全部读取，这样就会比较浪费网络流量。但 hash 结构的存储消耗要高于单个字符串，到底该使用 hash 还是字符串，需要根据实际情况再三权衡:</p>
 
@@ -372,7 +372,7 @@ OK
 
 <p>Redis 的集合相当于 Java 语言里面的 HashSet，它内部的键值对是无序的唯一的。它的内部实现相当于一个特殊的字典，字典中所有的 value 都是一个值 NULL:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/redis-set.gif" alt="redis-set.gif" /></p>
+<p><img src="http://localhost:2333/style/images/smms/redis-set.webp" alt="redis-set" /></p>
 
 <p>set 结构可以用来存储活动中奖的用户 ID，因为有去重功能，可以保证同一个用户不会中奖两次:</p>
 
@@ -400,7 +400,7 @@ OK
 
 <p>zset 类似于 Java 的 SortedSet 和 HashMap 的结合体，一方面它是一个 set，保证了内部 value 的唯一性，另一方面它可以给每个 value 赋予一个 score，代表这个 value 的排序权重。它的内部实现用的是一种叫做<a href="https://juejin.im/book/5afc2e5f6fb9a07a9b362527/section/5b5ac63d5188256255299d9c"><strong>跳跃列表</strong></a>的数据结构:</p>
 
-<p><img src="http://localhost:2333/style/images/smms/redis-zset.gif" alt="redis-zset.gif" /></p>
+<p><img src="http://localhost:2333/style/images/smms/redis-zset.webp" alt="redis-zset" /></p>
 
 <p>例如 zset 可以用来存储学生的成绩，value 值是学生的 ID，score 是他的考试成绩。我们可以对成绩按分数进行排序就可以得到他的名次:</p>
 
@@ -665,9 +665,6 @@ def loop():
   <li>主数据库出现故障时自动将从数据库转换为主数据库</li>
 </ul>
 
-<!-- TODO: -->
-<!-- ![image15.png]( http://localhost:2333/style/images/smms/dom-node.jpg ) -->
-
 <p>默认情况下，每个 <strong>Sentinel 节点</strong>会以 每秒一次 的频率对 Redis 节点和其它的 Sentinel 节点发送 <code class="highlighter-rouge">PING</code> 命令，并通过节点的回复来判断节点是否在线:</p>
 
 <ul>
@@ -697,7 +694,7 @@ def loop():
   <li>缺点 - 客户端无法动态增删服务节点，客户端需要自行维护分发逻辑，客户端之间无连接共享，会造成连接浪费</li>
 </ul>
 
-<p><img src="http://localhost:2333/style/images/smms/redis-cluster-client.png" alt="redis-cluster-client.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/redis-cluster-client.webp" alt="redis-cluster-client" /></p>
 
 <p>2、<strong>代理分区方案</strong></p>
 
@@ -708,7 +705,7 @@ def loop():
   <li>缺点 - 多了一层代理层，加重了架构部署复杂度和性能损耗</li>
 </ul>
 
-<p><img src="http://localhost:2333/style/images/smms/redis-cluster-proxy.png" alt="redis-cluster-proxy.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/redis-cluster-proxy.webp" alt="redis-cluster-proxy" /></p>
 
 <h2 id="持久化">持久化</h2>
 
@@ -770,7 +767,7 @@ rdbcompression yes
 rdbchecksum yes
 </code></pre>
 
-<p><img src="http://localhost:2333/style/images/smms/redis-rdb.png" alt="redis-rdb.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/redis-rdb.webp" alt="redis-rdb" /></p>
 
 <h3 id="aof">AOF</h3>
 
@@ -833,7 +830,7 @@ aof-rewrite-incremental-fsync yes
   </tbody>
 </table>
 
-<p><img src="http://localhost:2333/style/images/smms/redis-aof.png" alt="redis-aof.png" /></p>
+<p><img src="http://localhost:2333/style/images/smms/redis-aof.webp" alt="redis-aof" /></p>
 
 <blockquote>
   <p>恢复数据时，Redis 会优先加载 AOF，然后加载 RDB</p>
@@ -856,9 +853,6 @@ aof-rewrite-incremental-fsync yes
 <h3 id="缓存雪崩">缓存雪崩</h3>
 
 <p>一般是设置缓存时采用了相同的过期时间，导致同一时间内大批量 key 缓存过期失效，所有原本应该访问缓存的请求都去查询数据库了，而对数据库 CPU 和内存造成巨大压力，严重的会造成数据库宕机。从而形成一系列连锁反应，造成整个系统崩溃:</p>
-
-<!-- TODO: -->
-<!-- ![image28.png]( http://localhost:2333/style/images/smms/dom-node.jpg ) -->
 
 <p>解决方案:</p>
 

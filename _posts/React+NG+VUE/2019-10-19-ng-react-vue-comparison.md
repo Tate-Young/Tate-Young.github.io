@@ -250,7 +250,7 @@ const App={
 
 [百度趋势](http://zhishu.baidu.com/v2/index.html#/):
 
-![angular-react-vue-baidu-trends.png]( {{site.url}}/style/images/smms/angular-react-vue-baidu-trends.png )
+![angular-react-vue-baidu-trends.png]( {{site.url}}/style/images/smms/angular-react-vue-baidu-trends.webp )
 
 [npm 趋势](https://www.npmtrends.com):
 
@@ -258,7 +258,7 @@ const App={
 
 我们可以看到 Angular 和 React 在国际上使用还是很多的，而且发展趋于稳定，社区也比较强大。而 Vue 的话近几年发展速度很快，在国内已经达到很高的占有率，相比之下它的发展目前并不稳定。我们可以再看一看他们之间的[性能测试比较](https://www.stefankrause.net/js-frameworks-benchmark6/webdriver-ts-results/table.html):
 
-![angular-react-vue-benchmark.png]( {{site.url}}/style/images/smms/angular-react-vue-benchmark.png )
+![angular-react-vue-benchmark.png]( {{site.url}}/style/images/smms/angular-react-vue-benchmark.webp )
 
 ### 单向 or 双向数据绑定
 

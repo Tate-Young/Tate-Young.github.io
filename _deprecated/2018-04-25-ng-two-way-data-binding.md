@@ -7,7 +7,7 @@ background: green
 category: 前端
 title: 双向数据绑定的实现
 date: 2018-04-26 11:47:00 GMT+0800 (CST)
-background-image: /style/images/smms/angular.jpg
+background-image: /style/images/smms/angular.webp
 tags:
 - AngularJS
 - Angular

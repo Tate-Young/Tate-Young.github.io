@@ -8,7 +8,7 @@ category: 后端
 title: REST or GraphQL
 date:   2018-03-01 15:33:00 GMT+0800 (CST)
 update: 2019-10-18 20:56:00 GMT+0800 (CST)
-background-image: https://symphony.is/sites/default/files/blog/2019-02/og_image.png
+background-image: /style/images/js.png
 tags:
 - http
 ---
@@ -447,8 +447,6 @@ fetch('/graphql', {
 * URI(Uniform Resource Identifier) - 统一资源标志符
 * URL(Uniform Resource Locator) - 统一资源定位符
 * URN(Uniform Resource Name) - 统一资源名称
-
-![URI](https://danielmiessler.com/images/URI-vs.-URL-e1464829000786.png)
 
 ## 参考链接
 

@@ -122,7 +122,7 @@ Selection 拥有以下常用的属性:
 
 我们直接用一些例子来对比下选区和相应的属性值:
 
-![rich-editor-selection.png]( {{site.url}}/style/images/smms/rich-editor-selection.png )
+![rich-editor-selection]( {{site.url}}/style/images/smms/rich-editor-selection.webp )
 
 > 需要注意的是 2 步骤中，如果有一段文本有设置命令，则它会被分割成多个片段
 

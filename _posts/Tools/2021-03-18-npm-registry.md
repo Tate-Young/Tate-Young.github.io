@@ -9,7 +9,7 @@ title: NPM 私有仓库搭建
 date: 2021-03-22 16:56:00 GMT+0800 (CST)
 update: 2021-11-10 16:37:00 GMT+0800 (CST)
 description: add unpkg and lru cache
-background-image: /style/images/smms/node.jpg
+background-image: /style/images/smms/node.webp
 
 tags:
 - NPM

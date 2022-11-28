@@ -64,7 +64,7 @@ breaker.on('fallback', (result) => reportFallbackEvent(result))
 
 > When a fallback function is triggered, it's considered a failure, and the fallback function will continue to be executed until the breaker is closed.
 
-![state switch](https://martinfowler.com/bliki/images/circuitBreaker/state.png)
+![state switch](https://martinfowler.com/bliki/images/circuitBreaker/state.webp)
 
 ### 事件监听
 

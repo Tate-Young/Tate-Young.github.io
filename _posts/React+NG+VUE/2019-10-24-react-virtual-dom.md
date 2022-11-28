@@ -8,7 +8,7 @@ category: 前端
 title:  React Virtual DOM
 date:   2019-10-24 15:55:00 GMT+0800 (CST)
 update: 2019-12-09 14:30:00 GMT+0800 (CST)
-background-image: /style/images/smms/react.png
+background-image: /style/images/smms/react.webp
 tags:
 - React
 ---
@@ -164,7 +164,7 @@ React 在更新节点上还遵循了以下两条规则，使得效率进一步�
 
 协调算法（Stack Reconciler）会一次同步处理整个组件树，来比较新旧两颗树，得到需要更新的部分。这个过程基于递归调用，一旦开始则很难去打断，而且涉及大量的计算就会堵塞整个主线程。因此我们可以根据优先级调整工作，使得大量的计算可以被拆解，异步化，浏览器主线程得以释放，保证了渲染的帧率，从而提高响应性。所以更优解是每次只做一个单元任务，然后回到主线程看下有没有什么更高优先级的任务需要处理，如果有则先处理，没有则继续执行:
 
-![react-fiber.png]( {{site.url}}/style/images/smms/react-fiber.png )
+![react-fiber]( {{site.url}}/style/images/smms/react-fiber.webp )
 
 由于递归调用生成的调用栈我们本身无法控制，而 Fiber 实现了 **virtual stack frame**，可以去按需去手动控制。
 
@@ -172,7 +172,7 @@ React 在更新节点上还遵循了以下两条规则，使得效率进一步�
 
 React 主要使用 [**requestIdelCallback**](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback) API 来实现这种特性，对于不支持的会自动加上 pollyfill。通常客户端线程执行任务时会以帧的形式划分，大部分设备控制在 30-60 帧是不会影响用户体验；在两个执行帧之间，主线程通常会有一小段空闲时间，requestIdleCallback 可以在这个**空闲期（Idle Period）**调用**空闲期回调（Idle Callback）**从而执行一些任务:
 
-![react-requestIdelCallback.png]( {{site.url}}/style/images/smms/react-requestIdelCallback.png )
+![react-requestIdelCallback]( {{site.url}}/style/images/smms/react-requestIdelCallback.webp )
 
 通过将协调过程，分解成小的工作单元的方式，可以让页面对于浏览器事件的响应更加及时。但是另外一个问题还是没有解决，就是如果当前在处理的 react 渲染耗时较长，仍然会阻塞后面的渲染。这就是为什么 `fiber reconciler` 增加了优先级策略:
 
@@ -189,7 +189,7 @@ module.exports = {
 
 另一方面由于协调阶段会被打断，可能会导致 commit 前的这些生命周期函数多次执行。react 官方目前已经把 `componentWillMount`、`componentWillReceiveProps` 和 `componetWillUpdate` 标记为 `unsafe`，并使用新的生命周期函数 `getDerivedStateFromProps` 和 `getSnapshotBeforeUpdate` 进行替换。
 
-![react-fiber-phase.png]( {{site.url}}/style/images/smms/react-fiber-phase.png )
+![react-fiber-phase]( {{site.url}}/style/images/smms/react-fiber-phase.webp )
 
 > 我们可以看下 youtube 发布的 stack 与 fiber 对比视频，[戳这里](https://www.youtube.com/watch?v=Qu_6ItnlDQg) 👈。完整[视频戳这里](https://www.youtube.com/watch?v=ZCuYPiUIONs) 👈
 
