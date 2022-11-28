@@ -8,7 +8,7 @@ category: 娱乐
 title: 拍照与摄影(上)
 date:   2019-07-02 20:24:00 GMT+0800 (CST)
 update: 2020-07-20 10:54:00 GMT+0800 (CST)
-background-image: /style/images/photography/aperture.jpg
+background-image: /style/images/photography/aperture.webp
 tags:
 - Other
 ---
@@ -22,23 +22,23 @@ tags:
 
 ### 光圈
 
-![光圈](/style/images/photography/aperture.jpg)
+![光圈](/style/images/photography/aperture.webp)
 
 **光圈**就是用来控制相机进光量多少的装置，当我们在拍照的时候，光线进入到相机内部第一道门槛就是光圈。光圈的开口越大，进入相机的光线就越多，即照片越亮；反之，就越少。在相机中，光圈用 `F+数字` 的形式表示。**F 后面的数字越大，表示光圈越小**，其公式为: `光圈系数值 = 焦距 / 光圈孔径`。举个栗子:
 
-![光圈示例 1](/style/images/photography/aperture-1.jpg)
+![光圈示例 1](/style/images/photography/aperture-1.webp)
 
 另一方面光圈可以用来制作**景深**，可以简单理解为一张照片中清晰的部分。照片中，**清晰的部分越多，表示景深越深**。举个栗子:
 
-![光圈示例 2](/style/images/photography/aperture-2.jpg)
+![光圈示例 2](/style/images/photography/aperture-2.webp)
 
 则说明**光圈越大，虚化越严重，景深越浅**，这样我们去拍照想突出某一事物的时候，可以选择大光圈:
 
-![光圈示例 3](/style/images/photography/aperture-3.jpg)
+![光圈示例 3](/style/images/photography/aperture-3.webp)
 
 如果你想在晚上拍路灯的星芒效果，可以采用小光圈:
 
-![光圈示例 4](/style/images/photography/aperture-4.jpg)
+![光圈示例 4](/style/images/photography/aperture-4.webp)
 
 > 根据前转盘可以快捷调节光圈大小
 
@@ -48,11 +48,11 @@ tags:
 
 很多人都以为拍照时按下的快门按钮就是**快门**，其实这只是一个触发装置，在相机中还有一个专门的**快门帘**组件。相机中一般用 `1/400` 这样的形式表示快门时间(也叫快门速度)。**这个数值越大，快门帘开启的时间越长，进入相机的光线就越多，即照片就越亮**；反之数值越小，进光量越少:
 
-![快门示例 1](/style/images/photography/shutter-1.jpg)
+![快门示例 1](/style/images/photography/shutter-1.webp)
 
 快门会影响记录的"轨迹": 可以定格瞬间，也可以记录过程:
 
-![快门示例 2](/style/images/photography/shutter-2.jpg)
+![快门示例 2](/style/images/photography/shutter-2.webp)
 
 但是在手持拍摄的时候，很容易拍模糊。这是因为在快门开启的时间内，只要手抖了，哪怕非常轻微，也会被相机记录下来，导致拍出的照片模糊。为了避免这种情况，建议大家记住一个概念：**安全快门**，它要求快门时间小于焦距的倒数，比如用 200mm 焦距拍照，那快门建议小于 1/200 秒，这样拍出的照片才不会模糊。
 
@@ -64,11 +64,11 @@ tags:
 
 **感光度**又称为 **ISO**，是指相机对光线的敏感程度，一般用 `ISO 100` 表示，**数字越大，表明设置的感光度越大，相机对光线越敏感**。在光圈和快门不变的情况下，ISO 越高，相机的感光能力越强，拍出来的照片就会越亮；反之就会越暗:
 
-![ISO 示例 1](/style/images/photography/iso-1.jpg)
+![ISO 示例 1](/style/images/photography/iso-1.webp)
 
 但是平时我们基本不会用提高感光度来增强画面亮度的，因为高 ISO 会让画面看起来有颗粒感，这些颗粒就是所谓的噪点，所以理论上 ISO 越低越好:
 
-![ISO 示例 1](/style/images/photography/iso-2.jpg)
+![ISO 示例 1](/style/images/photography/iso-2.webp)
 
 ### 曝光
 
@@ -78,17 +78,17 @@ tags:
 * 当指针指在左边的负数区 - 表示曝光不足，拍出来的照片偏暗；
 * 当指针指在右边的正数区 - 表示曝光过度，拍出来的照片偏亮。
 
-![曝光示例 1](/style/images/photography/exposure-1.jpg)
+![曝光示例 1](/style/images/photography/exposure-1.webp)
 
 那么他们之间是怎么协同合作的呢? 我们以下图水龙头为例：如果拍一张曝光正常的照片是接满一桶水，我们用水龙头阀门的大小代表光圈，用水流时间代表快门，ISO 代表滤网:
 
-![曝光示例 2](/style/images/photography/exposure-2.jpg)
+![曝光示例 2](/style/images/photography/exposure-2.webp)
 
 假定 ISO 不变的情况下，如果把水龙头阀门拧小，那么接满一桶水的时间就会变长；如果把水龙头拧大，那接满一桶水的时间就会缩短。所以光圈和快门是此消彼长的动态平衡关系。ISO 起到滤网的作用，ISO 越大，表示滤网的空隙越大，出水量就越大，但是杂质也会越多，拍出来的照片就会有很多的颗粒噪点。反之，ISO 越小，滤网的空隙越小，杂质就越少，照片也就越干净。
 
 把这个例子应用于我们平时的拍摄中：**如果需要慢快门操作的时候，比如记录运动轨迹，可以缩小光圈，延长快门时间**；如果需要大光圈操作的时候，比如拍摄背景虚化，可以加大光圈，缩短快门时间:
 
-![曝光示例 3](/style/images/photography/exposure-3.jpg)
+![曝光示例 3](/style/images/photography/exposure-3.webp)
 
 ## 相机相关术语与参数
 
@@ -107,7 +107,7 @@ tags:
 * **宽容度**是相机记录最亮和最暗细节与层次反差的能力。一般说来胶片的宽容度应该是越大越好。宽容度小的胶片，常会使景物明、暗部分在影像上得不到正确反映，损害影像的真实性。
 * **动态范围**是代表着一张照片高光到暗部的范围，动态范围越大，宽容度越高
 
-![宽容度](/style/images/photography/camera-1.jpeg)
+![宽容度](/style/images/photography/camera-1.webp)
 
 > **高动态范围图像（High-Dynamic Range，简称 HDR）**，相比普通的图像，可以提供更多的动态范围和图像细节，根据不同的曝光时间的 LDR(Low-Dynamic Range)，并利用每个曝光时间相对应最佳细节的 LDR 图像来合成最终 HDR 图像，它能够更好的反映出真实环境中的视觉效果。
 
@@ -148,11 +148,11 @@ tags:
 
 ### 功能菜单
 
-![俯视角度](/style/images/photography/camera-2.jpg)
+![俯视角度](/style/images/photography/camera-2.webp)
 
-![正视角度](/style/images/photography/camera-3.jpg)
+![正视角度](/style/images/photography/camera-3.webp)
 
-![屏幕参数](/style/images/photography/camera-4.jpg)
+![屏幕参数](/style/images/photography/camera-4.webp)
 
 ### 全画幅 / 半画幅
 
@@ -202,15 +202,15 @@ tags:
 | 视频 | 动态影像 | 设定动态影像的曝光模式并拍摄。一般拍摄视频时，**快门速度设置为帧率的两倍分之一** |
 | S&Q | 慢和快动作 | 可拍摄快动作和慢动作动态影像，但无法录制声音，码率较低 |
 
-![拍摄模式](/style/images/photography/camera-5.jpg)
+![拍摄模式](/style/images/photography/camera-5.webp)
 
 > 注意没有现成 B 档，需要先调到 M 档，然后使用后转盘调节到 **BULB**。一般情况下拍摄烟花等时，可以使用小光圈，低 ISO(曝光时间长的话画面内的噪点容易变得明显)，对焦模式可以使用 DMF 或 MF，焦距为无穷远，由于快门时间较长，建议使用三脚架。另一个需要注意的是 B 档测光系统不工作。
 
 我们可以根据拍摄模式来定义一个标准的拍摄步骤和一些拍摄场景下的参数设置:
 
-![拍摄步骤](/style/images/photography/camera-6.jpg)
+![拍摄步骤](/style/images/photography/camera-6.webp)
 
-![拍摄场景](/style/images/photography/camera-7.jpg)
+![拍摄场景](/style/images/photography/camera-7.webp)
 
 ### 测光与中性灰标准反推测
 
@@ -286,7 +286,7 @@ tags:
 * **定焦**镜头 - 是指只有一个固定焦距的镜头，只有一个焦段，或者说只有一个视野。定焦镜头没有变焦功能。定焦镜头的设计简单，对焦速度快，成像质量稳定。但缺点是需要改变拍摄远近的话，只能够通过摄影人员自己移动来实现。比如 24mm、35mm、50mm 等
 * **变焦**镜头 - 在不改变拍摄距离的情况下，可以通过变动焦距来改变拍摄范围，因此非常有利于画面构图。缺点是光圈普遍偏小，价格会更昂贵，体积较大，不如同焦段定焦镜头成像素质高。广角焦段比如 11-24mm、14-24mm、16-35mm 等等；标准焦段比如 24-70mm、24-85mm、24-105mm 等等；长焦焦段比如：70-200mm、70-300mm、100-400mm 等等。
 
-![镜头参数](https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1155800706,4151013647&fm=173&app=25&f=JPEG?w=640&h=426&s=0864C503804324FE17F9A09C0100E0C1)
+![镜头参数](https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1155800706,4151013647&fm=173&app=25&f=webp?w=640&h=426&s=0864C503804324FE17F9A09C0100E0C1)
 
 ### 参数解析
 
@@ -310,9 +310,9 @@ tags:
 
 目前拍摄视频用的稳定器是大疆的如影 SC，相对其他款的来说更便携一点，拿到手第一次调平还是很麻烦的，不过有了记忆滑块和三轴锁扣后，更方便快拆快装。下面是功能信息和针对索尼相机的一些兼容性设置:
 
-![如影 SC](/style/images/photography/camera-9.png)
+![如影 SC](/style/images/photography/camera-9.webp)
 
-![索尼兼容性设置](/style/images/photography/camera-8.png)
+![索尼兼容性设置](/style/images/photography/camera-8.webp)
 
 > 三轴指的是平移轴、俯仰轴和横滚轴，三个轴对应有三个锁扣来固定
 

@@ -47,6 +47,6 @@ redirect_from:
 
 [**Galvin - Python**](https://e-galvin.cn) [**cfrost - Java**](https://cfrost.net)
 
-![Tate & Snow](/style/images/bullettime.gif)
+![Tate & Snow](/style/images/bullettime.webp)
 
 {% include threeImage.html %}

@@ -126,6 +126,9 @@ pngquant --quality=65-80 image.png
 
 ```shell
 cwebp -mt -q 70 x.jpg -o x.webp
+
+# 使用 -m 6 效果更佳，默认值为 4
+cwebp -mt -q 70 -m 6 x.jpg -o x.webp
 ```
 
 ```python

@@ -64,7 +64,7 @@ tags:
 3. 提升用户缓存命中率
 4. 采用多级缓存进行缓存分级，优化回源路径，降低回源 qps
 
-![cdn-cache]( {{site.url}}/style/images/others/cdn-cache.jpeg )
+![cdn-cache]( {{site.url}}/style/images/others/cdn-cache.webp )
 
 ### 动态加速与 sureRoute
 
@@ -81,7 +81,7 @@ tags:
 2. 数据包更快到达，页面加载时间减少
 3. 故障转移。即自动路径探测并实现优选，果第一条路径失败，CDN 链路将选择一条备用路径来帮助确保应用程序可用性。
 
-![cdn-sureroute]( {{site.url}}/style/images/others/cdn-sureroute.jpeg )
+![cdn-sureroute]( {{site.url}}/style/images/others/cdn-sureroute.webp )
 
 ### 安全防护 WAF
 
@@ -111,7 +111,7 @@ CDN 一般面临的网络攻击类别有:
 3. 拦截非法 IP 回源访问
 4. 拦截源站攻击
 
-![cdn-site-shield]( {{site.url}}/style/images/others/cdn-site-shield.jpeg )
+![cdn-site-shield]( {{site.url}}/style/images/others/cdn-site-shield.webp )
 
 > 当然 CDN 还有其他一些功能，比如内容压缩(如 Gzip)，通过 [True-Client-IP Header](https://support.cloudflare.com/hc/zh-cn/articles/206776727-什么是-True-Client-IP-) 获取真实用户 ip 等。
 

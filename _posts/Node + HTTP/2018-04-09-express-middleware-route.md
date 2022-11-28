@@ -69,13 +69,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 所有文件的路径都是相对于存放目录的，因此存放静态文件的目录名不会出现在 URL 中，访问方式如下:
 
 ```TEXT
-http://localhost:8000/img/darling.jpg
+http://localhost:8000/img/darling.webp
 http://localhost:8000/css/style.css
 
 <!-- 文件结构 -->
 - public
   - img
-    - darling.jpg
+    - darling.webp
   - css
     - style.css
 ```

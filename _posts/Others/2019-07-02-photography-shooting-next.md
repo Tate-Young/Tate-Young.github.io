@@ -8,7 +8,7 @@ category: 娱乐
 title: 拍照与摄影(下)
 date:   2019-07-03 10:47:00 GMT+0800 (CST)
 update: 2020-05-14 11:10:00 GMT+0800 (CST)
-background-image: /style/images/photography/aperture.jpg
+background-image: /style/images/photography/aperture.webp
 tags:
 - Other
 ---
@@ -29,7 +29,7 @@ tags:
 
 ### 素材管理
 
-![素材管理](/style/images/photography/fcpx-tags.png)
+![素材管理](/style/images/photography/fcpx-tags.webp)
 
 > 如果以下操作找不到对应浏览器，可以使用快捷键 `command + 0` 恢复默认窗口布局 👈
 
@@ -63,7 +63,7 @@ tags:
 
 **过滤器**相当于功能更强大的搜索，可以根据各种维度(包括自定义)来搜索视频素材。比如我们选中视频，在视频信息一栏中的"元数据视图"选择"通用"，这时会比默认的"基本"显示更多配置项，比如"场景"、"拍摄"等。我们在"场景"一栏输入"desk"，然后去过滤器通过格式信息进行筛选:
 
-![过滤器](/style/images/photography/fcpx-filter.png)
+![过滤器](/style/images/photography/fcpx-filter.webp)
 
 ### 代理
 
@@ -85,7 +85,7 @@ tags:
 3. 在试演窗口中可以选择想要试演的片段，并且可以复制该片段进行编辑，从而生成一个新的试演片段
 4. 使用 ⌥+⌃+> 或 ⌥+⌃+< 则可以快捷切换试演片段
 
-![试演](/style/images/photography/fcpx-audition.png)
+![试演](/style/images/photography/fcpx-audition.webp)
 
 ### 片段
 
@@ -103,7 +103,7 @@ tags:
 
 **标记**的话分为三类：标准、待办事项和章节。快捷键为 M，双击的时候可以自定义名称，更方便我们做记号。如果选中章节的话，选中标记点还可以拖动，范围内即是规定的章节，而且在索引的标记栏中也可以查阅所有标记。
 
-![索引](/style/images/photography/fcpx-index.png)
+![索引](/style/images/photography/fcpx-index.webp)
 
 ### 坡度变速
 
@@ -114,7 +114,7 @@ tags:
 
 在调整坡度变速时，还有个比较好用的功能是点击变速的调节点，这时点击编辑浮窗上的源文件，可以直接对慢动作开始和结束的地方进行动态调整:
 
-![speed ramp](/style/images/photography/camera-10.png)
+![speed ramp](/style/images/photography/camera-10.webp)
 
 变速除了直接点击对应的倍速或自定义变速外，还可以用快捷键，如 `⌘+p` 自动调整倍速，比如它能对 60fps 素材进行最大限度的慢速调整，使得看起来不会丢帧，也无需额外的插入帧处理。
 
@@ -123,8 +123,6 @@ tags:
 #### 固定字幕
 
 对于固定字幕的制作，往往是十分繁琐和耗费时间的，这里推荐 [caption burner](https://fxfactory.com/info/captionburner/) 插件，我们可以在上面直接根据时间轴编写字幕，也可以通过导入 SRT 等字幕。如果要制作 SRT 字幕的话，我们可以把处理完的视频仅音频导出来，然后在[讯飞听见](https://www.iflyrec.com/)平台通过语音识别翻译成 SRT 格式文件，虽然是收费的，但是很便宜。这样字幕就大功告成啦！
-
-![caption burner](https://fxfactory.com/info/captionburner/banner-light.jpg)
 
 #### 隐藏式字幕
 
@@ -138,7 +136,7 @@ tags:
 
 如果要精细调节关键帧效果，可以在片段上右键选择 `Show Video Animation`，可以看到在片段上会显示出调节面板，在右下角还可以打开折叠部分，在线条上右键还可以结合 `option` 按键来控制动态曲线平滑度。
 
-![关键帧](/style/images/photography/fcpx-keyframe.png)
+![关键帧](/style/images/photography/fcpx-keyframe.webp)
 
 ### 音频处理
 
@@ -146,7 +144,7 @@ tags:
 
 音频有时候会出现溢出的情况，这时候有个调节的小技巧，就是如下图在音轨上通过 `Option` 点击生成关键帧，注意左右两边至少需要有两个关键帧才方便调节该区域的音轨:
 
-![音频调节](/style/images/photography/fcpx-audio.png)
+![音频调节](/style/images/photography/fcpx-audio.webp)
 
 > 一般比较推荐的音量设置为：对白 `-12db~-6db`，bgm `-15db~-18db`。这样对白声音音量刚好，不会失真，bgm 也不会显得吵闹 👈
 
@@ -154,7 +152,7 @@ tags:
 
 对于调节音频的淡入淡出，我们可以如下图在左右两边找到调节的地方，鼠标移上去会出现左右箭头，这时候移动鼠标的话会出现音量曲线，右键调节点也会出现曲线平滑度的选择。
 
-![音频淡入淡出](/style/images/photography/fcpx-audio2.png)
+![音频淡入淡出](/style/images/photography/fcpx-audio2.webp)
 
 #### 音频摇移
 
@@ -162,7 +160,7 @@ tags:
 
 如果是要调节**环绕声**的话，首先要保证项目的音频选项设置的为环绕声(Surround)。然后在上面的音频增强面板中选择基本环绕声(Basic Surround)，这时会看到有个声相器(Surround Panner)调节，通过调节圆形锚点就可以控制哪些喇叭可以响，来控制环绕声摇移:
 
-![音频环绕声](/style/images/photography/fcpx-audio3.png)
+![音频环绕声](/style/images/photography/fcpx-audio3.webp)
 
 还有其他一些对音频的操作，比如降噪、多机位音频同步等，需要更好效果的话可能会用到插件或者其他软件，这里就不展开了。
 
@@ -182,7 +180,7 @@ tags:
 
 通过遮罩我们还可以实现很常见的文字遮挡效果，也就是复制两段视频，把其中一段的人物抠出来，然后将文字放到两段视频中间层即可，抠出来的人物就会挡住一部分字体，具体教程可以[参考这里](https://www.bilibili.com/video/av53337064) 👈
 
-![蒙版遮罩](/style/images/photography/fcpx-mask.png)
+![蒙版遮罩](/style/images/photography/fcpx-mask.webp)
 
 ### 多机位
 
@@ -190,7 +188,7 @@ tags:
 
 创建多机位视频的方法很简单，就是直接在视频右键选择`新建多机位片段`，软件会自动帮你去识别这些片段。默认是采用音频同步，也是最方便的，所以一般多机位拍摄的时候最好都开启音频录制，只是以其中一台为准即可。或者也可以采用备份方案，即打板或者某个标志性动作如拍手，在导入这些视频的时候，需要逐一对打板瞬间进行 M 快捷标记，之后选择新建多机位片段，软件便自动根据这些标记来匹配视频。
 
-![多机位](/style/images/photography/fcpx-multicam.png)
+![多机位](/style/images/photography/fcpx-multicam.webp)
 
 <iframe src="//player.bilibili.com/player.html?aid=22791972&cid=37848627&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 

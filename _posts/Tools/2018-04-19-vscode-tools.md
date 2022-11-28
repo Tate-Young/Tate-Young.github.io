@@ -8,7 +8,7 @@ category: 前端
 title:  VS Code 插件及小技巧
 date:   2018-04-19 21:48:00 GMT+0800 (CST)
 update: 2019-11-09 11:45:00 GMT+0800 (CST)
-background-image: /style/images/darling.jpg
+background-image: /style/images/darling.webp
 tags:
 - Node
 ---

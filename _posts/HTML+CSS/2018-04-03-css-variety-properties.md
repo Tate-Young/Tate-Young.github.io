@@ -245,7 +245,7 @@ tags:
 
 <article class="card">
   <header class="card__thumb">
-    <a href="#"><img src="{{ site.url}}/style/images/darling.jpg"/></a>
+    <a href="#"><img src="{{ site.url}}/style/images/darling.webp"/></a>
   </header>
   <date class="card__date">
     <span class="card__date__day">3</span>

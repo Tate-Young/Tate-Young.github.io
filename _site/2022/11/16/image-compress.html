@@ -353,6 +353,9 @@ jpeg-compare <span class="nt">--method</span> ssim image1.jpg image2.jpg
 <p>针对上述 jpg/jpeg/png，我们还可以通过 <a href="https://developers.google.com/speed/webp/docs/cwebp"><strong>cwebp</strong></a> 转换为 webp。cwebp 本身也有压缩操作：</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cwebp <span class="nt">-mt</span> <span class="nt">-q</span> 70 x.jpg <span class="nt">-o</span> x.webp
+
+<span class="c"># 使用 -m 6 效果更佳，默认值为 4</span>
+cwebp <span class="nt">-mt</span> <span class="nt">-q</span> 70 <span class="nt">-m</span> 6 x.jpg <span class="nt">-o</span> x.webp
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 批量转换 jpg 为 webp
