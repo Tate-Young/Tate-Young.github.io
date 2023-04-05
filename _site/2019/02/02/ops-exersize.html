@@ -381,7 +381,7 @@ start()
 <ul>
   <li><strong>Trace</strong> - 事物在分布式系统中移动时的描述</li>
   <li><strong>Span</strong> -  一种命名的、定时的操作，表示工作流的一部分。Spans 接受 key:value 标签以及附加到特定 Span 实例的细粒度、带时间戳的结构化日志</li>
-  <li><strong>Span Contenxt</strong> - 携带分布式事务的跟踪信息，包括当它通过网络或消息总线将服务传递给服务时。SPAN 上下文包含 Trace 标识符、SPAN 标识符和跟踪系统需要传播到下游服务的任何其他数据</li>
+  <li><strong>Span Context</strong> - 携带分布式事务的跟踪信息，包括当它通过网络或消息总线将服务传递给服务时。SPAN 上下文包含 Trace 标识符、SPAN 标识符和跟踪系统需要传播到下游服务的任何其他数据</li>
 </ul>
 
 <p><img src="https://pic1.zhimg.com/80/v2-3c0a8b91c21c84ce802790149effd1fc_1440w.jpg" alt="opentracing api" /></p>
@@ -392,7 +392,7 @@ start()
   <p>具体历程可以参考 uber <a href="https://eng.uber.com/distributed-tracing/">发布的文章</a> 👈</p>
 </blockquote>
 
-<p><img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/f671cb89ab5946b181443c53962cfa2f.png" alt="jager" /></p>
+<p><img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/f671cb89ab5946b181443c53962cfa2f.png" alt="jaeger" /></p>
 
 <p>如上图所示，Jaeger 主要由以下几部分组成：</p>
 
