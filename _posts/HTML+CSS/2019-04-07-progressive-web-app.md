@@ -917,6 +917,7 @@ lighthouse https://airhorner.com/
 
 ## 参考链接
 
-1. [Your First Progressive Web App](https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/?hl=zh-cn)
-2. [Workbox](https://developers.google.com/web/tools/workbox/modules/workbox-sw)
-3. [2018，开始你的 PWA 学习之旅](https://alienzhou.gitbook.io/learning-pwa/2018-kai-shi-ni-de-pwa-xue-xi-zhi-lv) By alienzhou
+1. [PWA 应用实战](https://lavas-project.github.io/pwa-book/)
+2. [Your First Progressive Web App](https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/?hl=zh-cn)
+3. [Workbox](https://developers.google.com/web/tools/workbox/modules/workbox-sw)
+4. [2018，开始你的 PWA 学习之旅](https://alienzhou.gitbook.io/learning-pwa/2018-kai-shi-ni-de-pwa-xue-xi-zhi-lv) By alienzhou
