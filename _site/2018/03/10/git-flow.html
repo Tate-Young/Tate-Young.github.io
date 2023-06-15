@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="Git Flow" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Git Flow" />
-<meta property="og:description" content="Git Flow" />
+<meta name="description" content="add global .gitignore settings" />
+<meta property="og:description" content="add global .gitignore settings" />
 <link rel="canonical" href="http://localhost:2333/2018/03/10/git-flow.html" />
 <meta property="og:url" content="http://localhost:2333/2018/03/10/git-flow.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-03-10T23:36:00+08:00" />
 <script type="application/ld+json">
-{"description":"Git Flow","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/03/10/git-flow.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/03/10/git-flow.html","headline":"Git Flow","dateModified":"2018-03-10T23:36:00+08:00","datePublished":"2018-03-10T23:36:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add global .gitignore settings","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2018/03/10/git-flow.html"},"@type":"BlogPosting","url":"http://localhost:2333/2018/03/10/git-flow.html","headline":"Git Flow","dateModified":"2018-03-10T23:36:00+08:00","datePublished":"2018-03-10T23:36:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,12 +175,16 @@
                       发布时间：2018-03-10 23:36:00
                       &nbsp;&nbsp;&nbsp;
                       
-                        修改时间：2020-02-24 18:21:00
+                        修改时间：2023-06-15 20:57:00
                       
                     </time>
                     <a onclick="onClickCategory('前端')" href="Javascript:;" title="访问 前端" data-hover="博客分类: 前端">博客分类: 前端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：add global .gitignore settings
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -402,11 +406,42 @@ build/
 doc/*.txt
 # 忽略 doc/ 目录下所有扩展名为 txt 的文件
 doc/**/*.txt
+
+# vscode
+.idea
+.vscode/*
+!.vscode/settings.json
 </code></pre>
 
-<p>如果某个文件可以放开，直接在 .gitignore 中去除对应配置并重新追踪即可;如果某个文件在忽略前已经被追踪，直接在 .gitignore 中添加是无效的。需要去除文件缓存或者物理删除再提交:</p>
+<p>如果某个文件可以放开，直接在 .gitignore 中去除对应配置并重新追踪即可；如果某个文件在忽略前已经被追踪，直接在 .gitignore 中添加是无效的。需要去除文件缓存或者物理删除再提交:</p>
 
-<pre><code class="language-SHELL">git rm -r --cached filename
+<pre><code class="language-SHELL"># Commit an ignored file
+# 去除文件缓存的好处是可以保留本地的文件
+git rm -r --cached filename
+</code></pre>
+
+<p>我们还可以配置 global .gitignore：</p>
+
+<pre><code class="language-SHELL"># 执行命令查看文件路径，然后点开进行编辑即可
+# 如 /Users/xxx/.gitignore_global
+git config --global core.excludesfile
+
+# 如过不存在则创建
+git config --global core.excludesFile ~/.gitignore
+</code></pre>
+
+<blockquote>
+  <p>经测试，local 优先级大于 global。当 global 与 local 有冲突时，会以 local 为准。</p>
+</blockquote>
+
+<p>一般情况下，修改 .gitignore 编辑器会自动更新，当然也可以手动执行 “reload window”。或者通过以下命令进行检测：</p>
+
+<pre><code class="language-SHELL"># debug ignored file
+git check-ignore -v .pnp.js
+ 
+# Check why .vscode/autoApi.config.js is ignored
+# .gitignore:6:.pnp.js    .pnp.js
+# /Users/xxx/.gitignore_global:33:.vscode/*  .vscode/autoApi.config.js
 </code></pre>
 
 <h2 id="gitkeep">.gitkeep</h2>
