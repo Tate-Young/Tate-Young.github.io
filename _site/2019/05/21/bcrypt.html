@@ -15,7 +15,7 @@
 <meta name="twitter:keywords" content="bcrypt 与密码安全 - Tate & Snow" property='og:description' />
 <meta property="og:type" content="article">
 <meta property="og:title" content="bcrypt 与密码安全 - Tate & Snow">
-<meta name="og:keywords" content="bcrypt 与密码安全 - Tate & Snow|bcrypt 与密码安全存储哈希值哈希算法是一种单向函数。它把任意数量的数据转换为固定长度的“指纹”，而且这个过程无法逆转。它们有这样的特性：如果输入发生了一点改变，由此产生的哈希值会完全不同。像 SHA256、SHA512、RIPE..."
+<meta name="og:keywords" content="bcrypt 与密码安全 - Tate & Snow|bcrypt 与密码安全有一天小明在某站上注册了一个账号。账号名为 xiaoming，密码为 abc12345。他开始以为表里存储的字段是这样子：            username      password          ..."
   property='og:description' />
 <link rel="icon" type="image/png" href="http://localhost:2333/style/favicons/favicon.ico" />
 <link href="http://localhost:2333/style/favicons/favicon.ico" rel="shortcut icon" type="image/png">
@@ -24,13 +24,13 @@
 <meta charset="UTF-8">
 <link rel="manifest" href="/manifest.json">
 <link rel="shortcut icon" href="http://localhost:2333/style/favicons/favicon.ico" type="image/x-icon">
-<meta name="keywords" content="bcrypt 与密码安全存储哈希值哈希算法是一种单向函数。它把任意数量的数据转换为固定长度的“指纹”，而且这个过程无法逆转。它们有这样的特性：如果输入发生了一点改变，由此产生的哈希值会完全不同。像 SHA256、SHA512、RIPE..." property='og:description'
+<meta name="keywords" content="bcrypt 与密码安全有一天小明在某站上注册了一个账号。账号名为 xiaoming，密码为 abc12345。他开始以为表里存储的字段是这样子：            username      password          ..." property='og:description'
 />
 <meta name="description" content="Tate & Snow's Github blog" />
 <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
 <link href="http://localhost:2333/style/theme.css" rel="stylesheet"> 
 <meta content='http://localhost:2333/2019/05/21/bcrypt.html' property='og:url' />
-<meta content="http://localhost:2333/2019/05/21/bcrypt.html|bcrypt 与密码安全存储哈希值哈希算法是一种单向函数。它把任意数量的数据转换为固定长度的“指纹”，而且这个过程无法逆转。它们有这样的特性：如果输入发生了一点改变，由此产生的哈希值会完全不同。像 SHA256、SHA512、RIPE..." property='og:description'
+<meta content="http://localhost:2333/2019/05/21/bcrypt.html|bcrypt 与密码安全有一天小明在某站上注册了一个账号。账号名为 xiaoming，密码为 abc12345。他开始以为表里存储的字段是这样子：            username      password          ..." property='og:description'
 />
 <meta content="article" property="og:type" /> 
 
@@ -61,15 +61,15 @@
 <meta name="generator" content="Jekyll v3.8.7" />
 <meta property="og:title" content="bcrypt 与密码安全" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="bcrypt 与密码安全" />
-<meta property="og:description" content="bcrypt 与密码安全" />
+<meta name="description" content="add more details to dictionary attacks and rainbow tables" />
+<meta property="og:description" content="add more details to dictionary attacks and rainbow tables" />
 <link rel="canonical" href="http://localhost:2333/2019/05/21/bcrypt.html" />
 <meta property="og:url" content="http://localhost:2333/2019/05/21/bcrypt.html" />
 <meta property="og:site_name" content="Tate &amp; Snow" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-05-21T16:58:00+08:00" />
 <script type="application/ld+json">
-{"description":"bcrypt 与密码安全","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/05/21/bcrypt.html"},"@type":"BlogPosting","url":"http://localhost:2333/2019/05/21/bcrypt.html","headline":"bcrypt 与密码安全","dateModified":"2019-05-21T16:58:00+08:00","datePublished":"2019-05-21T16:58:00+08:00","@context":"https://schema.org"}</script>
+{"description":"add more details to dictionary attacks and rainbow tables","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:2333/2019/05/21/bcrypt.html"},"@type":"BlogPosting","url":"http://localhost:2333/2019/05/21/bcrypt.html","headline":"bcrypt 与密码安全","dateModified":"2019-05-21T16:58:00+08:00","datePublished":"2019-05-21T16:58:00+08:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script>
@@ -175,10 +175,16 @@
                       发布时间：2019-05-21 16:58:00
                       &nbsp;&nbsp;&nbsp;
                       
+                        修改时间：2023-06-17 09:58:00
+                      
                     </time>
                     <a onclick="onClickCategory('后端')" href="Javascript:;" title="访问 后端" data-hover="博客分类: 后端">博客分类: 后端</a>
                     <!-- <a href="#read"> 阅读次数: comments</a>  -->
                 </div>
+                
+                  <div role='update-description' class="post-data">
+                    修改内容：add more details to dictionary attacks and rainbow tables
+                  </div>
                 
                 <div class="post-tags">
                        
@@ -211,7 +217,57 @@
             </p>
             <h1 id="bcrypt-与密码安全">bcrypt 与密码安全</h1>
 
-<h2 id="存储哈希值">存储哈希值</h2>
+<p>有一天小明在某站上注册了一个账号。账号名为 <code class="highlighter-rouge">xiaoming</code>，密码为 <code class="highlighter-rouge">abc12345</code>。他开始以为表里存储的字段是这样子：</p>
+
+<style>
+  table {
+    width: 50%
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>username</th>
+      <th>password</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xiaoming</td>
+      <td>abc12345</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>但是想了想，万一数据库的访问权限被黑了，那明文密码岂不是直接“裸奔”了。ok，那加上哈希算法：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>username</th>
+      <th>password</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xiaoming</td>
+      <td>c755f8f4ff47efb627f2fa5db7c11f63c8a345fd0a508cf2599ed8dce2bda453</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>虽然哈希算法不可逆，这样子就真的能解决问题吗？而且为啥有时候输入错账号或密码，系统直接会提示“用户名或密码错误”？很多时候自己也忘了账号和密码，直接告诉我哪个错了不行吗，真费劲？这就是接下来要讨论的！</p>
+
+<blockquote>
+  <p>TLDR；设置长而复杂的密码、在不同的地方使用不同的密码、避免使用个人信息作为密码、定期修改密码等是防御暴力破解的有效方法</p>
+</blockquote>
+
+<blockquote>
+  <p>单纯的密码登录也存在很多风险，一般也会同步做 2FA 双因素认证、MFA 与 TOTP 等，有兴趣的可以看<a href="http://localhost:2333/2022/09/19/webAuthn.html#双因素认证与-totp">这篇文章</a> 👈</p>
+</blockquote>
+
+<h2 id="哈希算法">哈希算法</h2>
 
 <p><strong>哈希算法</strong>是一种单向函数。它把任意数量的数据转换为固定长度的“指纹”，而且这个过程无法逆转。它们有这样的特性：如果输入发生了一点改变，由此产生的哈希值会完全不同。像 SHA256、SHA512、RIPEMD 和 WHIRLPOOL 都是加密哈希函数:</p>
 
@@ -223,12 +279,21 @@ sha_256("hallo") = d3751d33f9cd5049c4af2b462735457e4d3baf130bcbb87f389e349fbaeb2
   <p>可以在线测试下各种不同的加密哈希函数，<a href="http://www.atool9.com/hash.php">点击这里</a> 👈</p>
 </blockquote>
 
-<p>而破解哈希有以下两种方法:</p>
+<h2 id="如何暴力破解哈希">如何暴力破解哈希</h2>
 
-<ul>
-  <li><strong>字典攻击</strong> - 使用包含单词、短语、常用密码和其他可能用做密码的字符串的字典文件。对文件中的每个词都进行哈希加密，将这些哈希值和要破解的密码哈希值比较。如果它们相同，这个词就是密码</li>
-  <li><strong>暴力破解</strong> - 是对于给定的密码长度，尝试每一种可能的字符组合。这种方式会消耗大量的计算，也是破解哈希加密效率最低的办法</li>
-</ul>
+<h3 id="穷举法">穷举法</h3>
+
+<p><strong>穷举法</strong>是将密码进行逐个推算直到找出真正的密码为止。例如一个已知是四位并且全部由数字组成的密码，其可能共有 10000 种组合，因此最多尝试 10000 次就能找到正确的密码。这种方式会消耗大量的计算，也是破解哈希加密效率最低的办法。可能需要几秒、几天、几个月甚至几年的时间，具体取决于密码的复杂度和长度。</p>
+
+<blockquote>
+  <p>穷举法适用于猜解随机生成的短信验证码等，因为各种随机生成密码出现的概率是一样的，不受人的记忆影响。</p>
+</blockquote>
+
+<h3 id="字典攻击">字典攻击</h3>
+
+<p><strong>字典攻击</strong> 对于一些使用频率高的密码破解十分有效。通常是使用包含单词、短语、常用密码和其他可能用做密码的字符串的字典文件，对文件中的每个词都进行哈希加密，将这些哈希值和要破解的密码哈希值比较，如果相同，这个词就是密码。</p>
+
+<p>常用的密码包括 <code class="highlighter-rouge">123456</code>、<code class="highlighter-rouge">password</code> 和 <code class="highlighter-rouge">qwerty</code> 等。人们之所以使用这些密码，是因为它们比使用长而复杂的密码更容易记住，然而弊端就是容易被各种暴力破解。还可以对字典文件进行更进一步的处理，比如把单词中的字母替换为它们的“形近字”，如 <code class="highlighter-rouge">hello</code> 变为 <code class="highlighter-rouge">h3110</code>。</p>
 
 <h3 id="查表法">查表法</h3>
 
@@ -237,7 +302,15 @@ Searching: 6cbe615c106f422d23669b610b564800:  not in database
 Searching: 630bf032efe4507f2c57b280995925a9: FOUND: letMEin12
 </code></pre>
 
-<p>对于破解相同类型的哈希值，<strong>查表法(Lookup Tables)</strong>是一种非常高效的方式。主要理念是预先计算出密码字典中的每个密码的哈希值，然后把他们相应的密码存储到一个表里。一个设计良好的查询表结构，即使包含了数十亿个哈希值，仍然可以实现每秒钟查询数百次哈希。</p>
+<p><strong>查表法(Lookup Tables)</strong>对于破解一系列算法相同的哈希值比较高效。主要的思想就是预计算密码字典中的每个密码，然后把哈希值和对应的密码储存到一个用于快速查询的数据结构中。一个设计良好的查询表结构，即使包含了数十亿个哈希值，仍然可以实现每秒钟查询数百次哈希。</p>
+
+<p>如果你想感受查表法的速度有多快，尝试一下用 CrackStation 的 <a href="https://crackstation.net">free hash cracker</a> 来破解下面的 SHA256：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c11083b4b0a7743af748c85d343dfee9fbb8b2576c05f3a7f0d632b0926aadfc
+08eac03b80adc33dc7d8fbe44b7c7b05d3a2c511166bdb43fcb710b03ba919e7
+e4ba5cbd251c98e6cd1c23f126a3b81d8d8328abc95387229850952b3ef9f904
+5206b8b8a996cf5320cb12ca91c7b790fba9f030408efe83ebb83548dc3007bd
+</code></pre></div></div>
 
 <h3 id="反向查表法">反向查表法</h3>
 
@@ -249,7 +322,20 @@ Searching for hash(blueberry) in users' hash list... : Matches [usr10101, timmy,
 
 <h3 id="彩虹表">彩虹表</h3>
 
+<p>总结下上面说的。网站为了增加安全性，不会直接将用户密码存储在数据库中，而是将密码进行哈希，变成一长串毫无意义的字符，并且哈希算法是不可逆的，没有解密算法可以还原成原来的密码。面对哈希后的密码，破解的方法有两个：</p>
+
+<ol>
+  <li>用穷举法组合出所有的密码可能，然后经哈希加密算法计算，将结果与目标哈希值进行比对，但边计算边比对会耗费海量的时间</li>
+  <li>提前生成可能密码与对应哈希串的对照表，但是对照表将占据海量的磁盘空间，以 14 位字母和数字的组合密码为例，生成的密码 32 位哈希串的对照表将占用 5.7×10^14 TB 的存储空间</li>
+</ol>
+
 <p><strong><a href="https://zh.wikipedia.org/wiki/彩虹表">彩虹表(Rainbow Tables)</a></strong>是一种以空间换时间的技术。与查表法相似，只是它为了使查询表更小，牺牲了破解速度。因为彩虹表更小，所以在单位空间可以存储更多的哈希值，从而使攻击更有效，可以<a href="https://freerainbowtables.com">查看这里</a> 👈</p>
+
+<p>其核心思想是将明文计算得到的哈希值由 R 函数映射回明文空间，交替计算明文和哈希值，生成哈希链，将这个链的首尾存储在表中，中间的都删掉，用的时候临时算，那么存储的空间比原来的减少了一半，而计算次数也并没有大量增多。由于在哈希链的计算过程中引入不同的 R 函数，将不同的 R 函数用不同的颜色表示，众多的哈希链就会像彩虹一样，所以叫做彩虹表。</p>
+
+<p>使用彩虹表进行破解，普通 PC 也能达到每秒 1000 亿次以上的惊人速度。为了提升密码的安全性水准，减少攻击者的突破率，可能会多次哈希，例如 MD5 后再 MD5 一次；或者加盐，但这些算法的结果都可以加入彩虹表中。</p>
+
+<p><img src="https://download.huawei.com/mdl/image/download?uuid=7d0fc21e3fb24dc2a026abd8c9b6cab8" alt="rainbow table" /></p>
 
 <h3 id="哈希碰撞">哈希碰撞</h3>
 
