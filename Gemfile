@@ -6,7 +6,7 @@ source "https://rubygems.org"
 
 # gem "rails"
 gem 'github-pages'
-gem "jekyll", "~> 3.8.5"
+gem "jekyll", "~> 3.9.2"
 gem "nokogiri", ">= 1.8.5"
 gem 'jekyll-admin', group: :jekyll_plugins
 gem 'jekyll-seo-tag'
